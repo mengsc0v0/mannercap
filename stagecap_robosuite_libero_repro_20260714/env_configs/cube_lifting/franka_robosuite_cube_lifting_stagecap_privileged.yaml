@@ -1,0 +1,26 @@
+env:
+  _target_: capx.envs.tasks.franka.franka_lift.FrankaLiftCodeEnv
+  cfg:
+    _target_: capx.envs.tasks.base.CodeExecEnvConfig
+    low_level: franka_robosuite_cube_lift_low_level
+    privileged: true
+    clean_code_guard: true
+    apis:
+      - FrankaRobosuiteCubeLiftStageApi
+
+api_servers:
+  - _target_: capx.serving.launch_pyroki_server.main
+    port: 8116
+    host: 127.0.0.1
+    robot: panda_description
+    target_link: panda_hand
+
+record_video: true
+output_dir: ./outputs/franka_robosuite_cube_lifting_stagecap_privileged
+trials: 100
+num_workers: 4
+use_oracle_code: false
+use_stage_verifiable_runner: true
+use_deterministic_stage_fast_paths: true
+disable_privileged_data_generation_finalize: true
+max_total_stage_attempts: 10

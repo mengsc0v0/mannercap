@@ -1,0 +1,29 @@
+# Tested StageCaP RoboSuite + LIBERO environment (Python 3.12, Linux x86_64).
+# The broad runtime list is kept for CapX's import surface; exact pins below
+# constrain the versions that materially affect this reproduction.
+-r requirements-stagecap-runtime.txt
+
+numpy==1.26.4
+scipy==1.17.0
+torch==2.8.0
+torchvision==0.23.0
+opencv-python-headless==4.12.0.88
+mujoco==3.5.0
+PyOpenGL==3.1.6
+glfw==2.10.0
+
+jax==0.4.29
+jaxlib==0.4.29
+jaxls @ git+https://github.com/brentyi/jaxls.git@6fe7cf9d56223736b2c0272d080ec7346203c648
+pyroki @ git+https://github.com/chungmin99/pyroki.git@95afccc22658c461ab1042a048ae4e9c24bc2a47
+robot-descriptions==1.22.0
+yourdfpy==0.0.60
+
+cloudpickle==2.1.0
+einops==0.4.1
+thop==0.1.1.post2209072238
+termcolor==3.3.0
+numba==0.61.2
+pytest==9.0.2
+pytest-timeout>=2.3
+

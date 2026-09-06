@@ -1,0 +1,29 @@
+diff --git a/robosuite/utils/binding_utils.py b/robosuite/utils/binding_utils.py
+index e69aced..d09622d 100644
+--- a/robosuite/utils/binding_utils.py
++++ b/robosuite/utils/binding_utils.py
+@@ -197,17 +197,17 @@ class MjRenderContext:
+ 
+     def __del__(self):
+         # free mujoco rendering context and GL rendering context
+-        self.con.free()
++        if hasattr(self, "con"):
++            self.con.free()
+         try:
+-            self.gl_ctx.free()
++            if hasattr(self, "gl_ctx"):
++                self.gl_ctx.free()
+         except Exception:
+             # avoid getting OpenGL.error.GLError
+             pass
+-        del self.con
+-        del self.gl_ctx
+-        del self.scn
+-        del self.cam
+-        del self.vopt
++        for attr in ("con", "gl_ctx", "scn", "cam", "vopt"):
++            if hasattr(self, attr):
++                delattr(self, attr)
+         del self.pert
+ 
+ 

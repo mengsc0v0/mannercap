@@ -1,0 +1,17 @@
+# Minimal dependencies for the vendored KITE path used by this handoff package:
+# `scripts/extract_kite_failure_keyframes.py` imports
+# `kite.video.keyframes.KeyframeSelector` for optical-flow keyframe selection.
+#
+# Do not install `third_party/kite/requirements.txt` by default here. That file
+# belongs to the full upstream KITE project and pulls in training/UI/retrieval
+# dependencies such as gradio, wandb, faiss, peft, ultralytics, and
+# bitsandbytes, which are unnecessary for Stage-CAP failure-frame extraction.
+#
+# If you want to run the complete upstream KITE pipeline, install
+# `third_party/kite/requirements.txt` separately in an isolated environment.
+
+numpy==1.26.4
+opencv-python-headless<4.13
+pillow>=10
+matplotlib>=3.10
+tqdm

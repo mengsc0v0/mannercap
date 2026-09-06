@@ -1,0 +1,54 @@
+# DexScrew XHand nut-bolt contact-driven CaP-Agent0 config.
+# Run inside the controlled GPU3/CPU16 container:
+#   scripts/docker_capx_gpu3.sh py38 scripts/smoke_dexscrew_xhand_nutbolt_cap_api.py
+
+env:
+  _target_: capx.envs.tasks.dexscrew_xhand.dexscrew_xhand_env.DexScrewXHandNutBoltCodeEnv
+  cfg:
+    _target_: capx.envs.tasks.base.CodeExecEnvConfig
+    low_level:
+      _target_: capx.envs.simulators.dexscrew_xhand_nutbolt.DexScrewXHandNutBoltEnv
+      num_envs: 4
+      seed: 0
+      sim_device: cpu
+      rl_device: cpu
+      graphics_device_id: -1
+      checkpoint: external/dexscrew/xhand-deploy/checkpoints/nut_bolt.pt
+      max_steps: 180
+      success_angle_delta: 0.20
+      min_nut_contact_force: 0.10
+      min_fingertip_contact_force: 0.10
+      record_env: auto
+      no_camera: true
+      enable_render: false
+    privileged: false
+    enable_render: false
+    apis:
+      - DexScrewXHandNutBoltControlApi
+    prompt: |
+      You are controlling DexScrew's XHand dexterous hand on a nut-bolt task.
+      Goal: rotate the nut through physical fingertip contact. You may command only the 12 XHand joints; do not set object pose, nut pose, simulator state, or nut_joint state directly.
+      Use the high-level DexScrew APIs first: inspect state, run_contact_policy in short chunks, verify_contact_driven_rotation, and diagnose_nutbolt_failure for feedback.
+      The current controlled container is headless because Isaac Gym camera sensors segfault there, so use numeric state feedback: nut_joint angle delta, nut contact force, fingertip contact force, and audit booleans.
+      Each task should use at most three feedback rounds.
+      Only write executable Python code and do not wrap it in code fences.
+    oracle_code: |
+      for round_idx in range(3):
+          run_contact_policy(steps=60, stop_on_success=True)
+          state = get_task_state()
+          print("round", round_idx + 1)
+          print("nut_delta_rad", state["nut_dof_delta_rad"])
+          print("nut_contact_max", state["nut_contact_force_max"])
+          print("fingertip_contact_max", state["fingertip_contact_force_max"])
+          print("commanded_nut_joint_action_max", state["commanded_nut_joint_action_max"])
+          if verify_contact_driven_rotation():
+              break
+      RESULT = get_task_state()
+      print("success", verify_contact_driven_rotation())
+      print("diagnosis", diagnose_nutbolt_failure()["issues"])
+
+record_video: false
+output_dir: ./outputs/dexscrew_xhand_nutbolt_cap_api_smoke
+trials: 1
+num_workers: 1
+

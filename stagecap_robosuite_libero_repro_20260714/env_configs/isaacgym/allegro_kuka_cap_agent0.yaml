@@ -1,0 +1,47 @@
+# IsaacGymEnvs AllegroKuka CaP-Agent0 config.
+# Usage:
+#   CONDA_PREFIX=/home/lifuchun/miniconda3/envs/isaacgym-preview4 \
+#   LD_LIBRARY_PATH=/home/lifuchun/miniconda3/envs/isaacgym-preview4/lib:$LD_LIBRARY_PATH \
+#   conda run --no-capture-output -n isaacgym-preview4 \
+#   python scripts/smoke_isaacgym_allegro_kuka_cap_api.py
+
+env:
+  _target_: capx.envs.tasks.allegro_kuka.isaacgym_allegro_kuka_env.AllegroKukaCodeEnv
+  cfg:
+    _target_: capx.envs.tasks.base.CodeExecEnvConfig
+    low_level:
+      _target_: capx.envs.simulators.isaacgym_allegro_kuka.IsaacGymAllegroKukaEnv
+      task: AllegroKuka
+      subtask: reorientation
+      num_envs: 1
+      seed: 0
+      sim_device: cpu:0
+      rl_device: cpu
+      graphics_device_id: -1
+      max_steps: 120
+      enable_render: false
+    privileged: false
+    enable_render: false
+    apis:
+      - AllegroKukaControlApi
+    prompt: |
+      You are controlling an IsaacGymEnvs Kuka arm with an Allegro dexterous hand.
+      Goal: lift the block and reorient it so object keypoints align with the goal keypoints.
+      Use high-level AllegroKuka APIs first: read state, open hand, move palm to object, align fingertips, close hand, lift, rotate object to goal, and verify.
+      This environment is currently headless; use numeric state feedback rather than images.
+      Only write executable Python code and do not wrap it in code fences.
+    oracle_code: |
+      open_hand(steps=2)
+      move_palm_to_object(steps=4)
+      align_fingertips_to_object(steps=3)
+      close_hand_on_object(steps=4)
+      lift_object(steps=4)
+      rotate_object_to_goal(steps=5)
+      RESULT = get_task_state()
+      print("max_keypoint_dist", RESULT["max_keypoint_dist"])
+      print("success", verify_object_reorientation())
+
+record_video: false
+output_dir: ./outputs/isaacgym_allegro_kuka_cap_api_smoke
+trials: 1
+num_workers: 1

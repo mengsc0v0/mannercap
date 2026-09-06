@@ -1,0 +1,31 @@
+# Code block 0
+import numpy as np
+
+# Get the pose and extent of the green cube
+green_pos, green_quat, green_ext = get_object_pose("green cube", return_bbox_extent=True)
+
+# Calculate the top surface height of the green cube (z-center + half of z-extent)
+green_top_z = green_pos[2] + green_ext[2] / 2.0
+
+# Get the pose and extent of the red cube
+red_pos, red_quat, red_ext = get_object_pose("red cube", return_bbox_extent=True)
+
+# Sample a grasp pose for the red cube and grasp it
+grasp_pos, grasp_quat = sample_grasp_pose("red cube")
+goto_pose(grasp_pos, grasp_quat, z_approach=0.1)
+close_gripper()
+
+# Calculate the placement position for the red cube on top of the green cube
+# Place red cube's bottom (z-center - half of z-extent) exactly on green cube's top
+target_z = green_top_z + red_ext[2] / 2.0
+target_pos = np.array([green_pos[0], green_pos[1], target_z])
+
+# Use gripper down orientation for placement (quaternion w,x,y,z = 0,0,1,0)
+# This corresponds to (0, 0, 1, 0) in the WXYZ format used by the API
+placement_quat = np.array([0.0, 0.0, 1.0, 0.0])
+
+# Move to placement position with approach offset to avoid collision
+goto_pose(target_pos, placement_quat, z_approach=0.05)
+
+# Release the red cube
+open_gripper()

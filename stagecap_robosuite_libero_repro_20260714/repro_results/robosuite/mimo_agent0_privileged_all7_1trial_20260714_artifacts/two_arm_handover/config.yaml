@@ -1,0 +1,17 @@
+env:
+  _target_: capx.envs.tasks.franka.two_arm_handover.TwoArmHandoverCodeEnv
+  cfg:
+    _target_: capx.envs.tasks.base.CodeExecEnvConfig
+    low_level: two_arm_handover_robosuite
+    privileged: true
+    apis:
+    - FrankaHandoverPrivilegedApi
+record_video: false
+output_dir: outputs/mimo_agent0_privileged_all7_1trial_20260714_v3/two_arm_handover/run
+trials: 1
+num_workers: 1
+use_oracle_code: false
+use_stage_verifiable_runner: false
+use_deterministic_stage_fast_paths: false
+use_online_stage_kite_feedback: false
+max_online_stage_feedback_images: 0

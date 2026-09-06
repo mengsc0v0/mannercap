@@ -1,0 +1,40 @@
+# ROBEL D'Claw CaP-Agent0 config.
+# Usage:
+#   MUJOCO_GL=egl PYOPENGL_PLATFORM=egl \
+#   conda run --no-capture-output -n robel-dclaw \
+#   python scripts/smoke_robel_dclaw_cap_api.py
+
+env:
+  _target_: capx.envs.tasks.dclaw.robel_dclaw_env.DClawCodeEnv
+  cfg:
+    _target_: capx.envs.tasks.base.CodeExecEnvConfig
+    low_level:
+      _target_: capx.envs.simulators.robel_dclaw.RobelDClawEnv
+      env_id: DClawScrewFixed-v0
+      privileged: false
+      max_steps: 400
+      seed: 1
+      enable_render: true
+      render_width: 480
+      render_height: 480
+      sim_backend: dm_control
+      record_subsample_rate: 2
+    privileged: false
+    apis:
+      - DClawControlApi
+    prompt: |
+      You are controlling a ROBEL D'Claw dexterous hand with API described below.
+      Goal: rotate the screw/object so signed target_error is close to zero.
+      Use the high-level dexterous APIs before raw joint commands. For DClawScrewFixed-v0, run_reference_screw_policy(steps=160, action_mode="mean_scaled_tanh", scale=0.5) is the validated reference primitive.
+      You may write python code comments for reasoning but ONLY write executable Python code and do not write it in code fences.
+      The functions (APIs) below are already imported to the environment. If you want to use numpy, import it explicitly.
+    oracle_code: |
+      run_reference_screw_policy(steps=160, action_mode="mean_scaled_tanh", scale=0.5)
+      RESULT = get_task_state()
+      print("target_error", RESULT["target_error"])
+      print("success", verify_screw_rotation(threshold=0.2))
+
+record_video: true
+output_dir: ./outputs/robel_dclaw_cap_api_smoke
+trials: 1
+num_workers: 1

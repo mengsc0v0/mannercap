@@ -1,0 +1,105 @@
+----------------------------------------------------------------------------------------------------
+Generated program:
+# Code block 0
+import numpy as np
+
+# Helper function to convert rotation matrix to WXYZ quaternion
+def rotation_matrix_to_quaternion(R):
+    trace = np.trace(R)
+    if trace > 0:
+        s = 0.5 / np.sqrt(trace + 1.0)
+        w = 0.25 / s
+        x = (R[2, 1] - R[1, 2]) * s
+        y = (R[0, 2] - R[2, 0]) * s
+        z = (R[1, 0] - R[0, 1]) * s
+    elif (R[0, 0] > R[1, 1]) and (R[0, 0] > R[2, 2]):
+        s = 2.0 * np.sqrt(1.0 + R[0, 0] - R[1, 1] - R[2, 2])
+        w = (R[2, 1] - R[1, 2]) / s
+        x = 0.25 * s
+        y = (R[0, 1] + R[1, 0]) / s
+        z = (R[0, 2] + R[2, 0]) / s
+    elif (R[1, 1] > R[2, 2]):
+        s = 2.0 * np.sqrt(1.0 + R[1, 1] - R[0, 0] - R[2, 2])
+        w = (R[0, 2] - R[2, 0]) / s
+        x = (R[0, 1] + R[1, 0]) / s
+        y = 0.25 * s
+        z = (R[1, 2] + R[2, 1]) / s
+    else:
+        s = 2.0 * np.sqrt(1.0 + R[2, 2] - R[0, 0] - R[1, 1])
+        w = (R[1, 0] - R[0, 1]) / s
+        x = (R[0, 2] + R[2, 0]) / s
+        y = (R[1, 2] + R[2, 1]) / s
+        z = 0.25 * s
+    return np.array([w, x, y, z]) / np.linalg.norm([w, x, y, z])
+
+# Step 1: Lift both arms to avoid occlusion
+pos0, quat0 = get_arm0_gripper_pose()
+pos1, quat1 = get_arm1_gripper_pose()
+lift_pos0 = pos0 + np.array([0, 0, 0.1])
+lift_pos1 = pos1 + np.array([0, 0, 0.1])
+goto_pose_both(lift_pos0, quat0, lift_pos1, quat1)
+
+# Step 2: Open grippers
+open_gripper_arm0()
+open_gripper_arm1()
+
+# Step 3: Get handle positions
+handle0 = get_handle0_pos()
+handle1 = get_handle1_pos()
+
+# Step 4: Compute grasping orientations (sideways grasp with y-axis aligned with world z-axis)
+# For each handle, we want gripper z-axis pointing towards the opposite handle (for side grasp)
+# and gripper y-axis pointing upward (world z).
+z_axis = np.array([0, 0, 1.0])  # world z-axis
+
+# Handle 0: z-axis from handle0 towards handle1 (opposite side)
+approach_dir0 = handle1 - handle0
+approach_dir0 /= np.linalg.norm(approach_dir0)
+x_axis0 = np.cross(z_axis, approach_dir0)  # perpendicular to both
+x_axis0 /= np.linalg.norm(x_axis0)
+y_axis0 = np.cross(approach_dir0, x_axis0)  # should align with z_axis within numerical precision
+R0 = np.column_stack((x_axis0, y_axis0, approach_dir0))  # columns are x, y, z axes
+quaternion0 = rotation_matrix_to_quaternion(R0)
+
+# Handle 1: z-axis from handle1 towards handle0
+approach_dir1 = handle0 - handle1
+approach_dir1 /= np.linalg.norm(approach_dir1)
+x_axis1 = np.cross(z_axis, approach_dir1)
+x_axis1 /= np.linalg.norm(x_axis1)
+y_axis1 = np.cross(approach_dir1, x_axis1)
+R1 = np.column_stack((x_axis1, y_axis1, approach_dir1))
+quaternion1 = rotation_matrix_to_quaternion(R1)
+
+# Step 5: Move to pre-grasp positions (slightly offset from handles along approach direction)
+pre_offset = 0.05  # 5cm offset
+pre_pos0 = handle0 + pre_offset * approach_dir0
+pre_pos1 = handle1 + pre_offset * approach_dir1
+goto_pose_both(pre_pos0, quaternion0, pre_pos1, quaternion1)
+
+# Step 6: Move to grasp positions (at handle centers)
+goto_pose_both(handle0, quaternion0, handle1, quaternion1)
+
+# Step 7: Close grippers
+close_gripper_arm0()
+close_gripper_arm1()
+
+# Step 8: Lift pot by moving both arms up equally
+lift_height = 0.15  # 15cm lift
+current_pos0, _ = get_arm0_gripper_pose()
+current_pos1, _ = get_arm1_gripper_pose()
+lift_target0 = current_pos0 + np.array([0, 0, lift_height])
+lift_target1 = current_pos1 + np.array([0, 0, lift_height])
+goto_pose_both(lift_target0, quaternion0, lift_target1, quaternion1)
+
+
+Environment response:
+  Sandbox failed: 0
+  Stdout: 
+  Stderr: 
+  Reward: 0.015403429377233694
+  Task Completed: False
+  Terminated: False, Truncated: False
+  Num Regenerations: 0
+  Num Finishes: 0
+  Num Code Blocks: 1
+----------------------------------------------------------------------------------------------------

@@ -1,0 +1,16 @@
+env:
+  _target_: capx.envs.tasks.franka.franka_spill_wipe.FrankaSpillWipeCodeEnv
+  cfg:
+    _target_: capx.envs.tasks.base.CodeExecEnvConfig
+    low_level: franka_robosuite_spill_wipe_low_level
+    privileged: true
+    apis:
+    - FrankaControlSpillWipePrivilegedApi
+record_video: false
+output_dir: outputs/mimo_agent0_privileged_all7_1trial_20260714_v3/spill_wipe/run
+trials: 1
+num_workers: 1
+use_stage_verifiable_runner: false
+use_deterministic_stage_fast_paths: false
+use_online_stage_kite_feedback: false
+max_online_stage_feedback_images: 0

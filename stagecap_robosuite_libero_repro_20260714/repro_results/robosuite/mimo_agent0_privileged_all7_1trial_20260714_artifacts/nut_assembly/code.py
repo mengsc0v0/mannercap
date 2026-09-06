@@ -1,0 +1,44 @@
+# Code block 0
+import numpy as np
+from scipy.spatial.transform import Rotation
+
+# Get the handle grasp pose and object pose
+handle_position, handle_quat = sample_grasp_pose("extruded handle of the brown square nut")
+nut_position, nut_quat = get_object_pose("brown square nut")
+
+# Compute transformation from handle to nut center in handle frame
+R_nut = Rotation.from_quat(nut_quat[[1,2,3,0]])  # Convert WXYZ to XYZW for scipy
+R_handle = Rotation.from_quat(handle_quat[[1,2,3,0]])
+T_handle_to_nut_rot = R_nut.inv() * R_handle
+
+# Open gripper and approach handle
+open_gripper()
+goto_pose(handle_position, handle_quat, z_approach=0.1)
+
+# Close gripper to grasp handle
+close_gripper()
+
+# Get block pose (assumed to be the target peg location)
+block_position, block_quat = get_object_pose("brown square block")
+
+# Compute desired nut center pose at block
+# The nut should align with the block's orientation
+R_block = Rotation.from_quat(block_quat[[1,2,3,0]])
+
+# Compute the required handle pose to achieve desired nut center pose
+# T_nut_desired = T_block (position and orientation)
+# T_handle_desired = T_nut_desired * T_handle_to_nut_rot.inv()
+R_handle_desired = R_block * R_handle_to_nut_rot.inv()
+handle_quat_desired = R_handle_desired.as_quat()[[3,0,1,2]]  # Convert XYZW to WXYZ
+
+# Move to insertion pose
+goto_pose(block_position, handle_quat_desired, z_approach=0.1)
+
+# Release the nut
+open_gripper()
+
+# Move away from the assembly
+goto_pose(block_position, handle_quat_desired, z_approach=0.2)
+
+# Return to home
+goto_home_joint_position()

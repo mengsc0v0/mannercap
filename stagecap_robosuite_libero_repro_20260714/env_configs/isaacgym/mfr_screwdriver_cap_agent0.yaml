@@ -1,0 +1,58 @@
+# MFR_benchmark Victor/Allegro screwdriver-turning CaP-Agent0 config.
+# Usage:
+#   CUDA_VISIBLE_DEVICES=3 \
+#   CONDA_PREFIX=/home/lifuchun/miniconda3/envs/isaacgym-preview4 \
+#   LD_LIBRARY_PATH=/home/lifuchun/miniconda3/envs/isaacgym-preview4/lib:$LD_LIBRARY_PATH \
+#   conda run --no-capture-output -n isaacgym-preview4 \
+#   python scripts/smoke_mfr_screwdriver_cap_api.py
+
+env:
+  _target_: capx.envs.tasks.mfr_screwdriver.mfr_screwdriver_env.MfrScrewdriverCodeEnv
+  cfg:
+    _target_: capx.envs.tasks.base.CodeExecEnvConfig
+    low_level:
+      _target_: capx.envs.simulators.mfr_screwdriver.MfrScrewdriverTurningEnv
+      num_envs: 1
+      seed: 0
+      device: cpu
+      arm_type: robot
+      fingers:
+        - index
+        - middle
+        - thumb
+      steps_per_action: 2
+      graphics_device_id: 3
+      max_steps: 120
+      control_mode: joint_impedance
+      gradual_control: true
+      friction_coefficient: 1.0
+      gravity: true
+      success_angle_delta: 0.12
+      max_screwdriver_top_error: 0.035
+      enable_render: false
+      viewer: false
+    privileged: false
+    enable_render: false
+    apis:
+      - MfrScrewdriverControlApi
+    prompt: |
+      You are controlling MFR_benchmark's Victor/iiwa-style 7-DoF arm with an Allegro dexterous hand.
+      Goal: first move the hand/tool into the screwdriver pregrasp/contact pose, then grasp and turn the screwdriver while keeping the screwdriver top close to its nominal axis.
+      Use the high-level MFR screwdriver APIs first: inspect state, move to standoff, approach the screwdriver, align fingertips, grasp, settle/insert the tool tip, turn, and verify.
+      MFR starts in a near-contact pregrasp; if the screwdriver top is already close to the nominal axis, prefer the guarded axis_preserving_finger_pronation primitive before any large approach or wrist-turn motion.
+      This environment is currently headless; use numeric state feedback rather than images.
+      Only write executable Python code and do not wrap it in code fences.
+    oracle_code: |
+      before = get_task_state()
+      print("before_angle_delta", before["screwdriver_angle_delta"])
+      print("before_top_error", before["screwdriver_top_error"])
+      axis_preserving_finger_pronation(steps=1, joint_delta=0.35)
+      RESULT = get_task_state()
+      print("after_angle_delta", RESULT["screwdriver_angle_delta"])
+      print("after_top_error", RESULT["screwdriver_top_error"])
+      print("success", verify_screwdriver_turning())
+
+record_video: false
+output_dir: ./outputs/mfr_screwdriver_cap_api_smoke
+trials: 1
+num_workers: 1

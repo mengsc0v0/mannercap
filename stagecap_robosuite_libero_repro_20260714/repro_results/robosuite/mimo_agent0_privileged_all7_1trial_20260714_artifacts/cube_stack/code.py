@@ -1,0 +1,34 @@
+# Code block 0
+import numpy as np
+
+# Get object data
+red_pos, red_quat, red_extent = get_object_pose("red cube", return_bbox_extent=True)
+green_pos, green_quat, green_extent = get_object_pose("green cube", return_bbox_extent=True)
+
+# Sample grasp pose for red cube
+grasp_pos, grasp_quat = sample_grasp_pose("red cube")
+
+# Approach and grasp red cube
+goto_pose(grasp_pos, grasp_quat, z_approach=0.1)
+close_gripper()
+
+# Lift to safe height
+lift_pos = grasp_pos.copy()
+lift_pos[2] += 0.2
+goto_pose(lift_pos, grasp_quat, z_approach=0.0)
+
+# Calculate placement position
+place_pos = np.array([
+    green_pos[0],
+    green_pos[1],
+    green_pos[2] + green_extent[2]/2 + red_extent[2]/2
+])
+
+# Move to placement with approach
+goto_pose(place_pos, grasp_quat, z_approach=0.1)
+
+# Release and retreat
+open_gripper()
+retreat_pos = place_pos.copy()
+retreat_pos[2] += 0.2
+goto_pose(retreat_pos, grasp_quat, z_approach=0.0)
