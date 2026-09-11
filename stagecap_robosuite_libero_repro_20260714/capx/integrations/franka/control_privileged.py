@@ -87,6 +87,18 @@ class FrankaControlPrivilegedApi(ApiBase):
                 obs["cube_poses"]["secondary"][3:],
                 np.array([0.05, 0.05, 0.05]),
             )
+        elif "cup" in object_name or "mug" in object_name or "water" in object_name:
+            return (
+                obs["cup_poses"]["primary"][:3],
+                obs["cup_poses"]["primary"][3:],
+                np.array([0.07, 0.07, 0.06]),
+            )
+        elif "target" in object_name or "desk" in object_name or "spot" in object_name or "boss" in object_name:
+            return (
+                obs["target_poses"]["primary"][:3],
+                obs["target_poses"]["primary"][3:],
+                np.array([0.12, 0.12, 0.002]),
+            )
         else:
             raise ValueError(f"Invalid object name: {object_name}")
 
@@ -107,6 +119,8 @@ class FrankaControlPrivilegedApi(ApiBase):
             return obs["cube_poses"]["primary"][:3], np.array([0, 0, 1, 0])
         elif "green" in object_name and "cube" in object_name:
             return obs["cube_poses"]["secondary"][:3], np.array([0, 0, 1, 0])
+        elif "cup" in object_name or "mug" in object_name or "water" in object_name:
+            return obs["cup_poses"]["primary"][:3], np.array([0, 0, 1, 0])
         else:
             raise ValueError(f"Invalid object name: {object_name}")
 
@@ -176,6 +190,7 @@ class FrankaControlPrivilegedApi(ApiBase):
         v_max=0.15,
         a_max=0.10,
         jerk_limit=None,
+        phase="move",
     ):
         """Manner-aware goto_pose for RoboSuite environments (Manner A + D).
 
@@ -199,11 +214,11 @@ class FrankaControlPrivilegedApi(ApiBase):
 
         if z_approach != 0.0:
             z_offset_pos = offset_pos + rot.apply(_np.array([0.0, 0.0, -z_approach]))
-            self._solve_and_move_profiled(quat_wxyz, z_offset_pos, v_max, a_max, jerk_limit)
+            self._solve_and_move_profiled(quat_wxyz, z_offset_pos, v_max, a_max, jerk_limit, phase)
 
-        self._solve_and_move_profiled(quat_wxyz, offset_pos, v_max, a_max, jerk_limit)
+        self._solve_and_move_profiled(quat_wxyz, offset_pos, v_max, a_max, jerk_limit, phase)
 
-    def _solve_and_move_profiled(self, quat_wxyz, target_pos, v_max, a_max, jerk_limit):
+    def _solve_and_move_profiled(self, quat_wxyz, target_pos, v_max, a_max, jerk_limit, phase="move"):
         """Solve IK then execute with velocity profile (internal helper)."""
         import numpy as _np
         if self.cfg is None:
@@ -217,7 +232,7 @@ class FrankaControlPrivilegedApi(ApiBase):
             )
         joints = _np.asarray(self.cfg[:-1], dtype=_np.float64).reshape(7)
         self._env.move_to_joints_profiled(
-            joints, v_max=v_max, a_max=a_max, jerk_limit=jerk_limit
+            joints, v_max=v_max, a_max=a_max, jerk_limit=jerk_limit, phase=phase
         )
 
     def set_impedance_stiffness(self, kp_pos=150.0, kp_ori=None):

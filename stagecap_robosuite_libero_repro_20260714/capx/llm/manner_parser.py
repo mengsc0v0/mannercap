@@ -38,7 +38,7 @@ try:
 except ImportError:
     _OPENAI_AVAILABLE = False
 
-from capx.envs.manner_validator import MannerSpec, MANNER_PRESETS, compose_manner_spec
+from capx.envs.manner_validator import MannerSpec, PhaseVelocity, MANNER_PRESETS, compose_manner_spec
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  Constants
@@ -64,6 +64,26 @@ Rules:
   - "用力/紧/牢/死死" → kp_min↑, grip_fraction_min↑
   - "平滑/丝滑/流畅" → max_jerk↓
   - 不提及某维度时，对应字段设为 null（不约束）
+
+Phase-aware manner (optional, only when description clearly implies DIFFERENT
+speed at DIFFERENT stages of the trajectory, e.g. "先快后慢"/"快速接近，轻轻
+放下"/"先...再..."):
+  - Output an additional top-level "phases" object (omit entirely, or leave as
+    null, if the description describes ONE constant manner for the whole
+    trajectory — do NOT invent phase variation that isn't implied).
+  - Allowed phase names (use only the ones implied by the description; a task
+    may only have some of these depending on what it does):
+      approach   (机械臂靠近物体阶段)
+      descend    (下降对准/贴合物体阶段)
+      lift       (提起物体阶段)
+      transport  (搬运/横移阶段)
+      final      (最终放下/精细动作阶段)
+      retreat    (完成后撤离阶段)
+  - Each phase entry: {"max_joint_vel": <float|null>, "min_joint_vel": <float|null>}
+    using the same rad/s scale as the flat max_joint_vel/min_joint_vel field above.
+  - The flat max_joint_vel/min_joint_vel fields still apply to any phase NOT
+    given an override in "phases" (fallback behavior), so only include phases
+    that genuinely differ from the overall tendency.
 """
 
 # Few-shot examples embedded in system prompt
@@ -121,6 +141,27 @@ Examples (description → JSON):
   "max_jerk": null,
   "label": "正常操作"
 }
+
+5. "先快速靠近，轻轻捧起，稳稳当当地端过去，慢慢放下，最后快速松手离开" →
+{
+  "reasoning": "阶段变速：接近快/拿起轻/运送稳/放下慢/离开快",
+  "max_joint_vel": null,
+  "min_joint_vel": null,
+  "kp_max": null,
+  "kp_min": null,
+  "grip_fraction_max": 0.30,
+  "grip_fraction_min": null,
+  "max_jerk": 1.0,
+  "label": "阶段变速五段式",
+  "phases": {
+    "approach":  {"max_joint_vel": null, "min_joint_vel": 0.30},
+    "descend":   {"max_joint_vel": 0.02, "min_joint_vel": null},
+    "lift":      {"max_joint_vel": 0.04, "min_joint_vel": null},
+    "transport": {"max_joint_vel": 0.04, "min_joint_vel": null},
+    "final":     {"max_joint_vel": 0.015, "min_joint_vel": null},
+    "retreat":   {"max_joint_vel": null, "min_joint_vel": 0.28}
+  }
+}
 """
 
 _SYSTEM_PROMPT = textwrap.dedent(f"""
@@ -167,7 +208,16 @@ class LLMMannerParser:
         _key = api_key or os.environ.get("AIHUBMIX_API_KEY", "")
         _url = base_url or os.environ.get("MANNER_PARSER_BASEURL", _DEFAULT_BASEURL)
 
-        self._client = OpenAI(api_key=_key, base_url=_url, timeout=timeout)
+        _proxy = os.environ.get("MANNER_PARSER_PROXY", "http://127.0.0.1:7897")
+        _http_client = None
+        if _proxy:
+            import httpx
+            _http_client = httpx.Client(proxy=_proxy, timeout=timeout)
+
+        self._client = OpenAI(
+            api_key=_key, base_url=_url, timeout=timeout,
+            http_client=_http_client,
+        )
 
     # ── public API ───────────────────────────────────────────────────────────
 
@@ -272,6 +322,35 @@ class LLMMannerParser:
                 return None
 
         label = str(data.get("label", ""))
+
+        phase_velocity = None
+        raw_phases = data.get("phases")
+        if isinstance(raw_phases, dict) and raw_phases:
+            _ALLOWED_PHASES = {
+                "approach", "descend", "lift", "transport", "final", "retreat",
+            }
+            phase_velocity = {}
+            for phase_name, bounds in raw_phases.items():
+                if phase_name not in _ALLOWED_PHASES or not isinstance(bounds, dict):
+                    continue
+
+                def _pf(key: str) -> float | None:
+                    v = bounds.get(key)
+                    if v is None or v == "null":
+                        return None
+                    try:
+                        return float(v)
+                    except (TypeError, ValueError):
+                        return None
+
+                mx, mn = _pf("max_joint_vel"), _pf("min_joint_vel")
+                if mx is not None or mn is not None:
+                    phase_velocity[phase_name] = PhaseVelocity(
+                        max_joint_vel=mx, min_joint_vel=mn,
+                    )
+            if not phase_velocity:
+                phase_velocity = None
+
         return MannerSpec(
             max_joint_vel=_f("max_joint_vel"),
             min_joint_vel=_f("min_joint_vel"),
@@ -282,6 +361,7 @@ class LLMMannerParser:
             max_jerk=_f("max_jerk"),
             tolerance=tolerance,
             label=label,
+            phase_velocity=phase_velocity,
         )
 
 

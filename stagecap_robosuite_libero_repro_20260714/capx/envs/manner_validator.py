@@ -79,6 +79,19 @@ except ImportError:  # stand-alone test mode
 # ──────────────────────────────────────────────────────────────────────────────
 
 @dataclass
+class PhaseVelocity:
+    """Velocity override for one named sub-phase of a trajectory.
+
+    Used by MannerSpec.phase_velocity to express intra-trajectory manner
+    variation, e.g. "fast approach, then slow final grasp" instead of one
+    constant speed for the whole episode.
+    """
+
+    max_joint_vel: float | None = None
+    min_joint_vel: float | None = None
+
+
+@dataclass
 class MannerSpec:
     """Physical constraints for one manner-conditioned execution stage.
 
@@ -112,6 +125,24 @@ class MannerSpec:
     # ── Human-readable label (for diagnostics) ──
     label: str = ""
 
+    # Phase-specific velocity overrides (for intra-trajectory manner, e.g.
+    # "fast approach, slow final grasp"). Keys: "approach"/"descend"/"lift"/
+    # "final". None (default) = no phase overrides, entire episode uses the
+    # flat max_joint_vel/min_joint_vel bounds above (old behavior).
+    phase_velocity: dict[str, "PhaseVelocity"] | None = None
+
+    def vel_bounds_for(self, phase: str) -> tuple[float | None, float | None]:
+        """Return (max_joint_vel, min_joint_vel) bounds for a named phase.
+
+        Falls back to the flat (episode-wide) bounds when no phase-specific
+        override is present for `phase`.
+        """
+        if self.phase_velocity and phase in self.phase_velocity:
+            ov = self.phase_velocity[phase]
+            if ov.max_joint_vel is not None or ov.min_joint_vel is not None:
+                return ov.max_joint_vel, ov.min_joint_vel
+        return self.max_joint_vel, self.min_joint_vel
+
     def has_any_constraint(self) -> bool:
         """Return True if at least one constraint is defined."""
         return any(
@@ -137,6 +168,12 @@ class MannerStepSnapshot:
     gripper_fraction: float         # 0=closed … 1=open
     gripper_qpos: np.ndarray        # (2,) m  (finger positions)
     cfrc_norm: float                # max external contact force norm (N)
+    joint_pos: np.ndarray = field(default_factory=lambda: np.zeros(7))   # (7,) rad
+    eef_pos: np.ndarray = field(default_factory=lambda: np.zeros(3))     # (3,) m, world frame
+    eef_quat: np.ndarray = field(default_factory=lambda: np.zeros(4))    # (4,) wxyz, world frame
+    object_names: tuple = field(default_factory=tuple)   # e.g. ("cube",) / ("cubeA","cubeB") / ("cup",)
+    object_pos: np.ndarray = field(default_factory=lambda: np.zeros((0, 3)))    # (N,3) m, world frame
+    object_quat: np.ndarray = field(default_factory=lambda: np.zeros((0, 4)))   # (N,4) wxyz, world frame
 
 
 @dataclass
@@ -307,7 +344,9 @@ class MannerValidator:
         self, snaps: list[MannerStepSnapshot], spec: MannerSpec
     ) -> list[DimensionResult]:
         results = []
-        move_snaps = [s for s in snaps if s.phase == "move"] or snaps
+        move_snaps = [
+            s for s in snaps if s.phase == "move" or s.phase.startswith("move:")
+        ] or snaps
         vel_norms = np.array([
             float(np.linalg.norm(s.joint_vel)) for s in move_snaps
         ])
@@ -348,6 +387,53 @@ class MannerValidator:
                     + ("  ✓" if passed else "  ✗ TOO SLOW")
                 ),
             ))
+
+        # -- Phase-specific velocity checks (intra-trajectory manner) --
+        # Only runs when spec.phase_velocity has overrides AND telemetry has
+        # matching "move:<phase>" labels. Independent of the aggregate check
+        # above so old specs/telemetry (no phase labels) are unaffected.
+        for phase_name, ov in (spec.phase_velocity or {}).items():
+            if ov.max_joint_vel is None and ov.min_joint_vel is None:
+                continue
+            sub_snaps = [s for s in snaps if s.phase == "move:" + phase_name]
+            if not sub_snaps:
+                continue
+            sub_vel = np.array([
+                float(np.linalg.norm(s.joint_vel)) for s in sub_snaps
+            ])
+            sub_peak = float(sub_vel.max())
+            sub_mean = float(sub_vel.mean())
+
+            if ov.max_joint_vel is not None:
+                limit = ov.max_joint_vel * (1.0 + spec.tolerance)
+                viol_frac = float(np.mean(sub_vel > limit))
+                passed = viol_frac <= self.VIOLATION_RATE_THRESHOLD
+                results.append(DimensionResult(
+                    dim="A", name="joint_vel_upper:" + phase_name,
+                    passed=passed,
+                    measured=sub_peak,
+                    threshold=ov.max_joint_vel,
+                    detail=(
+                        "[" + phase_name + "] peak=%.4f rad/s  limit=%.4f  violation_rate=%.1f%%"
+                        % (sub_peak, ov.max_joint_vel, viol_frac * 100)
+                        + ("  OK" if passed else "  TOO FAST")
+                    ),
+                ))
+
+            if ov.min_joint_vel is not None:
+                frac_above = float(np.mean(sub_vel >= ov.min_joint_vel * 0.8))
+                passed = frac_above >= 0.3
+                results.append(DimensionResult(
+                    dim="A", name="joint_vel_lower:" + phase_name,
+                    passed=passed,
+                    measured=sub_mean,
+                    threshold=ov.min_joint_vel,
+                    detail=(
+                        "[" + phase_name + "] mean=%.4f rad/s  min_required=%.4f  active_frac=%.1f%%"
+                        % (sub_mean, ov.min_joint_vel, frac_above * 100)
+                        + ("  OK" if passed else "  TOO SLOW")
+                    ),
+                ))
 
         return results
 
@@ -542,6 +628,9 @@ def _coerce_snapshot(s: MannerStepSnapshot | dict) -> MannerStepSnapshot:
         gripper_fraction=float(s.get("gripper_fraction", 1.0)),
         gripper_qpos=np.asarray(s.get("gripper_qpos", np.zeros(2))),
         cfrc_norm=float(s.get("cfrc_norm", 0.0)),
+        joint_pos=np.asarray(s.get("joint_pos", np.zeros(7))),
+        eef_pos=np.asarray(s.get("eef_pos", np.zeros(3))),
+        eef_quat=np.asarray(s.get("eef_quat", np.zeros(4))),
     )
 
 

@@ -40,7 +40,7 @@ import os
 import sys
 import time
 import traceback
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from typing import Any, Callable
 
 BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -63,6 +63,7 @@ TEST_CASES: list[tuple[str, str]] = [
     ("先快速靠近，到最后5厘米时慢慢轻触",              "fast_then_slow"),
     ("Place the block gently onto the platform",        "gentle_en"),
     ("Grab it as fast as possible",                     "fast_en"),
+    ("先快速靠近，轻轻捧起，稳稳当当地端过去，慢慢放下，最后快速松手离开", "phased_5stage"),
 ]
 
 BASELINE_TAG = "baseline"
@@ -76,24 +77,52 @@ V_MIN_DEFAULT = 0.02
 KP_FLOOR = 250.0
 
 
+def _derive_velocity(max_bound, min_bound, default: float) -> float:
+    if max_bound is not None and min_bound is not None:
+        return (max_bound * 0.85 + min_bound * 1.05) / 2
+    elif max_bound is not None:
+        return max_bound * 0.85
+    elif min_bound is not None:
+        return min_bound * 1.10
+    return default
+
+
 def spec_to_exec_params(spec) -> dict:
     clipped: list[str] = []
     clipped_dims: list[str] = []
 
     v_default = 0.12
-    if spec.max_joint_vel is not None and spec.min_joint_vel is not None:
-        v_max = (spec.max_joint_vel * 0.85 + spec.min_joint_vel * 1.05) / 2
-    elif spec.max_joint_vel is not None:
-        v_max = spec.max_joint_vel * 0.85
-    elif spec.min_joint_vel is not None:
-        v_max = spec.min_joint_vel * 1.10
-    else:
-        v_max = v_default
+    v_max = _derive_velocity(spec.max_joint_vel, spec.min_joint_vel, v_default)
     if v_max < V_MIN_DEFAULT:
         clipped.append(f"v_max({v_max:.3f}<{V_MIN_DEFAULT})")
         clipped_dims.append("vel")
         v_max = V_MIN_DEFAULT
     a_max = max(0.01, v_max * 0.7)
+
+    _phase_defaults = {
+        "approach":  (1.0, 1.0),
+        "descend":   (0.6, 0.5),
+        "lift":      (1.0, 1.0),
+        "transport": (0.5, 0.4),
+        "final":     (0.5, 0.4),
+        "retreat":   (1.0, 1.0),
+    }
+    phase_overrides = getattr(spec, "phase_velocity", None) or {}
+    phase_v_max: dict[str, float] = {}
+    phase_a_max: dict[str, float] = {}
+    for name, (ratio_v, ratio_a) in _phase_defaults.items():
+        ov = phase_overrides.get(name)
+        if ov is not None and (ov.max_joint_vel is not None or ov.min_joint_vel is not None):
+            v = _derive_velocity(ov.max_joint_vel, ov.min_joint_vel, v_max)
+            if v < V_MIN_DEFAULT:
+                clipped.append(f"{name}.v_max({v:.3f}<{V_MIN_DEFAULT})")
+                clipped_dims.append("vel")
+                v = V_MIN_DEFAULT
+            phase_v_max[name] = v
+            phase_a_max[name] = max(0.01, v * 0.7)
+        else:
+            phase_v_max[name] = max(0.02, v_max * ratio_v)
+            phase_a_max[name] = max(0.01, a_max * ratio_a)
 
     jerk_limit = spec.max_jerk
 
@@ -131,6 +160,8 @@ def spec_to_exec_params(spec) -> dict:
         "jerk_limit":    float(jerk_limit) if jerk_limit is not None else None,
         "kp_pos":        float(kp_pos),
         "grip":          float(grip),
+        "phase_v_max":   {k: float(v) for k, v in phase_v_max.items()},
+        "phase_a_max":   {k: float(v) for k, v in phase_a_max.items()},
         "_clipped":      clipped,
         "_clipped_dims": clipped_dims,
     }
@@ -144,15 +175,16 @@ def _pump(env, n: int) -> None:
         env._step_once()
 
 
-def _grasp_close(env, api, force: float, steps: int = 50) -> None:
+def _grasp_close(env, api, force: float, steps: int = 50, n_tries: int = 3) -> None:
     """低力目标(<0.70)时分多次收紧-回稳，而非一次到位（灵活抓取策略）。
 
-    低夹持力单次闭合常因接触面小、切向摩擦不足而打滑。分 3 次收紧-回稳，
+    低夹持力单次闭合常因接触面小、切向摩擦不足而打滑。分多次收紧-回稳，
     在不抬高峰值夹持力（不违反 Manner C 上界，L2 仍合规）的前提下，让指尖
-    多次重新对齐接触面，提升抓取成功率（L1）。
+    多次重新对齐接触面，提升抓取成功率（L1）。`n_tries` 可由经验库
+    （见 MANNER_REPAIR_LIBRARY 的 "grip_slip" 条目）在重试时调高。
     """
     if force < 0.70:
-        n_tries = 3
+        n_tries = max(1, n_tries)
         per_steps = max(15, steps // n_tries)
         for _ in range(n_tries):
             api.close_gripper_partial(force=force, steps=per_steps)
@@ -164,12 +196,14 @@ def _grasp_close(env, api, force: float, steps: int = 50) -> None:
 def run_cube_lift(env, api, params: dict) -> dict:
     cube_pos, _, _ = api.get_object_pose("red cube")
     grasp_quat = np.array([0.0, 0.0, 1.0, 0.0])
+    pv = params.get("phase_v_max", {})
+    pa = params.get("phase_a_max", {})
 
     approach_pos = cube_pos.copy(); approach_pos[2] += 0.20
     api.goto_pose_with_profile(
         approach_pos, grasp_quat,
-        v_max=params["v_max"], a_max=params["a_max"],
-        jerk_limit=params["jerk_limit"],
+        v_max=pv.get("approach", params["v_max"]), a_max=pa.get("approach", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="approach",
     )
     _pump(env, 8)
 
@@ -178,20 +212,20 @@ def run_cube_lift(env, api, params: dict) -> dict:
     grasp_pos = cube_pos.copy(); grasp_pos[2] -= 0.005
     api.goto_pose_with_profile(
         grasp_pos, grasp_quat,
-        v_max=max(0.02, params["v_max"] * 0.6),
-        a_max=max(0.01, params["a_max"] * 0.5),
-        jerk_limit=params["jerk_limit"],
+        v_max=pv.get("descend", max(0.02, params["v_max"] * 0.6)),
+        a_max=pa.get("descend", max(0.01, params["a_max"] * 0.5)),
+        jerk_limit=params["jerk_limit"], phase="descend",
     )
     _pump(env, 8)
 
-    _grasp_close(env, api, params["grip"])
+    _grasp_close(env, api, params["grip"], n_tries=params.get("grasp_tries", 3))
 
     api.set_impedance_stiffness(kp_pos=1000.0)
     lift_pos = grasp_pos.copy(); lift_pos[2] += 0.18
     api.goto_pose_with_profile(
         lift_pos, grasp_quat,
-        v_max=params["v_max"], a_max=params["a_max"],
-        jerk_limit=params["jerk_limit"],
+        v_max=pv.get("lift", params["v_max"]), a_max=pa.get("lift", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="lift",
     )
     _pump(env, 10)
 
@@ -210,11 +244,14 @@ def run_cube_stack(env, api, params: dict) -> dict:
     green_pos, _, _ = api.get_object_pose("green cube")
     grasp_quat = np.array([0.0, 0.0, 1.0, 0.0])
 
+    pv = params.get("phase_v_max", {})
+    pa = params.get("phase_a_max", {})
+
     approach_pos = red_pos.copy(); approach_pos[2] += 0.20
     api.goto_pose_with_profile(
         approach_pos, grasp_quat,
-        v_max=params["v_max"], a_max=params["a_max"],
-        jerk_limit=params["jerk_limit"],
+        v_max=pv.get("approach", params["v_max"]), a_max=pa.get("approach", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="approach",
     )
     _pump(env, 6)
 
@@ -223,28 +260,28 @@ def run_cube_stack(env, api, params: dict) -> dict:
     grasp_pos = red_pos.copy(); grasp_pos[2] -= 0.005
     api.goto_pose_with_profile(
         grasp_pos, grasp_quat,
-        v_max=max(0.02, params["v_max"] * 0.6),
-        a_max=max(0.01, params["a_max"] * 0.5),
-        jerk_limit=params["jerk_limit"],
+        v_max=pv.get("descend", max(0.02, params["v_max"] * 0.6)),
+        a_max=pa.get("descend", max(0.01, params["a_max"] * 0.5)),
+        jerk_limit=params["jerk_limit"], phase="descend",
     )
     _pump(env, 6)
 
-    _grasp_close(env, api, params["grip"])
+    _grasp_close(env, api, params["grip"], n_tries=params.get("grasp_tries", 3))
 
     api.set_impedance_stiffness(kp_pos=1000.0)
     lift_pos = grasp_pos.copy(); lift_pos[2] += 0.15
     api.goto_pose_with_profile(
         lift_pos, grasp_quat,
-        v_max=params["v_max"], a_max=params["a_max"],
-        jerk_limit=params["jerk_limit"],
+        v_max=pv.get("lift", params["v_max"]), a_max=pa.get("lift", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="lift",
     )
     _pump(env, 6)
 
     over_green = green_pos.copy(); over_green[2] = lift_pos[2]
     api.goto_pose_with_profile(
         over_green, grasp_quat,
-        v_max=params["v_max"], a_max=params["a_max"],
-        jerk_limit=params["jerk_limit"],
+        v_max=pv.get("transport", params["v_max"]), a_max=pa.get("transport", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="transport",
     )
     _pump(env, 6)
 
@@ -252,9 +289,9 @@ def run_cube_stack(env, api, params: dict) -> dict:
     stack_pos = green_pos.copy(); stack_pos[2] = green_pos[2] + 0.058
     api.goto_pose_with_profile(
         stack_pos, grasp_quat,
-        v_max=max(0.02, params["v_max"] * 0.5),
-        a_max=max(0.01, params["a_max"] * 0.4),
-        jerk_limit=params["jerk_limit"],
+        v_max=pv.get("final", max(0.02, params["v_max"] * 0.5)),
+        a_max=pa.get("final", max(0.01, params["a_max"] * 0.4)),
+        jerk_limit=params["jerk_limit"], phase="final",
     )
     _pump(env, 14)
 
@@ -264,8 +301,8 @@ def run_cube_stack(env, api, params: dict) -> dict:
     retreat_pos = stack_pos.copy(); retreat_pos[2] += 0.20
     api.goto_pose_with_profile(
         retreat_pos, grasp_quat,
-        v_max=params["v_max"], a_max=params["a_max"],
-        jerk_limit=params["jerk_limit"],
+        v_max=pv.get("retreat", params["v_max"]), a_max=pa.get("retreat", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="retreat",
     )
     _pump(env, 20)
 
@@ -280,6 +317,108 @@ def run_cube_stack(env, api, params: dict) -> dict:
     }
 
 
+def run_pour(env, api, params: dict) -> dict:
+    """给领导倒水（pour）一次执行：抓起水杯，稳稳运送到目标点，轻放不洒。
+
+    动作序列 (对应 5 阶段 manner):
+        1. approach above cup   (快速接近)
+        2. set stiffness (Manner B)
+        3. descend to cup (re-fetch pose after settle) + grasp (轻轻拿起)
+        4. lift up + transport to target (稳稳运送)
+        5. lower to table (缓缓放下)
+        6. open gripper (release)
+        7. retreat (快速离开)
+
+    关键修复（已实测验证）：descend 阶段的抓取目标必须在 approach 完成、
+    杯子经过短暂沉降之后**重新查询** cup 位姿，不能复用 approach 之前缓存的
+    旧位姿——即便只有几毫米的沉降误差，也足以让指尖对不准杯壁导致抓空
+    （表现为杯子在整个 episode 里位置完全冻结不动）。
+    """
+    cup_pos, _, _ = api.get_object_pose("water cup")
+    grasp_quat = np.array([0.0, 0.0, 1.0, 0.0])
+    pv = params.get("phase_v_max", {})
+    pa = params.get("phase_a_max", {})
+
+    # 1. approach above cup
+    approach_pos = cup_pos.copy(); approach_pos[2] += 0.20
+    api.goto_pose_with_profile(
+        approach_pos, grasp_quat,
+        v_max=pv.get("approach", params["v_max"]), a_max=pa.get("approach", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="approach",
+    )
+    _pump(env, 8)
+
+    # 2. stiffness
+    api.set_impedance_stiffness(kp_pos=params["kp_pos"])
+
+    # 3. descend（重新获取杯子位姿，见函数 docstring 的关键修复说明）
+    cup_pos2, _, _ = api.get_object_pose("water cup")
+    grasp_pos = cup_pos2.copy(); grasp_pos[2] -= 0.005
+    api.goto_pose_with_profile(
+        grasp_pos, grasp_quat,
+        v_max=pv.get("descend", max(0.02, params["v_max"] * 0.6)),
+        a_max=pa.get("descend", max(0.01, params["a_max"] * 0.5)),
+        jerk_limit=params["jerk_limit"], phase="descend",
+    )
+    _pump(env, 8)
+
+    # 4. grasp（低力目标走多次收紧，见 _grasp_close）
+    _grasp_close(env, api, params["grip"], n_tries=params.get("grasp_tries", 3))
+
+    # 5. lift
+    api.set_impedance_stiffness(kp_pos=1000.0)
+    lift_pos = grasp_pos.copy(); lift_pos[2] += 0.15
+    api.goto_pose_with_profile(
+        lift_pos, grasp_quat,
+        v_max=pv.get("lift", params["v_max"]), a_max=pa.get("lift", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="lift",
+    )
+    _pump(env, 10)
+
+    # 6. transport to target spot（稳稳运送，速度低于 approach，避免洒水）
+    target_pos, _, _ = api.get_object_pose("target spot")
+    transport_pos = target_pos.copy(); transport_pos[2] = lift_pos[2]
+    api.goto_pose_with_profile(
+        transport_pos, grasp_quat,
+        v_max=pv.get("transport", max(0.02, params["v_max"] * 0.5)),
+        a_max=pa.get("transport", max(0.01, params["a_max"] * 0.4)),
+        jerk_limit=params["jerk_limit"], phase="transport",
+    )
+    _pump(env, 15)
+
+    # 7. putdown（缓缓放下）
+    putdown_pos = transport_pos.copy(); putdown_pos[2] -= 0.13
+    api.goto_pose_with_profile(
+        putdown_pos, grasp_quat,
+        v_max=pv.get("final", max(0.02, params["v_max"] * 0.4)),
+        a_max=pa.get("final", max(0.01, params["a_max"] * 0.3)),
+        jerk_limit=params["jerk_limit"], phase="final",
+    )
+    _pump(env, 10)
+
+    # 8. release
+    api.open_gripper()
+    _pump(env, 10)
+
+    # 9. retreat（快速离开）
+    retreat_pos = putdown_pos.copy(); retreat_pos[2] += 0.20
+    api.goto_pose_with_profile(
+        retreat_pos, grasp_quat,
+        v_max=pv.get("retreat", params["v_max"]), a_max=pa.get("retreat", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="retreat",
+    )
+    _pump(env, 10)
+
+    cup_after, _, _ = api.get_object_pose("water cup")
+    return {
+        "reward": float(env.compute_reward()),
+        "cup_delta_z": float(cup_after[2] - cup_pos[2]),
+        "spill_ratio": float(env.spill_ratio()),
+        "sim_steps": int(env._sim_step_count),
+        "task_completed": bool(env.task_completed()),
+    }
+
+
 TASK_REGISTRY: dict[str, dict[str, Any]] = {
     "lift": {
         "sim_cls_path": "capx.envs.simulators.robosuite_cube_lift.FrankaRobosuiteCubeLiftLowLevel",
@@ -289,6 +428,11 @@ TASK_REGISTRY: dict[str, dict[str, Any]] = {
     "stack": {
         "sim_cls_path": "capx.envs.simulators.robosuite_cubes.FrankaRobosuiteCubesLowLevel",
         "runner": run_cube_stack,
+        "max_steps": 60000,
+    },
+    "pour": {
+        "sim_cls_path": "capx.envs.simulators.robosuite_pour.FrankaRobosuitePourLowLevel",
+        "runner": run_pour,
         "max_steps": 60000,
     },
 }
@@ -380,7 +524,7 @@ def extract_metrics(telemetry: list) -> dict[str, float]:
 # Mock spec
 # ──────────────────────────────────────────────────────────────────────────────
 def make_mock_spec(idx: int, tag: str):
-    from capx.envs.manner_validator import MannerSpec
+    from capx.envs.manner_validator import MannerSpec, PhaseVelocity
     _mocks = {
         "gentle":        MannerSpec(max_joint_vel=0.04, kp_max=400.0, grip_fraction_max=0.30, max_jerk=0.8, label="mock_gentle"),
         "ultra_careful": MannerSpec(max_joint_vel=0.02, kp_max=300.0, grip_fraction_max=0.20, max_jerk=0.5, label="mock_ultra"),
@@ -388,9 +532,29 @@ def make_mock_spec(idx: int, tag: str):
         "normal":        MannerSpec(label="mock_normal"),
         "fast":          MannerSpec(min_joint_vel=0.30, label="mock_fast"),
         "firm":          MannerSpec(kp_min=1200.0, grip_fraction_min=0.85, label="mock_firm"),
-        "fast_then_slow":MannerSpec(max_joint_vel=0.06, kp_max=500.0, max_jerk=2.0, label="mock_mixed"),
+        "fast_then_slow":MannerSpec(
+            phase_velocity={
+                "approach": PhaseVelocity(min_joint_vel=0.30),
+                "descend":  PhaseVelocity(max_joint_vel=0.02),
+                "lift":     PhaseVelocity(max_joint_vel=0.05),
+            },
+            kp_max=500.0, grip_fraction_max=0.30, max_jerk=1.2,
+            label="mock_fast_then_slow_phased",
+        ),
         "gentle_en":     MannerSpec(max_joint_vel=0.04, kp_max=380.0, grip_fraction_max=0.30, label="mock_gentle_en"),
         "fast_en":       MannerSpec(min_joint_vel=0.28, label="mock_fast_en"),
+        "phased_5stage": MannerSpec(
+            phase_velocity={
+                "approach":  PhaseVelocity(min_joint_vel=0.30),
+                "descend":   PhaseVelocity(max_joint_vel=0.02),
+                "lift":      PhaseVelocity(max_joint_vel=0.04),
+                "transport": PhaseVelocity(max_joint_vel=0.04),
+                "final":     PhaseVelocity(max_joint_vel=0.015),
+                "retreat":   PhaseVelocity(min_joint_vel=0.28),
+            },
+            grip_fraction_max=0.62, max_jerk=1.0,
+            label="mock_phased_5stage",
+        ),
     }
     return _mocks.get(tag, MannerSpec(label=f"mock_{tag}"))
 
@@ -416,6 +580,9 @@ class TrialResult:
     metrics: dict
     error: Any
     exec_time_s: float
+    traj_file: Any = None   # 逐步物理量轨迹 npz 文件名（相对 traj_dir），None=未保存
+    wrist_video_file: Any = None  # wrist-camera mp4 filename (relative to traj_dir), None=not captured
+    repair_attempts: list = field(default_factory=list)  # bounded-retry log triggered by MANNER_REPAIR_LIBRARY
 
 
 def classify_outcome(task_ok, manner_ok, error_msg: str | None = None) -> str:
@@ -438,6 +605,118 @@ def classify_outcome(task_ok, manner_ok, error_msg: str | None = None) -> str:
     return "both_fail"
 
 
+# ------------------------------------------------------------------------------
+# MANNER_REPAIR_LIBRARY -- failure-mode -> repair hint + local param adjustment
+# ------------------------------------------------------------------------------
+# Inspired by vlm_planner_cap/pattern_priors.py's repair_hints design: distill
+# previously-diagnosed failure root-causes into reusable "experience" entries
+# instead of re-deriving the fix from scratch every time. Unlike pattern_priors
+# (which injects hint text into an LLM re-planning prompt), there is no LLM in
+# the loop here -- each hint is paired with a concrete parameter-adjustment
+# function, applied as a single bounded retry inside run_single_trial (never
+# unbounded, so genuine manner_infeasible "honest refusals" are preserved).
+def _adjust_grip_slip(params: dict) -> dict:
+    p = dict(params)
+    p["grasp_tries"] = min(5, int(p.get("grasp_tries", 3)) + 2)
+    return p
+
+
+def _adjust_pour_spill(params: dict) -> dict:
+    p = dict(params)
+    pv = dict(p.get("phase_v_max", {}))
+    pa = dict(p.get("phase_a_max", {}))
+    for name in ("transport", "final"):
+        if name in pv:
+            pv[name] = max(0.01, pv[name] * 0.75)
+        if name in pa:
+            pa[name] = max(0.005, pa[name] * 0.75)
+    p["phase_v_max"] = pv
+    p["phase_a_max"] = pa
+    return p
+
+
+def _adjust_timeout(params: dict) -> dict:
+    """Manner too slow -> steps approach/exceed horizon. Speed up only the
+    slowest phase slightly, keeping it still the slowest (preserves the
+    manner's qualitative fast/slow ordering) to cut convergence steps."""
+    p = dict(params)
+    pv = dict(p.get("phase_v_max", {}))
+    pa = dict(p.get("phase_a_max", {}))
+    if pv:
+        slowest = min(pv, key=lambda k: pv[k])
+        pv[slowest] = pv[slowest] * 1.25
+        if slowest in pa:
+            pa[slowest] = pa[slowest] * 1.25
+        p["phase_v_max"] = pv
+        p["phase_a_max"] = pa
+    else:
+        p["v_max"] = p.get("v_max", 0.12) * 1.25
+        p["a_max"] = p.get("a_max", 0.08) * 1.25
+    return p
+
+
+def _adjust_stack_misalign(params: dict) -> dict:
+    p = dict(params)
+    pv = dict(p.get("phase_v_max", {}))
+    pa = dict(p.get("phase_a_max", {}))
+    if "final" in pv:
+        pv["final"] = max(0.01, pv["final"] * 0.7)
+    if "final" in pa:
+        pa["final"] = max(0.005, pa["final"] * 0.7)
+    p["phase_v_max"] = pv
+    p["phase_a_max"] = pa
+    return p
+
+
+MANNER_REPAIR_LIBRARY: dict[str, dict[str, Any]] = {
+    "grip_slip": {
+        "hint": "Grip slipped (fingers never held object stably); without "
+                "raising the peak grip-force ceiling, increase the number of "
+                "tighten-settle cycles so fingertips can re-seat, then retry.",
+        "adjust": _adjust_grip_slip,
+    },
+    "spill": {
+        "hint": "Transport/putdown too fast, causing spill; lower transport/"
+                "final phase speed 25% (still respecting the manner's "
+                "qualitative trend) then retry.",
+        "adjust": _adjust_pour_spill,
+    },
+    "timeout": {
+        "hint": "Manner too slow, run approached/exceeded the horizon step "
+                "budget; slightly speed up only the single slowest phase, "
+                "then retry.",
+        "adjust": _adjust_timeout,
+    },
+    "stack_misalign": {
+        "hint": "Stack placement misaligned (likely overshoot/slide); lower "
+                "the final-phase placement speed, then retry.",
+        "adjust": _adjust_stack_misalign,
+    },
+}
+
+
+def diagnose_failure(task: str, outcome: str, exec_result: dict, metrics: dict) -> str | None:
+    """Map (task, outcome, exec_result, metrics) to a MANNER_REPAIR_LIBRARY key.
+
+    Returns None when no known failure signature matches -- this intentionally
+    does NOT trigger a retry, preserving the "honest refusal" semantics of
+    manner_infeasible for genuinely unclassified failures.
+    """
+    if outcome == "manner_infeasible_timeout":
+        return "timeout"
+    if task == "pour" and exec_result.get("spill_ratio") is not None \
+            and exec_result["spill_ratio"] < 0.999 and outcome in ("both_fail", "manner_infeasible"):
+        return "spill"
+    if task == "stack" and outcome in ("both_fail", "manner_infeasible") \
+            and exec_result.get("z_gap") is not None and abs(exec_result["z_gap"] - 0.05) > 0.02:
+        return "stack_misalign"
+    if outcome in ("both_fail", "manner_infeasible") \
+            and metrics.get("grip_active_ratio") is not None \
+            and metrics["grip_active_ratio"] < 0.5:
+        return "grip_slip"
+    return None
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # 主循环
 # ──────────────────────────────────────────────────────────────────────────────
@@ -452,12 +731,75 @@ def parse_args():
     p.add_argument("--no-baseline", dest="include_baseline", action="store_false")
     p.add_argument("--output", type=str,
                    default="repro_results/robosuite/manner_ablation.jsonl")
+    p.add_argument("--traj-dir", type=str,
+                   default="repro_results/robosuite/traj",
+                   help="逐步物理量轨迹 npz 输出目录（相对仓库根，同 --output 语义）；传空字符串禁用")
+    p.add_argument("--tags", nargs="+", default=None,
+                   help="Subset of TEST_CASES tags to run (default: all). Baseline is controlled separately by --include-baseline/--no-baseline.")
+    p.add_argument("--capture-video", action="store_true",
+                   help="Enable wrist-camera rendering + per-trial mp4 export into --traj-dir.")
     p.add_argument("--dry-run", action="store_true")
     return p.parse_args()
 
 
+def save_trajectory_npz(telemetry: list, traj_dir: str, task: str, tag: str,
+                         seed: int, run_stamp: str) -> str:
+    """把整条 episode 的逐步 MannerStepSnapshot 序列落盘为 .npz。
+
+    数组形状约定（T = 该 episode 的 manner-recording 步数）：
+        t (T,) s；phase (T,) str；joint_pos/joint_vel/joint_acc (T,7)；
+        kp (T,)；gripper_fraction (T,)；gripper_qpos (T,2)；cfrc_norm (T,)；
+        eef_pos (T,3)；eef_quat (T,4) wxyz。
+        object_names (N,) str（该 episode 内追踪的物体名，如 cube/cubeA/cubeB/cup）；
+        object_pos (T,N,3)；object_quat (T,N,4) wxyz — 物体真值位姿随时间的变化
+        （特权信息，来自仿真器原始 observable，非视觉估计）。
+
+    Returns:
+        文件名（不含目录），供 jsonl 记录里的 traj_file 字段引用。
+    """
+    t = np.array([s.t for s in telemetry], dtype=np.float64)
+    phase = np.array([s.phase for s in telemetry], dtype="<U16")
+    joint_vel = np.stack([np.asarray(s.joint_vel, dtype=np.float64) for s in telemetry])
+    joint_acc = np.stack([np.asarray(s.joint_acc, dtype=np.float64) for s in telemetry])
+    joint_pos = np.stack([np.asarray(getattr(s, "joint_pos", np.zeros(7)), dtype=np.float64) for s in telemetry])
+    kp = np.array([s.kp for s in telemetry], dtype=np.float64)
+    gripper_fraction = np.array([s.gripper_fraction for s in telemetry], dtype=np.float64)
+    gripper_qpos = np.stack([np.asarray(s.gripper_qpos, dtype=np.float64) for s in telemetry])
+    cfrc_norm = np.array([s.cfrc_norm for s in telemetry], dtype=np.float64)
+    eef_pos = np.stack([np.asarray(getattr(s, "eef_pos", np.zeros(3)), dtype=np.float64) for s in telemetry])
+    eef_quat = np.stack([np.asarray(getattr(s, "eef_quat", np.zeros(4)), dtype=np.float64) for s in telemetry])
+
+    # object ground-truth poses (privileged): object_names is constant across
+    # one episode (same task -> same tracked objects), so take it from step 0.
+    object_names = getattr(telemetry[0], "object_names", ()) if telemetry else ()
+    n_obj = len(object_names)
+    object_pos = np.stack([
+        np.asarray(getattr(s, "object_pos", np.zeros((n_obj, 3))), dtype=np.float64)
+        for s in telemetry
+    ]) if n_obj else np.zeros((len(telemetry), 0, 3))
+    object_quat = np.stack([
+        np.asarray(getattr(s, "object_quat", np.zeros((n_obj, 4))), dtype=np.float64)
+        for s in telemetry
+    ]) if n_obj else np.zeros((len(telemetry), 0, 4))
+
+    fname = f"{task}_{tag}_seed{seed}_{run_stamp}.npz"
+    fpath = os.path.join(traj_dir, fname)
+    np.savez_compressed(
+        fpath,
+        t=t, phase=phase,
+        joint_pos=joint_pos, joint_vel=joint_vel, joint_acc=joint_acc,
+        kp=kp, gripper_fraction=gripper_fraction, gripper_qpos=gripper_qpos,
+        cfrc_norm=cfrc_norm, eef_pos=eef_pos, eef_quat=eef_quat,
+        object_names=np.array(object_names, dtype="<U16"),
+        object_pos=object_pos, object_quat=object_quat,
+        task=task, tag=tag, seed=seed,
+    )
+    return fname
+
+
 def run_single_trial(task, tag, prompt, seed, spec, args,
-                     env, api, validator, StageStatus, runner):
+                     env, api, validator, StageStatus, runner,
+                     traj_dir=None, run_stamp="", capture_video=False):
     t0 = time.time()
     params = spec_to_exec_params(spec)
     spec_json = {
@@ -471,71 +813,141 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
         "label":             spec.label,
     }
 
-    try:
-        env.reset(seed=seed)
-        env.begin_manner_recording(clear=True)
-        exec_result = runner(env, api, params)
-        env.end_manner_recording()
-    except Exception as e:
-        emsg = f"{type(e).__name__}: {e}"
-        outcome = classify_outcome(None, None, error_msg=emsg)
+    def _attempt(attempt_params):
+        """Run one execution attempt against the sim; return raw result fields
+        (no TrialResult wrapping yet -- lets us run this twice for the bounded
+        MANNER_REPAIR_LIBRARY retry without duplicating the whole function)."""
+        try:
+            env.reset(seed=seed)
+            if capture_video:
+                env.enable_video_capture(True, clear=True, wrist_camera=True)
+            env.begin_manner_recording(clear=True)
+            exec_result = runner(env, api, attempt_params)
+            env.end_manner_recording()
+        except Exception as e:
+            emsg = f"{type(e).__name__}: {e}"
+            outcome = classify_outcome(None, None, error_msg=emsg)
+            return {
+                "task_ok": None, "manner_ok": None, "outcome": outcome,
+                "reward": None, "exec_result": {}, "metrics": {},
+                "error": f"{emsg}\n{traceback.format_exc(limit=4)}",
+                "telemetry": None,
+            }
+
+        task_ok = bool(exec_result.get("task_completed", False))
+        reward = float(exec_result.get("reward", 0.0))
+
+        # Fix (2): if Strategy A clipped a physical dim (e.g. grip forced up to
+        # GRIP_FLOOR because spec said grip<0.30 which cannot hold a 5cm cube),
+        # validate against the *clipped_spec* -- the effective bounds we actually
+        # attempted to honor. This turns "physically infeasible + L1 fail" into
+        # `manner_infeasible` (Strategy B) instead of the ambiguous `both_fail`.
+        from dataclasses import replace as _dc_replace
+        _dim_to_fields = {
+            "vel":  ("max_joint_vel", "min_joint_vel"),
+            "kp":   ("kp_max", "kp_min"),
+            "grip": ("grip_fraction_max", "grip_fraction_min"),
+        }
+        clipped_dims = attempt_params.get("_clipped_dims", [])
+        if clipped_dims:
+            overrides = {}
+            for d in clipped_dims:
+                for fn in _dim_to_fields.get(d, ()):
+                    overrides[fn] = None
+            clipped_spec = _dc_replace(spec, **overrides)
+        else:
+            clipped_spec = spec
+
+        manner_ok = None
+        telemetry = env.get_manner_telemetry()
+        if telemetry and clipped_spec.has_any_constraint():
+            try:
+                ev = validator.validate(telemetry, clipped_spec)
+                manner_ok = (ev.status == StageStatus.SATISFIED)
+            except Exception as e:
+                print(f"    [validator error] {e}")
+                manner_ok = None
+        elif not clipped_spec.has_any_constraint():
+            manner_ok = True   # baseline / normal / fully-clipped
+        metrics = extract_metrics(telemetry) if telemetry else {}
+
+        return {
+            "task_ok": task_ok, "manner_ok": manner_ok,
+            "outcome": classify_outcome(task_ok, manner_ok),
+            "reward": reward, "exec_result": exec_result, "metrics": metrics,
+            "error": None, "telemetry": telemetry,
+        }
+
+    result = _attempt(params)
+    repair_attempts = []
+
+    # Bounded (<=1) MANNER_REPAIR_LIBRARY retry: only for outcomes that mean
+    # the task itself failed, and only when diagnose_failure() matches a known
+    # failure signature. Unmatched failures are left alone (honest refusal).
+    if result["outcome"] in ("both_fail", "manner_infeasible", "manner_infeasible_timeout"):
+        diagnosis = diagnose_failure(task, result["outcome"], result["exec_result"], result["metrics"])
+        if diagnosis is not None and diagnosis in MANNER_REPAIR_LIBRARY:
+            entry = MANNER_REPAIR_LIBRARY[diagnosis]
+            adjusted_params = entry["adjust"](params)
+            adjusted_params["_clipped"] = params.get("_clipped", [])
+            adjusted_params["_clipped_dims"] = params.get("_clipped_dims", [])
+            repair_attempts.append({
+                "attempt": 1, "diagnosis": diagnosis, "hint": entry["hint"],
+                "prior_outcome": result["outcome"],
+            })
+            retry_result = _attempt(adjusted_params)
+            params = adjusted_params
+            result = retry_result
+
+    if result["error"] is not None:
         return TrialResult(
             task=task, tag=tag, seed=seed, prompt=prompt, label=spec.label,
             spec_json=spec_json,
             params={k: v for k, v in params.items() if k not in ("_clipped", "_clipped_dims")},
             clipped=params["_clipped"],
-            task_ok=None, manner_ok=None, outcome=outcome,
+            task_ok=None, manner_ok=None, outcome=result["outcome"],
             reward=None, exec_result={}, metrics={},
-            error=f"{emsg}\n{traceback.format_exc(limit=4)}",
+            error=result["error"],
             exec_time_s=time.time() - t0,
+            traj_file=None,
+            repair_attempts=repair_attempts,
         )
 
-    task_ok = bool(exec_result.get("task_completed", False))
-    reward = float(exec_result.get("reward", 0.0))
-
-    # Fix (2): if Strategy A clipped a physical dim (e.g. grip forced up to
-    # GRIP_FLOOR because spec said grip<0.30 which cannot hold a 5cm cube),
-    # validate against the *clipped_spec* -- the effective bounds we actually
-    # attempted to honor. This turns "physically infeasible + L1 fail" into
-    # `manner_infeasible` (Strategy B) instead of the ambiguous `both_fail`.
-    from dataclasses import replace as _dc_replace
-    _dim_to_fields = {
-        "vel":  ("max_joint_vel", "min_joint_vel"),
-        "kp":   ("kp_max", "kp_min"),
-        "grip": ("grip_fraction_max", "grip_fraction_min"),
-    }
-    clipped_dims = params.get("_clipped_dims", [])
-    if clipped_dims:
-        overrides = {}
-        for d in clipped_dims:
-            for fn in _dim_to_fields.get(d, ()):
-                overrides[fn] = None
-        clipped_spec = _dc_replace(spec, **overrides)
-    else:
-        clipped_spec = spec
-
-    manner_ok = None
-    telemetry = env.get_manner_telemetry()
-    if telemetry and clipped_spec.has_any_constraint():
+    telemetry = result["telemetry"]
+    traj_file = None
+    if traj_dir and telemetry:
         try:
-            ev = validator.validate(telemetry, clipped_spec)
-            manner_ok = (ev.status == StageStatus.SATISFIED)
+            traj_file = save_trajectory_npz(telemetry, traj_dir, task, tag, seed, run_stamp)
         except Exception as e:
-            print(f"    [validator error] {e}")
-            manner_ok = None
-    elif not clipped_spec.has_any_constraint():
-        manner_ok = True   # baseline / normal / fully-clipped
-    metrics = extract_metrics(telemetry) if telemetry else {}
+            print(f"    [traj save error] {e}")
+            traj_file = None
+
+    wrist_video_file = None
+    if capture_video and traj_dir:
+        try:
+            frames = env.get_wrist_video_frames()
+            if frames:
+                import imageio
+                fname = f"{task}_{tag}_seed{seed}_{run_stamp}_wrist.mp4"
+                fpath = os.path.join(traj_dir, fname)
+                imageio.mimsave(fpath, frames, fps=20, macro_block_size=None)
+                wrist_video_file = fname
+        except Exception as e:
+            print(f"    [video save error] {e}")
+            wrist_video_file = None
 
     return TrialResult(
         task=task, tag=tag, seed=seed, prompt=prompt, label=spec.label,
         spec_json=spec_json,
         params={k: v for k, v in params.items() if k not in ("_clipped", "_clipped_dims")},
         clipped=params["_clipped"],
-        task_ok=task_ok, manner_ok=manner_ok,
-        outcome=classify_outcome(task_ok, manner_ok),
-        reward=reward, exec_result=exec_result, metrics=metrics,
+        task_ok=result["task_ok"], manner_ok=result["manner_ok"],
+        outcome=result["outcome"],
+        reward=result["reward"], exec_result=result["exec_result"], metrics=result["metrics"],
         error=None, exec_time_s=time.time() - t0,
+        traj_file=traj_file,
+        wrist_video_file=wrist_video_file,
+        repair_attempts=repair_attempts,
     )
 
 
@@ -568,6 +980,9 @@ def main() -> int:
         return spec
 
     cases: list[tuple[str, str]] = list(TEST_CASES)
+    if args.tags:
+        tagset = set(args.tags)
+        cases = [(p, t) for (p, t) in cases if t in tagset]
     if args.include_baseline:
         cases = [("(no manner constraint)", BASELINE_TAG)] + cases
 
@@ -587,6 +1002,13 @@ def main() -> int:
     run_stamp = time.strftime("%Y%m%dT%H%M%S")
     print(f"[OUT] JSONL → {out_path}  (run_stamp={run_stamp})")
 
+    traj_dir_abs = None
+    if args.traj_dir:
+        traj_dir_abs = os.path.abspath(os.path.join(BASE, "..", args.traj_dir)) \
+            if not os.path.isabs(args.traj_dir) else args.traj_dir
+        os.makedirs(traj_dir_abs, exist_ok=True)
+        print(f"[OUT] Trajectories → {traj_dir_abs}")
+
     validator = MannerValidator()
     all_results: list[TrialResult] = []
 
@@ -597,7 +1019,7 @@ def main() -> int:
 
         print(f"\n{'=' * 72}\n  TASK = {task}\n{'=' * 72}")
         env = sim_cls(
-            privileged=True, enable_render=False,
+            privileged=True, enable_render=args.capture_video,
             max_steps=entry["max_steps"], seed=args.seed_start,
         )
         from capx.integrations.franka.control_privileged import FrankaControlPrivilegedApi
@@ -625,6 +1047,8 @@ def main() -> int:
                 r = run_single_trial(
                     task, tag, prompt, seed, spec, args,
                     env, api, validator, StageStatus, runner,
+                    traj_dir_abs, run_stamp,
+                    capture_video=args.capture_video,
                 )
 
                 if r.clipped:

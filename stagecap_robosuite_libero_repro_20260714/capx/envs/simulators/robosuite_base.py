@@ -266,6 +266,7 @@ class RobosuiteBaseEnv(BaseEnv):
         a_max=0.10,
         jerk_limit=None,
         tolerance=0.005,
+        phase="move",
     ):
         """Move joints with a velocity profile (Manner A+D: 速度/平稳约束).
 
@@ -306,7 +307,7 @@ class RobosuiteBaseEnv(BaseEnv):
 
         self._current_joints = target
         _prev_phase = self._manner_phase
-        self._manner_phase = "move"
+        self._manner_phase = phase
         for q_cmd in waypoints:
             self._current_joints = q_cmd
             self._step_once()
@@ -413,7 +414,15 @@ class RobosuiteBaseEnv(BaseEnv):
             robs = self.robosuite_env._get_observations()
             joint_vel = np.array(robs.get("robot0_joint_vel", np.zeros(7)), dtype=np.float64)
             joint_acc = np.array(robs.get("robot0_joint_acc", np.zeros(7)), dtype=np.float64)
+            joint_pos = np.array(robs.get("robot0_joint_pos", np.zeros(7)), dtype=np.float64)
             gripper_qpos = np.array(robs.get("robot0_gripper_qpos", np.zeros(2)), dtype=np.float64)
+            eef_wxyz_xyz = getattr(self, "gripper_link_wxyz_xyz", None)
+            if eef_wxyz_xyz is not None:
+                eef_quat = np.asarray(eef_wxyz_xyz[:4], dtype=np.float64)
+                eef_pos = np.asarray(eef_wxyz_xyz[4:], dtype=np.float64)
+            else:
+                eef_quat = np.zeros(4)
+                eef_pos = np.zeros(3)
 
             # kp: read from composite part_controllers["right"]
             try:
@@ -440,6 +449,34 @@ class RobosuiteBaseEnv(BaseEnv):
             except Exception:
                 cfrc_norm = 0.0
 
+            # object ground-truth poses (privileged): generically probe raw
+            # observables for "<name>_pos"/"<name>_quat" pairs that are NOT the
+            # robot itself and NOT relative (gripper_to_*) quantities.
+            try:
+                obj_names = []
+                obj_pos_list = []
+                obj_quat_list = []
+                for key in sorted(robs.keys()):
+                    if not key.endswith("_pos") or key.startswith("robot0_") or "gripper_to_" in key:
+                        continue
+                    quat_key = key[:-4] + "_quat"
+                    if quat_key not in robs:
+                        continue
+                    pos_val = np.asarray(robs[key], dtype=np.float64)
+                    quat_val = np.asarray(robs[quat_key], dtype=np.float64)
+                    if pos_val.shape != (3,) or quat_val.shape != (4,):
+                        continue
+                    obj_names.append(key[:-4])
+                    obj_pos_list.append(pos_val)
+                    obj_quat_list.append(quat_val)
+                object_names = tuple(obj_names)
+                object_pos = np.stack(obj_pos_list) if obj_pos_list else np.zeros((0, 3))
+                object_quat = np.stack(obj_quat_list) if obj_quat_list else np.zeros((0, 4))
+            except Exception:
+                object_names = ()
+                object_pos = np.zeros((0, 3))
+                object_quat = np.zeros((0, 4))
+
             snap = MannerStepSnapshot(
                 t=round(self._sim_step_count * (1.0 / float(getattr(self, "_sim_freq", 20.0))), 4),
                 phase=self._manner_phase,
@@ -449,6 +486,12 @@ class RobosuiteBaseEnv(BaseEnv):
                 gripper_fraction=float(self._gripper_fraction),
                 gripper_qpos=gripper_qpos,
                 cfrc_norm=cfrc_norm,
+                joint_pos=joint_pos,
+                eef_pos=eef_pos,
+                eef_quat=eef_quat,
+                object_names=object_names,
+                object_pos=object_pos,
+                object_quat=object_quat,
             )
             self._manner_telemetry.append(snap)
         except Exception:
