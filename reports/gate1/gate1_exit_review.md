@@ -68,5 +68,13 @@ python -m unittest discover -s tests -p "test*.py" -q
 Ran 140 tests ... OK
 ```
 
+4090 服务器运行：
+
+```text
+source /data/gaochuanhao/mannercap_env/bin/activate
+python -m pytest -q
+164 passed in 1.71s
+```
+
 该结果验证代码合同与合成反例；它不替代物理校准、30 条动作回放或 sealed
 final audit。

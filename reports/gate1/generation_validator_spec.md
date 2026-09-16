@@ -114,6 +114,6 @@ python -m unittest -v tests/test_v2_generation_validator.py
 Ran 21 tests ... OK
 ```
 
-测试本身使用 Python 标准库 `unittest`，不依赖 pytest、NumPy、MuJoCo 或 RoboSuite。完整本地合同测试以 `unittest discover` 运行 140 项并通过；4090 同步后的仓库测试另记在 Gate 1 退出评审中。
+测试本身使用 Python 标准库 `unittest`，不依赖 pytest、NumPy、MuJoCo 或 RoboSuite。完整本地合同测试以 `unittest discover` 运行 140 项并通过；同步后的 4090 仓库以项目环境运行 pytest，164 项通过。命令和结果同时记录在 Gate 1 退出评审中。
 
 这些 21 个测试是合同级合成样例。当前没有把它们写成 Lift、Stack 或 Wipe 的真实成功率、测力响应或学生闭环证据；阈值也没有因本模块而获得物理校准资格。接入真实数据前，仍需由独立校准流程提供来源、单位、传感器有效性和封存版本。
