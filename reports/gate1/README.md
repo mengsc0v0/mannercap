@@ -39,3 +39,13 @@ Wipe 第三任务探测位于：
 该运行完成 100/100 marker，并通过 RoboSuite 自带成功判定；Wipe 仍保持
 `candidate / pending_calibration`，因为其接触力和约束阈值尚未校准。详见
 `wipe_probe_results.md` 和 `wipe_probe_attempt08.sha256`。
+
+Wipe 的欠作用/标称/过作用三例位于：
+
+```text
+/data/gaochuanhao/mannercap_runs/gate1_wipe_calibration_20260916
+```
+
+三例证明任务结果和内部 EEF 力通道会随表面压入变化，但尚未构成独立载荷
+校准，因此不提升 Wipe 的支持状态。详见 `wipe_calibration_results.md` 和
+`wipe_calibration_20260916.sha256`。

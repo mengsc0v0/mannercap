@@ -163,6 +163,24 @@ def tool_state(env: Any) -> dict[str, Any]:
     }
 
 
+def eef_wrench_state(robosuite_env: Any) -> list[dict[str, Any]]:
+    import numpy as np
+
+    rows = []
+    robot = robosuite_env.robots[0]
+    for arm in robot.arms:
+        values = np.asarray(robot.recent_ee_forcetorques[arm].current, dtype=np.float64)
+        rows.append({
+            "arm": str(arm),
+            "force_n": values[:3].tolist(),
+            "torque_nm": values[3:6].tolist(),
+            "force_norm_n": float(np.linalg.norm(values[:3])),
+            "torque_norm_nm": float(np.linalg.norm(values[3:6])),
+            "qualification": "uncalibrated_robosuite_sensor",
+        })
+    return rows
+
+
 def run_probe(
     output: Path,
     seed: int,
@@ -245,17 +263,23 @@ def run_probe(
         original_step = env._do_robosuite_step
         transition_count = 0
         max_contact_force_n = 0.0
+        max_eef_force_n = 0.0
+        max_eef_torque_nm = 0.0
         unique_pairs: set[tuple[str, str]] = set()
 
         def recording_step(action: Any) -> None:
-            nonlocal transition_count, max_contact_force_n
+            nonlocal transition_count, max_contact_force_n, max_eef_force_n, max_eef_torque_nm
             before = marker_status(robosuite_env)
             time_before = float(sim.data.time)
             original_step(action)
             contacts = named_contacts(sim)
+            eef_wrenches = eef_wrench_state(robosuite_env)
             for contact in contacts:
                 max_contact_force_n = max(max_contact_force_n, contact["force_norm_n"])
                 unique_pairs.add(tuple(sorted((contact["geom1"], contact["geom2"]))))
+            for wrench in eef_wrenches:
+                max_eef_force_n = max(max_eef_force_n, wrench["force_norm_n"])
+                max_eef_torque_nm = max(max_eef_torque_nm, wrench["torque_norm_nm"])
             transition_count += 1
             trace_stream.write(
                 json.dumps(
@@ -267,6 +291,7 @@ def run_probe(
                         "markers_before": before,
                         "markers_after": marker_status(robosuite_env),
                         "contacts": contacts,
+                        "eef_wrenches": eef_wrenches,
                     },
                     allow_nan=False,
                 )
@@ -459,6 +484,9 @@ def run_probe(
         result["trace_summary"] = {
             "control_transitions": transition_count,
             "max_named_contact_force_n": max_contact_force_n,
+            "max_eef_force_n": max_eef_force_n,
+            "max_eef_torque_nm": max_eef_torque_nm,
+            "eef_wrench_qualification": "uncalibrated_robosuite_sensor",
             "unique_geom_pairs": [list(pair) for pair in sorted(unique_pairs)],
         }
     except Exception:
