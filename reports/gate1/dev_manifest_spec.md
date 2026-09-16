@@ -98,7 +98,7 @@ python scripts/gate1_build_dev_manifest.py \
 尚未完成：
 
 - 该输出仍是 `draft`，正式 request manifest 尚未由负责人冻结；示例配额、场景分母、属性配置和预算不是正式实验矩阵；
-- `initial_state_id` 是内容 lineage 引用，不等于真实环境 reset 成功证明；尚缺初态恢复、controller/cache 一致性和逐状态重放校验；
+- `initial_state_id` 只是内容 lineage 引用；Gate 1 已取得初始 `time/qpos/qvel/ctrl` 零误差恢复及 Lift/Stack 功能终态重放，但 `1e-8` 全轨迹逐状态重放仍未通过，不能由该 ID 替代上述证据；
 - 尚未接入候选解析、执行器、资源/attempt ledger、最终审计或学生评测；没有由本脚本产生的仿真结果和成功率；
 - Wipe 仍为 `candidate/pending_calibration`，不在本开发 manifest 的默认任务白名单中；
 - 本版不冻结物理数值域、接触阈值或安全阈值。

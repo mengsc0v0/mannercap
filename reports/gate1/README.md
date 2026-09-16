@@ -49,3 +49,16 @@ Wipe 的欠作用/标称/过作用三例位于：
 三例证明任务结果和内部 EEF 力通道会随表面压入变化，但尚未构成独立载荷
 校准，因此不提升 Wipe 的支持状态。详见 `wipe_calibration_results.md` 和
 `wipe_calibration_20260916.sha256`。
+
+本阶段还增加了：
+
+- `generation_validator_spec.md`：task/manner/safety 三态和 12 类生成期反例；
+- `constraint_registry_spec.md`：公开生成配置与 sealed final audit 的隔离合同；
+- `dev_manifest_spec.md`：由真实 Lift/Stack 初态生成的 draft 请求清单；
+- `synthesis_method_spec.md`：G0/G1/G2/G3/M 五方法的统一配置入口；
+- `action_interface_contract.md`：教师 8D、LIBERO 底层控制 8D 与现有 LeRobot
+  导出候选 7D 的独立语义；
+- `gate1_exit_review.md`：当前退出判定和继续条件。
+
+退出评审决定为**暂不放行扩量**。主要未完成项是 Wipe 独立载荷校准、冻结的
+数值阈值与 sealed audit、实际学生动作语义闭合及 30 条动作 round-trip。
