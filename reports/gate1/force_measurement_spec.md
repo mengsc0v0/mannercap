@@ -37,7 +37,7 @@ sensor_valid=...)` 要求：
 | `object_id` | 不为空，来自对象注册表 |
 | `body_id/body_name` | 非负整数和稳定名称，明确对应 MuJoCo body |
 | `geom_ids/geom_names` | 非空且一一对齐的对象 geom 清单 |
-| `frame` | 显式为 `world`；坐标变换不能隐含 |
+| `frame` | 显式为 `mujoco_subtree_com`；即以子树质心为原点、轴与全局坐标对齐的 MuJoCo c-frame |
 | `geom_attribution` | 固定为 `body_aggregate`，表示 cfrc_ext 不能定位实际接触 geom |
 | `timestamp_s` | 有限的仿真时间；缺失为 unknown |
 | `sensor_valid` | 必须显式为布尔值；缺失或 false 不得填零通过 |
@@ -45,10 +45,12 @@ sensor_valid=...)` 要求：
 输出的 `ObjectContactWrench` 永远保存：
 
 ```text
-force_n   = cfrc_ext[body_id][0:3]   # 3-D, N
-torque_nm = cfrc_ext[body_id][3:6]   # 3-D, N*m
+torque_nm = cfrc_ext[body_id][0:3]   # rotation part, 3-D, N*m
+force_n   = cfrc_ext[body_id][3:6]   # translation part, 3-D, N
 ```
 
+这是 MuJoCo 官方 API 所述的 `[rotation(3), translation(3)]` 空间向量顺序，
+参见 [mj_rnePostConstraint](https://mujoco.readthedocs.io/en/3.1.3/APIreference/APIfunctions.html#mj-rnepostconstraint)。
 记录和评测结果分别给出 `force_norm_n` 与 `torque_norm_nm`，没有混合
 `wrench_norm` 字段。异常 shape、非有限值、缺 body row、缺对象/body/geom
 绑定、缺时间或缺传感器有效位都保留 issue 并进入 `unknown`。

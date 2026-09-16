@@ -88,6 +88,7 @@ def run_task(task, seed, out, ik_backend="pyroki"):
         import run_manner_ablation as old
         from capx.envs.manner_validator import MannerSpec
         from capx.integrations.franka.control_privileged import FrankaControlPrivilegedApi
+        from synthesis_v2.mujoco_contacts import capture_object_contacts, resolve_task_object_registry
         from synthesis_v2.simulator_state import capture_simulator_snapshot
 
         np.random.seed(seed)
@@ -116,10 +117,12 @@ def run_task(task, seed, out, ik_backend="pyroki"):
                     "qvel": np.asarray(d.qvel).tolist(), "actuator_ctrl": np.asarray(d.ctrl).tolist()}
 
         xml = sim.model.get_xml()
+        object_registry = resolve_task_object_registry(env.robosuite_env, task)
         (target / "model.xml").write_text(xml, encoding="utf-8")
         write_json(target / "initial_state.json", {
             "state": state(), "model_sha256": hashlib.sha256(xml.encode()).hexdigest(),
             "physics_timestep_s": float(sim.model.opt.timestep),
+            "object_registry": object_registry,
             "snapshot": capture_simulator_snapshot(env),
             "restoration_verified": False,
             "limitation": "Controller caches are serialized; action replay must still validate restoration."})
@@ -131,11 +134,13 @@ def run_task(task, seed, out, ik_backend="pyroki"):
                 before = state()
                 substeps_before = physics_steps[0]
                 original(action)
+                contact_evidence = capture_object_contacts(sim, object_registry)
                 row = {"state_t": before, "action_t": np.asarray(action).tolist(),
                        "action_slice": env._ACTION_SLICE,
                        "phase_program_marker": env._manner_phase,
                        "physics_substeps": physics_steps[0] - substeps_before,
                        "state_t_plus_1": state(),
+                       "contact_evidence_t_plus_1": contact_evidence,
                        "task_success_after": bool(env.task_completed())}
                 stream.write(json.dumps(row, allow_nan=False) + "\n")
             env._do_robosuite_step = record

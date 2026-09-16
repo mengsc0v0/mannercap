@@ -1,9 +1,9 @@
 """Pure object-level contact-wrench recording and evaluation helpers.
 
 The legacy RoboSuite/MuJoCo recorder stores ``sim.data.cfrc_ext`` as one
-six-dimensional body row and then takes a norm over all six coordinates.  The
-first three coordinates are a force vector (N) and the last three are a torque
-vector (N*m); combining them into one scalar has no physical unit.  This module
+six-dimensional body row and then takes a norm over all six coordinates. MuJoCo
+stores this spatial vector as rotation/torque first and translation/force
+second. Combining them into one scalar has no physical unit. This module
 keeps those quantities separate and requires an explicit object/body/geom
 binding before a row can be treated as object evidence.
 
@@ -76,7 +76,7 @@ class ObjectBodyBinding:
     body_name: str
     geom_ids: Tuple[int, ...]
     geom_names: Tuple[str, ...]
-    frame: str = "world"
+    frame: str = "mujoco_subtree_com"
     geom_attribution: str = "body_aggregate"
 
 
@@ -281,8 +281,10 @@ def record_object_contact_wrench(
         if vector_issue is not None:
             issues.append(vector_issue)
         elif vector is not None:
-            force = vector[:3]
-            torque = vector[3:]
+            # MuJoCo spatial vectors use [rotation, translation] order. For a
+            # force vector this is [torque (N*m), force (N)].
+            torque = vector[:3]
+            force = vector[3:]
 
     return ObjectContactWrench(
         timestamp_s=time_value,
@@ -478,8 +480,8 @@ def _validate_record_metadata(record: ObjectContactWrench) -> list[ContactIssue]
         issues.append(ContactIssue("missing_body_name", "body_name is required", "body_name"))
     if not record.geom_ids or len(record.geom_ids) != len(record.geom_names):
         issues.append(ContactIssue("missing_geom_binding", "object geom ids and names must be a non-empty aligned mapping", "geom_ids"))
-    if record.frame != "world":
-        issues.append(ContactIssue("unsupported_or_missing_frame", "cfrc_ext records must declare the world frame", "frame"))
+    if record.frame != "mujoco_subtree_com":
+        issues.append(ContactIssue("unsupported_or_missing_frame", "cfrc_ext records must declare the MuJoCo subtree-CoM c-frame", "frame"))
     if record.geom_attribution != "body_aggregate":
         issues.append(ContactIssue("ambiguous_geom_attribution", "cfrc_ext geometry attribution must be body_aggregate", "geom_attribution"))
     if not record.source:
@@ -536,8 +538,8 @@ def _coerce_binding(
         issues.append(ContactIssue("geom_mapping_length_mismatch", "geom_ids and geom_names must have equal length", "geom_names"))
 
     frame = raw.get("frame")
-    if frame != "world":
-        issues.append(ContactIssue("unsupported_or_missing_frame", "frame must be explicitly declared as world", "frame"))
+    if frame != "mujoco_subtree_com":
+        issues.append(ContactIssue("unsupported_or_missing_frame", "frame must be explicitly declared as mujoco_subtree_com", "frame"))
         frame = None if frame is None else str(frame)
 
     geom_attribution = raw.get("geom_attribution")

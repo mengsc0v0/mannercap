@@ -18,7 +18,14 @@
 `evidence_manifest.sha256` 固定该目录下 12 个原始证据文件。原始轨迹较大，
 不进入 Git；代码、合同、测试、结论和哈希清单进入 Git。
 
-当前放行边界：Lift/Stack 功能重放通过，严格逐状态重放未通过；对象力只完成
-结构合同，尚未完成接触对接入和物理校准；attempt ledger 只完成合同，尚未接入
+当前放行边界：Lift/Stack 功能重放通过，严格逐状态重放未通过；对象力已完成
+结构合同、接触对记录和 body wrench 受控通道校准，但接触对阈值仍未校准；attempt ledger 只完成合同，尚未接入
 真实生成器/API/执行器。因此 Gate 1 仍是开发阶段，不构成正式实验封版。
 
+后续力证据位于：
+
+```text
+/data/gaochuanhao/mannercap_runs/gate1_20260916_attempt03
+```
+
+详见 `force_calibration_results.md` 和 `evidence_manifest_attempt03.sha256`。

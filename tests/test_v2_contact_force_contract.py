@@ -24,7 +24,7 @@ class ContactForceContractTests(unittest.TestCase):
             body_name="cube_a_body",
             geom_ids=(17, 18),
             geom_names=("cube_a_geom", "cube_a_inner_geom"),
-            frame="world",
+            frame="mujoco_subtree_com",
             geom_attribution="body_aggregate",
         )
 
@@ -50,7 +50,7 @@ class ContactForceContractTests(unittest.TestCase):
         self.assertIn("no_contact", result.codes)
 
     def test_controlled_value_keeps_force_and_torque_separate(self):
-        record = self.record((3.0, 4.0, 0.0, 0.0, 0.0, 0.2))
+        record = self.record((0.0, 0.0, 0.2, 3.0, 4.0, 0.0))
         result = evaluate_object_contact_force(
             record,
             ContactForceSpec(min_force_n=4.0, max_force_n=6.0, require_contact=True),
@@ -75,7 +75,7 @@ class ContactForceContractTests(unittest.TestCase):
             body_name="cube_a_body",
             geom_ids=(17,),
             geom_names=("cube_a_geom",),
-            frame="world",
+            frame="mujoco_subtree_com",
             geom_attribution="body_aggregate",
             force_n=(3.0, 4.0, 0.0, 100.0, 0.0, 0.0),
             torque_nm=(0.0, 0.0, 0.2),
@@ -92,7 +92,7 @@ class ContactForceContractTests(unittest.TestCase):
         self.assertIsNone(result.force_norm_n)
 
     def test_missing_sensor_validity_is_unknown_even_with_numeric_row(self):
-        record = self.record((1.0, 0.0, 0.0, 0.0, 0.0, 0.0), sensor_valid=None)
+        record = self.record((0.0, 0.0, 0.0, 1.0, 0.0, 0.0), sensor_valid=None)
         result = evaluate_object_contact_force(
             record,
             ContactForceSpec(max_force_n=2.0),
@@ -104,7 +104,7 @@ class ContactForceContractTests(unittest.TestCase):
 
     def test_missing_row_is_unknown_and_not_zero_filled(self):
         record = record_object_contact_wrench(
-            {9: (1.0, 0.0, 0.0, 0.0, 0.0, 0.0)},
+            {9: (0.0, 0.0, 0.0, 1.0, 0.0, 0.0)},
             binding=self.binding(),
             timestamp_s=1.25,
             sensor_valid=True,
@@ -118,14 +118,14 @@ class ContactForceContractTests(unittest.TestCase):
 
     def test_missing_object_geom_mapping_is_unknown(self):
         record = record_object_contact_wrench(
-            {4: (1.0, 0.0, 0.0, 0.0, 0.0, 0.0)},
+            {4: (0.0, 0.0, 0.0, 1.0, 0.0, 0.0)},
             binding={
                 "object_id": "cube_a",
                 "body_id": 4,
                 "body_name": "cube_a_body",
                 "geom_ids": (),
                 "geom_names": (),
-                "frame": "world",
+                "frame": "mujoco_subtree_com",
                 "geom_attribution": "body_aggregate",
             },
             timestamp_s=1.25,
@@ -137,13 +137,13 @@ class ContactForceContractTests(unittest.TestCase):
         self.assertIn("missing_geom_ids", result.codes)
 
     def test_empty_force_spec_is_unknown(self):
-        record = self.record((1.0, 0.0, 0.0, 0.0, 0.0, 0.0))
+        record = self.record((0.0, 0.0, 0.0, 1.0, 0.0, 0.0))
         result = evaluate_object_contact_force(record, ContactForceSpec())
         self.assertEqual(result.decision, Decision.UNKNOWN)
         self.assertIn("no_force_constraint", result.codes)
 
     def test_json_representation_is_split_and_serializable(self):
-        record = self.record((3.0, 4.0, 0.0, 0.0, 0.0, 0.2))
+        record = self.record((0.0, 0.0, 0.2, 3.0, 4.0, 0.0))
         result = evaluate_object_contact_force(record, ContactForceSpec(max_force_n=6.0))
         payload = {"record": record.as_dict(), "evaluation": result.as_dict()}
         encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True)
