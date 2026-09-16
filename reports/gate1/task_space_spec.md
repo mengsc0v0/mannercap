@@ -8,7 +8,7 @@
 
 `synthesis_v2/task_space.py` 为请求生成前的任务空间提供一个可版本化、可审计的结构。它把任务、阶段、对象属性、控制通道、请求单元以及配对规则写成 JSON 兼容记录，并在构造时拒绝引用不存在的阶段、任务或控制通道。
 
-本版只把 **Lift** 和 **Stack** 标为 `supported` 且列入开发任务。第三任务 **Wipe** 只保留为 `candidate` + `pending_calibration`，带有一个不可执行的 `pending_calibration` 请求单元；它没有阶段、对象或控制通道，不能被构造成 `applicable` 单元。这里没有假定质量、摩擦、接触力、位姿阈值或其他物理数值，也没有运行仿真、模型服务、外部 API 或正式实验。
+本版只把 **Lift** 和 **Stack** 标为 `supported` 且列入开发任务。第三任务 **Wipe** 只保留为 `candidate` + `pending_calibration`，带有一个不可执行的 `pending_calibration` 请求单元；它没有阶段、对象或控制通道，不能被构造成 `applicable` 单元。后续 4090 探测已证明 Wipe 可清除 100/100 marker 并触发 RoboSuite 官方成功判定，但尚未完成 Wipe 专属力/接触和约束阈值校准，因此本合同仍不提升其状态。这里没有假定质量、摩擦、接触力、位姿阈值或其他物理数值。
 
 ## 2. 版本与任务状态
 
@@ -107,8 +107,8 @@ cell_id（由合同计算）
 
 仍未完成：
 
-- `TaskSpace.status` 仍为 `draft`；正式 request manifest 尚未实际冻结，Lift/Stack 的属性配置、初态 ID、场景分母和配对实例尚未生成；
-- 尚无物理属性、控制数值域或任务成功阈值的校准结论；第三任务仍保持 candidate/pending calibration；
+- `TaskSpace.status` 仍为 `draft`；已用真实 Lift/Stack 初态生成一个 14 条记录的 development-only 清单，但正式 request manifest 尚未冻结，属性配置、场景分母和配额仍未批准；
+- 尚无物理属性、控制数值域或任务成功阈值的校准结论；第三任务虽已通过实际功能探测，仍保持 candidate/pending calibration；
 - 尚未接入解析器、生成器、执行器、模型/API 或正式实验；没有运行结果和资源实测；
 - Gate 1 已取得 Lift/Stack 初始 `time/qpos/qvel/ctrl` 零误差恢复和功能终态重放证据，但 `1e-8` 全轨迹逐状态重放仍未通过；本合同的 `initial_state_id` 只是请求引用，不能自动充当恢复成功证据；
 - 尚未实现最终审计、真实轨迹事件判定、去重证据和 release/freeze ledger；这些应在后续阶段追加，不能在本 schema 中伪造通过。

@@ -29,3 +29,13 @@
 ```
 
 详见 `force_calibration_results.md` 和 `evidence_manifest_attempt03.sha256`。
+
+Wipe 第三任务探测位于：
+
+```text
+/data/gaochuanhao/mannercap_runs/gate1_wipe_probe_20260916_attempt08
+```
+
+该运行完成 100/100 marker，并通过 RoboSuite 自带成功判定；Wipe 仍保持
+`candidate / pending_calibration`，因为其接触力和约束阈值尚未校准。详见
+`wipe_probe_results.md` 和 `wipe_probe_attempt08.sha256`。

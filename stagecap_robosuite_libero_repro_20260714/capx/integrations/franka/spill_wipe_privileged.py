@@ -1,30 +1,14 @@
-import pathlib
-import time
 from typing import Any
 
 import numpy as np
-import open3d as o3d
 import viser.transforms as vtf
-from PIL import Image, ImageDraw
 from scipy.spatial.transform import Rotation as SciRotation
 
 from capx.envs.base import (
     BaseEnv,
 )
-from capx.integrations.motion import pyroki_snippets as pks  # type: ignore
 from capx.integrations.base_api import ApiBase
-from capx.integrations.vision.graspnet import init_contact_graspnet
-from capx.integrations.vision.owlvit import init_owlvit
 from capx.integrations.motion.pyroki import init_pyroki
-from capx.integrations.motion.pyroki_context import get_pyroki_context  # type: ignore
-from capx.integrations.vision.sam2 import init_sam2
-from capx.utils.camera_utils import obs_get_rgb
-from capx.utils.depth_utils import (
-    deproject_pixel_to_camera,
-    depth_color_to_pointcloud,
-    depth_to_pointcloud,
-    depth_to_rgb,
-)
 
 
 # ------------------------------- Control API ------------------------------
