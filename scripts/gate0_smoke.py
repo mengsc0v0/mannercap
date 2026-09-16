@@ -88,6 +88,7 @@ def run_task(task, seed, out, ik_backend="pyroki"):
         import run_manner_ablation as old
         from capx.envs.manner_validator import MannerSpec
         from capx.integrations.franka.control_privileged import FrankaControlPrivilegedApi
+        from synthesis_v2.simulator_state import capture_simulator_snapshot
 
         np.random.seed(seed)
         entry = old.TASK_REGISTRY[task]
@@ -119,8 +120,9 @@ def run_task(task, seed, out, ik_backend="pyroki"):
         write_json(target / "initial_state.json", {
             "state": state(), "model_sha256": hashlib.sha256(xml.encode()).hexdigest(),
             "physics_timestep_s": float(sim.model.opt.timestep),
+            "snapshot": capture_simulator_snapshot(env),
             "restoration_verified": False,
-            "limitation": "Not a complete controller/RNG snapshot; paired replay is not certified."})
+            "limitation": "Controller caches are serialized; action replay must still validate restoration."})
         params = old.spec_to_exec_params(MannerSpec(label="gate0_unconstrained"))
         write_json(target / "executed_parameters.json", params)
         original = env._do_robosuite_step
