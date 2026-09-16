@@ -29,3 +29,12 @@ repro_results/**/*.npz
 repro_results/**/*.tar.gz
 repro_results/**/traj/
 repro_results/**/traj_*/
+
+# Generated Gate 0 evidence stays on the 4090 server and is referenced by hash.
+reports/gate0/evidence_local_ik/
+
+# Local bootstrap payloads and generated run directories.
+wheelhouse/
+*_wheels/
+mannercap_runs/
+*.bundle

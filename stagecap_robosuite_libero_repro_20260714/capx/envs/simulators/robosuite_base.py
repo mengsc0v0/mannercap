@@ -7,6 +7,7 @@ robosuite_cubes_restack.py, robosuite_spill_wipe.py, and robosuite_nut_assembly.
 from __future__ import annotations
 
 import os
+import inspect
 from typing import Any
 
 import numpy as np
@@ -173,7 +174,14 @@ class RobosuiteBaseEnv(BaseEnv):
         """Step robosuite with the given action, handling render skipping."""
         sliced = action[:self._ACTION_SLICE] if self._ACTION_SLICE != 0 else action
         need_render = (self._record_frames and self._sim_step_count % self._subsample_rate == 0) or hasattr(self, "viser_server")
-        if need_render:
+        # The original machine used a patched robosuite step API. Upstream
+        # 1.5.2 has no skip_render_images argument; inspect once rather than
+        # catching TypeError and possibly executing a physical step twice.
+        if not hasattr(self, "_supports_skip_render_images"):
+            self._supports_skip_render_images = (
+                "skip_render_images" in inspect.signature(self.robosuite_env.step).parameters
+            )
+        if need_render or not self._supports_skip_render_images:
             self.robosuite_env.step(sliced)
         else:
             self.robosuite_env.step(sliced, skip_render_images=True)
