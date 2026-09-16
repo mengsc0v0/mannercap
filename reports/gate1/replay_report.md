@@ -55,7 +55,6 @@
 ## 证据与验证
 
 - `evidence_manifest.sha256`：12 个原始文件；服务器执行 `sha256sum -c` 全部通过。
-- 根测试集：4090 上 `python -m pytest -q`，39 项通过。
+- 项目合同测试集：4090 上 `python -m pytest -q`，55 项通过。
 - 完整仓库的无范围 pytest 会收集 vendored/third-party 自带测试并因其独立
   import path 失败；根目录 `pytest.ini` 将项目默认测试范围固定为 `tests/`。
-
