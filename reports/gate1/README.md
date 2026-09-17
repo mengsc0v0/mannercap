@@ -18,7 +18,7 @@
 `evidence_manifest.sha256` 固定该目录下 12 个原始证据文件。原始轨迹较大，
 不进入 Git；代码、合同、测试、结论和哈希清单进入 Git。
 
-当前放行边界：Lift/Stack 功能重放通过，严格逐状态重放未通过；对象力已完成
+当前放行边界：Lift/Stack 功能重放和当前环境下 `1e-8` 严格逐状态重放均通过；对象力已完成
 结构合同、接触对记录和 body wrench 受控通道校准，但接触对阈值仍未校准；attempt ledger 只完成合同，尚未接入
 真实生成器/API/执行器。因此 Gate 1 仍是开发阶段，不构成正式实验封版。
 
@@ -64,5 +64,25 @@ Wipe 的欠作用/标称/过作用三例位于：
 - `gate1_exit_review.md`：当前退出判定和继续条件。
 
 退出评审决定为**暂不放行扩量**。Wipe 传感器通道的已知外载响应已经验证；
-主要未完成项是接触/安全阈值、sealed audit、实际学生动作语义闭合及 30 条
+主要未完成项是接触/安全阈值、sealed audit、LA4VLA OSC_POSE adapter 及 30 条
 学生控制器物理 round-trip。
+
+新增严格回放证据位于：
+
+```text
+/data/gaochuanhao/mannercap_runs/gate1_strict_replay_mjb_20260917_attempt02
+```
+
+XML 重编译导致的模型差异已通过保存 MJB 解决；阶段间 `kp` 等 controller
+side-channel 已逐 transition 记录。Lift 762/762、Stack 1404/1404 均通过
+`1e-8`。详见 `replay_report.md` 和 `strict_replay_mjb_20260917.sha256`。
+
+Wipe 的 3 seed × 0/2/10 mm 开发网格位于：
+
+```text
+/data/gaochuanhao/mannercap_runs/gate1_wipe_contact_grid_20260917
+```
+
+2 mm 为 3/3 成功，10 mm 为 0/3 且均发生 controller target 错误；force 响应不
+稳定单调，因此没有把压入量提升为 force 或安全阈值。详见
+`wipe_contact_grid_results.md` 和 `wipe_contact_grid_20260917.sha256`。

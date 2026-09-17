@@ -1,60 +1,60 @@
-# Gate 1 初态恢复与动作重放报告
+# Gate 1 初态恢复与严格动作重放报告
 
-日期：2026-09-16  
-服务器：4090x8  
-运行目录：`/data/gaochuanhao/mannercap_runs/gate1_20260916_attempt02`  
+日期：2026-09-17
+服务器：4090x8
+最终运行目录：`/data/gaochuanhao/mannercap_runs/gate1_strict_replay_mjb_20260917_attempt02`
 后端：`mujoco-local`（开发用；不等价于缺失的 PyRoKi 服务）
 
-## 实现
+## 修复内容
 
-`synthesis_v2/simulator_state.py` 的 v2 快照保存：
+旧回放从 `model.xml` 重新编译 MuJoCo 模型。实测 XML round-trip 会改变已编译
+runtime 数组；例如 Lift 的 `body_mass` 最大差约 38.09、`body_inertia` 最大差约
+6.21，`dof_armature` 最大差约 `3.33e-6`。初始 qpos/qvel 即使精确恢复，下一
+物理步仍会因此漂移。
 
-- MuJoCo `time/qpos/qvel/act/qacc_warmstart/ctrl/qfrc_applied/xfrc_applied`；
-- mocap、userdata、plugin state、equality activation；
-- wrapper 和 RoboSuite 计数器、Python/NumPy/env RNG；
-- robot、part controller 与线性 interpolator 的标量和数组缓存。
+新记录同时保存：
 
-`scripts/gate1_replay.py` 从保存的 XML 建立新仿真，恢复快照，按原顺序重放
-每个 `action_t`，并逐步比较 `time/qpos/qvel/actuator_ctrl`。严格容差为绝对误差
-`1e-8`；任务终态另行比较，不能代替逐状态一致性。
+- 人可读 `model.xml` 及 SHA-256；
+- MuJoCo 编译模型 `model.mjb` 及 SHA-256，严格回放优先加载 MJB；
+- 原有 MuJoCo data、wrapper、RNG、controller 和 interpolator 快照；
+- 每个 transition 的 `controller_command_t`，显式记录 action vector 之外的
+  `kp/kd/impedance/input_type` 等 side channel。
 
-## 4090 结果
+中间运行 `gate1_strict_replay_mjb_20260917` 使用 MJB 后，Lift 前 334 步、Stack
+前 382 步严格匹配，随后在 `set_joint_stiffness` 后分歧。原因是原教师在阶段间
+修改 `kp`，但旧 `action_t` 没有这个 side channel。补齐逐 transition controller
+command 后，最终 attempt02 全程通过。没有放宽 `1e-8` 容差。
+
+## 4090 最终结果
 
 | 项目 | Lift | Stack |
 | --- | ---: | ---: |
 | 原运行任务成功 | 是 | 是 |
 | 重放任务成功 | 是 | 是 |
-| 控制转移数 | 765 | 1,244 |
-| 物理子步数 | 19,125 | 31,100 |
-| 仿真时长 | 38.25 s | 62.20 s |
-| 模型源文件 SHA-256 一致 | 是 | 是 |
+| 控制 transition | 762 | 1,404 |
+| 物理子步 | 19,050 | 35,100 |
+| 编译模型格式 | MJB | MJB |
+| MJB SHA-256 | `cd2b9f6f...84f5e30` | `d82a1dc6...39feb14` |
+| XML 与 MJB 来源 hash 校验 | 通过 | 通过 |
 | 初始 `time/qpos/qvel/ctrl` 最大误差 | 0 | 0 |
-| 首个严格失配转移 | 1 | 1 |
-| 首步 `qpos` 最大误差 | 1.775e-8 | 1.671e-8 |
-| 首步 `qvel` 最大误差 | 4.117e-7 | 4.563e-7 |
-| 首步 `ctrl` 最大误差 | 1.762e-6 | 1.995e-6 |
-| 全程 `qpos` 最大误差 | 1.246e-2 | 1.278e-2 |
+| 全程 `time` 最大误差 | 0 | 0 |
+| 全程 `qpos` 最大误差 | `3.357e-14` | 0 |
+| 全程 `qvel` 最大误差 | `3.261e-14` | 0 |
+| 全程 `actuator_ctrl` 最大误差 | `3.695e-13` | 0 |
+| matching prefix | 762/762 | 1,404/1,404 |
 | 功能终态重放 | **通过** | **通过** |
-| 严格逐状态重放 | **未通过** | **未通过** |
+| `1e-8` 严格逐状态重放 | **通过** | **通过** |
 
-第一次诊断运行 `gate1_20260916_attempt01` 没有保存控制器/插值器缓存，首步
-控制量误差约 `0.10`。加入这些缓存后，首步控制量误差降到约 `2e-6`，证明
-该缺口已被定位并显著收敛；剩余微小数值差异在长时接触动力学中被放大。
+## 判定和边界
 
-## 判定
+- 完整初态恢复、编译模型恢复、controller side-channel 回放及逐状态动作回放：
+  通过，可解除原严格回放 blocker；
+- 该结果覆盖本次固定 seed、`mujoco-local` Lift/Stack 开发轨迹，不证明跨版本、
+  跨硬件 bitwise 可移植；
+- `manner`、`safety` 和 JPR 仍为 unknown；严格动力学回放不等于物理阈值或学生
+  policy 回放；
+- 旧 XML-only 运行继续保留为失败诊断，不重写为通过。
 
-- 初始数值状态恢复：通过。
-- 任务终态功能重放：通过。
-- `1e-8` 全轨迹逐状态重放：未通过，保持 blocker 状态。
-- manner/safety/JPR：unknown；本运行没有外部 LLM 调用，不能用于相应结论。
-
-后续若要求严格逐状态放行，需要保存并加载编译后的 MuJoCo model（二进制 MJB
-或等价无损模型状态），并验证 MuJoCo 派生缓存/求解器状态的可迁移边界。不得
-通过放宽容差或只比较任务成功来改写本次严格判定。
-
-## 证据与验证
-
-- `evidence_manifest.sha256`：12 个原始文件；服务器执行 `sha256sum -c` 全部通过。
-- 项目合同测试集：4090 上 `python -m pytest -q`，55 项通过。
-- 完整仓库的无范围 pytest 会收集 vendored/third-party 自带测试并因其独立
-  import path 失败；根目录 `pytest.ini` 将项目默认测试范围固定为 `tests/`。
+证据清单为 `strict_replay_mjb_20260917.sha256`，共 15 个原始文件；清单自身
+SHA-256 为 `71b55caeb74151754d85b5e384b7ff42c0b7d51770137552e3b10c7050bbdb63`。
+本运行外部 API/LLM 调用为 0。
