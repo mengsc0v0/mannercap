@@ -1,4 +1,4 @@
-# Gate 1：RoboSuite 教师、LIBERO 控制器与 LeRobot 导出动作接口合同
+# Gate 1：RoboSuite 教师、LIBERO 控制器、LA4VLA 与 LeRobot 动作接口合同
 
 日期：2026-09-16  
 范围：动作向量的语义、通道、单位、坐标、时刻和可表达性  
@@ -39,6 +39,7 @@ Gate 0 已指出，当前代码实际存在三套语义：RoboSuite 教师发送
 | `robosuite_teacher` | `[joint_target(7), gripper_command(1)]` | `rad`；`robot_joint_coordinates`；顺序固定为 `robot0_joint1..robot0_joint7` | 每一步是绝对 Panda 关节目标；profile 可能在外部生成多个 waypoint | `normalized_command`，`-1=open, +1=close` |
 | `libero_low_level_controller` | `[joint_delta(7), gripper_command(1)]` | `rad` 的单控制命令关节位移；同一关节坐标和顺序 | 目标差由测得的当前关节状态得到；当前 wrapper 以 `control_freq` 缩放后送入 `handle.step` | 同一显式 gripper 符号 |
 | `lerobot_export_candidate` | `[eef_translation_state_difference(3), eef_axis_angle_state_difference(3), raw_gripper_value(1)]` | `m`、`rad`；robot base 下记录状态的逐分量差 | 没有已验证控制器语义；源码标记 `validated_as_ground_truth=false` | 原样复制 `raw_action[-1]`，语义未提升 |
+| `la4vla_libero_osc_pose` | `[normalized_translation_delta(3), normalized_rotation_delta(3), gripper_command(1)]` | 归一化 controller command；逐轴缩放至 ±0.05 m、±0.5 rad | LIBERO 默认 `OSC_POSE`、`control_delta=true`、20 Hz | `-1=open, +1=close` |
 
 旧字符串 `libero_student` 只作为 8 维底层控制器接口的兼容查找别名；它不表示
 当前 7 维 LeRobot 导出，也不证明存在与该接口一致的学生策略 head。
@@ -98,6 +99,7 @@ controller_candidate.gripper_command = teacher.gripper_command
 | 缺少测得的当前关节状态 | `missing_state` |
 | profile/kp/force/width 无学生通道 | `unexpressed_teacher_field` |
 | 尝试把教师动作转换为 7 维 LeRobot EEF 状态差分候选 | `unverified_export_semantics` |
+| 尝试在物理回放前转换为 LA4VLA OSC_POSE | `adapter_not_verified` |
 | LIBERO delta 反向恢复 RoboSuite teacher | `non_invertible_conversion` |
 | source/target 接口不匹配 | `interface_mismatch` |
 
@@ -128,9 +130,9 @@ replay_status = "not_run"
 
 ## 7. 结构测试和当前放行边界
 
-`tests/test_v2_action_interface.py` 共 13 个纯 Python 测试，覆盖：
+`tests/test_v2_action_interface.py` 共 14 个纯 Python 测试，覆盖：
 
-* 两个 8 维接口和一个 7 维导出候选的布局与版本化通道元数据；
+* 两个 8 维接口、LA4VLA 7 维 OSC_POSE 和 7 维状态差分候选的布局与版本化通道元数据；
 * rad、坐标 frame、joint order、gripper `-1/+1` 符号；
 * 缺 `dt`、缺当前 state、非法维度和非法 gripper 值；
 * profile、kp、归一化 force、width 的 hidden side channel；

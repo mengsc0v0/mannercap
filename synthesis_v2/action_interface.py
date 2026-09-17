@@ -43,6 +43,7 @@ JOINT_COUNT: Final[int] = 7
 TEACHER_ACTION_DIM: Final[int] = 8
 STUDENT_ACTION_DIM: Final[int] = 8
 LEROBOT_EXPORT_ACTION_DIM: Final[int] = 7
+LA4VLA_OSC_POSE_ACTION_DIM: Final[int] = 7
 JOINT_ORDER: Final[tuple[str, ...]] = tuple(f"robot0_joint{i}" for i in range(1, 8))
 JOINT_FRAME: Final[str] = "robot_joint_coordinates"
 GRIPPER_SIGN: Final[str] = "normalized_command:-1=open,+1=close"
@@ -56,6 +57,7 @@ class InterfaceId(str, Enum):
     ROBOSUITE_TEACHER = "robosuite_teacher"
     LIBERO_LOW_LEVEL_CONTROLLER = "libero_low_level_controller"
     LEROBOT_EXPORT_CANDIDATE = "lerobot_export_candidate"
+    LA4VLA_LIBERO_OSC_POSE = "la4vla_libero_osc_pose"
     # Accepted as a legacy lookup spelling only.  It resolves to the
     # low-level controller contract, not to the current 7-D training export.
     LIBERO_STUDENT = "libero_student"
@@ -534,6 +536,48 @@ LEROBOT_EXPORT_CANDIDATE_INTERFACE: Final[ActionInterfaceSpec] = ActionInterface
     ),
 )
 
+
+LA4VLA_LIBERO_OSC_POSE_INTERFACE: Final[ActionInterfaceSpec] = ActionInterfaceSpec(
+    schema_version=ACTION_INTERFACE_SCHEMA_VERSION,
+    interface_id=InterfaceId.LA4VLA_LIBERO_OSC_POSE,
+    controller="LIBERO RoboSuite OSC_POSE (control_delta=true)",
+    action_channels=(
+        ChannelSpec(
+            "osc_translation_delta_normalized",
+            3,
+            "normalized_command",
+            "OSC_POSE_controller_frame",
+            "transition_start_seconds",
+            "[-1,+1] scaled componentwise to [-0.05,+0.05] m",
+            notes="The evaluated LA4VLA policy emits controller commands, not measured EEF state differences.",
+        ),
+        ChannelSpec(
+            "osc_rotation_delta_normalized",
+            3,
+            "normalized_command",
+            "OSC_POSE_controller_axis_angle_frame",
+            "transition_start_seconds",
+            "[-1,+1] scaled componentwise to [-0.5,+0.5] rad",
+            notes="Exact dataset-to-controller rotation semantics remain pending a physical adapter replay.",
+        ),
+        ChannelSpec(
+            "gripper_command",
+            1,
+            "normalized_command",
+            "Panda_gripper_controller",
+            "transition_start_seconds",
+            GRIPPER_SIGN,
+            notes="The installed PandaGripper maps -1 to open and +1 to closed.",
+        ),
+    ),
+    auxiliary_channels=(),
+    nominal_control_frequency_hz=20.0,
+    notes=(
+        "Audited fixed-student candidate used by eval_libero_goal.py. Its 7-D vector "
+        "is not interchangeable with the 7-D MannerCAP LeRobot state-difference export."
+    ),
+)
+
 # Spelling and role aliases kept intentionally small for callers/readers.
 ROBOSUITE_TEACHER = ROBOSUITE_TEACHER_INTERFACE
 ROBO_SUITE_TEACHER_INTERFACE = ROBOSUITE_TEACHER_INTERFACE
@@ -559,6 +603,7 @@ def get_action_interface(interface: ActionInterfaceSpec | InterfaceId | str) -> 
         InterfaceId.LIBERO_LOW_LEVEL_CONTROLLER.value: LIBERO_LOW_LEVEL_INTERFACE,
         InterfaceId.LIBERO_STUDENT.value: LIBERO_LOW_LEVEL_INTERFACE,
         InterfaceId.LEROBOT_EXPORT_CANDIDATE.value: LEROBOT_EXPORT_CANDIDATE_INTERFACE,
+        InterfaceId.LA4VLA_LIBERO_OSC_POSE.value: LA4VLA_LIBERO_OSC_POSE_INTERFACE,
     }
     try:
         return known[key]
@@ -960,6 +1005,12 @@ def convert_teacher_to_student(
             code="unverified_export_semantics",
             field="target_interface",
         )
+    if _interface_id(target.interface_id) == InterfaceId.LA4VLA_LIBERO_OSC_POSE.value:
+        raise ActionConversionError(
+            "the LA4VLA OSC_POSE adapter has not passed physical controller replay",
+            code="adapter_not_verified",
+            field="target_interface",
+        )
     if _interface_id(target.interface_id) != InterfaceId.LIBERO_LOW_LEVEL_CONTROLLER.value:
         raise ActionConversionError(
             "teacher-to-student conversion requires the LIBERO student target interface",
@@ -1111,6 +1162,12 @@ def convert_action(
         raise ActionConversionError(
             "the 7-D LeRobot EEF state-difference export is not a verified controller action",
             code="unverified_export_semantics",
+            field="target_interface",
+        )
+    if pair == (InterfaceId.ROBOSUITE_TEACHER.value, InterfaceId.LA4VLA_LIBERO_OSC_POSE.value):
+        raise ActionConversionError(
+            "the LA4VLA OSC_POSE adapter has not passed physical controller replay",
+            code="adapter_not_verified",
             field="target_interface",
         )
     if pair == (InterfaceId.ROBOSUITE_TEACHER.value, InterfaceId.LIBERO_LOW_LEVEL_CONTROLLER.value):
@@ -1361,6 +1418,8 @@ __all__ = [
     "JOINT_COUNT",
     "JOINT_FRAME",
     "JOINT_ORDER",
+    "LA4VLA_LIBERO_OSC_POSE_INTERFACE",
+    "LA4VLA_OSC_POSE_ACTION_DIM",
     "LEROBOT_EXPORT_ACTION_DIM",
     "LEROBOT_EXPORT_CANDIDATE_INTERFACE",
     "LIBERO_LOW_LEVEL_INTERFACE",

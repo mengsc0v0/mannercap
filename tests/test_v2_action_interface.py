@@ -19,6 +19,7 @@ from synthesis_v2.action_interface import (
     ChannelSpec,
     HiddenTeacherControls,
     JOINT_FRAME,
+    LA4VLA_LIBERO_OSC_POSE_INTERFACE,
     LEROBOT_EXPORT_CANDIDATE_INTERFACE,
     LIBERO_LOW_LEVEL_INTERFACE,
     LIBERO_STUDENT_INTERFACE,
@@ -82,6 +83,31 @@ class ActionInterfaceContractTests(unittest.TestCase):
                 self.teacher(), target_interface=LEROBOT_EXPORT_CANDIDATE_INTERFACE
             )
         self.assertEqual(caught.exception.code, "unverified_export_semantics")
+
+    def test_la4vla_osc_pose_is_distinct_from_same_width_lerobot_export(self) -> None:
+        self.assertEqual(LA4VLA_LIBERO_OSC_POSE_INTERFACE.action_dimension, 7)
+        self.assertEqual(LEROBOT_EXPORT_CANDIDATE_INTERFACE.action_dimension, 7)
+        self.assertEqual(
+            LA4VLA_LIBERO_OSC_POSE_INTERFACE.channel(
+                "osc_translation_delta_normalized"
+            ).unit,
+            "normalized_command",
+        )
+        self.assertEqual(
+            LEROBOT_EXPORT_CANDIDATE_INTERFACE.channel(
+                "eef_translation_state_difference"
+            ).unit,
+            "m",
+        )
+        self.assertEqual(
+            LA4VLA_LIBERO_OSC_POSE_INTERFACE.nominal_control_frequency_hz,
+            20.0,
+        )
+        with self.assertRaises(ActionConversionError) as caught:
+            convert_teacher_to_student(
+                self.teacher(), target_interface=LA4VLA_LIBERO_OSC_POSE_INTERFACE
+            )
+        self.assertEqual(caught.exception.code, "adapter_not_verified")
 
     def test_versioned_channel_schema_records_units_frames_sign_and_time(self) -> None:
         payload = ROBOSUITE_TEACHER_INTERFACE.as_dict()

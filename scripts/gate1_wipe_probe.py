@@ -187,6 +187,7 @@ def run_probe(
     execute_wipe: bool,
     wipe_attempts: int,
     surface_penetration_m: float,
+    max_steps: int = 4000,
 ) -> bool:
     output.mkdir(parents=True, exist_ok=False)
     sys.path[:0] = [str(ROOT), str(ROOT / "stagecap_robosuite_libero_repro_20260714")]
@@ -212,6 +213,17 @@ def run_probe(
         "llm_calls": 0,
         "execute_wipe_requested": execute_wipe,
         "surface_penetration_m": surface_penetration_m,
+        "surface_penetration_semantics": (
+            "geometric/controller target offset; not a known applied force or torque "
+            "and not an approved safety threshold"
+        ),
+        "budget": {
+            "environment_max_steps": max_steps,
+            "wipe_attempts": wipe_attempts,
+            "wipe_attempt_budget_scope": (
+                "calls to wipe_spill_and_verify; approach_spill_surface is additional"
+            ),
+        },
         "status": "started",
         "qualification": "candidate",
         "promotion_allowed": False,
@@ -221,7 +233,7 @@ def run_probe(
         env = FrankaRobosuiteSpillWipeLowLevel(
             privileged=True,
             enable_render=False,
-            max_steps=4000,
+            max_steps=max_steps,
             seed=seed,
         )
         # RoboSuite's Wipe placement sampler uses NumPy's global RNG during
@@ -232,10 +244,12 @@ def run_probe(
         sim = robosuite_env.sim
         xml = sim.model.get_xml()
         (output / "model.xml").write_text(xml, encoding="utf-8")
+        model_sha256 = hashlib.sha256(xml.encode()).hexdigest()
+        result["model_sha256"] = model_sha256
         low, high = robosuite_env.action_spec
         markers = marker_registry(robosuite_env)
         initial = {
-            "model_sha256": hashlib.sha256(xml.encode()).hexdigest(),
+            "model_sha256": model_sha256,
             "physics_timestep_s": float(sim.model.opt.timestep),
             "state": {
                 "time_s": float(sim.data.time),
@@ -519,17 +533,24 @@ def main() -> int:
     parser.add_argument("--execute-wipe", action="store_true")
     parser.add_argument("--wipe-attempts", type=int, default=3)
     parser.add_argument("--surface-penetration-m", type=float, default=0.002)
+    parser.add_argument("--max-steps", type=int, default=4000)
     args = parser.parse_args()
     if args.wipe_attempts < 0:
         parser.error("--wipe-attempts must be non-negative")
     if not 0.0 <= args.surface_penetration_m < 0.02:
-        parser.error("--surface-penetration-m must be in [0, 0.02)")
+        parser.error(
+            "--surface-penetration-m must be in [0, 0.02) to match the probe's "
+            "marker-recognition geometry; this is not a safety limit"
+        )
+    if args.max_steps <= 0:
+        parser.error("--max-steps must be positive")
     return 0 if run_probe(
         args.output.resolve(),
         args.seed,
         args.execute_wipe,
         args.wipe_attempts,
         args.surface_penetration_m,
+        args.max_steps,
     ) else 1
 
 

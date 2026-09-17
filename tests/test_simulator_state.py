@@ -1,8 +1,18 @@
+import hashlib
+from pathlib import Path
 import random
+import sys
+import tempfile
 from types import SimpleNamespace
+import types
 import unittest
+from unittest import mock
 
-from synthesis_v2.simulator_state import capture_simulator_snapshot, restore_simulator_snapshot
+from synthesis_v2.simulator_state import (
+    capture_simulator_snapshot,
+    restore_simulator_snapshot,
+    save_compiled_model_binary,
+)
 
 
 class FakeArray(list):
@@ -89,6 +99,30 @@ class SnapshotTests(unittest.TestCase):
     def test_rejects_unknown_schema(self):
         with self.assertRaises(ValueError):
             restore_simulator_snapshot(FakeEnv(), {"schema": "other"})
+
+    def test_compiled_model_binary_is_written_and_hashed(self):
+        fake_mujoco = types.ModuleType("mujoco")
+
+        def save_model(model, path, buffer):
+            self.assertIs(model, compiled_model)
+            self.assertIsNone(buffer)
+            Path(path).write_bytes(b"lossless-mjb-test")
+
+        fake_mujoco.mj_saveModel = save_model
+        compiled_model = object()
+        env = SimpleNamespace(
+            robosuite_env=SimpleNamespace(
+                sim=SimpleNamespace(model=SimpleNamespace(_model=compiled_model))
+            )
+        )
+        with tempfile.TemporaryDirectory() as temporary, mock.patch.dict(
+            sys.modules, {"mujoco": fake_mujoco}
+        ):
+            path = Path(temporary) / "model.mjb"
+            digest = save_compiled_model_binary(env, path)
+            payload = path.read_bytes()
+        self.assertEqual(payload, b"lossless-mjb-test")
+        self.assertEqual(digest, hashlib.sha256(payload).hexdigest())
 
 
 if __name__ == "__main__":

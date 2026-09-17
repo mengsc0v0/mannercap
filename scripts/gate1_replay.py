@@ -25,7 +25,10 @@ def main() -> int:
 
     import numpy as np
     import run_manner_ablation as old
-    from synthesis_v2.simulator_state import restore_simulator_snapshot
+    from synthesis_v2.simulator_state import (
+        reset_robosuite_from_model_binary,
+        restore_simulator_snapshot,
+    )
 
     entry = old.TASK_REGISTRY[result["task"]]
     env = old.load_sim_cls(entry["sim_cls_path"])(privileged=True, enable_render=False,
@@ -35,9 +38,20 @@ def main() -> int:
     first_bad = None
     try:
         model_xml = (directory / "model.xml").read_text()
-        replay_model_sha256 = hashlib.sha256(model_xml.encode()).hexdigest()
-        model_matches = replay_model_sha256 == initial["model_sha256"]
-        env.robosuite_env.reset_from_xml_string(model_xml)
+        xml_sha256 = hashlib.sha256(model_xml.encode()).hexdigest()
+        xml_matches = xml_sha256 == initial["model_sha256"]
+        compiled = initial.get("compiled_model")
+        compiled_path = directory / "model.mjb"
+        if isinstance(compiled, dict) and compiled_path.is_file():
+            replay_model_sha256 = hashlib.sha256(compiled_path.read_bytes()).hexdigest()
+            model_matches = replay_model_sha256 == compiled.get("sha256")
+            model_source_format = "mjb"
+            reset_robosuite_from_model_binary(env, compiled_path)
+        else:
+            replay_model_sha256 = xml_sha256
+            model_matches = xml_matches
+            model_source_format = "xml_legacy_lossy"
+            env.robosuite_env.reset_from_xml_string(model_xml)
         restore_simulator_snapshot(env, initial["snapshot"])
         restored = {
             "time_s": float(env.robosuite_env.sim.data.time),
@@ -75,15 +89,26 @@ def main() -> int:
                     first_bad = {"transition": count, "errors": errors}
         task_success = bool(env.task_completed())
         functional_passed = task_success == bool(result["execution"]["task_completed"])
-        passed = model_matches and first_bad is None and functional_passed
+        strict_model_restore_available = model_source_format == "mjb"
+        passed = (
+            model_matches
+            and xml_matches
+            and strict_model_restore_available
+            and first_bad is None
+            and functional_passed
+        )
         report = {
-            "schema": "mannercap-action-replay-v1",
+            "schema": "mannercap-action-replay-v2",
             "task": result["task"],
             "source_episode": str(directory),
             "transitions_replayed": count,
             "absolute_tolerance": args.atol,
             "model_source_sha256_matches": model_matches,
             "model_source_sha256": replay_model_sha256,
+            "model_source_format": model_source_format,
+            "xml_source_sha256_matches": xml_matches,
+            "xml_source_sha256": xml_sha256,
+            "strict_model_restore_available": strict_model_restore_available,
             "initial_state_restore_maximum_absolute_error": initial_errors,
             "maximum_absolute_error": maximum,
             "first_mismatch": first_bad,

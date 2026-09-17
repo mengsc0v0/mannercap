@@ -89,7 +89,10 @@ def run_task(task, seed, out, ik_backend="pyroki"):
         from capx.envs.manner_validator import MannerSpec
         from capx.integrations.franka.control_privileged import FrankaControlPrivilegedApi
         from synthesis_v2.mujoco_contacts import capture_object_contacts, resolve_task_object_registry
-        from synthesis_v2.simulator_state import capture_simulator_snapshot
+        from synthesis_v2.simulator_state import (
+            capture_simulator_snapshot,
+            save_compiled_model_binary,
+        )
 
         np.random.seed(seed)
         entry = old.TASK_REGISTRY[task]
@@ -119,8 +122,15 @@ def run_task(task, seed, out, ik_backend="pyroki"):
         xml = sim.model.get_xml()
         object_registry = resolve_task_object_registry(env.robosuite_env, task)
         (target / "model.xml").write_text(xml, encoding="utf-8")
+        compiled_model_sha256 = save_compiled_model_binary(env, target / "model.mjb")
         write_json(target / "initial_state.json", {
             "state": state(), "model_sha256": hashlib.sha256(xml.encode()).hexdigest(),
+            "compiled_model": {
+                "path": "model.mjb",
+                "format": "MuJoCo compiled MJB",
+                "sha256": compiled_model_sha256,
+                "required_for_strict_replay": True,
+            },
             "physics_timestep_s": float(sim.model.opt.timestep),
             "object_registry": object_registry,
             "snapshot": capture_simulator_snapshot(env),

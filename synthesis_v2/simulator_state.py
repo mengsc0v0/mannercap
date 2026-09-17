@@ -8,6 +8,8 @@ compare every resulting transition instead of trusting restoration.
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
+from pathlib import Path
 import random
 from typing import Any
 
@@ -227,3 +229,57 @@ def restore_simulator_snapshot(env: Any, snapshot: dict[str, Any]) -> None:
         env._rng.bit_generator.state = snapshot["env_rng_state"]
     if snapshot.get("controller_state") is not None:
         _restore_controller_state(env, snapshot["controller_state"])
+
+
+def save_compiled_model_binary(env: Any, path: str | Path) -> str:
+    """Save the exact compiled MuJoCo model and return its SHA-256.
+
+    MuJoCo XML serialization is not lossless for compiled runtime fields such
+    as inferred inertias and armatures.  Strict replay therefore needs the
+    binary ``.mjb`` model in addition to the human-readable XML provenance.
+    """
+
+    import mujoco
+
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    wrapped_model = env.robosuite_env.sim.model
+    model = getattr(wrapped_model, "_model", wrapped_model)
+    mujoco.mj_saveModel(model, str(target), None)
+    digest = hashlib.sha256(target.read_bytes()).hexdigest()
+    if target.stat().st_size <= 0:
+        raise RuntimeError("compiled MuJoCo model binary is empty")
+    return digest
+
+
+def reset_robosuite_from_model_binary(env: Any, path: str | Path) -> None:
+    """Replace robosuite's simulator with an exact compiled ``.mjb`` model.
+
+    This mirrors ``reset_from_xml_string`` while avoiding XML recompilation.
+    Robosuite's normal deterministic reset is still run so robots,
+    controllers, observables, and cached simulator references bind to the new
+    ``MjSim`` before the recorded snapshot is restored.
+    """
+
+    import mujoco
+    from robosuite.utils.binding_utils import MjSim
+
+    inner = env.robosuite_env
+    inner.close()
+    inner.deterministic_reset = True
+    try:
+        compiled_model = mujoco.MjModel.from_binary_path(str(Path(path)))
+        inner.sim = MjSim(compiled_model)
+        inner.sim.forward()
+        inner.initialize_time(inner.control_freq)
+        inner.reset()
+    finally:
+        inner.deterministic_reset = False
+
+
+__all__ = [
+    "capture_simulator_snapshot",
+    "reset_robosuite_from_model_binary",
+    "restore_simulator_snapshot",
+    "save_compiled_model_binary",
+]
