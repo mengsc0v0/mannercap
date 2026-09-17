@@ -726,7 +726,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="unit direction; repeat for additional world axes (default: +Z)",
     )
     parser.add_argument("--settle-steps", type=int, default=150)
-    parser.add_argument("--load-steps", type=int, default=60)
+    parser.add_argument("--load-steps", type=int, default=150)
     parser.add_argument("--window", type=int, default=20)
     parser.add_argument("--max-gap-s", type=float, default=0.1)
     parser.add_argument("--force-tolerance-n", type=float, default=0.01)

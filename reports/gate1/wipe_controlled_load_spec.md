@@ -1,7 +1,7 @@
 # Gate 1 / Wipe：受控载荷传感器通道校准探测
 
 日期：2026-09-17  
-状态：**已实现探测器和纯 Python 审计合同；待记录下述 4090 正式运行结果；未完成接触模型校准或安全阈值签收**
+状态：**已在 4090 完成可重复的传感器通道响应校准；未完成接触模型校准或安全阈值签收**
 
 ## 1. 对现有 Wipe 路径的审查
 
@@ -47,12 +47,12 @@ MuJoCo 的 `xfrc_applied[body_id, :3]` 是世界系 force（N），`[3:]` 是世
 
 ```text
 python scripts/gate1_wipe_controlled_load_calibration.py \
-  --output /data/gaochuanhao/mannercap_runs/gate1_wipe_controlled_load_20260916
+  --output /data/gaochuanhao/mannercap_runs/gate1_wipe_controlled_load_20260917_attempt02
 ```
 
 默认协议为开发探测参数：
 
-* baseline settle 150 个控制 transition；known-load 60 个控制 transition；各窗口记录最后 20 个样本；
+* baseline 和 known-load 各运行 150 个控制 transition；各窗口记录最后 20 个样本；两侧使用相同时间长度以消除 controller settling 偏差；
 * force：世界系 `+X/+Y/+Z` 三个方向，`2/5/10 N` 多级载荷；
 * torque：世界系 `+Z` 方向，`0.05/0.1 N·m` 多级载荷；方向和级别都可由 CLI 重复参数显式覆盖；
 * 每个载荷 case 都先从相同完整 simulator/controller/RNG snapshot 运行无载 baseline，再恢复同一 snapshot 运行有载窗口；最后再次恢复并检查 `qpos/qvel/act/ctrl/mocap/time` 和 `xfrc_applied`；
@@ -105,4 +105,4 @@ python scripts/gate1_wipe_controlled_load_calibration.py --help
 通过，CLI 可解析
 ```
 
-本轮没有运行 4090 MuJoCo Wipe 探测，也没有把服务器此前的开发探测数字复制成新脚本的运行结果。完成正式校准前，还需要保存新脚本的完整 raw/recent 原始窗口、重复 seed/模型检查、接触排除证据、残余误差和独立审核签名。
+4090 的真实运行、首次失败、重复运行、误差和哈希见 `wipe_controlled_load_results.md` 与 `wipe_controlled_load_20260917.sha256`。该证据完成了 MuJoCo raw/recent 传感器通道响应检查；接触几何、摩擦、任务安全阈值和独立 B 角色签收仍未完成。

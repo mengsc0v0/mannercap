@@ -40,5 +40,5 @@
 
 - 原始 `initial_state.json`、`model.xml`、`transitions.jsonl` 和 `probe.json` 保留在服务器运行目录，不进入 Git。
 - `wipe_probe_attempt08.sha256` 固定四个原始文件的 SHA-256。
-- 探测器保持 `promotion_allowed=false`，并把未完成的 Wipe 力校准和约束审批列为阻断项。
+- 探测器保持 `promotion_allowed=false`。后续已完成 F/T 通道已知外载响应检查；接触模型、安全阈值和约束审批仍是阻断项。
 - 相同命令的 attempt09 复跑得到完全相同的 `initial_state.json`、`model.xml` 和 `transitions.jsonl` SHA-256。该相等性覆盖探测器记录的动作、marker 进度、接触位置和接触力；日志没有记录完整 `qpos/qvel`，因此不把它扩张为完整仿真状态的严格重放结论。

@@ -2,7 +2,7 @@
 
 日期：2026-09-16  
 汇总目录：`/data/gaochuanhao/mannercap_runs/gate1_wipe_calibration_20260916`  
-结论：任务结果三例已验证；Wipe 力传感仍未完成独立载荷校准。
+结论：任务结果三例已验证；本三例本身不构成力校准，后续通道响应见 `wipe_controlled_load_results.md`。
 
 ## 固定条件
 
@@ -25,6 +25,6 @@
 - `wrench_calibration_verified=false`；
 - `promotion_allowed=false`。
 
-EEF wrench 是 RoboSuite 内部传感器输出，尚未与独立受控载荷对照；2 mm 也是开发探测参数，不是已批准的安全阈值。因此 Wipe 继续保持 `candidate / pending_calibration`。正式支持仍需独立载荷校准、重复样本、阶段级安全阈值和 B 角色签收。
+本报告生成时 EEF wrench 尚未与独立受控载荷对照。2026-09-17 的后续 `xfrc_applied` 探测已验证 raw/recent 传感器通道的已知外载响应，见 `wipe_controlled_load_results.md`。该新证据仍不校准接触几何、摩擦或 2 mm 开发压入量的安全阈值。因此 Wipe 继续保持 `candidate / pending_calibration`；正式支持仍需接触阈值、阶段级安全规则和 B 角色签收。
 
 `wipe_calibration_20260916.sha256` 固定三组各四个原始文件以及 `summary.json`。原始轨迹只保留在 4090 运行目录，不进入 Git。

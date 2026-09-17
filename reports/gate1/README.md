@@ -46,9 +46,10 @@ Wipe 的欠作用/标称/过作用三例位于：
 /data/gaochuanhao/mannercap_runs/gate1_wipe_calibration_20260916
 ```
 
-三例证明任务结果和内部 EEF 力通道会随表面压入变化，但尚未构成独立载荷
-校准，因此不提升 Wipe 的支持状态。详见 `wipe_calibration_results.md` 和
-`wipe_calibration_20260916.sha256`。
+三例证明任务结果和内部 EEF 力通道会随表面压入变化，但三例本身不构成已知
+载荷校准。后续已完成 raw/recent F/T 通道的无接触已知外载响应检查；接触模型
+和安全阈值仍未签收，因此不提升 Wipe 的支持状态。详见
+`wipe_calibration_results.md`、`wipe_controlled_load_results.md` 和相应哈希清单。
 
 本阶段还增加了：
 
@@ -58,7 +59,10 @@ Wipe 的欠作用/标称/过作用三例位于：
 - `synthesis_method_spec.md`：G0/G1/G2/G3/M 五方法的统一配置入口；
 - `action_interface_contract.md`：教师 8D、LIBERO 底层控制 8D 与现有 LeRobot
   导出候选 7D 的独立语义；
+- `action_round_trip_preflight.md`：真实动作记录的 30 条无损导出/导入预检入口；
+- `wipe_controlled_load_results.md`：Wipe raw/recent F/T 通道的已知外载响应；
 - `gate1_exit_review.md`：当前退出判定和继续条件。
 
-退出评审决定为**暂不放行扩量**。主要未完成项是 Wipe 独立载荷校准、冻结的
-数值阈值与 sealed audit、实际学生动作语义闭合及 30 条动作 round-trip。
+退出评审决定为**暂不放行扩量**。Wipe 传感器通道的已知外载响应已经验证；
+主要未完成项是接触/安全阈值、sealed audit、实际学生动作语义闭合及 30 条
+学生控制器物理 round-trip。

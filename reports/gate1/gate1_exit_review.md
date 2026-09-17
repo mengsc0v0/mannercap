@@ -7,9 +7,9 @@
 ## 判定
 
 当前实现已经消除恒定力占位、约束裁剪后误通过、动作接口按 shape 混用等主要
-风险，并形成可复现的 Lift、Stack、Wipe 开发证据。但 Gate 1 要求的“范围和
-校准可信”尚未满足：Wipe 力通道没有独立受控载荷校准，数值阈值和 sealed
-final audit 尚未冻结，教师到实际 7 维 LeRobot 导出的动作语义也没有闭合。
+风险，并形成可复现的 Lift、Stack、Wipe 开发证据。Wipe raw/recent F/T 通道的
+已知外载响应已经通过；但接触模型和数值安全阈值尚未校准，sealed final audit
+尚未冻结，教师到实际 7 维 LeRobot 导出的动作语义也没有闭合。
 
 因此可以继续合同、执行器和小样本开发，不能启动正式扩量、发布质量统计或长
 训练。任何 task/manner/safety 缺证据项继续记为 `unknown`，不能计作通过。
@@ -25,7 +25,8 @@ final audit 尚未冻结，教师到实际 7 维 LeRobot 导出的动作语义�
 | 力/力矩结构 | force 与 torque 分列，对象身份绑定，失效为 `unknown` | 通过（结构） | 不得混合 N 与 N·m |
 | MuJoCo body wrench | 无接触和受控 body wrench 载荷已区分 | 通过（该通道） | 仅覆盖已校准 body wrench 条件 |
 | Wipe 第三任务 | 同 seed/model 的标称探测完成 100/100 marker；欠/标称/过三例结果已记录 | 通过（任务探测） | Wipe 保持 candidate |
-| Wipe 接触/EEF 力 | 三例有响应，但 EEF sensor 未与独立载荷对照；10 mm 例含控制器执行错误 | **未通过** | `pending_calibration`，不能冻结安全阈值 |
+| Wipe F/T 传感通道 | 12 个无接触已知 wrench case 在 raw/recent 通道均通过，两次运行字节一致 | 通过（仿真通道响应） | 不覆盖接触模型或真实硬件 |
+| Wipe 接触/安全阈值 | 10 mm 例含控制器执行错误；接触几何、摩擦和 2 mm 压入阈值未签收 | **未通过** | `pending_calibration`，不能冻结安全阈值 |
 | 12 类严格反例 | 生成期验证器覆盖裁剪、无日志、缺阶段、失效、瞬时达标、时间错误等 12 类及附加案例 | 通过（合同测试） | 不等于真实轨迹最终审计 |
 | task/manner/safety 三态 | `pass/fail/unknown` 与联合规则已实现，unknown 不可发布 | 通过（合同测试） | 正式结果仍需独立 B 角色审计 |
 | 约束注册表 | 公开生成引用和 sealed audit 引用分离；pending 阈值为空且禁止晋升 | 通过（开发合同） | 数值阈值尚未冻结 |
@@ -40,6 +41,7 @@ final audit 尚未冻结，教师到实际 7 维 LeRobot 导出的动作语义�
 - Lift/Stack：`evidence_manifest.sha256`、`evidence_manifest_attempt03.sha256`；
 - Wipe 确定性成功探测：`wipe_probe_attempt08.sha256`；
 - Wipe 欠/标称/过三例：`wipe_calibration_20260916.sha256`；
+- Wipe 已知外载通道：`wipe_controlled_load_20260917.sha256`；
 - 开发请求清单：`dev_manifest_20260916.sha256`；
 - 原始大文件保留在 `/data/gaochuanhao/mannercap_runs/`，Git 只保存代码、报告和
   SHA-256 清单。
@@ -48,8 +50,8 @@ final audit 尚未冻结，教师到实际 7 维 LeRobot 导出的动作语义�
 
 ## 继续条件
 
-1. 用独立受控载荷校准 Wipe 的实际采用力通道，冻结单位、坐标、误差、有效率和
-   阶段级安全阈值；
+1. 基于已验证的 Wipe F/T 通道继续校准接触几何、摩擦和阶段级安全阈值，并由
+   独立 B 角色签收；
 2. 由 B 角色冻结公开阈值引用和 sealed final-audit artifact，保留非作者复核与
    SHA-256；
 3. 明确固定 VLA 实际消费的动作 head。若沿用当前 7 维 EEF 状态差分导出，先
@@ -65,7 +67,7 @@ final audit 尚未冻结，教师到实际 7 维 LeRobot 导出的动作语义�
 
 ```text
 python -m unittest discover -s tests -p "test*.py" -q
-Ran 140 tests ... OK
+Ran 171 tests ... OK
 ```
 
 4090 服务器运行：
@@ -73,7 +75,7 @@ Ran 140 tests ... OK
 ```text
 source /data/gaochuanhao/mannercap_env/bin/activate
 python -m pytest -q
-164 passed in 1.71s
+195 passed in 2.73s
 ```
 
 该结果验证代码合同与合成反例；它不替代物理校准、30 条动作回放或 sealed

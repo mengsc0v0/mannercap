@@ -122,4 +122,4 @@ python -m py_compile synthesis_v2/task_space.py tests/test_v2_task_space.py
 python -m unittest -v tests/test_v2_task_space.py
 ```
 
-结果：12 项测试全部通过，覆盖开发任务边界、Wipe candidate/pending、阶段入口/出口事件、对象属性来源/单位、无猜测值、控制域引用、显式轴、不可适用单元、确定性 ID、三类配对、同任务和不可跨 split 约束、JSON writer。验证仅使用本地 Python；本次未调用外部 API、未运行仿真/正式实验、未修改主 agent 脚本、未提交 git。
+结果：12 项测试全部通过，覆盖开发任务边界、Wipe candidate/pending、阶段入口/出口事件、对象属性来源/单位、无猜测值、控制域引用、显式轴、不可适用单元、确定性 ID、三类配对、同任务和不可跨 split 约束、JSON writer。验证仅使用本地 Python；本次未调用外部 API或正式实验。

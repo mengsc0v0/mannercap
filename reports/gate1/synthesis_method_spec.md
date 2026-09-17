@@ -89,7 +89,7 @@
 
 - 方法配置、开发 request manifest 和 constraint registry 都仍处于结构/开发状态，正式 manifest 尚未实际冻结；当前只允许真实 Lift/Stack 的 Gate 0/1 检查，不扩量。
 - Gate 1 已取得 Lift/Stack 初始 `time/qpos/qvel/ctrl` 零误差恢复和功能终态重放证据，但 controller/cache 完整性及 `1e-8` 逐状态重放仍未通过。`initial_state_id` 只能作为内容 lineage 引用，不能替代这些证据。
-- 尚无 Lift/Stack 的物理属性、合法控制数值域、接触/安全/成功阈值校准结论；未知值不得从方法配置推断。Wipe 已完成确定性成功轨迹和欠/标称/过作用开发探测，但 EEF wrench 未经独立载荷校准，继续保持 candidate/pending calibration。
+- 尚无 Lift/Stack 的物理属性、合法控制数值域、接触/安全/成功阈值校准结论；未知值不得从方法配置推断。Wipe 已完成确定性成功轨迹、欠/标称/过作用开发探测及 F/T 通道已知外载响应检查，但接触模型和安全阈值仍未签收，继续保持 candidate/pending calibration。
 - 尚未接入候选解析、共享执行器、真实 attempt/resource ledger、去重证据、轨迹事件判定、最终审计或学生评测；因此没有成功率、轨迹或资源实测结果。
 - 尚未冻结模型/服务版本、场景分母、配额和 release ledger。后续 Gate 2 需在公开约束和预算校准后另行审核，不能在本版配置中预填数值或隐藏规则。
 
