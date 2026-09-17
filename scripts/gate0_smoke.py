@@ -90,6 +90,7 @@ def run_task(task, seed, out, ik_backend="pyroki"):
         from capx.integrations.franka.control_privileged import FrankaControlPrivilegedApi
         from synthesis_v2.mujoco_contacts import capture_object_contacts, resolve_task_object_registry
         from synthesis_v2.simulator_state import (
+            capture_controller_command_state,
             capture_simulator_snapshot,
             save_compiled_model_binary,
         )
@@ -142,10 +143,12 @@ def run_task(task, seed, out, ik_backend="pyroki"):
         with (target / "transitions.jsonl").open("x", encoding="utf-8") as stream:
             def record(action):
                 before = state()
+                controller_command = capture_controller_command_state(env)
                 substeps_before = physics_steps[0]
                 original(action)
                 contact_evidence = capture_object_contacts(sim, object_registry)
                 row = {"state_t": before, "action_t": np.asarray(action).tolist(),
+                       "controller_command_t": controller_command,
                        "action_slice": env._ACTION_SLICE,
                        "phase_program_marker": env._manner_phase,
                        "physics_substeps": physics_steps[0] - substeps_before,

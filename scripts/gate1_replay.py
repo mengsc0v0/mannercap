@@ -27,6 +27,7 @@ def main() -> int:
     import run_manner_ablation as old
     from synthesis_v2.simulator_state import (
         reset_robosuite_from_model_binary,
+        restore_controller_command_state,
         restore_simulator_snapshot,
     )
 
@@ -36,6 +37,7 @@ def main() -> int:
     maximum = {"time_s": 0.0, "qpos": 0.0, "qvel": 0.0, "actuator_ctrl": 0.0}
     count = 0
     first_bad = None
+    controller_side_channel_complete = True
     try:
         model_xml = (directory / "model.xml").read_text()
         xml_sha256 = hashlib.sha256(model_xml.encode()).hexdigest()
@@ -69,6 +71,11 @@ def main() -> int:
         with (directory / "transitions.jsonl").open() as stream:
             for count, line in enumerate(stream, start=1):
                 row = json.loads(line)
+                controller_command = row.get("controller_command_t")
+                if controller_command is not None:
+                    restore_controller_command_state(env, controller_command)
+                else:
+                    controller_side_channel_complete = False
                 env._do_robosuite_step(np.asarray(row["action_t"], dtype=np.float64))
                 actual = {
                     "time_s": float(env.robosuite_env.sim.data.time),
@@ -94,6 +101,7 @@ def main() -> int:
             model_matches
             and xml_matches
             and strict_model_restore_available
+            and controller_side_channel_complete
             and first_bad is None
             and functional_passed
         )
@@ -119,6 +127,7 @@ def main() -> int:
             "exact_state_replay_verified": passed,
             "action_replay_verified": passed,
             "controller_object_state_captured": initial["snapshot"]["controller_object_state_captured"],
+            "controller_side_channel_replayed": controller_side_channel_complete,
             "manner": "unknown",
             "safety": "unknown",
         }

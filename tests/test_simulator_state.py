@@ -9,7 +9,9 @@ import unittest
 from unittest import mock
 
 from synthesis_v2.simulator_state import (
+    capture_controller_command_state,
     capture_simulator_snapshot,
+    restore_controller_command_state,
     restore_simulator_snapshot,
     save_compiled_model_binary,
 )
@@ -51,6 +53,11 @@ class FakeInner:
         controller = SimpleNamespace(
             goal_qpos=FakeArray([0.3, 0.4]),
             joint_pos=FakeArray([0.1, 0.2]),
+            kp=FakeArray([1500.0, 1500.0]),
+            kd=FakeArray([400.0, 400.0]),
+            impedance_mode="fixed",
+            input_type="absolute",
+            use_torque_compensation=True,
             new_update=False,
             interpolator=interpolator,
         )
@@ -123,6 +130,17 @@ class SnapshotTests(unittest.TestCase):
             payload = path.read_bytes()
         self.assertEqual(payload, b"lossless-mjb-test")
         self.assertEqual(digest, hashlib.sha256(payload).hexdigest())
+
+    def test_controller_command_side_channel_round_trip(self):
+        env = FakeEnv()
+        part = env.robosuite_env.robots[0].composite_controller.part_controllers["right"]
+        saved = capture_controller_command_state(env)
+        part.kp[:] = [1000.0, 1000.0]
+        part.kd[:] = [1.0, 1.0]
+        restore_controller_command_state(env, saved)
+        self.assertEqual(part.kp, [1500.0, 1500.0])
+        self.assertEqual(part.kd, [400.0, 400.0])
+        self.assertEqual(saved["schema"], "mannercap-controller-command-state-v1")
 
 
 if __name__ == "__main__":

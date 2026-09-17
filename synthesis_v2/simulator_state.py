@@ -37,6 +37,13 @@ WRAPPER_SCALAR_FIELDS = (
 )
 
 ROBOSUITE_SCALAR_FIELDS = ("timestep", "cur_time", "done")
+CONTROLLER_COMMAND_FIELDS = (
+    "kp",
+    "kd",
+    "impedance_mode",
+    "input_type",
+    "use_torque_compensation",
+)
 
 
 def _simple_object_state(obj: Any) -> dict[str, Any]:
@@ -96,6 +103,65 @@ def _restore_controller_state(env: Any, state: dict[str, Any]) -> None:
                 if interpolator is None:
                     raise ValueError(f"missing interpolator for controller part {name}")
                 _restore_simple_object_state(interpolator, interpolator_state)
+
+
+def capture_controller_command_state(env: Any) -> dict[str, Any]:
+    """Capture externally mutable controller settings used by the next step.
+
+    These settings are side-channel commands, not simulator state.  In the
+    current teacher, ``set_joint_stiffness`` changes ``kp`` between motion
+    phases without changing the action vector, so action-only replay is
+    incomplete unless this per-transition state is recorded separately.
+    """
+
+    robots: list[dict[str, Any]] = []
+    for robot in getattr(env.robosuite_env, "robots", []):
+        composite = getattr(robot, "composite_controller", None)
+        parts: dict[str, Any] = {}
+        for name, controller in getattr(composite, "part_controllers", {}).items():
+            values = {
+                field: _jsonable(getattr(controller, field))
+                for field in CONTROLLER_COMMAND_FIELDS
+                if hasattr(controller, field)
+            }
+            parts[name] = values
+        robots.append({"parts": parts})
+    return {
+        "schema": "mannercap-controller-command-state-v1",
+        "robots": robots,
+    }
+
+
+def restore_controller_command_state(env: Any, state: dict[str, Any]) -> None:
+    """Apply a recorded controller side-channel state before one action."""
+
+    if state.get("schema") != "mannercap-controller-command-state-v1":
+        raise ValueError("unsupported controller command-state schema")
+    live_robots = getattr(env.robosuite_env, "robots", [])
+    saved_robots = state.get("robots", [])
+    if len(live_robots) != len(saved_robots):
+        raise ValueError("controller command-state robot count differs")
+    for robot, saved in zip(live_robots, saved_robots):
+        composite = getattr(robot, "composite_controller", None)
+        live_parts = getattr(composite, "part_controllers", {})
+        saved_parts = saved.get("parts", {})
+        if set(live_parts) != set(saved_parts):
+            raise ValueError("controller command-state part names differ")
+        for name, values in saved_parts.items():
+            controller = live_parts[name]
+            for field, value in values.items():
+                if field not in CONTROLLER_COMMAND_FIELDS or not hasattr(controller, field):
+                    raise ValueError(f"unsupported controller command field {name}.{field}")
+                current = getattr(controller, field)
+                if hasattr(current, "shape") and isinstance(value, (list, int, float)):
+                    import numpy as np
+
+                    target = np.asarray(value, dtype=current.dtype)
+                    if target.shape != current.shape:
+                        raise ValueError(f"controller command shape differs for {name}.{field}")
+                    current[:] = target
+                else:
+                    setattr(controller, field, deepcopy(value))
 
 
 def _array_to_list(value: Any) -> list[Any]:
@@ -278,8 +344,10 @@ def reset_robosuite_from_model_binary(env: Any, path: str | Path) -> None:
 
 
 __all__ = [
+    "capture_controller_command_state",
     "capture_simulator_snapshot",
     "reset_robosuite_from_model_binary",
+    "restore_controller_command_state",
     "restore_simulator_snapshot",
     "save_compiled_model_binary",
 ]
