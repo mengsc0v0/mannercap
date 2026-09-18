@@ -73,7 +73,7 @@ sealed final audit 尚未冻结；教师到 LA4VLA OSC_POSE 的 adapter 与 30 �
 
 ```text
 python -m unittest discover -s tests -p "test*.py" -q
-Ran 193 tests ... OK
+Ran 197 tests ... OK
 ```
 
 4090 服务器运行：
@@ -81,7 +81,7 @@ Ran 193 tests ... OK
 ```text
 source /data/gaochuanhao/mannercap_env/bin/activate
 python -m pytest -q
-208 passed in 2.92s
+221 passed in 5.96s
 ```
 
 该结果验证代码合同与合成反例；30 条动作回放已有独立原始证据，但它不替代
