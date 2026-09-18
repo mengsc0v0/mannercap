@@ -111,7 +111,14 @@ def capture_episode(
     image_dir.mkdir(parents=True, exist_ok=True)
     try:
         reset_robosuite_from_model_binary(env, compiled)
-        gripper_indices = list(env.robosuite_env.robots[0]._ref_gripper_joint_pos_indexes)
+        gripper_reference = env.robosuite_env.robots[0]._ref_gripper_joint_pos_indexes
+        if isinstance(gripper_reference, dict):
+            if "right" not in gripper_reference:
+                raise ValueError(
+                    f"right gripper qpos indices unavailable: {sorted(gripper_reference)}"
+                )
+            gripper_reference = gripper_reference["right"]
+        gripper_indices = list(gripper_reference)
         if len(gripper_indices) != 2:
             raise ValueError(f"expected two gripper qpos indices, got {gripper_indices}")
         for ordinal, start in enumerate(starts):
