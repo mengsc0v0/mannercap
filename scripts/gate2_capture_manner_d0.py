@@ -196,7 +196,6 @@ def _run_episode(
     output: Path,
     *,
     pair_reference: Path | None = None,
-    shared_env: Any | None = None,
 ) -> dict[str, Any]:
     target = output / "episodes" / str(record["episode_id"])
     target.mkdir(parents=True, exist_ok=False)
@@ -212,8 +211,7 @@ def _run_episode(
         "formal_safety_status": "unknown",
         "promotion_allowed": False,
     }
-    env = shared_env
-    owns_env = shared_env is None
+    env = None
     counter = [0]
     physics_originals: dict[str, Any] = {}
     original_control_step: Any | None = None
@@ -229,7 +227,6 @@ def _run_episode(
         from synthesis_v2.simulator_state import (
             capture_controller_command_state,
             capture_simulator_snapshot,
-            reset_robosuite_from_model_binary,
             restore_simulator_snapshot,
             save_compiled_model_binary,
         )
@@ -237,15 +234,21 @@ def _run_episode(
         task = str(record["task"])
         seed = int(record["seed"])
         entry = old.TASK_REGISTRY[task]
-        if env is None:
-            env = _create_pair_environment(record)
+        env = _create_pair_environment(record)
         reference_initial: dict[str, Any] | None = None
         if pair_reference is not None:
             reference_initial = json.loads(
                 (pair_reference / "initial_state.json").read_text(encoding="utf-8")
             )
-            if owns_env:
-                reset_robosuite_from_model_binary(env, pair_reference / "model.mjb")
+            candidate_model = target / "candidate_model.mjb"
+            candidate_hash = save_compiled_model_binary(env, candidate_model)
+            candidate_model.unlink()
+            reference_hash = reference_initial["compiled_model"]["sha256"]
+            if candidate_hash != reference_hash:
+                raise RuntimeError(
+                    "fresh deterministic environment compiled model differs from pair "
+                    f"reference: {candidate_hash} != {reference_hash}"
+                )
             restore_simulator_snapshot(env, reference_initial["snapshot"])
         counter, physics_originals = _install_physics_counter(env)
         state = _prepare_state_reader(env)
@@ -345,7 +348,7 @@ def _run_episode(
         _write_json(target / "result.json", _json_finite(result))
         if env is not None and physics_originals:
             _restore_physics_steps(env, physics_originals)
-        if env is not None and owns_env:
+        if env is not None:
             env.robosuite_env.close()
     print(json.dumps(_json_finite(result), ensure_ascii=False), flush=True)
     return result
@@ -416,32 +419,20 @@ def main(argv: list[str] | None = None) -> int:
     os.chdir(ROOT / "stagecap_robosuite_libero_repro_20260714")
     execution_errors = 0
     pair_references: dict[str, Path] = {}
-    shared_env: Any | None = None
-    current_pair_id: str | None = None
-    try:
-        for episode in plan["episodes"]:
-            result_path = output / "episodes" / episode["episode_id"] / "result.json"
-            pair_id = str(episode["pair_id"])
-            if result_path.is_file():
-                pair_references.setdefault(pair_id, result_path.parent)
-                continue
-            if pair_id != current_pair_id:
-                if shared_env is not None:
-                    shared_env.robosuite_env.close()
-                shared_env = _create_pair_environment(episode)
-                current_pair_id = pair_id
-            result = _run_episode(
-                episode,
-                output,
-                pair_reference=pair_references.get(pair_id),
-                shared_env=shared_env,
-            )
-            pair_references.setdefault(pair_id, output / "episodes" / episode["episode_id"])
-            execution_errors += int(result.get("status") == "execution_error")
-            _write_audit(output, plan)
-    finally:
-        if shared_env is not None:
-            shared_env.robosuite_env.close()
+    for episode in plan["episodes"]:
+        result_path = output / "episodes" / episode["episode_id"] / "result.json"
+        pair_id = str(episode["pair_id"])
+        if result_path.is_file():
+            pair_references.setdefault(pair_id, result_path.parent)
+            continue
+        result = _run_episode(
+            episode,
+            output,
+            pair_reference=pair_references.get(pair_id),
+        )
+        pair_references.setdefault(pair_id, output / "episodes" / episode["episode_id"])
+        execution_errors += int(result.get("status") == "execution_error")
+        _write_audit(output, plan)
     audit = _write_audit(output, plan)
     print(json.dumps({"output": str(output), "execution_requested": True, **audit}))
     return 1 if execution_errors or audit["missing_episode_ids"] else 0
