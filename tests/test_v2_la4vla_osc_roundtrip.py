@@ -1,5 +1,6 @@
 import importlib.util
 from pathlib import Path
+from types import SimpleNamespace
 import unittest
 
 
@@ -41,6 +42,35 @@ class La4vlaOscRoundTripTests(unittest.TestCase):
         self.assertEqual(summary["adapter_errors"], 1)
         self.assertEqual(summary["position_error_bias_m"], [0.1, -0.2, 0.3])
         self.assertEqual(summary["phase_program_markers_covered"], ["grip", "move"])
+
+    def test_controller_reinitialization_uses_restored_joint_state(self):
+        class Controller:
+            def __init__(self):
+                self.joint_pos = None
+                self.updated = []
+                self.initial = None
+
+            def update(self, force=False):
+                self.updated.append(force)
+                self.joint_pos = [1.0, 2.0]
+
+            def update_initial_joints(self, value):
+                self.initial = list(value)
+
+        controller = Controller()
+        env = SimpleNamespace(
+            robosuite_env=SimpleNamespace(
+                robots=[SimpleNamespace(
+                    composite_controller=SimpleNamespace(
+                        part_controllers={"right": controller}
+                    )
+                )]
+            )
+        )
+        initialized = MODULE._reinitialize_controllers_at_restored_state(env)
+        self.assertEqual(initialized, ["robot0.right"])
+        self.assertEqual(controller.updated, [True])
+        self.assertEqual(controller.initial, [1.0, 2.0])
 
 
 if __name__ == "__main__":

@@ -116,6 +116,19 @@ def _restore_transition_state(env: Any, state: dict[str, Any]) -> None:
     data.qacc_warmstart[:] = np.asarray(state["qacc_warmstart"], dtype=np.float64)
 
 
+def _reinitialize_controllers_at_restored_state(env: Any) -> list[str]:
+    """Bind controller references and OSC null posture to the restored state."""
+
+    initialized: list[str] = []
+    for robot_index, robot in enumerate(env.robosuite_env.robots):
+        composite = robot.composite_controller
+        for part_name, controller in composite.part_controllers.items():
+            controller.update(force=True)
+            controller.update_initial_joints(controller.joint_pos.copy())
+            initialized.append(f"robot{robot_index}.{part_name}")
+    return initialized
+
+
 def _pose(env: Any) -> tuple[list[float], list[float]]:
     import numpy as np
 
@@ -192,6 +205,9 @@ def run_episode(
                 # controller caches cannot leak from one diagnostic step to another.
                 reset_robosuite_from_model_binary(env, compiled)
                 _restore_transition_state(env, before)
+                sample["controllers_reinitialized_at_restored_state"] = (
+                    _reinitialize_controllers_at_restored_state(env)
+                )
                 restored_position, restored_quaternion = _pose(env)
                 sample["restored_before_error"] = {
                     "position_m": float(np.linalg.norm(
