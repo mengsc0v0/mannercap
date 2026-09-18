@@ -14,6 +14,7 @@ import json
 import math
 import os
 from pathlib import Path
+import random
 import shutil
 import subprocess
 import sys
@@ -179,6 +180,7 @@ def _create_pair_environment(record: Mapping[str, Any]) -> Any:
 
     task = str(record["task"])
     seed = int(record["seed"])
+    random.seed(seed)
     np.random.seed(seed)
     entry = old.TASK_REGISTRY[task]
     env = old.load_sim_cls(entry["sim_cls_path"])(
@@ -187,6 +189,8 @@ def _create_pair_environment(record: Mapping[str, Any]) -> Any:
         max_steps=entry["max_steps"],
         seed=seed,
     )
+    random.seed(seed)
+    np.random.seed(seed)
     env.reset(seed=seed)
     return env
 
@@ -227,7 +231,6 @@ def _run_episode(
         from synthesis_v2.simulator_state import (
             capture_controller_command_state,
             capture_simulator_snapshot,
-            restore_simulator_snapshot,
             save_compiled_model_binary,
         )
 
@@ -235,6 +238,8 @@ def _run_episode(
         seed = int(record["seed"])
         entry = old.TASK_REGISTRY[task]
         env = _create_pair_environment(record)
+        state = _prepare_state_reader(env)
+        sim = env.robosuite_env.sim
         reference_initial: dict[str, Any] | None = None
         if pair_reference is not None:
             reference_initial = json.loads(
@@ -249,10 +254,14 @@ def _run_episode(
                     "fresh deterministic environment compiled model differs from pair "
                     f"reference: {candidate_hash} != {reference_hash}"
                 )
-            restore_simulator_snapshot(env, reference_initial["snapshot"])
+            fresh_state_hash = _canonical_sha256(state())
+            reference_state_hash = reference_initial["initial_state_sha256"]
+            if fresh_state_hash != reference_state_hash:
+                raise RuntimeError(
+                    "fresh deterministic environment initial state differs from pair "
+                    f"reference: {fresh_state_hash} != {reference_state_hash}"
+                )
         counter, physics_originals = _install_physics_counter(env)
-        state = _prepare_state_reader(env)
-        sim = env.robosuite_env.sim
         initial_state = state()
         initial_state_sha256 = _canonical_sha256(initial_state)
         xml = sim.model.get_xml()
