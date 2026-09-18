@@ -146,6 +146,8 @@ python -m unittest -v tests/test_v2_action_interface.py
 python -m py_compile synthesis_v2/action_interface.py tests/test_v2_action_interface.py
 ```
 
-两项均通过。当前合同没有运行 30 条导出—导入—学生控制器回放，也没有把
-`lerobot_action_candidate` 提升为 ground truth；30 条 replay 仍是后续证据门槛，
-本报告不声称其已完成。
+两项均通过。2026-09-18 的后续工作已经为独立的
+`la4vla_libero_osc_pose` 接口实现 adapter，并完成 30/30 个真实 OSC 控制步；
+详见 `la4vla_osc_roundtrip_results.md`。该结果没有把
+`lerobot_action_candidate` 提升为 ground truth，也没有绕过独立误差阈值和学生
+闭环任务评测。

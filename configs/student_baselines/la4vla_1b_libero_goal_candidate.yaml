@@ -1,6 +1,6 @@
 schema_version: synthesis_v2.student_baseline_candidate.v1
 baseline_id: la4vla_1b_libero_goal_phasefocus35_step500
-status: candidate_pending_action_adapter
+status: candidate_pending_acceptance_threshold_and_task_evaluation
 selection_date: 2026-09-17
 
 model:
@@ -49,9 +49,12 @@ deployment_interface:
 
 freeze_gate:
   fixed_student_approved: false
-  adapter_implemented: false
-  physical_round_trip_count: 0
+  adapter_implemented: true
+  physical_round_trip_count: 30
   required_physical_round_trip_count: 30
+  physical_round_trip_report:
+    path: /data/gaochuanhao/mannercap_runs/gate2_la4vla_osc_roundtrip_20260918/report_attempt04_final.json
+    sha256: 551dd91104447374e3b8fbd1049d460f6312763dbbecf5f53a21fa2e839a1bb4
+  independent_acceptance_threshold_frozen: false
   mannercap_task_evaluation_run: false
-  blocking_reason: current MannerCAP 7-D export is an EEF state difference, not an OSC_POSE command
-
+  blocking_reason: physical controller diagnostic completed, but no independent tracking-error threshold or MannerCAP student-policy task evaluation is frozen

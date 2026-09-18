@@ -2,7 +2,7 @@
 
 日期：2026-09-17  
 候选：`LA4VLA_1B / phasefocus35 step_500`  
-决定：**登记为固定学生候选，暂不冻结。**
+决定：**登记为固定学生候选；adapter 与 30 步控制回放已完成，暂不冻结。**
 
 ## 已确认内容
 
@@ -31,18 +31,17 @@ Lift、Stack 或 Wipe 的结果，也未作为本项目论文结果复用。
 这与当前 MannerCAP `lerobot_export_candidate` 的 7 维含义不同。后者保存的是
 相邻观测的 EEF 平移状态差、axis-angle 坐标分量差和未验证的 raw gripper 值。
 维数相同不能证明两者可互换。代码合同已增加独立
-`la4vla_libero_osc_pose` 接口；教师动作到该接口的转换会以
-`adapter_not_verified` 失败关闭。
+`la4vla_libero_osc_pose` 接口，并实现了基于相邻同步 EEF 位姿的显式 adapter。
+30/30 个真实 OSC 控制步已执行，但独立误差阈值尚未冻结，两个初始化边界样本
+还有约 10 mm / 0.047 rad 的一步误差，因此正式转换入口仍以
+`adapter_not_verified` 失败关闭。详见 `la4vla_osc_roundtrip_results.md`。
 
 ## 冻结前阻塞项
 
-1. 实现从 MannerCAP 轨迹到 LA4VLA `OSC_POSE` 命令的显式 adapter，说明旋转
-   组合、归一化、裁剪、时刻和 gripper 语义；
-2. 在真实学生控制器上完成至少 30 条导出—导入—闭环动作回放，不能只做 JSON
-   无损 round-trip；
-3. 在 Lift/Stack（以及 Wipe 若保留）目标任务上验证观测键、相机、语言、动作
+1. 由独立评测角色冻结 OSC 跟踪误差阈值并签收 30 步结果；
+2. 在 Lift/Stack（以及 Wipe 若保留）目标任务上验证观测键、相机、语言、动作
    horizon 和 reset/init-state 接口；
-4. 冻结 checkpoint、代码文件 hash、训练配置、选模规则及 MannerCAP 数据输入
+3. 冻结 checkpoint、代码文件 hash、训练配置、选模规则及 MannerCAP 数据输入
    配额后，才将 `fixed_student_approved` 改为 true。
 
 本次审计没有训练模型、没有运行新闭环评估、没有修改外部 LA4VLA 目录，也没有

@@ -126,6 +126,7 @@ python -m unittest -v tests/test_v2_action_roundtrip.py tests/test_v2_action_int
 python -m py_compile synthesis_v2/action_roundtrip.py tests/test_v2_action_roundtrip.py
 ```
 
-21 项测试通过。当前结果是结构预检入口已经具备，真实 30 条记录的数量、
-LeRobot parquet 适配和学生控制器 replay 证据仍待后续运行；本报告不声称
-30 条物理回放已完成。
+21 项测试通过。该结构预检之后，2026-09-18 已针对独立的 LA4VLA
+`OSC_POSE` 接口完成 30/30 个真实控制步，详见
+`la4vla_osc_roundtrip_results.md`。LeRobot parquet 候选仍不是 ground truth；
+LA4VLA 的独立跟踪误差阈值和学生闭环任务评测也仍待完成。
