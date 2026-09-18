@@ -10,6 +10,8 @@ import json
 import os
 from pathlib import Path
 import random
+import hashlib
+import subprocess
 import sys
 import time
 
@@ -137,6 +139,19 @@ def main() -> int:
         "training_steps": args.steps,
         "learning_rate": args.lr,
         "seed": args.seed,
+        "code_git_head": subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=Path(__file__).resolve().parents[1],
+            text=True,
+        ).strip(),
+        "source_checkpoint": {
+            "path": str(args.checkpoint.resolve()),
+            "bytes": args.checkpoint.resolve().stat().st_size,
+        },
+        "dataset_config": {
+            "path": str(args.dataset_config.resolve()),
+            "sha256": hashlib.sha256(args.dataset_config.resolve().read_bytes()).hexdigest(),
+        },
         "trainable_parameter_count": sum(parameter.numel() for parameter in trainable),
         "initial_fixed_noise_loss": initial_loss,
         "final_fixed_noise_loss": final_loss,

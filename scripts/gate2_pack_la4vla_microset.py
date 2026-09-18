@@ -72,6 +72,10 @@ def pack(staging_dir: Path, output: Path) -> dict[str, Any]:
         "total_episodes": len(manifest["windows"]),
         "total_frames": len(manifest["windows"]) * manifest["horizon"],
         "total_tasks": len(tasks),
+        "synthetic_window_episodes": True,
+        "independent_source_episode_count": len({
+            window["source_episode"] for window in manifest["windows"]
+        }),
         "source_schema": manifest["schema"],
         "generalization_claim_allowed": False,
     }
