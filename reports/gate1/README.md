@@ -61,6 +61,7 @@ Wipe 的欠作用/标称/过作用三例位于：
   导出候选 7D 的独立语义；
 - `action_round_trip_preflight.md`：真实动作记录的 30 条无损导出/导入预检入口；
 - `la4vla_osc_roundtrip_results.md`：LA4VLA 7D OSC adapter 与 30 步真实控制回放；
+- `../gate2/la4vla_microset_learning_preflight.md`：64 窗口数据加载、训练与固定微批过拟合检查；
 - `wipe_controlled_load_results.md`：Wipe raw/recent F/T 通道的已知外载响应；
 - `gate1_exit_review.md`：当前退出判定和继续条件。
 

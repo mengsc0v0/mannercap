@@ -56,5 +56,14 @@ freeze_gate:
     path: /data/gaochuanhao/mannercap_runs/gate2_la4vla_osc_roundtrip_20260918/report_attempt04_final.json
     sha256: 551dd91104447374e3b8fbd1049d460f6312763dbbecf5f53a21fa2e839a1bb4
   independent_acceptance_threshold_frozen: false
+  small_sample_learning_preflight:
+    executed: true
+    training_window_count: 64
+    independent_source_episode_count: 2
+    fixed_microbatch_training_steps: 100
+    fixed_noise_loss_ratio: 0.2503798953429153
+    report: reports/gate2/la4vla_microset_learning_preflight.md
+    generalization_verified: false
+    closed_loop_verified: false
   mannercap_task_evaluation_run: false
   blocking_reason: physical controller diagnostic completed, but no independent tracking-error threshold or MannerCAP student-policy task evaluation is frozen
