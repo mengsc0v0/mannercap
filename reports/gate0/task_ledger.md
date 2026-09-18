@@ -14,7 +14,7 @@
 | WP6 数据接口 | D 子 agent | LA4VLA 候选接口已实现并预检 | 7D OSC adapter、双相机、8D state、50-step action horizon 已接通；候选仍未批准 |
 | WP6 30 条回放 | A + D | 已完成数量与真实控制执行 | Lift/Stack 各 15 条，30/30 执行、0 error、0 clipping；独立误差阈值未冻结 |
 | WP6 32—64 样本学习 | D | 已完成通路与过拟合预检 | 64 窗口由 2 条独立教师 episode 产生；原生 loader/20-step 训练/100-step 固定微批通过；无泛化或闭环结论 |
-| Gate 1 校准 | A + B | 未放行 | Wipe F/T 通道已验证，接触模型、数值安全阈值、独立签收和 sealed audit 尚缺 |
+| Gate 1 校准 | A + B | 未放行 | Wipe F/T 通道与 0--4 mm 加密网格已完成；1--4 mm 为开发候选区间，接触模型、数值安全阈值、独立签收和 sealed audit 尚缺 |
 | Gate 2 E0/正式协议 | 项目负责人 | 预检已运行，正式协议未冻结 | 回放和小样本通路完成；仍需资源预算、正式 split、封存集、人工金标和学生闭环协议 |
 
 运行限制：当前只做开发与校准；不将 unknown 计作成功，不启动正式扩量或长训练。

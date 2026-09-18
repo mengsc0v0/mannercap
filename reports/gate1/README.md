@@ -63,6 +63,7 @@ Wipe 的欠作用/标称/过作用三例位于：
 - `la4vla_osc_roundtrip_results.md`：LA4VLA 7D OSC adapter 与 30 步真实控制回放；
 - `../gate2/la4vla_microset_learning_preflight.md`：64 窗口数据加载、训练与固定微批过拟合检查；
 - `wipe_controlled_load_results.md`：Wipe raw/recent F/T 通道的已知外载响应；
+- `wipe_contact_dense_results.md`：Wipe 0--4 mm、5 seed × 5 压入量加密网格；
 - `gate1_exit_review.md`：当前退出判定和继续条件。
 
 退出评审决定为**暂不放行扩量**。Wipe 传感器通道的已知外载响应已经验证；
@@ -89,3 +90,13 @@ Wipe 的 3 seed × 0/2/10 mm 开发网格位于：
 2 mm 为 3/3 成功，10 mm 为 0/3 且均发生 controller target 错误；force 响应不
 稳定单调，因此没有把压入量提升为 force 或安全阈值。详见
 `wipe_contact_grid_results.md` 和 `wipe_contact_grid_20260917.sha256`。
+
+随后对 0--4 mm 候选范围运行 5 seed × 5 压入量加密网格：
+
+```text
+/data/gaochuanhao/mannercap_runs/gate1_wipe_contact_dense_20260918
+```
+
+25/25 格完成，1--4 mm 各 5/5 任务成功，0 mm 为 2/5；结果见
+`wipe_contact_dense_results.md` 和 `wipe_contact_dense_20260918.sha256`。该结果只
+收缩开发候选几何范围，不冻结安全阈值。

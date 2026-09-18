@@ -12,6 +12,8 @@ controller side-channel 严格回放已经通过；Wipe raw/recent F/T 通道的
 响应和 3 seed × 3 压入量网格已经运行。但接触模型和数值安全阈值尚未校准，
 sealed final audit 尚未冻结；教师到 LA4VLA OSC_POSE 的 adapter 与 30 步物理控制
 回放已经完成，但独立跟踪误差阈值和学生闭环任务评测尚未冻结。
+Wipe 后续 0--4 mm、5 seed × 5 压入量加密网格也已完成，1--4 mm 各 5/5
+任务成功，0 mm 为 2/5；该结果只确定开发候选区间，不构成安全阈值。
 
 因此可以继续合同、执行器和小样本开发，不能启动正式扩量、发布质量统计或长
 训练。任何 task/manner/safety 缺证据项继续记为 `unknown`，不能计作通过。
@@ -28,7 +30,7 @@ sealed final audit 尚未冻结；教师到 LA4VLA OSC_POSE 的 adapter 与 30 �
 | MuJoCo body wrench | 无接触和受控 body wrench 载荷已区分 | 通过（该通道） | 仅覆盖已校准 body wrench 条件 |
 | Wipe 第三任务 | 同 seed/model 的标称探测完成 100/100 marker；欠/标称/过三例结果已记录 | 通过（任务探测） | Wipe 保持 candidate |
 | Wipe F/T 传感通道 | 12 个无接触已知 wrench case 在 raw/recent 通道均通过，两次运行字节一致 | 通过（仿真通道响应） | 不覆盖接触模型或真实硬件 |
-| Wipe 接触/安全阈值 | 9 格均执行；2 mm 为 3/3 成功，10 mm 为 0/3 且均有 controller target 错误，0 mm 为 2/3；force 不稳定单调 | **未通过** | `pending_calibration`，不能冻结安全阈值 |
+| Wipe 接触/安全阈值 | 原 9 格后完成 0--4 mm 加密 25 格：1--4 mm 各 5/5 成功，0 mm 2/5；0 执行错误；force 跨 seed 极差仍大 | **未通过** | 已得到开发候选几何区间；仍为 `pending_calibration`，不能冻结安全阈值 |
 | 12 类严格反例 | 生成期验证器覆盖裁剪、无日志、缺阶段、失效、瞬时达标、时间错误等 12 类及附加案例 | 通过（合同测试） | 不等于真实轨迹最终审计 |
 | task/manner/safety 三态 | `pass/fail/unknown` 与联合规则已实现，unknown 不可发布 | 通过（合同测试） | 正式结果仍需独立 B 角色审计 |
 | 约束注册表 | 公开生成引用和 sealed audit 引用分离；pending 阈值为空且禁止晋升 | 通过（开发合同） | 数值阈值尚未冻结 |
@@ -46,6 +48,7 @@ sealed final audit 尚未冻结；教师到 LA4VLA OSC_POSE 的 adapter 与 30 �
 - Wipe 欠/标称/过三例：`wipe_calibration_20260916.sha256`；
 - Wipe 已知外载通道：`wipe_controlled_load_20260917.sha256`；
 - Wipe 3×3 接触响应网格：`wipe_contact_grid_20260917.sha256`；
+- Wipe 0--4 mm 加密接触网格：`wipe_contact_dense_20260918.sha256`；
 - Lift/Stack MJB 严格回放：`strict_replay_mjb_20260917.sha256`；
 - LA4VLA OSC 30 步回放：`la4vla_osc_roundtrip_20260918.sha256`；
 - 开发请求清单：`dev_manifest_20260916.sha256`；
