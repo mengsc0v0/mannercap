@@ -150,11 +150,13 @@ def _prepare_state_reader(env: Any) -> Any:
     return state
 
 
-def _install_physics_counter(env: Any) -> list[int]:
+def _install_physics_counter(env: Any) -> tuple[list[int], dict[str, Any]]:
     sim = env.robosuite_env.sim
     counter = [0]
+    originals: dict[str, Any] = {}
     for step_name in ("step", "step2"):
         original = getattr(sim, step_name)
+        originals[step_name] = original
 
         def counted_step(_original=original):
             value = _original()
@@ -162,7 +164,31 @@ def _install_physics_counter(env: Any) -> list[int]:
             return value
 
         setattr(sim, step_name, counted_step)
-    return counter
+    return counter, originals
+
+
+def _restore_physics_steps(env: Any, originals: Mapping[str, Any]) -> None:
+    sim = env.robosuite_env.sim
+    for name, value in originals.items():
+        setattr(sim, name, value)
+
+
+def _create_pair_environment(record: Mapping[str, Any]) -> Any:
+    import numpy as np
+    import run_manner_ablation as old
+
+    task = str(record["task"])
+    seed = int(record["seed"])
+    np.random.seed(seed)
+    entry = old.TASK_REGISTRY[task]
+    env = old.load_sim_cls(entry["sim_cls_path"])(
+        privileged=True,
+        enable_render=False,
+        max_steps=entry["max_steps"],
+        seed=seed,
+    )
+    env.reset(seed=seed)
+    return env
 
 
 def _run_episode(
@@ -170,6 +196,7 @@ def _run_episode(
     output: Path,
     *,
     pair_reference: Path | None = None,
+    shared_env: Any | None = None,
 ) -> dict[str, Any]:
     target = output / "episodes" / str(record["episode_id"])
     target.mkdir(parents=True, exist_ok=False)
@@ -185,8 +212,11 @@ def _run_episode(
         "formal_safety_status": "unknown",
         "promotion_allowed": False,
     }
-    env = None
+    env = shared_env
+    owns_env = shared_env is None
     counter = [0]
+    physics_originals: dict[str, Any] = {}
+    original_control_step: Any | None = None
     try:
         import numpy as np
         import run_manner_ablation as old
@@ -206,23 +236,18 @@ def _run_episode(
 
         task = str(record["task"])
         seed = int(record["seed"])
-        np.random.seed(seed)
         entry = old.TASK_REGISTRY[task]
-        env = old.load_sim_cls(entry["sim_cls_path"])(
-            privileged=True,
-            enable_render=False,
-            max_steps=entry["max_steps"],
-            seed=seed,
-        )
-        env.reset(seed=seed)
+        if env is None:
+            env = _create_pair_environment(record)
         reference_initial: dict[str, Any] | None = None
         if pair_reference is not None:
             reference_initial = json.loads(
                 (pair_reference / "initial_state.json").read_text(encoding="utf-8")
             )
-            reset_robosuite_from_model_binary(env, pair_reference / "model.mjb")
+            if owns_env:
+                reset_robosuite_from_model_binary(env, pair_reference / "model.mjb")
             restore_simulator_snapshot(env, reference_initial["snapshot"])
-        counter = _install_physics_counter(env)
+        counter, physics_originals = _install_physics_counter(env)
         state = _prepare_state_reader(env)
         sim = env.robosuite_env.sim
         initial_state = state()
@@ -269,37 +294,40 @@ def _run_episode(
         result["parameter_clipping"] = list(params.get("_clipped", []))
         _write_json(target / "executed_parameters.json", _json_finite(result["executed_parameters"]))
 
-        original_step = env._do_robosuite_step
-        with (target / "transitions.jsonl").open("x", encoding="utf-8") as stream:
+        original_control_step = env._do_robosuite_step
+        try:
+            with (target / "transitions.jsonl").open("x", encoding="utf-8") as stream:
 
-            def record_step(action: Any) -> None:
-                before = state()
-                controller_command = capture_controller_command_state(env)
-                substeps_before = counter[0]
-                original_step(action)
-                row = {
-                    "state_t": before,
-                    "action_t": np.asarray(action).tolist(),
-                    "controller_command_t": controller_command,
-                    "action_slice": env._ACTION_SLICE,
-                    "phase_program_marker": env._manner_phase,
-                    "physics_substeps": counter[0] - substeps_before,
-                    "state_t_plus_1": state(),
-                    "contact_evidence_t_plus_1": capture_object_contacts(sim, object_registry),
-                    "task_success_after": bool(env.task_completed()),
-                }
-                stream.write(json.dumps(row, allow_nan=False) + "\n")
+                def record_step(action: Any) -> None:
+                    before = state()
+                    controller_command = capture_controller_command_state(env)
+                    substeps_before = counter[0]
+                    original_control_step(action)
+                    row = {
+                        "state_t": before,
+                        "action_t": np.asarray(action).tolist(),
+                        "controller_command_t": controller_command,
+                        "action_slice": env._ACTION_SLICE,
+                        "phase_program_marker": env._manner_phase,
+                        "physics_substeps": counter[0] - substeps_before,
+                        "state_t_plus_1": state(),
+                        "contact_evidence_t_plus_1": capture_object_contacts(sim, object_registry),
+                        "task_success_after": bool(env.task_completed()),
+                    }
+                    stream.write(json.dumps(row, allow_nan=False) + "\n")
 
-            env._do_robosuite_step = record_step
-            env.begin_manner_recording(clear=True)
-            api = FrankaControlPrivilegedApi(env)
-            if record.get("ik_backend") == "mujoco-local":
-                from gate0_local_ik import install_local_ik
+                env._do_robosuite_step = record_step
+                env.begin_manner_recording(clear=True)
+                api = FrankaControlPrivilegedApi(env)
+                if record.get("ik_backend") == "mujoco-local":
+                    from gate0_local_ik import install_local_ik
 
-                result["ik_diagnostics"] = []
-                install_local_ik(api, env, result["ik_diagnostics"])
-            execution = entry["runner"](env, api, params)
-            env.end_manner_recording()
+                    result["ik_diagnostics"] = []
+                    install_local_ik(api, env, result["ik_diagnostics"])
+                execution = entry["runner"](env, api, params)
+                env.end_manner_recording()
+        finally:
+            env._do_robosuite_step = original_control_step
 
         telemetry = env.get_manner_telemetry()
         result["execution"] = _json_finite(execution)
@@ -315,7 +343,9 @@ def _run_episode(
         result["wall_s"] = time.perf_counter() - started
         result["observed_execution_physics_substeps"] = counter[0]
         _write_json(target / "result.json", _json_finite(result))
-        if env is not None:
+        if env is not None and physics_originals:
+            _restore_physics_steps(env, physics_originals)
+        if env is not None and owns_env:
             env.robosuite_env.close()
     print(json.dumps(_json_finite(result), ensure_ascii=False), flush=True)
     return result
@@ -386,20 +416,32 @@ def main(argv: list[str] | None = None) -> int:
     os.chdir(ROOT / "stagecap_robosuite_libero_repro_20260714")
     execution_errors = 0
     pair_references: dict[str, Path] = {}
-    for episode in plan["episodes"]:
-        result_path = output / "episodes" / episode["episode_id"] / "result.json"
-        if result_path.is_file():
-            pair_references.setdefault(str(episode["pair_id"]), result_path.parent)
-            continue
-        pair_id = str(episode["pair_id"])
-        result = _run_episode(
-            episode,
-            output,
-            pair_reference=pair_references.get(pair_id),
-        )
-        pair_references.setdefault(pair_id, output / "episodes" / episode["episode_id"])
-        execution_errors += int(result.get("status") == "execution_error")
-        _write_audit(output, plan)
+    shared_env: Any | None = None
+    current_pair_id: str | None = None
+    try:
+        for episode in plan["episodes"]:
+            result_path = output / "episodes" / episode["episode_id"] / "result.json"
+            pair_id = str(episode["pair_id"])
+            if result_path.is_file():
+                pair_references.setdefault(pair_id, result_path.parent)
+                continue
+            if pair_id != current_pair_id:
+                if shared_env is not None:
+                    shared_env.robosuite_env.close()
+                shared_env = _create_pair_environment(episode)
+                current_pair_id = pair_id
+            result = _run_episode(
+                episode,
+                output,
+                pair_reference=pair_references.get(pair_id),
+                shared_env=shared_env,
+            )
+            pair_references.setdefault(pair_id, output / "episodes" / episode["episode_id"])
+            execution_errors += int(result.get("status") == "execution_error")
+            _write_audit(output, plan)
+    finally:
+        if shared_env is not None:
+            shared_env.robosuite_env.close()
     audit = _write_audit(output, plan)
     print(json.dumps({"output": str(output), "execution_requested": True, **audit}))
     return 1 if execution_errors or audit["missing_episode_ids"] else 0
