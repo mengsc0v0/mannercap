@@ -132,6 +132,12 @@ def orientation_error_rad(
     return _orientation_error_rad(left, right)
 
 
+def quaternion_to_rotvec_wxyz(value: Sequence[Any]) -> tuple[float, float, float]:
+    """Convert a quaternion to the shortest axis-angle vector."""
+
+    return _quat_to_rotvec_wxyz(_normalize_quat_wxyz(value, "quaternion_wxyz"))
+
+
 @dataclass(frozen=True)
 class OscPoseAdapterResult:
     translation_delta_m: tuple[float, float, float]
@@ -260,4 +266,5 @@ __all__ = [
     "TRANSLATION_SCALE_M",
     "adapt_pose_transition",
     "orientation_error_rad",
+    "quaternion_to_rotvec_wxyz",
 ]

@@ -1,7 +1,11 @@
 import math
 import unittest
 
-from synthesis_v2.la4vla_osc_adapter import OscAdapterError, adapt_pose_transition
+from synthesis_v2.la4vla_osc_adapter import (
+    OscAdapterError,
+    adapt_pose_transition,
+    quaternion_to_rotvec_wxyz,
+)
 
 
 class La4vlaOscAdapterTests(unittest.TestCase):
@@ -45,6 +49,13 @@ class La4vlaOscAdapterTests(unittest.TestCase):
             gripper_command=0,
         )
         self.assertEqual(result.rotation_delta_rad, (0, 0, 0))
+
+    def test_public_quaternion_to_rotvec_uses_shortest_representation(self):
+        angle = 0.2
+        rotvec = quaternion_to_rotvec_wxyz(
+            [-math.cos(angle / 2), 0, 0, -math.sin(angle / 2)]
+        )
+        self.assertAlmostEqual(rotvec[2], angle, places=12)
 
     def test_out_of_range_fails_closed_or_records_explicit_clipping(self):
         kwargs = dict(
