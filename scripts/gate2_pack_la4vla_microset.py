@@ -36,6 +36,22 @@ def validate_staging(manifest: dict[str, Any]) -> None:
                 raise ValueError(f"window {index} has a non-7D action")
 
 
+def array_statistics(values: Any) -> dict[str, list[float]]:
+    import numpy as np
+
+    array = np.asarray(values, dtype=np.float64)
+    if array.ndim != 2 or not array.shape[0] or not np.isfinite(array).all():
+        raise ValueError("statistics input must be a non-empty finite 2D array")
+    return {
+        "mean": array.mean(axis=0).tolist(),
+        "std": array.std(axis=0).tolist(),
+        "min": array.min(axis=0).tolist(),
+        "max": array.max(axis=0).tolist(),
+        "q01": np.quantile(array, 0.01, axis=0).tolist(),
+        "q99": np.quantile(array, 0.99, axis=0).tolist(),
+    }
+
+
 def pack(staging_dir: Path, output: Path) -> dict[str, Any]:
     import pandas as pd
 
@@ -49,6 +65,8 @@ def pack(staging_dir: Path, output: Path) -> dict[str, Any]:
     meta_dir.mkdir(parents=True)
 
     tasks: dict[int, str] = {}
+    all_states: list[list[float]] = []
+    all_actions: list[list[float]] = []
     for episode_index, window in enumerate(manifest["windows"]):
         task_index = int(window["task_index"])
         tasks[task_index] = str(window["prompt"])
@@ -59,6 +77,8 @@ def pack(staging_dir: Path, output: Path) -> dict[str, Any]:
         records = []
         base_time = float(window["rows"][0]["timestamp"])
         for frame_index, row in enumerate(window["rows"]):
+            all_states.append(row["observation_state"])
+            all_actions.append(row["action"])
             records.append({
                 "observation.state": row["observation_state"],
                 "action": row["action"],
@@ -96,6 +116,13 @@ def pack(staging_dir: Path, output: Path) -> dict[str, Any]:
         "generalization_claim_allowed": False,
     }
     (meta_dir / "info.json").write_text(json.dumps(info, indent=2) + "\n", encoding="utf-8")
+    stats = {
+        "action": array_statistics(all_actions),
+        "observation.state": array_statistics(all_states),
+    }
+    (meta_dir / "stats.json").write_text(
+        json.dumps(stats, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
     shutil.copy2(staging_dir / "staging_manifest.json", output / "source_staging_manifest.json")
 
     config = f"""max_action_dim: 24

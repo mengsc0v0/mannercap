@@ -91,6 +91,15 @@ class La4vlaMicrosetTests(unittest.TestCase):
             self.assertEqual(metadata["file_stem"], "lift_slow")
             self.assertFalse(metadata["task_completed"])
 
+    def test_array_statistics_uses_population_std_and_quantiles(self):
+        stats = PACK.array_statistics([[0.0, 2.0], [2.0, 4.0]])
+        self.assertEqual(stats["mean"], [1.0, 3.0])
+        self.assertEqual(stats["std"], [1.0, 1.0])
+        self.assertEqual(stats["min"], [0.0, 2.0])
+        self.assertEqual(stats["max"], [2.0, 4.0])
+        self.assertEqual(stats["q01"], [0.02, 2.02])
+        self.assertEqual(stats["q99"], [1.98, 3.98])
+
 
 def json_clone(value):
     import json
