@@ -92,6 +92,8 @@ def build_plan(
     tasks: Iterable[str] = DEFAULT_TASKS,
     seeds: Iterable[int] = (42, 43),
     tags: Iterable[str] = DEFAULT_TAGS,
+    *,
+    ik_backend: str = "mujoco-local",
 ) -> dict[str, Any]:
     task_values = _unique_strings(tasks, "tasks")
     seed_values = _unique_seeds(seeds)
@@ -102,6 +104,8 @@ def build_plan(
         raise ValueError(f"unsupported tasks: {unknown_tasks}")
     if unknown_tags:
         raise ValueError(f"unsupported manner tags: {unknown_tags}")
+    if ik_backend not in {"mujoco-local", "pyroki"}:
+        raise ValueError(f"unsupported IK backend: {ik_backend!r}")
 
     episodes: list[dict[str, Any]] = []
     for task in task_values:
@@ -120,6 +124,7 @@ def build_plan(
                         "pair_type": "modifier_word",
                         "split": "development",
                         "api_calls": 0,
+                        "ik_backend": ik_backend,
                         "student_action_expressibility": "osc_pose_speed_timing_only",
                     }
                 )
@@ -132,6 +137,7 @@ def build_plan(
         "episode_count": len(episodes),
         "episodes": episodes,
         "api_budget": 0,
+        "ik_backend": ik_backend,
         "outer_candidate_attempts_per_episode": 1,
         "formal_manner_thresholds_frozen": False,
         "generalization_claim_allowed": False,

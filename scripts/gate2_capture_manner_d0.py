@@ -14,6 +14,7 @@ import json
 import math
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import time
@@ -164,7 +165,12 @@ def _install_physics_counter(env: Any) -> list[int]:
     return counter
 
 
-def _run_episode(record: Mapping[str, Any], output: Path) -> dict[str, Any]:
+def _run_episode(
+    record: Mapping[str, Any],
+    output: Path,
+    *,
+    pair_reference: Path | None = None,
+) -> dict[str, Any]:
     target = output / "episodes" / str(record["episode_id"])
     target.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
@@ -193,6 +199,8 @@ def _run_episode(record: Mapping[str, Any], output: Path) -> dict[str, Any]:
         from synthesis_v2.simulator_state import (
             capture_controller_command_state,
             capture_simulator_snapshot,
+            reset_robosuite_from_model_binary,
+            restore_simulator_snapshot,
             save_compiled_model_binary,
         )
 
@@ -207,6 +215,13 @@ def _run_episode(record: Mapping[str, Any], output: Path) -> dict[str, Any]:
             seed=seed,
         )
         env.reset(seed=seed)
+        reference_initial: dict[str, Any] | None = None
+        if pair_reference is not None:
+            reference_initial = json.loads(
+                (pair_reference / "initial_state.json").read_text(encoding="utf-8")
+            )
+            reset_robosuite_from_model_binary(env, pair_reference / "model.mjb")
+            restore_simulator_snapshot(env, reference_initial["snapshot"])
         counter = _install_physics_counter(env)
         state = _prepare_state_reader(env)
         sim = env.robosuite_env.sim
@@ -214,8 +229,13 @@ def _run_episode(record: Mapping[str, Any], output: Path) -> dict[str, Any]:
         initial_state_sha256 = _canonical_sha256(initial_state)
         xml = sim.model.get_xml()
         object_registry = resolve_task_object_registry(env.robosuite_env, task)
-        (target / "model.xml").write_text(xml, encoding="utf-8")
-        compiled_sha256 = save_compiled_model_binary(env, target / "model.mjb")
+        if pair_reference is None:
+            (target / "model.xml").write_text(xml, encoding="utf-8")
+            compiled_sha256 = save_compiled_model_binary(env, target / "model.mjb")
+        else:
+            shutil.copy2(pair_reference / "model.xml", target / "model.xml")
+            shutil.copy2(pair_reference / "model.mjb", target / "model.mjb")
+            compiled_sha256 = hashlib.sha256((target / "model.mjb").read_bytes()).hexdigest()
         _write_json(
             target / "initial_state.json",
             {
@@ -273,6 +293,11 @@ def _run_episode(record: Mapping[str, Any], output: Path) -> dict[str, Any]:
             env._do_robosuite_step = record_step
             env.begin_manner_recording(clear=True)
             api = FrankaControlPrivilegedApi(env)
+            if record.get("ik_backend") == "mujoco-local":
+                from gate0_local_ik import install_local_ik
+
+                result["ik_diagnostics"] = []
+                install_local_ik(api, env, result["ik_diagnostics"])
             execution = entry["runner"](env, api, params)
             env.end_manner_recording()
 
@@ -308,6 +333,11 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--tasks", nargs="+", default=list(DEFAULT_TASKS))
     parser.add_argument("--seed", type=int, action="append")
     parser.add_argument("--tags", nargs="+", default=list(DEFAULT_TAGS))
+    parser.add_argument(
+        "--ik-backend",
+        choices=("mujoco-local", "pyroki"),
+        default="mujoco-local",
+    )
     parser.add_argument("--run", action="store_true", help="execute real simulator episodes")
     return parser
 
@@ -315,7 +345,7 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     seeds = args.seed if args.seed is not None else [42, 43]
-    requested = build_plan(args.tasks, seeds, args.tags)
+    requested = build_plan(args.tasks, seeds, args.tags, ik_backend=args.ik_backend)
     output = args.output.expanduser().resolve()
     plan_path = output / "plan.json"
     if plan_path.is_file():
@@ -355,11 +385,19 @@ def main(argv: list[str] | None = None) -> int:
     sys.path[:0] = [str(ROOT), str(ROOT / "stagecap_robosuite_libero_repro_20260714")]
     os.chdir(ROOT / "stagecap_robosuite_libero_repro_20260714")
     execution_errors = 0
+    pair_references: dict[str, Path] = {}
     for episode in plan["episodes"]:
         result_path = output / "episodes" / episode["episode_id"] / "result.json"
         if result_path.is_file():
+            pair_references.setdefault(str(episode["pair_id"]), result_path.parent)
             continue
-        result = _run_episode(episode, output)
+        pair_id = str(episode["pair_id"])
+        result = _run_episode(
+            episode,
+            output,
+            pair_reference=pair_references.get(pair_id),
+        )
+        pair_references.setdefault(pair_id, output / "episodes" / episode["episode_id"])
         execution_errors += int(result.get("status") == "execution_error")
         _write_audit(output, plan)
     audit = _write_audit(output, plan)

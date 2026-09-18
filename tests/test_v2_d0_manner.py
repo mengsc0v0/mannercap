@@ -26,12 +26,14 @@ class D0MannerTests(unittest.TestCase):
         validate_plan(plan)
         self.assertEqual(plan["episode_count"], 16)
         self.assertEqual(plan["api_budget"], 0)
+        self.assertEqual(plan["ik_backend"], "mujoco-local")
         self.assertEqual(
             plan["manner_tags"],
             ["neutral", "slow", "fast", "fast_approach_slow_contact"],
         )
         self.assertIn("gentle", plan["excluded_conditions"])
         self.assertTrue(all(row["api_calls"] == 0 for row in plan["episodes"]))
+        self.assertTrue(all(row["ik_backend"] == "mujoco-local" for row in plan["episodes"]))
         self.assertEqual(len({row["pair_id"] for row in plan["episodes"]}), 4)
 
     def test_plan_rejects_unknown_or_duplicate_inputs(self) -> None:
