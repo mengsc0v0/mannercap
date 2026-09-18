@@ -15,7 +15,18 @@ def validate_staging(manifest: dict[str, Any]) -> None:
     if not isinstance(windows, list) or len(windows) != manifest.get("sample_count"):
         raise ValueError("staging sample count mismatch")
     horizon = manifest.get("horizon")
+    task_prompts: dict[int, str] = {}
     for index, window in enumerate(windows):
+        if "task_index" not in window or "prompt" not in window:
+            raise ValueError(f"window {index} is missing task_index or prompt")
+        task_index = int(window["task_index"])
+        prompt = str(window["prompt"])
+        previous = task_prompts.setdefault(task_index, prompt)
+        if previous != prompt:
+            raise ValueError(
+                f"task index {task_index} maps to multiple prompts: "
+                f"{previous!r} and {prompt!r}"
+            )
         if len(window.get("rows", [])) != horizon:
             raise ValueError(f"window {index} does not have exactly {horizon} rows")
         for row in window["rows"]:
@@ -77,6 +88,11 @@ def pack(staging_dir: Path, output: Path) -> dict[str, Any]:
             window["source_episode"] for window in manifest["windows"]
         }),
         "source_schema": manifest["schema"],
+        "source_manner_tags": sorted({
+            str(window.get("manner_tag", "unspecified"))
+            for window in manifest["windows"]
+        }),
+        "includes_task_failures": bool(manifest.get("includes_task_failures", False)),
         "generalization_claim_allowed": False,
     }
     (meta_dir / "info.json").write_text(json.dumps(info, indent=2) + "\n", encoding="utf-8")

@@ -1,5 +1,7 @@
 import importlib.util
+import json
 from pathlib import Path
+import tempfile
 import unittest
 
 
@@ -36,7 +38,11 @@ class La4vlaMicrosetTests(unittest.TestCase):
             "schema": "mannercap-la4vla-microset-staging-v1",
             "sample_count": 1,
             "horizon": 1,
-            "windows": [{"rows": [{"observation_state": [0] * 8, "action": [0] * 7}]}],
+            "windows": [{
+                "task_index": 0,
+                "prompt": "Lift the cube.",
+                "rows": [{"observation_state": [0] * 8, "action": [0] * 7}],
+            }],
         }
         PACK.validate_staging(manifest)
         with self.assertRaises(ValueError):
@@ -45,6 +51,45 @@ class La4vlaMicrosetTests(unittest.TestCase):
         bad["windows"][0]["rows"][0]["action"] = [0] * 6
         with self.assertRaises(ValueError):
             PACK.validate_staging(bad)
+
+    def test_staging_validation_rejects_task_index_prompt_collision(self):
+        manifest = {
+            "schema": "mannercap-la4vla-microset-staging-v1",
+            "sample_count": 2,
+            "horizon": 1,
+            "windows": [
+                {
+                    "task_index": 0,
+                    "prompt": prompt,
+                    "rows": [{"observation_state": [0] * 8, "action": [0] * 7}],
+                }
+                for prompt in ("Lift the cube.", "Lift the cube quickly.")
+            ],
+        }
+        with self.assertRaisesRegex(ValueError, "multiple prompts"):
+            PACK.validate_staging(manifest)
+
+    def test_episode_metadata_uses_manner_prompt_and_rejects_failure(self):
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            result = {
+                "status": "executed",
+                "task": "lift",
+                "task_completed": False,
+                "episode_id": "lift/slow",
+                "raw_language": "Lift the cube slowly.",
+                "manner_tag": "slow",
+            }
+            (directory / "result.json").write_text(json.dumps(result))
+            (directory / "transitions.jsonl").write_text("{}\n")
+            with self.assertRaisesRegex(ValueError, "did not complete"):
+                CAPTURE.episode_metadata(directory)
+            metadata = CAPTURE.episode_metadata(
+                directory, include_task_failures=True
+            )
+            self.assertEqual(metadata["prompt"], "Lift the cube slowly.")
+            self.assertEqual(metadata["file_stem"], "lift_slow")
+            self.assertFalse(metadata["task_completed"])
 
 
 def json_clone(value):

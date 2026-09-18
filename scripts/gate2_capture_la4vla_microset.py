@@ -11,6 +11,7 @@ import io
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 from typing import Any, Sequence
@@ -42,6 +43,46 @@ def _read_json(path: Path) -> Any:
 def _read_transitions(path: Path) -> list[dict[str, Any]]:
     with path.open(encoding="utf-8") as stream:
         return [json.loads(line) for line in stream if line.strip()]
+
+
+def episode_metadata(
+    directory: Path, *, include_task_failures: bool = False
+) -> dict[str, Any]:
+    """Validate one source episode before creating any output files."""
+    result_path = directory / "result.json"
+    result = _read_json(result_path)
+    task = result.get("task")
+    if task not in PROMPTS:
+        raise ValueError(f"unsupported task in {result_path}: {task!r}")
+    if result.get("status") != "executed":
+        raise ValueError(f"source episode was not executed successfully: {directory}")
+    task_completed = result.get("task_completed")
+    if task_completed is None:
+        task_completed = result.get("execution", {}).get("task_completed")
+    if not bool(task_completed) and not include_task_failures:
+        raise ValueError(
+            f"source episode did not complete the task: {directory}; "
+            "use --include-task-failures only for an explicitly diagnostic dataset"
+        )
+    prompt = result.get("raw_language") or PROMPTS[task]
+    if not isinstance(prompt, str) or not prompt.strip():
+        raise ValueError(f"source episode has no usable language prompt: {directory}")
+    transitions_path = directory / "transitions.jsonl"
+    if not transitions_path.is_file():
+        raise ValueError(f"source transitions are missing: {transitions_path}")
+    episode_id = str(result.get("episode_id") or directory.name)
+    file_stem = re.sub(r"[^A-Za-z0-9_.-]+", "_", episode_id).strip("._")
+    if not file_stem:
+        raise ValueError(f"source episode has no usable identifier: {directory}")
+    return {
+        "result": result,
+        "task": task,
+        "prompt": prompt.strip(),
+        "episode_id": episode_id,
+        "file_stem": file_stem,
+        "task_completed": bool(task_completed),
+        "result_sha256": hashlib.sha256(result_path.read_bytes()).hexdigest(),
+    }
 
 
 def _restore_state(env: Any, state: dict[str, Any]) -> None:
@@ -80,6 +121,7 @@ def capture_episode(
     horizon: int,
     image_size: int,
     task_index: int,
+    metadata: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     import numpy as np
     import run_manner_ablation as old
@@ -89,7 +131,8 @@ def capture_episode(
     )
     from synthesis_v2.simulator_state import reset_robosuite_from_model_binary
 
-    result = _read_json(directory / "result.json")
+    metadata = metadata or episode_metadata(directory)
+    result = metadata["result"]
     initial = _read_json(directory / "initial_state.json")
     task = result["task"]
     transitions = _read_transitions(directory / "transitions.jsonl")
@@ -131,7 +174,9 @@ def capture_episode(
                 "wrist_image": "robot0_eye_in_hand",
             }.items():
                 payload = _png_bytes(env.robosuite_env.sim, camera, image_size)
-                relative = Path("images") / f"{task}_{ordinal:03d}_{key}.png"
+                relative = Path("images") / (
+                    f"{metadata['file_stem']}_{ordinal:03d}_{key}.png"
+                )
                 (output / relative).write_bytes(payload)
                 image_paths[key] = relative.as_posix()
                 image_hashes[key] = hashlib.sha256(payload).hexdigest()
@@ -164,8 +209,15 @@ def capture_episode(
             windows.append({
                 "task": task,
                 "task_index": task_index,
-                "prompt": PROMPTS[task],
+                "prompt": metadata["prompt"],
+                "source_episode_id": metadata["episode_id"],
                 "source_episode": str(directory),
+                "source_result_sha256": metadata["result_sha256"],
+                "source_initial_state_sha256": result.get("initial_state_sha256"),
+                "source_compiled_model_sha256": result.get("compiled_model_sha256"),
+                "source_task_completed": metadata["task_completed"],
+                "manner_tag": result.get("manner_tag", "unspecified"),
+                "requested_manner": result.get("requested_manner"),
                 "source_start_transition_zero_based": start,
                 "horizon": horizon,
                 "images": image_paths,
@@ -184,9 +236,24 @@ def main() -> int:
     parser.add_argument("--samples", type=int, default=64)
     parser.add_argument("--horizon", type=int, default=50)
     parser.add_argument("--image-size", type=int, default=256)
+    parser.add_argument(
+        "--include-task-failures",
+        action="store_true",
+        help="allow failed task outcomes for an explicitly diagnostic dataset",
+    )
     args = parser.parse_args()
     if args.samples <= 0 or args.samples % len(args.episode_dirs):
         parser.error("--samples must be positive and divisible by the episode count")
+
+    directories = [directory.resolve() for directory in args.episode_dirs]
+    metadata = [
+        episode_metadata(
+            directory, include_task_failures=args.include_task_failures
+        )
+        for directory in directories
+    ]
+    prompts = sorted({item["prompt"] for item in metadata})
+    prompt_indices = {prompt: index for index, prompt in enumerate(prompts)}
 
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -197,10 +264,11 @@ def main() -> int:
 
     per_episode = args.samples // len(args.episode_dirs)
     windows: list[dict[str, Any]] = []
-    for task_index, directory in enumerate(args.episode_dirs):
+    for directory, item in zip(directories, metadata):
         windows.extend(capture_episode(
             directory.resolve(), output, count=per_episode,
-            horizon=args.horizon, image_size=args.image_size, task_index=task_index,
+            horizon=args.horizon, image_size=args.image_size,
+            task_index=prompt_indices[item["prompt"]], metadata=item,
         ))
     manifest = {
         "schema": "mannercap-la4vla-microset-staging-v1",
@@ -212,6 +280,12 @@ def main() -> int:
         "image_size": args.image_size,
         "windows": windows,
         "api_calls": 0,
+        "includes_task_failures": args.include_task_failures,
+        "independent_source_episode_count": len(directories),
+        "source_manner_tags": sorted({
+            str(item["result"].get("manner_tag", "unspecified"))
+            for item in metadata
+        }),
         "purpose": "small_sample_training_pipeline_preflight",
         "generalization_claim_allowed": False,
     }
