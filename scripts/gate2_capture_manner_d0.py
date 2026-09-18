@@ -200,6 +200,7 @@ def _run_episode(
     output: Path,
     *,
     pair_reference: Path | None = None,
+    base_env: Any | None = None,
 ) -> dict[str, Any]:
     target = output / "episodes" / str(record["episode_id"])
     target.mkdir(parents=True, exist_ok=False)
@@ -214,8 +215,12 @@ def _run_episode(
         "formal_manner_status": "unknown",
         "formal_safety_status": "unknown",
         "promotion_allowed": False,
+        "pair_execution_isolation": (
+            "posix-fork-copy-on-write" if base_env is not None else "fresh-process"
+        ),
     }
-    env = None
+    env = base_env
+    owns_env = env is None
     counter = [0]
     physics_originals: dict[str, Any] = {}
     original_control_step: Any | None = None
@@ -237,7 +242,8 @@ def _run_episode(
         task = str(record["task"])
         seed = int(record["seed"])
         entry = old.TASK_REGISTRY[task]
-        env = _create_pair_environment(record)
+        if env is None:
+            env = _create_pair_environment(record)
         state = _prepare_state_reader(env)
         sim = env.robosuite_env.sim
         reference_initial: dict[str, Any] | None = None
@@ -245,21 +251,21 @@ def _run_episode(
             reference_initial = json.loads(
                 (pair_reference / "initial_state.json").read_text(encoding="utf-8")
             )
+            fresh_state_hash = _canonical_sha256(state())
+            reference_state_hash = reference_initial["initial_state_sha256"]
+            if fresh_state_hash != reference_state_hash:
+                raise RuntimeError(
+                    "episode initial state differs from pair "
+                    f"reference: {fresh_state_hash} != {reference_state_hash}"
+                )
             candidate_model = target / "candidate_model.mjb"
             candidate_hash = save_compiled_model_binary(env, candidate_model)
             candidate_model.unlink()
             reference_hash = reference_initial["compiled_model"]["sha256"]
             if candidate_hash != reference_hash:
                 raise RuntimeError(
-                    "fresh deterministic environment compiled model differs from pair "
-                    f"reference: {candidate_hash} != {reference_hash}"
-                )
-            fresh_state_hash = _canonical_sha256(state())
-            reference_state_hash = reference_initial["initial_state_sha256"]
-            if fresh_state_hash != reference_state_hash:
-                raise RuntimeError(
-                    "fresh deterministic environment initial state differs from pair "
-                    f"reference: {fresh_state_hash} != {reference_state_hash}"
+                    "episode compiled model differs from pair reference: "
+                    f"{candidate_hash} != {reference_hash}"
                 )
         counter, physics_originals = _install_physics_counter(env)
         initial_state = state()
@@ -357,7 +363,7 @@ def _run_episode(
         _write_json(target / "result.json", _json_finite(result))
         if env is not None and physics_originals:
             _restore_physics_steps(env, physics_originals)
-        if env is not None:
+        if env is not None and owns_env:
             env.robosuite_env.close()
     print(json.dumps(_json_finite(result), ensure_ascii=False), flush=True)
     return result
@@ -426,22 +432,53 @@ def main(argv: list[str] | None = None) -> int:
     os.environ.setdefault("OMP_NUM_THREADS", "2")
     sys.path[:0] = [str(ROOT), str(ROOT / "stagecap_robosuite_libero_repro_20260714")]
     os.chdir(ROOT / "stagecap_robosuite_libero_repro_20260714")
+    if not hasattr(os, "fork"):
+        raise RuntimeError("real D0 capture requires POSIX fork isolation")
+
     execution_errors = 0
-    pair_references: dict[str, Path] = {}
-    for episode in plan["episodes"]:
-        result_path = output / "episodes" / episode["episode_id"] / "result.json"
-        pair_id = str(episode["pair_id"])
-        if result_path.is_file():
-            pair_references.setdefault(pair_id, result_path.parent)
+    pair_ids = list(dict.fromkeys(str(item["pair_id"]) for item in plan["episodes"]))
+    for pair_id in pair_ids:
+        episodes = [item for item in plan["episodes"] if str(item["pair_id"]) == pair_id]
+        result_paths = [
+            output / "episodes" / str(item["episode_id"]) / "result.json"
+            for item in episodes
+        ]
+        existing = [path.is_file() for path in result_paths]
+        if all(existing):
             continue
-        result = _run_episode(
-            episode,
-            output,
-            pair_reference=pair_references.get(pair_id),
-        )
-        pair_references.setdefault(pair_id, output / "episodes" / episode["episode_id"])
-        execution_errors += int(result.get("status") == "execution_error")
-        _write_audit(output, plan)
+        if any(existing):
+            raise RuntimeError(
+                f"partial pair {pair_id} cannot be resumed under fork isolation; "
+                "use a new output directory"
+            )
+
+        base_env = _create_pair_environment(episodes[0])
+        pair_reference: Path | None = None
+        try:
+            for episode, result_path in zip(episodes, result_paths):
+                pid = os.fork()
+                if pid == 0:
+                    result = _run_episode(
+                        episode,
+                        output,
+                        pair_reference=pair_reference,
+                        base_env=base_env,
+                    )
+                    os._exit(int(result.get("status") == "execution_error"))
+                _, status = os.waitpid(pid, 0)
+                if not result_path.is_file():
+                    raise RuntimeError(
+                        f"forked episode {episode['episode_id']} exited without result.json"
+                    )
+                result = json.loads(result_path.read_text(encoding="utf-8"))
+                child_failed = not os.WIFEXITED(status) or os.WEXITSTATUS(status) != 0
+                execution_errors += int(
+                    child_failed or result.get("status") == "execution_error"
+                )
+                pair_reference = result_path.parent
+                _write_audit(output, plan)
+        finally:
+            base_env.robosuite_env.close()
     audit = _write_audit(output, plan)
     print(json.dumps({"output": str(output), "execution_requested": True, **audit}))
     return 1 if execution_errors or audit["missing_episode_ids"] else 0
