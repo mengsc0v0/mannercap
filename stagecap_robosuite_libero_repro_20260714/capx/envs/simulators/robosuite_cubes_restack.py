@@ -286,6 +286,7 @@ class FrankaRobosuiteCubesRestackLowLevel(RobosuiteBaseEnv):
                     horizon=max_steps,
                     cube_A_length=self.cube_A_length,
                     cube_B_length=self.cube_B_length,
+                    seed=seed,
                 )
             else:
                 self.robosuite_env = suite.environments.manipulation.stack.Stack(
@@ -304,6 +305,7 @@ class FrankaRobosuiteCubesRestackLowLevel(RobosuiteBaseEnv):
                     reward_shaping=True,
                     cube_A_length=self.cube_A_length,
                     cube_B_length=self.cube_B_length,
+                    seed=seed,
                 )
         else:
             self.robosuite_env = suite.environments.manipulation.stack.Stack(
@@ -321,6 +323,7 @@ class FrankaRobosuiteCubesRestackLowLevel(RobosuiteBaseEnv):
                 reward_shaping=True,
                 cube_A_length=self.cube_A_length,
                 cube_B_length=self.cube_B_length,
+                seed=seed,
             )
 
         self.robosuite_env.cubeA = BoxObject(

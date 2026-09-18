@@ -60,6 +60,7 @@ class FrankaRobosuiteCubeLiftLowLevel(RobosuiteBaseEnv):
                     ),
                     horizon=max_steps,
                     reward_shaping=True,
+                    seed=seed,
                 )
             else:
                 self.robosuite_env = suite.environments.manipulation.lift.Lift(
@@ -76,6 +77,7 @@ class FrankaRobosuiteCubeLiftLowLevel(RobosuiteBaseEnv):
                     ),
                     horizon=max_steps,
                     reward_shaping=True,
+                    seed=seed,
                 )
         else:
             self.robosuite_env = suite.environments.manipulation.lift.Lift(
@@ -91,6 +93,7 @@ class FrankaRobosuiteCubeLiftLowLevel(RobosuiteBaseEnv):
                 controller_configs=load_composite_controller_config(controller=self.controller_cfg),
                 horizon=max_steps,
                 reward_shaping=True,
+                seed=seed,
             )
 
         self._init_robot_links()
