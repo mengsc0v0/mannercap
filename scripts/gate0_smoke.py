@@ -118,7 +118,12 @@ def run_task(task, seed, out, ik_backend="pyroki"):
         def state():
             d = sim.data
             return {"time_s": float(d.time), "qpos": np.asarray(d.qpos).tolist(),
-                    "qvel": np.asarray(d.qvel).tolist(), "actuator_ctrl": np.asarray(d.ctrl).tolist()}
+                    "qvel": np.asarray(d.qvel).tolist(),
+                    "qacc_warmstart": np.asarray(d.qacc_warmstart).tolist(),
+                    "act": np.asarray(d.act).tolist(),
+                    "actuator_ctrl": np.asarray(d.ctrl).tolist(),
+                    "eef_position_m": np.asarray(d.xpos[env.gripper_link_idx]).tolist(),
+                    "eef_quaternion_wxyz": np.asarray(d.xquat[env.gripper_link_idx]).tolist()}
 
         xml = sim.model.get_xml()
         object_registry = resolve_task_object_registry(env.robosuite_env, task)
