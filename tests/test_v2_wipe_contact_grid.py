@@ -201,6 +201,12 @@ class WipeContactGridTests(unittest.TestCase):
         self.assertEqual(case["recent_eef_response"]["maximum_force_n"], 12.0)
         self.assertEqual(case["recent_eef_response"]["maximum_torque_nm"], 2.0)
         self.assertEqual(case["recent_eef_response"]["qualification"], "uncalibrated_robosuite_sensor")
+        grouped = result["by_surface_penetration"]
+        self.assertEqual(len(grouped), 1)
+        self.assertEqual(grouped[0]["surface_penetration_m"], 0.002)
+        self.assertEqual(grouped[0]["task_outcomes"]["success_rate_among_known"], 1.0)
+        self.assertEqual(grouped[0]["maximum_contact_pair_force_n"]["median"], 0.5)
+        self.assertEqual(grouped[0]["maximum_recent_eef_force_n"]["maximum"], 12.0)
         self.assertEqual(len(case["failure_events"]), 1)
         self.assertEqual(case["execution_errors"], ["first contact approach failed"])
         self.assertFalse(result["contact_model_calibration_verified"])
@@ -312,6 +318,8 @@ class WipeContactGridTests(unittest.TestCase):
             rendered = grid.render_audit_markdown(grid.audit_grid(root, plan))
         self.assertIn("不是已知外加载荷", rendered)
         self.assertIn("不构成接触力校准或安全判定", rendered)
+        self.assertIn("## 按压入量聚合", rendered)
+        self.assertIn("contact max min/median/max", rendered)
         self.assertIn("model SHA-256", rendered)
 
 

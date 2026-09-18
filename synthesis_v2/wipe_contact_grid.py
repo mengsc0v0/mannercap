@@ -11,6 +11,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+from statistics import median
 from typing import Any, Iterable, Mapping, Sequence
 
 
@@ -770,6 +771,7 @@ def audit_grid(root: Path | str, plan: Mapping[str, Any]) -> dict[str, Any]:
         "task_failure": sum(case["task_outcome"] == "failure" for case in cases),
         "task_unknown": sum(case["task_outcome"] == "unknown" for case in cases),
     }
+    by_surface_penetration = _aggregate_by_surface_penetration(cases)
     return {
         "schema": AUDIT_SCHEMA,
         "mode": plan["mode"],
@@ -782,9 +784,71 @@ def audit_grid(root: Path | str, plan: Mapping[str, Any]) -> dict[str, Any]:
         "thresholds_frozen": False,
         "promotion_allowed": False,
         "counts": counts,
+        "by_surface_penetration": by_surface_penetration,
         "cases": cases,
         "interpretation_limits": list(plan.get("interpretation_limits", [])),
     }
+
+
+def _numeric_summary(values: Iterable[Any]) -> dict[str, Any]:
+    numbers = [number for value in values if (number := _float_value(value)) is not None]
+    if not numbers:
+        return {"count": 0, "minimum": None, "median": None, "mean": None, "maximum": None}
+    return {
+        "count": len(numbers),
+        "minimum": min(numbers),
+        "median": median(numbers),
+        "mean": sum(numbers) / len(numbers),
+        "maximum": max(numbers),
+    }
+
+
+def _aggregate_by_surface_penetration(cases: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    """Group observed outcomes without deriving a calibration or threshold."""
+
+    groups: dict[float, list[Mapping[str, Any]]] = {}
+    for case in cases:
+        penetration = _float_value(case.get("surface_penetration_m"))
+        if penetration is not None:
+            groups.setdefault(penetration, []).append(case)
+
+    result: list[dict[str, Any]] = []
+    for penetration in sorted(groups):
+        group = groups[penetration]
+        successes = sum(case.get("task_outcome") == "success" for case in group)
+        failures = sum(case.get("task_outcome") == "failure" for case in group)
+        unknown = sum(case.get("task_outcome") == "unknown" for case in group)
+        known = successes + failures
+        result.append(
+            {
+                "surface_penetration_m": penetration,
+                "case_count": len(group),
+                "run_state_counts": {
+                    state: sum(case.get("run_state") == state for case in group)
+                    for state in ("planned", "running", "executed", "execution_error")
+                },
+                "task_outcomes": {
+                    "success": successes,
+                    "failure": failures,
+                    "unknown": unknown,
+                    "known": known,
+                    "success_rate_among_known": successes / known if known else None,
+                },
+                "maximum_contact_pair_force_n": _numeric_summary(
+                    (case.get("contact_response") or {}).get("maximum_contact_pair_force_n")
+                    for case in group
+                ),
+                "maximum_recent_eef_force_n": _numeric_summary(
+                    (case.get("recent_eef_response") or {}).get("maximum_force_n")
+                    for case in group
+                ),
+                "final_wiped_markers": _numeric_summary(
+                    (case.get("final_marker_status") or {}).get("wiped_markers")
+                    for case in group
+                ),
+            }
+        )
+    return result
 
 
 def _markdown_cell(value: Any) -> str:
@@ -808,9 +872,50 @@ def render_audit_markdown(audit: Mapping[str, Any]) -> str:
         "接触对数值为 MuJoCo contact-local 力观测；recent EEF wrench 仍标记为未校准通道。",
         "下表只报告探测结果，不构成接触力校准或安全判定。",
         "",
+        "## 按压入量聚合",
+        "",
+        "成功率的分母只包含 task outcome 已知的格；force 列汇总每格的观测最大值。",
+        "",
+        "| surface_penetration_m | cases | executed | execution error | task S/F/U | success rate | contact max min/median/max (N) | recent EEF max min/median/max (N) |",
+        "|---:|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    for group in audit.get("by_surface_penetration", []):
+        states = group.get("run_state_counts") or {}
+        outcomes = group.get("task_outcomes") or {}
+        contact = group.get("maximum_contact_pair_force_n") or {}
+        eef = group.get("maximum_recent_eef_force_n") or {}
+
+        def triple(summary: Mapping[str, Any]) -> str:
+            return "/".join(
+                _markdown_cell(summary.get(key)) for key in ("minimum", "median", "maximum")
+            )
+
+        lines.append(
+            "| "
+            + " | ".join(
+                _markdown_cell(value)
+                for value in (
+                    group.get("surface_penetration_m"),
+                    group.get("case_count"),
+                    states.get("executed"),
+                    states.get("execution_error"),
+                    f"{outcomes.get('success')}/{outcomes.get('failure')}/{outcomes.get('unknown')}",
+                    outcomes.get("success_rate_among_known"),
+                    triple(contact),
+                    triple(eef),
+                )
+            )
+            + " |"
+        )
+    lines.extend(
+        [
+            "",
+            "## 单格结果",
+            "",
         "| case | seed | surface_penetration_m | model SHA-256 | run state | task success | markers | reward | max contact-pair force (N) | max recent EEF force (N) | transitions | wall (s) | errors |",
         "|---|---:|---:|---|---|---|---:|---:|---:|---:|---:|---:|---:|",
-    ]
+        ]
+    )
     for case in audit.get("cases", []):
         marker = case.get("final_marker_status") or {}
         markers = None
