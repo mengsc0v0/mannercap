@@ -58,17 +58,43 @@ def allocate_samples(lengths: Sequence[int], total: int) -> list[int]:
 
 
 def _finite_metrics(values: Sequence[float]) -> dict[str, float | None]:
-    finite = [float(value) for value in values if math.isfinite(float(value))]
+    finite = sorted(float(value) for value in values if math.isfinite(float(value)))
+
+    def percentile(fraction: float) -> float | None:
+        if not finite:
+            return None
+        position = fraction * (len(finite) - 1)
+        lower = math.floor(position)
+        upper = math.ceil(position)
+        weight = position - lower
+        return finite[lower] * (1.0 - weight) + finite[upper] * weight
+
     return {
         "count": len(finite),
         "mean": statistics.fmean(finite) if finite else None,
+        "median": statistics.median(finite) if finite else None,
+        "p95": percentile(0.95),
         "maximum": max(finite) if finite else None,
+    }
+
+
+def _executed_metrics(rows: Sequence[dict[str, Any]]) -> dict[str, Any]:
+    executed = [row for row in rows if row.get("status") == "executed"]
+    return {
+        "count": len(executed),
+        "position_error_norm_m": _finite_metrics(
+            [row["position_error_norm_m"] for row in executed]
+        ),
+        "orientation_error_rad": _finite_metrics(
+            [row["orientation_error_rad"] for row in executed]
+        ),
     }
 
 
 def summarize_samples(samples: Sequence[dict[str, Any]]) -> dict[str, Any]:
     executed = [row for row in samples if row.get("status") == "executed"]
     position_vectors = [row["position_error_vector_m"] for row in executed]
+    tasks = sorted({str(row["task"]) for row in samples})
     phases = sorted({str(row.get("phase_program_marker")) for row in samples})
     return {
         "samples_requested": len(samples),
@@ -79,16 +105,34 @@ def summarize_samples(samples: Sequence[dict[str, Any]]) -> dict[str, Any]:
         "serialization_round_trip_exact": all(
             row.get("serialization_round_trip_exact") is True for row in executed
         ) and bool(executed),
-        "position_error_norm_m": _finite_metrics(
-            [row["position_error_norm_m"] for row in executed]
-        ),
-        "orientation_error_rad": _finite_metrics(
-            [row["orientation_error_rad"] for row in executed]
-        ),
+        **_executed_metrics(executed),
         "position_error_bias_m": (
             [statistics.fmean(vector[axis] for vector in position_vectors) for axis in range(3)]
             if position_vectors else None
         ),
+        "restored_before_maximum_error": {
+            "position_m": max(
+                (row["restored_before_error"]["position_m"] for row in executed),
+                default=None,
+            ),
+            "orientation_rad": max(
+                (row["restored_before_error"]["orientation_rad"] for row in executed),
+                default=None,
+            ),
+        },
+        "non_initial_transition_metrics": _executed_metrics([
+            row for row in executed if row["transition_index_zero_based"] != 0
+        ]),
+        "by_task": {
+            task: _executed_metrics([row for row in executed if row["task"] == task])
+            for task in tasks
+        },
+        "by_phase_program_marker": {
+            phase: _executed_metrics([
+                row for row in executed if str(row.get("phase_program_marker")) == phase
+            ])
+            for phase in phases
+        },
         "phase_program_markers_covered": phases,
     }
 

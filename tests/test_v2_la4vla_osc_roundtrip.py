@@ -24,15 +24,19 @@ class La4vlaOscRoundTripTests(unittest.TestCase):
         rows = [
             {
                 "status": "executed",
+                "task": "lift",
+                "transition_index_zero_based": 0,
                 "position_error_vector_m": [0.1, -0.2, 0.3],
                 "position_error_norm_m": 0.4,
                 "orientation_error_rad": 0.05,
+                "restored_before_error": {"position_m": 0.0, "orientation_rad": 0.0},
                 "serialization_round_trip_exact": True,
                 "phase_program_marker": "move",
                 "adapter": {"clipped": False},
             },
             {
                 "status": "adapter_error",
+                "task": "stack",
                 "phase_program_marker": "grip",
                 "error_code": "command_out_of_range",
             },
@@ -42,6 +46,7 @@ class La4vlaOscRoundTripTests(unittest.TestCase):
         self.assertEqual(summary["adapter_errors"], 1)
         self.assertEqual(summary["position_error_bias_m"], [0.1, -0.2, 0.3])
         self.assertEqual(summary["phase_program_markers_covered"], ["grip", "move"])
+        self.assertEqual(summary["non_initial_transition_metrics"]["count"], 0)
 
     def test_controller_reinitialization_uses_restored_joint_state(self):
         class Controller:
