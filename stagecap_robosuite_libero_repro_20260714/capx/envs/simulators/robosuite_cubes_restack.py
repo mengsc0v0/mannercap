@@ -286,6 +286,7 @@ class FrankaRobosuiteCubesRestackLowLevel(RobosuiteBaseEnv):
                     horizon=max_steps,
                     cube_A_length=self.cube_A_length,
                     cube_B_length=self.cube_B_length,
+                    initialization_noise=None,
                     seed=seed,
                 )
             else:
@@ -305,6 +306,7 @@ class FrankaRobosuiteCubesRestackLowLevel(RobosuiteBaseEnv):
                     reward_shaping=True,
                     cube_A_length=self.cube_A_length,
                     cube_B_length=self.cube_B_length,
+                    initialization_noise=None,
                     seed=seed,
                 )
         else:
@@ -323,6 +325,7 @@ class FrankaRobosuiteCubesRestackLowLevel(RobosuiteBaseEnv):
                 reward_shaping=True,
                 cube_A_length=self.cube_A_length,
                 cube_B_length=self.cube_B_length,
+                initialization_noise=None,
                 seed=seed,
             )
 
@@ -348,7 +351,7 @@ class FrankaRobosuiteCubesRestackLowLevel(RobosuiteBaseEnv):
             ensure_valid_placement=True,
             reference_pos=self.robosuite_env.table_offset,
             z_offset=0.01,
-            rng=self.robosuite_env.rng,
+            rng=np.random.default_rng(seed),
         )
 
         self._init_robot_links()
