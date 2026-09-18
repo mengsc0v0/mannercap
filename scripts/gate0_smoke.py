@@ -85,6 +85,7 @@ def run_task(task, seed, out, ik_backend="pyroki"):
     physics_steps = [0]
     try:
         import numpy as np
+        import mujoco
         import run_manner_ablation as old
         from capx.envs.manner_validator import MannerSpec
         from capx.integrations.franka.control_privileged import FrankaControlPrivilegedApi
@@ -115,15 +116,27 @@ def run_task(task, seed, out, ik_backend="pyroki"):
         result["reset_physics_substeps"] = None
         result["constructor_physics_substeps"] = None
 
+        # MuJoCo integrates qpos at the end of mj_step; derived body poses can
+        # still describe the pre-integration state until another forward pass.
+        # Derive EEF pose in scratch data so observations match saved qpos
+        # without mutating the live dynamics or its solver warm start.
+        raw_model = getattr(sim.model, "_model", sim.model)
+        kinematic_data = mujoco.MjData(raw_model)
+
         def state():
             d = sim.data
+            kinematic_data.qpos[:] = d.qpos
+            if kinematic_data.mocap_pos.size:
+                kinematic_data.mocap_pos[:] = d.mocap_pos
+                kinematic_data.mocap_quat[:] = d.mocap_quat
+            mujoco.mj_kinematics(raw_model, kinematic_data)
             return {"time_s": float(d.time), "qpos": np.asarray(d.qpos).tolist(),
                     "qvel": np.asarray(d.qvel).tolist(),
                     "qacc_warmstart": np.asarray(d.qacc_warmstart).tolist(),
                     "act": np.asarray(d.act).tolist(),
                     "actuator_ctrl": np.asarray(d.ctrl).tolist(),
-                    "eef_position_m": np.asarray(d.xpos[env.gripper_link_idx]).tolist(),
-                    "eef_quaternion_wxyz": np.asarray(d.xquat[env.gripper_link_idx]).tolist()}
+                    "eef_position_m": np.asarray(kinematic_data.xpos[env.gripper_link_idx]).tolist(),
+                    "eef_quaternion_wxyz": np.asarray(kinematic_data.xquat[env.gripper_link_idx]).tolist()}
 
         xml = sim.model.get_xml()
         object_registry = resolve_task_object_registry(env.robosuite_env, task)
@@ -138,6 +151,7 @@ def run_task(task, seed, out, ik_backend="pyroki"):
                 "required_for_strict_replay": True,
             },
             "physics_timestep_s": float(sim.model.opt.timestep),
+            "eef_pose_derivation": "scratch_mjdata_mj_kinematics_from_qpos",
             "object_registry": object_registry,
             "snapshot": capture_simulator_snapshot(env),
             "restoration_verified": False,
