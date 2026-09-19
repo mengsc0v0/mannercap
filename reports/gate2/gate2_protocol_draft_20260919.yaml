@@ -1,0 +1,110 @@
+schema: manncap.gate2.protocol_draft.v1
+status: draft_not_frozen
+date: 2026-09-19
+promotion_allowed: false
+
+scope:
+  current_tasks: [lift, stack]
+  claim_boundary: simulated_pick_and_place_only
+  third_task:
+    task_id: wipe
+    status: pending_independent_physics_and_safety_calibration
+  current_manner_tags:
+    - neutral
+    - slow
+    - fast
+    - fast_approach_slow_contact
+  excluded_from_fixed_student_comparison:
+    gentle: requires_stiffness_or_grip_force_channel
+    firm: requires_stiffness_or_grip_force_channel
+
+decision_contract:
+  dimensions: [task, manner, safety]
+  states: [pass, fail, unknown]
+  unknown_is_qualified: false
+  joint_rule:
+    any_fail: fail
+    all_pass: pass
+    otherwise: unknown
+
+request_contract:
+  required_fields:
+    - request_id
+    - task_id
+    - scene_id
+    - split
+    - pair_id
+    - raw_language
+    - phase_scope
+    - budget
+  one_published_demonstration_per_request: true
+  count_all_attempts: true
+  stop_at_first_generation_valid_nonduplicate_candidate: true
+  proposed_max_candidate_attempts_per_request: 3
+  proposed_max_candidate_attempts_status: pending_owner_freeze
+
+data_uses:
+  required_mutually_exclusive_splits:
+    - development_calibration
+    - generator_sealed_test
+    - student_train_validation
+    - student_sealed_test
+  split_before_windowing: true
+  group_keys:
+    - complete_initial_state_lineage
+    - scene_and_object_configuration
+    - physical_configuration
+    - language_template_family
+    - pair_id
+  derived_windows_follow_source_split: true
+  retries_rewrites_and_relabels_follow_source_split: true
+  existing_d0_assignment: development_calibration
+  existing_d0_episode_count: 64
+
+threshold_freeze:
+  source_must_be_independent_of_method_outputs: true
+  non_author_review_required: true
+  public_generation_and_sealed_audit_separated: true
+  manner_velocity_thresholds: null
+  phase_binding_minimum_effect: null
+  non_target_phase_crosstalk_limit: null
+  persistence_and_debounce: null
+  force_torque_and_impulse_limits: null
+  action_replay_error_limits: null
+  calibration_evidence_sha256: null
+  sealed_audit_config_sha256: null
+
+budget_freeze:
+  accounting_dimensions:
+    - requests
+    - candidate_attempts
+    - simulator_control_steps
+    - simulator_physics_substeps
+    - cpu_wall_time
+    - gpu_time_and_memory
+    - storage_bytes
+    - api_calls_tokens_and_cost
+    - annotation_time
+  common_stop_rule_required: true
+  numeric_caps: null
+  status: pending_e0_measurement_and_owner_freeze
+
+api_method_m:
+  current_calls: 0
+  api_key_required_now: false
+  required_before_execution:
+    - provider_and_model_version
+    - temperature_and_sampling_policy
+    - cache_policy
+    - call_and_token_caps
+    - failure_and_retry_accounting
+    - secret_injection_outside_repository
+
+gate2_release_conditions:
+  - independent_manner_and_safety_calibration
+  - human_gold_manifest_with_at_least_20_double_annotations_and_adjudication
+  - four_way_split_manifest_and_lineage_leak_check
+  - common_request_matrix_and_method_information_contract
+  - numeric_resource_budgets_and_stop_rules
+  - student_checkpoint_selection_and_closed_loop_protocol
+  - sealed_final_audit_artifact_hash_and_non_author_signoff
