@@ -205,6 +205,7 @@ def _run_episode(
     target = output / "episodes" / str(record["episode_id"])
     target.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
+    cpu_started = time.process_time()
     result: dict[str, Any] = {
         "schema": "mannercap-d0-manner-episode-result-v1",
         **dict(record),
@@ -304,6 +305,13 @@ def _run_episode(
         result["compiled_model_sha256"] = compiled_sha256
 
         spec = _make_spec(str(record["manner_tag"]))
+        if "candidate_preset" in record:
+            from capx.envs.manner_validator import MannerSpec, PhaseVelocity
+            candidate = record["candidate_preset"]
+            spec = MannerSpec(**candidate["global"], phase_velocity={
+                name: PhaseVelocity(**bounds)
+                for name, bounds in candidate["phase_velocity"].items()
+            }, label="e0_development_candidate")
         params = old.spec_to_exec_params(spec)
         result["requested_spec"] = _spec_json(spec)
         result["executed_parameters"] = {
@@ -317,6 +325,8 @@ def _run_episode(
             with (target / "transitions.jsonl").open("x", encoding="utf-8") as stream:
 
                 def record_step(action: Any) -> None:
+                    if counter[0] >= record.get("physics_substep_cap", float("inf")):
+                        raise RuntimeError("development physics substep budget exhausted")
                     before = state()
                     controller_command = capture_controller_command_state(env)
                     substeps_before = counter[0]
@@ -359,6 +369,7 @@ def _run_episode(
         result["error"] = traceback.format_exc()
     finally:
         result["wall_s"] = time.perf_counter() - started
+        result["cpu_time_s"] = time.process_time() - cpu_started
         result["observed_execution_physics_substeps"] = counter[0]
         _write_json(target / "result.json", _json_finite(result))
         if env is not None and physics_originals:
