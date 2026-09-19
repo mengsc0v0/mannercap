@@ -1,0 +1,2218 @@
+{
+  "schema": "mannercap-human-gold-candidate-manifest-v1",
+  "status": "pending_human_annotation",
+  "data_use": "development_calibration",
+  "selection_salt": "mannercap-d0-gold-v1",
+  "candidate_count": 64,
+  "double_annotation_count": 24,
+  "cell_count": 8,
+  "blinding_contract": {
+    "annotators_may_see": [
+      "task",
+      "target_instruction",
+      "target_manner_tag",
+      "requested_manner",
+      "raw trajectory transitions and images"
+    ],
+    "executor_derived_fields_hidden": [
+      "task_completed",
+      "formal_manner_status",
+      "formal_safety_status",
+      "promotion_allowed",
+      "execution",
+      "descriptive_metrics",
+      "descriptive_phase_metrics",
+      "offline_recomputation"
+    ],
+    "result_file_is_for_provenance_only": true,
+    "labels_must_come_from_independent_human_review": true
+  },
+  "required_labels": [
+    "task_outcome",
+    "manner_following",
+    "phase_binding",
+    "trajectory_data_quality"
+  ],
+  "cell_selection": [
+    {
+      "task": "lift",
+      "manner_tag": "fast",
+      "candidate_count": 8,
+      "double_annotation_episode_ids": [
+        "d0-lift-seed-45-fast",
+        "d0-lift-seed-42-fast",
+        "d0-lift-seed-49-fast"
+      ]
+    },
+    {
+      "task": "lift",
+      "manner_tag": "fast_approach_slow_contact",
+      "candidate_count": 8,
+      "double_annotation_episode_ids": [
+        "d0-lift-seed-48-fast_approach_slow_contact",
+        "d0-lift-seed-44-fast_approach_slow_contact",
+        "d0-lift-seed-47-fast_approach_slow_contact"
+      ]
+    },
+    {
+      "task": "lift",
+      "manner_tag": "neutral",
+      "candidate_count": 8,
+      "double_annotation_episode_ids": [
+        "d0-lift-seed-47-neutral",
+        "d0-lift-seed-42-neutral",
+        "d0-lift-seed-43-neutral"
+      ]
+    },
+    {
+      "task": "lift",
+      "manner_tag": "slow",
+      "candidate_count": 8,
+      "double_annotation_episode_ids": [
+        "d0-lift-seed-43-slow",
+        "d0-lift-seed-47-slow",
+        "d0-lift-seed-46-slow"
+      ]
+    },
+    {
+      "task": "stack",
+      "manner_tag": "fast",
+      "candidate_count": 8,
+      "double_annotation_episode_ids": [
+        "d0-stack-seed-46-fast",
+        "d0-stack-seed-43-fast",
+        "d0-stack-seed-42-fast"
+      ]
+    },
+    {
+      "task": "stack",
+      "manner_tag": "fast_approach_slow_contact",
+      "candidate_count": 8,
+      "double_annotation_episode_ids": [
+        "d0-stack-seed-43-fast_approach_slow_contact",
+        "d0-stack-seed-45-fast_approach_slow_contact",
+        "d0-stack-seed-44-fast_approach_slow_contact"
+      ]
+    },
+    {
+      "task": "stack",
+      "manner_tag": "neutral",
+      "candidate_count": 8,
+      "double_annotation_episode_ids": [
+        "d0-stack-seed-42-neutral",
+        "d0-stack-seed-45-neutral",
+        "d0-stack-seed-44-neutral"
+      ]
+    },
+    {
+      "task": "stack",
+      "manner_tag": "slow",
+      "candidate_count": 8,
+      "double_annotation_episode_ids": [
+        "d0-stack-seed-42-slow",
+        "d0-stack-seed-47-slow",
+        "d0-stack-seed-45-slow"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "annotation_id": "gold-4830327d1d35a051",
+      "episode_id": "d0-lift-seed-42-fast",
+      "task": "lift",
+      "seed": 42,
+      "target_instruction": "Lift the cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-42-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_pilot_20260918_attempt04/episodes/d0-lift-seed-42-fast/transitions.jsonl",
+        "transitions_sha256": "838e068c126b9a70e934894e4f51e6625170d0b2764000342eedca50697c65f5",
+        "result_sha256_for_provenance_only": "1052f2fe8b005a473118b5d9b6ca7648254d801478b2906a9c36081eb8538e55"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-c23f58c3b5320089",
+      "episode_id": "d0-lift-seed-42-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 42,
+      "target_instruction": "Approach the cube quickly, then contact it and lift it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-42-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_pilot_20260918_attempt04/episodes/d0-lift-seed-42-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "de378983ab1d084c93fe61b88c8f5510db97ada6e50734da66c1dcc68999d462",
+        "result_sha256_for_provenance_only": "4e56ddb3e2196602b6f3511c1d1f10f4483ec9701bdd4e40dcd3f22bd118227b"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-9e7f01fe1dfdb5c7",
+      "episode_id": "d0-lift-seed-42-neutral",
+      "task": "lift",
+      "seed": 42,
+      "target_instruction": "Lift the cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-42-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_pilot_20260918_attempt04/episodes/d0-lift-seed-42-neutral/transitions.jsonl",
+        "transitions_sha256": "32d92abc474f6342c5ddf1c90cda7736addcc96233cf1c80abd57210c6103ab1",
+        "result_sha256_for_provenance_only": "843f9e707fce6a0dc76d74d55cc41e544ae92e060cbec272ff60fc317b9e6531"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-a6cbc65efb4d1803",
+      "episode_id": "d0-lift-seed-42-slow",
+      "task": "lift",
+      "seed": 42,
+      "target_instruction": "Lift the cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-42-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_pilot_20260918_attempt04/episodes/d0-lift-seed-42-slow/transitions.jsonl",
+        "transitions_sha256": "c218a76a94fa0a6427e4af3dbe1a6a888604072c0db236d62adc0bdfbbaf4086",
+        "result_sha256_for_provenance_only": "26eef122be7828c99e33f70a824c4fcb4f61ffeab0bf97d3ac0ecca732275ded"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-a543a54e91a119f1",
+      "episode_id": "d0-lift-seed-43-fast",
+      "task": "lift",
+      "seed": 43,
+      "target_instruction": "Lift the cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-43-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-lift-seed-43-fast/transitions.jsonl",
+        "transitions_sha256": "a6530421263bf22ba7e3e63ad5671e6abfcc1343371a437c24f0a4e064376ea0",
+        "result_sha256_for_provenance_only": "b99a6aa2016d075369eafa8a74b648dfc1f1b93e672871dae533458f305df74a"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-5171b5c0d3b37393",
+      "episode_id": "d0-lift-seed-43-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 43,
+      "target_instruction": "Approach the cube quickly, then contact it and lift it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-43-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-lift-seed-43-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "cf736b15a1e4d37029e00fe733d01607a2553802d8b147172da6210dba92e9a4",
+        "result_sha256_for_provenance_only": "c747488b5ae1c8c4d91e037f7c45430dcd326b23dad6b1f5c0527d68f8934ef5"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-ec2190ed88805a53",
+      "episode_id": "d0-lift-seed-43-neutral",
+      "task": "lift",
+      "seed": 43,
+      "target_instruction": "Lift the cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-43-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-lift-seed-43-neutral/transitions.jsonl",
+        "transitions_sha256": "79abe32c7450a7e2a7e3fc6e144020842f99b47eef5293be06180c584ce5b411",
+        "result_sha256_for_provenance_only": "6bef8a9859e5085b8519c60b6af365072ac3a517f09aec026e7e69db697f7d5d"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-90c93c1f88266dc3",
+      "episode_id": "d0-lift-seed-43-slow",
+      "task": "lift",
+      "seed": 43,
+      "target_instruction": "Lift the cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-43-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-lift-seed-43-slow/transitions.jsonl",
+        "transitions_sha256": "d20a74bc3301e493ddcb7662e1eeeec728ea7884720be2d73fd5bedc31c707f9",
+        "result_sha256_for_provenance_only": "8ad623460415017fcf84463da068ef9bb0506473b11632fdb26016246b9579a6"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-d8fc1da7feb87345",
+      "episode_id": "d0-lift-seed-44-fast",
+      "task": "lift",
+      "seed": 44,
+      "target_instruction": "Lift the cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-44-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-lift-seed-44-fast/transitions.jsonl",
+        "transitions_sha256": "1643165511ec314baa4a3bc52eb8456b0b62a340319d67472cf81ec44edcf7fc",
+        "result_sha256_for_provenance_only": "dfb53a88afa1053a4303ba8d9b25ba848ebafed8c0cf0d278ab7f617229946e6"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-10ebe28e28638e5d",
+      "episode_id": "d0-lift-seed-44-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 44,
+      "target_instruction": "Approach the cube quickly, then contact it and lift it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-44-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-lift-seed-44-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "9d2e876acdbe0d33a77aee3de1051558796114afaf54b01df3aa75d840b9fb64",
+        "result_sha256_for_provenance_only": "36c51f22ebc28f060d1b904dffacf3ba0cbc1734fda7d695b05bf0faf16d8bca"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-81e79816f41d9a16",
+      "episode_id": "d0-lift-seed-44-neutral",
+      "task": "lift",
+      "seed": 44,
+      "target_instruction": "Lift the cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-44-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-lift-seed-44-neutral/transitions.jsonl",
+        "transitions_sha256": "73f9f687820c1f2cae8594969fc2c0837183c825a485af247c7fd7a5f9df8256",
+        "result_sha256_for_provenance_only": "98afb6844284517f3f80996ad5d683aa51fb30445258e4235e062d467e8ad57c"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-b8743d523317e45f",
+      "episode_id": "d0-lift-seed-44-slow",
+      "task": "lift",
+      "seed": 44,
+      "target_instruction": "Lift the cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-44-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-lift-seed-44-slow/transitions.jsonl",
+        "transitions_sha256": "ba3a61eb197a86446987b6e56f13bc9d1628c430d214a553349867d547362786",
+        "result_sha256_for_provenance_only": "be94cadbfacc5363ff1a89e211b5ef70c8f898d9bebbdee7e8091e13b4b37b5c"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-26e2e1a1676575ab",
+      "episode_id": "d0-lift-seed-45-fast",
+      "task": "lift",
+      "seed": 45,
+      "target_instruction": "Lift the cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-45-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed45/episodes/d0-lift-seed-45-fast/transitions.jsonl",
+        "transitions_sha256": "6d558e386241aa18cc84a8c21eb4d0e986cb93c80d80bd0975996e1372b6865c",
+        "result_sha256_for_provenance_only": "118a10cbabdde4f55284346d3bb743dca795317fc0ddd34a8d00303575dcaa09"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-6e5ae8ffd09c997f",
+      "episode_id": "d0-lift-seed-45-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 45,
+      "target_instruction": "Approach the cube quickly, then contact it and lift it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-45-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed45/episodes/d0-lift-seed-45-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "fb3ed039d2ac6effa9b45d5f064b2e9bc1e497428ec6ee081ef9fce8f492022b",
+        "result_sha256_for_provenance_only": "a65914abdfd9c9bcc18182e78944a01e7c1356800e58f3cc4a193e5fcb27de47"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-5fcfcf08e4a1f34a",
+      "episode_id": "d0-lift-seed-45-neutral",
+      "task": "lift",
+      "seed": 45,
+      "target_instruction": "Lift the cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-45-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed45/episodes/d0-lift-seed-45-neutral/transitions.jsonl",
+        "transitions_sha256": "8a806033672bb202ef52e30a7194028b79cf2f20bb15b5e97b2f76f7b72eaa7f",
+        "result_sha256_for_provenance_only": "825603f3ded269de51bdd1ce3bc572f47e6fa959213268181d037e5e09b24195"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-83cf5df7c8bc7f36",
+      "episode_id": "d0-lift-seed-45-slow",
+      "task": "lift",
+      "seed": 45,
+      "target_instruction": "Lift the cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-45-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed45/episodes/d0-lift-seed-45-slow/transitions.jsonl",
+        "transitions_sha256": "1a475ab4fb23ec9ee566340bb4e53e358286cf0fd1c41005d3e4f85f0b973d47",
+        "result_sha256_for_provenance_only": "00ca4b114f5179ca012b51a6a8e8fe1209216dafc15979ad9ddeaffbc468fd83"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-2f3873cb1bfed5a1",
+      "episode_id": "d0-lift-seed-46-fast",
+      "task": "lift",
+      "seed": 46,
+      "target_instruction": "Lift the cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-46-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed46/episodes/d0-lift-seed-46-fast/transitions.jsonl",
+        "transitions_sha256": "9f1ac557ba17128af13685806ac98496f5a0f11607cd71c2a29324a88a289018",
+        "result_sha256_for_provenance_only": "bbf7608ad97ace03c768322f65f47e9f3dc78937e6da1bb999af4e3b48912a17"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-922d9ae29b621c45",
+      "episode_id": "d0-lift-seed-46-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 46,
+      "target_instruction": "Approach the cube quickly, then contact it and lift it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-46-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed46/episodes/d0-lift-seed-46-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "9b7c6b4075cc5cd0b92b2d175dcc6ec4a27c7259133d5fdf982375392e70e2be",
+        "result_sha256_for_provenance_only": "30f09e0286c42dba9049be9f2c328b0bb824abc46191e43fbd0389ddec7eaf50"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-a684957a38c6765b",
+      "episode_id": "d0-lift-seed-46-neutral",
+      "task": "lift",
+      "seed": 46,
+      "target_instruction": "Lift the cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-46-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed46/episodes/d0-lift-seed-46-neutral/transitions.jsonl",
+        "transitions_sha256": "9b8a7540b1f04253cadbb69f52bea03848ca9fba2613a8c2e1a7780cebf78d05",
+        "result_sha256_for_provenance_only": "a925135c845cddb96804e34205988eb8b986ff7040e741c55b0982cc1926c8dc"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-dc8240dc7b209775",
+      "episode_id": "d0-lift-seed-46-slow",
+      "task": "lift",
+      "seed": 46,
+      "target_instruction": "Lift the cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-46-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed46/episodes/d0-lift-seed-46-slow/transitions.jsonl",
+        "transitions_sha256": "66d17bc4afd274f1d816ec1ce3da87d7b83932802c0ba84a767a9d7b960033ca",
+        "result_sha256_for_provenance_only": "bc9f221cf8ad9e7d424aff026fde1caf05aa2ee5caf70dff50a8ac2f667aa1ac"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-49172589112d0ee7",
+      "episode_id": "d0-lift-seed-47-fast",
+      "task": "lift",
+      "seed": 47,
+      "target_instruction": "Lift the cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-47-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed47/episodes/d0-lift-seed-47-fast/transitions.jsonl",
+        "transitions_sha256": "0623a43b6ed0e450a54a0d1af9fbfb27d2f0d2dc4087f9d01ced8879701cfc63",
+        "result_sha256_for_provenance_only": "e489e74f7f00f365372e29211d4f817dc918dd2173b3473c7d1d0e04f4144200"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-1968da02877c0a26",
+      "episode_id": "d0-lift-seed-47-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 47,
+      "target_instruction": "Approach the cube quickly, then contact it and lift it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-47-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed47/episodes/d0-lift-seed-47-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "02d4128ad4fc3ab62a5b0ec7fdf6bdd6bed76a3f38db411c6e8cf8919bb49220",
+        "result_sha256_for_provenance_only": "26d43672f55d0c8f18f14e65407fca1cd8bdfd9f15d02697ea269b986cab58a7"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-d45508bc1716c44c",
+      "episode_id": "d0-lift-seed-47-neutral",
+      "task": "lift",
+      "seed": 47,
+      "target_instruction": "Lift the cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-47-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed47/episodes/d0-lift-seed-47-neutral/transitions.jsonl",
+        "transitions_sha256": "133fd07bd10e32053f749b2c63fb9ef5a18d6f021895cb1913f9f801c7927b1e",
+        "result_sha256_for_provenance_only": "bed7f8ed9ff34588529cdea84e486eff02e53221b865c34aa368aaa7f7a355a9"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-303366ad84afbcb0",
+      "episode_id": "d0-lift-seed-47-slow",
+      "task": "lift",
+      "seed": 47,
+      "target_instruction": "Lift the cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-47-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed47/episodes/d0-lift-seed-47-slow/transitions.jsonl",
+        "transitions_sha256": "4cd9ee3fc98959e564ae08adc5d52bb36018987a7686f06528930dc60fd76a8b",
+        "result_sha256_for_provenance_only": "83c62fd61aacc1f60440d2766836a700c14ff692f7de9356c809828004d46a55"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-a5516e8097f236a9",
+      "episode_id": "d0-lift-seed-48-fast",
+      "task": "lift",
+      "seed": 48,
+      "target_instruction": "Lift the cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-48-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed48/episodes/d0-lift-seed-48-fast/transitions.jsonl",
+        "transitions_sha256": "b3df43972f88291de52740e735f2b294637d44118fc8207793fc144f82edc122",
+        "result_sha256_for_provenance_only": "b9853946ff38e45716866d30e6755d1f4ce4572e46c262c36be45ee5c2664c70"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-a7df40918a51ef9a",
+      "episode_id": "d0-lift-seed-48-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 48,
+      "target_instruction": "Approach the cube quickly, then contact it and lift it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-48-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed48/episodes/d0-lift-seed-48-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "442bbe2813177bdf5e74c552ca7d21c6d58ced9277c4ab162ab51bf97177ff56",
+        "result_sha256_for_provenance_only": "ad9b1df53b2b8642ad62dcf3a95910d6a199f73e7f9eaf64908d0ed675a0d972"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-66a94c7754bd916f",
+      "episode_id": "d0-lift-seed-48-neutral",
+      "task": "lift",
+      "seed": 48,
+      "target_instruction": "Lift the cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-48-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed48/episodes/d0-lift-seed-48-neutral/transitions.jsonl",
+        "transitions_sha256": "78a2f8731f0273df166359b1c493a2fb1a793031084c233c5214b0d7db6efb9e",
+        "result_sha256_for_provenance_only": "1c6774db24a16632f2d1ed494d4b075c5a7acd3ccd95fcf393bd09188bda802e"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-ced4cc487c09cf97",
+      "episode_id": "d0-lift-seed-48-slow",
+      "task": "lift",
+      "seed": 48,
+      "target_instruction": "Lift the cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-48-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed48/episodes/d0-lift-seed-48-slow/transitions.jsonl",
+        "transitions_sha256": "4c02eceb83885239a355207b89270de8cedb5856f324a0ca9c72d14cab7f4be7",
+        "result_sha256_for_provenance_only": "796eb5e1a539d6da17db68ddf10d7c4e4435ac7ade0902259483a3be94e702bb"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-cb360023ceeaa390",
+      "episode_id": "d0-lift-seed-49-fast",
+      "task": "lift",
+      "seed": 49,
+      "target_instruction": "Lift the cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-49-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed49/episodes/d0-lift-seed-49-fast/transitions.jsonl",
+        "transitions_sha256": "4b3c7355bc0e0b8694a5fbfba373791a2acc73eae255fbb682e2d4e782f4306f",
+        "result_sha256_for_provenance_only": "e48859b5503e24cf3552c6f98dc3e0ae55259b919abffada5c806eb65f78c435"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-cc9f571287876480",
+      "episode_id": "d0-lift-seed-49-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 49,
+      "target_instruction": "Approach the cube quickly, then contact it and lift it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-49-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed49/episodes/d0-lift-seed-49-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "4ef575ea1aefbac66bb8e279636cfee48a8ba878b7516895f36c96b5b52231cc",
+        "result_sha256_for_provenance_only": "ea6a5b1d5fcc39388fe9f14d7084ba888a80bcc88f2af8cd87f574c10da1f78c"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-33663faf84888729",
+      "episode_id": "d0-lift-seed-49-neutral",
+      "task": "lift",
+      "seed": 49,
+      "target_instruction": "Lift the cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-49-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed49/episodes/d0-lift-seed-49-neutral/transitions.jsonl",
+        "transitions_sha256": "5708eec2d6843e6a773169d1a4ce01eea9a3221500c9f7a21a899002079c4ee8",
+        "result_sha256_for_provenance_only": "e4963e8c1d3ca63d00ce390548116575d1ecad1b44bd134571411a3c9e3a70f0"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-176dfb8463286d3f",
+      "episode_id": "d0-lift-seed-49-slow",
+      "task": "lift",
+      "seed": 49,
+      "target_instruction": "Lift the cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-49-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed49/episodes/d0-lift-seed-49-slow/transitions.jsonl",
+        "transitions_sha256": "31ff180ccaeca5465259a9e57640526bc914eb21bb2e56400b765b888ebc131e",
+        "result_sha256_for_provenance_only": "c2ff6f19962b776f4e012e1f5fb66f76c91519d71be38bb4bf2250c431bf106b"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-7bbc98d4983fe92f",
+      "episode_id": "d0-stack-seed-42-fast",
+      "task": "stack",
+      "seed": 42,
+      "target_instruction": "Stack the red cube on the green cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-42-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_pilot_20260918_attempt04/episodes/d0-stack-seed-42-fast/transitions.jsonl",
+        "transitions_sha256": "3a914011c1916f511cf40ec4a6f318052249e6fb74897aa6b90970d3d3e6cd71",
+        "result_sha256_for_provenance_only": "877140db39e5a4bce40a9fd1611e5bf4ea592524f9130cb42335fb6efa4b37e4"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-81bdde76ec1ff919",
+      "episode_id": "d0-stack-seed-42-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 42,
+      "target_instruction": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-42-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_pilot_20260918_attempt04/episodes/d0-stack-seed-42-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "256a743738b225a8c96a2d8bfc326e727926a279f5a3252dc29840d4b4d291a1",
+        "result_sha256_for_provenance_only": "2298306c0d3b4e7c10f4b41bbd51442695766a78ad9aeeb42a77c18391958a76"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-f426f5b49bff3716",
+      "episode_id": "d0-stack-seed-42-neutral",
+      "task": "stack",
+      "seed": 42,
+      "target_instruction": "Stack the red cube on the green cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-42-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_pilot_20260918_attempt04/episodes/d0-stack-seed-42-neutral/transitions.jsonl",
+        "transitions_sha256": "112ae0bd649f25193c5fb32550414dad5d255116e20d2e86f3e089aab6bd01cd",
+        "result_sha256_for_provenance_only": "fb6484d25588c36335b99b2a20cff01d1c37de3e3a5f281d06984dea13bc1d47"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-b8cfe0d704c85222",
+      "episode_id": "d0-stack-seed-42-slow",
+      "task": "stack",
+      "seed": 42,
+      "target_instruction": "Stack the red cube on the green cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-42-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_pilot_20260918_attempt04/episodes/d0-stack-seed-42-slow/transitions.jsonl",
+        "transitions_sha256": "0241897bc1f83d06b3be9c95067984af1df1fe40c040428470c5e67f8ee6338e",
+        "result_sha256_for_provenance_only": "a1d29c4ce018214a8c823e950eff30e3bf93b83c591c17eff75c9fefbd643a51"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-5083629abec43546",
+      "episode_id": "d0-stack-seed-43-fast",
+      "task": "stack",
+      "seed": 43,
+      "target_instruction": "Stack the red cube on the green cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-43-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-stack-seed-43-fast/transitions.jsonl",
+        "transitions_sha256": "12b570f2daf1f94efe22028c5508261a74809cfea64066fbd219126455914808",
+        "result_sha256_for_provenance_only": "584890a396faf0a55c37374f9d1589d90f8e825d2ea8a4d67cdf6ac5e12b004e"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-f7b1d31cca19a1f7",
+      "episode_id": "d0-stack-seed-43-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 43,
+      "target_instruction": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-43-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-stack-seed-43-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "a2f3306493bd4229010836c735a3792d8fb624cb0d94ede743d5a113c1f41862",
+        "result_sha256_for_provenance_only": "ed9a401115d201d43d75faf35a0c997ddfacae5759302795db861fbd52da02bb"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-705d5f9c3023622f",
+      "episode_id": "d0-stack-seed-43-neutral",
+      "task": "stack",
+      "seed": 43,
+      "target_instruction": "Stack the red cube on the green cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-43-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-stack-seed-43-neutral/transitions.jsonl",
+        "transitions_sha256": "69609c972d24e647e8870bcb9d431d1d042b8c8866c075a000ee1a02e41050be",
+        "result_sha256_for_provenance_only": "58ec43f1304bca8202082b3bcabfbdc2441eb736b1acc0bae2a84bcd8435490a"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-18b818668450b1af",
+      "episode_id": "d0-stack-seed-43-slow",
+      "task": "stack",
+      "seed": 43,
+      "target_instruction": "Stack the red cube on the green cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-43-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-stack-seed-43-slow/transitions.jsonl",
+        "transitions_sha256": "e97cbab27fd52e4a3d7643926cf9d5dc14f92010d8a9f0b0fd3de945b186ffc6",
+        "result_sha256_for_provenance_only": "4c6e450d173224e9f66f706234405fd0b0388387afd51f5f0ab16389e63ad4fb"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-a9d58f419d12d450",
+      "episode_id": "d0-stack-seed-44-fast",
+      "task": "stack",
+      "seed": 44,
+      "target_instruction": "Stack the red cube on the green cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-44-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-stack-seed-44-fast/transitions.jsonl",
+        "transitions_sha256": "04c3b521e2d2ff211825f2e6adb13040e49fb5b05c40160cf79fb24b117d7720",
+        "result_sha256_for_provenance_only": "5fea0ee2c4f6e49d56c5f1dc5f0007478c2c982525f5f491f0f7980762be84e6"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-cc26a8510843013e",
+      "episode_id": "d0-stack-seed-44-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 44,
+      "target_instruction": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-44-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-stack-seed-44-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "d6686794bbe3b07cc41d155be3ea777e9e90391a6c13fec03b2bd4bcc128a83a",
+        "result_sha256_for_provenance_only": "53d94f94f207bbd18eac69623810f7826ff3d2bba068e4653d480866c111d265"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-79265dd16e0faf60",
+      "episode_id": "d0-stack-seed-44-neutral",
+      "task": "stack",
+      "seed": 44,
+      "target_instruction": "Stack the red cube on the green cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-44-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-stack-seed-44-neutral/transitions.jsonl",
+        "transitions_sha256": "3b97c114d6fc986ba99eeaacf1555c055add9b0763536aab10c4ca5c4b1fb124",
+        "result_sha256_for_provenance_only": "6521a5ef89905e959530b74839b3f5dd1749d0d662d9007b9daa1e28371b2d47"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-b2b18b645f8708c0",
+      "episode_id": "d0-stack-seed-44-slow",
+      "task": "stack",
+      "seed": 44,
+      "target_instruction": "Stack the red cube on the green cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-44-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes/d0-stack-seed-44-slow/transitions.jsonl",
+        "transitions_sha256": "e24796d479d5e79658de480f2a999d3c0054b69a7d1e829c560224bb22615c36",
+        "result_sha256_for_provenance_only": "448eb7bf5895397fea3ae77006348a98a92b482972d1b3500d76b3120ef577d2"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-b7174ee85c5eef03",
+      "episode_id": "d0-stack-seed-45-fast",
+      "task": "stack",
+      "seed": 45,
+      "target_instruction": "Stack the red cube on the green cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-45-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed45/episodes/d0-stack-seed-45-fast/transitions.jsonl",
+        "transitions_sha256": "5f74409f9aa73c3d640f3f2e3ccff1c9dbbd7b4cb49dd8eeb8f46db92b290da8",
+        "result_sha256_for_provenance_only": "adbac8150bcee3ab709bfca6d45cef0813ed12639ac3d8f765619502a90f683a"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-04ab06160afce5e6",
+      "episode_id": "d0-stack-seed-45-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 45,
+      "target_instruction": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-45-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed45/episodes/d0-stack-seed-45-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "2854d936129f30021dedc4d1cca6a041b7b7aff2e82a39f1023e2b8e2fe10256",
+        "result_sha256_for_provenance_only": "3bb0cb4483359beab1fc195b831ea23ba9804045a1905a52ff6b39d5843ea12d"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-d3693736a02b6c07",
+      "episode_id": "d0-stack-seed-45-neutral",
+      "task": "stack",
+      "seed": 45,
+      "target_instruction": "Stack the red cube on the green cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-45-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed45/episodes/d0-stack-seed-45-neutral/transitions.jsonl",
+        "transitions_sha256": "d74bd86f76a9ea8646d0fa4a88a7e92a23303cd71f9700be692d2b747b8108c4",
+        "result_sha256_for_provenance_only": "3659ee00c6e8be57867c2eac63e749c6434fd55ccac5330f26bd73ef9a37e041"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-d0ed08d2fca5585f",
+      "episode_id": "d0-stack-seed-45-slow",
+      "task": "stack",
+      "seed": 45,
+      "target_instruction": "Stack the red cube on the green cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-45-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed45/episodes/d0-stack-seed-45-slow/transitions.jsonl",
+        "transitions_sha256": "b9cd90eec44100b0ac33933f2ff2aa5dcb10b72c344d94176d81a1347684f012",
+        "result_sha256_for_provenance_only": "d12293074322cb49cb3bd73b32c3407b41c1efc4eba54213b1727f48d466a08c"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-434b30e3afe9c881",
+      "episode_id": "d0-stack-seed-46-fast",
+      "task": "stack",
+      "seed": 46,
+      "target_instruction": "Stack the red cube on the green cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-46-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed46/episodes/d0-stack-seed-46-fast/transitions.jsonl",
+        "transitions_sha256": "6b7e0ec1eade68866ba50a43d32077b2db2b9f21670444633d0114fb05e9c35a",
+        "result_sha256_for_provenance_only": "9d21ee7d5129e354eb363c8797f3c21b44b3c487aaa60b3cdeca11a63e70a6d4"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-f676f0b0547ed986",
+      "episode_id": "d0-stack-seed-46-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 46,
+      "target_instruction": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-46-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed46/episodes/d0-stack-seed-46-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "e7ffc8fc190605dc0027c5beb5ebbec6d4c81283d6b665a9dcf809e24f510351",
+        "result_sha256_for_provenance_only": "89ac41009d35c022466bc9a6be81af7d2f1a8f48c14fc071bb0e0565e494d7b3"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-6598ec34fd51f7ee",
+      "episode_id": "d0-stack-seed-46-neutral",
+      "task": "stack",
+      "seed": 46,
+      "target_instruction": "Stack the red cube on the green cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-46-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed46/episodes/d0-stack-seed-46-neutral/transitions.jsonl",
+        "transitions_sha256": "457c85395fee8d253473a6a6fa5f4fc10ca2b8868522e364d5b0f8b8b127901d",
+        "result_sha256_for_provenance_only": "c703e208753cadc64217079a8869f30308fd084123de2bb9069e9840d869b28a"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-a7d3cd95be6be099",
+      "episode_id": "d0-stack-seed-46-slow",
+      "task": "stack",
+      "seed": 46,
+      "target_instruction": "Stack the red cube on the green cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-46-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed46/episodes/d0-stack-seed-46-slow/transitions.jsonl",
+        "transitions_sha256": "600cebcade4a962a74b56a46aeb28f8fd9880873e74bc396989b291962a49112",
+        "result_sha256_for_provenance_only": "9da063381ad524d251ccf6c25803863d31cdfb1190a1a43a31030f02ed8f7abf"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-8fec045eb67ecbdf",
+      "episode_id": "d0-stack-seed-47-fast",
+      "task": "stack",
+      "seed": 47,
+      "target_instruction": "Stack the red cube on the green cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-47-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed47/episodes/d0-stack-seed-47-fast/transitions.jsonl",
+        "transitions_sha256": "20026d2e4b69043d9c637d8d9636cc11f0a2600973cf0006221fe4b0e2e60eeb",
+        "result_sha256_for_provenance_only": "71548b5639d18230919c1f7632f66b85606c9f8f02f25e232acbc29762376a40"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-d8a080e5109cc5da",
+      "episode_id": "d0-stack-seed-47-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 47,
+      "target_instruction": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-47-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed47/episodes/d0-stack-seed-47-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "bbf96a97a58bb4fda4cd5fe00906f73a8c46249b3dd4e7fbac7de046a241dcd3",
+        "result_sha256_for_provenance_only": "c322b288e29afb9ab9bb8e52e3231aa3253cceea550abbd779ab80778e99f103"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-6d6032c8d16f283a",
+      "episode_id": "d0-stack-seed-47-neutral",
+      "task": "stack",
+      "seed": 47,
+      "target_instruction": "Stack the red cube on the green cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-47-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed47/episodes/d0-stack-seed-47-neutral/transitions.jsonl",
+        "transitions_sha256": "89137691c90f55c82080fd5b11717dc6562f2e914e6e1c464f886791e6332d21",
+        "result_sha256_for_provenance_only": "9412a8a109905ab644961b8bda882128b54a5e86f83a4c450b25da0b69b977d1"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-3e5b1cc58d568b45",
+      "episode_id": "d0-stack-seed-47-slow",
+      "task": "stack",
+      "seed": 47,
+      "target_instruction": "Stack the red cube on the green cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-47-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "double_independent_then_adjudicate",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed47/episodes/d0-stack-seed-47-slow/transitions.jsonl",
+        "transitions_sha256": "41312a695c45fcc8f5ba9218a862f6186a94f3a4dfdeb504250c8ece686ef07d",
+        "result_sha256_for_provenance_only": "7872b04b3441eaa7b418376894953da395bbbeb29b28248d4baa04743ab2ec4f"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": null,
+        "adjudicator": null
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-1fa52463eebb6f57",
+      "episode_id": "d0-stack-seed-48-fast",
+      "task": "stack",
+      "seed": 48,
+      "target_instruction": "Stack the red cube on the green cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-48-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed48/episodes/d0-stack-seed-48-fast/transitions.jsonl",
+        "transitions_sha256": "25beb8663bbbf3f96b2cb6aaed7027cbb4c7d1bd4ea61a8c8196b31fbfca75a5",
+        "result_sha256_for_provenance_only": "b5d8e9e86316c164e87b88caf1254545274253cda9507ac577c8de244c69a3ec"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-e187ad977845bef8",
+      "episode_id": "d0-stack-seed-48-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 48,
+      "target_instruction": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-48-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed48/episodes/d0-stack-seed-48-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "6de914a7c55ef52defbb8b0f7239ff2b5366b74c855bc9a06a7705240993c59c",
+        "result_sha256_for_provenance_only": "a064c07f4fa631b9daac97f06e813ce7130a1d987fdc2142374c03f66d77a281"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-76feaddd1d101faa",
+      "episode_id": "d0-stack-seed-48-neutral",
+      "task": "stack",
+      "seed": 48,
+      "target_instruction": "Stack the red cube on the green cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-48-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed48/episodes/d0-stack-seed-48-neutral/transitions.jsonl",
+        "transitions_sha256": "25f56ae00f393a581539215c684db5eed1402356827d802677e7dbefbbf0282b",
+        "result_sha256_for_provenance_only": "7dbb473ab751917890df83ad1955c541896ba5bc002eb29b1d4be028f8e40eab"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-84eaa998e2e8c7c8",
+      "episode_id": "d0-stack-seed-48-slow",
+      "task": "stack",
+      "seed": 48,
+      "target_instruction": "Stack the red cube on the green cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-48-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed48/episodes/d0-stack-seed-48-slow/transitions.jsonl",
+        "transitions_sha256": "1fd1601b0bc12f7fffd45d89e166f5f3d2cc7d2765a8eee889f6fee5ac4aa3c9",
+        "result_sha256_for_provenance_only": "151f66b4835e76ef38149ea4fdb04aee9346bede95867f289e442832e789ba82"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-9866e479da21dae1",
+      "episode_id": "d0-stack-seed-49-fast",
+      "task": "stack",
+      "seed": 49,
+      "target_instruction": "Stack the red cube on the green cube quickly.",
+      "target_manner_tag": "fast",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-49-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed49/episodes/d0-stack-seed-49-fast/transitions.jsonl",
+        "transitions_sha256": "d5202bb691acba69bd69dc716d8c59007ece4cf05f3c66c26aa0239a90ec23b6",
+        "result_sha256_for_provenance_only": "159d886a1710079ec3b8be8104db7b18cb3215aba3f703d33e25759b1775c617"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-dac8988f5d7c16d2",
+      "episode_id": "d0-stack-seed-49-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 49,
+      "target_instruction": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "target_manner_tag": "fast_approach_slow_contact",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-49-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed49/episodes/d0-stack-seed-49-fast_approach_slow_contact/transitions.jsonl",
+        "transitions_sha256": "a2a34ef209457345da11892d3c37221dca6cc99f6b84605ada6e1481968b495d",
+        "result_sha256_for_provenance_only": "195b29a22fcac14674e3beac0ac8c0ea1a5f8d24b6c4c7b3dfb6f415dbeedde7"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-97bea8f7851d539d",
+      "episode_id": "d0-stack-seed-49-neutral",
+      "task": "stack",
+      "seed": 49,
+      "target_instruction": "Stack the red cube on the green cube.",
+      "target_manner_tag": "neutral",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-49-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed49/episodes/d0-stack-seed-49-neutral/transitions.jsonl",
+        "transitions_sha256": "218b073f6b49a17c8b710b9f0124aa98ebbda31cf4b8e89bef058c4e3d885cfb",
+        "result_sha256_for_provenance_only": "29620cd2dc13419d82fc6cc230b1e0791b399612d17278c2320d2b928d46abb4"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    },
+    {
+      "annotation_id": "gold-0f4b11721098251a",
+      "episode_id": "d0-stack-seed-49-slow",
+      "task": "stack",
+      "seed": 49,
+      "target_instruction": "Stack the red cube on the green cube slowly.",
+      "target_manner_tag": "slow",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-49-modifier",
+      "data_use": "development_calibration",
+      "annotation_mode": "single_independent",
+      "source": {
+        "transitions_ref": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds45_49_20260919/seed49/episodes/d0-stack-seed-49-slow/transitions.jsonl",
+        "transitions_sha256": "a016554139ded15d4cefb69c20bff076404fc7a3601252af783f59962e974c26",
+        "result_sha256_for_provenance_only": "a41766431b0c9551c7af39e44db5df36a4f27a35e46df53cbd00d6fafa9a2d8d"
+      },
+      "assignment": {
+        "annotator_a": null,
+        "annotator_b": "not_required",
+        "adjudicator": "not_required"
+      },
+      "annotation_status": "pending"
+    }
+  ],
+  "formal_thresholds_frozen": false,
+  "promotion_allowed": false
+}
