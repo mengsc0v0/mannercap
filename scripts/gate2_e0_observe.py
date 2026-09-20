@@ -59,9 +59,30 @@ def main():
     parser.add_argument("--seed", type=int, default=50)
     parser.add_argument("--attempts", type=int, choices=(1, 2, 3), default=3)
     parser.add_argument("--run", action="store_true")
+    parser.add_argument("--cached-m-proposals", type=Path)
     args = parser.parse_args()
     output = args.output.resolve()
     planned = plan(args.seed, args.attempts)
+    methods = ("G0", "G1", "G2", "G3")
+    if args.cached_m_proposals:
+        if args.attempts != 1:
+            raise ValueError("cached M smoke requires exactly one attempt")
+        cached = json.loads(args.cached_m_proposals.read_text())
+        by_id = {item["request_id"]: item for item in cached}
+        if len(by_id) != len(cached) or set(by_id) != {r["request_id"] for r in planned["requests"]}:
+            raise ValueError("cached proposals must cover all requests exactly once")
+        methods = ("M",)
+        planned["candidates"] = []
+        for request in planned["requests"]:
+            item = by_id[request["request_id"]]
+            planned["candidates"].append({"request": request, "method": "M", "index": 1,
+                "proposal": {**item, "proposal_source": "cached_external_llm",
+                             "request_sha256": digest(request)}})
+        planned["M"] = {"status": "cached_proposals", "online_calls_this_execution": 0,
+                        "prior_api_calls": len(cached)}
+        planned["cached_proposals_sha256"] = digest(cached)
+        planned.pop("plan_sha256")
+        planned["plan_sha256"] = digest(planned)
     if (output / "plan.json").exists():
         if json.loads((output / "plan.json").read_text()) != planned:
             raise ValueError("existing plan differs from requested plan")
@@ -85,7 +106,7 @@ def main():
     sys.path[:0] = [str(ROOT / "scripts"), str(ROOT / "stagecap_robosuite_libero_repro_20260714")]
     os.chdir(ROOT / "stagecap_robosuite_libero_repro_20260714")
     ledgers = {method: AttemptLedger(planned["requests"], max_attempts=args.attempts)
-               for method in ("G0", "G1", "G2", "G3")}
+               for method in methods}
     results = []
     groups = defaultdict(list)
     for candidate in planned["candidates"]:
