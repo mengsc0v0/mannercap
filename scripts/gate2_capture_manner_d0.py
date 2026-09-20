@@ -313,6 +313,10 @@ def _run_episode(
                 for name, bounds in candidate["phase_velocity"].items()
             }, label="e0_development_candidate")
         params = old.spec_to_exec_params(spec)
+        if record.get("phase_semantics") == "explicit_neutral_v2":
+            from synthesis_v2.llm_proposal_contract import apply_explicit_neutral_phases
+            params = apply_explicit_neutral_phases(
+                params, record["candidate_preset"], old.spec_to_exec_params(_make_spec("neutral")))
         result["requested_spec"] = _spec_json(spec)
         result["executed_parameters"] = {
             key: value for key, value in params.items() if not key.startswith("_")

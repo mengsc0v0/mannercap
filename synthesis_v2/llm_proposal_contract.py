@@ -17,6 +17,20 @@ TASK_PHASES = {
 }
 
 
+def apply_explicit_neutral_phases(params: dict, candidate: dict, neutral_params: dict) -> dict:
+    """An explicit empty phase resets speed/acceleration to the neutral profile.
+
+    Omitted phases inherit global settings. Only phase velocity and acceleration
+    are reset; this does not invent force or safety semantics.
+    """
+    result = deepcopy(params)
+    for phase, bounds in candidate['phase_velocity'].items():
+        if bounds == {}:
+            for field in ('phase_v_max', 'phase_a_max'):
+                result[field][phase] = neutral_params[field][phase]
+    return result
+
+
 def build_prompt(request: dict) -> dict:
     task = request["task"]
     if task not in TASK_PHASES:

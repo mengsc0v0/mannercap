@@ -4,6 +4,17 @@ from synthesis_v2.llm_proposal_contract import build_prompt, parse_response
 
 
 class LLMContractTests(unittest.TestCase):
+    def test_explicit_neutral_resets_but_omitted_phase_inherits(self):
+        from synthesis_v2.llm_proposal_contract import apply_explicit_neutral_phases
+        params = {'phase_v_max': {'approach': .068, 'lift': .068},
+                  'phase_a_max': {'approach': .0476, 'lift': .0476}}
+        neutral = {'phase_v_max': {'approach': .12, 'lift': .12},
+                   'phase_a_max': {'approach': .084, 'lift': .084}}
+        actual = apply_explicit_neutral_phases(params, {'phase_velocity': {'approach': {}}}, neutral)
+        self.assertEqual(actual['phase_v_max'], {'approach': .12, 'lift': .068})
+        self.assertEqual(actual['phase_a_max']['approach'], .084)
+        self.assertEqual(params['phase_v_max']['approach'], .068)
+
     def test_prompt_whitelists_public_fields(self):
         prompt = build_prompt({"task": "lift", "raw_language": "Lift slowly",
                               "api_key": "secret", "final_audit": "answer",

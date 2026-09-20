@@ -60,9 +60,12 @@ def main():
     parser.add_argument("--attempts", type=int, choices=(1, 2, 3), default=3)
     parser.add_argument("--run", action="store_true")
     parser.add_argument("--cached-m-proposals", type=Path)
+    parser.add_argument("--include-baselines", action="store_true")
     args = parser.parse_args()
     output = args.output.resolve()
     planned = plan(args.seed, args.attempts)
+    if args.include_baselines and not args.cached_m_proposals:
+        raise ValueError("include-baselines requires cached M proposals")
     methods = ("G0", "G1", "G2", "G3")
     if args.cached_m_proposals:
         if args.attempts != 1:
@@ -71,8 +74,9 @@ def main():
         by_id = {item["request_id"]: item for item in cached}
         if len(by_id) != len(cached) or set(by_id) != {r["request_id"] for r in planned["requests"]}:
             raise ValueError("cached proposals must cover all requests exactly once")
-        methods = ("M",)
-        planned["candidates"] = []
+        methods = ("G0", "G1", "G2", "G3", "M") if args.include_baselines else ("M",)
+        if not args.include_baselines:
+            planned["candidates"] = []
         for request in planned["requests"]:
             item = by_id[request["request_id"]]
             planned["candidates"].append({"request": request, "method": "M", "index": 1,
@@ -81,6 +85,7 @@ def main():
         planned["M"] = {"status": "cached_proposals", "online_calls_this_execution": 0,
                         "prior_api_calls": len(cached)}
         planned["cached_proposals_sha256"] = digest(cached)
+        planned["phase_semantics"] = "explicit_neutral_v2"
         planned.pop("plan_sha256")
         planned["plan_sha256"] = digest(planned)
     if (output / "plan.json").exists():
@@ -120,6 +125,7 @@ def main():
                 proposal = candidate["proposal"]
                 episode_id = f'{request["request_id"]}-{method}-{index}'
                 record = {**request, "episode_id": episode_id, "method_id": method,
+                          "phase_semantics": planned.get("phase_semantics"),
                           "candidate_preset": proposal["candidate_preset"],
                           "physics_substep_cap": planned["physics_substep_cap_per_attempt"]}
                 result_path = output / "episodes" / episode_id / "result.json"
