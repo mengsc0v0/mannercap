@@ -10,7 +10,7 @@
 | WP1 可信记录 | 主 agent/A | 开发记录与恢复通路通过 | 控制步、物理子步、真实时间、状态和 controller cache 已记录；正式物理阈值待校准 |
 | WP2 严格判定 | B 子 agent | 内核/反例初版 | evaluation_audit；下一步接入真实轨迹、独立阈值 registry |
 | WP3 请求空间 | C 子 agent | draft 编排初版 | synthesis_method_spec；下一步真实初态、物理配置、Wipe 可行性 |
-| WP4 五方法及台账 | C + A | 未实现完整流水线 | 依赖 WP1—3；失败和成本覆盖所有内部尝试 |
+| WP4 五方法及台账 | C + A | G0--G3 开发执行及台账已核验 | 96/96 执行，原请求/成本/初态核验通过；M 待实际 LLM 接入，正式筛选与发布未放行 |
 | WP6 数据接口 | D 子 agent | LA4VLA 候选接口已实现并预检 | 7D OSC adapter、双相机、8D state、50-step action horizon 已接通；候选仍未批准 |
 | WP6 30 条回放 | A + D | 已完成数量与真实控制执行 | Lift/Stack 各 15 条，30/30 执行、0 error、0 clipping；独立误差阈值未冻结 |
 | WP6 32—64 样本学习 | D | 已完成通路与过拟合预检 | 64 窗口由 2 条独立教师 episode 产生；原生 loader/20-step 训练/100-step 固定微批通过；无泛化或闭环结论 |
