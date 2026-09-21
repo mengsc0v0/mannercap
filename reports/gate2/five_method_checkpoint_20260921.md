@@ -35,6 +35,7 @@ M 的缓存提案来自 `qwen3.7-flash-2026-07-15`。提案 JSON 合法且已执
 ## 工件与边界
 
 - 最新审计输出：`reports/gate2/five_method_audit_20260921.json`；文件 SHA-256 为 `538f1b3880192144f7546dac87df0d2af8729596492ca961431de6baf288e2bc`。
+- 完整运行清单：`reports/gate2/five_method_paired_v2_20260920.sha256`，289 行、覆盖运行目录全部 289 个文件（约 3.3 GiB）；逐行重算结果为 289/289 一致、0 缺失、0 多余，清单 SHA-256 为 `8abc31630057bbe24737d366a9fdf3c2890f20c5bcd9dc1000d63d837c6cc181`。
 - 服务器审计输出同上；服务器运行 `report.json` SHA-256 为 `26fb4f30e304d016966bd09464e0814627ff0b9af905f6f4cf990438bf541524`。
 - 服务器 `plan.json` SHA-256 为 `4e89a98c714a9ae77bf5f60d8d4dbbda9baaf723707f8f74084f433dba7a9370`；`run_manifest.json` SHA-256 为 `29e18886f56a88ef9ce0e3990ca7a67fff6636304b7250b518a5a18c358293c9`。
 - 原始 40 条运行目录及大文件仍保留在服务器证据根，不提交到 Git；本仓库只提交小型审计结果和报告。
