@@ -778,7 +778,8 @@ class TaskSpace:
             members = [cell_by_id.get(cell_id) for cell_id in pair.member_cell_ids]
             if any(member is None for member in members):
                 raise TaskSpaceError(f"pair cell {pair.pair_id!r} refers to unknown request cell")
-            assert members[0] is not None and members[1] is not None
+            if members[0] is None or members[1] is None:
+                raise TaskSpaceError(f"pair cell {pair.pair_id!r} has missing member cells")
             if self.split_policy.pair_members_same_split:
                 if members[0].split != members[1].split or pair.split != members[0].split:
                     raise TaskSpaceError(

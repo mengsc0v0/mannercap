@@ -366,12 +366,12 @@ def evaluate_object_contact_force(
             calibration_verified=calibration_verified,
         )
 
-    assert force is not None
-    assert torque is not None
+    if force is None or torque is None:
+        raise RuntimeError("force/torque vectors must be present after validation")
     force_norm = _norm3(force)
     torque_norm = _norm3(torque)
-    assert force_norm is not None
-    assert torque_norm is not None
+    if force_norm is None or torque_norm is None:
+        raise RuntimeError("force/torque vectors must be finite 3-vectors after validation")
     contact_state = (
         ContactState.CONTACT
         if force_norm > spec.contact_epsilon_n
