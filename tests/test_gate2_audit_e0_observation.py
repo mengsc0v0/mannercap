@@ -40,6 +40,7 @@ def _parameters(v_max, a_max, phase_v, phase_a):
 def _fixture(root: Path, *, corrupt_neutral: bool = False) -> None:
     request = {
         "request_id": "e0-dev-lift-50",
+        "episode_id": "d0-lift-50",
         "task": "lift",
         "requested_manner": {"global": {}, "phase_velocity": {}},
     }
@@ -88,6 +89,7 @@ def _fixture(root: Path, *, corrupt_neutral: bool = False) -> None:
         raw = {
             **request,
             "episode_id": key,
+            "method_id": item["method"],
             "candidate_preset": item["proposal"]["candidate_preset"],
             "task": "lift",
             "status": "executed",

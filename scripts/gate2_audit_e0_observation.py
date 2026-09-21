@@ -65,10 +65,25 @@ def audit(root):
             _require(row["request_snapshot"] == item["request"], f"{key}: request snapshot changed")
             _require(row["candidate_plan"] == item["proposal"], f"{key}: candidate plan changed")
             for field, expected_value in item["request"].items():
+                # ``episode_id`` in a raw result is the attempt instance ID
+                # (request episode + method + attempt), while the request
+                # snapshot stores the base episode ID.  Keep both checks
+                # explicit instead of treating this expected derivation as a
+                # mutation of the request.
+                if field == "episode_id":
+                    _require(
+                        raw.get(field) == key,
+                        f"{key}: executed episode_id is not the method-attempt ID",
+                    )
+                    continue
                 _require(
                     raw.get(field) == expected_value,
                     f"{key}: executed record changed request field {field!r}",
                 )
+            _require(
+                raw.get("method_id") == method,
+                f"{key}: executed method_id does not match plan method",
+            )
             _require(
                 raw.get("candidate_preset") == item["proposal"].get("candidate_preset"),
                 f"{key}: executed candidate preset changed",
