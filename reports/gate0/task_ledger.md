@@ -10,10 +10,10 @@
 | WP1 可信记录 | 主 agent/A | 开发记录与恢复通路通过 | 控制步、物理子步、真实时间、状态和 controller cache 已记录；正式物理阈值待校准 |
 | WP2 严格判定 | B 子 agent | 内核/反例初版 | evaluation_audit；下一步接入真实轨迹、独立阈值 registry |
 | WP3 请求空间 | C 子 agent | draft 编排初版 | synthesis_method_spec；下一步真实初态、物理配置、Wipe 可行性 |
-| WP4 五方法及台账 | C + A | G0--G3 开发执行及台账已核验 | 96/96 执行，原请求/成本/初态核验通过；M 待实际 LLM 接入，正式筛选与发布未放行 |
+| WP4 五方法及台账 | C + A | 五方法共同初态开发执行及台账已核验 | `five_method_paired_v2_20260920` 完成 40/40（G0/G1/G2/G3/M 各 8），40/40 教师终态、0 执行错误；M 使用已缓存 8 条提案，本轮新增 API=0；初态/模型哈希与 15 项 explicit-neutral 参数检查通过。方式/安全仍 unknown，语义偏差审计、正式筛选与发布未放行；见 `reports/gate2/five_method_checkpoint_20260921.md` 与 `five_method_audit_20260921.json` |
 | WP6 数据接口 | D 子 agent | LA4VLA 候选接口已实现并预检 | 7D OSC adapter、双相机、8D state、50-step action horizon 已接通；候选仍未批准 |
 | WP6 30 条回放 | A + D | 已完成数量与真实控制执行 | Lift/Stack 各 15 条，30/30 执行、0 error、0 clipping；独立误差阈值未冻结 |
-| WP6 32—64 样本学习 | D | 已完成通路与过拟合预检 | 64 窗口由 2 条独立教师 episode 产生；原生 loader/20-step 训练/100-step 固定微批通过；无泛化或闭环结论 |
+| WP6 32—64 样本学习 | D | 已完成通路与过拟合预检 | 64 窗口由 8 条独立教师 episode 产生；原生 loader/20-step 训练/100-step 固定微批通过；无泛化或闭环结论 |
 | Gate 1 校准 | A + B | 未放行 | Wipe F/T 通道与 0--4 mm 加密网格已完成；1--4 mm 为开发候选区间，接触模型、数值安全阈值、独立签收和 sealed audit 尚缺 |
 | Gate 2 D0 质量启动集 | A + B | 64 条开发轨迹已完成 | 2 任务 × 4 指令 × 8 初态；64/64 教师任务终态、16/16 精确配对，方式/安全仍为 unknown |
 | Gate 2 人工金标 | B + 标注支持 | 64 条候选清单与盲化协议已生成 | 24 条双人独立标注；尚待分配标注员、实际标注与仲裁 |
