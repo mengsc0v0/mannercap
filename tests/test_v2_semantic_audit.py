@@ -1,6 +1,9 @@
 import unittest
 
-from synthesis_v2.semantic_audit import audit_phase_semantics
+from synthesis_v2.semantic_audit import (
+    audit_phase_semantics,
+    classify_request_candidate_semantics,
+)
 
 
 PHASE_V = {
@@ -136,6 +139,36 @@ class SemanticAuditTests(unittest.TestCase):
             "requested_phase_missing",
             {item["kind"] for item in report["request_semantic_diff"]["differences"]},
         )
+
+    def test_semantic_classifier_separates_representation_unknown_and_conflict(self):
+        result = classify_request_candidate_semantics(
+            {"requested_manner": {"global": {}, "phase_velocity": {}}},
+            {"global": {}, "phase_velocity": {"approach": {}}},
+        )
+        self.assertEqual(result["overall"], "representation_difference")
+        self.assertEqual(
+            result["differences"][0]["classification"], "representation_difference"
+        )
+
+        result = classify_request_candidate_semantics(
+            {
+                "requested_manner": {
+                    "global": {"max_joint_vel": 0.08, "max_jerk": 2.0},
+                    "phase_velocity": {},
+                }
+            },
+            {"global": {"max_joint_vel": 0.08}, "phase_velocity": {}},
+        )
+        self.assertEqual(result["overall"], "unknown")
+        self.assertEqual(result["differences"][0]["classification"], "unknown")
+
+        result = classify_request_candidate_semantics(
+            {"requested_manner": {"global": {}, "phase_velocity": {}}},
+            {"global": {"max_joint_vel": 0.08}, "phase_velocity": {}},
+        )
+        self.assertEqual(result["overall"], "substantive_conflict")
+        self.assertEqual(result["differences"][0]["classification"], "substantive_conflict")
+        self.assertEqual(result["manner_qualification"], "unknown")
 
 
 if __name__ == "__main__":

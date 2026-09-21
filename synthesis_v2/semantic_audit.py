@@ -28,6 +28,10 @@ PHASE_DEFAULT_RATIOS: dict[str, tuple[float, float]] = {
     "retreat": (1.0, 1.0),
 }
 V_MIN_DEFAULT = 0.02
+SUPPORTED_VELOCITY_FIELDS = frozenset({"max_joint_vel", "min_joint_vel"})
+KNOWN_UNSUPPORTED_REQUEST_FIELDS = frozenset(
+    {"max_jerk", "kp_max", "kp_min", "grip_fraction_max", "grip_fraction_min"}
+)
 
 
 def _number(value: Any, path: str) -> float:
@@ -137,6 +141,43 @@ def _phase_observation(phase_metrics: Any, phase: str) -> dict[str, Any]:
     return {"status": "observed", "metrics": dict(value)}
 
 
+def _effective_phase_profile(spec: Mapping[str, Any], phase: str) -> tuple[float, float]:
+    """Resolve the velocity profile that a spec would apply to one phase.
+
+    This is deliberately limited to the public velocity contract.  It is used
+    to tell a redundant explicit override from a change in effective execution
+    parameters; it does not evaluate telemetry or physical qualification.
+    """
+    global_spec = _mapping(spec.get("global", {}), "spec.global")
+    phase_spec = _mapping(spec.get("phase_velocity", {}), "spec.phase_velocity")
+    global_v = _derive_velocity(
+        global_spec.get("max_joint_vel"),
+        global_spec.get("min_joint_vel"),
+        0.12,
+    )
+    global_a = max(0.01, global_v * 0.7)
+    if phase in phase_spec:
+        bounds = _mapping(phase_spec[phase], f"spec.phase_velocity.{phase}")
+        if not bounds:
+            return 0.12, 0.084
+        phase_v = _derive_velocity(
+            bounds.get("max_joint_vel"),
+            bounds.get("min_joint_vel"),
+            global_v,
+        )
+        return phase_v, max(0.01, phase_v * 0.7)
+    ratio_v, ratio_a = PHASE_DEFAULT_RATIOS[phase]
+    return max(0.02, global_v * ratio_v), max(0.01, global_a * ratio_a)
+
+
+def _profile_equal(left: tuple[float, float], right: tuple[float, float]) -> bool:
+    return all(isclose(a, b, rel_tol=0.0, abs_tol=1e-12) for a, b in zip(left, right))
+
+
+def _unsupported_field(field: str) -> bool:
+    return field not in SUPPORTED_VELOCITY_FIELDS
+
+
 def _request_semantic_diff(
     request: Mapping[str, Any] | None,
     candidate: Mapping[str, Any],
@@ -238,6 +279,113 @@ def _request_semantic_diff(
         ],
         "candidate_matches_request": not differences,
         "differences": differences,
+    }
+
+
+def classify_request_candidate_semantics(
+    request: Mapping[str, Any] | None,
+    candidate_preset: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Classify request-to-candidate differences without judging physics.
+
+    ``representation_difference`` means the effective velocity profile is
+    unchanged (for example, spelling out a neutral phase that already inherits
+    neutral global settings).  ``substantive_conflict`` means the effective
+    velocity profile or a supported phase scope changes.  ``unknown`` is used
+    for fields outside the v1 velocity-only proposal contract, such as jerk or
+    stiffness; omission there is an observability/contract gap rather than a
+    physical failure claim.
+    """
+    candidate = _mapping(candidate_preset, "candidate_preset")
+    diff_report = _request_semantic_diff(request, candidate)
+    if diff_report["status"] != "available":
+        return {
+            "schema": "mannercap-request-candidate-semantic-classification-v1",
+            "overall": "unknown",
+            "request_semantic_diff": diff_report,
+            "differences": [],
+            "manner_qualification": "unknown",
+            "physical_interpretation": "not_evaluated",
+        }
+
+    requested = diff_report["requested_spec"]
+    candidate_spec = diff_report["candidate_spec"]
+    classified: list[dict[str, Any]] = []
+    for item in diff_report["differences"]:
+        entry = dict(item)
+        kind = str(item["kind"])
+        path = str(item["path"])
+        field = path.rsplit(".", 1)[-1]
+        phase = path.split(".", 1)[1] if path.startswith("phase_velocity.") else None
+
+        if kind == "neutral_extra_constraints":
+            velocity_changed = any(
+                not _profile_equal(
+                    _effective_phase_profile(requested, candidate_phase),
+                    _effective_phase_profile(candidate_spec, candidate_phase),
+                )
+                for candidate_phase in PHASE_DEFAULT_RATIOS
+            )
+            unsupported_extra = any(
+                _unsupported_field(name)
+                for name in _mapping(candidate_spec.get("global", {}), "candidate.global")
+            )
+            if velocity_changed:
+                classification = "substantive_conflict"
+                reason = "candidate changes an effective velocity profile for a neutral request"
+            elif unsupported_extra:
+                classification = "unknown"
+                reason = "candidate adds a field outside the v1 velocity contract"
+            else:
+                classification = "representation_difference"
+                reason = "candidate adds only an equivalent explicit neutral representation"
+        elif kind in {"global_constraint_changed", "candidate_global_extra", "requested_global_missing"}:
+            if _unsupported_field(field):
+                classification = "unknown"
+                reason = f"global field {field!r} is outside the v1 velocity contract"
+            else:
+                classification = "substantive_conflict"
+                reason = f"supported global velocity field {field!r} differs"
+        elif phase is not None and kind in {
+            "candidate_phase_extra",
+            "requested_phase_missing",
+            "phase_constraint_changed",
+        }:
+            requested_profile = _effective_phase_profile(requested, phase)
+            candidate_profile = _effective_phase_profile(candidate_spec, phase)
+            if _profile_equal(requested_profile, candidate_profile):
+                classification = "representation_difference"
+                reason = "phase spelling changes but effective velocity profile is unchanged"
+            else:
+                classification = "substantive_conflict"
+                reason = "phase scope or velocity changes the effective execution profile"
+        else:
+            classification = "unknown"
+            reason = f"unrecognized semantic difference kind {kind!r}"
+        entry["classification"] = classification
+        entry["reason"] = reason
+        classified.append(entry)
+
+    classes = {entry["classification"] for entry in classified}
+    if "substantive_conflict" in classes:
+        overall = "substantive_conflict"
+    elif "unknown" in classes:
+        overall = "unknown"
+    elif "representation_difference" in classes:
+        overall = "representation_difference"
+    else:
+        overall = "match"
+    return {
+        "schema": "mannercap-request-candidate-semantic-classification-v1",
+        "overall": overall,
+        "request_semantic_diff": diff_report,
+        "differences": classified,
+        "contract": {
+            "supported_fields": sorted(SUPPORTED_VELOCITY_FIELDS),
+            "unknown_fields": sorted(KNOWN_UNSUPPORTED_REQUEST_FIELDS),
+        },
+        "manner_qualification": "unknown",
+        "physical_interpretation": "request_candidate_semantics_only",
     }
 
 
@@ -346,7 +494,10 @@ def require_valid_phase_semantics(report: Mapping[str, Any], *, context: str = "
 
 __all__ = [
     "PHASE_DEFAULT_RATIOS",
+    "KNOWN_UNSUPPORTED_REQUEST_FIELDS",
     "SemanticAuditError",
+    "SUPPORTED_VELOCITY_FIELDS",
     "audit_phase_semantics",
+    "classify_request_candidate_semantics",
     "require_valid_phase_semantics",
 ]
