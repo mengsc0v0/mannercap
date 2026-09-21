@@ -6,7 +6,7 @@
 
 运行目录：`/data/gaochuanhao/mannercap_runs/five_method_paired_v2_20260920`。
 
-运行提交：`ab6a21f`（执行时）；服务器随后快进到 `88154f1`，用于运行最新审计器。计划哈希为
+运行提交：`ab6a21f`（执行时）；服务器审计代码快进到 `5ffdfd2`，用于运行最新审计器。计划哈希为
 `b53161c4945f3da6ba7254f769d90c7446828eccfa6419166513dabd9cbd9d5b`。
 
 ## 矩阵与资源
@@ -28,13 +28,14 @@
 
 审计器检查了计划哈希、候选/结果/台账集合、每方法 8 条请求、原始请求快照、物理子步上限、执行积分与时间、API 资源、教师终态和三态验证字段。每方法的 `manner`、`safety`、`overall` 都保持 `unknown`，`publishable=false`，原因是独立校准仍待完成。
 
-跨方法初态/编译模型哈希检查形成 2 个精确组（Lift、Stack），每组包含该任务 4 个指令 × 5 方法的候选。最新 `explicit_neutral_v2` 检查比较实际执行参数与同任务 G0 基线，共 15 个显式空阶段检查通过。
+跨方法初态/编译模型哈希检查形成 2 个精确组（Lift、Stack），每组包含该任务 4 个指令 × 5 方法的候选。最新 `explicit_neutral_v2` 检查比较实际执行参数与同任务 G0 基线，共 15 个显式空阶段检查通过。语义审计进一步对 40/40 候选完成 240/240 个阶段参数检查，全部通过；阶段作用域统计为 `explicit_neutral=15`、`explicit_override=40`、`omitted_inherits_global=185`。这只是执行语义和记录完整性检查，不是方式或安全判定。
 
-M 的缓存提案来自 `qwen3.7-flash-2026-07-15`。提案 JSON 合法且已执行，但语义尚未签收：可见偏差包括 task-only neutral 请求出现速度约束、fast 请求出现额外阶段约束，以及组合请求出现缺失或不匹配的阶段约束。`requested_spec` 保留原始约束，`executed_parameters` 保留实际执行参数；后续应以独立规则审计目标阶段与非目标阶段行为，不能据此改写原请求或宣称模型理解正确。
+M 的缓存提案来自 `qwen3.7-flash-2026-07-15`。提案 JSON 合法且已执行，但请求到候选的语义一致性尚未签收：13/40 候选与原请求约束完全匹配，27/40 存在差异；按方法为 G0 2/8、G1 2/8、G2 1/8、G3 8/8、M 0/8 匹配。差异记录包含候选额外全局约束 11 条、候选额外阶段约束 27 条、neutral 额外约束 5 条、阶段约束改变 12 条、请求全局约束缺失 23 条、请求阶段约束缺失 22 条（这些是差异记录数，不是候选数）。可见偏差包括 task-only neutral 请求出现速度约束、fast 请求出现额外阶段约束，以及组合请求出现缺失或不匹配的阶段约束。`requested_spec` 保留原始约束，`executed_parameters` 保留实际执行参数；不能据此改写原请求或宣称模型理解正确。
 
 ## 工件与边界
 
 - 最新审计输出：`reports/gate2/five_method_audit_20260921.json`；文件 SHA-256 为 `538f1b3880192144f7546dac87df0d2af8729596492ca961431de6baf288e2bc`。
+- 含阶段语义审计的最新输出：`reports/gate2/five_method_audit_20260921_v2.json`；文件 SHA-256 为 `cca28cc7056f8e1f59a44b3242ccf04bb6c21c1300408d61f6c69f4c5421b5e9`。普通 Python 与 `python -O` 生成的服务器工件字节完全一致，均为 `valid=true`；服务器 `v2_opt` 工件未重复取回。
 - 完整运行清单：`reports/gate2/five_method_paired_v2_20260920.sha256`，289 行、覆盖运行目录全部 289 个文件（约 3.3 GiB）；逐行重算结果为 289/289 一致、0 缺失、0 多余，清单 SHA-256 为 `8abc31630057bbe24737d366a9fdf3c2890f20c5bcd9dc1000d63d837c6cc181`。
 - 服务器审计输出同上；服务器运行 `report.json` SHA-256 为 `26fb4f30e304d016966bd09464e0814627ff0b9af905f6f4cf990438bf541524`。
 - 服务器 `plan.json` SHA-256 为 `4e89a98c714a9ae77bf5f60d8d4dbbda9baaf723707f8f74084f433dba7a9370`；`run_manifest.json` SHA-256 为 `29e18886f56a88ef9ce0e3990ca7a67fff6636304b7250b518a5a18c358293c9`。
