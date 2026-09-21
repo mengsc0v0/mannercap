@@ -151,6 +151,15 @@ class SemanticAuditTests(unittest.TestCase):
         )
 
         result = classify_request_candidate_semantics(
+            {"requested_manner": {"global": {}, "phase_velocity": {}}},
+            {"global": {}, "phase_velocity": {"descend": {}}},
+        )
+        self.assertEqual(result["overall"], "substantive_conflict")
+        self.assertEqual(
+            result["differences"][0]["classification"], "substantive_conflict"
+        )
+
+        result = classify_request_candidate_semantics(
             {
                 "requested_manner": {
                     "global": {"max_joint_vel": 0.08, "max_jerk": 2.0},
