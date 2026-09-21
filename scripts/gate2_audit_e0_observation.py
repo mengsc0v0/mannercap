@@ -25,7 +25,7 @@ def audit(root):
     groups = defaultdict(set)
     rows_seen = set()
     totals = {}
-    for method in ("G0", "G1", "G2", "G3"):
+    for method in sorted({item['method'] for item in plan['candidates']}):
         rows = [json.loads(line) for line in (root / f"{method}_attempts.jsonl").read_text().splitlines()]
         request_attempts = defaultdict(list)
         resources = Counter()
@@ -61,11 +61,29 @@ def audit(root):
         assert all(sorted(indices) == list(range(1, plan["max_attempts"] + 1)) for indices in request_attempts.values())
         totals[method] = {"attempts": len(rows), "teacher_task_successes": success, "resources": dict(resources)}
     assert rows_seen == set(expected)
+    neutral_phase_checks = 0
+    if plan.get('phase_semantics') == 'explicit_neutral_v2':
+        # Compare applied commands with the same-task fixed neutral baseline,
+        # rather than merely checking the requested constraint representation.
+        neutral = {}
+        for key, item in expected.items():
+            if item['method'] == 'G0':
+                neutral[item['request']['task']] = observed[key]['executed_parameters']
+        if neutral:
+            for key, item in expected.items():
+                baseline = neutral[item['request']['task']]
+                for phase, bounds in item['proposal']['candidate_preset']['phase_velocity'].items():
+                    if bounds == {}:
+                        actual = observed[key]['executed_parameters']
+                        for field in ('phase_v_max', 'phase_a_max'):
+                            assert actual[field][phase] == baseline[field][phase], (key, phase, field)
+                        neutral_phase_checks += 1
     assert all(len(hashes) == 1 and all(all(v for v in pair) for pair in hashes) for hashes in groups.values())
     assert report["api_calls"] == report["accepted"] == 0
     return {"schema": "mannercap-e0-reconciliation-v1", "valid": True,
             "candidate_count": len(expected), "plan_sha256": plan["plan_sha256"],
             "methods": totals, "exact_initial_state_groups": len(groups),
+            "explicit_neutral_parameter_checks": neutral_phase_checks,
             "api_calls": 0, "accepted": 0, "promotion_allowed": False,
             "scope": "development_execution_and_accounting_only",
             "limitations": report["cost_limitations"]}
