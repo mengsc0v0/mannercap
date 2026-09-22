@@ -1,0 +1,972 @@
+{
+  "calibration": {
+    "candidate_ready": false,
+    "evidence_refs": [
+      {
+        "artifact_id": "gate1_force_calibration_protocol",
+        "path": "reports/gate1/force_calibration_protocol.md",
+        "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+      },
+      {
+        "artifact_id": "gate1_force_measurement_spec",
+        "path": "reports/gate1/force_measurement_spec.md",
+        "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+      },
+      {
+        "artifact_id": "gate1_wipe_controlled_load_spec",
+        "path": "reports/gate1/wipe_controlled_load_spec.md",
+        "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+      },
+      {
+        "artifact_id": "force_calibration_contract",
+        "path": "synthesis_v2/force_calibration.py",
+        "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+      },
+      {
+        "artifact_id": "contact_force_contract",
+        "path": "synthesis_v2/contact_force_contract.py",
+        "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+      },
+      {
+        "artifact_id": "trajectory_contract",
+        "path": "synthesis_v2/trajectory_contract.py",
+        "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+      }
+    ],
+    "evidence_sha256": null,
+    "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+    "status": "pending_calibration",
+    "version": "calibration-candidate.v1.pending"
+  },
+  "candidate_evidence": {
+    "candidate_ready": false,
+    "manifest_content_sha256": "1faea0844a1292558da06a79864bd1421a8c511fea360a122391680853632842",
+    "physical_qualification": "unknown",
+    "promotion_allowed": false,
+    "thresholds_frozen": false
+  },
+  "decision_contract": {
+    "dimensions": {
+      "manner": {
+        "states": [
+          "pass",
+          "fail",
+          "unknown"
+        ],
+        "unknown_is_qualified": false
+      },
+      "safety": {
+        "states": [
+          "pass",
+          "fail",
+          "unknown"
+        ],
+        "unknown_is_qualified": false
+      },
+      "task": {
+        "states": [
+          "pass",
+          "fail",
+          "unknown"
+        ],
+        "unknown_is_qualified": false
+      }
+    },
+    "joint_rule": {
+      "all_pass": "pass",
+      "any_fail": "fail",
+      "otherwise": "unknown"
+    },
+    "unknown_policy": "not_qualified"
+  },
+  "hash_algorithm": "sha256",
+  "public_generation": {
+    "allowed_fields": [
+      "task_id",
+      "phase",
+      "metric",
+      "unit",
+      "constraint_id",
+      "calibration.source_ref",
+      "calibration.version",
+      "calibration.evidence_refs",
+      "status"
+    ],
+    "config_id": "public_generation.candidate.v1",
+    "constraint_refs": [
+      "lift.approach.joint_velocity",
+      "lift.descend.joint_velocity",
+      "lift.grasp.gripper_fraction",
+      "lift.grasp.force_norm",
+      "lift.lift.joint_velocity",
+      "stack.approach.joint_velocity",
+      "stack.descend.joint_velocity",
+      "stack.grasp.gripper_fraction",
+      "stack.grasp.force_norm",
+      "stack.lift.joint_velocity",
+      "stack.transport.joint_velocity",
+      "stack.place.force_norm",
+      "stack.retreat.joint_velocity"
+    ],
+    "excluded_fields": [
+      "numeric_thresholds",
+      "sealed_final_audit_contents",
+      "final_audit_results"
+    ],
+    "final_audit_ref": {
+      "config_id": "sealed_final_audit.candidate.v1",
+      "visibility": "sealed_reference"
+    },
+    "visibility": "public"
+  },
+  "registry_id": "mannercap_gate2_constraint_registry_candidate",
+  "registry_version": "20260921.candidate.1",
+  "registry_version_hash": "699219e0db6ee045bbce7ba14fefbcda9a5747f9bbcc9332e5b4e12aaa4b962e",
+  "schema_version": "synthesis_v2.constraint_registry.v1",
+  "sealed_final_audit": {
+    "config_id": "sealed_final_audit.candidate.v1",
+    "config_ref": "sealed://mannercap/gate2/final_audit/candidate.v1.json",
+    "config_sha256": null,
+    "source_of_truth": "independent final-audit artifact; not visible to the generator",
+    "status": "sealed_pending",
+    "visibility": "sealed"
+  },
+  "status": "development_pending",
+  "tasks": [
+    {
+      "calibration_status": "pending_calibration",
+      "constraints": [
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "lift.approach.joint_velocity",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "joint_velocity",
+          "phase": "approach",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "approach"
+          },
+          "status": "pending_calibration",
+          "task_id": "lift",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "rad/s",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "lift.descend.joint_velocity",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "joint_velocity",
+          "phase": "descend",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "descend"
+          },
+          "status": "pending_calibration",
+          "task_id": "lift",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "rad/s",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "lift.grasp.gripper_fraction",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "gripper_fraction",
+          "phase": "grasp",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "grasp"
+          },
+          "status": "pending_calibration",
+          "task_id": "lift",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "fraction",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "lift.grasp.force_norm",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "force_norm",
+          "phase": "grasp",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "grasp"
+          },
+          "status": "pending_calibration",
+          "task_id": "lift",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "N",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "lift.lift.joint_velocity",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "joint_velocity",
+          "phase": "lift",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "lift"
+          },
+          "status": "pending_calibration",
+          "task_id": "lift",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "rad/s",
+          "unknown_policy": "not_qualified"
+        }
+      ],
+      "phases": [
+        "approach",
+        "descend",
+        "grasp",
+        "lift"
+      ],
+      "status": "supported",
+      "task_id": "lift"
+    },
+    {
+      "calibration_status": "pending_calibration",
+      "constraints": [
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "stack.approach.joint_velocity",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "joint_velocity",
+          "phase": "approach",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "approach"
+          },
+          "status": "pending_calibration",
+          "task_id": "stack",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "rad/s",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "stack.descend.joint_velocity",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "joint_velocity",
+          "phase": "descend",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "descend"
+          },
+          "status": "pending_calibration",
+          "task_id": "stack",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "rad/s",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "stack.grasp.gripper_fraction",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "gripper_fraction",
+          "phase": "grasp",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "grasp"
+          },
+          "status": "pending_calibration",
+          "task_id": "stack",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "fraction",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "stack.grasp.force_norm",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "force_norm",
+          "phase": "grasp",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "grasp"
+          },
+          "status": "pending_calibration",
+          "task_id": "stack",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "N",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "stack.lift.joint_velocity",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "joint_velocity",
+          "phase": "lift",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "lift"
+          },
+          "status": "pending_calibration",
+          "task_id": "stack",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "rad/s",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "stack.transport.joint_velocity",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "joint_velocity",
+          "phase": "transport",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "transport"
+          },
+          "status": "pending_calibration",
+          "task_id": "stack",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "rad/s",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "stack.place.force_norm",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "force_norm",
+          "phase": "place",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "place"
+          },
+          "status": "pending_calibration",
+          "task_id": "stack",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "N",
+          "unknown_policy": "not_qualified"
+        },
+        {
+          "calibration": {
+            "evidence_refs": [
+              {
+                "artifact_id": "gate1_force_calibration_protocol",
+                "path": "reports/gate1/force_calibration_protocol.md",
+                "sha256": "5f303adbc0503872f4321d01357f68cd95007df2b0ce69c1796355e0414f1e85"
+              },
+              {
+                "artifact_id": "gate1_force_measurement_spec",
+                "path": "reports/gate1/force_measurement_spec.md",
+                "sha256": "caecc1979e4c64bbd9d8d12b7e88901b9f71b0a1e2ea283ff13d6302fc434862"
+              },
+              {
+                "artifact_id": "gate1_wipe_controlled_load_spec",
+                "path": "reports/gate1/wipe_controlled_load_spec.md",
+                "sha256": "318ae5f610f1d18eac06b514f7356d445f6c151bf8d22771d50eef62ed756f3d"
+              },
+              {
+                "artifact_id": "force_calibration_contract",
+                "path": "synthesis_v2/force_calibration.py",
+                "sha256": "15da0e79d06be71aad4d7512f7ba1d895733abac6cda7dd71abed49bd97bed98"
+              },
+              {
+                "artifact_id": "contact_force_contract",
+                "path": "synthesis_v2/contact_force_contract.py",
+                "sha256": "c5557efa5aa041b3f9eebb4c134364f2a9558c537b9a234c50632c40ee6cb2b2"
+              },
+              {
+                "artifact_id": "trajectory_contract",
+                "path": "synthesis_v2/trajectory_contract.py",
+                "sha256": "e2a30072df23ac00945967fe3c212bd8d465e0b2e35cf5588799b47fd9a14221"
+              }
+            ],
+            "evidence_sha256": null,
+            "measurement_status": "unknown",
+            "source_ref": "reports/gate2/calibration_input_manifest_20260921.json",
+            "status": "pending_calibration",
+            "version": "calibration-candidate.v1.pending"
+          },
+          "constraint_id": "stack.retreat.joint_velocity",
+          "decision_dimensions": [
+            "task",
+            "manner",
+            "safety"
+          ],
+          "metric": "joint_velocity",
+          "phase": "retreat",
+          "scope": {
+            "kind": "stage",
+            "stage_instance_id": "retreat"
+          },
+          "status": "pending_calibration",
+          "task_id": "stack",
+          "thresholds": {
+            "lower": null,
+            "tolerance": null,
+            "upper": null
+          },
+          "unit": "rad/s",
+          "unknown_policy": "not_qualified"
+        }
+      ],
+      "phases": [
+        "approach",
+        "descend",
+        "grasp",
+        "lift",
+        "transport",
+        "place",
+        "retreat"
+      ],
+      "status": "supported",
+      "task_id": "stack"
+    }
+  ]
+}
