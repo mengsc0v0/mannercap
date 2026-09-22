@@ -1,0 +1,11 @@
+{
+  "schema": "mannercap-la4vla-student-dev-training.v1",
+  "status": "fail",
+  "phase": "startup",
+  "error_type": "AttributeError",
+  "error": "'Namespace' object has no attribute 'validation_dataset'",
+  "traceback": "Traceback (most recent call last):\n  File \"/data/gaochuanhao/mannercap/scripts/gate2_student_dev_train_eval.py\", line 551, in main\n    report = run(args)\n  File \"/data/gaochuanhao/mannercap/scripts/gate2_student_dev_train_eval.py\", line 280, in run\n    validation_stats_path = args.validation_dataset.resolve() / \"meta\" / \"stats.json\"\nAttributeError: 'Namespace' object has no attribute 'validation_dataset'\n",
+  "claim_boundary": "development_only",
+  "promotion_allowed": false,
+  "closed_loop_claim_allowed": false
+}

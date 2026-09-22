@@ -1,0 +1,80 @@
+{
+  "schema": "mannercap.la4vla.student_dev_resource_revision.v2",
+  "status": "registered_pre_run",
+  "attempt": "attempt03",
+  "plan_sha256": "fab616ecec7062653abd0c012e39805fb26f6b6df560e5e80d4ac88382f1a1f8",
+  "frozen_plan_sha256": "398337b4ea56e1a144c56577f179754a78b2558187e6dccdc69f8c1694204916",
+  "preflight": {
+    "server_alias": "4090x8",
+    "sample_interval_seconds": 10,
+    "samples": 3,
+    "timestamps": [
+      "2026-09-22T16:18:00+08:00",
+      "2026-09-22T16:18:10+08:00",
+      "2026-09-22T16:18:21+08:00"
+    ],
+    "gpu2_policy": "excluded by explicit no-touch policy; no process was stopped or reconfigured",
+    "gpu2_observed": {
+      "uuid": "GPU-8327fad2-6b42-c79c-1511-6b71339a77e8",
+      "memory_used_mib": [223, 223, 223],
+      "utilization_percent": [0, 0, 0],
+      "shared_context_pid": 4120646
+    },
+    "gpu3_to_7_observed": {
+      "gpu3": {
+        "uuid": "GPU-66762add-f2c3-6b72-093d-00a18d8d1718",
+        "memory_used_mib": [241, 241, 241],
+        "utilization_percent": [0, 0, 0],
+        "compute_processes": [[4120646, 198]]
+      },
+      "gpu4": {
+        "uuid": "GPU-3ffd7918-f6a9-7412-2923-b399baad0c99",
+        "memory_used_mib": [1073, 1073, 1073],
+        "utilization_percent": [7, 7, 0],
+        "compute_processes": [[4120646, 192], [4155389, 852]],
+        "eligible": false,
+        "reason": "exceeds sustained <=5% utilization and <1GiB policy"
+      },
+      "gpu5": {
+        "uuid": "GPU-8bbe2987-6ae0-65f1-0090-1eef62a2f1ff",
+        "memory_used_mib": [224, 224, 224],
+        "utilization_percent": [0, 0, 0],
+        "compute_processes": [[4120646, 192]],
+        "eligible": true
+      },
+      "gpu6": {
+        "uuid": "GPU-f8e6a235-a51f-8351-3bd5-7f9325c662dc",
+        "memory_used_mib": [224, 224, 224],
+        "utilization_percent": [0, 0, 0],
+        "compute_processes": [[4120646, 192]],
+        "eligible": true
+      },
+      "gpu7": {
+        "uuid": "GPU-0e0456b3-69ac-5486-50b9-bb1c1a397123",
+        "memory_used_mib": [225, 225, 225],
+        "utilization_percent": [0, 0, 0],
+        "compute_processes": [[4120646, 192]],
+        "eligible": true
+      }
+    }
+  },
+  "selection": {
+    "selected_index": 3,
+    "selected_uuid": "GPU-66762add-f2c3-6b72-093d-00a18d8d1718",
+    "reason": "lowest permitted index among GPU3-7 with sustained zero utilization and <1GiB memory; shared PID4120646 context is retained",
+    "cuda_visible_devices": "3",
+    "per_process_memory_cap_gib": 6,
+    "device_total_mib": 24564,
+    "per_process_memory_cap_fraction": 0.2550243988491941,
+    "no_exclusive_mode": true,
+    "no_other_process_modified": true
+  },
+  "run_budget_unchanged": {
+    "steps": 100,
+    "max_wall_seconds": 1200,
+    "max_new_disk_bytes": 16106127360,
+    "validation_ode_passes": 2,
+    "api_calls": 0,
+    "new_capture_candidates": 0
+  }
+}

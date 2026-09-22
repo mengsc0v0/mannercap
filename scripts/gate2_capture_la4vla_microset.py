@@ -45,6 +45,17 @@ def _read_transitions(path: Path) -> list[dict[str, Any]]:
         return [json.loads(line) for line in stream if line.strip()]
 
 
+def _canonical_sha256(value: Any) -> str:
+    payload = json.dumps(
+        value,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+        allow_nan=False,
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def episode_metadata(
     directory: Path, *, include_task_failures: bool = False
 ) -> dict[str, Any]:
@@ -166,6 +177,10 @@ def capture_episode(
             raise ValueError(f"expected two gripper qpos indices, got {gripper_indices}")
         for ordinal, start in enumerate(starts):
             source_state = transitions[start]["state_t"]
+            source_action_sequence = [
+                transitions[start + offset]["action_t"]
+                for offset in range(horizon)
+            ]
             _restore_state(env, source_state)
             image_paths: dict[str, str] = {}
             image_hashes: dict[str, str] = {}
@@ -219,6 +234,11 @@ def capture_episode(
                 "manner_tag": result.get("manner_tag", "unspecified"),
                 "requested_manner": result.get("requested_manner"),
                 "source_start_transition_zero_based": start,
+                "observation_render_source_transition_zero_based": start,
+                "observation_render_source_state_time_s": float(source_state["time_s"]),
+                "observation_render_source_state_sha256": _canonical_sha256(source_state),
+                "observation_render_before_action": True,
+                "source_action_t_sequence_sha256": _canonical_sha256(source_action_sequence),
                 "horizon": horizon,
                 "images": image_paths,
                 "image_sha256": image_hashes,

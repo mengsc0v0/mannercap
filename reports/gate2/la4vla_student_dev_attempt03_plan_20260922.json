@@ -1,0 +1,111 @@
+{
+  "schema": "mannercap.la4vla.student_dev_attempt_plan.v2",
+  "status": "registered_pre_run",
+  "date": "2026-09-22",
+  "timezone": "Asia/Shanghai",
+  "attempt": "attempt03",
+  "purpose": "Run the originally intended bounded action-head student development check against the frozen eight-source seed42 train bundle after attempt02 was classified as a source-lineage protocol deviation.",
+  "claim_boundary": "development_only_same_task_seed_holdout; no object generalization; no closed loop; no formal promotion",
+  "prior_evidence": {
+    "attempt02_report": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_training_20260921_attempt02.json",
+    "attempt02_report_sha256": "e6c3da461de0a8de720730bbac1073a0c10c84eab4ca9b6325d8dbc00981135e",
+    "attempt02_checkpoint_sha256": "16f5f4aaadc151c61c0792249f7868ac7cb299cf374754b8057ef0accf8ee3fc",
+    "attempt02_protocol_deviation_audit_sha256": "8b4d49ef601adfcf74af13c2218143c017e9c541451191233147bb62b4198ccb",
+    "old_startup_failure_sha256": "5cf7029fe892e7da3e82d54e400f1b26050dc9f5067b958b29e3a20fd51de448",
+    "budget_relationship": "attempt03 has a separately registered 100-step budget; no attempt02 weights, steps, captures, or outputs are reused"
+  },
+  "server": {
+    "alias": "4090x8",
+    "repo": "/data/gaochuanhao/mannercap",
+    "expected_head": "ee5507a79e6d519f8081cd871d3476bc0691c2e6",
+    "runner_sha256": "1d5f17273e9d590bc4d43ecdee73788e7aa80ce72bd412f59dcc0f4863996113"
+  },
+  "frozen_qc_guard": {
+    "plan_sha256": "398337b4ea56e1a144c56577f179754a78b2558187e6dccdc69f8c1694204916",
+    "qc_report": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_validation_qc_20260921.json",
+    "qc_report_sha256": "eb61775a7bc4937040c6a3a0113bd1ec49292d57b974dd19c178350c16eae684",
+    "qc_plan_sha256_must_equal": "398337b4ea56e1a144c56577f179754a78b2558187e6dccdc69f8c1694204916",
+    "loader_smoke_report_sha256": "9ca3f5e466d41295e2b76003afcf8c92159f5b59483475f67f6179abc0558487",
+    "normalization_override_sha256": "348d1a35789e6b22d3c072856eb394d89b949782a8e343ec7dc95c375e80b6b0",
+    "train_only_stats_sha256": "25c3024af82ca7d6b78c1444c8333a4488d8e3c70af0f4fdf7119b52e06c3496"
+  },
+  "dataset_contract": {
+    "train": {
+      "config": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918/dataset_config.yaml",
+      "config_sha256": "fc83f0ac0c71491c709f6eb782269ba13fd786d14873505576238a63e56f6df9",
+      "root": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918",
+      "source_manifest_sha256": "4482a57125bf834e5b37d56d64658d5a1af08fa5edb00643920ca8369ae714ab",
+      "info_sha256": "687622f36090f7db2aeff72b9287d80d1d85e18f1439721988557ff7d7f72489",
+      "tasks_sha256": "733b19c7d01af772e86ac497b8775a6138faeff6b65803bcb95954f41b25ee08",
+      "seed": 42,
+      "windows": 64,
+      "source_episode_count": 8,
+      "task_manner_contract": "lift and stack, each fast/fast_approach_slow_contact/neutral/slow, 8 windows per source"
+    },
+    "validation": {
+      "config": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921/dataset_config.yaml",
+      "config_sha256": "e96d04a59d62423a5187c2f3ccf4f4200839609556218d9575941ba1d2a2084c",
+      "root": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921",
+      "source_manifest_sha256": "1215a0944c3bfbf11739dfeb9175345b15eb4cf3ac840abfb78ac5310f1596a0",
+      "info_sha256": "687622f36090f7db2aeff72b9287d80d1d85e18f1439721988557ff7d7f72489",
+      "tasks_sha256": "733b19c7d01af772e86ac497b8775a6138faeff6b65803bcb95954f41b25ee08",
+      "seed": 43,
+      "windows": 64,
+      "source_episode_count": 8,
+      "development_observation_already_seen": true,
+      "sealed_formal_validation": false
+    },
+    "parquet_sha256_manifest_file": "reports/gate2/la4vla_student_dev_parquet_sha256_20260922.txt",
+    "parquet_sha256_manifest_file_sha256": "338b00e31a1b62882b336c72fb90e7f610ffaf794da6f2d3075d506e52dbfd4c",
+    "parquet_value_audit_sha256": "2aef815a537a4f2e67e4e1bd3fc789d38eb488b22109d2601ede38cb62ccc632",
+    "loader_max_samples_per_file": 50,
+    "horizon": 50,
+    "normalization": "train-only stats from frozen train bundle, bounds type; validation never contributes"
+  },
+  "model_contract": {
+    "source_checkpoint": "/data/gaochuanhao/la4vla/ckpts/libero_phasefocus35_from55k_lr1e6_1k/step_500/checkpoint.pt",
+    "source_checkpoint_sha256": "64e1ddac2d5c246dc331c2abbbff9fcc2099b55d5a87f9acc7b460f626640141",
+    "trainable_parameters": "action_head_only",
+    "steps": 100,
+    "learning_rate": 0.0001,
+    "batch_size": 8,
+    "seed": 20260921,
+    "fixed_checkpoint_count": 1,
+    "checkpoint_selection": "final step only; no validation-based selection",
+    "active_action_dimensions": 7,
+    "model_action_dimensions": 24,
+    "validation_ode_passes": 2,
+    "validation_noise_seed": 20261121,
+    "same_noise_seed_initial_final": true,
+    "inference": "model.predict_action(actions_gt=None)->action_head.get_action",
+    "metrics": ["7D per-dimension MAE", "7D per-dimension MSE", "overall MAE", "overall MSE", "fixed-noise flow loss"]
+  },
+  "resource_contract": {
+    "gpu_policy": "fresh GPU3-7 read-only 30-second utilization/memory preflight; lowest card sustained <=5% utilization and <1GiB total use; shared context allowed",
+    "gpu_memory_cap_gib": 6,
+    "wall_seconds": 1200,
+    "new_disk_gib": 15,
+    "api_calls": 0,
+    "new_capture_candidates": 0,
+    "closed_loop": false,
+    "formal_promotion": false,
+    "stop_on": ["source/QC/hash mismatch", "nonfinite loss", "checkpoint write failure", "wall cap", "disk cap", "GPU preflight failure"]
+  },
+  "attempt_artifacts": {
+    "training_report": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_training_20260922_attempt03.json",
+    "log": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_training_20260922_attempt03.log",
+    "checkpoint": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_checkpoint_20260922_attempt03.pt",
+    "train_cache": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_train_cache_20260922_attempt03",
+    "validation_cache": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_validation_cache_20260922_attempt03",
+    "old_outputs_preserved": true
+  },
+  "pre_run_assertions": [
+    "train config resolves to the frozen 8-source root and passes dataset binding",
+    "validation config resolves to the existing 8-source seed43 root and passes dataset binding",
+    "QC report SHA equals eb61775a7bc4937040c6a3a0113bd1ec49292d57b974dd19c178350c16eae684",
+    "QC plan_sha256 equals the frozen plan SHA",
+    "source checkpoint hash matches the registered value",
+    "attempt03 output and checkpoint paths do not exist",
+    "GPU selection is registered separately after fresh read-only preflight"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema": "mannercap-la4vla-packed-parquet-value-audit.v1",
+  "method": "server LA4VLA venv pyarrow read; sorted episode_000000..episode_000063 paired with source_staging_manifest windows in order",
+  "comparison": {
+    "float_tolerance": 1e-6,
+    "checked_fields": ["action", "observation_state", "task_index", "episode_index"],
+    "image_hash_evidence": "loader smoke checked 128 inline image hashes per actual train/validation split with zero mismatches"
+  },
+  "bundles": {
+    "frozen_train": {
+      "root": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918",
+      "parquet_files": 64,
+      "windows": 64,
+      "rows": 3200,
+      "rows_per_file": [50],
+      "action_values": 22400,
+      "state_values": 25600,
+      "action_state_mismatches": 0,
+      "max_action_abs_error": 0.0,
+      "max_state_abs_error": 0.0,
+      "task_index_mismatches": 0,
+      "episode_index_mismatches": 0,
+      "pass": true
+    },
+    "validation_seed43": {
+      "root": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921",
+      "parquet_files": 64,
+      "windows": 64,
+      "rows": 3200,
+      "rows_per_file": [50],
+      "action_values": 22400,
+      "state_values": 25600,
+      "action_state_mismatches": 0,
+      "max_action_abs_error": 0.0,
+      "max_state_abs_error": 0.0,
+      "task_index_mismatches": 0,
+      "episode_index_mismatches": 0,
+      "pass": true
+    },
+    "attempt02_train_deviation": {
+      "root": "/data/gaochuanhao/mannercap_runs/gate2_la4vla_microset_packed_20260918_attempt02",
+      "parquet_files": 64,
+      "windows": 64,
+      "rows": 3200,
+      "rows_per_file": [50],
+      "action_values": 22400,
+      "state_values": 25600,
+      "action_state_mismatches": 0,
+      "max_action_abs_error": 0.0,
+      "max_state_abs_error": 0.0,
+      "task_index_mismatches": 0,
+      "episode_index_mismatches": 0,
+      "pass": true,
+      "interpretation": "Payload values match the two-source manifest exactly; the manifest itself is the protocol deviation versus the frozen eight-source train manifest."
+    }
+  },
+  "timestamp_note": "Packed parquet timestamps use a global episode timeline while source manifest row timestamps are window-local; timestamps were not used for this action/state binding decision."
+}

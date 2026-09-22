@@ -19,5 +19,9 @@
 | Gate 2 人工金标 | B + 标注支持 | 64 条候选清单与盲化协议已生成 | 24 条双人独立标注；尚待分配标注员、实际标注与仲裁 |
 | Gate 2 数据划分 | B + D | 当前 128 条 source/window 全部锁为 development | 72 个 lineage 分组零泄漏；正式请求的四类用途与配额仍待冻结 |
 | Gate 2 E0/正式协议 | 项目负责人 | 预检已运行，协议草案已记录，正式协议未冻结 | 仍需资源预算、正式 split、封存集、人工金标、独立阈值和学生闭环协议 |
+| Gate 1 calibration reference `ee626e9` | A + B | 仅纳入台账，未改动工件 | 记录该校准参考提交供主 agent 验收；校准候选底层文件保持原样，contact-pair calibration 仍未验证，未放行物理阈值 |
+| Gate 2 学生 action-head bounded attempt02 | D 子 agent | 已完成但标记 protocol deviation | 原启动失败保留；attempt02 完成 100 steps、固定最终 checkpoint、初始/最终各一次 ODE，原始报告 status=pass 但 train 实际为 2-source `lift/stack` 包，不满足冻结 8-source seed42 QC；validation 8-source 绑定通过。完整 parquet SHA、manifest/source/task×manner 对齐审计与结果均已保存；不得按冻结 plan 通过、不得泛化/闭环/正式推广，attempt03 需新计划/新预算 |
+| Gate 2 学生数据绑定守门 | D 子 agent | 修复与回归通过 | runner 从 config 解析 dataset root，fail-closed 比对 QC manifest/file SHA、source IDs/count、task×manner、initial-state/result hashes、window counts 与 metadata；8 个聚焦测试通过；不重训、不覆盖旧证据 |
+| Gate 2 学生 action-head bounded attempt03 | D 子 agent | PASS（development-only） | 正确冻结 8-source seed42 train + 8-source seed43 development holdout；100 steps、7D adapter 导出动作单位的真实 ODE 初/终 MAE/MSE、固定 final checkpoint；wall 227.13s、GPU3 peak 4.34GB、new disk 1.812GB、API=0；同噪声 seed 两次验证。7D 指标是复用 train-only stats 后的 adapter 控制输入单位，不是米/弧度物理误差；单 seed 小开发观察，不作方式学习/泛化/闭环结论。attempt02+03 共 200 optimizer steps，已知训练 wall 548.8265+227.1302=775.9567s；旧 startup 耗时 unknown，capture/setup 未计入。旧 failure 与 attempt02 protocol deviation/cost 均保留；详见 `reports/gate2/la4vla_student_dev_attempt03_report_20260922.md` 与 result manifest |
 
 运行限制：当前只做开发与校准；不将 unknown 计作成功，不启动正式扩量或长训练。

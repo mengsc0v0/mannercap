@@ -1,0 +1,582 @@
+{
+  "schema": "mannercap-la4vla-student-dev-training.v1",
+  "status": "pass",
+  "claim_boundary": "development_only_same_task_seed_holdout",
+  "formal_split_assignment": "development",
+  "promotion_allowed": false,
+  "closed_loop_claim_allowed": false,
+  "generalization_claim_allowed": false,
+  "plan_sha256": "398337b4ea56e1a144c56577f179754a78b2558187e6dccdc69f8c1694204916",
+  "attempt_plan_sha256": "fab616ecec7062653abd0c012e39805fb26f6b6df560e5e80d4ac88382f1a1f8",
+  "source_checkpoint": {
+    "path": "/data/gaochuanhao/la4vla/ckpts/libero_phasefocus35_from55k_lr1e6_1k/step_500/checkpoint.pt",
+    "sha256": "64e1ddac2d5c246dc331c2abbbff9fcc2099b55d5a87f9acc7b460f626640141"
+  },
+  "train_dataset": {
+    "config": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918/dataset_config.yaml",
+    "cache": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_train_cache_20260922_attempt03",
+    "windows": 64,
+    "source_seed": 42,
+    "binding": {
+      "schema": "mannercap-la4vla-dataset-binding.v1",
+      "status": "pass",
+      "split": "train",
+      "config": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918/dataset_config.yaml",
+      "config_sha256": "fc83f0ac0c71491c709f6eb782269ba13fd786d14873505576238a63e56f6df9",
+      "dataset_root": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918",
+      "manifest": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918/source_staging_manifest.json",
+      "manifest_sha256": "4482a57125bf834e5b37d56d64658d5a1af08fa5edb00643920ca8369ae714ab",
+      "qc_manifest": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918/source_staging_manifest.json",
+      "qc_manifest_sha256": "4482a57125bf834e5b37d56d64658d5a1af08fa5edb00643920ca8369ae714ab",
+      "info_sha256": "687622f36090f7db2aeff72b9287d80d1d85e18f1439721988557ff7d7f72489",
+      "tasks_sha256": "733b19c7d01af772e86ac497b8775a6138faeff6b65803bcb95954f41b25ee08",
+      "normalization_type": "bounds",
+      "sample_count": 64,
+      "horizon": 50,
+      "source_episode_ids": [
+        "d0-lift-seed-42-fast",
+        "d0-lift-seed-42-fast_approach_slow_contact",
+        "d0-lift-seed-42-neutral",
+        "d0-lift-seed-42-slow",
+        "d0-stack-seed-42-fast",
+        "d0-stack-seed-42-fast_approach_slow_contact",
+        "d0-stack-seed-42-neutral",
+        "d0-stack-seed-42-slow"
+      ],
+      "source_episode_count": 8,
+      "source_window_counts": {
+        "d0-lift-seed-42-neutral": 8,
+        "d0-lift-seed-42-slow": 8,
+        "d0-lift-seed-42-fast": 8,
+        "d0-lift-seed-42-fast_approach_slow_contact": 8,
+        "d0-stack-seed-42-neutral": 8,
+        "d0-stack-seed-42-slow": 8,
+        "d0-stack-seed-42-fast": 8,
+        "d0-stack-seed-42-fast_approach_slow_contact": 8
+      },
+      "task_manner_pairs": [
+        [
+          "lift",
+          "fast"
+        ],
+        [
+          "lift",
+          "fast_approach_slow_contact"
+        ],
+        [
+          "lift",
+          "neutral"
+        ],
+        [
+          "lift",
+          "slow"
+        ],
+        [
+          "stack",
+          "fast"
+        ],
+        [
+          "stack",
+          "fast_approach_slow_contact"
+        ],
+        [
+          "stack",
+          "neutral"
+        ],
+        [
+          "stack",
+          "slow"
+        ]
+      ],
+      "source_initial_state_hashes": [
+        "2e866b28bdca1dfaeba3bcc2d30ac65acf23930987c79e6c251ac00efed3fc79",
+        "db368d81ec252a88553e3e5d7f365b37fa72b4e915389674fb9a77047c092e7d"
+      ],
+      "source_result_hash_count": 8,
+      "info": {
+        "independent_source_episode_count": 8,
+        "total_episodes": 64,
+        "total_tasks": 8,
+        "source_manner_tags": [
+          "fast",
+          "fast_approach_slow_contact",
+          "neutral",
+          "slow"
+        ]
+      },
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Approach the cube quickly, then contact it and lift it slowly."
+        },
+        {
+          "task_index": 1,
+          "task": "Approach the red cube quickly, then contact it and stack it slowly."
+        },
+        {
+          "task_index": 2,
+          "task": "Lift the cube quickly."
+        },
+        {
+          "task_index": 3,
+          "task": "Lift the cube slowly."
+        },
+        {
+          "task_index": 4,
+          "task": "Lift the cube."
+        },
+        {
+          "task_index": 5,
+          "task": "Stack the red cube on the green cube quickly."
+        },
+        {
+          "task_index": 6,
+          "task": "Stack the red cube on the green cube slowly."
+        },
+        {
+          "task_index": 7,
+          "task": "Stack the red cube on the green cube."
+        }
+      ],
+      "expected_qc": {
+        "manifest": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918/source_staging_manifest.json",
+        "seed": 42,
+        "source_episode_ids": [
+          "d0-lift-seed-42-fast",
+          "d0-lift-seed-42-fast_approach_slow_contact",
+          "d0-lift-seed-42-neutral",
+          "d0-lift-seed-42-slow",
+          "d0-stack-seed-42-fast",
+          "d0-stack-seed-42-fast_approach_slow_contact",
+          "d0-stack-seed-42-neutral",
+          "d0-stack-seed-42-slow"
+        ],
+        "source_episode_count": 8,
+        "source_window_counts": {
+          "d0-lift-seed-42-neutral": 8,
+          "d0-lift-seed-42-slow": 8,
+          "d0-lift-seed-42-fast": 8,
+          "d0-lift-seed-42-fast_approach_slow_contact": 8,
+          "d0-stack-seed-42-neutral": 8,
+          "d0-stack-seed-42-slow": 8,
+          "d0-stack-seed-42-fast": 8,
+          "d0-stack-seed-42-fast_approach_slow_contact": 8
+        },
+        "windows": 64,
+        "source_initial_state_hashes": [
+          "2e866b28bdca1dfaeba3bcc2d30ac65acf23930987c79e6c251ac00efed3fc79",
+          "db368d81ec252a88553e3e5d7f365b37fa72b4e915389674fb9a77047c092e7d"
+        ],
+        "source_result_hash_count": 8,
+        "task_manner_pairs": [
+          [
+            "lift",
+            "fast"
+          ],
+          [
+            "lift",
+            "fast_approach_slow_contact"
+          ],
+          [
+            "lift",
+            "neutral"
+          ],
+          [
+            "lift",
+            "slow"
+          ],
+          [
+            "stack",
+            "fast"
+          ],
+          [
+            "stack",
+            "fast_approach_slow_contact"
+          ],
+          [
+            "stack",
+            "neutral"
+          ],
+          [
+            "stack",
+            "slow"
+          ]
+        ]
+      },
+      "mismatches": []
+    }
+  },
+  "validation_dataset": {
+    "config": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921/dataset_config.yaml",
+    "cache": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_validation_cache_20260922_attempt03",
+    "windows": 64,
+    "source_seed": 43,
+    "normalization_source": "train_only",
+    "normalization_sha256": "25c3024af82ca7d6b78c1444c8333a4488d8e3c70af0f4fdf7119b52e06c3496",
+    "binding": {
+      "schema": "mannercap-la4vla-dataset-binding.v1",
+      "status": "pass",
+      "split": "validation",
+      "config": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921/dataset_config.yaml",
+      "config_sha256": "e96d04a59d62423a5187c2f3ccf4f4200839609556218d9575941ba1d2a2084c",
+      "dataset_root": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921",
+      "manifest": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921/source_staging_manifest.json",
+      "manifest_sha256": "1215a0944c3bfbf11739dfeb9175345b15eb4cf3ac840abfb78ac5310f1596a0",
+      "qc_manifest": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_capture_20260921/staging_manifest.json",
+      "qc_manifest_sha256": "1215a0944c3bfbf11739dfeb9175345b15eb4cf3ac840abfb78ac5310f1596a0",
+      "info_sha256": "687622f36090f7db2aeff72b9287d80d1d85e18f1439721988557ff7d7f72489",
+      "tasks_sha256": "733b19c7d01af772e86ac497b8775a6138faeff6b65803bcb95954f41b25ee08",
+      "normalization_type": "bounds",
+      "sample_count": 64,
+      "horizon": 50,
+      "source_episode_ids": [
+        "d0-lift-seed-43-fast",
+        "d0-lift-seed-43-fast_approach_slow_contact",
+        "d0-lift-seed-43-neutral",
+        "d0-lift-seed-43-slow",
+        "d0-stack-seed-43-fast",
+        "d0-stack-seed-43-fast_approach_slow_contact",
+        "d0-stack-seed-43-neutral",
+        "d0-stack-seed-43-slow"
+      ],
+      "source_episode_count": 8,
+      "source_window_counts": {
+        "d0-lift-seed-43-neutral": 8,
+        "d0-lift-seed-43-slow": 8,
+        "d0-lift-seed-43-fast": 8,
+        "d0-lift-seed-43-fast_approach_slow_contact": 8,
+        "d0-stack-seed-43-neutral": 8,
+        "d0-stack-seed-43-slow": 8,
+        "d0-stack-seed-43-fast": 8,
+        "d0-stack-seed-43-fast_approach_slow_contact": 8
+      },
+      "task_manner_pairs": [
+        [
+          "lift",
+          "fast"
+        ],
+        [
+          "lift",
+          "fast_approach_slow_contact"
+        ],
+        [
+          "lift",
+          "neutral"
+        ],
+        [
+          "lift",
+          "slow"
+        ],
+        [
+          "stack",
+          "fast"
+        ],
+        [
+          "stack",
+          "fast_approach_slow_contact"
+        ],
+        [
+          "stack",
+          "neutral"
+        ],
+        [
+          "stack",
+          "slow"
+        ]
+      ],
+      "source_initial_state_hashes": [
+        "0ddb5b64e10aed69f86855688efaab49f6abe96c13bcda25b64ef8e3fd883d69",
+        "3e63ae2f32726a400db323268123040937e1f5337488c739618d871c0ba508e4"
+      ],
+      "source_result_hash_count": 8,
+      "info": {
+        "independent_source_episode_count": 8,
+        "total_episodes": 64,
+        "total_tasks": 8,
+        "source_manner_tags": [
+          "fast",
+          "fast_approach_slow_contact",
+          "neutral",
+          "slow"
+        ]
+      },
+      "tasks": [
+        {
+          "task_index": 0,
+          "task": "Approach the cube quickly, then contact it and lift it slowly."
+        },
+        {
+          "task_index": 1,
+          "task": "Approach the red cube quickly, then contact it and stack it slowly."
+        },
+        {
+          "task_index": 2,
+          "task": "Lift the cube quickly."
+        },
+        {
+          "task_index": 3,
+          "task": "Lift the cube slowly."
+        },
+        {
+          "task_index": 4,
+          "task": "Lift the cube."
+        },
+        {
+          "task_index": 5,
+          "task": "Stack the red cube on the green cube quickly."
+        },
+        {
+          "task_index": 6,
+          "task": "Stack the red cube on the green cube slowly."
+        },
+        {
+          "task_index": 7,
+          "task": "Stack the red cube on the green cube."
+        }
+      ],
+      "expected_qc": {
+        "manifest": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_capture_20260921/staging_manifest.json",
+        "seed": 43,
+        "source_episode_ids": [
+          "d0-lift-seed-43-fast",
+          "d0-lift-seed-43-fast_approach_slow_contact",
+          "d0-lift-seed-43-neutral",
+          "d0-lift-seed-43-slow",
+          "d0-stack-seed-43-fast",
+          "d0-stack-seed-43-fast_approach_slow_contact",
+          "d0-stack-seed-43-neutral",
+          "d0-stack-seed-43-slow"
+        ],
+        "source_episode_count": 8,
+        "source_window_counts": {
+          "d0-lift-seed-43-neutral": 8,
+          "d0-lift-seed-43-slow": 8,
+          "d0-lift-seed-43-fast": 8,
+          "d0-lift-seed-43-fast_approach_slow_contact": 8,
+          "d0-stack-seed-43-neutral": 8,
+          "d0-stack-seed-43-slow": 8,
+          "d0-stack-seed-43-fast": 8,
+          "d0-stack-seed-43-fast_approach_slow_contact": 8
+        },
+        "windows": 64,
+        "source_initial_state_hashes": [
+          "0ddb5b64e10aed69f86855688efaab49f6abe96c13bcda25b64ef8e3fd883d69",
+          "3e63ae2f32726a400db323268123040937e1f5337488c739618d871c0ba508e4"
+        ],
+        "source_result_hash_count": 8,
+        "task_manner_pairs": [
+          [
+            "lift",
+            "fast"
+          ],
+          [
+            "lift",
+            "fast_approach_slow_contact"
+          ],
+          [
+            "lift",
+            "neutral"
+          ],
+          [
+            "lift",
+            "slow"
+          ],
+          [
+            "stack",
+            "fast"
+          ],
+          [
+            "stack",
+            "fast_approach_slow_contact"
+          ],
+          [
+            "stack",
+            "neutral"
+          ],
+          [
+            "stack",
+            "slow"
+          ]
+        ]
+      },
+      "mismatches": []
+    }
+  },
+  "loader_contract": {
+    "max_samples_per_file": 50,
+    "effective_train_windows": 64,
+    "effective_validation_windows": 64,
+    "action_horizon": 50,
+    "active_action_dimensions": 7,
+    "model_action_dimensions": 24,
+    "normalization_type": "bounds"
+  },
+  "training": {
+    "steps": 100,
+    "seed": 20260921,
+    "learning_rate": 0.0001,
+    "batch_size": 8,
+    "trainable_parameter_count": 122029360,
+    "samples_seen": 800,
+    "frames_seen": 40000,
+    "scalar_action_targets_seen": 280000,
+    "loss_first": 0.19574812054634094,
+    "loss_last": 0.14222115278244019,
+    "loss_minimum": 0.08444379270076752,
+    "all_losses_finite": true,
+    "peak_gpu_allocated_bytes": 4339100160
+  },
+  "checkpoint": {
+    "path": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_checkpoint_20260922_attempt03.pt",
+    "sha256": "61810299a72aa829f5542c7eb8b4d2d5587eeb274faae3925c429935fd88b9c6",
+    "count": 1,
+    "selection": "final_step_only"
+  },
+  "fixed_noise_flow_loss": {
+    "seed": 20261021,
+    "initial_train": 0.25583949126303196,
+    "final_train": 0.16085820831358433,
+    "initial_validation": 0.2530226707458496,
+    "final_validation": 0.16095621697604656
+  },
+  "initial_ode": {
+    "train": {
+      "seed": 20261121,
+      "samples": 64,
+      "frames": 3200,
+      "active_action_dimensions": 7,
+      "units": "exported_7d_normalized_action_units_after_train_stats_denormalization",
+      "inference_method": "model.predict_action(actions_gt=None)->action_head.get_action",
+      "per_dimension_mae": [
+        0.007659914102405309,
+        0.10357258438598364,
+        0.022281663020839913,
+        0.008608603592874716,
+        0.0020701680998899976,
+        0.06782166776014492,
+        0.6739582461491227
+      ],
+      "per_dimension_mse": [
+        9.839333326753396e-05,
+        0.012039451448792947,
+        0.0008015492390274996,
+        7.779408992033043e-05,
+        9.253927912810085e-06,
+        0.00479964359755013,
+        1.1659169376514815
+      ],
+      "overall_mae": 0.12656754958732302,
+      "overall_mse": 0.16910614618399325
+    },
+    "validation": {
+      "seed": 20261121,
+      "samples": 64,
+      "frames": 3200,
+      "active_action_dimensions": 7,
+      "units": "exported_7d_normalized_action_units_after_train_stats_denormalization",
+      "inference_method": "model.predict_action(actions_gt=None)->action_head.get_action",
+      "per_dimension_mae": [
+        0.007703394743148237,
+        0.10409690394066275,
+        0.022517412980087102,
+        0.008382009069464402,
+        0.002025700256053824,
+        0.06788209327030927,
+        0.649268539790064
+      ],
+      "per_dimension_mse": [
+        9.87388512364481e-05,
+        0.012153718802004427,
+        0.0008253474409705763,
+        7.575446006762993e-05,
+        8.937918870219895e-06,
+        0.004805813975169279,
+        1.1234855730794084
+      ],
+      "overall_mae": 0.12312515057854137,
+      "overall_mse": 0.16306484064681812
+    }
+  },
+  "final_ode": {
+    "train": {
+      "seed": 20261121,
+      "samples": 64,
+      "frames": 3200,
+      "active_action_dimensions": 7,
+      "units": "exported_7d_normalized_action_units_after_train_stats_denormalization",
+      "inference_method": "model.predict_action(actions_gt=None)->action_head.get_action",
+      "per_dimension_mae": [
+        0.007603922750859055,
+        0.02175985837355256,
+        0.013778112025465816,
+        0.0032293817997560838,
+        0.001231480565475067,
+        0.020169975543394683,
+        0.40580226833000776
+      ],
+      "per_dimension_mse": [
+        8.888943913957458e-05,
+        0.00077399784606534,
+        0.0003313013441484345,
+        1.9015170233251886e-05,
+        2.7231669023018826e-06,
+        0.000760139478558531,
+        0.427274237118757
+      ],
+      "overall_mae": 0.06765357134121586,
+      "overall_mse": 0.06132147193768635
+    },
+    "validation": {
+      "seed": 20261121,
+      "samples": 64,
+      "frames": 3200,
+      "active_action_dimensions": 7,
+      "units": "exported_7d_normalized_action_units_after_train_stats_denormalization",
+      "inference_method": "model.predict_action(actions_gt=None)->action_head.get_action",
+      "per_dimension_mae": [
+        0.0077082064462592826,
+        0.022007539635524154,
+        0.01381059578154236,
+        0.0030945457530469865,
+        0.001213975730788661,
+        0.021030015747528524,
+        0.40116943668574095
+      ],
+      "per_dimension_mse": [
+        9.183167803218793e-05,
+        0.0008137320779003232,
+        0.0003355114099277209,
+        1.7675189122926273e-05,
+        2.698164217291014e-06,
+        0.0008696895266288744,
+        0.4190244576043387
+      ],
+      "overall_mae": 0.06714775939720442,
+      "overall_mse": 0.06016508509288115
+    },
+    "validation_passes": 2,
+    "validation_noise_seed": 20261121
+  },
+  "validation_sampling": {
+    "passes": 2,
+    "initial_noise_seed": 20261121,
+    "final_noise_seed": 20261121,
+    "same_noise_seed": true
+  },
+  "artifacts": {
+    "train_stats_sha256": "25c3024af82ca7d6b78c1444c8333a4488d8e3c70af0f4fdf7119b52e06c3496",
+    "qc_report_sha256": "eb61775a7bc4937040c6a3a0113bd1ec49292d57b974dd19c178350c16eae684",
+    "loader_smoke_report_sha256": "9ca3f5e466d41295e2b76003afcf8c92159f5b59483475f67f6179abc0558487"
+  },
+  "resources": {
+    "cuda_visible_devices": "3",
+    "wall_seconds": 227.13020245963708,
+    "max_wall_seconds": 1200.0,
+    "peak_gpu_allocated_bytes": 4339100160,
+    "gpu_memory_cap_bytes": 6442450944,
+    "gpu_memory_cap_fraction": 0.2550243988491941,
+    "new_disk_bytes": 1811971519,
+    "disk_cap_bytes": 16106127360
+  },
+  "api_calls": 0
+}

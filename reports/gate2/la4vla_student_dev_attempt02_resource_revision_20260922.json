@@ -1,0 +1,67 @@
+{
+  "schema": "mannercap.la4vla.student_dev_resource_revision.v1",
+  "status": "registered_pre_run",
+  "date": "2026-09-22",
+  "timezone": "Asia/Shanghai",
+  "attempt": "attempt02",
+  "base_plan": {
+    "path": "reports/gate2/la4vla_student_dev_attempt02_plan_20260922.json",
+    "sha256": "c3c9b924fcecb8ddc68aa69b6192d3aa9f4599dd7106ded8b15c77c3f2bb9e7b"
+  },
+  "blocked_original_resource": {
+    "gpu_index": 2,
+    "uuid": "GPU-8327fad2-6b42-c79c-1511-6b71339a77e8",
+    "memory_used_mib": 4138,
+    "utilization_percent": 0,
+    "process": "PID 4098072 root scripts/run_robotwin_dual.py",
+    "decision": "not used; no process was stopped or modified"
+  },
+  "sampling_preflight": {
+    "sample_count": 3,
+    "interval_seconds": 10,
+    "gpu_indices": [3, 4, 5, 6, 7],
+    "observations": [
+      {
+        "sample": 1,
+        "memory_used_mib": {"3": 241, "4": 216, "5": 224, "6": 224, "7": 225},
+        "utilization_percent": {"3": 0, "4": 0, "5": 0, "6": 0, "7": 0},
+        "pid_4120646_memory_mib": {"3": 198, "4": 192, "5": 192, "6": 192, "7": 192}
+      },
+      {
+        "sample": 2,
+        "memory_used_mib": {"3": 241, "4": 216, "5": 224, "6": 224, "7": 225},
+        "utilization_percent": {"3": 0, "4": 0, "5": 0, "6": 0, "7": 0},
+        "pid_4120646_memory_mib": {"3": 198, "4": 192, "5": 192, "6": 192, "7": 192}
+      },
+      {
+        "sample": 3,
+        "memory_used_mib": {"3": 241, "4": 216, "5": 224, "6": 224, "7": 225},
+        "utilization_percent": {"3": 0, "4": 0, "5": 0, "6": 0, "7": 0},
+        "pid_4120646_memory_mib": {"3": 198, "4": 192, "5": 192, "6": 192, "7": 192}
+      }
+    ],
+    "interpretation": "all candidate cards stayed at 0% GPU utilization and below 1 GiB total memory; the shared 192-198 MiB CUDA context was retained by PID 4120646 and was not interrupted"
+  },
+  "selected_resource": {
+    "gpu_index": 3,
+    "uuid": "GPU-66762add-f2c3-6b72-093d-00a18d8d1718",
+    "cuda_visible_devices": "3",
+    "preflight_memory_used_mib": 241,
+    "preflight_utilization_percent": 0,
+    "shared_pid_4120646_memory_mib": 198,
+    "per_process_memory_cap_gib": 6,
+    "per_process_memory_cap_enforcement": "torch.cuda.set_per_process_memory_fraction before model load"
+  },
+  "unchanged_contract": {
+    "training_steps_max": 100,
+    "validation_ode_passes": 2,
+    "wall_seconds": 1200,
+    "new_disk_gib": 15,
+    "new_capture_candidates": 0,
+    "api_calls": 0,
+    "closed_loop": false,
+    "formal_promotion": false,
+    "checkpoint_selection": "final step only"
+  },
+  "claim_boundary": "development_only_same_task_seed_holdout; no object generalization; no closed loop; no formal promotion"
+}
