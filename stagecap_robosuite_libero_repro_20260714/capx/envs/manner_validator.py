@@ -91,6 +91,31 @@ class PhaseVelocity:
     min_joint_vel: float | None = None
 
 
+# Phase labels that correspond to profiled Cartesian/joint *moves* (as tagged
+# by run_manner_ablation runners via goto_pose_with_profile(phase=...)).
+# Telemetry stores these as BARE names (e.g. 'approach'), while older code /
+# specs may still use the literal 'move' or a 'move:<phase>' prefix. _is_move
+# accepts all three so velocity/jerk checks slice the right steps.
+MOVE_PHASES = frozenset({
+    "move", "approach", "descend", "lift", "transport", "final", "retreat",
+})
+
+
+def _is_move(phase: str) -> bool:
+    """True if a telemetry phase label denotes a profiled move segment."""
+    return phase in MOVE_PHASES or phase.startswith("move:")
+
+
+def spec_has_phase_constraint(phase_velocity) -> bool:
+    """True if any phase entry in a phase_velocity dict sets a real bound."""
+    if not phase_velocity:
+        return False
+    return any(
+        ov.max_joint_vel is not None or ov.min_joint_vel is not None
+        for ov in phase_velocity.values()
+    )
+
+
 @dataclass
 class MannerSpec:
     """Physical constraints for one manner-conditioned execution stage.
@@ -145,7 +170,7 @@ class MannerSpec:
 
     def has_any_constraint(self) -> bool:
         """Return True if at least one constraint is defined."""
-        return any(
+        flat_any = any(
             v is not None
             for v in (
                 self.max_joint_vel, self.min_joint_vel,
@@ -154,6 +179,14 @@ class MannerSpec:
                 self.max_jerk,
             )
         )
+        # A phase_velocity-only spec (no flat fallback field set) previously
+        # slipped through here as "no constraint", silently skipping both
+        # MannerValidator.validate() and compute_alignment_score() gating in
+        # run_manner_ablation.py. All production mock/LLM specs so far always
+        # pair phase_velocity with >=1 flat field, so this had no observed
+        # regression, but is fixed here for correctness (2026-09-11).
+        phase_any = bool(spec_has_phase_constraint(self.phase_velocity))
+        return flat_any or phase_any
 
 
 @dataclass
@@ -186,6 +219,194 @@ class DimensionResult:
     measured: float                 # key measured statistic
     threshold: float | None         # the applied limit
     detail: str                     # one-line explanation
+
+
+@dataclass
+class DimensionAlignment:
+    """Continuous [0,1] language-alignment score for one manner dimension.
+
+    Unlike ``DimensionResult`` (hard pass/fail gate used for L2 status /
+    repair-retry decisions), this expresses *how well* the executed physical
+    statistic matches what the instruction implied, as a smooth margin score
+    suitable for averaging/reporting (e.g. "manner sensitivity" ablations,
+    counterfactual-swap tests) instead of a single binary bit.
+    """
+
+    dim: str                 # "A"/"B"/"C"/"D" (same taxonomy as DimensionResult)
+    name: str                # e.g. "joint_vel_upper", "joint_vel_upper:approach"
+    phase: str                # "__all__" (episode-wide) or a named sub-phase
+    score: float              # 1.0 = fully aligned, decays toward 0.0
+    measured: float
+    threshold: float
+    direction: str            # "upper" (measured should stay <= threshold) or
+                               # "lower" (measured should stay >= threshold)
+
+
+@dataclass
+class AlignmentReport:
+    """Aggregate language-alignment score for one executed trajectory."""
+
+    stage_id: str
+    dimensions: list = field(default_factory=list)    # list[DimensionAlignment]
+    phase_scores: dict = field(default_factory=dict)  # phase -> mean score
+    overall_score: float | None = None                # mean over all dimensions
+    label: str = ""
+
+
+def _bound_score(
+    measured: float, threshold: float, tolerance: float, direction: str,
+) -> float:
+    """Smooth [0,1] alignment score for a one-sided physical bound.
+
+    ``direction="upper"``: instruction implies measured should stay <=
+    threshold (e.g. "slowly" caps joint velocity). Score is 1.0 while
+    compliant and decays exponentially as ``measured`` exceeds ``threshold``.
+
+    ``direction="lower"``: instruction implies measured should stay >=
+    threshold (e.g. "firmly" needs a minimum grip force/stiffness). Score
+    decays as ``measured`` falls short of ``threshold``.
+
+    ``tolerance`` reuses ``MannerSpec.tolerance`` semantics: a larger
+    tolerance means a more forgiving falloff, keeping this continuous score
+    directionally consistent with the existing binary pass/fail checks.
+    """
+    if threshold is None or threshold == 0:
+        return 1.0
+    ratio = measured / threshold
+    if direction == "upper":
+        shortfall = max(0.0, ratio - 1.0)
+    else:
+        shortfall = max(0.0, 1.0 - ratio)
+    tol = max(float(tolerance), 1e-6)
+    return float(np.exp(-shortfall / tol))
+
+
+def compute_alignment_score(
+    telemetry: "list[MannerStepSnapshot] | list[dict]",
+    spec: MannerSpec,
+    stage_id: str = "unknown_stage",
+) -> AlignmentReport:
+    """Score how closely an executed trajectory matches a manner instruction.
+
+    Complements :meth:`MannerValidator.validate` (binary SATISFIED/NOT_
+    SATISFIED gate used for repair/retry control flow) with a continuous,
+    per-phase "language alignment score" in [0, 1] intended for reporting
+    and ablation studies (e.g. manner sensitivity, counterfactual instruction
+    swaps, paraphrase robustness) -- it does not gate any control flow.
+
+    Reuses the same measured-statistic definitions as the corresponding
+    ``MannerValidator._check_*`` methods (peak/mean joint velocity, min/max
+    kp, min gripper fraction, peak jerk) so the two views stay comparable.
+    """
+    if not telemetry or not spec.has_any_constraint():
+        return AlignmentReport(stage_id=stage_id, label=spec.label)
+
+    snaps = [_coerce_snapshot(s) for s in telemetry]
+    dims: list[DimensionAlignment] = []
+    tol = spec.tolerance
+
+    # -- A: velocity (episode-wide) --
+    move_snaps = [
+        s for s in snaps if _is_move(s.phase)
+    ] or snaps
+    vel_norms = np.array([float(np.linalg.norm(s.joint_vel)) for s in move_snaps])
+    if len(vel_norms):
+        peak_vel, mean_vel = float(vel_norms.max()), float(vel_norms.mean())
+        if spec.max_joint_vel is not None:
+            dims.append(DimensionAlignment(
+                dim="A", name="joint_vel_upper", phase="__all__",
+                score=_bound_score(peak_vel, spec.max_joint_vel, tol, "upper"),
+                measured=peak_vel, threshold=spec.max_joint_vel, direction="upper",
+            ))
+        if spec.min_joint_vel is not None:
+            dims.append(DimensionAlignment(
+                dim="A", name="joint_vel_lower", phase="__all__",
+                score=_bound_score(mean_vel, spec.min_joint_vel, tol, "lower"),
+                measured=mean_vel, threshold=spec.min_joint_vel, direction="lower",
+            ))
+
+    # -- A (phase-specific): intra-trajectory manner --
+    for phase_name, ov in (spec.phase_velocity or {}).items():
+        sub_snaps = [s for s in snaps if s.phase == phase_name]
+        if not sub_snaps:
+            continue
+        sub_vel = np.array([float(np.linalg.norm(s.joint_vel)) for s in sub_snaps])
+        sub_peak, sub_mean = float(sub_vel.max()), float(sub_vel.mean())
+        if ov.max_joint_vel is not None:
+            dims.append(DimensionAlignment(
+                dim="A", name="joint_vel_upper:" + phase_name, phase=phase_name,
+                score=_bound_score(sub_peak, ov.max_joint_vel, tol, "upper"),
+                measured=sub_peak, threshold=ov.max_joint_vel, direction="upper",
+            ))
+        if ov.min_joint_vel is not None:
+            dims.append(DimensionAlignment(
+                dim="A", name="joint_vel_lower:" + phase_name, phase=phase_name,
+                score=_bound_score(sub_mean, ov.min_joint_vel, tol, "lower"),
+                measured=sub_mean, threshold=ov.min_joint_vel, direction="lower",
+            ))
+
+    # -- B: stiffness (episode-wide only; no phase-specific kp today) --
+    kp_vals = np.array([s.kp for s in snaps])
+    if len(kp_vals):
+        min_kp, max_kp = float(kp_vals.min()), float(kp_vals.max())
+        if spec.kp_max is not None:
+            dims.append(DimensionAlignment(
+                dim="B", name="kp_upper", phase="__all__",
+                score=_bound_score(min_kp, spec.kp_max, tol, "upper"),
+                measured=min_kp, threshold=spec.kp_max, direction="upper",
+            ))
+        if spec.kp_min is not None:
+            dims.append(DimensionAlignment(
+                dim="B", name="kp_lower", phase="__all__",
+                score=_bound_score(max_kp, spec.kp_min, tol, "lower"),
+                measured=max_kp, threshold=spec.kp_min, direction="lower",
+            ))
+
+    # -- C: gripper (episode-wide only) --
+    grip_snaps = [s for s in snaps if s.phase == "grip"] or snaps
+    if grip_snaps:
+        min_frac = min(s.gripper_fraction for s in grip_snaps)
+        if spec.grip_fraction_max is not None:
+            dims.append(DimensionAlignment(
+                dim="C", name="grip_fraction_upper", phase="__all__",
+                score=_bound_score(min_frac, spec.grip_fraction_max, tol, "upper"),
+                measured=min_frac, threshold=spec.grip_fraction_max, direction="upper",
+            ))
+        if spec.grip_fraction_min is not None:
+            dims.append(DimensionAlignment(
+                dim="C", name="grip_fraction_min_closing", phase="__all__",
+                score=_bound_score(min_frac, spec.grip_fraction_min, tol, "upper"),
+                measured=min_frac, threshold=spec.grip_fraction_min, direction="upper",
+            ))
+
+    # -- D: jerk (episode-wide only) --
+    if spec.max_jerk is not None:
+        move_only = [s for s in snaps if _is_move(s.phase)] or snaps
+        if len(move_only) >= 3:
+            accs = np.stack([s.joint_acc for s in move_only])
+            jerks = np.diff(accs, axis=0) / 0.05
+            peak_jerk = float(np.linalg.norm(jerks, axis=1).max())
+            dims.append(DimensionAlignment(
+                dim="D", name="jerk", phase="__all__",
+                score=_bound_score(peak_jerk, spec.max_jerk, tol, "upper"),
+                measured=peak_jerk, threshold=spec.max_jerk, direction="upper",
+            ))
+
+    if not dims:
+        return AlignmentReport(stage_id=stage_id, label=spec.label)
+
+    phase_groups: dict = {}
+    for d in dims:
+        phase_groups.setdefault(d.phase, []).append(d.score)
+    phase_scores = {p: float(np.mean(v)) for p, v in phase_groups.items()}
+    overall_score = float(np.mean([d.score for d in dims]))
+
+    return AlignmentReport(
+        stage_id=stage_id, dimensions=dims,
+        phase_scores=phase_scores, overall_score=overall_score,
+        label=spec.label,
+    )
+
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -345,7 +566,7 @@ class MannerValidator:
     ) -> list[DimensionResult]:
         results = []
         move_snaps = [
-            s for s in snaps if s.phase == "move" or s.phase.startswith("move:")
+            s for s in snaps if _is_move(s.phase)
         ] or snaps
         vel_norms = np.array([
             float(np.linalg.norm(s.joint_vel)) for s in move_snaps
@@ -395,7 +616,7 @@ class MannerValidator:
         for phase_name, ov in (spec.phase_velocity or {}).items():
             if ov.max_joint_vel is None and ov.min_joint_vel is None:
                 continue
-            sub_snaps = [s for s in snaps if s.phase == "move:" + phase_name]
+            sub_snaps = [s for s in snaps if s.phase == phase_name]
             if not sub_snaps:
                 continue
             sub_vel = np.array([
@@ -528,7 +749,7 @@ class MannerValidator:
     ) -> list[DimensionResult]:
         if spec.max_jerk is None:
             return []
-        move_snaps = [s for s in snaps if s.phase == "move"] or snaps
+        move_snaps = [s for s in snaps if _is_move(s.phase)] or snaps
         if len(move_snaps) < 3:
             return []
 

@@ -419,6 +419,453 @@ def run_pour(env, api, params: dict) -> dict:
     }
 
 
+# ──────────────────────────────────────────────────────────────────────────────
+# 分阶段可回滚执行引擎 (技术 #1 stage-snapshot rollback + #2 stage-level dual-channel validation)
+#
+# 把 run_cube_lift / run_cube_stack / run_pour 的单体动作序列拆成有序的
+# [(phase, stage_fn), ...] 阶段列表。每个阶段执行后立即做「双通道」判定：
+#   通道 A (manner)：该阶段 telemetry 切片是否满足该 phase 的 MannerSpec 约束
+#   通道 B (task)  ：该阶段是否达成物理子目标 (抓稳 / 抬起 / 对齐堆叠 …)
+# 任一通道失败 -> 回滚到某个已保存的阶段入口快照 (env.restore_checkpoint)，
+# 对该阶段做局部参数修复后原地重试，避免整条 episode 重跑。
+# ──────────────────────────────────────────────────────────────────────────────
+_MOVE_STAGE_PHASES = frozenset(
+    {"approach", "descend", "lift", "transport", "final", "retreat"}
+)
+
+
+def _eef_pos(env) -> "np.ndarray":
+    """当前末端执行器 (夹爪 link) 世界坐标 xyz。gripper_link_wxyz_xyz = [qw qx qy qz x y z]。"""
+    return np.asarray(env.gripper_link_wxyz_xyz, dtype=float)[4:7]
+
+
+def build_lift_stages(env, api):
+    grasp_quat = np.array([0.0, 0.0, 1.0, 0.0])
+
+    def approach(params, st):
+        cube_pos, _, _ = api.get_object_pose("red cube")
+        st["cube_pos0"] = cube_pos.copy()
+        st["cube_pos"] = cube_pos.copy()
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        ap = cube_pos.copy(); ap[2] += 0.20
+        api.goto_pose_with_profile(
+            ap, grasp_quat,
+            v_max=pv.get("approach", params["v_max"]),
+            a_max=pa.get("approach", params["a_max"]),
+            jerk_limit=params["jerk_limit"], phase="approach")
+        _pump(env, 8)
+
+    def descend(params, st):
+        api.set_impedance_stiffness(kp_pos=params["kp_pos"])
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        grasp_pos = st["cube_pos"].copy(); grasp_pos[2] -= 0.005
+        st["grasp_pos"] = grasp_pos
+        api.goto_pose_with_profile(
+            grasp_pos, grasp_quat,
+            v_max=pv.get("descend", max(0.02, params["v_max"] * 0.6)),
+            a_max=pa.get("descend", max(0.01, params["a_max"] * 0.5)),
+            jerk_limit=params["jerk_limit"], phase="descend")
+        _pump(env, 8)
+
+    def grasp(params, st):
+        _grasp_close(env, api, params["grip"], n_tries=params.get("grasp_tries", 3))
+
+    def lift(params, st):
+        api.set_impedance_stiffness(kp_pos=1000.0)
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        lift_pos = st["grasp_pos"].copy(); lift_pos[2] += 0.18
+        api.goto_pose_with_profile(
+            lift_pos, grasp_quat,
+            v_max=pv.get("lift", params["v_max"]),
+            a_max=pa.get("lift", params["a_max"]),
+            jerk_limit=params["jerk_limit"], phase="lift")
+        _pump(env, 10)
+
+    return [("approach", approach), ("descend", descend),
+            ("grasp", grasp), ("lift", lift)]
+
+
+def build_stack_stages(env, api):
+    grasp_quat = np.array([0.0, 0.0, 1.0, 0.0])
+
+    def approach(params, st):
+        red_pos, _, _ = api.get_object_pose("red cube")
+        green_pos, _, _ = api.get_object_pose("green cube")
+        st["red_pos0"] = red_pos.copy()
+        st["red_pos"] = red_pos.copy()
+        st["green_pos"] = green_pos.copy()
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        ap = red_pos.copy(); ap[2] += 0.20
+        api.goto_pose_with_profile(
+            ap, grasp_quat,
+            v_max=pv.get("approach", params["v_max"]),
+            a_max=pa.get("approach", params["a_max"]),
+            jerk_limit=params["jerk_limit"], phase="approach")
+        _pump(env, 6)
+
+    def descend(params, st):
+        api.set_impedance_stiffness(kp_pos=params["kp_pos"])
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        grasp_pos = st["red_pos"].copy(); grasp_pos[2] -= 0.005
+        st["grasp_pos"] = grasp_pos
+        api.goto_pose_with_profile(
+            grasp_pos, grasp_quat,
+            v_max=pv.get("descend", max(0.02, params["v_max"] * 0.6)),
+            a_max=pa.get("descend", max(0.01, params["a_max"] * 0.5)),
+            jerk_limit=params["jerk_limit"], phase="descend")
+        _pump(env, 6)
+
+    def grasp(params, st):
+        _grasp_close(env, api, params["grip"], n_tries=params.get("grasp_tries", 3))
+
+    def lift(params, st):
+        api.set_impedance_stiffness(kp_pos=1000.0)
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        lift_pos = st["grasp_pos"].copy(); lift_pos[2] += 0.15
+        st["lift_pos"] = lift_pos
+        api.goto_pose_with_profile(
+            lift_pos, grasp_quat,
+            v_max=pv.get("lift", params["v_max"]),
+            a_max=pa.get("lift", params["a_max"]),
+            jerk_limit=params["jerk_limit"], phase="lift")
+        _pump(env, 6)
+
+    def transport(params, st):
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        over_green = st["green_pos"].copy(); over_green[2] = st["lift_pos"][2]
+        api.goto_pose_with_profile(
+            over_green, grasp_quat,
+            v_max=pv.get("transport", params["v_max"]),
+            a_max=pa.get("transport", params["a_max"]),
+            jerk_limit=params["jerk_limit"], phase="transport")
+        _pump(env, 6)
+
+    def final(params, st):
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        stack_pos = st["green_pos"].copy(); stack_pos[2] = st["green_pos"][2] + 0.058
+        api.goto_pose_with_profile(
+            stack_pos, grasp_quat,
+            v_max=pv.get("final", max(0.02, params["v_max"] * 0.5)),
+            a_max=pa.get("final", max(0.01, params["a_max"] * 0.4)),
+            jerk_limit=params["jerk_limit"], phase="final")
+        _pump(env, 14)
+        api.open_gripper()
+        _pump(env, 15)
+
+    def retreat(params, st):
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        stack_pos = st["green_pos"].copy(); stack_pos[2] = st["green_pos"][2] + 0.058
+        retreat_pos = stack_pos.copy(); retreat_pos[2] += 0.20
+        api.goto_pose_with_profile(
+            retreat_pos, grasp_quat,
+            v_max=pv.get("retreat", params["v_max"]),
+            a_max=pa.get("retreat", params["a_max"]),
+            jerk_limit=params["jerk_limit"], phase="retreat")
+        _pump(env, 20)
+
+    return [("approach", approach), ("descend", descend), ("grasp", grasp),
+            ("lift", lift), ("transport", transport), ("final", final),
+            ("retreat", retreat)]
+
+
+def build_pour_stages(env, api):
+    grasp_quat = np.array([0.0, 0.0, 1.0, 0.0])
+
+    def approach(params, st):
+        cup_pos, _, _ = api.get_object_pose("water cup")
+        st["cup_pos0"] = cup_pos.copy()
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        ap = cup_pos.copy(); ap[2] += 0.20
+        api.goto_pose_with_profile(
+            ap, grasp_quat,
+            v_max=pv.get("approach", params["v_max"]),
+            a_max=pa.get("approach", params["a_max"]),
+            jerk_limit=params["jerk_limit"], phase="approach")
+        _pump(env, 8)
+
+    def descend(params, st):
+        api.set_impedance_stiffness(kp_pos=params["kp_pos"])
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        cup_pos2, _, _ = api.get_object_pose("water cup")
+        grasp_pos = cup_pos2.copy(); grasp_pos[2] -= 0.005
+        st["grasp_pos"] = grasp_pos
+        api.goto_pose_with_profile(
+            grasp_pos, grasp_quat,
+            v_max=pv.get("descend", max(0.02, params["v_max"] * 0.6)),
+            a_max=pa.get("descend", max(0.01, params["a_max"] * 0.5)),
+            jerk_limit=params["jerk_limit"], phase="descend")
+        _pump(env, 8)
+
+    def grasp(params, st):
+        _grasp_close(env, api, params["grip"], n_tries=params.get("grasp_tries", 3))
+
+    def lift(params, st):
+        api.set_impedance_stiffness(kp_pos=1000.0)
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        lift_pos = st["grasp_pos"].copy(); lift_pos[2] += 0.15
+        st["lift_pos"] = lift_pos
+        api.goto_pose_with_profile(
+            lift_pos, grasp_quat,
+            v_max=pv.get("lift", params["v_max"]),
+            a_max=pa.get("lift", params["a_max"]),
+            jerk_limit=params["jerk_limit"], phase="lift")
+        _pump(env, 10)
+
+    def transport(params, st):
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        target_pos, _, _ = api.get_object_pose("target spot")
+        tp = target_pos.copy(); tp[2] = st["lift_pos"][2]
+        st["transport_pos"] = tp
+        api.goto_pose_with_profile(
+            tp, grasp_quat,
+            v_max=pv.get("transport", max(0.02, params["v_max"] * 0.5)),
+            a_max=pa.get("transport", max(0.01, params["a_max"] * 0.4)),
+            jerk_limit=params["jerk_limit"], phase="transport")
+        _pump(env, 15)
+
+    def final(params, st):
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        putdown_pos = st["transport_pos"].copy(); putdown_pos[2] -= 0.13
+        st["putdown_pos"] = putdown_pos
+        api.goto_pose_with_profile(
+            putdown_pos, grasp_quat,
+            v_max=pv.get("final", max(0.02, params["v_max"] * 0.4)),
+            a_max=pa.get("final", max(0.01, params["a_max"] * 0.3)),
+            jerk_limit=params["jerk_limit"], phase="final")
+        _pump(env, 10)
+        api.open_gripper()
+        _pump(env, 10)
+
+    def retreat(params, st):
+        pv, pa = params.get("phase_v_max", {}), params.get("phase_a_max", {})
+        retreat_pos = st["putdown_pos"].copy(); retreat_pos[2] += 0.20
+        api.goto_pose_with_profile(
+            retreat_pos, grasp_quat,
+            v_max=pv.get("retreat", params["v_max"]),
+            a_max=pa.get("retreat", params["a_max"]),
+            jerk_limit=params["jerk_limit"], phase="retreat")
+        _pump(env, 10)
+
+    return [("approach", approach), ("descend", descend), ("grasp", grasp),
+            ("lift", lift), ("transport", transport), ("final", final),
+            ("retreat", retreat)]
+
+
+STAGE_BUILDERS = {
+    "lift":  build_lift_stages,
+    "stack": build_stack_stages,
+    "pour":  build_pour_stages,
+}
+
+
+def _validate_stage_manner(seg, phase, spec, validator, StageStatus):
+    """通道 A：对单个阶段 telemetry 切片做 manner 判定。
+
+    把 MannerSpec 摊平成「只针对该 phase 相关维度」的子 spec：move 类阶段只查
+    该 phase 的速度/jerk 上下界，grasp 阶段只查夹持/刚度界。无约束即视为通过。
+    UNCERTAIN(证据不足) 不算失败，只有明确 NOT_SATISFIED 才判失败。
+    """
+    if not seg:
+        return True
+    from dataclasses import replace as _dc_replace
+    if phase in _MOVE_STAGE_PHASES:
+        vmax, vmin = spec.vel_bounds_for(phase)
+        if vmax is None and vmin is None and spec.max_jerk is None:
+            return True
+        sspec = _dc_replace(
+            spec, max_joint_vel=vmax, min_joint_vel=vmin, phase_velocity=None,
+            kp_max=None, kp_min=None, grip_fraction_max=None,
+            grip_fraction_min=None, max_jerk=None)
+    elif phase in ("grasp", "grip"):
+        if (spec.grip_fraction_max is None and spec.grip_fraction_min is None
+                and spec.kp_max is None and spec.kp_min is None):
+            return True
+        sspec = _dc_replace(
+            spec, max_joint_vel=None, min_joint_vel=None, phase_velocity=None,
+            max_jerk=None)
+    else:
+        return True
+    if not sspec.has_any_constraint():
+        return True
+    try:
+        ev = validator.validate(seg, sspec)
+        return ev.status != StageStatus.NOT_SATISFIED
+    except Exception as e:
+        print(f"    [stage manner-validate error @ {phase}] {e}")
+        return True
+
+
+def _stage_task_predicate(env, api, task, phase, st):
+    """通道 B：单个阶段的物理子目标是否达成 (特权真值判定)。
+
+    只对能廉价可靠判定的关键阶段设谓词 (grasp 抓稳 / lift 抬起 / stack 对齐)，
+    其余阶段返回 True (交由后续阶段或最终 task_completed 兜底)。
+    """
+    try:
+        if task == "lift":
+            if phase == "lift":
+                cube, _, _ = api.get_object_pose("red cube")
+                return bool(cube[2] - st["cube_pos0"][2] > 0.05)
+            return True
+        if task == "stack":
+            if phase == "lift":
+                red, _, _ = api.get_object_pose("red cube")
+                return bool(red[2] - st["red_pos0"][2] > 0.05)
+            if phase in ("final", "retreat"):
+                return bool(env.task_completed())
+            return True
+        if task == "pour":
+            if phase == "lift":
+                cup, _, _ = api.get_object_pose("water cup")
+                return bool(cup[2] - st["cup_pos0"][2] > 0.05)
+            if phase in ("final", "retreat"):
+                sr = getattr(env, "spill_ratio", None)
+                if callable(sr):
+                    return bool(env.spill_ratio() > 0.999) and bool(env.task_completed())
+                return bool(env.task_completed())
+            return True
+    except Exception as e:
+        print(f"    [stage task-predicate error @ {task}/{phase}] {e}")
+        return True
+    return True
+
+
+def _copy_params(params):
+    out = dict(params)
+    out["phase_v_max"] = dict(params.get("phase_v_max", {}))
+    out["phase_a_max"] = dict(params.get("phase_a_max", {}))
+    return out
+
+
+def _stage_repair_plan(task, phase, cause, params, spec):
+    """针对 (task, phase, 失败通道) 给出局部修复方案。
+
+    返回 {name, rollback_to, params}；None 表示无已知修复 (诚实放弃该阶段)。
+    - 物理抓取失败 (grasp/lift)：加收紧-回稳次数 + 抬夹持力，回滚到 descend 重新对位再抓。
+    - stack 对齐失败 (final/retreat)：降 final 速度让方块稳落，回滚到 transport。
+    - manner 越界 (move 阶段)：超上界->减速，低于下界->加速，原地重试该阶段。
+    """
+    if cause == "task" and phase in ("grasp", "lift"):
+        np_ = _copy_params(params)
+        np_["grasp_tries"] = min(6, int(params.get("grasp_tries", 3)) + 2)
+        np_["grip"] = float(min(0.95, max(params["grip"], GRIP_FLOOR) + 0.05))
+        pv = np_["phase_v_max"]
+        pv["descend"] = max(0.015, pv.get("descend", params["v_max"] * 0.6) * 0.8)
+        return {"name": "grip_reseat", "rollback_to": "descend", "params": np_}
+
+    if cause == "task" and task == "stack" and phase in ("final", "retreat"):
+        np_ = _copy_params(params)
+        pv, pa = np_["phase_v_max"], np_["phase_a_max"]
+        pv["final"] = max(0.012, pv.get("final", params["v_max"] * 0.5) * 0.6)
+        pa["final"] = max(0.006, pa.get("final", params["a_max"] * 0.4) * 0.6)
+        return {"name": "stack_settle", "rollback_to": "transport", "params": np_}
+
+    if cause == "task" and task == "pour" and phase in ("final", "retreat"):
+        np_ = _copy_params(params)
+        pv, pa = np_["phase_v_max"], np_["phase_a_max"]
+        for ph in ("transport", "final"):
+            pv[ph] = max(0.012, pv.get(ph, params["v_max"] * 0.4) * 0.75)
+            pa[ph] = max(0.006, pa.get(ph, params["a_max"] * 0.3) * 0.75)
+        return {"name": "pour_slow", "rollback_to": "transport", "params": np_}
+
+    if cause == "manner" and phase in _MOVE_STAGE_PHASES:
+        vmax, vmin = spec.vel_bounds_for(phase)
+        np_ = _copy_params(params)
+        pv, pa = np_["phase_v_max"], np_["phase_a_max"]
+        cur_v = pv.get(phase, params["v_max"])
+        cur_a = pa.get(phase, params["a_max"])
+        if vmax is not None:
+            pv[phase] = max(0.01, min(cur_v, vmax * 0.8))
+            pa[phase] = max(0.005, cur_a * 0.6)
+        elif vmin is not None:
+            pv[phase] = max(cur_v, vmin * 1.3)
+            pa[phase] = cur_a * 1.3
+        else:
+            return None
+        return {"name": f"manner_{phase}", "rollback_to": phase, "params": np_}
+
+    return None
+
+
+def _finalize_staged_result(task, env, api, st):
+    exec_result = {
+        "reward": float(env.compute_reward()),
+        "sim_steps": int(env._sim_step_count),
+        "task_completed": bool(env.task_completed()),
+    }
+    if task == "lift":
+        cube_after, _, _ = api.get_object_pose("red cube")
+        exec_result["cube_delta_z"] = float(cube_after[2] - st.get("cube_pos0", cube_after)[2])
+    elif task == "stack":
+        red_after, _, _ = api.get_object_pose("red cube")
+        green_after, _, _ = api.get_object_pose("green cube")
+        exec_result["red_delta_z"] = float(red_after[2] - st.get("red_pos0", red_after)[2])
+        exec_result["z_gap"] = float(red_after[2] - green_after[2])
+    elif task == "pour":
+        cup_after, _, _ = api.get_object_pose("water cup")
+        exec_result["cup_delta_z"] = float(cup_after[2] - st.get("cup_pos0", cup_after)[2])
+        sr = getattr(env, "spill_ratio", None)
+        if callable(sr):
+            exec_result["spill_ratio"] = float(env.spill_ratio())
+    return exec_result
+
+
+def run_stages_with_rollback(env, api, stages, params, spec, validator,
+                             StageStatus, task, max_repairs=2):
+    """技术 #1+#2 的核心执行引擎：逐阶段执行 + 双通道判定 + 快照回滚 + 局部修复。
+
+    与旧的单体 runner 相比：失败时只回滚并重跑「失败的那个阶段(及必要的前置阶段)」，
+    而非整条 episode reset 重跑，显著降低浪费的仿真步数，并把修复定位到具体阶段。
+    返回的 exec_result 字段与对应单体 runner 保持一致，额外带 _stage_log/_repairs_used。
+    """
+    st = {}
+    phase_list = [p for p, _ in stages]
+    entry_ckpts = {}
+    stage_log = []
+    cur_params = _copy_params(params)
+    repairs_used = 0
+    i = 0
+    while i < len(stages):
+        phase, fn = stages[i]
+        entry_ckpts[phase] = env.capture_checkpoint()
+        tele_start = len(env._manner_telemetry)
+        fn(cur_params, st)
+        seg = env._manner_telemetry[tele_start:]
+        manner_ok = _validate_stage_manner(seg, phase, spec, validator, StageStatus)
+        task_ok = _stage_task_predicate(env, api, task, phase, st)
+        rec = {"stage": phase, "manner_ok": bool(manner_ok),
+               "task_ok": bool(task_ok), "repaired": False}
+        if manner_ok and task_ok:
+            stage_log.append(rec)
+            i += 1
+            continue
+        cause = "manner" if not manner_ok else "task"
+        plan = None if repairs_used >= max_repairs else \
+            _stage_repair_plan(task, phase, cause, cur_params, spec)
+        if plan is None:
+            rec["gave_up"] = True
+            rec["cause"] = cause
+            stage_log.append(rec)
+            i += 1  # 无修复：带着失败继续后续阶段，最终由 task_completed 汇总判定
+            continue
+        repairs_used += 1
+        rec["repaired"] = True
+        rec["cause"] = cause
+        rec["repair"] = plan["name"]
+        rec["rollback_to"] = plan["rollback_to"]
+        stage_log.append(rec)
+        target = plan["rollback_to"]
+        env.restore_checkpoint(entry_ckpts[target])
+        cur_params = plan["params"]
+        i = phase_list.index(target)
+
+    exec_result = _finalize_staged_result(task, env, api, st)
+    exec_result["_stage_log"] = stage_log
+    exec_result["_repairs_used"] = int(repairs_used)
+    return exec_result
+
+
+
 TASK_REGISTRY: dict[str, dict[str, Any]] = {
     "lift": {
         "sim_cls_path": "capx.envs.simulators.robosuite_cube_lift.FrankaRobosuiteCubeLiftLowLevel",
@@ -583,6 +1030,10 @@ class TrialResult:
     traj_file: Any = None   # 逐步物理量轨迹 npz 文件名（相对 traj_dir），None=未保存
     wrist_video_file: Any = None  # wrist-camera mp4 filename (relative to traj_dir), None=not captured
     repair_attempts: list = field(default_factory=list)  # bounded-retry log triggered by MANNER_REPAIR_LIBRARY
+    alignment_score: Any = None  # AlignmentReport (asdict-serialized): continuous per-phase
+    # language-alignment score in [0,1] from compute_alignment_score(), complements the
+    # binary manner_ok gate with a smooth "how well did the action match the instruction"
+    # metric per phase. None = no constraint to score (baseline) or no telemetry.
 
 
 def classify_outcome(task_ok, manner_ok, error_msg: str | None = None) -> str:
@@ -738,6 +1189,11 @@ def parse_args():
                    help="Subset of TEST_CASES tags to run (default: all). Baseline is controlled separately by --include-baseline/--no-baseline.")
     p.add_argument("--capture-video", action="store_true",
                    help="Enable wrist-camera rendering + per-trial mp4 export into --traj-dir.")
+    p.add_argument("--staged-rollback", dest="staged_rollback",
+                   action="store_true",
+                   help="Use stage-snapshot rollback engine (per-stage "
+                        "checkpoint + dual-channel validate + local repair) "
+                        "instead of the monolithic runner + single global retry.")
     p.add_argument("--dry-run", action="store_true")
     return p.parse_args()
 
@@ -800,6 +1256,7 @@ def save_trajectory_npz(telemetry: list, traj_dir: str, task: str, tag: str,
 def run_single_trial(task, tag, prompt, seed, spec, args,
                      env, api, validator, StageStatus, runner,
                      traj_dir=None, run_stamp="", capture_video=False):
+    from capx.envs.manner_validator import compute_alignment_score
     t0 = time.time()
     params = spec_to_exec_params(spec)
     spec_json = {
@@ -822,7 +1279,13 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
             if capture_video:
                 env.enable_video_capture(True, clear=True, wrist_camera=True)
             env.begin_manner_recording(clear=True)
-            exec_result = runner(env, api, attempt_params)
+            if getattr(args, "staged_rollback", False) and task in STAGE_BUILDERS:
+                stages = STAGE_BUILDERS[task](env, api)
+                exec_result = run_stages_with_rollback(
+                    env, api, stages, attempt_params, spec, validator,
+                    StageStatus, task)
+            else:
+                exec_result = runner(env, api, attempt_params)
             env.end_manner_recording()
         except Exception as e:
             emsg = f"{type(e).__name__}: {e}"
@@ -831,7 +1294,7 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
                 "task_ok": None, "manner_ok": None, "outcome": outcome,
                 "reward": None, "exec_result": {}, "metrics": {},
                 "error": f"{emsg}\n{traceback.format_exc(limit=4)}",
-                "telemetry": None,
+                "telemetry": None, "alignment_score": None,
             }
 
         task_ok = bool(exec_result.get("task_completed", False))
@@ -871,11 +1334,26 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
             manner_ok = True   # baseline / normal / fully-clipped
         metrics = extract_metrics(telemetry) if telemetry else {}
 
+        # Continuous, per-phase language-alignment score -- complements the
+        # binary manner_ok gate above with a [0,1] margin score (reporting /
+        # ablation only, does not affect outcome classification or repair).
+        alignment_score = None
+        if telemetry and clipped_spec.has_any_constraint():
+            try:
+                from dataclasses import asdict as _asdict
+                alignment_score = _asdict(
+                    compute_alignment_score(telemetry, clipped_spec)
+                )
+            except Exception as e:
+                print(f"    [alignment score error] {e}")
+                alignment_score = None
+
         return {
             "task_ok": task_ok, "manner_ok": manner_ok,
             "outcome": classify_outcome(task_ok, manner_ok),
             "reward": reward, "exec_result": exec_result, "metrics": metrics,
             "error": None, "telemetry": telemetry,
+            "alignment_score": alignment_score,
         }
 
     result = _attempt(params)
@@ -911,6 +1389,7 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
             exec_time_s=time.time() - t0,
             traj_file=None,
             repair_attempts=repair_attempts,
+            alignment_score=result.get("alignment_score"),
         )
 
     telemetry = result["telemetry"]
@@ -948,6 +1427,7 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
         traj_file=traj_file,
         wrist_video_file=wrist_video_file,
         repair_attempts=repair_attempts,
+        alignment_score=result.get("alignment_score"),
     )
 
 
@@ -1070,6 +1550,12 @@ def main() -> int:
                               f"jerk_rms={m['jerk_rms']:.2f}  "
                               f"grip_active={m.get('grip_active_ratio', float('nan')):.2f}  "
                               f"finger_sep={m.get('finger_sep_hold_mean', float('nan')):.4f}")
+                    if r.alignment_score and r.alignment_score.get("overall_score") is not None:
+                        a = r.alignment_score
+                        phases = " ".join(
+                            f"{p}={s:.2f}" for p, s in a.get("phase_scores", {}).items()
+                        )
+                        print(f"  align: overall={a['overall_score']:.3f}  [{phases}]")
 
                 rec = asdict(r)
                 rec["run_stamp"] = run_stamp
@@ -1099,6 +1585,7 @@ def print_summary(results: list) -> None:
         groups[(r.task, r.tag)].append(r)
 
     header = (f"{'task':<6} {'tag':<16} {'n':>3} {'L1':>7} {'L2':>7} {'both':>7}   "
+              f"{'align':>7} "
               f"{'speed':>8} {'cfrc':>8} {'gripF':>8} {'jerk':>7} {'grip_act':>9}   outcome_mix")
     print(header)
     print("-" * len(header))
@@ -1119,6 +1606,15 @@ def print_summary(results: list) -> None:
         sign = "+" if d >= 0 else "-"
         return f"{v:5.2f}{sign}{abs(d):.2f}"
 
+    def _mean_alignment(rs: list) -> str:
+        scores = [
+            r.alignment_score["overall_score"] for r in rs
+            if r.alignment_score and r.alignment_score.get("overall_score") is not None
+        ]
+        if not scores:
+            return "   -   "
+        return f"{sum(scores) / len(scores):7.3f}"
+
     for (task, tag), rs in sorted(groups.items(), key=lambda x: (x[0][0], x[0][1] != BASELINE_TAG, x[0][1])):
         n = len(rs)
         l1 = sum(1 for r in rs if r.task_ok is True)
@@ -1134,6 +1630,7 @@ def print_summary(results: list) -> None:
 
         print(f"{task:<6} {tag:<16} {n:>3} "
               f"{l1:>2}/{n:<4} {l2:>2}/{n:<4} {both:>2}/{n:<4}   "
+              f"{_mean_alignment(rs)} "
               f"{_delta(m, base, 'mean_joint_speed'):>8} "
               f"{_delta(m, base, 'peak_cfrc'):>8} "
               f"{_delta(m, base, 'peak_grip_force'):>8} "
@@ -1142,6 +1639,7 @@ def print_summary(results: list) -> None:
 
     print("\n说明:")
     print("  L1  = 任务成功  L2  = manner 忠实  both = 双通过")
+    print("  align = 平均语言对齐分数（compute_alignment_score，连续[0,1]，1=完全对齐；'-'=该组无约束/无telemetry可打分）")
     print("  数字后 +x.xx / -x.xx 表示与该任务 baseline 的差值（同 seed 集合平均）")
     print("  outcome: both_pass / task_only / manner_only / manner_infeasible / both_fail / error")
 

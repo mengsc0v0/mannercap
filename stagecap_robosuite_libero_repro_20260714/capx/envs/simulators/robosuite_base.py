@@ -403,6 +403,45 @@ class RobosuiteBaseEnv(BaseEnv):
         """Return a copy of the recorded MannerStepSnapshot list."""
         return list(self._manner_telemetry)
 
+    # ── Stage-checkpoint rollback (privileged repair loop) ──────────────────
+    def capture_checkpoint(self) -> dict:
+        """Snapshot the full physics + controller/recorder state.
+
+        ``sim.set_state`` only restores MuJoCo physics (qpos/qvel incl. object
+        free-joints). The controller target (``_current_joints``), gripper
+        fraction, manner phase, step counter, and telemetry length are Python
+        side state that must be captured separately so a rollback lands on a
+        byte-for-byte reproducible point. Impedance kp is intentionally NOT
+        stored: every runner stage re-issues set_(joint_)stiffness, so it is
+        re-established on replay.
+        """
+        return {
+            "mj_state": self.robosuite_env.sim.get_state(),
+            "current_joints": self._current_joints.copy(),
+            "gripper_fraction": float(self._gripper_fraction),
+            "manner_phase": self._manner_phase,
+            "sim_step_count": int(self._sim_step_count),
+            "telemetry_len": len(self._manner_telemetry),
+        }
+
+    def restore_checkpoint(self, ckpt: dict) -> None:
+        """Restore state saved by ``capture_checkpoint``.
+
+        ``sim.forward()`` is mandatory after ``set_state`` so derived
+        quantities (xpos/xquat/contact forces read by the privileged API) are
+        recomputed before the next stage runs. The manner telemetry buffer is
+        truncated back to the checkpoint length, discarding any samples that a
+        now-rolled-back failed stage appended.
+        """
+        sim = self.robosuite_env.sim
+        sim.set_state(ckpt["mj_state"])
+        sim.forward()
+        self._current_joints = ckpt["current_joints"].copy()
+        self._gripper_fraction = ckpt["gripper_fraction"]
+        self._manner_phase = ckpt["manner_phase"]
+        self._sim_step_count = ckpt["sim_step_count"]
+        del self._manner_telemetry[ckpt["telemetry_len"]:]
+
     def _capture_manner_snapshot(self) -> None:
         """Capture one telemetry snapshot from the current sim state."""
         try:
