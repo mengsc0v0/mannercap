@@ -1,0 +1,974 @@
+{
+  "schema": "mannercap-m-request-candidate-semantic-analysis-v1",
+  "source_audit_schema": "mannercap-e0-reconciliation-v1",
+  "source_plan_sha256": "b53161c4945f3da6ba7254f769d90c7446828eccfa6419166513dabd9cbd9d5b",
+  "source_audit_valid": true,
+  "cached_m_records": 8,
+  "overall_counts": {
+    "match": 0,
+    "representation_difference": 0,
+    "substantive_conflict": 8,
+    "unknown": 0
+  },
+  "difference_counts": {
+    "representation_difference": 13,
+    "substantive_conflict": 24,
+    "unknown": 4
+  },
+  "rows": [
+    {
+      "candidate_id": "e0-dev-d0-lift-seed-50-fast-M-1",
+      "request_spec": {
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "candidate_spec": {
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {
+          "approach": {},
+          "descend": {
+            "max_joint_vel": 0.08
+          },
+          "lift": {
+            "min_joint_vel": 0.18
+          }
+        }
+      },
+      "classification": {
+        "overall": "substantive_conflict",
+        "differences": [
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.approach",
+            "requested": null,
+            "candidate": {},
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.descend",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.lift",
+            "requested": null,
+            "candidate": {
+              "min_joint_vel": 0.18
+            },
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          }
+        ],
+        "contract": {
+          "supported_fields": [
+            "max_joint_vel",
+            "min_joint_vel"
+          ],
+          "unknown_fields": [
+            "grip_fraction_max",
+            "grip_fraction_min",
+            "kp_max",
+            "kp_min",
+            "max_jerk"
+          ]
+        }
+      },
+      "requested_target_phases": [],
+      "candidate_target_phases": [
+        "approach",
+        "descend",
+        "lift"
+      ],
+      "candidate_non_target_phases": [
+        "transport",
+        "final",
+        "retreat"
+      ],
+      "execution_semantics_valid": true,
+      "phase_scope_counts": {
+        "explicit_neutral": 1,
+        "explicit_override": 2,
+        "omitted_inherits_global": 3
+      },
+      "manner_qualification": "unknown",
+      "physical_interpretation": "descriptive_execution_semantics_only"
+    },
+    {
+      "candidate_id": "e0-dev-d0-lift-seed-50-fast_approach_slow_contact-M-1",
+      "request_spec": {
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "candidate_spec": {
+        "global": {},
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {},
+          "lift": {
+            "max_joint_vel": 0.08
+          }
+        }
+      },
+      "classification": {
+        "overall": "substantive_conflict",
+        "differences": [
+          {
+            "kind": "requested_global_missing",
+            "path": "global.max_jerk",
+            "requested": 2.0,
+            "candidate": null,
+            "classification": "unknown",
+            "reason": "global field 'max_jerk' is outside the v1 velocity contract"
+          },
+          {
+            "kind": "phase_constraint_changed",
+            "path": "phase_velocity.descend",
+            "requested": {
+              "max_joint_vel": 0.06
+            },
+            "candidate": {},
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "requested_phase_missing",
+            "path": "phase_velocity.final",
+            "requested": {
+              "max_joint_vel": 0.06
+            },
+            "candidate": null,
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "requested_phase_missing",
+            "path": "phase_velocity.transport",
+            "requested": {
+              "max_joint_vel": 0.08
+            },
+            "candidate": null,
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          }
+        ],
+        "contract": {
+          "supported_fields": [
+            "max_joint_vel",
+            "min_joint_vel"
+          ],
+          "unknown_fields": [
+            "grip_fraction_max",
+            "grip_fraction_min",
+            "kp_max",
+            "kp_min",
+            "max_jerk"
+          ]
+        }
+      },
+      "requested_target_phases": [
+        "approach",
+        "descend",
+        "final",
+        "lift",
+        "transport"
+      ],
+      "candidate_target_phases": [
+        "approach",
+        "descend",
+        "lift"
+      ],
+      "candidate_non_target_phases": [
+        "transport",
+        "final",
+        "retreat"
+      ],
+      "execution_semantics_valid": true,
+      "phase_scope_counts": {
+        "explicit_override": 2,
+        "explicit_neutral": 1,
+        "omitted_inherits_global": 3
+      },
+      "manner_qualification": "unknown",
+      "physical_interpretation": "descriptive_execution_semantics_only"
+    },
+    {
+      "candidate_id": "e0-dev-d0-lift-seed-50-neutral-M-1",
+      "request_spec": {
+        "global": {},
+        "phase_velocity": {}
+      },
+      "candidate_spec": {
+        "global": {
+          "max_joint_vel": 0.08
+        },
+        "phase_velocity": {
+          "approach": {},
+          "descend": {
+            "max_joint_vel": 0.08
+          },
+          "lift": {}
+        }
+      },
+      "classification": {
+        "overall": "substantive_conflict",
+        "differences": [
+          {
+            "kind": "neutral_extra_constraints",
+            "path": "candidate_preset",
+            "requested": {
+              "global": {},
+              "phase_velocity": {}
+            },
+            "candidate": {
+              "global": {
+                "max_joint_vel": 0.08
+              },
+              "phase_velocity": {
+                "approach": {},
+                "descend": {
+                  "max_joint_vel": 0.08
+                },
+                "lift": {}
+              }
+            },
+            "classification": "substantive_conflict",
+            "reason": "candidate changes an effective velocity profile for a neutral request"
+          },
+          {
+            "kind": "candidate_global_extra",
+            "path": "global.max_joint_vel",
+            "requested": null,
+            "candidate": 0.08,
+            "classification": "substantive_conflict",
+            "reason": "supported global velocity field 'max_joint_vel' differs"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.approach",
+            "requested": null,
+            "candidate": {},
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.descend",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.lift",
+            "requested": null,
+            "candidate": {},
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          }
+        ],
+        "contract": {
+          "supported_fields": [
+            "max_joint_vel",
+            "min_joint_vel"
+          ],
+          "unknown_fields": [
+            "grip_fraction_max",
+            "grip_fraction_min",
+            "kp_max",
+            "kp_min",
+            "max_jerk"
+          ]
+        }
+      },
+      "requested_target_phases": [],
+      "candidate_target_phases": [
+        "approach",
+        "descend",
+        "lift"
+      ],
+      "candidate_non_target_phases": [
+        "transport",
+        "final",
+        "retreat"
+      ],
+      "execution_semantics_valid": true,
+      "phase_scope_counts": {
+        "explicit_neutral": 2,
+        "explicit_override": 1,
+        "omitted_inherits_global": 3
+      },
+      "manner_qualification": "unknown",
+      "physical_interpretation": "descriptive_execution_semantics_only"
+    },
+    {
+      "candidate_id": "e0-dev-d0-lift-seed-50-slow-M-1",
+      "request_spec": {
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "candidate_spec": {
+        "global": {
+          "max_joint_vel": 0.08
+        },
+        "phase_velocity": {
+          "approach": {},
+          "descend": {},
+          "lift": {
+            "max_joint_vel": 0.08
+          }
+        }
+      },
+      "classification": {
+        "overall": "substantive_conflict",
+        "differences": [
+          {
+            "kind": "requested_global_missing",
+            "path": "global.max_jerk",
+            "requested": 2.0,
+            "candidate": null,
+            "classification": "unknown",
+            "reason": "global field 'max_jerk' is outside the v1 velocity contract"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.approach",
+            "requested": null,
+            "candidate": {},
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.descend",
+            "requested": null,
+            "candidate": {},
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.lift",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          }
+        ],
+        "contract": {
+          "supported_fields": [
+            "max_joint_vel",
+            "min_joint_vel"
+          ],
+          "unknown_fields": [
+            "grip_fraction_max",
+            "grip_fraction_min",
+            "kp_max",
+            "kp_min",
+            "max_jerk"
+          ]
+        }
+      },
+      "requested_target_phases": [],
+      "candidate_target_phases": [
+        "approach",
+        "descend",
+        "lift"
+      ],
+      "candidate_non_target_phases": [
+        "transport",
+        "final",
+        "retreat"
+      ],
+      "execution_semantics_valid": true,
+      "phase_scope_counts": {
+        "explicit_neutral": 2,
+        "explicit_override": 1,
+        "omitted_inherits_global": 3
+      },
+      "manner_qualification": "unknown",
+      "physical_interpretation": "descriptive_execution_semantics_only"
+    },
+    {
+      "candidate_id": "e0-dev-d0-stack-seed-50-fast-M-1",
+      "request_spec": {
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "candidate_spec": {
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {},
+          "lift": {
+            "min_joint_vel": 0.18
+          },
+          "transport": {
+            "min_joint_vel": 0.18
+          },
+          "final": {},
+          "retreat": {
+            "min_joint_vel": 0.18
+          }
+        }
+      },
+      "classification": {
+        "overall": "substantive_conflict",
+        "differences": [
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.approach",
+            "requested": null,
+            "candidate": {
+              "min_joint_vel": 0.18
+            },
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.descend",
+            "requested": null,
+            "candidate": {},
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.final",
+            "requested": null,
+            "candidate": {},
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.lift",
+            "requested": null,
+            "candidate": {
+              "min_joint_vel": 0.18
+            },
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.retreat",
+            "requested": null,
+            "candidate": {
+              "min_joint_vel": 0.18
+            },
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.transport",
+            "requested": null,
+            "candidate": {
+              "min_joint_vel": 0.18
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          }
+        ],
+        "contract": {
+          "supported_fields": [
+            "max_joint_vel",
+            "min_joint_vel"
+          ],
+          "unknown_fields": [
+            "grip_fraction_max",
+            "grip_fraction_min",
+            "kp_max",
+            "kp_min",
+            "max_jerk"
+          ]
+        }
+      },
+      "requested_target_phases": [],
+      "candidate_target_phases": [
+        "approach",
+        "descend",
+        "final",
+        "lift",
+        "retreat",
+        "transport"
+      ],
+      "candidate_non_target_phases": [],
+      "execution_semantics_valid": true,
+      "phase_scope_counts": {
+        "explicit_override": 4,
+        "explicit_neutral": 2
+      },
+      "manner_qualification": "unknown",
+      "physical_interpretation": "descriptive_execution_semantics_only"
+    },
+    {
+      "candidate_id": "e0-dev-d0-stack-seed-50-fast_approach_slow_contact-M-1",
+      "request_spec": {
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "candidate_spec": {
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.08
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {},
+          "final": {
+            "max_joint_vel": 0.08
+          }
+        }
+      },
+      "classification": {
+        "overall": "substantive_conflict",
+        "differences": [
+          {
+            "kind": "requested_global_missing",
+            "path": "global.max_jerk",
+            "requested": 2.0,
+            "candidate": null,
+            "classification": "unknown",
+            "reason": "global field 'max_jerk' is outside the v1 velocity contract"
+          },
+          {
+            "kind": "candidate_global_extra",
+            "path": "global.min_joint_vel",
+            "requested": null,
+            "candidate": 0.18,
+            "classification": "substantive_conflict",
+            "reason": "supported global velocity field 'min_joint_vel' differs"
+          },
+          {
+            "kind": "phase_constraint_changed",
+            "path": "phase_velocity.descend",
+            "requested": {
+              "max_joint_vel": 0.06
+            },
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "phase_constraint_changed",
+            "path": "phase_velocity.final",
+            "requested": {
+              "max_joint_vel": 0.06
+            },
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "phase_constraint_changed",
+            "path": "phase_velocity.transport",
+            "requested": {
+              "max_joint_vel": 0.08
+            },
+            "candidate": {},
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          }
+        ],
+        "contract": {
+          "supported_fields": [
+            "max_joint_vel",
+            "min_joint_vel"
+          ],
+          "unknown_fields": [
+            "grip_fraction_max",
+            "grip_fraction_min",
+            "kp_max",
+            "kp_min",
+            "max_jerk"
+          ]
+        }
+      },
+      "requested_target_phases": [
+        "approach",
+        "descend",
+        "final",
+        "lift",
+        "transport"
+      ],
+      "candidate_target_phases": [
+        "approach",
+        "descend",
+        "final",
+        "lift",
+        "transport"
+      ],
+      "candidate_non_target_phases": [
+        "retreat"
+      ],
+      "execution_semantics_valid": true,
+      "phase_scope_counts": {
+        "explicit_override": 4,
+        "explicit_neutral": 1,
+        "omitted_inherits_global": 1
+      },
+      "manner_qualification": "unknown",
+      "physical_interpretation": "descriptive_execution_semantics_only"
+    },
+    {
+      "candidate_id": "e0-dev-d0-stack-seed-50-neutral-M-1",
+      "request_spec": {
+        "global": {},
+        "phase_velocity": {}
+      },
+      "candidate_spec": {
+        "global": {},
+        "phase_velocity": {
+          "approach": {},
+          "descend": {
+            "max_joint_vel": 0.08
+          },
+          "lift": {},
+          "transport": {
+            "min_joint_vel": 0.18
+          },
+          "final": {
+            "max_joint_vel": 0.08
+          },
+          "retreat": {}
+        }
+      },
+      "classification": {
+        "overall": "substantive_conflict",
+        "differences": [
+          {
+            "kind": "neutral_extra_constraints",
+            "path": "candidate_preset",
+            "requested": {
+              "global": {},
+              "phase_velocity": {}
+            },
+            "candidate": {
+              "global": {},
+              "phase_velocity": {
+                "approach": {},
+                "descend": {
+                  "max_joint_vel": 0.08
+                },
+                "lift": {},
+                "transport": {
+                  "min_joint_vel": 0.18
+                },
+                "final": {
+                  "max_joint_vel": 0.08
+                },
+                "retreat": {}
+              }
+            },
+            "classification": "substantive_conflict",
+            "reason": "candidate changes an effective velocity profile for a neutral request"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.approach",
+            "requested": null,
+            "candidate": {},
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.descend",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.final",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.lift",
+            "requested": null,
+            "candidate": {},
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.retreat",
+            "requested": null,
+            "candidate": {},
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.transport",
+            "requested": null,
+            "candidate": {
+              "min_joint_vel": 0.18
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          }
+        ],
+        "contract": {
+          "supported_fields": [
+            "max_joint_vel",
+            "min_joint_vel"
+          ],
+          "unknown_fields": [
+            "grip_fraction_max",
+            "grip_fraction_min",
+            "kp_max",
+            "kp_min",
+            "max_jerk"
+          ]
+        }
+      },
+      "requested_target_phases": [],
+      "candidate_target_phases": [
+        "approach",
+        "descend",
+        "final",
+        "lift",
+        "retreat",
+        "transport"
+      ],
+      "candidate_non_target_phases": [],
+      "execution_semantics_valid": true,
+      "phase_scope_counts": {
+        "explicit_neutral": 3,
+        "explicit_override": 3
+      },
+      "manner_qualification": "unknown",
+      "physical_interpretation": "descriptive_execution_semantics_only"
+    },
+    {
+      "candidate_id": "e0-dev-d0-stack-seed-50-slow-M-1",
+      "request_spec": {
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "candidate_spec": {
+        "global": {
+          "max_joint_vel": 0.08
+        },
+        "phase_velocity": {
+          "approach": {
+            "max_joint_vel": 0.08
+          },
+          "descend": {
+            "max_joint_vel": 0.08
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.08
+          },
+          "retreat": {
+            "max_joint_vel": 0.08
+          }
+        }
+      },
+      "classification": {
+        "overall": "substantive_conflict",
+        "differences": [
+          {
+            "kind": "requested_global_missing",
+            "path": "global.max_jerk",
+            "requested": 2.0,
+            "candidate": null,
+            "classification": "unknown",
+            "reason": "global field 'max_jerk' is outside the v1 velocity contract"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.approach",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.descend",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.final",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.lift",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.retreat",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "representation_difference",
+            "reason": "phase spelling changes but effective velocity profile is unchanged"
+          },
+          {
+            "kind": "candidate_phase_extra",
+            "path": "phase_velocity.transport",
+            "requested": null,
+            "candidate": {
+              "max_joint_vel": 0.08
+            },
+            "classification": "substantive_conflict",
+            "reason": "phase scope or velocity changes the effective execution profile"
+          }
+        ],
+        "contract": {
+          "supported_fields": [
+            "max_joint_vel",
+            "min_joint_vel"
+          ],
+          "unknown_fields": [
+            "grip_fraction_max",
+            "grip_fraction_min",
+            "kp_max",
+            "kp_min",
+            "max_jerk"
+          ]
+        }
+      },
+      "requested_target_phases": [],
+      "candidate_target_phases": [
+        "approach",
+        "descend",
+        "final",
+        "lift",
+        "retreat",
+        "transport"
+      ],
+      "candidate_non_target_phases": [],
+      "execution_semantics_valid": true,
+      "phase_scope_counts": {
+        "explicit_override": 6
+      },
+      "manner_qualification": "unknown",
+      "physical_interpretation": "descriptive_execution_semantics_only"
+    }
+  ],
+  "api_calls": 0,
+  "simulator_calls": 0,
+  "promotion_allowed": false,
+  "manner_qualification": "unknown",
+  "physical_interpretation": "request_candidate_semantics_only; no physical failure inferred",
+  "source_audit_sha256": "cca28cc7056f8e1f59a44b3242ccf04bb6c21c1300408d61f6c69f4c5421b5e9",
+  "report_sha256": "6f89eb0e13f6d5f87a10e417fec166d16dfbcd7df05adffc29ba335135438ffa"
+}

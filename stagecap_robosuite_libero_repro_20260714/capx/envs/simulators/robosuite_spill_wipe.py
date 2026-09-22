@@ -61,6 +61,7 @@ class FrankaRobosuiteSpillWipeLowLevel(RobosuiteBaseEnv):
                     ),
                     horizon=max_steps,
                     reward_shaping=True,
+                    seed=seed,
                 )
             else:
                 self.robosuite_env = suite.environments.manipulation.wipe.Wipe(
@@ -77,6 +78,7 @@ class FrankaRobosuiteSpillWipeLowLevel(RobosuiteBaseEnv):
                     ),
                     horizon=max_steps,
                     reward_shaping=True,
+                    seed=seed,
                 )
         else:
             self.robosuite_env = suite.environments.manipulation.wipe.Wipe(
@@ -91,6 +93,7 @@ class FrankaRobosuiteSpillWipeLowLevel(RobosuiteBaseEnv):
                 controller_configs=load_composite_controller_config(controller=self.controller_cfg),
                 horizon=max_steps,
                 reward_shaping=True,
+                seed=seed,
             )
 
         self._init_robot_links()
@@ -129,7 +132,10 @@ class FrankaRobosuiteSpillWipeLowLevel(RobosuiteBaseEnv):
         )
 
         info = {
-            "task_prompt": "Place the primary cube on top of the secondary cube. Quaternions are WXYZ."
+            "task_prompt": (
+                "Wipe every brown spill marker from the table with the attached wiping tool. "
+                "Quaternions are WXYZ."
+            )
         }
         return obs, info
 

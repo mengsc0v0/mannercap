@@ -1,0 +1,147 @@
+import hashlib
+from pathlib import Path
+import random
+import sys
+import tempfile
+from types import SimpleNamespace
+import types
+import unittest
+from unittest import mock
+
+from synthesis_v2.simulator_state import (
+    capture_controller_command_state,
+    capture_simulator_snapshot,
+    restore_controller_command_state,
+    restore_simulator_snapshot,
+    save_compiled_model_binary,
+)
+
+
+class FakeArray(list):
+    @property
+    def size(self):
+        return len(self)
+
+    def tolist(self):
+        return list(self)
+
+
+class FakeData:
+    def __init__(self):
+        self.time = 1.25
+        for name in ("qpos", "qvel", "act", "qacc_warmstart", "ctrl",
+                     "qfrc_applied", "xfrc_applied", "mocap_pos", "mocap_quat",
+                     "userdata", "plugin_state", "eq_active"):
+            setattr(self, name, FakeArray([1.0, 2.0]))
+
+
+class FakeSim:
+    def __init__(self):
+        self.data = FakeData()
+
+    def forward(self):
+        pass
+
+
+class FakeInner:
+    def __init__(self):
+        self.sim = FakeSim()
+        self.timestep = 3
+        self.cur_time = 1.25
+        self.done = False
+        interpolator = SimpleNamespace(step=2, start=FakeArray([0.1, 0.2]), goal=FakeArray([0.3, 0.4]))
+        controller = SimpleNamespace(
+            goal_qpos=FakeArray([0.3, 0.4]),
+            joint_pos=FakeArray([0.1, 0.2]),
+            kp=FakeArray([1500.0, 1500.0]),
+            kd=FakeArray([400.0, 400.0]),
+            impedance_mode="fixed",
+            input_type="absolute",
+            use_torque_compensation=True,
+            new_update=False,
+            interpolator=interpolator,
+        )
+        composite = SimpleNamespace(part_controllers={"right": controller})
+        self.robots = [SimpleNamespace(torques=FakeArray([1.0, 2.0]), composite_controller=composite)]
+
+
+class FakeBitGenerator:
+    state = {"state": 7}
+
+
+class FakeRng:
+    bit_generator = FakeBitGenerator()
+
+
+class FakeEnv:
+    def __init__(self):
+        self.robosuite_env = FakeInner()
+        self._step_count = 4
+        self._sim_step_count = 5
+        self._gripper_fraction = .75
+        self._manner_phase = "approach"
+        self._current_joints = FakeArray([0.1, 0.2])
+        self._rng = FakeRng()
+
+
+class SnapshotTests(unittest.TestCase):
+    def test_capture_and_restore_mutable_state(self):
+        random.seed(123)
+        env = FakeEnv()
+        snapshot = capture_simulator_snapshot(env)
+        env.robosuite_env.sim.data.time = 9
+        env.robosuite_env.sim.data.qpos[:] = [8, 8]
+        env._step_count = 99
+        part = env.robosuite_env.robots[0].composite_controller.part_controllers["right"]
+        part.goal_qpos[:] = [8, 8]
+        part.interpolator.step = 99
+        restore_simulator_snapshot(env, snapshot)
+        self.assertEqual(env.robosuite_env.sim.data.time, 1.25)
+        self.assertEqual(env.robosuite_env.sim.data.qpos, [1.0, 2.0])
+        self.assertEqual(env._step_count, 4)
+        self.assertEqual(part.goal_qpos, [0.3, 0.4])
+        self.assertEqual(part.interpolator.step, 2)
+        self.assertTrue(snapshot["controller_object_state_captured"])
+
+    def test_rejects_unknown_schema(self):
+        with self.assertRaises(ValueError):
+            restore_simulator_snapshot(FakeEnv(), {"schema": "other"})
+
+    def test_compiled_model_binary_is_written_and_hashed(self):
+        fake_mujoco = types.ModuleType("mujoco")
+
+        def save_model(model, path, buffer):
+            self.assertIs(model, compiled_model)
+            self.assertIsNone(buffer)
+            Path(path).write_bytes(b"lossless-mjb-test")
+
+        fake_mujoco.mj_saveModel = save_model
+        compiled_model = object()
+        env = SimpleNamespace(
+            robosuite_env=SimpleNamespace(
+                sim=SimpleNamespace(model=SimpleNamespace(_model=compiled_model))
+            )
+        )
+        with tempfile.TemporaryDirectory() as temporary, mock.patch.dict(
+            sys.modules, {"mujoco": fake_mujoco}
+        ):
+            path = Path(temporary) / "model.mjb"
+            digest = save_compiled_model_binary(env, path)
+            payload = path.read_bytes()
+        self.assertEqual(payload, b"lossless-mjb-test")
+        self.assertEqual(digest, hashlib.sha256(payload).hexdigest())
+
+    def test_controller_command_side_channel_round_trip(self):
+        env = FakeEnv()
+        part = env.robosuite_env.robots[0].composite_controller.part_controllers["right"]
+        saved = capture_controller_command_state(env)
+        part.kp[:] = [1000.0, 1000.0]
+        part.kd[:] = [1.0, 1.0]
+        restore_controller_command_state(env, saved)
+        self.assertEqual(part.kp, [1500.0, 1500.0])
+        self.assertEqual(part.kd, [400.0, 400.0])
+        self.assertEqual(saved["schema"], "mannercap-controller-command-state-v1")
+
+
+if __name__ == "__main__":
+    unittest.main()

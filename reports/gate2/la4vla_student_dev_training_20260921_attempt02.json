@@ -1,0 +1,206 @@
+{
+  "schema": "mannercap-la4vla-student-dev-training.v1",
+  "status": "pass",
+  "claim_boundary": "development_only_same_task_seed_holdout",
+  "formal_split_assignment": "development",
+  "promotion_allowed": false,
+  "closed_loop_claim_allowed": false,
+  "generalization_claim_allowed": false,
+  "plan_sha256": "398337b4ea56e1a144c56577f179754a78b2558187e6dccdc69f8c1694204916",
+  "attempt_plan_sha256": "c3c9b924fcecb8ddc68aa69b6192d3aa9f4599dd7106ded8b15c77c3f2bb9e7b",
+  "source_checkpoint": {
+    "path": "/data/gaochuanhao/la4vla/ckpts/libero_phasefocus35_from55k_lr1e6_1k/step_500/checkpoint.pt",
+    "sha256": "64e1ddac2d5c246dc331c2abbbff9fcc2099b55d5a87f9acc7b460f626640141"
+  },
+  "train_dataset": {
+    "config": "/data/gaochuanhao/mannercap_runs/gate2_la4vla_microset_packed_20260918_attempt02/dataset_config.yaml",
+    "cache": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_train_cache_20260921_attempt02",
+    "windows": 64,
+    "source_seed": 42
+  },
+  "validation_dataset": {
+    "config": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921/dataset_config.yaml",
+    "cache": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_validation_cache_20260921_attempt02",
+    "windows": 64,
+    "source_seed": 43,
+    "normalization_source": "train_only",
+    "normalization_sha256": "25c3024af82ca7d6b78c1444c8333a4488d8e3c70af0f4fdf7119b52e06c3496"
+  },
+  "loader_contract": {
+    "max_samples_per_file": 50,
+    "effective_train_windows": 64,
+    "effective_validation_windows": 64,
+    "action_horizon": 50,
+    "active_action_dimensions": 7,
+    "model_action_dimensions": 24,
+    "normalization_type": "bounds"
+  },
+  "training": {
+    "steps": 100,
+    "seed": 20260921,
+    "learning_rate": 0.0001,
+    "batch_size": 8,
+    "trainable_parameter_count": 122029360,
+    "samples_seen": 800,
+    "frames_seen": 40000,
+    "scalar_action_targets_seen": 280000,
+    "loss_first": 0.19815506041049957,
+    "loss_last": 0.21820159256458282,
+    "loss_minimum": 0.10085636377334595,
+    "all_losses_finite": true,
+    "peak_gpu_allocated_bytes": 4339100160
+  },
+  "checkpoint": {
+    "path": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_checkpoint_20260921_attempt02.pt",
+    "sha256": "16f5f4aaadc151c61c0792249f7868ac7cb299cf374754b8057ef0accf8ee3fc",
+    "count": 1,
+    "selection": "final_step_only"
+  },
+  "fixed_noise_flow_loss": {
+    "seed": 20261021,
+    "initial_train": 0.23718287236988544,
+    "final_train": 0.17023544572293758,
+    "initial_validation": 0.2530226707458496,
+    "final_validation": 0.21559670567512512
+  },
+  "initial_ode": {
+    "train": {
+      "seed": 20261121,
+      "samples": 64,
+      "frames": 3200,
+      "active_action_dimensions": 7,
+      "units": "exported_7d_normalized_action_units_after_train_stats_denormalization",
+      "inference_method": "model.predict_action(actions_gt=None)->action_head.get_action",
+      "per_dimension_mae": [
+        0.007794634785095695,
+        0.10031255435198545,
+        0.021942024478921667,
+        0.008968993974267505,
+        0.0017516000382602215,
+        0.06773511016042903,
+        0.6409390830062329
+      ],
+      "per_dimension_mse": [
+        0.00010084685980182757,
+        0.011158369521686367,
+        0.0007968802584172726,
+        8.365442068518029e-05,
+        7.5479165507494855e-06,
+        0.004720224414799102,
+        1.1117995552097577
+      ],
+      "overall_mae": 0.1213491429707418,
+      "overall_mse": 0.1612381540859569
+    },
+    "validation": {
+      "seed": 20261121,
+      "samples": 64,
+      "frames": 3200,
+      "active_action_dimensions": 7,
+      "units": "exported_7d_normalized_action_units_after_train_stats_denormalization",
+      "inference_method": "model.predict_action(actions_gt=None)->action_head.get_action",
+      "per_dimension_mae": [
+        0.007703394743148237,
+        0.10409690394066275,
+        0.022517412980087102,
+        0.008382009069464402,
+        0.002025700256053824,
+        0.06788209327030927,
+        0.649268539790064
+      ],
+      "per_dimension_mse": [
+        9.87388512364481e-05,
+        0.012153718802004427,
+        0.0008253474409705763,
+        7.575446006762993e-05,
+        8.937918870219895e-06,
+        0.004805813975169279,
+        1.1234855730794084
+      ],
+      "overall_mae": 0.12312515057854137,
+      "overall_mse": 0.16306484064681812
+    }
+  },
+  "final_ode": {
+    "train": {
+      "seed": 20261121,
+      "samples": 64,
+      "frames": 3200,
+      "active_action_dimensions": 7,
+      "units": "exported_7d_normalized_action_units_after_train_stats_denormalization",
+      "inference_method": "model.predict_action(actions_gt=None)->action_head.get_action",
+      "per_dimension_mae": [
+        0.006709635421284475,
+        0.022526089427992703,
+        0.02188048678333871,
+        0.004625227493779676,
+        0.0016773813297913875,
+        0.03289738622494042,
+        0.38120207395404576
+      ],
+      "per_dimension_mse": [
+        7.323158870877282e-05,
+        0.0009607896553911204,
+        0.0008107288676750129,
+        3.3838260397793684e-05,
+        5.222355587872579e-06,
+        0.0016270855890961808,
+        0.2994678751779909
+      ],
+      "overall_mae": 0.06735975437645332,
+      "overall_mse": 0.04328268164212109
+    },
+    "validation": {
+      "seed": 20261121,
+      "samples": 64,
+      "frames": 3200,
+      "active_action_dimensions": 7,
+      "units": "exported_7d_normalized_action_units_after_train_stats_denormalization",
+      "inference_method": "model.predict_action(actions_gt=None)->action_head.get_action",
+      "per_dimension_mae": [
+        0.007686807499558199,
+        0.024651417010463774,
+        0.02142747972975485,
+        0.0046609560498473,
+        0.0018074984695704188,
+        0.03725557021331042,
+        0.46725346982479093
+      ],
+      "per_dimension_mse": [
+        9.58306181471369e-05,
+        0.0011787867482583921,
+        0.0007590398302575504,
+        3.248146971799982e-05,
+        6.062096595568487e-06,
+        0.0021959315459731256,
+        0.4341324294841142
+      ],
+      "overall_mae": 0.08067759982818513,
+      "overall_mse": 0.06262865168472342
+    },
+    "validation_passes": 2,
+    "validation_noise_seed": 20261121
+  },
+  "validation_sampling": {
+    "passes": 2,
+    "initial_noise_seed": 20261121,
+    "final_noise_seed": 20261121,
+    "same_noise_seed": true
+  },
+  "artifacts": {
+    "train_stats_sha256": "25c3024af82ca7d6b78c1444c8333a4488d8e3c70af0f4fdf7119b52e06c3496",
+    "qc_report_sha256": "eb61775a7bc4937040c6a3a0113bd1ec49292d57b974dd19c178350c16eae684",
+    "loader_smoke_report_sha256": "9ca3f5e466d41295e2b76003afcf8c92159f5b59483475f67f6179abc0558487"
+  },
+  "resources": {
+    "cuda_visible_devices": "3",
+    "wall_seconds": 548.8265387210995,
+    "max_wall_seconds": 1200.0,
+    "peak_gpu_allocated_bytes": 4339100160,
+    "gpu_memory_cap_bytes": 6442450944,
+    "gpu_memory_cap_fraction": 0.2550243988491941,
+    "new_disk_bytes": 1811942084,
+    "disk_cap_bytes": 16106127360
+  },
+  "api_calls": 0
+}

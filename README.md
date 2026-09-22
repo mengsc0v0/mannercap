@@ -1,5 +1,7 @@
 # Manner 消融实验运行指南
 
+> **2026-09-16：v2 已启动。** 当前服务器环境、真实 Lift/Stack 开发运行、失败记录、验证结果和后续任务见 [v2 启动交付](reports/gate0/README.md)。下文是旧驱动说明；其 L2/`manner_infeasible` 输出不能作为 v2 物理验收。当前代码的原 PyRoKi 路径仍依赖 8116 IK 服务；新增本地 MuJoCo IK 是显式选择的开发后端，不能据此声称原环境已复现。
+
 `run_manner_ablation.py` 生成 manner-conditioned 轨迹，输出 L1（任务是否成功）
 / L2（是否忠实按人话执行，`MannerValidator` 判定）/ L3（抓取力、jerk 等物理量
 与 baseline 对比）三层指标。L2 满足但 L1 失败 → `manner_infeasible`（诚实失败）。

@@ -1,0 +1,519 @@
+{
+  "schema": "mannercap-controlled-wrench-calibration-v1",
+  "source_episode": "/data/gaochuanhao/mannercap_runs/gate1_20260916_attempt03/lift",
+  "sample_count": 16,
+  "body_wrench_layout": "torque_nm_then_force_n",
+  "applied_wrench_layout": "force_n_then_torque_nm",
+  "tolerance": 1e-08,
+  "body_channel_response_verified": true,
+  "table_contact_normal_response_characterized": true,
+  "table_contact_normal_strict_tolerance_verified": false,
+  "contact_pair_calibration_verified": false,
+  "gripper_contact_calibration_verified": false,
+  "real_sensor_calibration_verified": false,
+  "physical_qualification": "unknown",
+  "samples": [
+    {
+      "case_id": "table_support_zero",
+      "airborne": false,
+      "applied_force_n": [
+        0,
+        0,
+        0
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0
+      ],
+      "measured_body_force_n": [
+        -1.945805233199205e-18,
+        9.682448284682199e-18,
+        0.668620332180584
+      ],
+      "measured_body_torque_nm": [
+        3.3610267347050637e-18,
+        8.673617379884035e-19,
+        -1.6575034583882649e-32
+      ],
+      "object_contact_count": 4,
+      "sensor_valid": true,
+      "channel_response_checked": false
+    },
+    {
+      "case_id": "airborne_zero",
+      "airborne": true,
+      "applied_force_n": [
+        0,
+        0,
+        0
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0
+      ],
+      "measured_body_force_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "measured_body_torque_nm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "torque_response_delta_nm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 0.0,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_fx_1n",
+      "airborne": true,
+      "applied_force_n": [
+        1,
+        0,
+        0
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0
+      ],
+      "measured_body_force_n": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "measured_body_torque_nm": [
+        0.0,
+        2.220446049250313e-16,
+        -3.469446951953614e-18
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "torque_response_delta_nm": [
+        0.0,
+        2.220446049250313e-16,
+        -3.469446951953614e-18
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 2.220717083251841e-16,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_fx_2n",
+      "airborne": true,
+      "applied_force_n": [
+        2,
+        0,
+        0
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0
+      ],
+      "measured_body_force_n": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "measured_body_torque_nm": [
+        0.0,
+        4.440892098500626e-16,
+        -6.938893903907228e-18
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "torque_response_delta_nm": [
+        0.0,
+        4.440892098500626e-16,
+        -6.938893903907228e-18
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 4.441434166503682e-16,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_fx_4n",
+      "airborne": true,
+      "applied_force_n": [
+        4,
+        0,
+        0
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0
+      ],
+      "measured_body_force_n": [
+        4.0,
+        0.0,
+        0.0
+      ],
+      "measured_body_torque_nm": [
+        0.0,
+        8.881784197001252e-16,
+        -1.3877787807814457e-17
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        4.0,
+        0.0,
+        0.0
+      ],
+      "torque_response_delta_nm": [
+        0.0,
+        8.881784197001252e-16,
+        -1.3877787807814457e-17
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 8.882868333007365e-16,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_fz_minus1n",
+      "airborne": true,
+      "applied_force_n": [
+        0,
+        0,
+        -1
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0
+      ],
+      "measured_body_force_n": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "measured_body_torque_nm": [
+        -3.469446951953614e-18,
+        0.0,
+        0.0
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "torque_response_delta_nm": [
+        -3.469446951953614e-18,
+        0.0,
+        0.0
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 3.469446951953614e-18,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_fz_minus2n",
+      "airborne": true,
+      "applied_force_n": [
+        0,
+        0,
+        -2
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0
+      ],
+      "measured_body_force_n": [
+        0.0,
+        0.0,
+        -2.0
+      ],
+      "measured_body_torque_nm": [
+        -6.938893903907228e-18,
+        0.0,
+        0.0
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        0.0,
+        0.0,
+        -2.0
+      ],
+      "torque_response_delta_nm": [
+        -6.938893903907228e-18,
+        0.0,
+        0.0
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 6.938893903907228e-18,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_fz_minus4n",
+      "airborne": true,
+      "applied_force_n": [
+        0,
+        0,
+        -4
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0
+      ],
+      "measured_body_force_n": [
+        0.0,
+        0.0,
+        -4.0
+      ],
+      "measured_body_torque_nm": [
+        -1.3877787807814457e-17,
+        0.0,
+        0.0
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        0.0,
+        0.0,
+        -4.0
+      ],
+      "torque_response_delta_nm": [
+        -1.3877787807814457e-17,
+        0.0,
+        0.0
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 1.3877787807814457e-17,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_tz_0p05nm",
+      "airborne": true,
+      "applied_force_n": [
+        0,
+        0,
+        0
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0.05
+      ],
+      "measured_body_force_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "measured_body_torque_nm": [
+        0.0,
+        0.0,
+        0.05
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "torque_response_delta_nm": [
+        0.0,
+        0.0,
+        0.05
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 0.0,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_tz_0p1nm",
+      "airborne": true,
+      "applied_force_n": [
+        0,
+        0,
+        0
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0.1
+      ],
+      "measured_body_force_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "measured_body_torque_nm": [
+        0.0,
+        0.0,
+        0.1
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "torque_response_delta_nm": [
+        0.0,
+        0.0,
+        0.1
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 0.0,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_tz_0p2nm",
+      "airborne": true,
+      "applied_force_n": [
+        0,
+        0,
+        0
+      ],
+      "applied_torque_nm": [
+        0,
+        0,
+        0.2
+      ],
+      "measured_body_force_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "measured_body_torque_nm": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "torque_response_delta_nm": [
+        0.0,
+        0.0,
+        0.2
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 0.0,
+      "channel_response_checked": true
+    },
+    {
+      "case_id": "airborne_combined",
+      "airborne": true,
+      "applied_force_n": [
+        1,
+        2,
+        3
+      ],
+      "applied_torque_nm": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "measured_body_force_n": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "measured_body_torque_nm": [
+        0.09999999999999958,
+        0.20000000000000023,
+        0.3
+      ],
+      "object_contact_count": 0,
+      "sensor_valid": true,
+      "force_response_delta_n": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "torque_response_delta_nm": [
+        0.09999999999999958,
+        0.20000000000000023,
+        0.3
+      ],
+      "force_response_error_n": 0.0,
+      "torque_response_error_nm": 4.841339424497384e-16,
+      "channel_response_checked": true
+    }
+  ],
+  "contact_normal_samples": [
+    {
+      "case_id": "table_downward_load_0n",
+      "applied_downward_force_n": 0.0,
+      "table_contact_count": 4,
+      "summed_normal_force_n": 0.668620332180584,
+      "contact_force_frame": "contact_local",
+      "normal_component_index": 0,
+      "normal_force_response_delta_n": 0.0,
+      "normal_force_response_error_n": 0.0,
+      "normal_force_response_gain": null
+    },
+    {
+      "case_id": "table_downward_load_1n",
+      "applied_downward_force_n": 1.0,
+      "table_contact_count": 4,
+      "summed_normal_force_n": 1.6556333191935728,
+      "contact_force_frame": "contact_local",
+      "normal_component_index": 0,
+      "normal_force_response_delta_n": 0.9870129870129888,
+      "normal_force_response_error_n": 0.012987012987011215,
+      "normal_force_response_gain": 0.9870129870129888
+    },
+    {
+      "case_id": "table_downward_load_2n",
+      "applied_downward_force_n": 2.0,
+      "table_contact_count": 4,
+      "summed_normal_force_n": 2.642646306206559,
+      "contact_force_frame": "contact_local",
+      "normal_component_index": 0,
+      "normal_force_response_delta_n": 1.9740259740259747,
+      "normal_force_response_error_n": 0.025974025974025317,
+      "normal_force_response_gain": 0.9870129870129873
+    },
+    {
+      "case_id": "table_downward_load_4n",
+      "applied_downward_force_n": 4.0,
+      "table_contact_count": 4,
+      "summed_normal_force_n": 4.616672280232533,
+      "contact_force_frame": "contact_local",
+      "normal_component_index": 0,
+      "normal_force_response_delta_n": 3.9480519480519485,
+      "normal_force_response_error_n": 0.05194805194805152,
+      "normal_force_response_gain": 0.9870129870129871
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+schema_version: synthesis_v2.student_baseline_candidate.v1
+baseline_id: la4vla_1b_libero_goal_phasefocus35_step500
+status: candidate_pending_acceptance_threshold_and_task_evaluation
+selection_date: 2026-09-17
+
+model:
+  implementation: LA4VLA_1B
+  visual_language_backbone: InternVL3-1B
+  action_head: flowmatching
+  horizon: 50
+  per_action_dim: 24
+  active_action_dimensions: 7
+  inference_timesteps: 50
+
+server_artifacts:
+  root: /data/gaochuanhao/la4vla
+  source_git_commit: null
+  source_version_limitation: source directory has no Git metadata; audited files are pinned by SHA-256
+  checkpoint:
+    path: ckpts/libero_phasefocus35_from55k_lr1e6_1k/step_500/checkpoint.pt
+    bytes: 5387956682
+    sha256: 64e1ddac2d5c246dc331c2abbbff9fcc2099b55d5a87f9acc7b460f626640141
+  config:
+    path: ckpts/libero_phasefocus35_from55k_lr1e6_1k/step_500/config.json
+    sha256: 93758f08b47a9f31d090f257972b38fceb193fefcad0affefe45a21d0608ee63
+  normalization:
+    path: ckpts/libero_phasefocus35_from55k_lr1e6_1k/step_500/norm_stats.json
+    sha256: 568c5cfa22e849d5246ccf61b83379a20d47764c31c63248fd635336546afdf0
+  evaluation_code:
+    path: eval_libero_goal.py
+    sha256: 75e8749b10f41a0009fea42e9a470f3d9d9ceafd33d1a173a9181470f2beb6c5
+
+existing_evidence:
+  benchmark: LIBERO-Goal
+  episodes: 100
+  seeds: [20260825, 20260826]
+  reported_successes: [43, 41]
+  reported_mean_success_rate: 0.84
+  evidence_scope: existing LA4VLA repository report; not reproduced on MannerCAP Lift/Stack/Wipe
+
+deployment_interface:
+  interface_id: la4vla_libero_osc_pose
+  controller: RoboSuite OSC_POSE
+  control_frequency_hz: 20
+  vector:
+    - {name: normalized_translation_delta, dimensions: 3, controller_output_limit: 0.05, unit: m}
+    - {name: normalized_rotation_delta, dimensions: 3, controller_output_limit: 0.5, unit: rad}
+    - {name: gripper_command, dimensions: 1, sign: "-1=open,+1=close"}
+
+freeze_gate:
+  fixed_student_approved: false
+  adapter_implemented: true
+  physical_round_trip_count: 30
+  required_physical_round_trip_count: 30
+  physical_round_trip_report:
+    path: /data/gaochuanhao/mannercap_runs/gate2_la4vla_osc_roundtrip_20260918/report_attempt04_final.json
+    sha256: 551dd91104447374e3b8fbd1049d460f6312763dbbecf5f53a21fa2e839a1bb4
+  independent_acceptance_threshold_frozen: false
+  small_sample_learning_preflight:
+    executed: true
+    training_window_count: 64
+    independent_source_episode_count: 2
+    fixed_microbatch_training_steps: 100
+    fixed_noise_loss_ratio: 0.2503798953429153
+    report: reports/gate2/la4vla_microset_learning_preflight.md
+    generalization_verified: false
+    closed_loop_verified: false
+  mannercap_task_evaluation_run: false
+  blocking_reason: physical controller diagnostic completed, but no independent tracking-error threshold or MannerCAP student-policy task evaluation is frozen

@@ -1,0 +1,40 @@
+{
+  "schema": "mannercap-la4vla-student-loader-smoke.v1",
+  "status": "pass",
+  "loader_file": "/data/gaochuanhao/la4vla/LA4VLA_1B/dataset/lerobot_dataset_pretrain_mp.py",
+  "loader_sha256": "2a8934d9c6f2c1bfdbd44e7637d4363bb539fb761a40a310fad78e730ae97e69",
+  "loader_constructor": {
+    "max_samples_per_file": 50,
+    "action_horizon": 50,
+    "image_size": 448,
+    "use_augmentation": false
+  },
+  "dataset_expected_samples": 64,
+  "dataset_actual_samples": 64,
+  "image_mask": [
+    true,
+    true
+  ],
+  "action_shape": [
+    50,
+    24
+  ],
+  "action_mask_active_dims": 7,
+  "action_mask_inactive_dims": 17,
+  "normalization_override": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_normalization_override_20260921.json",
+  "checks": [
+    {
+      "name": "train",
+      "windows": 64,
+      "parquet_inline_image_hash_checked": 128,
+      "mismatches": []
+    },
+    {
+      "name": "validation",
+      "windows": 64,
+      "parquet_inline_image_hash_checked": 128,
+      "mismatches": []
+    }
+  ],
+  "claim_boundary": "development_only"
+}

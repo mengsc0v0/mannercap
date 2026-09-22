@@ -1,0 +1,111 @@
+schema_version: synthesis_v2.method_config.v1
+method_id: G1
+method_name: G1 global control-parameter random sampling
+method_version: gate1.dev.1
+
+shared:
+  executor:
+    id: shared_executor.v1
+    version: gate1.shared.1
+    safety_layer: shared_safety.v1
+  request_contract: synthesis_v2.request.v1
+  task_space_contract: synthesis_v2.task_space.v1
+  task_scope: [lift, stack]
+  constraint_source:
+    registry_ref: configs/constraint_registry.yaml#public_generation
+    visibility: public
+    allowed_fields:
+      - task_id
+      - phase
+      - metric
+      - unit
+      - constraint_id
+      - calibration.source_ref
+      - calibration.version
+      - status
+    thresholds:
+      lower: null
+      upper: null
+      tolerance: null
+    unknown_policy: not_qualified
+  attempt_policy:
+    max_attempts: 3
+    budget_scope: per_request_shared
+    outcomes: [parse_failure, invalid, execution_failure, validation_failure, duplicate, accepted]
+    hidden_retries: false
+    stop_on_first_accepted: true
+    acceptance_terminal: true
+    preserve_original_request: true
+    pair_orchestration_source: request_manifest
+  budget:
+    max_attempts: 3
+    resource_dimensions:
+      - physics_substeps
+      - api_calls
+      - api_tokens
+      - cpu_time_s
+      - gpu_time_s
+      - wall_time_s
+      - storage_bytes
+    caps:
+      physics_substeps: null
+      api_calls: null
+      api_tokens: null
+      cpu_time_s: null
+      gpu_time_s: null
+      wall_time_s: null
+      storage_bytes: null
+  validation:
+    dimensions: [task, manner, safety]
+    unknown_policy: not_qualified
+    generation_filter: public_constraint_registry
+    final_audit_feedback: false
+  reproducibility:
+    request_order: request_id_lexicographic
+    attempt_seed: sha256(method_id,request_id,attempt_index)
+    model_cache_key: method_id,request_id,attempt_index
+    temperature: null
+    service_version: null
+  audit_access:
+    allowed_visibility: public_generation
+    feedback_channel: none
+    artifact_loading: false
+
+method:
+  planner_kind: global_random
+  proposal_source: global_random
+  uses_language: false
+  uses_stage_scope: false
+  uses_object_attributes: false
+  stage_local_control: false
+  generation_manner_filter: true
+  pair_orchestration: true
+  failure_feedback: false
+  sampling:
+    kind: random
+    scope: global
+    seed_policy: sha256(method_id,request_id,attempt_index)
+    domain_ref: task_space.public_control_domain.v1
+    numeric_domain:
+      lower: null
+      upper: null
+  rules:
+    visibility: public
+    rule_refs: []
+    inline_rules: []
+    hidden_rules: false
+  output_fields: [stage_instance_id, object_id, control_plan, predicted_plan, executed_plan]
+
+ablations:
+  active: []
+  switches:
+    phase_local_control: false
+    context_attributes: false
+    generation_manner_filter: true
+    pair_orchestration: true
+    failure_feedback: false
+
+metadata:
+  status: development_pending
+  thresholds: null
+  description: global parameter sampling reference method; it shares the public filter and executor

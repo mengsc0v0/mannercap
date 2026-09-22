@@ -1,0 +1,280 @@
+schema_version: synthesis_v2.constraint_registry.v1
+registry_id: manncap_gate1_constraint_registry
+registry_version: 2026-09-16.dev.1
+hash_algorithm: sha256
+registry_version_hash: 69b4ab84a46a918559ff570deebbc81f95409106c00bf6f51eac187c698e535e
+status: development_pending
+
+calibration:
+  status: pending_calibration
+  source_ref: reports/gate1/force_calibration_protocol.md
+  version: force_calibration.v1.pending
+  evidence_sha256: null
+  notes: No Lift/Stack physical threshold has been independently calibrated.
+
+decision_contract:
+  dimensions:
+    task:
+      states: [pass, fail, unknown]
+      unknown_is_qualified: false
+    manner:
+      states: [pass, fail, unknown]
+      unknown_is_qualified: false
+    safety:
+      states: [pass, fail, unknown]
+      unknown_is_qualified: false
+  unknown_policy: not_qualified
+  joint_rule:
+    any_fail: fail
+    all_pass: pass
+    otherwise: unknown
+
+public_generation:
+  config_id: public_generation.v1
+  visibility: public
+  constraint_refs:
+    - lift.approach.joint_velocity
+    - lift.descend.joint_velocity
+    - lift.grasp.gripper_fraction
+    - lift.grasp.force_norm
+    - lift.lift.joint_velocity
+    - stack.approach.joint_velocity
+    - stack.descend.joint_velocity
+    - stack.grasp.gripper_fraction
+    - stack.grasp.force_norm
+    - stack.lift.joint_velocity
+    - stack.transport.joint_velocity
+    - stack.place.force_norm
+    - stack.retreat.joint_velocity
+  allowed_fields:
+    - task_id
+    - phase
+    - metric
+    - unit
+    - constraint_id
+    - calibration.source_ref
+    - calibration.version
+    - status
+  excluded_fields:
+    - numeric_thresholds
+    - sealed_final_audit_contents
+    - final_audit_results
+  final_audit_ref:
+    config_id: sealed_final_audit.v1
+    visibility: sealed_reference
+
+sealed_final_audit:
+  config_id: sealed_final_audit.v1
+  visibility: sealed
+  status: sealed_pending
+  config_ref: sealed://mannercap/gate1/final_audit/constraint_registry.v1.yaml
+  config_sha256: null
+  source_of_truth: independent B-owned final-audit artifact; not visible to the generator
+
+tasks:
+  - task_id: lift
+    status: supported
+    calibration_status: pending_calibration
+    phases: [approach, descend, grasp, lift]
+    constraints:
+      - constraint_id: lift.approach.joint_velocity
+        task_id: lift
+        phase: approach
+        metric: joint_velocity
+        unit: rad/s
+        scope: {kind: stage, stage_instance_id: approach}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: lift.descend.joint_velocity
+        task_id: lift
+        phase: descend
+        metric: joint_velocity
+        unit: rad/s
+        scope: {kind: stage, stage_instance_id: descend}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: lift.grasp.gripper_fraction
+        task_id: lift
+        phase: grasp
+        metric: gripper_fraction
+        unit: fraction
+        scope: {kind: stage, stage_instance_id: grasp}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: lift.grasp.force_norm
+        task_id: lift
+        phase: grasp
+        metric: force_norm
+        unit: N
+        scope: {kind: stage, stage_instance_id: grasp}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: lift.lift.joint_velocity
+        task_id: lift
+        phase: lift
+        metric: joint_velocity
+        unit: rad/s
+        scope: {kind: stage, stage_instance_id: lift}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+
+  - task_id: stack
+    status: supported
+    calibration_status: pending_calibration
+    phases: [approach, descend, grasp, lift, transport, place, retreat]
+    constraints:
+      - constraint_id: stack.approach.joint_velocity
+        task_id: stack
+        phase: approach
+        metric: joint_velocity
+        unit: rad/s
+        scope: {kind: stage, stage_instance_id: approach}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: stack.descend.joint_velocity
+        task_id: stack
+        phase: descend
+        metric: joint_velocity
+        unit: rad/s
+        scope: {kind: stage, stage_instance_id: descend}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: stack.grasp.gripper_fraction
+        task_id: stack
+        phase: grasp
+        metric: gripper_fraction
+        unit: fraction
+        scope: {kind: stage, stage_instance_id: grasp}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: stack.grasp.force_norm
+        task_id: stack
+        phase: grasp
+        metric: force_norm
+        unit: N
+        scope: {kind: stage, stage_instance_id: grasp}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: stack.lift.joint_velocity
+        task_id: stack
+        phase: lift
+        metric: joint_velocity
+        unit: rad/s
+        scope: {kind: stage, stage_instance_id: lift}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: stack.transport.joint_velocity
+        task_id: stack
+        phase: transport
+        metric: joint_velocity
+        unit: rad/s
+        scope: {kind: stage, stage_instance_id: transport}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: stack.place.force_norm
+        task_id: stack
+        phase: place
+        metric: force_norm
+        unit: N
+        scope: {kind: stage, stage_instance_id: place}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null
+      - constraint_id: stack.retreat.joint_velocity
+        task_id: stack
+        phase: retreat
+        metric: joint_velocity
+        unit: rad/s
+        scope: {kind: stage, stage_instance_id: retreat}
+        decision_dimensions: [task, manner, safety]
+        unknown_policy: not_qualified
+        status: pending_calibration
+        thresholds: {lower: null, upper: null, tolerance: null}
+        calibration:
+          status: pending_calibration
+          source_ref: reports/gate1/force_calibration_protocol.md
+          version: force_calibration.v1.pending
+          evidence_sha256: null

@@ -1,0 +1,64 @@
+{
+  "schema": "mannercap.la4vla.student_dev_attempt_plan.v1",
+  "status": "registered_pre_run",
+  "date": "2026-09-22",
+  "timezone": "Asia/Shanghai",
+  "attempt": "attempt02",
+  "purpose": "repair the bounded student development runner after a pre-training CLI startup failure",
+  "frozen_plan": {
+    "path": "reports/gate2/la4vla_student_dev_validation_plan_20260921.json",
+    "sha256": "398337b4ea56e1a144c56577f179754a78b2558187e6dccdc69f8c1694204916",
+    "retry_count_before_attempt": 0
+  },
+  "prior_failure": {
+    "artifact": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_training_20260921.json",
+    "status": "fail",
+    "phase": "input_hashes",
+    "error_type": "AttributeError",
+    "error": "Namespace object had no validation_dataset attribute",
+    "traceback_location": "scripts/gate2_student_dev_train_eval.py:280",
+    "completed_training_steps": 0,
+    "completed_ode_sampling_passes": 0,
+    "checkpoint_written": false,
+    "cost_interpretation": "imports, CUDA availability, four input hashes, and train-only stats parsing completed; dataset construction and model training did not start"
+  },
+  "repair_scope": [
+    "derive validation stats from validation_dataset_config.parent/meta/stats.json",
+    "record phase transitions, completed optimizer steps, elapsed time, checkpoint state, and tracked new disk bytes in success and failure artifacts",
+    "enforce the 1200-second wall budget across all stages with in-process guards and SIGALRM on Linux",
+    "enforce the 15 GiB new-output budget before and after tracked stages",
+    "force the supplied train-only normalization statistics into both loaded datasets",
+    "require a 50x24 action mask with exactly the first 7 dimensions active",
+    "use the real model.predict_action(actions_gt=None) to reach the action-head get_action ODE and report seven-dimensional denormalized MAE/MSE",
+    "retain only initial and final validation ODE passes with the same recorded noise seed; do not run a final pass2"
+  ],
+  "execution_contract": {
+    "server_alias": "4090x8",
+    "server_repo": "/data/gaochuanhao/mannercap",
+    "expected_server_head": "ee5507a",
+    "gpu_policy": "GPU2 only after a fresh preflight confirms no compute process and <=1 GiB persistent use",
+    "new_capture_candidates": 0,
+    "api_calls": 0,
+    "training_steps_max": 100,
+    "validation_ode_passes": 2,
+    "closed_loop": false,
+    "formal_promotion": false,
+    "source_datasets": "reuse QC-passed seed42 train and seed43 validation bundles; do not recapture or overwrite"
+  },
+  "attempt_artifacts": {
+    "training_report": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_training_20260921_attempt02.json",
+    "checkpoint": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_checkpoint_20260921_attempt02.pt",
+    "train_cache": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_train_cache_20260921_attempt02",
+    "validation_cache": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_validation_cache_20260921_attempt02",
+    "old_failure_preserved": true
+  },
+  "stop_conditions": [
+    "GPU2 occupied",
+    "nonfinite loss",
+    "checkpoint write failure",
+    "wall budget exceeded",
+    "new disk budget exceeded",
+    "source, QC, loader, or train-only statistics hash mismatch"
+  ],
+  "claim_boundary": "development_only_same_task_seed_holdout; no object generalization; no closed loop; no formal promotion"
+}

@@ -1,0 +1,84 @@
+{
+  "schema": "mannercap.la4vla.student-dev-attempt-result.v1",
+  "attempt": "attempt03",
+  "status": "pass",
+  "claim_boundary": "development_only_same_task_seed_holdout; no object generalization; no closed loop; no formal promotion",
+  "plan_sha256": "398337b4ea56e1a144c56577f179754a78b2558187e6dccdc69f8c1694204916",
+  "attempt_plan_sha256": "fab616ecec7062653abd0c012e39805fb26f6b6df560e5e80d4ac88382f1a1f8",
+  "resource_revision_sha256": "b77dff24328afda3c03a78e86eaa60fad7f1e33d23eed29e70ef0734d41ed086",
+  "source_binding": {
+    "train_manifest_sha256": "4482a57125bf834e5b37d56d64658d5a1af08fa5edb00643920ca8369ae714ab",
+    "validation_manifest_sha256": "1215a0944c3bfbf11739dfeb9175345b15eb4cf3ac840abfb78ac5310f1596a0",
+    "train_source_episode_count": 8,
+    "validation_source_episode_count": 8,
+    "train_windows": 64,
+    "validation_windows": 64,
+    "qc_report_sha256": "eb61775a7bc4937040c6a3a0113bd1ec49292d57b974dd19c178350c16eae684",
+    "qc_plan_sha256_matches_frozen": true,
+    "train_binding_mismatches": [],
+    "validation_binding_mismatches": []
+  },
+  "execution": {
+    "source_checkpoint_sha256": "64e1ddac2d5c246dc331c2abbbff9fcc2099b55d5a87f9acc7b460f626640141",
+    "steps": 100,
+    "seed": 20260921,
+    "batch_size": 8,
+    "learning_rate": 0.0001,
+    "trainable_parameters": "action_head_only",
+    "samples_seen": 800,
+    "frames_seen": 40000,
+    "scalar_action_targets_seen": 280000,
+    "all_losses_finite": true,
+    "fixed_flow_loss": {
+      "seed": 20261021,
+      "initial_train": 0.25583949126303196,
+      "final_train": 0.16085820831358433,
+      "initial_validation": 0.2530226707458496,
+      "final_validation": 0.16095621697604656
+    },
+    "initial_ode_overall": {
+      "train_mae": 0.12656754958732302,
+      "train_mse": 0.16910614618399325,
+      "validation_mae": 0.12312515057854137,
+      "validation_mse": 0.16306484064681812,
+      "seed": 20261121
+    },
+    "final_ode_overall": {
+      "train_mae": 0.06765357134121586,
+      "train_mse": 0.06132147193768635,
+      "validation_mae": 0.06714775939720442,
+      "validation_mse": 0.06016508509288115,
+      "seed": 20261121,
+      "inference_method": "model.predict_action(actions_gt=None)->action_head.get_action"
+    },
+    "validation_sampling_passes": 2,
+    "validation_initial_final_same_noise_seed": true
+  },
+  "resources": {
+    "cuda_visible_devices": "3",
+    "gpu_uuid": "GPU-66762add-f2c3-6b72-093d-00a18d8d1718",
+    "wall_seconds": 227.13020245963708,
+    "max_wall_seconds": 1200,
+    "new_disk_bytes": 1811971519,
+    "disk_cap_bytes": 16106127360,
+    "peak_gpu_allocated_bytes": 4339100160,
+    "gpu_memory_cap_bytes": 6442450944,
+    "api_calls": 0
+  },
+  "artifacts": {
+    "training_report": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_training_20260922_attempt03.json",
+    "training_report_sha256": "8f659f5826f3f5c8804317a38de23be778dd963b39c56aedfbfbe8bf30e6f4ed",
+    "training_log": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_training_20260922_attempt03.log",
+    "training_log_sha256": "80661f595e12a243b1abf1d172f3f4d1c0485463ee4d6dc3d08d64f4785fca38",
+    "checkpoint": "/data/gaochuanhao/mannercap_runs/la4vla_student_dev_checkpoint_20260922_attempt03.pt",
+    "checkpoint_sha256": "61810299a72aa829f5542c7eb8b4d2d5587eeb274faae3925c429935fd88b9c6",
+    "report_copy": "reports/gate2/la4vla_student_dev_training_20260922_attempt03.json",
+    "attempt_plan": "reports/gate2/la4vla_student_dev_attempt03_plan_20260922.json",
+    "resource_revision": "reports/gate2/la4vla_student_dev_attempt03_resource_revision_20260922.json"
+  },
+  "prior_attempt02": {
+    "status": "protocol_deviation",
+    "report_sha256": "e6c3da461de0a8de720730bbac1073a0c10c84eab4ca9b6325d8dbc00981135e",
+    "preserved": true
+  }
+}

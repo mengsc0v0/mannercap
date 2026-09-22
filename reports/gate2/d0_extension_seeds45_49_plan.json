@@ -1,0 +1,984 @@
+{
+  "schema": "mannercap-d0-manner-plan-v1",
+  "purpose": "zero_api_d0_manner_pilot",
+  "tasks": [
+    "lift",
+    "stack"
+  ],
+  "seeds": [
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "manner_tags": [
+    "neutral",
+    "slow",
+    "fast",
+    "fast_approach_slow_contact"
+  ],
+  "episode_count": 40,
+  "episodes": [
+    {
+      "episode_id": "d0-lift-seed-45-neutral",
+      "task": "lift",
+      "seed": 45,
+      "manner_tag": "neutral",
+      "raw_language": "Lift the cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-45-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-45-slow",
+      "task": "lift",
+      "seed": 45,
+      "manner_tag": "slow",
+      "raw_language": "Lift the cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-45-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-45-fast",
+      "task": "lift",
+      "seed": 45,
+      "manner_tag": "fast",
+      "raw_language": "Lift the cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-45-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-45-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 45,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the cube quickly, then contact it and lift it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-45-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-46-neutral",
+      "task": "lift",
+      "seed": 46,
+      "manner_tag": "neutral",
+      "raw_language": "Lift the cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-46-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-46-slow",
+      "task": "lift",
+      "seed": 46,
+      "manner_tag": "slow",
+      "raw_language": "Lift the cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-46-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-46-fast",
+      "task": "lift",
+      "seed": 46,
+      "manner_tag": "fast",
+      "raw_language": "Lift the cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-46-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-46-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 46,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the cube quickly, then contact it and lift it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-46-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-47-neutral",
+      "task": "lift",
+      "seed": 47,
+      "manner_tag": "neutral",
+      "raw_language": "Lift the cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-47-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-47-slow",
+      "task": "lift",
+      "seed": 47,
+      "manner_tag": "slow",
+      "raw_language": "Lift the cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-47-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-47-fast",
+      "task": "lift",
+      "seed": 47,
+      "manner_tag": "fast",
+      "raw_language": "Lift the cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-47-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-47-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 47,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the cube quickly, then contact it and lift it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-47-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-48-neutral",
+      "task": "lift",
+      "seed": 48,
+      "manner_tag": "neutral",
+      "raw_language": "Lift the cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-48-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-48-slow",
+      "task": "lift",
+      "seed": 48,
+      "manner_tag": "slow",
+      "raw_language": "Lift the cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-48-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-48-fast",
+      "task": "lift",
+      "seed": 48,
+      "manner_tag": "fast",
+      "raw_language": "Lift the cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-48-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-48-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 48,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the cube quickly, then contact it and lift it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-48-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-49-neutral",
+      "task": "lift",
+      "seed": 49,
+      "manner_tag": "neutral",
+      "raw_language": "Lift the cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-49-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-49-slow",
+      "task": "lift",
+      "seed": 49,
+      "manner_tag": "slow",
+      "raw_language": "Lift the cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-49-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-49-fast",
+      "task": "lift",
+      "seed": 49,
+      "manner_tag": "fast",
+      "raw_language": "Lift the cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-lift-seed-49-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-lift-seed-49-fast_approach_slow_contact",
+      "task": "lift",
+      "seed": 49,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the cube quickly, then contact it and lift it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-lift-seed-49-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-45-neutral",
+      "task": "stack",
+      "seed": 45,
+      "manner_tag": "neutral",
+      "raw_language": "Stack the red cube on the green cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-45-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-45-slow",
+      "task": "stack",
+      "seed": 45,
+      "manner_tag": "slow",
+      "raw_language": "Stack the red cube on the green cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-45-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-45-fast",
+      "task": "stack",
+      "seed": 45,
+      "manner_tag": "fast",
+      "raw_language": "Stack the red cube on the green cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-45-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-45-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 45,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-45-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-46-neutral",
+      "task": "stack",
+      "seed": 46,
+      "manner_tag": "neutral",
+      "raw_language": "Stack the red cube on the green cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-46-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-46-slow",
+      "task": "stack",
+      "seed": 46,
+      "manner_tag": "slow",
+      "raw_language": "Stack the red cube on the green cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-46-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-46-fast",
+      "task": "stack",
+      "seed": 46,
+      "manner_tag": "fast",
+      "raw_language": "Stack the red cube on the green cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-46-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-46-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 46,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-46-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-47-neutral",
+      "task": "stack",
+      "seed": 47,
+      "manner_tag": "neutral",
+      "raw_language": "Stack the red cube on the green cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-47-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-47-slow",
+      "task": "stack",
+      "seed": 47,
+      "manner_tag": "slow",
+      "raw_language": "Stack the red cube on the green cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-47-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-47-fast",
+      "task": "stack",
+      "seed": 47,
+      "manner_tag": "fast",
+      "raw_language": "Stack the red cube on the green cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-47-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-47-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 47,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-47-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-48-neutral",
+      "task": "stack",
+      "seed": 48,
+      "manner_tag": "neutral",
+      "raw_language": "Stack the red cube on the green cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-48-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-48-slow",
+      "task": "stack",
+      "seed": 48,
+      "manner_tag": "slow",
+      "raw_language": "Stack the red cube on the green cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-48-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-48-fast",
+      "task": "stack",
+      "seed": 48,
+      "manner_tag": "fast",
+      "raw_language": "Stack the red cube on the green cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-48-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-48-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 48,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-48-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-49-neutral",
+      "task": "stack",
+      "seed": 49,
+      "manner_tag": "neutral",
+      "raw_language": "Stack the red cube on the green cube.",
+      "requested_manner": {
+        "description": "task-only neutral instruction",
+        "global": {},
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-49-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-49-slow",
+      "task": "stack",
+      "seed": 49,
+      "manner_tag": "slow",
+      "raw_language": "Stack the red cube on the green cube slowly.",
+      "requested_manner": {
+        "description": "global slow execution",
+        "global": {
+          "max_joint_vel": 0.08,
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-49-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-49-fast",
+      "task": "stack",
+      "seed": 49,
+      "manner_tag": "fast",
+      "raw_language": "Stack the red cube on the green cube quickly.",
+      "requested_manner": {
+        "description": "global fast execution",
+        "global": {
+          "min_joint_vel": 0.18
+        },
+        "phase_velocity": {}
+      },
+      "pair_id": "d0-stack-seed-49-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    },
+    {
+      "episode_id": "d0-stack-seed-49-fast_approach_slow_contact",
+      "task": "stack",
+      "seed": 49,
+      "manner_tag": "fast_approach_slow_contact",
+      "raw_language": "Approach the red cube quickly, then contact it and stack it slowly.",
+      "requested_manner": {
+        "description": "fast approach followed by slow contact and manipulation",
+        "global": {
+          "max_jerk": 2.0
+        },
+        "phase_velocity": {
+          "approach": {
+            "min_joint_vel": 0.18
+          },
+          "descend": {
+            "max_joint_vel": 0.06
+          },
+          "lift": {
+            "max_joint_vel": 0.08
+          },
+          "transport": {
+            "max_joint_vel": 0.08
+          },
+          "final": {
+            "max_joint_vel": 0.06
+          }
+        }
+      },
+      "pair_id": "d0-stack-seed-49-modifier",
+      "pair_type": "modifier_word",
+      "split": "development",
+      "api_calls": 0,
+      "ik_backend": "mujoco-local",
+      "student_action_expressibility": "osc_pose_speed_timing_only"
+    }
+  ],
+  "api_budget": 0,
+  "ik_backend": "mujoco-local",
+  "outer_candidate_attempts_per_episode": 1,
+  "formal_manner_thresholds_frozen": false,
+  "generalization_claim_allowed": false,
+  "excluded_conditions": {
+    "gentle": "requires stiffness/grip-force side channels outside the fixed LA4VLA 7D action",
+    "firm": "requires stiffness/grip-force side channels outside the fixed LA4VLA 7D action"
+  },
+  "plan_sha256": "bb3e92ca99803b7b7c31e342012624ffb517fa2eca84c2856b38ea8524a935a5"
+}

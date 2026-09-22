@@ -1,0 +1,4826 @@
+{
+  "schema": "mannercap-force-diagnostic-v1",
+  "source_run": "/data/gaochuanhao/mannercap_runs/gate1_20260916_attempt03",
+  "body_wrench_layout": "torque_nm_then_force_n",
+  "contact_wrench_layout": "force_n_then_torque_nm",
+  "qualification": "unknown",
+  "calibration_verified": false,
+  "reason": "observational task traces are not controlled-load calibration",
+  "episodes": [
+    {
+      "task": "lift",
+      "transitions": 779,
+      "transitions_with_object_contact": 779,
+      "object_summaries": {
+        "primary": {
+          "samples": 779,
+          "body_force_norm_n_min": 0.6714352589519705,
+          "body_force_norm_n_max": 0.6961999212842233,
+          "body_torque_norm_nm_max": 0.000406328810931632,
+          "contact_pair_force_norm_n_max": 10.405385297587465
+        }
+      },
+      "unique_geom_pairs": [
+        [
+          "cube_g0",
+          "gripper0_right_finger1_collision"
+        ],
+        [
+          "cube_g0",
+          "gripper0_right_finger2_collision"
+        ],
+        [
+          "gripper0_right_finger1_pad_collision",
+          "cube_g0"
+        ],
+        [
+          "gripper0_right_finger2_pad_collision",
+          "cube_g0"
+        ],
+        [
+          "table_collision",
+          "cube_g0"
+        ]
+      ],
+      "representative_samples": [
+        {
+          "transition": 1,
+          "sim_time_s": 0.1500000000000001,
+          "phase": "approach",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cube_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -4.445228907190568e-18,
+                4.336808689942018e-18,
+                5.362029706417113e-31
+              ],
+              "force_n": [
+                1.4879604036909643e-17,
+                -2.286549978336279e-17,
+                0.6714352589519705
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.000683031089674083,
+              "position_world_m": [
+                -0.019714586424075867,
+                -0.02570646071480144,
+                0.7993169689103259
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1678588147379929,
+                -5.716374945865439e-18,
+                -3.719901009365433e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.0006830310896740805,
+              "position_world_m": [
+                0.012232478340540556,
+                -0.0006878419278295543,
+                0.7993169689103259
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.16785881473799247,
+                -5.716374945850203e-18,
+                -3.7199010093523775e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.0006830310896740808,
+              "position_world_m": [
+                0.006101590862935116,
+                -0.05867195312609465,
+                0.7993169689103259
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1678588147379925,
+                -5.716374945853462e-18,
+                -3.719901009374111e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.0006830310896740783,
+              "position_world_m": [
+                0.03804865562755154,
+                -0.033653334339122765,
+                0.799316968910326
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.16785881473799263,
+                -5.716374945793684e-18,
+                -3.719901008817723e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 157,
+          "sim_time_s": 7.9499999999993465,
+          "phase": "approach",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cube_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -2.4936649967166602e-18,
+                0.0,
+                4.7290607931320955e-33
+              ],
+              "force_n": [
+                2.2062447211715235e-18,
+                -1.2822861384417643e-18,
+                0.6906307418381028
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021704797,
+              "position_world_m": [
+                0.03804865562755153,
+                -0.03365333433912276,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1726576854595257,
+                -3.20571534547157e-19,
+                -5.515611802191039e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021704791,
+              "position_world_m": [
+                0.006101590862935109,
+                -0.05867195312609465,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.17265768545952576,
+                -3.20571534636797e-19,
+                -5.515611802895184e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021704625,
+              "position_world_m": [
+                0.012232478340540549,
+                -0.0006878419278295508,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.17265768545952576,
+                -3.205715346420979e-19,
+                -5.515611803433182e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021704619,
+              "position_world_m": [
+                -0.019714586424075874,
+                -0.02570646071480144,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1726576854595257,
+                -3.2057153461571226e-19,
+                -5.51561180319583e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 312,
+          "sim_time_s": 15.700000000001912,
+          "phase": "approach",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cube_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -2.0599841277224584e-18,
+                1.734723475976807e-18,
+                3.505418193700127e-32
+              ],
+              "force_n": [
+                1.2884656728305229e-18,
+                -6.72799060465931e-19,
+                0.6906307418381032
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021704797,
+              "position_world_m": [
+                0.03804865562755153,
+                -0.03365333433912276,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1726576854595258,
+                -1.6819976505967646e-19,
+                -3.2211641813951063e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021704794,
+              "position_world_m": [
+                0.006101590862935109,
+                -0.05867195312609465,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1726576854595258,
+                -1.6819976514005974e-19,
+                -3.221164182060484e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021704633,
+              "position_world_m": [
+                0.012232478340540549,
+                -0.0006878419278295508,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.17265768545952584,
+                -1.6819976514638912e-19,
+                -3.221164182511453e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.0001077554202170463,
+              "position_world_m": [
+                -0.019714586424075874,
+                -0.02570646071480144,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1726576854595258,
+                -1.6819976511980567e-19,
+                -3.2211641823381855e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 468,
+          "sim_time_s": 23.499999999997854,
+          "phase": "descend",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cube_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                1.1926223897340549e-18,
+                1.734723475976807e-18,
+                -8.690758874047402e-33
+              ],
+              "force_n": [
+                7.686060442368654e-18,
+                -8.180282817805414e-18,
+                0.6906307418381034
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.0001077554202170497,
+              "position_world_m": [
+                0.038048655627551546,
+                -0.03365333433912284,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.17265768545952584,
+                -2.045070704391066e-18,
+                -1.9215151105432294e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021704963,
+              "position_world_m": [
+                0.006101590862935123,
+                -0.05867195312609473,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1726576854595258,
+                -2.0450707043920157e-18,
+                -1.92151511054497e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021704787,
+              "position_world_m": [
+                0.012232478340540563,
+                -0.0006878419278296341,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.17265768545952584,
+                -2.045070704510692e-18,
+                -1.921515110639436e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.0001077554202170478,
+              "position_world_m": [
+                -0.01971458642407586,
+                -0.025706460714801524,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.17265768545952584,
+                -2.0450707045116413e-18,
+                -1.9215151106410185e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 623,
+          "sim_time_s": 31.24999999999356,
+          "phase": "grip",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cube_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                1.6357683089995856e-09,
+                1.9833759461185263e-10,
+                -1.9583074890860974e-08
+              ],
+              "force_n": [
+                -5.807931913182074e-08,
+                -2.166700325823001e-07,
+                0.6906317829864748
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00020653038226655512,
+              "position_world_m": [
+                0.01266160643914757,
+                -0.0007275296838896345,
+                0.7997934696177335
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.34434186069227934,
+                0.03541090489996333,
+                0.3425162548539658
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00020456200058486493,
+              "position_world_m": [
+                -0.01963479339312603,
+                -0.025293538221261607,
+                0.7997954379994152
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.34095729950921005,
+                -0.33636562826380934,
+                0.05576777036340993
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00020619561876806839,
+              "position_world_m": [
+                0.03801074506395253,
+                -0.03405349358841262,
+                0.7997938043812319
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3429986596085023,
+                0.3397919691407123,
+                -0.04679207412272334
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.0002042272370863782,
+              "position_world_m": [
+                0.005714345231678929,
+                -0.058619502125784595,
+                0.7997957727629137
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3396181614700532,
+                -0.04615409278451708,
+                -0.3364673763079228
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 4,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cube_g0",
+              "geom2_id": 78,
+              "geom2_name": "gripper0_right_finger1_collision",
+              "body1_id": 25,
+              "body2_id": 16,
+              "distance_m": -0.00048546050881304015,
+              "position_world_m": [
+                0.037769186797279565,
+                -0.034052978593104494,
+                0.816924742436884
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999955499116274,
+                  0.002982543682501362,
+                  -6.775045433120378e-05
+                ],
+                [
+                  -0.0029825436756561784,
+                  0.9999955522066996,
+                  2.0206958831589003e-07
+                ],
+                [
+                  6.775075567256096e-05,
+                  -2.6469779601696886e-23,
+                  0.9999999977049177
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                1.0323791472241803,
+                -0.47136644327147376,
+                0.06719068272468001
+              ],
+              "torque_nm": [
+                -2.552325455157084e-06,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 5,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0008914815714947726,
+              "position_world_m": [
+                0.03756647538049448,
+                -0.03405195038792816,
+                0.8213695903667999
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999999972682535,
+                  -3.0031214962580438e-05,
+                  6.753976171051002e-05
+                ],
+                [
+                  -3.003121489408496e-05,
+                  0.9999999995490632,
+                  2.0283011033644224e-09
+                ],
+                [
+                  -6.753976174096621e-05,
+                  4.1359030627651384e-25,
+                  -0.9999999977191906
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                9.444696862295872,
+                0.9562719269180433,
+                0.1374876491949021
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 6,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0008929551016562449,
+              "position_world_m": [
+                0.0375668192172596,
+                -0.034050807014534924,
+                0.8373695902845704
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999999972682535,
+                  -3.0031214962580438e-05,
+                  6.753976171051002e-05
+                ],
+                [
+                  -3.003121489408496e-05,
+                  0.9999999995490632,
+                  2.0283011033644224e-09
+                ],
+                [
+                  -6.753976174096621e-05,
+                  4.1359030627651384e-25,
+                  -0.9999999977191906
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                9.46680293280817,
+                0.9535181479808522,
+                0.1375773862557545
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 7,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cube_g0",
+              "geom2_id": 81,
+              "geom2_name": "gripper0_right_finger2_collision",
+              "body1_id": 25,
+              "body2_id": 18,
+              "distance_m": -0.0004878297159491324,
+              "position_world_m": [
+                -0.019389709533967306,
+                -0.025291583983174437,
+                0.8169153266002598
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999956869355581,
+                  -0.002936242599732349,
+                  6.774715496979507e-05
+                ],
+                [
+                  -0.0029362425929940882,
+                  0.9999956892304064,
+                  1.9892293994394236e-07
+                ],
+                [
+                  -6.774744701342969e-05,
+                  0.0,
+                  -0.9999999977051417
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                1.041062218984457,
+                0.46904271446484336,
+                -0.06593367481441326
+              ],
+              "torque_nm": [
+                2.5606783699301757e-06,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 8,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0008916487415721203,
+              "position_world_m": [
+                -0.01918641764404739,
+                -0.0252908251926712,
+                0.8373680087377114
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999999972682535,
+                  3.0031214962580438e-05,
+                  -6.753976171051002e-05
+                ],
+                [
+                  -3.003121489408496e-05,
+                  0.9999999995490632,
+                  2.0283011033644224e-09
+                ],
+                [
+                  6.753976174096621e-05,
+                  -4.1359030627651384e-25,
+                  0.9999999977191906
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                9.447907360867312,
+                -0.9537659178481407,
+                -0.13450281440366002
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 9,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0008931222717335928,
+              "position_world_m": [
+                -0.019186761480812515,
+                -0.02529196856606444,
+                0.821368008819941
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999999972682535,
+                  3.0031214962580438e-05,
+                  -6.753976171051002e-05
+                ],
+                [
+                  -3.003121489408496e-05,
+                  0.9999999995490632,
+                  2.0283011033644224e-09
+                ],
+                [
+                  6.753976174096621e-05,
+                  -4.1359030627651384e-25,
+                  0.9999999977191906
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                9.470008345023858,
+                -0.9510090689225191,
+                -0.13459097622613694
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 779,
+          "sim_time_s": 39.05000000000176,
+          "phase": "other",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cube_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -5.4641435354915984e-05,
+                1.7101739141857364e-05,
+                -2.8257181144401844e-05
+              ],
+              "force_n": [
+                0.014588602047338028,
+                0.003451063952030875,
+                0.6905714688604723
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cube_g0",
+              "geom2_id": 78,
+              "geom2_name": "gripper0_right_finger1_collision",
+              "body1_id": 25,
+              "body2_id": 16,
+              "distance_m": -0.0012967752501695286,
+              "position_world_m": [
+                0.03701381474845096,
+                -0.037812578759468696,
+                0.998511900715767
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999186945881872,
+                  0.012625027065373178,
+                  0.0017924577134273902
+                ],
+                [
+                  -0.012625006780619563,
+                  0.9999203011698475,
+                  -2.263163086006171e-05
+                ],
+                [
+                  -0.0017926005815966741,
+                  -3.3881317890172014e-21,
+                  0.9999983932902868
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.627284439562515,
+                -3.2555283299325595,
+                -0.42288549978428586
+              ],
+              "torque_nm": [
+                0.00039146186766682946,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0007089699528825299,
+              "position_world_m": [
+                0.036541891199480994,
+                -0.03730827823746757,
+                1.0008772888634743
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.8667821110281128,
+                  -0.49864847895278996,
+                  -0.00620213186874909
+                ],
+                [
+                  -0.49863571427257064,
+                  0.8668042999651473,
+                  -0.0035679144908957075
+                ],
+                [
+                  0.007155169706701348,
+                  4.336808689942018e-19,
+                  -0.9999744014455911
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                6.525539878650985,
+                4.888811253630003,
+                -0.46613869433313615
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0006592863210014445,
+              "position_world_m": [
+                0.036499070366159375,
+                -0.03733321009843253,
+                1.0168769807164042
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.8667821110281128,
+                  -0.49864847895278996,
+                  -0.00620213186874909
+                ],
+                [
+                  -0.49863571427257064,
+                  0.8668042999651473,
+                  -0.0035679144908957075
+                ],
+                [
+                  0.007155169706701348,
+                  4.336808689942018e-19,
+                  -0.9999744014455911
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                5.7109345683346575,
+                5.126046793364181,
+                -0.44188163140144354
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cube_g0",
+              "geom2_id": 81,
+              "geom2_name": "gripper0_right_finger2_collision",
+              "body1_id": 25,
+              "body2_id": 18,
+              "distance_m": -0.0004758771278669895,
+              "position_world_m": [
+                -0.018151981862950098,
+                -0.02174164459064653,
+                0.9983075743786831
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999536801117537,
+                  -0.009462118241351927,
+                  -0.0017623703775138918
+                ],
+                [
+                  -0.00946210354559479,
+                  0.9999552331571581,
+                  -1.6676503451501636e-05
+                ],
+                [
+                  0.0017624492768036828,
+                  0.0,
+                  -0.9999984468850672
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.8414398312839787,
+                0.8385383714528376,
+                -0.06560187292787407
+              ],
+              "torque_nm": [
+                -0.00011945538296665883,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 4,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0009428124974269256,
+              "position_world_m": [
+                -0.017949549613784206,
+                -0.02192079086256673,
+                1.0168730721976236
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999985943780322,
+                  0.00010668381869498231,
+                  0.0016732783757598389
+                ],
+                [
+                  -0.00010668366934496988,
+                  0.9999999943092813,
+                  -1.7851172788165713e-07
+                ],
+                [
+                  -0.0016732783852819952,
+                  0.0,
+                  0.9999986000687427
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                9.905380670981305,
+                -2.12910652799873,
+                -0.2419792544066489
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 5,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cube_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0009157960105284078,
+              "position_world_m": [
+                -0.01793630169366922,
+                -0.021768295954133036,
+                1.0008730963001986
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999985943780322,
+                  0.00010668381869498231,
+                  0.0016732783757598389
+                ],
+                [
+                  -0.00010668366934496988,
+                  0.9999999943092813,
+                  -1.7851172788165713e-07
+                ],
+                [
+                  -0.0016732783852819952,
+                  0.0,
+                  0.9999986000687427
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                9.533826616426419,
+                -2.81504918027563,
+                -0.24676281738108913
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "stack",
+      "transitions": 1441,
+      "transitions_with_object_contact": 1441,
+      "object_summaries": {
+        "primary": {
+          "samples": 1441,
+          "body_force_norm_n_min": 0.0,
+          "body_force_norm_n_max": 1.0034557567102937,
+          "body_torque_norm_nm_max": 0.0005306676260212612,
+          "contact_pair_force_norm_n_max": 7.947569957414885
+        },
+        "secondary": {
+          "samples": 1441,
+          "body_force_norm_n_min": 1.1921662472062726,
+          "body_force_norm_n_max": 1.2456272414842426,
+          "body_torque_norm_nm_max": 5.042375446234313e-07,
+          "contact_pair_force_norm_n_max": 0.562795801158644
+        }
+      },
+      "unique_geom_pairs": [
+        [
+          "cubeA_g0",
+          "cubeB_g0"
+        ],
+        [
+          "cubeA_g0",
+          "gripper0_right_finger1_collision"
+        ],
+        [
+          "cubeA_g0",
+          "gripper0_right_finger2_collision"
+        ],
+        [
+          "gripper0_right_finger1_pad_collision",
+          "cubeA_g0"
+        ],
+        [
+          "gripper0_right_finger2_pad_collision",
+          "cubeA_g0"
+        ],
+        [
+          "table_collision",
+          "cubeA_g0"
+        ],
+        [
+          "table_collision",
+          "cubeB_g0"
+        ]
+      ],
+      "representative_samples": [
+        {
+          "transition": 1,
+          "sim_time_s": 0.1500000000000001,
+          "phase": "approach",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cubeA_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -4.336808689942018e-19,
+                4.336808689942018e-19,
+                1.4652113905033518e-32
+              ],
+              "force_n": [
+                9.796217680550022e-20,
+                3.78163759222936e-18,
+                0.6103898595216737
+              ]
+            },
+            {
+              "object_id": "secondary",
+              "body_id": 26,
+              "body_name": "cubeB_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                6.938893903907228e-18,
+                4.336808689942018e-18,
+                -2.074226550105053e-31
+              ],
+              "force_n": [
+                4.403149534733424e-17,
+                -4.523054395542402e-17,
+                1.1921662472062726
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.0006830266733820842,
+              "position_world_m": [
+                0.02949499828496461,
+                0.012047181436575016,
+                0.7993169733266179
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1525974648804184,
+                9.454093980568462e-19,
+                -2.4490544202115965e-20
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.0006830266733820842,
+              "position_world_m": [
+                0.020249559577111387,
+                -0.026869676903986457,
+                0.7993169733266179
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15259746488041842,
+                9.454093980588218e-19,
+                -2.4490544201128086e-20
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.000683026673382084,
+              "position_world_m": [
+                -0.009421860055596865,
+                0.02129262014442824,
+                0.7993169733266179
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15259746488041842,
+                9.454093980568462e-19,
+                -2.4490544201128086e-20
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.000683026673382084,
+              "position_world_m": [
+                -0.018667298763450087,
+                -0.017624238196133235,
+                0.7993169733266179
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15259746488041842,
+                9.454093980568462e-19,
+                -2.4490544201128086e-20
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 4,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.0006830521851276302,
+              "position_world_m": [
+                -0.11053317166305188,
+                0.08285292642828121,
+                0.7993169478148724
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.29804156180156827,
+                -1.1307635988861793e-17,
+                -1.100787383683356e-17
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 5,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00068305218512763,
+              "position_world_m": [
+                -0.11177846387004403,
+                0.03286843636066919,
+                0.7993169478148724
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.298041561801568,
+                -1.1307635988850216e-17,
+                -1.1007873836829701e-17
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 6,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.0006830521851276301,
+              "position_world_m": [
+                -0.1605176617306639,
+                0.08409821863527336,
+                0.7993169478148724
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.29804156180156816,
+                -1.1307635988857934e-17,
+                -1.100787383683742e-17
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 7,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.0006830521851276299,
+              "position_world_m": [
+                -0.16176295393765605,
+                0.03411372856766135,
+                0.7993169478148724
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.29804156180156827,
+                -1.1307635988854076e-17,
+                -1.100787383683356e-17
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 289,
+          "sim_time_s": 14.550000000001528,
+          "phase": "approach",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cubeA_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -8.673617379884035e-19,
+                -4.336808689942018e-19,
+                -1.1292268931739223e-32
+              ],
+              "force_n": [
+                2.3251806958834084e-18,
+                1.5355814913588181e-18,
+                0.6278400000000002
+              ]
+            },
+            {
+              "object_id": "secondary",
+              "body_id": 26,
+              "body_name": "cubeB_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -3.469446951953614e-18,
+                0.0,
+                -2.2100046111843531e-32
+              ],
+              "force_n": [
+                -1.636637630492718e-17,
+                -4.865218946432001e-19,
+                1.2262500000000003
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021705144,
+              "position_world_m": [
+                0.02949499828496461,
+                0.012047181436575016,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15696000000000004,
+                3.8389537283956096e-19,
+                -5.812951739709964e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021705141,
+              "position_world_m": [
+                0.020249559577111387,
+                -0.026869676903986457,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15696000000000004,
+                3.8389537283999246e-19,
+                -5.812951739706727e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021705035,
+              "position_world_m": [
+                -0.009421860055596865,
+                0.02129262014442824,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15696000000000002,
+                3.8389537283941656e-19,
+                -5.812951739710315e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021705033,
+              "position_world_m": [
+                -0.018667298763450087,
+                -0.017624238196133235,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15696000000000004,
+                3.838953728398481e-19,
+                -5.812951739707079e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 4,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.0001077554202170497,
+              "position_world_m": [
+                -0.11177846387004403,
+                0.03286843636066919,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3065625000000001,
+                -1.216304736592548e-19,
+                4.091594076380455e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 5,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.0001077554202170497,
+              "position_world_m": [
+                -0.11053317166305188,
+                0.08285292642828121,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3065625,
+                -1.2163047366009765e-19,
+                4.091594076385372e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 6,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704732,
+              "position_world_m": [
+                -0.16176295393765605,
+                0.03411372856766135,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.30656250000000007,
+                -1.2163047366206431e-19,
+                4.091594076078289e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 7,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704732,
+              "position_world_m": [
+                -0.1605176617306639,
+                0.08409821863527336,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3065625,
+                -1.2163047366178337e-19,
+                4.0915940760830656e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 577,
+          "sim_time_s": 28.949999999994834,
+          "phase": "other",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cubeA_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                4.336808689942018e-19,
+                2.168404344971009e-18,
+                7.836127461225566e-33
+              ],
+              "force_n": [
+                8.355820465744635e-18,
+                -1.964622903860819e-18,
+                0.6278400000000003
+              ]
+            },
+            {
+              "object_id": "secondary",
+              "body_id": 26,
+              "body_name": "cubeB_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                0.0,
+                -2.6020852139652106e-18,
+                2.528986758223489e-32
+              ],
+              "force_n": [
+                -1.7354888914596785e-17,
+                3.294239592688023e-18,
+                1.2262500000000003
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021705144,
+              "position_world_m": [
+                0.02949499828496461,
+                0.012047181436575016,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15696000000000004,
+                -4.911557259658165e-19,
+                -2.0889551164367357e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021705141,
+              "position_world_m": [
+                0.020249559577111387,
+                -0.026869676903986457,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15696000000000004,
+                -4.911557259650972e-19,
+                -2.088955116437167e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021705046,
+              "position_world_m": [
+                -0.009421860055596865,
+                0.02129262014442824,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1569600000000001,
+                -4.911557259650246e-19,
+                -2.0889551164351503e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 1,
+              "body2_id": 25,
+              "distance_m": -0.00010775542021705043,
+              "position_world_m": [
+                -0.018667298763450087,
+                -0.017624238196133235,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1569600000000001,
+                -4.9115572596488085e-19,
+                -2.088955116435582e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 4,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.0001077554202170497,
+              "position_world_m": [
+                -0.11177846387004403,
+                0.03286843636066919,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3065625000000001,
+                8.235598981771419e-19,
+                4.33872222878567e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 5,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704963,
+              "position_world_m": [
+                -0.11053317166305188,
+                0.08285292642828121,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.30656250000000007,
+                8.235598981770541e-19,
+                4.3387222287827195e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 6,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704759,
+              "position_world_m": [
+                -0.16176295393765605,
+                0.03411372856766135,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.30656250000000007,
+                8.235598981669573e-19,
+                4.338722228515673e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 7,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704752,
+              "position_world_m": [
+                -0.1605176617306639,
+                0.08409821863527336,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.30656250000000007,
+                8.235598981668695e-19,
+                4.3387222285127226e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 865,
+          "sim_time_s": 43.350000000007014,
+          "phase": "transport",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cubeA_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -1.2818462140741851e-07,
+                5.121610012481792e-07,
+                -9.322913461000393e-06
+              ],
+              "force_n": [
+                0.0020619417700107334,
+                -0.0009848556008309473,
+                0.6278307757816555
+              ]
+            },
+            {
+              "object_id": "secondary",
+              "body_id": 26,
+              "body_name": "cubeB_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -1.734723475976807e-18,
+                8.673617379884035e-19,
+                1.6902442674428479e-31
+              ],
+              "force_n": [
+                -1.658462368041793e-17,
+                -6.412690947896823e-19,
+                1.2262500000000005
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.0001077554202170497,
+              "position_world_m": [
+                -0.11177846387004403,
+                0.03286843636066919,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3065625000000001,
+                -1.603172736918015e-19,
+                4.146155920221767e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704963,
+              "position_world_m": [
+                -0.11053317166305188,
+                0.08285292642828121,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3065625000000001,
+                -1.603172736918015e-19,
+                4.146155920219415e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704786,
+              "position_world_m": [
+                -0.16176295393765605,
+                0.03411372856766135,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3065625000000002,
+                -1.6031727370303967e-19,
+                4.14615591998927e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704779,
+              "position_world_m": [
+                -0.1605176617306639,
+                0.08409821863527336,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.30656250000000007,
+                -1.6031727370303967e-19,
+                4.146155919987479e-18
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 4,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cubeA_g0",
+              "geom2_id": 78,
+              "geom2_name": "gripper0_right_finger1_collision",
+              "body1_id": 25,
+              "body2_id": 16,
+              "distance_m": -0.00079345454050576,
+              "position_world_m": [
+                -0.031191336147792532,
+                0.021939313717465138,
+                0.965487186916504
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999999899274891,
+                  0.00013652009295953926,
+                  -3.8823785171503116e-05
+                ],
+                [
+                  -0.00013652009285665187,
+                  0.9999999906811321,
+                  5.300226810046902e-09
+                ],
+                [
+                  3.882378553329685e-05,
+                  0.0,
+                  0.9999999992463571
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                2.2666345635784864,
+                -0.22801639308867092,
+                -0.061733790461890016
+              ],
+              "torque_nm": [
+                -7.572898073867834e-07,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 5,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0006048560042694388,
+              "position_world_m": [
+                -0.03139831772320863,
+                0.01943046396557655,
+                0.986212942503997
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999999899274888,
+                  -0.0001365200929528964,
+                  3.882378524417441e-05
+                ],
+                [
+                  -0.00013652009285000899,
+                  0.9999999906811321,
+                  5.3002268197100925e-09
+                ],
+                [
+                  -3.882378560596814e-05,
+                  -8.271806125530277e-25,
+                  -0.9999999992463569
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.411537336217256,
+                0.18069932078145734,
+                -0.06409143116446818
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 6,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0005814186713483336,
+              "position_world_m": [
+                -0.03137706495880755,
+                0.03543039698987738,
+                0.9862063385529528
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999999899274888,
+                  -0.0001365200929528964,
+                  3.882378524417441e-05
+                ],
+                [
+                  -0.00013652009285000899,
+                  0.9999999906811321,
+                  5.3002268197100925e-09
+                ],
+                [
+                  -3.882378560596814e-05,
+                  -8.271806125530277e-25,
+                  -0.9999999992463569
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.111093922617563,
+                0.17544916617971051,
+                -0.06196920292976336
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 7,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0006048554100890389,
+              "position_world_m": [
+                -0.03139893740808132,
+                0.019423860807973863,
+                0.9702129438785503
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999999899274888,
+                  -0.0001365200929528964,
+                  3.882378524417441e-05
+                ],
+                [
+                  -0.00013652009285000899,
+                  0.9999999906811321,
+                  5.3002268197100925e-09
+                ],
+                [
+                  -3.882378560596814e-05,
+                  -8.271806125530277e-25,
+                  -0.9999999992463569
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.411552673570226,
+                0.18050937566418632,
+                -0.06409146039121134
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 8,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0005814180771679336,
+              "position_world_m": [
+                -0.03137768464368024,
+                0.03542379383227469,
+                0.970206339927506
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999999899274888,
+                  -0.0001365200929528964,
+                  3.882378524417441e-05
+                ],
+                [
+                  -0.00013652009285000899,
+                  0.9999999906811321,
+                  5.3002268197100925e-09
+                ],
+                [
+                  -3.882378560596814e-05,
+                  -8.271806125530277e-25,
+                  -0.9999999992463569
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.111108829791764,
+                0.1752649584801218,
+                -0.061969229919563676
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 9,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cubeA_g0",
+              "geom2_id": 81,
+              "geom2_name": "gripper0_right_finger2_collision",
+              "body1_id": 25,
+              "body2_id": 18,
+              "distance_m": -0.0007933954782638022,
+              "position_world_m": [
+                -0.07039942293812025,
+                0.03300937884375292,
+                0.9654841354737835
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999999899274891,
+                  -0.00013652009295604217,
+                  3.882378512758823e-05
+                ],
+                [
+                  -0.00013652009285315477,
+                  0.9999999906811321,
+                  5.300226803915867e-09
+                ],
+                [
+                  -3.8823785489381964e-05,
+                  0.0,
+                  -0.9999999992463571
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                2.267039631986624,
+                0.22505917056984753,
+                0.056825679178650224
+              ],
+              "torque_nm": [
+                7.572538024121887e-07,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 10,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0006048255280517609,
+              "position_world_m": [
+                -0.07019145569888473,
+                0.03552873150418386,
+                0.9702077985360127
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999999899274888,
+                  0.0001365200929528964,
+                  -3.882378524417441e-05
+                ],
+                [
+                  -0.00013652009285000899,
+                  0.9999999906811321,
+                  5.3002268197100925e-09
+                ],
+                [
+                  3.882378560596814e-05,
+                  8.271806125530277e-25,
+                  0.9999999992463569
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.411956615932844,
+                -0.18170014581534952,
+                0.06518036541668093
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 11,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0005813881951306556,
+              "position_world_m": [
+                -0.0702127084632858,
+                0.019528798479883036,
+                0.9702144024870569
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999999899274888,
+                  0.0001365200929528964,
+                  -3.882378524417441e-05
+                ],
+                [
+                  -0.00013652009285000899,
+                  0.9999999906811321,
+                  5.3002268197100925e-09
+                ],
+                [
+                  3.882378560596814e-05,
+                  8.271806125530277e-25,
+                  0.9999999992463569
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.111490824883404,
+                -0.1764195253752792,
+                0.06339479238053138
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 12,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0006048249338713609,
+              "position_world_m": [
+                -0.07019083601401203,
+                0.03553533466178655,
+                0.9862077971614595
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999999899274888,
+                  0.0001365200929528964,
+                  -3.882378524417441e-05
+                ],
+                [
+                  -0.00013652009285000899,
+                  0.9999999906811321,
+                  5.3002268197100925e-09
+                ],
+                [
+                  3.882378560596814e-05,
+                  8.271806125530277e-25,
+                  0.9999999992463569
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.411971953368442,
+                -0.18151019441071473,
+                0.0651802371740747
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 13,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0005813876009502556,
+              "position_world_m": [
+                -0.07021208877841312,
+                0.019535401637485725,
+                0.9862144011125037
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999999899274888,
+                  0.0001365200929528964,
+                  -3.882378524417441e-05
+                ],
+                [
+                  -0.00013652009285000899,
+                  0.9999999906811321,
+                  5.3002268197100925e-09
+                ],
+                [
+                  3.882378560596814e-05,
+                  8.271806125530277e-25,
+                  0.9999999992463569
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.111505732133449,
+                -0.17623531178343765,
+                0.06339466634394687
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 1153,
+          "sim_time_s": 57.75000000002461,
+          "phase": "final",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cubeA_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -8.827973205769758e-08,
+                -3.391634324084736e-08,
+                -1.1061638480622249e-05
+              ],
+              "force_n": [
+                0.00014812685566933936,
+                -6.923033900377296e-05,
+                0.6291114717965958
+              ]
+            },
+            {
+              "object_id": "secondary",
+              "body_id": 26,
+              "body_name": "cubeB_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                0.0,
+                3.469446951953614e-18,
+                8.519230738375414e-33
+              ],
+              "force_n": [
+                -3.746703899428261e-18,
+                -9.369997722554003e-20,
+                1.2262500000000003
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.0001077554202170497,
+              "position_world_m": [
+                -0.11053317166305188,
+                0.08285292642828121,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3065625,
+                -2.342499430531387e-20,
+                9.366759749990172e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704965,
+              "position_world_m": [
+                -0.11177846387004403,
+                0.03286843636066919,
+                0.7998922445797829
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.30656250000000007,
+                -2.3424994305542145e-20,
+                9.366759749939601e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704749,
+              "position_world_m": [
+                -0.1605176617306639,
+                0.08409821863527336,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.30656250000000007,
+                -2.342499430722787e-20,
+                9.36675974720311e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00010775542021704744,
+              "position_world_m": [
+                -0.16176295393765605,
+                0.03411372856766135,
+                0.799892244579783
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.3065625000000001,
+                -2.3424994307456143e-20,
+                9.366759747149728e-19
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 4,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cubeA_g0",
+              "geom2_id": 78,
+              "geom2_name": "gripper0_right_finger1_collision",
+              "body1_id": 25,
+              "body2_id": 16,
+              "distance_m": -0.0007934834215695608,
+              "position_world_m": [
+                -0.11585710317392985,
+                0.052644180205040275,
+                0.8892667842809855
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999937111955401,
+                  0.0035445949252841855,
+                  0.00011582826360604776
+                ],
+                [
+                  -0.003544594901506414,
+                  0.9999937179036754,
+                  -4.105668546030041e-07
+                ],
+                [
+                  -0.000115828991254928,
+                  0.0,
+                  0.9999999932918224
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                2.2667734417776284,
+                -0.23516307321117563,
+                -0.059100380513438876
+              ],
+              "torque_nm": [
+                -2.7357309916678894e-07,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 5,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0006048702029624319,
+              "position_world_m": [
+                -0.11605688296869941,
+                0.050133966263977224,
+                0.8939956630118446
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999937111955401,
+                  -0.0035445949252789766,
+                  -0.000115828263714961
+                ],
+                [
+                  -0.0035445949015012043,
+                  0.9999937179036753,
+                  -4.105668549884564e-07
+                ],
+                [
+                  0.0001158289913638419,
+                  5.293955920339377e-23,
+                  -0.9999999932918223
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.411890492885896,
+                0.17903427814822045,
+                -0.06436503290679
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 6,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0005814227195548611,
+              "position_world_m": [
+                -0.1160901457383601,
+                0.066133857894371,
+                0.8939689787397969
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999937111955401,
+                  -0.0035445949252789766,
+                  -0.000115828263714961
+                ],
+                [
+                  -0.0035445949015012043,
+                  0.9999937179036753,
+                  -4.105668549884564e-07
+                ],
+                [
+                  0.0001158289913638419,
+                  5.293955920339377e-23,
+                  -0.9999999932918223
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.111213840167428,
+                0.1738300832727461,
+                -0.06263612420902534
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 7,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0006048665820231904,
+              "position_world_m": [
+                -0.1160588271806765,
+                0.050160646621650845,
+                0.9099956406486576
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999937111955401,
+                  -0.0035445949252789766,
+                  -0.000115828263714961
+                ],
+                [
+                  -0.0035445949015012043,
+                  0.9999937179036753,
+                  -4.105668549884564e-07
+                ],
+                [
+                  0.0001158289913638419,
+                  5.293955920339377e-23,
+                  -0.9999999932918223
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.41184356866168,
+                0.17880879928862492,
+                -0.06436510709570098
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 8,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 79,
+              "geom1_name": "gripper0_right_finger1_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 17,
+              "body2_id": 25,
+              "distance_m": -0.0005814190986156196,
+              "position_world_m": [
+                -0.1160920899503372,
+                0.06616053825204461,
+                0.9099689563766098
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.9999937111955401,
+                  -0.0035445949252789766,
+                  -0.000115828263714961
+                ],
+                [
+                  -0.0035445949015012043,
+                  0.9999937179036753,
+                  -4.105668549884564e-07
+                ],
+                [
+                  0.0001158289913638419,
+                  5.293955920339377e-23,
+                  -0.9999999932918223
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.1111685393260835,
+                0.17361139667210904,
+                -0.0626361859259845
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 9,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cubeA_g0",
+              "geom2_id": 81,
+              "geom2_name": "gripper0_right_finger2_collision",
+              "body1_id": 25,
+              "body2_id": 18,
+              "distance_m": -0.0007933866693497076,
+              "position_world_m": [
+                -0.15510267741958345,
+                0.06358059124791164,
+                0.8892437871953952
+              ],
+              "contact_frame_rows_world": [
+                [
+                  -0.99999371119554,
+                  -0.0035445949252842757,
+                  -0.00011582826366959068
+                ],
+                [
+                  -0.003544594901506504,
+                  0.9999937179036754,
+                  -4.105668548282499e-07
+                ],
+                [
+                  0.00011582899131847131,
+                  0.0,
+                  -0.9999999932918223
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                2.266732852140186,
+                0.2359046643683794,
+                0.05991033151630071
+              ],
+              "torque_nm": [
+                2.7355179326099987e-07,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 10,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0006048275862779085,
+              "position_world_m": [
+                -0.1549059900666138,
+                0.06613324266713047,
+                0.9099642937299722
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999937111955401,
+                  0.0035445949252789766,
+                  0.000115828263714961
+                ],
+                [
+                  -0.0035445949015012043,
+                  0.9999937179036753,
+                  -4.105668549884564e-07
+                ],
+                [
+                  -0.0001158289913638419,
+                  -5.293955920339377e-23,
+                  0.9999999932918223
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.411961413179209,
+                -0.178863958234149,
+                0.06511838361412825
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 11,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0005813801028703377,
+              "position_world_m": [
+                -0.15487272729695312,
+                0.050133351036736704,
+                0.90999097800202
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999937111955401,
+                  0.0035445949252789766,
+                  0.000115828263714961
+                ],
+                [
+                  -0.0035445949015012043,
+                  0.9999937179036753,
+                  -4.105668549884564e-07
+                ],
+                [
+                  -0.0001158289913638419,
+                  -5.293955920339377e-23,
+                  0.9999999932918223
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.111273591126891,
+                -0.17366461625995816,
+                0.06293143293463836
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 12,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0006048239653386671,
+              "position_world_m": [
+                -0.1549040458546367,
+                0.06610656230945686,
+                0.8939643160931593
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999937111955401,
+                  0.0035445949252789766,
+                  0.000115828263714961
+                ],
+                [
+                  -0.0035445949015012043,
+                  0.9999937179036753,
+                  -4.105668549884564e-07
+                ],
+                [
+                  -0.0001158289913638419,
+                  -5.293955920339377e-23,
+                  0.9999999932918223
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.411914487077608,
+                -0.1786384771079138,
+                0.06511770504975402
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 13,
+              "object_ids": [
+                "primary"
+              ],
+              "geom1_id": 82,
+              "geom1_name": "gripper0_right_finger2_pad_collision",
+              "geom2_id": 88,
+              "geom2_name": "cubeA_g0",
+              "body1_id": 19,
+              "body2_id": 25,
+              "distance_m": -0.0005813764819310963,
+              "position_world_m": [
+                -0.154870783084976,
+                0.05010667067906308,
+                0.8939910003652071
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.9999937111955401,
+                  0.0035445949252789766,
+                  0.000115828263714961
+                ],
+                [
+                  -0.0035445949015012043,
+                  0.9999937179036753,
+                  -4.105668549884564e-07
+                ],
+                [
+                  -0.0001158289913638419,
+                  -5.293955920339377e-23,
+                  0.9999999932918223
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                4.1112282887148925,
+                -0.17344592786858382,
+                0.06293076665311487
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "transition": 1441,
+          "sim_time_s": 72.15000000001325,
+          "phase": "other",
+          "body_aggregates": [
+            {
+              "object_id": "primary",
+              "body_id": 25,
+              "body_name": "cubeA_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                -1.734723475976807e-18,
+                -2.6020852139652106e-18,
+                -1.3641841053746617e-23
+              ],
+              "force_n": [
+                -1.5066313522699116e-14,
+                -2.3347326975775386e-16,
+                0.6278399999999932
+              ]
+            },
+            {
+              "object_id": "secondary",
+              "body_id": 26,
+              "body_name": "cubeB_main",
+              "frame": "mujoco_subtree_com",
+              "torque_nm": [
+                1.3010426069826053e-18,
+                -4.336808689942018e-19,
+                3.118015010830569e-23
+              ],
+              "force_n": [
+                -1.317238507853195e-16,
+                1.408772264896397e-17,
+                1.2262500000000023
+              ]
+            }
+          ],
+          "object_contacts": [
+            {
+              "contact_id": 0,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.0001602215712593006,
+              "position_world_m": [
+                -0.16176295524534953,
+                0.0341137310033593,
+                0.7998397784287408
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.4638495511021008,
+                -1.2444368321474335e-15,
+                7.051788849433668e-14
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 1,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00016021286248066332,
+              "position_world_m": [
+                -0.16051765850509092,
+                0.08409822095802824,
+                0.7998397871375194
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.46382272342380937,
+                -1.1468614038945245e-15,
+                6.504535427243057e-14
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 2,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00016001792172817792,
+              "position_world_m": [
+                -0.11177846529233948,
+                0.03286843426300008,
+                0.7998399820782719
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.4632222733895715,
+                1.0371758657928713e-15,
+                -5.744674138870968e-14
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 3,
+              "object_ids": [
+                "secondary"
+              ],
+              "geom1_id": 7,
+              "geom1_name": "table_collision",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 1,
+              "body2_id": 26,
+              "distance_m": -0.00016000921294954064,
+              "position_world_m": [
+                -0.11053316855208087,
+                0.08285292421766902,
+                0.7998399907870505
+              ],
+              "contact_frame_rows_world": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.46319545208451385,
+                1.134736823140264e-15,
+                -6.291846400457403e-14
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 4,
+              "object_ids": [
+                "primary",
+                "secondary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cubeA_g0",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 25,
+              "body2_id": 26,
+              "distance_m": -0.0001601166582290356,
+              "position_world_m": [
+                -0.15623849200369894,
+                0.038523530134690925,
+                0.8495194858780611
+              ],
+              "contact_frame_rows_world": [
+                [
+                  8.1521303650594e-06,
+                  1.4535980882871598e-07,
+                  -0.9999999999667609
+                ],
+                [
+                  -1.1849921114118176e-12,
+                  0.9999999999999896,
+                  1.453598088238859e-07
+                ],
+                [
+                  0.9999999999667716,
+                  2.0194839173657902e-28,
+                  8.152130365059487e-06
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1569613142760624,
+                -2.2815686003279897e-08,
+                -1.2795589654404759e-06
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 5,
+              "object_ids": [
+                "primary",
+                "secondary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cubeA_g0",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 25,
+              "body2_id": 26,
+              "distance_m": -0.00016011660909607978,
+              "position_world_m": [
+                -0.1561564083994381,
+                0.07852344591312571,
+                0.8495194924107304
+              ],
+              "contact_frame_rows_world": [
+                [
+                  8.1521303650594e-06,
+                  1.4535980882871598e-07,
+                  -0.9999999999667609
+                ],
+                [
+                  -1.1849921114118176e-12,
+                  0.9999999999999896,
+                  1.453598088238859e-07
+                ],
+                [
+                  0.9999999999667716,
+                  2.0194839173657902e-28,
+                  8.152130365059487e-06
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.1569612630293604,
+                -2.281568559508144e-08,
+                -1.2795589425477177e-06
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 6,
+              "object_ids": [
+                "primary",
+                "secondary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cubeA_g0",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 25,
+              "body2_id": 26,
+              "distance_m": -0.00016011418721482133,
+              "position_world_m": [
+                -0.1162385762266132,
+                0.038441446530379175,
+                0.8495198144216718
+              ],
+              "contact_frame_rows_world": [
+                [
+                  8.1521303650594e-06,
+                  1.4535980882871598e-07,
+                  -0.9999999999667609
+                ],
+                [
+                  -1.1849921114118176e-12,
+                  0.9999999999999896,
+                  1.453598088238859e-07
+                ],
+                [
+                  0.9999999999667716,
+                  2.0194839173657902e-28,
+                  8.152130365059487e-06
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15695873696012785,
+                -2.2815665474172197e-08,
+                -1.2795578141183757e-06
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "contact_id": 7,
+              "object_ids": [
+                "primary",
+                "secondary"
+              ],
+              "geom1_id": 88,
+              "geom1_name": "cubeA_g0",
+              "geom2_id": 90,
+              "geom2_name": "cubeB_g0",
+              "body1_id": 25,
+              "body2_id": 26,
+              "distance_m": -0.00016011413808186551,
+              "position_world_m": [
+                -0.11615649262235234,
+                0.07844136230881396,
+                0.8495198209543411
+              ],
+              "contact_frame_rows_world": [
+                [
+                  8.1521303650594e-06,
+                  1.4535980882871598e-07,
+                  -0.9999999999667609
+                ],
+                [
+                  -1.1849921114118176e-12,
+                  0.9999999999999896,
+                  1.453598088238859e-07
+                ],
+                [
+                  0.9999999999667716,
+                  2.0194839173657902e-28,
+                  8.152130365059487e-06
+                ]
+              ],
+              "wrench_frame": "contact_local",
+              "force_direction_attribution": "not_qualified",
+              "force_n": [
+                0.15695868571357366,
+                -2.2815665065980706e-08,
+                -1.2795577912260084e-06
+              ],
+              "torque_nm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

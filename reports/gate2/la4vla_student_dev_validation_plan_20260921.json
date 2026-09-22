@@ -1,0 +1,127 @@
+﻿{
+  "schema": "mannercap.la4vla.student_dev_validation_plan.v1",
+  "status": "frozen_pre_run",
+  "date": "2026-09-21",
+  "timezone": "Asia/Shanghai",
+  "claim_boundary": "development_only_same_task_seed_holdout; no_object_generalization; no_closed_loop",
+  "code_repository": {
+    "local_repo": "C:/Users/Chuanhao Gao/Desktop/manner_cap/upstream",
+    "server_repo": "/data/gaochuanhao/mannercap",
+    "server_alias": "4090x8",
+    "expected_server_head": "ee5507a"
+  },
+  "source_contract": {
+    "train_dataset": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918",
+    "train_source_seed": 42,
+    "train_windows": 64,
+    "train_source_episode_count": 8,
+    "train_source_group_key": "source_episode_id + task + seed + source_initial_state_sha256 + source_compiled_model_sha256",
+    "validation_source_root": "/data/gaochuanhao/mannercap_runs/gate2_d0_manner_extension_seeds43_44_20260918/episodes",
+    "validation_seed": 43,
+    "validation_source_episode_ids": [
+      "d0-lift-seed-43-neutral",
+      "d0-lift-seed-43-slow",
+      "d0-lift-seed-43-fast",
+      "d0-lift-seed-43-fast_approach_slow_contact",
+      "d0-stack-seed-43-neutral",
+      "d0-stack-seed-43-slow",
+      "d0-stack-seed-43-fast",
+      "d0-stack-seed-43-fast_approach_slow_contact"
+    ],
+    "validation_windows_max": 64,
+    "lineage_rule": "train source seed42 and validation source seed43 must have disjoint task/seed initial-state groups and disjoint source episode ids; derived windows inherit source group",
+    "all_splits": "development",
+    "no_relabel_existing_formal_split": true,
+    "train_independent_initial_state_group_count": 2,
+    "validation_independent_initial_state_group_count": 2,
+    "same_task_seed_manner_grouping": "same task+seed manners share the restored initial state; eight source episodes are not eight independent initial states",
+    "cross_split_disjoint_keys": [
+      "task + source_initial_state_sha256",
+      "task + initial_state_sha256",
+      "source_episode_id"
+    ]
+  },
+  "capture_contract": {
+    "method": "render_from_existing_seed43_transitions_using_verified_model_mjb_and_restored_state",
+    "capture_candidates_max": 8,
+    "windows_per_source": 8,
+    "horizon": 50,
+    "image_size": 256,
+    "views": [
+      "robot0_robotview",
+      "robot0_eye_in_hand"
+    ],
+    "api_calls": 0,
+    "overwrite_existing_evidence": false,
+    "if_replay_unavailable": "stop and preserve failure; do not silently rerun or replace source trajectories",
+    "temporal_alignment": "render image from restored pre-action state_t at each window start; action rows remain the source transition action_t",
+    "replay_semantics": "state restore and rendering only; no action stepping; not a closed-loop replay claim"
+  },
+  "qc_contract": {
+    "checks": [
+      "manifest schema and sample counts",
+      "finite 8D observation_state and 7D normalized action",
+      "50 rows per window",
+      "source result/initial-state/compiled-model hashes match source files",
+      "source task/manner/seed ids match requested set",
+      "train/validation source-group and lineage disjointness",
+      "image files exist and sha256 matches manifest",
+      "no duplicate source episode/start transition pairs",
+      "cross-split intersection of task + initial_state_sha256 is empty",
+      "report same-seed42 same-task manners sharing one initial-state group",
+      "verify captured image is rendered before corresponding source action_t"
+    ],
+    "failure_policy": "retain failure artifact and stop dependent training"
+  },
+  "training_contract": {
+    "model_checkpoint": "/data/gaochuanhao/la4vla/ckpts/libero_phasefocus35_from55k_lr1e6_1k/step_500/checkpoint.pt",
+    "train_dataset": "all 64 seed42 windows",
+    "normalization": "train-only statistics computed from the 64 train windows; validation never contributes",
+    "trainable_parameters": "action_head_only",
+    "steps": 100,
+    "seed": 20260921,
+    "learning_rate": 0.0001,
+    "batch_size": 8,
+    "fixed_checkpoint_count": 1,
+    "checkpoint_selection": "final step only; no validation-based selection",
+    "retry_count": 0,
+    "validation_passes": 2,
+    "inference_noise_seed_policy": "fixed and recorded per pass",
+    "metrics": [
+      "7D per-dimension MAE",
+      "7D per-dimension MSE",
+      "overall MAE",
+      "overall MSE",
+      "effective supervised frames",
+      "effective supervised scalar targets",
+      "initial_vs_final_fixed_checkpoint"
+    ],
+    "api_calls": 0,
+    "closed_loop": false
+  },
+  "resource_caps": {
+    "gpu": "GPU2 only after preflight confirms no compute app and <=1GiB persistent use",
+    "gpu_wall_minutes": 20,
+    "new_capture_candidates": 8,
+    "training_steps": 100,
+    "validation_passes": 2,
+    "new_disk_gib": 15,
+    "stop_on": [
+      "GPU2 occupied",
+      "capture provenance mismatch",
+      "QC failure",
+      "nonfinite loss",
+      "checkpoint write failure",
+      "wall cap",
+      "disk cap"
+    ]
+  },
+  "artifacts": {
+    "plan": "reports/gate2/la4vla_student_dev_validation_plan_20260921.json",
+    "plan_sha256": "reports/gate2/la4vla_student_dev_validation_plan_20260921.sha256",
+    "capture_manifest": "seed43 independent capture staging_manifest.json",
+    "qc_report": "reports/gate2/la4vla_student_dev_validation_qc_20260921.json",
+    "training_report": "reports/gate2/la4vla_student_dev_validation_20260921.json",
+    "ledger": "reports/gate0/task_ledger.md"
+  }
+}

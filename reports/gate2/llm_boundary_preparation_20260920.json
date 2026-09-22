@@ -1,0 +1,253 @@
+{
+  "schema": "mannercap-llm-boundary-preparation-v1",
+  "status": "offline_prepared_execution_blocked",
+  "observation_plan_sha256": "1af683a45e6938827c2f675d68112f09b71c943f0aaab5262b82ddf9b24b56c1",
+  "prompts": [
+    {
+      "request_id": "e0-dev-d0-lift-seed-50-neutral",
+      "prompt": {
+        "contract_version": "e0-m-velocity-plan-v1",
+        "task": "lift",
+        "instruction": "Lift the cube.",
+        "public_phase_names": [
+          "approach",
+          "descend",
+          "lift"
+        ],
+        "public_candidate_domain": {
+          "slow": {
+            "max_joint_vel": 0.08
+          },
+          "neutral": {},
+          "fast": {
+            "min_joint_vel": 0.18
+          }
+        },
+        "required_response": {
+          "global_speed": "one of slow, neutral, fast",
+          "phase_speeds": "object mapping applicable phase names to slow, neutral, fast"
+        },
+        "instructions": "Return only a JSON object with global_speed and phase_speeds. Choose a global speed and optional overrides for task phases to follow the instruction. These are planning parameters, not safety guarantees."
+      }
+    },
+    {
+      "request_id": "e0-dev-d0-lift-seed-50-slow",
+      "prompt": {
+        "contract_version": "e0-m-velocity-plan-v1",
+        "task": "lift",
+        "instruction": "Lift the cube slowly.",
+        "public_phase_names": [
+          "approach",
+          "descend",
+          "lift"
+        ],
+        "public_candidate_domain": {
+          "slow": {
+            "max_joint_vel": 0.08
+          },
+          "neutral": {},
+          "fast": {
+            "min_joint_vel": 0.18
+          }
+        },
+        "required_response": {
+          "global_speed": "one of slow, neutral, fast",
+          "phase_speeds": "object mapping applicable phase names to slow, neutral, fast"
+        },
+        "instructions": "Return only a JSON object with global_speed and phase_speeds. Choose a global speed and optional overrides for task phases to follow the instruction. These are planning parameters, not safety guarantees."
+      }
+    },
+    {
+      "request_id": "e0-dev-d0-lift-seed-50-fast",
+      "prompt": {
+        "contract_version": "e0-m-velocity-plan-v1",
+        "task": "lift",
+        "instruction": "Lift the cube quickly.",
+        "public_phase_names": [
+          "approach",
+          "descend",
+          "lift"
+        ],
+        "public_candidate_domain": {
+          "slow": {
+            "max_joint_vel": 0.08
+          },
+          "neutral": {},
+          "fast": {
+            "min_joint_vel": 0.18
+          }
+        },
+        "required_response": {
+          "global_speed": "one of slow, neutral, fast",
+          "phase_speeds": "object mapping applicable phase names to slow, neutral, fast"
+        },
+        "instructions": "Return only a JSON object with global_speed and phase_speeds. Choose a global speed and optional overrides for task phases to follow the instruction. These are planning parameters, not safety guarantees."
+      }
+    },
+    {
+      "request_id": "e0-dev-d0-lift-seed-50-fast_approach_slow_contact",
+      "prompt": {
+        "contract_version": "e0-m-velocity-plan-v1",
+        "task": "lift",
+        "instruction": "Approach the cube quickly, then contact it and lift it slowly.",
+        "public_phase_names": [
+          "approach",
+          "descend",
+          "lift"
+        ],
+        "public_candidate_domain": {
+          "slow": {
+            "max_joint_vel": 0.08
+          },
+          "neutral": {},
+          "fast": {
+            "min_joint_vel": 0.18
+          }
+        },
+        "required_response": {
+          "global_speed": "one of slow, neutral, fast",
+          "phase_speeds": "object mapping applicable phase names to slow, neutral, fast"
+        },
+        "instructions": "Return only a JSON object with global_speed and phase_speeds. Choose a global speed and optional overrides for task phases to follow the instruction. These are planning parameters, not safety guarantees."
+      }
+    },
+    {
+      "request_id": "e0-dev-d0-stack-seed-50-neutral",
+      "prompt": {
+        "contract_version": "e0-m-velocity-plan-v1",
+        "task": "stack",
+        "instruction": "Stack the red cube on the green cube.",
+        "public_phase_names": [
+          "approach",
+          "descend",
+          "lift",
+          "transport",
+          "final",
+          "retreat"
+        ],
+        "public_candidate_domain": {
+          "slow": {
+            "max_joint_vel": 0.08
+          },
+          "neutral": {},
+          "fast": {
+            "min_joint_vel": 0.18
+          }
+        },
+        "required_response": {
+          "global_speed": "one of slow, neutral, fast",
+          "phase_speeds": "object mapping applicable phase names to slow, neutral, fast"
+        },
+        "instructions": "Return only a JSON object with global_speed and phase_speeds. Choose a global speed and optional overrides for task phases to follow the instruction. These are planning parameters, not safety guarantees."
+      }
+    },
+    {
+      "request_id": "e0-dev-d0-stack-seed-50-slow",
+      "prompt": {
+        "contract_version": "e0-m-velocity-plan-v1",
+        "task": "stack",
+        "instruction": "Stack the red cube on the green cube slowly.",
+        "public_phase_names": [
+          "approach",
+          "descend",
+          "lift",
+          "transport",
+          "final",
+          "retreat"
+        ],
+        "public_candidate_domain": {
+          "slow": {
+            "max_joint_vel": 0.08
+          },
+          "neutral": {},
+          "fast": {
+            "min_joint_vel": 0.18
+          }
+        },
+        "required_response": {
+          "global_speed": "one of slow, neutral, fast",
+          "phase_speeds": "object mapping applicable phase names to slow, neutral, fast"
+        },
+        "instructions": "Return only a JSON object with global_speed and phase_speeds. Choose a global speed and optional overrides for task phases to follow the instruction. These are planning parameters, not safety guarantees."
+      }
+    },
+    {
+      "request_id": "e0-dev-d0-stack-seed-50-fast",
+      "prompt": {
+        "contract_version": "e0-m-velocity-plan-v1",
+        "task": "stack",
+        "instruction": "Stack the red cube on the green cube quickly.",
+        "public_phase_names": [
+          "approach",
+          "descend",
+          "lift",
+          "transport",
+          "final",
+          "retreat"
+        ],
+        "public_candidate_domain": {
+          "slow": {
+            "max_joint_vel": 0.08
+          },
+          "neutral": {},
+          "fast": {
+            "min_joint_vel": 0.18
+          }
+        },
+        "required_response": {
+          "global_speed": "one of slow, neutral, fast",
+          "phase_speeds": "object mapping applicable phase names to slow, neutral, fast"
+        },
+        "instructions": "Return only a JSON object with global_speed and phase_speeds. Choose a global speed and optional overrides for task phases to follow the instruction. These are planning parameters, not safety guarantees."
+      }
+    },
+    {
+      "request_id": "e0-dev-d0-stack-seed-50-fast_approach_slow_contact",
+      "prompt": {
+        "contract_version": "e0-m-velocity-plan-v1",
+        "task": "stack",
+        "instruction": "Approach the red cube quickly, then contact it and stack it slowly.",
+        "public_phase_names": [
+          "approach",
+          "descend",
+          "lift",
+          "transport",
+          "final",
+          "retreat"
+        ],
+        "public_candidate_domain": {
+          "slow": {
+            "max_joint_vel": 0.08
+          },
+          "neutral": {},
+          "fast": {
+            "min_joint_vel": 0.18
+          }
+        },
+        "required_response": {
+          "global_speed": "one of slow, neutral, fast",
+          "phase_speeds": "object mapping applicable phase names to slow, neutral, fast"
+        },
+        "instructions": "Return only a JSON object with global_speed and phase_speeds. Choose a global speed and optional overrides for task phases to follow the instruction. These are planning parameters, not safety guarantees."
+      }
+    }
+  ],
+  "api_calls": 0,
+  "provider": null,
+  "verified_model_id": null,
+  "endpoint": null,
+  "temperature": null,
+  "token_cap": null,
+  "cost_cap": null,
+  "cache_policy": "persist_request_response_and_usage_before_retry",
+  "required_before_call": [
+    "verify_completed_G0_G3_server_observation_and_accounting",
+    "configure_provider_model_and_credentials_outside_git",
+    "freeze_sampling_token_and_cost_caps",
+    "connect_response_parser_and_per_attempt_call_ledger"
+  ],
+  "scope": "explicit_instruction_velocity_planning_only",
+  "formal_thresholds_frozen": false,
+  "promotion_allowed": false,
+  "content_sha256": "c37ab25ec476a7ba66ce4b44d0dcbb7830622f4ce1a09f9703aaef03442c2ebd"
+}

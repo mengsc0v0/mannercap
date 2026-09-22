@@ -1,0 +1,201 @@
+{
+  "schema": "mannercap-la4vla-student-dev-dataset-binding-audit.v1",
+  "status": "protocol_deviation",
+  "attempt": "attempt02",
+  "reason": "The completed run used a two-source seed42 train bundle although the frozen QC contract requires eight seed42 source episodes covering four manners per task.",
+  "frozen_plan_sha256": "398337b4ea56e1a144c56577f179754a78b2558187e6dccdc69f8c1694204916",
+  "qc_report_sha256": "eb61775a7bc4937040c6a3a0113bd1ec49292d57b974dd19c178350c16eae684",
+  "binding_decision": {
+    "train": "fail",
+    "validation": "pass",
+    "result_status_preserved": "pass in original execution report; not valid for frozen protocol",
+    "relabel_as_frozen_plan_pass": false,
+    "additional_training_started": false
+  },
+  "frozen_expected": {
+    "train": {
+      "dataset_root": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918",
+      "dataset_config_sha256": "fc83f0ac0c71491c709f6eb782269ba13fd786d14873505576238a63e56f6df9",
+      "source_manifest_sha256": "4482a57125bf834e5b37d56d64658d5a1af08fa5edb00643920ca8369ae714ab",
+      "info_sha256": "687622f36090f7db2aeff72b9287d80d1d85e18f1439721988557ff7d7f72489",
+      "tasks_sha256": "733b19c7d01af772e86ac497b8775a6138faeff6b65803bcb95954f41b25ee08",
+      "windows": 64,
+      "source_episode_count": 8,
+      "source_episode_ids": [
+        "d0-lift-seed-42-fast",
+        "d0-lift-seed-42-fast_approach_slow_contact",
+        "d0-lift-seed-42-neutral",
+        "d0-lift-seed-42-slow",
+        "d0-stack-seed-42-fast",
+        "d0-stack-seed-42-fast_approach_slow_contact",
+        "d0-stack-seed-42-neutral",
+        "d0-stack-seed-42-slow"
+      ],
+      "task_manner_pairs": [
+        ["lift", "fast"],
+        ["lift", "fast_approach_slow_contact"],
+        ["lift", "neutral"],
+        ["lift", "slow"],
+        ["stack", "fast"],
+        ["stack", "fast_approach_slow_contact"],
+        ["stack", "neutral"],
+        ["stack", "slow"]
+      ],
+      "source_window_counts": {
+        "d0-lift-seed-42-fast": 8,
+        "d0-lift-seed-42-fast_approach_slow_contact": 8,
+        "d0-lift-seed-42-neutral": 8,
+        "d0-lift-seed-42-slow": 8,
+        "d0-stack-seed-42-fast": 8,
+        "d0-stack-seed-42-fast_approach_slow_contact": 8,
+        "d0-stack-seed-42-neutral": 8,
+        "d0-stack-seed-42-slow": 8
+      },
+      "source_initial_state_hashes": [
+        "2e866b28bdca1dfaeba3bcc2d30ac65acf23930987c79e6c251ac00efed3fc79",
+        "db368d81ec252a88553e3e5d7f365b37fa72b4e915389674fb9a77047c092e7d"
+      ],
+      "source_result_hash_count": 8,
+      "qc_manifest": "/data/gaochuanhao/mannercap_runs/gate2_d0_full_la4vla_microset_packed_20260918/source_staging_manifest.json"
+    },
+    "validation": {
+      "dataset_root": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921",
+      "dataset_config_sha256": "e96d04a59d62423a5187c2f3ccf4f4200839609556218d9575941ba1d2a2084c",
+      "source_manifest_sha256": "1215a0944c3bfbf11739dfeb9175345b15eb4cf3ac840abfb78ac5310f1596a0",
+      "qc_manifest_sha256": "1215a0944c3bfbf11739dfeb9175345b15eb4cf3ac840abfb78ac5310f1596a0",
+      "info_sha256": "687622f36090f7db2aeff72b9287d80d1d85e18f1439721988557ff7d7f72489",
+      "tasks_sha256": "733b19c7d01af772e86ac497b8775a6138faeff6b65803bcb95954f41b25ee08",
+      "windows": 64,
+      "source_episode_count": 8,
+      "source_result_hash_count": 8,
+      "qc_manifest": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_capture_20260921/staging_manifest.json"
+    }
+  },
+  "actual_attempt02": {
+    "train": {
+      "config": "/data/gaochuanhao/mannercap_runs/gate2_la4vla_microset_packed_20260918_attempt02/dataset_config.yaml",
+      "config_sha256": "ed08c828d5a2e93842802b401a6e868ba921612aae2ca2b0cdc0b583b3acb934",
+      "dataset_root": "/data/gaochuanhao/mannercap_runs/gate2_la4vla_microset_packed_20260918_attempt02",
+      "source_manifest_sha256": "7c25f92647194c265097961d419f20d66d427758abace8756c8c8f11530965e2",
+      "info_sha256": "53b4c1d86c7b213f37c5b7d05ec9badad071274087fc17c465574b26a9cb543f",
+      "tasks_sha256": "676f3a92b4c297fa44945e7694bc366716e10090ff75a329e722fa88f6c0b0f9",
+      "windows": 64,
+      "horizon": 50,
+      "independent_source_episode_count": 2,
+      "total_tasks": 2,
+      "source_episode_ids": ["lift", "stack"],
+      "task_counts": {"lift": 32, "stack": 32},
+      "task_manner_pairs": [["lift", null], ["stack", null]],
+      "source_window_counts": {"lift": 32, "stack": 32},
+      "source_initial_state_hashes": [],
+      "source_result_hash_count": 0,
+      "binding_mismatches": [
+        "source manifest SHA differs from frozen seed42 manifest",
+        "source_episode_ids are lift/stack instead of the eight frozen d0 seed42 IDs",
+        "source_episode_count is 2 instead of 8",
+        "task×manner pairs are missing; only lift/stack are present",
+        "source initial-state hashes are absent",
+        "source result hashes are absent",
+        "independent_source_episode_count is 2 instead of 8"
+      ]
+    },
+    "validation": {
+      "config": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921/dataset_config.yaml",
+      "config_sha256": "e96d04a59d62423a5187c2f3ccf4f4200839609556218d9575941ba1d2a2084c",
+      "dataset_root": "/data/gaochuanhao/mannercap_runs/gate2_d0_seed43_la4vla_student_dev_packed_20260921",
+      "source_manifest_sha256": "1215a0944c3bfbf11739dfeb9175345b15eb4cf3ac840abfb78ac5310f1596a0",
+      "source_episode_count": 8,
+      "task_manner_pairs": [
+        ["lift", "fast"],
+        ["lift", "fast_approach_slow_contact"],
+        ["lift", "neutral"],
+        ["lift", "slow"],
+        ["stack", "fast"],
+        ["stack", "fast_approach_slow_contact"],
+        ["stack", "neutral"],
+        ["stack", "slow"]
+      ],
+      "source_window_counts": {
+        "d0-lift-seed-43-fast": 8,
+        "d0-lift-seed-43-fast_approach_slow_contact": 8,
+        "d0-lift-seed-43-neutral": 8,
+        "d0-lift-seed-43-slow": 8,
+        "d0-stack-seed-43-fast": 8,
+        "d0-stack-seed-43-fast_approach_slow_contact": 8,
+        "d0-stack-seed-43-neutral": 8,
+        "d0-stack-seed-43-slow": 8
+      },
+      "source_initial_state_hashes": [
+        "0ddb5b64e10aed69f86855688efaab49f6abe96c13bcda25b64ef8e3fd883d69",
+        "3e63ae2f32726a400db323268123040937e1f5337488c739618d871c0ba508e4"
+      ],
+      "source_result_hash_count": 8,
+      "binding_status": "pass"
+    }
+  },
+  "parquet_payload_audit": {
+    "method": "remote venv pyarrow read of every packed parquet file; loader smoke reused for inline image hashes",
+    "sha256_manifest_file": "reports/gate2/la4vla_student_dev_parquet_sha256_20260922.txt",
+    "sha256_manifest_file_sha256": "338b00e31a1b62882b336c72fb90e7f610ffaf794da6f2d3075d506e52dbfd4c",
+    "bundles": {
+      "attempt02_train": {
+        "parquet_count": 64,
+        "total_rows": 3200,
+        "rows_per_file": [50],
+        "action_widths": [7],
+        "state_widths": [8],
+        "finite_action_state": true,
+        "parquet_sha256_manifest_sha256": "ef4e382ca9e2984d812f39d61c39d4182b40ea884b0d14c8a0be746eefa925ea",
+        "loader_smoke_inline_image_hashes_checked": 128,
+        "loader_smoke_mismatches": []
+      },
+      "frozen_train": {
+        "parquet_count": 64,
+        "total_rows": 3200,
+        "rows_per_file": [50],
+        "action_widths": [7],
+        "state_widths": [8],
+        "finite_action_state": true,
+        "parquet_sha256_manifest_sha256": "b6e69e29546d7991b507f11ec97bd1cfb0cb2cc0bf9f987f98e16001e38caa07"
+      },
+      "attempt02_validation": {
+        "parquet_count": 64,
+        "total_rows": 3200,
+        "rows_per_file": [50],
+        "action_widths": [7],
+        "state_widths": [8],
+        "finite_action_state": true,
+        "parquet_sha256_manifest_sha256": "8dd2baef75412aa898c39a0c656895262e05d779527efc41baf07badf09e9c7b",
+        "loader_smoke_inline_image_hashes_checked": 128,
+        "loader_smoke_mismatches": []
+      }
+    },
+    "interpretation": "The parquet payloads are structurally valid and image hashes pass, but that does not repair the train source-lineage mismatch."
+  },
+  "execution_evidence": {
+    "original_training_report": "reports/gate2/la4vla_student_dev_training_20260921_attempt02.json",
+    "original_training_report_sha256": "e6c3da461de0a8de720730bbac1073a0c10c84eab4ca9b6325d8dbc00981135e",
+    "original_training_status": "pass",
+    "steps": 100,
+    "wall_seconds": 548.8265387210995,
+    "new_disk_bytes": 1811942084,
+    "checkpoint_sha256": "16f5f4aaadc151c61c0792249f7868ac7cb299cf374754b8057ef0accf8ee3fc",
+    "old_failure_report_sha256": "5cf7029fe892e7da3e82d54e400f1b26050dc9f5067b958b29e3a20fd51de448",
+    "loader_smoke_sha256": "9ca3f5e466d41295e2b76003afcf8c92159f5b59483475f67f6179abc0558487",
+    "normalization_override_sha256": "348d1a35789e6b22d3c072856eb394d89b949782a8e343ec7dc95c375e80b6b0",
+    "train_only_stats_sha256": "25c3024af82ca7d6b78c1444c8333a4488d8e3c70af0f4fdf7119b52e06c3496",
+    "server_repo_head_at_execution": "ee5507a79e6d519f8081cd871d3476bc0691c2e6",
+    "no_capture_repeated": true,
+    "api_calls": 0,
+    "closed_loop": false,
+    "formal_promotion": false
+  },
+  "posthoc_guard": {
+    "runner_binding_fix": "scripts/gate2_student_dev_train_eval.py",
+    "runner_binding_fix_sha256": "1d5f17273e9d590bc4d43ecdee73788e7aa80ce72bd412f59dcc0f4863996113",
+    "expected_qc_sha256_guard": "eb61775a7bc4937040c6a3a0113bd1ec49292d57b974dd19c178350c16eae684",
+    "qc_plan_sha256_guard": "398337b4ea56e1a144c56577f179754a78b2558187e6dccdc69f8c1694204916",
+    "behavior": "future runs fail closed before dataset construction/model training when config-resolved source manifest does not match QC",
+    "test": "tests/test_gate2_student_dev_train_eval.py::test_dataset_binding_checks_source_ids_and_task_manner"
+  }
+}
