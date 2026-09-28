@@ -49,6 +49,89 @@ sys.path.insert(0, BASE)
 
 import numpy as np
 
+from synthesis_v2.experience_library import ExperienceLibrary, GLOBAL_PHASE, flatten_trial_params
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 经验库校准层（Phase 3）：(task, phase, dimension, level) -> 历史 both_pass 分位数
+# ──────────────────────────────────────────────────────────────────────────────
+# 惰性加载 + 按绝对路径缓存，避免同一批次内每个 trial 都重新读一次 jsonl。
+_EXPERIENCE_LIBRARY_CACHE: dict[str, ExperienceLibrary] = {}
+
+
+def _get_experience_library(path: str) -> ExperienceLibrary:
+    key = os.path.abspath(path)
+    lib = _EXPERIENCE_LIBRARY_CACHE.get(key)
+    if lib is None:
+        lib = ExperienceLibrary()
+        lib.load(path)
+        _EXPERIENCE_LIBRARY_CACHE[key] = lib
+    return lib
+
+
+def _calibrate_value(lib, task, phase, dimension, level, fallback, min_samples=3):
+    """None-safe wrapper around ExperienceLibrary.calibrate(): when lib is
+    None (calibration disabled) or task/level are unknown, always returns
+    (fallback, False) unchanged -- this is what preserves the exact current
+    preset behaviour when --use-experience-calibration is not passed."""
+    if lib is None or not task or not level:
+        return fallback, False
+    return lib.calibrate(task, phase, dimension, level, fallback,
+                          min_samples=min_samples)
+
+
+def _calibrate_repair_ratio(lib, task, phase, cause, dimension, fallback_ratio, min_samples=3):
+    """None-safe wrapper around ExperienceLibrary.calibrate_repair_ratio():
+    when lib is None or task is unknown, always returns (fallback_ratio,
+    False) unchanged -- preserves today's hardcoded MANNER_REPAIR_LIBRARY
+    adjustment ratios when --use-experience-calibration is not passed or the
+    (task, phase, cause, dimension) bucket is cold."""
+    if lib is None or not task:
+        return fallback_ratio, False
+    return lib.calibrate_repair_ratio(task, phase, cause, dimension, fallback_ratio,
+                                       min_samples=min_samples)
+
+
+def _write_back_experience(lib, path, task, tag, seed, run_stamp, params, outcome):
+    """Phase 5 self-evolving write-back: flatten a both_pass trial's final
+    (post-repair-if-any) params into per-(phase, dimension) experience
+    samples. Appended both to the in-memory ``lib`` (so later trials in the
+    same batch process can immediately retrieve them via ``calibrate()``)
+    and persisted to ``path`` (so future/other processes see them too).
+    None-safe: no-op when the experience library is not enabled."""
+    if lib is None or not task:
+        return
+    ts = time.strftime("%Y-%m-%dT%H:%M:%S")
+    for dimension, phase_values in flatten_trial_params(params).items():
+        for phase, value in phase_values.items():
+            lib.add_experience(
+                task, phase, dimension, tag, value, outcome,
+                source_run_stamp=run_stamp, seed=seed, ts=ts)
+            lib.append_record(path, lib.experiences[-1])
+
+
+def _write_back_repair(lib, path, task, run_stamp, cause, before_params, after_params, outcome_after):
+    """Phase 5 self-evolving write-back for a repair retry that reached
+    both_pass: for every (phase, dimension) whose value actually changed
+    between the pre-repair and post-repair params, record a genuine
+    before/after RepairRecord (real in-process values, unlike the historical
+    population script which cannot reconstruct them). None-safe no-op when
+    the experience library is not enabled."""
+    if lib is None or not task:
+        return
+    ts = time.strftime("%Y-%m-%dT%H:%M:%S")
+    before_flat = flatten_trial_params(before_params)
+    after_flat = flatten_trial_params(after_params)
+    for dimension, before_phases in before_flat.items():
+        after_phases = after_flat.get(dimension, {})
+        for phase, before_value in before_phases.items():
+            after_value = after_phases.get(phase)
+            if after_value is None or after_value == before_value:
+                continue
+            lib.add_repair(
+                task, phase, cause, dimension, before_value, after_value,
+                outcome_after, source_run_stamp=run_stamp, ts=ts)
+            lib.append_record(path, lib.repairs[-1])
+
 
 # ──────────────────────────────────────────────────────────────────────────────
 # 测试用例（与已归档的 test_llm_manner_e2e.py 一致，现由本脚本 --mock-llm 模式覆盖）
@@ -87,7 +170,7 @@ def _derive_velocity(max_bound, min_bound, default: float) -> float:
     return default
 
 
-def spec_to_exec_params(spec) -> dict:
+def spec_to_exec_params(spec, task=None, tag=None, experience_lib=None, min_samples=3) -> dict:
     clipped: list[str] = []
     clipped_dims: list[str] = []
 
@@ -110,19 +193,35 @@ def spec_to_exec_params(spec) -> dict:
     phase_overrides = getattr(spec, "phase_velocity", None) or {}
     phase_v_max: dict[str, float] = {}
     phase_a_max: dict[str, float] = {}
+    calibrated: list[str] = []
     for name, (ratio_v, ratio_a) in _phase_defaults.items():
         ov = phase_overrides.get(name)
         if ov is not None and (ov.max_joint_vel is not None or ov.min_joint_vel is not None):
             v = _derive_velocity(ov.max_joint_vel, ov.min_joint_vel, v_max)
+            v, used = _calibrate_value(experience_lib, task, name, "v_max", tag, v, min_samples)
+            if used:
+                calibrated.append(f"{name}.v_max")
             if v < V_MIN_DEFAULT:
                 clipped.append(f"{name}.v_max({v:.3f}<{V_MIN_DEFAULT})")
                 clipped_dims.append("vel")
                 v = V_MIN_DEFAULT
             phase_v_max[name] = v
-            phase_a_max[name] = max(0.01, v * 0.7)
+            a = max(0.01, v * 0.7)
+            a, used = _calibrate_value(experience_lib, task, name, "a_max", tag, a, min_samples)
+            if used:
+                calibrated.append(f"{name}.a_max")
+            phase_a_max[name] = a
         else:
-            phase_v_max[name] = max(0.02, v_max * ratio_v)
-            phase_a_max[name] = max(0.01, a_max * ratio_a)
+            v = max(0.02, v_max * ratio_v)
+            v, used = _calibrate_value(experience_lib, task, name, "v_max", tag, v, min_samples)
+            if used:
+                calibrated.append(f"{name}.v_max")
+            phase_v_max[name] = v
+            a = max(0.01, a_max * ratio_a)
+            a, used = _calibrate_value(experience_lib, task, name, "a_max", tag, a, min_samples)
+            if used:
+                calibrated.append(f"{name}.a_max")
+            phase_a_max[name] = a
 
     jerk_limit = spec.max_jerk
 
@@ -135,6 +234,9 @@ def spec_to_exec_params(spec) -> dict:
         kp_pos = spec.kp_min * 1.10
     else:
         kp_pos = kp_default
+    kp_pos, used = _calibrate_value(experience_lib, task, GLOBAL_PHASE, "kp_pos", tag, kp_pos, min_samples)
+    if used:
+        calibrated.append("kp_pos")
     if kp_pos < KP_FLOOR:
         clipped.append(f"kp_pos({kp_pos:.0f}<{KP_FLOOR:.0f})")
         clipped_dims.append("kp")
@@ -149,6 +251,9 @@ def spec_to_exec_params(spec) -> dict:
         grip = min(1.0, spec.grip_fraction_min * 1.10)
     else:
         grip = grip_default
+    grip, used = _calibrate_value(experience_lib, task, GLOBAL_PHASE, "grip", tag, grip, min_samples)
+    if used:
+        calibrated.append("grip")
     if grip < GRIP_FLOOR:
         clipped.append(f"grip({grip:.2f}<{GRIP_FLOOR:.2f})")
         clipped_dims.append("grip")
@@ -164,6 +269,7 @@ def spec_to_exec_params(spec) -> dict:
         "phase_a_max":   {k: float(v) for k, v in phase_a_max.items()},
         "_clipped":      clipped,
         "_clipped_dims": clipped_dims,
+        "_calibrated":   calibrated,
     }
 
 
@@ -414,6 +520,418 @@ def run_pour(env, api, params: dict) -> dict:
         "reward": float(env.compute_reward()),
         "cup_delta_z": float(cup_after[2] - cup_pos[2]),
         "spill_ratio": float(env.spill_ratio()),
+        "sim_steps": int(env._sim_step_count),
+        "task_completed": bool(env.task_completed()),
+    }
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Phase 1 剩余任务接线：spill_wipe / nut_assembly / cube_restack
+# (two_arm_handover 暂缓，见下方 TASK_REGISTRY 注释)
+# ──────────────────────────────────────────────────────────────────────────────
+_WIPE_DOWN_QUAT = np.array([0.0, 0.0, 1.0, 0.0])
+
+
+def _wipe_tool_center_goto(env):
+    """Wipe 专用工具中心点 IK：擦拭工具固连在夹爪上，不是抓取姿态，因此不能走
+    FrankaControlPrivilegedApi.goto_pose_with_profile（该 API 内含抓取用的 TCP
+    偏移 + pyroki 逆解，是为抓取姿态标定的）。改为对夹爪 4 个 corner 几何体的
+    中心点直接做 least-squares 关节空间逆解，再复用 env.move_to_joints_profiled
+    执行（manner 速度/加速度曲线依旧生效）。已在独立探针脚本中验证可行
+    （/tmp/wipe_manner_probe.py），此处原样接入正式管线。
+    """
+    import mujoco
+    from scipy.optimize import least_squares
+    from scipy.spatial.transform import Rotation
+
+    rs = env.robosuite_env
+    sim = rs.sim
+    model = sim.model._model
+    scratch = mujoco.MjData(model)
+    joints = [
+        mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, f"robot0_joint{i}")
+        for i in range(1, 8)
+    ]
+    qadr = model.jnt_qposadr[joints]
+    lower, upper = model.jnt_range[joints].T
+    eef = env.gripper_link_idx
+    base = env.base_link_idx
+    arm = rs.robots[0].arms[0]
+    corner_ids = np.asarray(
+        [sim.model.geom_name2id(n) for n in rs.robots[0].gripper[arm].important_geoms["corners"]],
+        dtype=int,
+    )
+
+    def goto(pos_base, quat_wxyz, v_max, a_max, phase):
+        q_before = sim.data.qpos.copy()
+        scratch.qpos[:] = q_before
+        scratch.qvel[:] = sim.data.qvel.copy()
+        brot = Rotation.from_matrix(sim.data.xmat[base].reshape(3, 3))
+        tgt = sim.data.xpos[base] + brot.apply(np.asarray(pos_base, float).reshape(3))
+        q = np.asarray(quat_wxyz, float).reshape(4)
+        trot = brot * Rotation.from_quat(q[[1, 2, 3, 0]])
+        q0 = np.clip(q_before[qadr], lower + 1e-6, upper - 1e-6)
+
+        def resid(qq):
+            scratch.qpos[qadr] = qq
+            mujoco.mj_forward(model, scratch)
+            c = scratch.geom_xpos[corner_ids].mean(axis=0)
+            re = (trot * Rotation.from_matrix(scratch.xmat[eef].reshape(3, 3)).inv()).as_rotvec()
+            return np.r_[c - tgt, 0.2 * re, 1e-4 * (qq - q0)]
+
+        sol = least_squares(
+            resid, q0, bounds=(lower + 1e-6, upper - 1e-6),
+            max_nfev=300, ftol=1e-10, xtol=1e-10, gtol=1e-10,
+        )
+        env.move_to_joints_profiled(sol.x, v_max=v_max, a_max=a_max, phase=phase)
+
+    return goto
+
+
+def _wipe_marker_positions(env, remaining_only=True):
+    """剩余 (未擦除) spill marker 在机器人基座系下的 xyz。"""
+    rs = env.robosuite_env
+    sim = rs.sim
+    markers = list(rs.model.mujoco_arena.markers)
+    if remaining_only:
+        wiped = {id(m) for m in rs.wiped_markers}
+        markers = [m for m in markers if id(m) not in wiped]
+    if not markers:
+        return np.zeros((0, 3))
+    world = np.stack(
+        [sim.data.body_xpos[sim.model.body_name2id(m.root_body)].copy() for m in markers]
+    )
+    b = np.asarray(env.base_link_wxyz_xyz, float)
+    qw, qx, qy, qz = b[:4]
+    t = b[4:7]
+    R = np.array([
+        [1 - 2 * (qy * qy + qz * qz), 2 * (qx * qy - qz * qw), 2 * (qx * qz + qy * qw)],
+        [2 * (qx * qy + qz * qw), 1 - 2 * (qx * qx + qz * qz), 2 * (qy * qz - qx * qw)],
+        [2 * (qx * qz - qy * qw), 2 * (qy * qz + qx * qw), 1 - 2 * (qx * qx + qy * qy)],
+    ])
+    return (world - t) @ R
+
+
+def _wipe_nn_path(pts, start):
+    rem = list(range(len(pts)))
+    order = []
+    cur = np.asarray(start[:2])
+    while rem:
+        d = [np.linalg.norm(pts[i][:2] - cur) for i in rem]
+        k = rem[int(np.argmin(d))]
+        order.append(k)
+        cur = pts[k][:2]
+        rem.remove(k)
+    return pts[order]
+
+
+def run_wipe(env, api, params: dict) -> dict:
+    """擦拭任务：把桌上所有 brown spill marker 擦除。
+
+    与 lift/stack/pour 不同，本任务不抓取物体——机械臂末端固连擦拭工具，用
+    工具中心点 (4 个 corner 几何体均值) 直接逆解 (见 _wipe_tool_center_goto)。
+
+    manner 映射：
+        approach/descend 速度 <- spec 的 approach/descend 阶段速度
+        sweep (擦拭平移) 速度 <- spec 的 transport 阶段速度
+        下压深度 (penetration) <- 由 kp_pos (刚度/力度 manner 轴) 映射，裁剪在
+            实测安全区间 [0.003, 0.012] 米内 (过深会穿透桌面法向, 过浅擦不到)。
+    """
+    goto = _wipe_tool_center_goto(env)
+    pv = params.get("phase_v_max", {})
+    pa = params.get("phase_a_max", {})
+    v_max = params["v_max"]
+
+    approach_v = pv.get("approach", v_max)
+    descend_v = pv.get("descend", max(0.02, v_max * 0.6))
+    sweep_v = pv.get("transport", max(0.02, v_max * 0.6))
+    sweep_a = pa.get("transport", max(0.01, params["a_max"] * 0.5))
+    kp_ref = 1000.0
+    penetration = float(np.clip(0.006 * (params["kp_pos"] / kp_ref), 0.003, 0.012))
+
+    markers0 = _wipe_marker_positions(env)
+    num_markers0 = len(markers0)
+    if num_markers0 == 0:
+        return {
+            "reward": float(env.compute_reward()),
+            "sim_steps": int(env._sim_step_count),
+            "task_completed": bool(env.task_completed()),
+            "markers_remaining": 0,
+            "num_markers": 0,
+        }
+
+    c0 = markers0[0].copy()
+    goto(c0 + np.array([0.0, 0.0, 0.08]), _WIPE_DOWN_QUAT, approach_v, max(0.01, approach_v * 0.8), "approach")
+    goto(c0 - np.array([0.0, 0.0, penetration]), _WIPE_DOWN_QUAT, descend_v, max(0.01, descend_v * 0.8), "descend")
+    _pump(env, 3)
+
+    max_iters = int(params.get("wipe_iters", 8))
+    try:
+        for _ in range(max_iters):
+            remaining = _wipe_marker_positions(env)
+            if len(remaining) == 0 or env.task_completed():
+                break
+            path = _wipe_nn_path(remaining, remaining[0])
+            for w in path:
+                target = w.copy()
+                target[2] -= penetration
+                goto(target, _WIPE_DOWN_QUAT, sweep_v, sweep_a, "transport")
+                if env.task_completed():
+                    break
+            if env.task_completed():
+                break
+    except Exception as e:
+        print(f"    [wipe stop] {type(e).__name__}: {str(e)[:120]}")
+
+    remaining_final = _wipe_marker_positions(env)
+    return {
+        "reward": float(env.compute_reward()),
+        "sim_steps": int(env._sim_step_count),
+        "task_completed": bool(env.task_completed()),
+        "markers_remaining": int(len(remaining_final)),
+        "num_markers": int(num_markers0),
+    }
+
+
+def run_nut_assembly(env, api, params: dict) -> dict:
+    """方形螺母套插销 (nut assembly)：抓取螺母 handle，运送并套入插销。
+
+    关键修复（已实测验证）：方形螺母中心是**空心孔洞**（套在插销上的孔），
+    若像 stack/pour 那样直接抓"螺母中心"点，夹爪只会在空气中合拢，完全抓
+    不住任何实体材料——表现为夹爪路径/关节角完全正确、但螺母全程位置纹丝
+    不动 (delta_z=0)。必须改为抓取 `square_nut_handle` (螺母侧边实体把手)，
+    且使用 `get_object_pose` 已经算好的"抓取就绪"四元数 (内部通过
+    rotate_by_180 @ invert_grasp_pose 抵消了螺母初始随机朝向)，而不是固定
+    俯视四元数——否则夹爪合拢方向可能与把手长轴平行而抓空。
+
+    由于抓取参考点变成了 handle 而非螺母中心，放置阶段需要把"螺母中心置于
+    插销正上方"换算成"handle 应该去哪"：在夹爪刚抓稳 (`_grasp_close` 之后)
+    立即测量 handle→螺母中心 的偏移向量 `center_offset`；只要抓取姿态在
+    搬运全程保持不变 (未曾重新定向)，这个偏移向量在该固定姿态下保持恒定，
+    因此 handle 的搬运/下插目标位置 = peg_pos - center_offset。
+
+    另一处必要修复：`FrankaRobosuiteNutAssembly.reset()` 会故意把手臂折叠到
+    摄像头视野外的隐藏姿态 (`qpos[:7]=[0,-1.585,0,-2.645,0,1,0.785]`)，并非
+    常规的"就绪"姿态。若不先归位就直接求解 approach 的 IK，warm-start 起点
+    (`prev_cfg`) 来自这个非常规折叠姿态，容易让 IK 落入与其它任务不一致的
+    局部解，导致同一 phase_v_max/grip 参数下不同 tag 的抓取稳定性差异很大
+    （实测 normal tag 的 nut_xy_error 远大于 gentle/fast）。因此在任何操作
+    前先调用一次 move_to_joints_blocking(env.home_joint_position) 归位。
+
+    成功判据由 `robosuite_env._check_success()` 内的 `on_peg()` 决定
+    (螺母 xy 与插销 xy 误差 < 3cm 且 z 低于桌面+5cm 且已松开)。
+    """
+    env.move_to_joints_blocking(env.home_joint_position, max_steps=200)
+    nut_pos, _, _ = api.get_object_pose("square nut")
+    handle_pos, handle_quat, _ = api.get_object_pose("square nut handle")
+    peg_pos, _, _ = api.get_object_pose("square peg")
+    pv = params.get("phase_v_max", {})
+    pa = params.get("phase_a_max", {})
+
+    approach_pos = handle_pos.copy(); approach_pos[2] += 0.20
+    api.goto_pose_with_profile(
+        approach_pos, handle_quat,
+        v_max=pv.get("approach", params["v_max"]), a_max=pa.get("approach", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="approach",
+    )
+    _pump(env, 6)
+
+    api.set_impedance_stiffness(kp_pos=params["kp_pos"])
+
+    # descend（重新获取 handle 位姿，见函数 docstring 的关键修复说明）
+    handle_pos2, handle_quat2, _ = api.get_object_pose("square nut handle")
+    grasp_pos = handle_pos2.copy(); grasp_pos[2] -= 0.005
+    api.goto_pose_with_profile(
+        grasp_pos, handle_quat2,
+        v_max=pv.get("descend", max(0.02, params["v_max"] * 0.6)),
+        a_max=pa.get("descend", max(0.01, params["a_max"] * 0.5)),
+        jerk_limit=params["jerk_limit"], phase="descend",
+    )
+    _pump(env, 6)
+
+    # 方形螺母 handle 很薄，接触面小；共享的 `_grasp_close` 只有在
+    # force<0.70 时才走"多次收紧-回稳"分支，force>=0.70 (normal/fast 常见档位)
+    # 会退化成一次性 close_gripper_partial，对薄 handle 经常一次抓空/打滑
+    # (实测 normal/fast 两档 nut_delta_z 恒为 0，即从未真正抓起螺母)。
+    # 因此这里不复用阈值分支，始终做 3 次收紧-回稳。
+    _nut_tries = 3
+    _nut_per_steps = max(15, 60 // _nut_tries)
+    for _ in range(_nut_tries):
+        api.close_gripper_partial(force=params["grip"], steps=_nut_per_steps)
+        _pump(env, 4)
+
+    # 抓稳后立即测量 handle -> 螺母中心 偏移向量（后续姿态不变，偏移恒定）
+    nut_pos_grasped, _, _ = api.get_object_pose("square nut")
+    handle_pos_grasped, _, _ = api.get_object_pose("square nut handle")
+    center_offset = nut_pos_grasped - handle_pos_grasped
+
+    api.set_impedance_stiffness(kp_pos=1000.0)
+    lift_pos = grasp_pos.copy(); lift_pos[2] += 0.15
+    api.goto_pose_with_profile(
+        lift_pos, handle_quat2,
+        v_max=pv.get("lift", params["v_max"]), a_max=pa.get("lift", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="lift",
+    )
+    _pump(env, 6)
+
+    # 把螺母中心搬到插销正上方 -> 换算成 handle 该去的位置
+    over_peg = (peg_pos - center_offset).copy()
+    over_peg[2] = lift_pos[2]
+    api.goto_pose_with_profile(
+        over_peg, handle_quat2,
+        v_max=pv.get("transport", params["v_max"]), a_max=pa.get("transport", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="transport",
+    )
+    _pump(env, 6)
+
+    final_pos = (peg_pos - center_offset).copy()
+    final_pos[2] = grasp_pos[2] + 0.01
+    api.goto_pose_with_profile(
+        final_pos, handle_quat2,
+        v_max=pv.get("final", max(0.02, params["v_max"] * 0.5)),
+        a_max=pa.get("final", max(0.01, params["a_max"] * 0.4)),
+        jerk_limit=params["jerk_limit"], phase="final",
+    )
+    _pump(env, 14)
+
+    # 闭环 xy 微调：normal/fast 档更高速度下，final 阶段轨迹跟踪残余误差会让
+    # 螺母中心偏离插销中心超过成功阈值 (3cm)。松爪前用实测螺母位置反推出还
+    # 差多少，做一次慢速小幅修正（不受 tag 速度影响，始终用保守的
+    # v_max=0.02，避免修正本身引入新的 manner 违规）。
+    nut_before_release, _, _ = api.get_object_pose("square nut")
+    xy_residual = peg_pos[:2] - nut_before_release[:2]
+    if float(np.linalg.norm(xy_residual)) > 0.015:
+        correction_pos = final_pos.copy()
+        correction_pos[:2] += xy_residual
+        api.goto_pose_with_profile(
+            correction_pos, handle_quat2,
+            v_max=0.02, a_max=0.01,
+            jerk_limit=params["jerk_limit"], phase="final_correction",
+        )
+        _pump(env, 10)
+
+    api.open_gripper()
+    _pump(env, 15)
+
+    retreat_pos = final_pos.copy(); retreat_pos[2] += 0.20
+    api.goto_pose_with_profile(
+        retreat_pos, handle_quat2,
+        v_max=pv.get("retreat", params["v_max"]), a_max=pa.get("retreat", params["a_max"]),
+        jerk_limit=params["jerk_limit"], phase="retreat",
+    )
+    _pump(env, 20)
+
+    nut_after, _, _ = api.get_object_pose("square nut")
+    nut_xy_error = float(np.linalg.norm(nut_after[:2] - peg_pos[:2]))
+    return {
+        "reward": float(env.compute_reward()),
+        "nut_delta_z": float(nut_after[2] - nut_pos[2]),
+        "nut_xy_error": nut_xy_error,
+        "sim_steps": int(env._sim_step_count),
+        "task_completed": bool(env.task_completed()),
+    }
+
+
+def run_cube_restack(env, api, params: dict) -> dict:
+    """两方块拆位重摞 (cube restack)：开局 green 方块已摞在 red 方块上方
+    (由 `StackedObjectRandomSampler` 保证)。Robosuite Stack 环境的成功判据
+    (`staged_rewards` 里的 r_stack) 固定要求 **cubeA(red) 被举起且与
+    cubeB(green) 接触、此时夹爪未抓持** —— 即"红摞在绿上"。初始状态恰好
+    相反 (绿在上、红在下)，因此必须先把 green 拆下移到旁侧空位 (拆位)，
+    腾出 red，再抓起 red 摞到 green 新位置上方 (重摞)，才能满足
+    env.task_completed()。比标准 stack 多一次完整抓取-放置循环，放大
+    manner (尤其速度/力度) 在两次连续抓放动作间的一致性/漂移。
+    """
+    red_pos, _, _ = api.get_object_pose("red cube")
+    green_pos, _, _ = api.get_object_pose("green cube")
+    grasp_quat = np.array([0.0, 0.0, 1.0, 0.0])
+    pv = params.get("phase_v_max", {})
+    pa = params.get("phase_a_max", {})
+
+    def _goto(pos, phase_name, v_ratio=1.0, a_ratio=1.0):
+        api.goto_pose_with_profile(
+            pos, grasp_quat,
+            v_max=pv.get(phase_name, max(0.02, params["v_max"] * v_ratio)),
+            a_max=pa.get(phase_name, max(0.01, params["a_max"] * a_ratio)),
+            jerk_limit=params["jerk_limit"], phase=phase_name,
+        )
+
+    # ---- 1. 拆位：抓取顶部 green 方块，放到旁侧临时位置 ----
+    approach_pos = green_pos.copy(); approach_pos[2] += 0.20
+    _goto(approach_pos, "approach")
+    _pump(env, 6)
+
+    api.set_impedance_stiffness(kp_pos=params["kp_pos"])
+
+    green_pos2, _, _ = api.get_object_pose("green cube")
+    grasp_pos = green_pos2.copy(); grasp_pos[2] -= 0.005
+    _goto(grasp_pos, "descend", 0.6, 0.5)
+    _pump(env, 6)
+
+    _grasp_close(env, api, params["grip"], n_tries=params.get("grasp_tries", 3))
+
+    api.set_impedance_stiffness(kp_pos=1000.0)
+    lift_pos = grasp_pos.copy(); lift_pos[2] += 0.15
+    _goto(lift_pos, "lift")
+    _pump(env, 6)
+
+    stage_pos = red_pos.copy(); stage_pos[0] += 0.12; stage_pos[2] = lift_pos[2]
+    _goto(stage_pos, "transport")
+    _pump(env, 6)
+
+    stage_down = stage_pos.copy(); stage_down[2] = red_pos[2]
+    _goto(stage_down, "final", 0.5, 0.4)
+    _pump(env, 10)
+
+    api.open_gripper()
+    _pump(env, 10)
+
+    retreat1 = stage_down.copy(); retreat1[2] += 0.18
+    _goto(retreat1, "retreat")
+    _pump(env, 8)
+
+    # ---- 2. 重摞：red 已空出，抓起 red 摞到 green 新位置上方 ----
+    red_pos2, _, _ = api.get_object_pose("red cube")
+    approach2 = red_pos2.copy(); approach2[2] += 0.20
+    _goto(approach2, "approach")
+    _pump(env, 6)
+
+    api.set_impedance_stiffness(kp_pos=params["kp_pos"])
+
+    red_pos3, _, _ = api.get_object_pose("red cube")
+    grasp_pos2 = red_pos3.copy(); grasp_pos2[2] -= 0.005
+    _goto(grasp_pos2, "descend", 0.6, 0.5)
+    _pump(env, 6)
+
+    _grasp_close(env, api, params["grip"], n_tries=params.get("grasp_tries", 3))
+
+    api.set_impedance_stiffness(kp_pos=1000.0)
+    lift_pos2 = grasp_pos2.copy(); lift_pos2[2] += 0.15
+    _goto(lift_pos2, "lift")
+    _pump(env, 6)
+
+    green_staged, _, _ = api.get_object_pose("green cube")
+    over_green = green_staged.copy(); over_green[2] = lift_pos2[2]
+    _goto(over_green, "transport")
+    _pump(env, 6)
+
+    stack_pos = green_staged.copy(); stack_pos[2] = green_staged[2] + 0.058
+    _goto(stack_pos, "final", 0.5, 0.4)
+    _pump(env, 14)
+
+    api.open_gripper()
+    _pump(env, 15)
+
+    retreat2 = stack_pos.copy(); retreat2[2] += 0.20
+    _goto(retreat2, "retreat")
+    _pump(env, 20)
+
+    red_after, _, _ = api.get_object_pose("red cube")
+    green_after, _, _ = api.get_object_pose("green cube")
+    return {
+        "reward": float(env.compute_reward()),
+        "red_delta_z": float(red_after[2] - red_pos[2]),
+        "z_gap": float(red_after[2] - green_after[2]),
         "sim_steps": int(env._sim_step_count),
         "task_completed": bool(env.task_completed()),
     }
@@ -882,6 +1400,26 @@ TASK_REGISTRY: dict[str, dict[str, Any]] = {
         "runner": run_pour,
         "max_steps": 60000,
     },
+    "wipe": {
+        "sim_cls_path": "capx.envs.simulators.robosuite_spill_wipe.FrankaRobosuiteSpillWipeLowLevel",
+        "runner": run_wipe,
+        "max_steps": 6000,
+    },
+    "nut_assembly": {
+        "sim_cls_path": "capx.envs.simulators.robosuite_nut_assembly.FrankaRobosuiteNutAssembly",
+        "runner": run_nut_assembly,
+        "max_steps": 40000,
+    },
+    "restack": {
+        "sim_cls_path": "capx.envs.simulators.robosuite_cubes_restack.FrankaRobosuiteCubesRestackLowLevel",
+        "runner": run_cube_restack,
+        "max_steps": 60000,
+    },
+    # two_arm_handover 暂缓：其仿真器 RobosuiteHandoverEnv 继承的是 capx.envs.base.BaseEnv
+    # 而非 lift/stack/pour/wipe/nut_assembly/restack 共用的 RobosuiteBaseEnv，且用双臂
+    # (robots=["Panda","Panda"])，goto_pose_with_profile/move_to_joints_profiled/
+    # begin_manner_recording 等单臂 manner 遥测基础设施均不兼容，需要单独扩展双臂支持，
+    # 超出本次 Phase 1 接线范围，故意跳过（不强行造一个不可靠的接线）。
 }
 
 
@@ -1030,6 +1568,7 @@ class TrialResult:
     traj_file: Any = None   # 逐步物理量轨迹 npz 文件名（相对 traj_dir），None=未保存
     wrist_video_file: Any = None  # wrist-camera mp4 filename (relative to traj_dir), None=not captured
     repair_attempts: list = field(default_factory=list)  # bounded-retry log triggered by MANNER_REPAIR_LIBRARY
+    calibrated: list = field(default_factory=list)  # phase/dimension keys overridden by experience-library calibration
     alignment_score: Any = None  # AlignmentReport (asdict-serialized): continuous per-phase
     # language-alignment score in [0,1] from compute_alignment_score(), complements the
     # binary manner_ok gate with a smooth "how well did the action match the instruction"
@@ -1066,56 +1605,133 @@ def classify_outcome(task_ok, manner_ok, error_msg: str | None = None) -> str:
 # the loop here -- each hint is paired with a concrete parameter-adjustment
 # function, applied as a single bounded retry inside run_single_trial (never
 # unbounded, so genuine manner_infeasible "honest refusals" are preserved).
-def _adjust_grip_slip(params: dict) -> dict:
+def _adjust_grip_slip(params: dict, experience_lib=None, task=None, min_samples: int = 3) -> dict:
+    # grasp_tries is an integer retry count, not a physical dimension tracked
+    # by the experience library (flatten_trial_params only knows v_max/a_max/
+    # grip/kp_pos/jerk_limit) -- experience_lib/task accepted only for a
+    # uniform call signature across MANNER_REPAIR_LIBRARY["adjust"] entries.
     p = dict(params)
     p["grasp_tries"] = min(5, int(p.get("grasp_tries", 3)) + 2)
     return p
 
 
-def _adjust_pour_spill(params: dict) -> dict:
+def _adjust_pour_spill(params: dict, experience_lib=None, task=None, min_samples: int = 3) -> dict:
     p = dict(params)
     pv = dict(p.get("phase_v_max", {}))
     pa = dict(p.get("phase_a_max", {}))
+    calibrated: list[str] = list(p.get("_repair_calibrated", []))
     for name in ("transport", "final"):
+        ratio_v, used_v = _calibrate_repair_ratio(experience_lib, task, name, "spill", "v_max", 0.75, min_samples)
+        ratio_a, used_a = _calibrate_repair_ratio(experience_lib, task, name, "spill", "a_max", 0.75, min_samples)
         if name in pv:
-            pv[name] = max(0.01, pv[name] * 0.75)
+            pv[name] = max(0.01, pv[name] * ratio_v)
+            if used_v:
+                calibrated.append(f"{name}.v_max")
         if name in pa:
-            pa[name] = max(0.005, pa[name] * 0.75)
+            pa[name] = max(0.005, pa[name] * ratio_a)
+            if used_a:
+                calibrated.append(f"{name}.a_max")
     p["phase_v_max"] = pv
     p["phase_a_max"] = pa
+    p["_repair_calibrated"] = calibrated
     return p
 
 
-def _adjust_timeout(params: dict) -> dict:
+def _adjust_timeout(params: dict, experience_lib=None, task=None, min_samples: int = 3) -> dict:
     """Manner too slow -> steps approach/exceed horizon. Speed up only the
     slowest phase slightly, keeping it still the slowest (preserves the
     manner's qualitative fast/slow ordering) to cut convergence steps."""
     p = dict(params)
     pv = dict(p.get("phase_v_max", {}))
     pa = dict(p.get("phase_a_max", {}))
+    calibrated: list[str] = list(p.get("_repair_calibrated", []))
     if pv:
         slowest = min(pv, key=lambda k: pv[k])
-        pv[slowest] = pv[slowest] * 1.25
+        ratio_v, used_v = _calibrate_repair_ratio(experience_lib, task, slowest, "timeout", "v_max", 1.25, min_samples)
+        pv[slowest] = pv[slowest] * ratio_v
+        if used_v:
+            calibrated.append(f"{slowest}.v_max")
         if slowest in pa:
-            pa[slowest] = pa[slowest] * 1.25
+            ratio_a, used_a = _calibrate_repair_ratio(experience_lib, task, slowest, "timeout", "a_max", 1.25, min_samples)
+            pa[slowest] = pa[slowest] * ratio_a
+            if used_a:
+                calibrated.append(f"{slowest}.a_max")
         p["phase_v_max"] = pv
         p["phase_a_max"] = pa
     else:
-        p["v_max"] = p.get("v_max", 0.12) * 1.25
-        p["a_max"] = p.get("a_max", 0.08) * 1.25
+        ratio_v, used_v = _calibrate_repair_ratio(experience_lib, task, GLOBAL_PHASE, "timeout", "v_max", 1.25, min_samples)
+        ratio_a, used_a = _calibrate_repair_ratio(experience_lib, task, GLOBAL_PHASE, "timeout", "a_max", 1.25, min_samples)
+        p["v_max"] = p.get("v_max", 0.12) * ratio_v
+        p["a_max"] = p.get("a_max", 0.08) * ratio_a
+        if used_v:
+            calibrated.append("v_max")
+        if used_a:
+            calibrated.append("a_max")
+    p["_repair_calibrated"] = calibrated
     return p
 
 
-def _adjust_stack_misalign(params: dict) -> dict:
+def _adjust_stack_misalign(params: dict, experience_lib=None, task=None, min_samples: int = 3) -> dict:
     p = dict(params)
     pv = dict(p.get("phase_v_max", {}))
     pa = dict(p.get("phase_a_max", {}))
+    calibrated: list[str] = list(p.get("_repair_calibrated", []))
+    ratio_v, used_v = _calibrate_repair_ratio(experience_lib, task, "final", "stack_misalign", "v_max", 0.7, min_samples)
+    ratio_a, used_a = _calibrate_repair_ratio(experience_lib, task, "final", "stack_misalign", "a_max", 0.7, min_samples)
     if "final" in pv:
-        pv["final"] = max(0.01, pv["final"] * 0.7)
+        pv["final"] = max(0.01, pv["final"] * ratio_v)
+        if used_v:
+            calibrated.append("final.v_max")
     if "final" in pa:
-        pa["final"] = max(0.005, pa["final"] * 0.7)
+        pa["final"] = max(0.005, pa["final"] * ratio_a)
+        if used_a:
+            calibrated.append("final.a_max")
     p["phase_v_max"] = pv
     p["phase_a_max"] = pa
+    p["_repair_calibrated"] = calibrated
+    return p
+
+
+def _adjust_nut_misalign(params: dict, experience_lib=None, task=None, min_samples: int = 3) -> dict:
+    p = dict(params)
+    pv = dict(p.get("phase_v_max", {}))
+    pa = dict(p.get("phase_a_max", {}))
+    calibrated: list[str] = list(p.get("_repair_calibrated", []))
+    ratio_v, used_v = _calibrate_repair_ratio(experience_lib, task, "final", "nut_misalign", "v_max", 0.7, min_samples)
+    ratio_a, used_a = _calibrate_repair_ratio(experience_lib, task, "final", "nut_misalign", "a_max", 0.7, min_samples)
+    if "final" in pv:
+        pv["final"] = max(0.01, pv["final"] * ratio_v)
+        if used_v:
+            calibrated.append("final.v_max")
+    if "final" in pa:
+        pa["final"] = max(0.005, pa["final"] * ratio_a)
+        if used_a:
+            calibrated.append("final.a_max")
+    p["phase_v_max"] = pv
+    p["phase_a_max"] = pa
+    p["_repair_calibrated"] = calibrated
+    return p
+
+
+def _adjust_wipe_incomplete(params: dict, experience_lib=None, task=None, min_samples: int = 3) -> dict:
+    p = dict(params)
+    pv = dict(p.get("phase_v_max", {}))
+    pa = dict(p.get("phase_a_max", {}))
+    calibrated: list[str] = list(p.get("_repair_calibrated", []))
+    ratio_v, used_v = _calibrate_repair_ratio(experience_lib, task, "transport", "wipe_incomplete", "v_max", 0.75, min_samples)
+    ratio_a, used_a = _calibrate_repair_ratio(experience_lib, task, "transport", "wipe_incomplete", "a_max", 0.75, min_samples)
+    if "transport" in pv:
+        pv["transport"] = max(0.01, pv["transport"] * ratio_v)
+        if used_v:
+            calibrated.append("transport.v_max")
+    if "transport" in pa:
+        pa["transport"] = max(0.005, pa["transport"] * ratio_a)
+        if used_a:
+            calibrated.append("transport.a_max")
+    p["phase_v_max"] = pv
+    p["phase_a_max"] = pa
+    p["wipe_iters"] = min(16, int(p.get("wipe_iters", 8)) + 4)
+    p["_repair_calibrated"] = calibrated
     return p
 
 
@@ -1143,6 +1759,16 @@ MANNER_REPAIR_LIBRARY: dict[str, dict[str, Any]] = {
                 "the final-phase placement speed, then retry.",
         "adjust": _adjust_stack_misalign,
     },
+    "nut_misalign": {
+        "hint": "Nut not seated on peg within tolerance; lower the "
+                "final-phase placement speed, then retry.",
+        "adjust": _adjust_nut_misalign,
+    },
+    "wipe_incomplete": {
+        "hint": "Markers remain unwiped; slow the sweep/transport phase and "
+                "allow more sweep iterations, then retry.",
+        "adjust": _adjust_wipe_incomplete,
+    },
 }
 
 
@@ -1158,9 +1784,15 @@ def diagnose_failure(task: str, outcome: str, exec_result: dict, metrics: dict) 
     if task == "pour" and exec_result.get("spill_ratio") is not None \
             and exec_result["spill_ratio"] < 0.999 and outcome in ("both_fail", "manner_infeasible"):
         return "spill"
-    if task == "stack" and outcome in ("both_fail", "manner_infeasible") \
+    if task in ("stack", "restack") and outcome in ("both_fail", "manner_infeasible") \
             and exec_result.get("z_gap") is not None and abs(exec_result["z_gap"] - 0.05) > 0.02:
         return "stack_misalign"
+    if task == "nut_assembly" and outcome in ("both_fail", "manner_infeasible") \
+            and exec_result.get("nut_xy_error") is not None and exec_result["nut_xy_error"] > 0.03:
+        return "nut_misalign"
+    if task == "wipe" and outcome in ("both_fail", "manner_infeasible") \
+            and exec_result.get("markers_remaining") is not None and exec_result["markers_remaining"] > 0:
+        return "wipe_incomplete"
     if outcome in ("both_fail", "manner_infeasible") \
             and metrics.get("grip_active_ratio") is not None \
             and metrics["grip_active_ratio"] < 0.5:
@@ -1194,6 +1826,23 @@ def parse_args():
                    help="Use stage-snapshot rollback engine (per-stage "
                         "checkpoint + dual-channel validate + local repair) "
                         "instead of the monolithic runner + single global retry.")
+    p.add_argument("--use-experience-calibration", dest="use_experience_calibration",
+                   action="store_true",
+                   help="Calibrate phase_v_max/phase_a_max/kp_pos/grip against "
+                        "historical both_pass samples in the experience library "
+                        "(synthesis_v2.experience_library) instead of the fixed "
+                        "ratio presets, whenever a (task, phase, dimension, tag) "
+                        "bucket has >= --experience-min-samples matching records. "
+                        "Falls back to the existing preset when the bucket is "
+                        "cold (no regression vs. today's behaviour).")
+    p.add_argument("--experience-library-path", type=str,
+                   default="repro_results/robosuite/experience_library.jsonl",
+                   help="Path to the experience library jsonl (see "
+                        "scripts/build_experience_library.py to populate it "
+                        "from historical trial jsonl).")
+    p.add_argument("--experience-min-samples", type=int, default=3,
+                   help="Minimum matching historical samples required before "
+                        "the calibration layer overrides a preset value.")
     p.add_argument("--dry-run", action="store_true")
     return p.parse_args()
 
@@ -1222,6 +1871,7 @@ def save_trajectory_npz(telemetry: list, traj_dir: str, task: str, tag: str,
     gripper_fraction = np.array([s.gripper_fraction for s in telemetry], dtype=np.float64)
     gripper_qpos = np.stack([np.asarray(s.gripper_qpos, dtype=np.float64) for s in telemetry])
     cfrc_norm = np.array([s.cfrc_norm for s in telemetry], dtype=np.float64)
+    grasp_contact_force = np.array([getattr(s, "grasp_contact_force", 0.0) for s in telemetry], dtype=np.float64)
     eef_pos = np.stack([np.asarray(getattr(s, "eef_pos", np.zeros(3)), dtype=np.float64) for s in telemetry])
     eef_quat = np.stack([np.asarray(getattr(s, "eef_quat", np.zeros(4)), dtype=np.float64) for s in telemetry])
 
@@ -1245,7 +1895,8 @@ def save_trajectory_npz(telemetry: list, traj_dir: str, task: str, tag: str,
         t=t, phase=phase,
         joint_pos=joint_pos, joint_vel=joint_vel, joint_acc=joint_acc,
         kp=kp, gripper_fraction=gripper_fraction, gripper_qpos=gripper_qpos,
-        cfrc_norm=cfrc_norm, eef_pos=eef_pos, eef_quat=eef_quat,
+        cfrc_norm=cfrc_norm, grasp_contact_force=grasp_contact_force,
+        eef_pos=eef_pos, eef_quat=eef_quat,
         object_names=np.array(object_names, dtype="<U16"),
         object_pos=object_pos, object_quat=object_quat,
         task=task, tag=tag, seed=seed,
@@ -1258,7 +1909,12 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
                      traj_dir=None, run_stamp="", capture_video=False):
     from capx.envs.manner_validator import compute_alignment_score
     t0 = time.time()
-    params = spec_to_exec_params(spec)
+    experience_lib = None
+    if getattr(args, "use_experience_calibration", False):
+        experience_lib = _get_experience_library(args.experience_library_path)
+    params = spec_to_exec_params(
+        spec, task=task, tag=tag, experience_lib=experience_lib,
+        min_samples=getattr(args, "experience_min_samples", 3))
     spec_json = {
         "max_joint_vel":     spec.max_joint_vel,
         "min_joint_vel":     spec.min_joint_vel,
@@ -1358,6 +2014,8 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
 
     result = _attempt(params)
     repair_attempts = []
+    pre_repair_params = None
+    repair_cause = None
 
     # Bounded (<=1) MANNER_REPAIR_LIBRARY retry: only for outcomes that mean
     # the task itself failed, and only when diagnose_failure() matches a known
@@ -1366,13 +2024,18 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
         diagnosis = diagnose_failure(task, result["outcome"], result["exec_result"], result["metrics"])
         if diagnosis is not None and diagnosis in MANNER_REPAIR_LIBRARY:
             entry = MANNER_REPAIR_LIBRARY[diagnosis]
-            adjusted_params = entry["adjust"](params)
+            adjusted_params = entry["adjust"](
+                params, experience_lib=experience_lib, task=task,
+                min_samples=getattr(args, "experience_min_samples", 3))
             adjusted_params["_clipped"] = params.get("_clipped", [])
             adjusted_params["_clipped_dims"] = params.get("_clipped_dims", [])
             repair_attempts.append({
                 "attempt": 1, "diagnosis": diagnosis, "hint": entry["hint"],
                 "prior_outcome": result["outcome"],
+                "calibrated_dims": adjusted_params.get("_repair_calibrated", []),
             })
+            pre_repair_params = dict(params)
+            repair_cause = diagnosis
             retry_result = _attempt(adjusted_params)
             params = adjusted_params
             result = retry_result
@@ -1381,7 +2044,7 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
         return TrialResult(
             task=task, tag=tag, seed=seed, prompt=prompt, label=spec.label,
             spec_json=spec_json,
-            params={k: v for k, v in params.items() if k not in ("_clipped", "_clipped_dims")},
+            params={k: v for k, v in params.items() if k not in ("_clipped", "_clipped_dims", "_calibrated", "_repair_calibrated")},
             clipped=params["_clipped"],
             task_ok=None, manner_ok=None, outcome=result["outcome"],
             reward=None, exec_result={}, metrics={},
@@ -1390,6 +2053,7 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
             traj_file=None,
             repair_attempts=repair_attempts,
             alignment_score=result.get("alignment_score"),
+            calibrated=params.get("_calibrated", []),
         )
 
     telemetry = result["telemetry"]
@@ -1415,10 +2079,27 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
             print(f"    [video save error] {e}")
             wrist_video_file = None
 
+    # Phase 5: self-evolving write-back. Only for genuinely successful trials,
+    # and only when the experience library is enabled (--use-experience-
+    # calibration) -- same gate as the read side, so the closed loop is fully
+    # opt-in and the default (flag off) path is byte-identical to pre-Phase-5.
+    if experience_lib is not None and result["outcome"] == "both_pass":
+        try:
+            _write_back_experience(
+                experience_lib, args.experience_library_path, task, tag, seed,
+                run_stamp, params, "both_pass")
+            if pre_repair_params is not None:
+                _write_back_repair(
+                    experience_lib, args.experience_library_path, task,
+                    run_stamp, repair_cause, pre_repair_params, params,
+                    "both_pass")
+        except Exception as e:
+            print(f"    [experience write-back error] {e}")
+
     return TrialResult(
         task=task, tag=tag, seed=seed, prompt=prompt, label=spec.label,
         spec_json=spec_json,
-        params={k: v for k, v in params.items() if k not in ("_clipped", "_clipped_dims")},
+        params={k: v for k, v in params.items() if k not in ("_clipped", "_clipped_dims", "_calibrated", "_repair_calibrated")},
         clipped=params["_clipped"],
         task_ok=result["task_ok"], manner_ok=result["manner_ok"],
         outcome=result["outcome"],
@@ -1428,6 +2109,7 @@ def run_single_trial(task, tag, prompt, seed, spec, args,
         wrist_video_file=wrist_video_file,
         repair_attempts=repair_attempts,
         alignment_score=result.get("alignment_score"),
+        calibrated=params.get("_calibrated", []),
     )
 
 

@@ -1,0 +1,46 @@
+{
+  "kinematic_axis": {
+    "pour": {
+      "n_a": 10,
+      "n_b": 10,
+      "fields_used": [
+        "sparc",
+        "ldlj",
+        "sparc_joint",
+        "mean_joint_speed",
+        "peak_joint_speed",
+        "integral_kinetic_energy",
+        "eef_path_length"
+      ],
+      "loo_auc": 1.0,
+      "univariate_auc": {
+        "sparc": 1.0,
+        "ldlj": 0.01,
+        "sparc_joint": 1.0,
+        "mean_joint_speed": 1.0,
+        "peak_joint_speed": 1.0,
+        "integral_kinetic_energy": 1.0,
+        "eef_path_length": 0.32
+      }
+    }
+  },
+  "grasp_force_axis": {
+    "stack": {
+      "n_a": 10,
+      "n_b": 10,
+      "fields_used": [
+        "peak_grasp_force",
+        "mean_grasp_force",
+        "peak_grasp_force_grip",
+        "mean_grasp_force_grip"
+      ],
+      "loo_auc": 0.9,
+      "univariate_auc": {
+        "peak_grasp_force": 1.0,
+        "mean_grasp_force": 1.0,
+        "peak_grasp_force_grip": 1.0,
+        "mean_grasp_force_grip": 1.0
+      }
+    }
+  }
+}

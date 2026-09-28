@@ -201,6 +201,7 @@ class MannerStepSnapshot:
     gripper_fraction: float         # 0=closed … 1=open
     gripper_qpos: np.ndarray        # (2,) m  (finger positions)
     cfrc_norm: float                # max external contact force norm (N)
+    grasp_contact_force: float = 0.0  # true finger↔object normal contact force (N), via mj_contactForce
     joint_pos: np.ndarray = field(default_factory=lambda: np.zeros(7))   # (7,) rad
     eef_pos: np.ndarray = field(default_factory=lambda: np.zeros(3))     # (3,) m, world frame
     eef_quat: np.ndarray = field(default_factory=lambda: np.zeros(4))    # (4,) wxyz, world frame

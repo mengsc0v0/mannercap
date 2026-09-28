@@ -99,6 +99,19 @@ class FrankaControlPrivilegedApi(ApiBase):
                 obs["target_poses"]["primary"][3:],
                 np.array([0.12, 0.12, 0.002]),
             )
+        elif "peg" in object_name:
+            return (
+                obs["nut_poses"]["square_peg"][:3],
+                obs["nut_poses"]["square_peg"][3:],
+                None,
+            )
+        elif "nut" in object_name:
+            key = "square_nut_handle" if "handle" in object_name else "square_nut"
+            return (
+                obs["nut_poses"][key][:3],
+                obs["nut_poses"][key][3:],
+                np.array([0.03, 0.03, 0.01]),
+            )
         else:
             raise ValueError(f"Invalid object name: {object_name}")
 

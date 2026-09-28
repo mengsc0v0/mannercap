@@ -450,6 +450,55 @@ class RobosuiteBaseEnv(BaseEnv):
         self._sim_step_count = ckpt["sim_step_count"]
         del self._manner_telemetry[ckpt["telemetry_len"]:]
 
+    def _compute_grasp_contact_force(self) -> float:
+        """Sum of normal contact forces (N) between gripper finger geoms and
+        manipulated-object geoms.
+
+        ``cfrc_ext`` (per-body external force) does not register fingertip grasp
+        force in this MuJoCo model, so grasp force is read per-contact via
+        ``mujoco.mj_contactForce`` over (finger geom × object geom) pairs. An
+        object geom is any geom that is neither a robot/gripper geom nor a
+        static arena geom (table/wall/mount/bin/floor/peg).
+        """
+        import mujoco
+        sim = self.robosuite_env.sim
+        mj_m = getattr(sim.model, "_model", sim.model)
+        mj_d = getattr(sim.data, "_data", sim.data)
+
+        fg = getattr(self, "_finger_geom_ids", None)
+        if fg is None:
+            fg = set()
+            arena = set()
+            for gi in range(mj_m.ngeom):
+                nm = (mujoco.mj_id2name(mj_m, mujoco.mjtObj.mjOBJ_GEOM, gi) or "").lower()
+                if ("finger" in nm or "pad" in nm) and "gripper0" in nm:
+                    fg.add(gi)
+                if any(k in nm for k in ("table", "wall", "mount", "bin", "floor", "peg_")):
+                    arena.add(gi)
+            self._finger_geom_ids = fg
+            self._arena_geom_ids = arena
+        arena = getattr(self, "_arena_geom_ids", set())
+        if not fg:
+            return 0.0
+
+        buf = np.zeros(6)
+        total = 0.0
+        for ci in range(mj_d.ncon):
+            c = mj_d.contact[ci]
+            g1, g2 = int(c.geom1), int(c.geom2)
+            in1, in2 = g1 in fg, g2 in fg
+            if not (in1 or in2):
+                continue
+            other = g2 if in1 else g1
+            if other in fg:
+                continue  # finger-finger, ignore
+            nm = (mujoco.mj_id2name(mj_m, mujoco.mjtObj.mjOBJ_GEOM, other) or "").lower()
+            if other in arena or nm.startswith("robot0") or nm.startswith("gripper0"):
+                continue
+            mujoco.mj_contactForce(mj_m, mj_d, ci, buf)
+            total += abs(float(buf[0]))
+        return float(total)
+
     def _capture_manner_snapshot(self) -> None:
         """Capture one telemetry snapshot from the current sim state."""
         try:
@@ -496,6 +545,15 @@ class RobosuiteBaseEnv(BaseEnv):
             except Exception:
                 cfrc_norm = 0.0
 
+            # grasp contact force: TRUE finger↔object normal force (N).
+            # cfrc_ext (per-body external force) does NOT register fingertip
+            # grasp force in this MuJoCo model, so it is read per-contact via
+            # mujoco.mj_contactForce over (finger geom × object geom) pairs.
+            try:
+                grasp_contact_force = self._compute_grasp_contact_force()
+            except Exception:
+                grasp_contact_force = 0.0
+
             # object ground-truth poses (privileged): generically probe raw
             # observables for "<name>_pos"/"<name>_quat" pairs that are NOT the
             # robot itself and NOT relative (gripper_to_*) quantities.
@@ -533,6 +591,7 @@ class RobosuiteBaseEnv(BaseEnv):
                 gripper_fraction=float(self._gripper_fraction),
                 gripper_qpos=gripper_qpos,
                 cfrc_norm=cfrc_norm,
+                grasp_contact_force=grasp_contact_force,
                 joint_pos=joint_pos,
                 eef_pos=eef_pos,
                 eef_quat=eef_quat,
