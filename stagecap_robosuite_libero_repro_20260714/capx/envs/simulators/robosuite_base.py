@@ -499,6 +499,32 @@ class RobosuiteBaseEnv(BaseEnv):
             total += abs(float(buf[0]))
         return float(total)
 
+    def _grasp_target_geom_ids(self):
+        env = self.robosuite_env
+        for attr in ("cubeA", "cube", "cup"):
+            obj = getattr(env, attr, None)
+            geoms = getattr(obj, "contact_geoms", None)
+            if obj is not None and geoms:
+                model = env.sim.model
+                return attr, tuple(int(model.geom_name2id(n)) for n in geoms)
+        return "", ()
+
+    def _read_grasp_sample(self):
+        """P0-1: per-finger, target-object-only normal force (N) + validity."""
+        import mujoco
+        from synthesis_v2.grasp_force_contract import (
+            read_grasp_contact_sample, resolve_grasp_binding,
+        )
+        sim = self.robosuite_env.sim
+        mj_m = getattr(sim.model, "_model", sim.model)
+        mj_d = getattr(sim.data, "_data", sim.data)
+        cached = getattr(self, "_grasp_binding_cache", None)
+        if cached is None or cached[0] != id(mj_m):
+            name, ids = self._grasp_target_geom_ids()
+            cached = (id(mj_m), resolve_grasp_binding(mj_m, mujoco, ids, name))
+            self._grasp_binding_cache = cached
+        return read_grasp_contact_sample(mj_m, mj_d, cached[1])
+
     def _capture_manner_snapshot(self) -> None:
         """Capture one telemetry snapshot from the current sim state."""
         try:
@@ -554,6 +580,26 @@ class RobosuiteBaseEnv(BaseEnv):
             except Exception:
                 grasp_contact_force = 0.0
 
+            # P0-1: auditable per-finger target-object grasp force.
+            try:
+                gs = self._read_grasp_sample()
+                grasp_kwargs = dict(
+                    grasp_left_force_n=float(gs.left_force_n),
+                    grasp_right_force_n=float(gs.right_force_n),
+                    grasp_other_force_n=float(gs.other_force_n),
+                    grasp_left_contacts=int(gs.left_contacts),
+                    grasp_right_contacts=int(gs.right_contacts),
+                    grasp_left_geom_id=int(gs.left_geom_id),
+                    grasp_right_geom_id=int(gs.right_geom_id),
+                    grasp_force_valid=bool(gs.valid),
+                    grasp_force_reason=str(gs.reason),
+                )
+            except Exception as _exc:
+                grasp_kwargs = dict(
+                    grasp_force_valid=False,
+                    grasp_force_reason="contact_read_error:" + type(_exc).__name__,
+                )
+
             # object ground-truth poses (privileged): generically probe raw
             # observables for "<name>_pos"/"<name>_quat" pairs that are NOT the
             # robot itself and NOT relative (gripper_to_*) quantities.
@@ -592,6 +638,7 @@ class RobosuiteBaseEnv(BaseEnv):
                 gripper_qpos=gripper_qpos,
                 cfrc_norm=cfrc_norm,
                 grasp_contact_force=grasp_contact_force,
+                **grasp_kwargs,
                 joint_pos=joint_pos,
                 eef_pos=eef_pos,
                 eef_quat=eef_quat,

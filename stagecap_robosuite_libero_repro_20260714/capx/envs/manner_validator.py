@@ -201,7 +201,18 @@ class MannerStepSnapshot:
     gripper_fraction: float         # 0=closed … 1=open
     gripper_qpos: np.ndarray        # (2,) m  (finger positions)
     cfrc_norm: float                # max external contact force norm (N)
-    grasp_contact_force: float = 0.0  # true finger↔object normal contact force (N), via mj_contactForce
+    # P0-1 per-finger target-object grasp channel (synthesis_v2.grasp_force_contract).
+    # Defaults mean "not measured": NaN + valid=False, never 0 N.
+    grasp_left_force_n: float = float("nan")
+    grasp_right_force_n: float = float("nan")
+    grasp_other_force_n: float = 0.0
+    grasp_left_contacts: int = 0
+    grasp_right_contacts: int = 0
+    grasp_left_geom_id: int = -1
+    grasp_right_geom_id: int = -1
+    grasp_force_valid: bool = False
+    grasp_force_reason: str = "telemetry_missing"
+    grasp_contact_force: float = 0.0  # LEGACY true finger↔object normal contact force (N), via mj_contactForce
     joint_pos: np.ndarray = field(default_factory=lambda: np.zeros(7))   # (7,) rad
     eef_pos: np.ndarray = field(default_factory=lambda: np.zeros(3))     # (3,) m, world frame
     eef_quat: np.ndarray = field(default_factory=lambda: np.zeros(4))    # (4,) wxyz, world frame

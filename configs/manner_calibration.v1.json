@@ -1,0 +1,274 @@
+{
+  "content_sha256": "9bd3c3e47bddabd9922eb4a1bc4ec8c221e950bc13a8ad26f8076499c99e6831",
+  "dev_seeds": [
+    9001,
+    9002,
+    9003,
+    9004,
+    9005,
+    9006
+  ],
+  "grip": {
+    "lift": {
+      "firm_lower": 22.81540613039668,
+      "firm_p5": 26.68678385904274,
+      "firm_p95": 33.006328972944644,
+      "firm_p99": 33.01463439051279,
+      "firm_upper": 41.268292988140985,
+      "gentle_lower": 0.8876920127655222,
+      "gentle_p5": 1.7753840255310445,
+      "gentle_p95": 4.458786359990973,
+      "gentle_upper": 8.032688394261461,
+      "n_samples": {
+        "firm": 582,
+        "gentle": 582,
+        "normal": 582
+      },
+      "normal_p5": 11.606590428531948,
+      "normal_p95": 18.94402840175062,
+      "reason": null,
+      "status": "ok",
+      "success_rate_dev": 1.0
+    },
+    "stack": {
+      "firm_lower": 23.93459924262929,
+      "firm_p5": 31.695309036341456,
+      "firm_p95": 31.782189955534637,
+      "firm_p99": 31.78574000400218,
+      "firm_upper": 39.73217500500272,
+      "gentle_lower": 0.45910028088675997,
+      "gentle_p5": 0.9182005617735199,
+      "gentle_p95": 1.101644795238128,
+      "gentle_upper": 8.601216148763921,
+      "n_samples": {
+        "firm": 1490,
+        "gentle": 1490,
+        "normal": 1490
+      },
+      "normal_p5": 16.100787502289716,
+      "normal_p95": 16.173889448917127,
+      "reason": null,
+      "status": "ok",
+      "success_rate_dev": 1.0
+    }
+  },
+  "meta": {
+    "controller_sha256": "1352c061752eee33e01bb6001516a0bc2d8bdf6c8c625eb903028c4a1775ea4f",
+    "n_dev_episodes": 60,
+    "n_dev_failed": 0,
+    "producer_version": "native_producer.v1",
+    "semantics_hash": "87f4286a8459dc5f84f21aa8b66320ded5384273a5dc8ae0348712da4f642c33",
+    "stage_table_hash": "6351113105fc1579a6459aa4066480341c40555a00414b00ad7743c859ee2541"
+  },
+  "policy": {
+    "core_trim_fraction": 0.2,
+    "fast_criterion": "core_median_above_lower",
+    "firm_cap_factor": 1.25,
+    "gentle_floor_fraction": 0.5,
+    "hold_trim_head_steps": 2,
+    "min_contact_threshold_n": 0.1,
+    "min_core_samples": 3,
+    "percentile_hi": 95.0,
+    "percentile_lo": 5.0,
+    "safety_margin_factor": 1.25,
+    "slow_criterion": "all_core_samples_below_upper"
+  },
+  "safety": {
+    "lift": {
+      "contact_threshold_n": 0.1,
+      "idle_force_max_n": 0.0,
+      "peak_cap_n": 44.70138247474623,
+      "peak_dev_max_n": 35.76110597979699
+    },
+    "stack": {
+      "contact_threshold_n": 0.1,
+      "idle_force_max_n": 0.0,
+      "peak_cap_n": 42.6782391549548,
+      "peak_dev_max_n": 34.14259132396384
+    }
+  },
+  "schema": "synthesis_v2.manner_calibration.v2",
+  "speed": {
+    "lift": {
+      "approach": {
+        "fast_episode_median_min": 0.10123145774737445,
+        "fast_lower": 0.0669767122279421,
+        "fast_p5": 0.09983505517553791,
+        "n_samples": {
+          "fast": 95,
+          "normal": 294,
+          "slow": 621
+        },
+        "normal_p5": 0.029651411225697796,
+        "normal_p95": 0.03272196670850977,
+        "reason": null,
+        "slow_p95": 0.015486677410294459,
+        "slow_upper": 0.022569044317996126,
+        "status": "ok"
+      },
+      "descend": {
+        "fast_episode_median_min": 0.10649762237916534,
+        "fast_lower": 0.0692172660334898,
+        "fast_p5": 0.10001009270221713,
+        "n_samples": {
+          "fast": 89,
+          "normal": 265,
+          "slow": 543
+        },
+        "normal_p5": 0.03143677042389584,
+        "normal_p95": 0.03193690968781424,
+        "reason": null,
+        "slow_p95": 0.01576204562870299,
+        "slow_upper": 0.023599408026299416,
+        "status": "ok"
+      },
+      "grasp": {
+        "fast_episode_median_min": 0.000658208945832722,
+        "fast_lower": null,
+        "fast_p5": 0.00027901400043062327,
+        "n_samples": {
+          "fast": 34,
+          "normal": 34,
+          "slow": 34
+        },
+        "normal_p5": 8.244893352705712e-05,
+        "normal_p95": 0.0026741400517593717,
+        "reason": "adjacent speed levels overlap at p95/p5; unseparated side has null threshold",
+        "slow_p95": 0.006049778861398225,
+        "slow_upper": null,
+        "status": "partially_inseparable"
+      },
+      "lift": {
+        "fast_episode_median_min": 0.10256079447085638,
+        "fast_lower": 0.06610474878291919,
+        "fast_p5": 0.10218745564918051,
+        "n_samples": {
+          "fast": 102,
+          "normal": 354,
+          "slow": 766
+        },
+        "normal_p5": 0.02937807589106962,
+        "normal_p95": 0.029648703094982007,
+        "reason": null,
+        "slow_p95": 0.013796074235771394,
+        "slow_upper": 0.02158707506342051,
+        "status": "ok"
+      }
+    },
+    "stack": {
+      "approach": {
+        "fast_episode_median_min": 0.09522074947330358,
+        "fast_lower": 0.06250933715504371,
+        "fast_p5": 0.09066174701587215,
+        "n_samples": {
+          "fast": 152,
+          "normal": 507,
+          "slow": 1119
+        },
+        "normal_p5": 0.02578727003526063,
+        "normal_p95": 0.029797924836783847,
+        "reason": null,
+        "slow_p95": 0.013807505452751423,
+        "slow_upper": 0.019797387744006027,
+        "status": "ok"
+      },
+      "descend": {
+        "fast_episode_median_min": 0.10360277790751413,
+        "fast_lower": 0.06788449608021432,
+        "fast_p5": 0.09683832855872508,
+        "n_samples": {
+          "fast": 88,
+          "normal": 270,
+          "slow": 550
+        },
+        "normal_p5": 0.031071671664752852,
+        "normal_p95": 0.032166214252914535,
+        "reason": null,
+        "slow_p95": 0.01580099233114436,
+        "slow_upper": 0.023436331997948603,
+        "status": "ok"
+      },
+      "grasp": {
+        "fast_episode_median_min": 0.0005481566549159619,
+        "fast_lower": null,
+        "fast_p5": 0.00014090379933247275,
+        "n_samples": {
+          "fast": 36,
+          "normal": 36,
+          "slow": 36
+        },
+        "normal_p5": 7.354406007059279e-05,
+        "normal_p95": 0.004701471298267444,
+        "reason": "adjacent speed levels overlap at p95/p5; unseparated side has null threshold",
+        "slow_p95": 0.0040810571035026135,
+        "slow_upper": null,
+        "status": "partially_inseparable"
+      },
+      "lift": {
+        "fast_episode_median_min": 0.0975769968418791,
+        "fast_lower": 0.06368956361671514,
+        "fast_p5": 0.0912413355127176,
+        "n_samples": {
+          "fast": 111,
+          "normal": 357,
+          "slow": 775
+        },
+        "normal_p5": 0.02775620979940297,
+        "normal_p95": 0.029802130391551197,
+        "reason": null,
+        "slow_p95": 0.01404723566948746,
+        "slow_upper": 0.020901722734445217,
+        "status": "ok"
+      },
+      "place": {
+        "fast_episode_median_min": 0.10640530271008194,
+        "fast_lower": 0.07029752744967757,
+        "fast_p5": 0.007555279448192566,
+        "n_samples": {
+          "fast": 105,
+          "normal": 256,
+          "slow": 507
+        },
+        "normal_p5": 0.031622850971633844,
+        "normal_p95": 0.03418975218927321,
+        "reason": null,
+        "slow_p95": 0.017664096569275325,
+        "slow_upper": 0.024643473770454585,
+        "status": "ok"
+      },
+      "retreat": {
+        "fast_episode_median_min": 0.09276288758392992,
+        "fast_lower": 0.06226702541171747,
+        "fast_p5": 0.0853190469322429,
+        "n_samples": {
+          "fast": 111,
+          "normal": 341,
+          "slow": 689
+        },
+        "normal_p5": 0.029948387766680237,
+        "normal_p95": 0.03177116323950501,
+        "reason": null,
+        "slow_p95": 0.015946191303623167,
+        "slow_upper": 0.022947289535151703,
+        "status": "ok"
+      },
+      "transport": {
+        "fast_episode_median_min": 0.093635749588773,
+        "fast_lower": 0.06227735454877033,
+        "fast_p5": 0.09405146511657145,
+        "n_samples": {
+          "fast": 156,
+          "normal": 543,
+          "slow": 1237
+        },
+        "normal_p5": 0.02637080229815944,
+        "normal_p95": 0.030918959508767656,
+        "reason": null,
+        "slow_p95": 0.014840857168293007,
+        "slow_upper": 0.020605829733226222,
+        "status": "ok"
+      }
+    }
+  },
+  "status": "calibrated_dev"
+}
