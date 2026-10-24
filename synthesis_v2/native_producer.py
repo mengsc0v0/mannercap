@@ -56,6 +56,11 @@ class GripPlan:
     target_hi_n: float
     max_close_steps: int = 30
     settle_steps: int = 3
+    # Release/recovery controls (default 0 = historical behaviour).  The gripper action is sign-only with a fixed
+    # target increment (+-0.25 of range per control step, ~10 N summed force on a blocked pair), so a pulse is coarse
+    # and the control-step mean right after a pulse mixes pre- and post-pulse force.
+    settle_after_open: int = 0   # hold this many steps after a pulse before judging the force again
+    reclose_max: int = 0         # bounded close pulses allowed when the re-checked force is below target_lo_n
 
 
 @dataclass(frozen=True)
@@ -84,6 +89,8 @@ class ProductionPlan:
                 "target_hi_n": self.grip.target_hi_n,
                 "max_close_steps": self.grip.max_close_steps,
                 "settle_steps": self.grip.settle_steps,
+                **({"settle_after_open": self.grip.settle_after_open} if self.grip.settle_after_open else {}),
+                **({"reclose_max": self.grip.reclose_max} if self.grip.reclose_max else {}),
             },
             "open_steps": self.open_steps,
             "align_yaw": self.align_yaw,
@@ -110,6 +117,17 @@ class ContactFeedbackGrip:
         self.reached = False
         self.reversed_pulses = 0
         self._last_total = 0.0
+        # Observation only (does not change commands): what the policy saw and sent at every call.
+        self.trace: list[dict[str, Any]] = []
+        self._ignore = 0
+        self.reclose_pulses = 0
+        self.final: Optional[dict[str, float]] = None
+
+    def _log(self, cmd: float, tel: Optional[StepTelemetry], total: float, note: str = "") -> float:
+        self.trace.append({"cmd": float(cmd), "total_n": float(total), "note": note,
+                           "left_n": float(tel.left_mean_n) if tel is not None else math.nan,
+                           "right_n": float(tel.right_mean_n) if tel is not None else math.nan})
+        return cmd
 
     def command(self, last_tel: Optional[StepTelemetry]) -> float:
         total = math.nan
@@ -121,16 +139,30 @@ class ContactFeedbackGrip:
                 self.in_band_at = self.closing_steps
             else:
                 self.closing_steps += 1
-                return GRIP_CLOSE
+                return self._log(GRIP_CLOSE, last_tel, total)
+        if self._ignore > 0:   # reading right after a pulse mixes old/new force: hold, judge on the next reading
+            self._ignore -= 1
+            return self._log(GRIP_HOLD, last_tel, total, "recheck_wait")
         if total == total and total > self.plan.target_hi_n and self.reversed_pulses < 3:
             self.reversed_pulses += 1
-            return GRIP_OPEN
+            self._ignore = self.plan.settle_after_open
+            return self._log(GRIP_OPEN, last_tel, total, "release")
+        if total == total and total < self.plan.target_lo_n and self.reclose_pulses < self.plan.reclose_max:
+            self.reclose_pulses += 1
+            self._ignore = max(1, self.plan.settle_after_open)
+            return self._log(GRIP_CLOSE, last_tel, total, "reclose")
         self.settled += 1
-        return GRIP_HOLD
+        return self._log(GRIP_HOLD, last_tel, total)
+
+    def finalize(self, last_tel: Optional[StepTelemetry]) -> None:
+        """Record the reading after the last command (the policy itself never sees it)."""
+        if last_tel is not None and last_tel.valid_fraction > 0:
+            self.final = {"left_n": float(last_tel.left_mean_n), "right_n": float(last_tel.right_mean_n),
+                          "total_n": float(last_tel.left_mean_n + last_tel.right_mean_n)}
 
     @property
     def done(self) -> bool:
-        return (self.reached and self.settled >= self.plan.settle_steps) or (
+        return (self.reached and self._ignore == 0 and self.settled >= self.plan.settle_steps) or (
             self.closing_steps >= self.plan.max_close_steps and not self.reached
         )
 
@@ -285,6 +317,7 @@ class _Runner:
             self._step(np.array([0, 0, 0, 0, 0, 0, cmd], dtype=np.float32), stage)
             if pol.done:
                 break
+        pol.finalize(self.last_tel)
         return pol
 
 

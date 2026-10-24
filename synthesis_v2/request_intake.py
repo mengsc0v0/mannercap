@@ -7,7 +7,8 @@ Split on purpose:
 model: a numeric manner value is never silently dropped or replaced, a binding must carry an admissible basis (never
 "task default order"), a cited antecedent must occur in the instruction, a partial answer is never accepted.
 
-Decisions: accept | ambiguous | unsupported | conflict | invalid.  Final task success is still judged by the environment.
+Decisions: accept | ambiguous | unsupported | conflict | incomplete | invalid.  ``incomplete`` = the answer is structurally valid
+but leaves out something the sentence states (checked against the sentence, not by the model's own report).  Final task success is still judged by the environment.
 """
 from __future__ import annotations
 
@@ -16,7 +17,8 @@ import re
 from dataclasses import dataclass, field
 from typing import Any, Mapping, Optional
 
-from synthesis_v2.language_compiler import (DIMENSION_LEVELS, MannerBinding, Semantics, check_semantics, lexicon_semantics)
+from synthesis_v2.language_compiler import (DIMENSION_LEVELS, LEVEL_WORDS, MannerBinding, Semantics, _CLAUSE_SPLIT, check_semantics,
+                                            lexicon_semantics)
 from synthesis_v2.task_program import PRIMITIVES, TaskProgram
 
 INTAKE_PROMPT_VERSION = "mannercap.intake.v2"
@@ -115,16 +117,27 @@ def _txt(v: Any) -> str:
 def parse_intake(obj: Any, instruction: str) -> Intake:
     if not isinstance(obj, Mapping):
         raise ValueError(f"intake answer is not an object: {type(obj).__name__}")
-    t = obj.get("task") or {}
+    for k in ("task", "bindings", "ambiguous", "unsupported"):
+        if k not in obj:
+            raise ValueError(f"missing_field:{k}")
+    t = obj["task"]
+    if not isinstance(t, Mapping) or not isinstance(t.get("steps"), list) or not isinstance(t.get("order"), list) \
+            or not isinstance(t.get("restated"), bool):
+        raise ValueError("malformed_task")
+    for k in ("bindings", "ambiguous", "unsupported"):
+        if not isinstance(obj[k], list) or any(not isinstance(x, Mapping) or not _txt(x.get("clause")) for x in obj[k]):
+            raise ValueError(f"malformed_field:{k}")
+    if any(not (isinstance(p, (list, tuple)) and len(p) == 2 and all(isinstance(i, int) for i in p)) for p in t["order"]):
+        raise ValueError("malformed_order")
     steps = []
-    for s in (t.get("steps") or ()):
+    for s in t["steps"]:
         if not isinstance(s, Mapping) or "action" not in s:
             raise ValueError(f"malformed step: {s!r}")
         a = str(s["action"]).strip().lower()
         steps.append(TaskStep(_ACTION_SYN.get(a, a), (str(s["object_role"]) if _txt(s.get("object_role")) else None), _txt(s.get("object_phrase")),
                               (str(s["target_role"]) if _txt(s.get("target_role")) else None), _txt(s.get("target_phrase")), _txt(s.get("clause"))))
     bind, bases = [], []
-    for b in obj.get("bindings", ()) or ():
+    for b in obj["bindings"]:
         if not isinstance(b, Mapping) or "dimension" not in b or "level" not in b:
             raise ValueError(f"malformed binding: {b!r}")
         ids = b.get("instance_ids") or ([b["instance_id"]] if b.get("instance_id") else [])
@@ -133,9 +146,9 @@ def parse_intake(obj: Any, instruction: str) -> Intake:
         bases.append({"basis": str(b.get("basis", "")), "antecedent": (str(b["antecedent"]) if b.get("antecedent") else "")})
     norm = lambda xs: tuple(dict(x) for x in (xs or ()) if isinstance(x, Mapping))
     unsup = norm(obj.get("unsupported"))
-    order = tuple((int(p[0]), int(p[1])) for p in (t.get("order") or ()) if isinstance(p, (list, tuple)) and len(p) == 2)
+    order = tuple((int(p[0]), int(p[1])) for p in t["order"])
     sem = Semantics(instruction, tuple(bind), norm(obj.get("ambiguous")), unsup, source="llm", prompt_version=INTAKE_PROMPT_VERSION)
-    return Intake(instruction, bool(t.get("restated", bool(steps))), tuple(steps), order, sem, tuple(bases), tuple(str(u.get("code", "other")) for u in unsup))
+    return Intake(instruction, bool(t["restated"]), tuple(steps), order, sem, tuple(bases), tuple(str(u.get("code", "other")) for u in unsup))
 
 
 def lexicon_intake(instruction: str, program: TaskProgram) -> Intake:
@@ -181,6 +194,74 @@ def check_task(intake: Intake, program: TaskProgram) -> tuple[list[dict], list[t
     return errs, ([k for k in idx if k[0] != "pick" and k not in stated] if intake.restated else [])
 
 
+_ORDER_CUE = re.compile(r"\b(then|before|after|afterwards|first|finally|next)\b", re.I)
+_TASK_VERB = re.compile(r"\b(put|place|close|open|turn on|move|insert)\b", re.I)
+_PLURAL = re.compile(r"\b(both|all|each|every|them)\b", re.I)
+_CUE_ONLY = {"轻": "gentle", "慢": "slow", "快": "fast", "用力": "firm", "紧": "firm"}   # coverage cues, never bindings
+
+
+def _mentioned_roles(text: str, program: TaskProgram) -> set[str]:
+    words = set(re.findall(r"[a-z]+", text.lower()))
+    return {r for r in program.objects if all(w in words for w in re.findall(r"[a-z]+", r.lower()) if not w.isdigit())}
+
+
+def coverage_gaps(intake: Intake, program: TaskProgram) -> list[dict]:
+    """What the sentence states but the answer leaves out.  Uses the sentence + the registered vocabulary only (not the
+    model's own coverage claim).  Limits: only vocabulary level words (LEVEL_WORDS + a few cues), plural cues, registered
+    role names, order words and action verbs are detected; an unusual manner word outside the vocabulary is not."""
+    text, low = intake.instruction, intake.instruction.lower()
+    sem, gaps = intake.semantics, []
+    entries = [("binding", b.clause.lower(), b) for b in sem.bindings] + \
+              [("ambiguous", str(a.get("clause", "")).lower(), a) for a in sem.ambiguous] + \
+              [("unsupported", str(u.get("clause", "")).lower(), u) for u in sem.unsupported]
+    sub = lambda iid: program.instance(iid).subtask.split(".")[0]  # noqa: E731
+    # (a) every OCCURRENCE of a manner word must lie inside the verbatim span of an answered clause (a word that appears twice
+    # needs two answers, or one answer whose span covers both); (c) a plural scope covers >= 2 objects.
+    cues = {w: v for w, v in LEVEL_WORDS.items()}
+    spans = [(k, cl, e, [(m.start(), m.end()) for m in re.finditer(re.escape(cl), low)] if cl.strip() else []) for k, cl, e in entries]
+    seen_gap = set()
+    for m in re.finditer(r"[a-z]+", low):
+        w, s0, e0 = m.group(0), m.start(), m.end()
+        if w not in cues:
+            continue
+        cov = [x for x in spans if any(a <= s0 and e0 <= b for a, b in x[3])]
+        if not cov:   # a clause the model did not return verbatim can only be matched by the word itself (weaker)
+            cov = [x for x in spans if not x[3] and re.search(rf"\b{w}\b", x[1])]
+        if not cov:
+            gaps.append({"gap": "manner_word_not_answered", "word": w, "at": s0}); continue
+        for k, cl, e, pos in cov:
+            n_same = sum(1 for k2, cl2, _, _ in spans if cl2 == cl)
+            roles = {sub(i) for i in getattr(e, "instance_ids", ())} if k == "binding" else set()
+            if len(pos) > 1 and n_same < len(pos) and len(roles) < 2 and (cl, w) not in seen_gap:
+                seen_gap.add((cl, w)); gaps.append({"gap": "repeated_requirement_not_covered", "word": w, "clause": cl, "occurrences": len(pos), "answers": n_same})
+        seg = next((c for c in _CLAUSE_SPLIT.split(low) if c.strip() and re.search(rf"\b{w}\b", c)), "")
+        if _PLURAL.search(seg):
+            objs = {sub(i) for k, _, e, _ in cov if k == "binding" for i in e.instance_ids}
+            if any(k == "binding" for k, _, _, _ in cov) and len(objs) < 2:
+                gaps.append({"gap": "plural_scope_not_covered", "word": w, "objects_bound": sorted(objs)})
+    for cue in _CUE_ONLY:
+        if cue in text and not any(cue in e[1] for e in entries):
+            gaps.append({"gap": "manner_word_not_answered", "word": cue})
+    # (b) a binding must agree with the vocabulary word in its own clause
+    for k, cl, b in entries:
+        if k != "binding":
+            continue
+        have = [cues[w] for w in re.findall(r"[a-z]+", cl) if w in cues]
+        if have and (b.dimension, b.level) not in have:
+            gaps.append({"gap": "level_disagrees_with_clause", "clause": b.clause, "bound": [b.dimension, b.level]})
+    if intake.source == "llm":
+        if intake.steps:
+            covered = {x for st in intake.steps for x in (st.object_role, st.target_role) if x}   # steps only: a manner binding does not restate the task
+            miss = sorted(_mentioned_roles(text, program) - covered)
+            if miss:
+                gaps.append({"gap": "named_object_not_in_answer", "roles": miss})
+            if len(intake.steps) >= 2 and _ORDER_CUE.search(text) and not intake.order:
+                gaps.append({"gap": "order_word_without_order", "word": _ORDER_CUE.search(text).group(0)})
+        elif _TASK_VERB.search(text) and _mentioned_roles(text, program):
+            gaps.append({"gap": "task_verb_without_steps", "word": _TASK_VERB.search(text).group(0)})
+    return gaps
+
+
 def _has_pronoun(clause: str) -> bool:
     return any(re.search(rf"\b{p}\b", clause.lower()) for p in PRONOUNS)
 
@@ -205,6 +286,8 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
             guards.append({"guard": "binding_without_admissible_basis", "clause": b.clause, "basis": bs["basis"]}); ambiguous_extra.append(b.clause)
         elif bs["basis"] == "antecedent" and (not bs["antecedent"] or bs["antecedent"].lower() not in text.lower()):
             guards.append({"guard": "antecedent_not_in_instruction", "clause": b.clause, "antecedent": bs["antecedent"]}); ambiguous_extra.append(b.clause)
+    gaps = coverage_gaps(intake, program)
+    guards.extend({"guard": "incomplete_answer", **g} for g in gaps)
     if conflicts:
         status, codes = "conflict", sorted({c["code"] for c in conflicts})
     elif nums and (not numeric_unsup or any(NUMERIC_RE.search(b.clause or "") for b in sem.bindings)):
@@ -213,6 +296,8 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
         status, codes = "unsupported", sorted(set(intake.unsupported_codes))
     elif sem.ambiguous or ambiguous_extra:
         status, codes = "ambiguous", ["ambiguous_reference"]
+    elif gaps:
+        status, codes = "incomplete", sorted({g["gap"] for g in gaps})
     else:
         status = "accept"
     return {"status": status, "codes": codes, "detail": conflicts, "guards": guards, "unstated_program_steps": [list(u) for u in unstated]}

@@ -55,3 +55,91 @@ def test_partial_answer_is_not_accepted():
     assert admit(intake("put a and b in the basket", sem=sem, codes=("quantity_not_measured",)), PROG)["status"] == "unsupported"
     sem = Semantics("x", (GRASP_B,), ambiguous=({"clause": "go slowly", "candidates": ["a.pick_1.approach", "b.pick_1.approach"]},))
     assert admit(intake("put a and b in the basket", sem=sem), PROG)["status"] == "ambiguous"
+
+
+# ---- completeness: a structurally valid answer that leaves out something the sentence states must not be accepted ----
+import copy
+import pytest
+from synthesis_v2.request_intake import parse_intake
+
+P2 = TaskProgram("t0", "libero", "libero:t:0", {"alphabet_soup": "s_1", "tomato_sauce": "t_1", "basket": "b_1"},
+                 chain(pick_place_instances("alphabet_soup", "basket"), pick_place_instances("tomato_sauce", "basket")))
+TXT = "put the alphabet soup and the tomato sauce in the basket and hold both of them gently"
+ST = lambda o, ph: {"action": "put", "object_phrase": ph, "object_role": o, "target_phrase": "the basket", "target_role": "basket", "clause": TXT}  # noqa: E731
+GOOD = {"task": {"restated": True, "steps": [ST("alphabet_soup", "the alphabet soup"), ST("tomato_sauce", "the tomato sauce")], "order": []},
+        "bindings": [{"instance_ids": ["alphabet_soup.pick_1.grasp", "tomato_sauce.pick_1.grasp"], "dimension": "grip", "level": "gentle",
+                      "object_role": None, "clause": "hold both of them gently", "basis": "antecedent", "antecedent": "the alphabet soup and the tomato sauce"}],
+        "ambiguous": [], "unsupported": []}
+
+
+def run(obj, text=TXT):
+    return admit(parse_intake(obj, text), P2)
+
+
+def mutate(fn):
+    o = copy.deepcopy(GOOD); fn(o); return o
+
+
+def test_complete_answer_is_accepted():
+    assert run(GOOD)["status"] == "accept"
+
+
+def test_omissions_are_not_accepted():
+    cases = {
+        "all_bindings_dropped": (mutate(lambda o: o.update(bindings=[])), "manner_word_not_answered"),
+        "second_object_missing": (mutate(lambda o: o["bindings"][0].update(instance_ids=["alphabet_soup.pick_1.grasp"])), "plural_scope_not_covered"),
+        "task_part_dropped": (mutate(lambda o: o["task"].update(restated=False, steps=[])), "task_verb_without_steps"),
+        "one_step_dropped": (mutate(lambda o: o["task"].update(steps=o["task"]["steps"][:1])), "named_object_not_in_answer"),
+    }
+    for name, (obj, gap) in cases.items():
+        d = run(obj)
+        assert d["status"] == "incomplete" and gap in d["codes"], (name, d)
+
+
+def test_order_word_without_order_is_not_accepted():
+    t = "put the alphabet soup in the basket and then the tomato sauce in the basket"
+    obj = mutate(lambda o: o.update(bindings=[]))
+    assert run(obj, t)["status"] == "incomplete"
+    obj["task"]["order"] = [[0, 1]]
+    assert run(obj, t)["status"] == "accept"
+
+
+def test_level_word_must_agree_with_bound_level():
+    obj = mutate(lambda o: o["bindings"][0].update(level="firm"))
+    d = run(obj)
+    assert d["status"] == "incomplete" and "level_disagrees_with_clause" in d["codes"]
+
+
+def test_malformed_model_output_is_an_error_not_an_empty_answer():
+    for bad in ({}, {"task": {"restated": True, "steps": [], "order": []}},
+                mutate(lambda o: o.update(unsupported=["hold gently"])),
+                mutate(lambda o: o["task"].update(steps="put")),
+                mutate(lambda o: o["task"].update(order=[["a", "b"]])),
+                mutate(lambda o: o["task"].pop("restated"))):
+        with pytest.raises(ValueError):
+            parse_intake(bad, TXT)
+
+
+# ---- coverage is by occurrence in the sentence, not by "this word appears in some returned entry" ----
+TXT2 = "put the alphabet soup and the tomato sauce in the basket, hold the soup gently, hold the sauce gently"
+BIND = lambda role, clause: {"instance_ids": [f"{role}.pick_1.grasp"], "dimension": "grip", "level": "gentle", "object_role": role,  # noqa: E731
+                             "clause": clause, "basis": "explicit_object" if "it " not in clause else "antecedent",
+                             "antecedent": None if "it " not in clause else "the alphabet soup"}
+GOOD2 = {"task": GOOD["task"], "ambiguous": [], "unsupported": [],
+         "bindings": [BIND("alphabet_soup", "hold the soup gently"), BIND("tomato_sauce", "hold the sauce gently")]}
+
+
+def test_same_manner_word_twice_needs_two_answers():
+    assert run(GOOD2, TXT2)["status"] == "accept"
+    one = copy.deepcopy(GOOD2); one["bindings"] = one["bindings"][:1]             # second "gently" is left out
+    d = run(one, TXT2)
+    assert d["status"] == "incomplete" and "manner_word_not_answered" in d["codes"], d
+    dup = copy.deepcopy(GOOD2); dup["bindings"] = [BIND("alphabet_soup", "hold the soup gently")] * 2   # same answer twice != second answer
+    assert run(dup, TXT2)["status"] != "accept"        # duplicated answer is rejected (conflicting binding), never counted as two
+
+
+def test_identical_clause_repeated_in_the_sentence_needs_one_answer_each():
+    t = "put the alphabet soup and the tomato sauce in the basket, hold it gently, hold it gently"
+    one = copy.deepcopy(GOOD2); one["bindings"] = [BIND("alphabet_soup", "hold it gently")]
+    d = run(one, t)
+    assert d["status"] == "incomplete" and "repeated_requirement_not_covered" in d["codes"], d

@@ -102,10 +102,22 @@ class ApproachPlan:
                 "n_samples": self.n_samples, "chosen": c(self.chosen), "candidates": [c(x) for x in self.candidates]}
 
 
+DIST_LADDER = (DIST_MAX, 0.02, 0.01, 0.005, 0.002)
+
+
 def _dist(mujoco, m, data, g, og, fromto) -> float:
-    """mj_geomDistance with a guard for its spurious exact 0.0 (returned when the true separation is close to distmax):
-    a 0.0 is accepted only if it is reproduced with two other distmax values."""
-    for dm in (DIST_MAX, 0.7 * DIST_MAX, 1.3 * DIST_MAX):
+    """mj_geomDistance with a guard for its spurious exact 0.0.
+
+    Observed (reports/step7_onboard_diag, T0 init1, mesh hand geoms vs box objects): an exact 0.0 with zeroed nearest points
+    comes back while an independent reference (min mesh-vertex-to-box distance, an UPPER bound that misses edge/face
+    contact; scripts/mt/s7_zero_dist_validate.py) is 5-77 mm, for distmax 0.035..0.2 alike; shrinking distmax gives non-zero
+    answers.  MuJoCo returns ``distmax`` itself when nothing is closer, so a rung-valued answer is only a lower bound.
+
+    Scope (s7_zero_dist_validate.py, T0 init1, 1577 queries): 932 answers equal a rung (lower bound only), 645 are returned
+    distances (all <= the vertex upper bound + 2 mm), none exact 0.0.  Valid use: "is clearance >= margin" decisions with
+    margin <= the first rung that answered.  Not valid: treating rung-valued answers as measured distances, comparing
+    clearances above DIST_MAX, or reading the vertex bound as proof of accuracy from below.  Geometry version is frozen."""
+    for dm in DIST_LADDER:
         r = float(mujoco.mj_geomDistance(m, data, g, og, dm, fromto))
         if r != 0.0:
             return r
@@ -132,7 +144,7 @@ def _clearance(m, mujoco, scratch, env: HandEnvelope, pos, R, obstacles: Sequenc
     return best, who
 
 
-def candidate_grid(yaws_deg=(0,), laterals_m=(0.0, 0.01, -0.01, 0.02, -0.02, 0.03, -0.03), dzs_m=(0.0, 0.01, 0.02)):
+def candidate_grid(yaws_deg=(0,), laterals_m=(0.0, 0.01, -0.01, 0.02, -0.02, 0.03, -0.03), dzs_m=(0.0, 0.01, 0.02, 0.03, 0.04)):
     """Preference order: default first, then smallest departure from it (lateral, then height, then mirror yaw)."""
     g = [(y, l, z) for y in yaws_deg for l in laterals_m for z in dzs_m]
     return sorted(g, key=lambda t: (abs(t[1]) + 0.5 * abs(t[2]), t[0] != yaws_deg[0], t[1] < 0))
@@ -178,7 +190,9 @@ def plan_approach(m, d, site_id: int, env: HandEnvelope, obstacles: Sequence[Obs
         at_grasp = np.inf
         if target is not None:
             at_grasp, _ = _clearance(m, mujoco, scratch, env, gp, Rq, [target], 0.0)
-        ok = worst >= margin_m and at_grasp >= 0.0
+        # strict: an exact 0.0 is "touching / inconclusive" (mj_geomDistance cannot tell), never a verified clearance.  T0 showed the
+        # cost of accepting it: the palm rested on a tall can (clearance 0.0 reported, 13-26 N palm contact, lift lost).
+        ok = worst > margin_m and at_grasp > 0.0
         cd = Candidate(float(yaw), float(lat), float(dz), [float(x) for x in q], [float(x) for x in off],
                        float(worst), who, phase, float(at_grasp), bool(ok))
         cands.append(cd)
@@ -213,7 +227,7 @@ def settled_scene(session, max_steps: int = 60, vel_tol: float = 1e-3):
     return d2, used
 
 
-def scene_from_libero(session, target_env_name: str, *, settled: bool = True):
+def scene_from_libero(session, target_env_name: str, *, settled: bool = True, return_steps: bool = False):
     """(m, d, site_id, HandEnvelope, obstacles, target) read from a LiberoSession (settled look-ahead by default).
 
     Obstacles are all other movable objects (containers included); the support table is not an obstacle of the
@@ -231,4 +245,4 @@ def scene_from_libero(session, target_env_name: str, *, settled: bool = True):
     env = HandEnvelope.from_sim(m, d, site, gids, obs_quat)
     obstacles = [Obstacle(n, tuple(session.geom_ids_of(n))) for n in session.env.objects_dict if n != target_env_name]
     target = Obstacle(target_env_name, tuple(session.geom_ids_of(target_env_name)))
-    return m, d, site, env, obstacles, target
+    return (m, d, site, env, obstacles, target, used) if return_steps else (m, d, site, env, obstacles, target)

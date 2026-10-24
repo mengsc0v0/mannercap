@@ -57,7 +57,9 @@ class ProgramPlan:
             "stages": [{"stage_id": s.stage_id, "v_max_mps": s.v_max_mps, "w_max_rps": s.w_max_rps,
                         "max_steps": s.max_steps} for s in self.stages],
             "grips": {k: {"target_lo_n": g.target_lo_n, "target_hi_n": g.target_hi_n,
-                          "max_close_steps": g.max_close_steps, "settle_steps": g.settle_steps}
+                          "max_close_steps": g.max_close_steps, "settle_steps": g.settle_steps,
+                          **({"settle_after_open": g.settle_after_open} if g.settle_after_open else {}),
+                          **({"reclose_max": g.reclose_max} if g.reclose_max else {})}
                       for k, g in sorted(self.grips.items())},
             "open_steps": self.open_steps, "align_yaw": self.align_yaw,
             **({"approach_check": True} if self.approach_check else {}),
@@ -264,13 +266,13 @@ def produce_program_episode(
             if it.primitive == "approach" and plan.approach_check and "grasp_offset" not in r:
                 from .approach_planner import plan_approach, scene_from_libero
                 nm0 = program.objects[it.object_role]
-                m_, d_, site_, env_, obst_, tgt_ = scene_from_libero(s, nm0)
+                m_, d_, site_, env_, obst_, tgt_, look_ = scene_from_libero(s, nm0, return_steps=True)
                 pl = plan_approach(m_, d_, site_, env_, obst_, start_pos=np.asarray(s.obs["robot0_eef_pos"], float),
                                    start_quat_xyzw=np.asarray(s.obs["robot0_eef_quat"], float),
                                    grasp_pos=np.asarray(r["obj_pos0"], float),
                                    grasp_quat_xyzw=np.asarray(r["grasp_quat_xyzw"], float),
                                    hover_dz=APPROACH_DZ, target=tgt_)
-                meta.setdefault("approach_plan", {})[it.subtask] = pl.to_dict()
+                meta.setdefault("approach_plan", {})[it.subtask] = {**pl.to_dict(), "lookahead_control_steps": int(look_)}   # generation cost, not part of the episode
                 if not pl.feasible:
                     status_box[0] = f"approach_infeasible:{it.instance_id}"
                     stop[0] = True
@@ -296,7 +298,8 @@ def produce_program_episode(
                     meta.setdefault("force_target_by_instance", {})[it.instance_id] = program.objects[it.object_role]
                 pol = rn.grasp_with(lab, plan.grip_for(lab))
                 info = {"closing_steps": pol.closing_steps, "reached_band": pol.reached,
-                        "reverse_pulses": pol.reversed_pulses, "in_band_at": pol.in_band_at}
+                        "reverse_pulses": pol.reversed_pulses, "in_band_at": pol.in_band_at, "reclose_pulses": pol.reclose_pulses,
+                        "final": pol.final, "trace": pol.trace}
                 if legacy:
                     meta["grasp_policy"] = info
                 else:

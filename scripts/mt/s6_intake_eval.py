@@ -9,10 +9,16 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(ROOT / "scripts" / "mt"))
 import s6_libero10_formal as F  # noqa: E402
 from synthesis_v2.language_compiler import binding_key, MannerBinding  # noqa: E402
+from synthesis_v2.task_program import PRIMITIVES  # noqa: E402
 from synthesis_v2.request_intake import (INTAKE_PROMPT_VERSION, admit, build_intake_prompt, lexicon_intake, parse_intake, program_steps)  # noqa: E402
 
 OUT = ROOT / "reports" / "step6_libero10_spec_20261025" / "formal"
 L = lambda t: F.TASKS[t]["language"]
+
+
+# gold under review (kept as written; reported separately, never silently changed)
+DISPUTED = {"A12": "second 'it' (hold it gently) has two grammatical referents: the mug and the microwave; the gold assumes the "
+                   "mug only because the microwave has no grasp stage, which is an executor fact, not a language fact"}
 
 
 def case(cid, t, text, expect, *, bind=(), steps=None, roles=(), code=None, why=""):
@@ -51,18 +57,35 @@ def dev_cases() -> list[dict]:
     return out
 
 
-def load_cases(name):
-    return dev_cases() if name == "dev" else importlib.import_module("s6_intake_cases_accept").cases(case, F, program_steps)
+def load_cases(name, protocol=None):
+    cs = dev_cases() if name == "dev" else importlib.import_module("s6_intake_cases_accept").cases(case, F, program_steps)
+    if protocol == "v2":
+        rev = json.loads((OUT.parent / "language_protocol_v2.json").read_text())["gold_revisions"]
+        for c in cs:
+            r = rev.get(c["id"])
+            if r and r["set"] == name:
+                prog = F.program(c["task_id"])
+                ids = [it.instance_id for it in prog.instances if r["dimension"] in PRIMITIVES[it.primitive]["dims"]
+                       and (r["scope"] == "all_speed_stages" or it.primitive == "approach")]
+                c.update(expect="accept", gold_bindings=[[i, r["dimension"], r["level"], it_role(prog, i)] for i in ids],
+                         gold_steps=[list(x) for x in program_steps(prog)], gold_roles=[], gold_code=None, protocol_revised=r["was"])
+    return cs
+
+
+def it_role(prog, iid):
+    return prog.instance(iid).subtask.split(".")[0]
 
 
 def roles_of(prog, ids):
-    m = {it.instance_id: (it.object_role or it.target_role) for it in prog.instances}
+    m = {it.instance_id: it.subtask.split(".")[0] for it in prog.instances}   # role of the sub-task the stage belongs to
     return {m.get(i, i) for i in ids}
 
 
 def score(c, intake, dec, prog) -> dict:
-    sem = intake.semantics; got_b = {binding_key(b) for b in sem.bindings}
-    gold_b = {binding_key(MannerBinding(tuple([b[0]]), b[1], b[2])) for b in c["gold_bindings"]}
+    sem = intake.semantics
+    # one requirement over several instances == the same requirement written per instance: compare as (instance, dim, level)
+    got_b = {(i, b.dimension, b.level) for b in sem.bindings for i in b.instance_ids}
+    gold_b = {(b[0], b[1], b[2]) for b in c["gold_bindings"]}
     rec = {"status": dec["status"], "codes": dec["codes"], "guards": dec["guards"]}
     e = c["expect"]
     if e == "accept":
@@ -88,9 +111,9 @@ def score(c, intake, dec, prog) -> dict:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(); ap.add_argument("--set", default="dev"); ap.add_argument("--live", action="store_true"); ap.add_argument("--tag", default="")
+    ap = argparse.ArgumentParser(); ap.add_argument("--set", default="dev"); ap.add_argument("--live", action="store_true"); ap.add_argument("--tag", default=""); ap.add_argument("--out-tag", default=None); ap.add_argument("--protocol", default=None)
     a = ap.parse_args()
-    cases = load_cases(a.set); progs = {t: F.program(t) for t in F.CFG}
+    cases = load_cases(a.set, a.protocol); progs = {t: F.program(t) for t in F.CFG}
     client = None
     if a.live:
         from synthesis_v2.llm_interface import LLMClient, LLMConfig
@@ -113,10 +136,16 @@ def main() -> int:
             review.append({"parser": parser, "case": c, "user_prompt": (build_intake_prompt(c["text"], prog)[1] if parser == "llm" else None), "raw_model_output": raw,
                            "parsed": it.to_dict() if it else None, "decision": r})
     summ = {}
-    for parser in {r["parser"] for r in recs}:
+    for parser in sorted({r["parser"] for r in recs}):
         S = lambda f: [r for r in recs if r["parser"] == parser and f(r)]
         acc, amb, uns, con = S(lambda r: r["expect"] == "accept"), S(lambda r: r["expect"] == "ambiguous"), S(lambda r: r["expect"] == "unsupported"), S(lambda r: r["expect"] == "conflict")
         non = amb + uns + con
+        summ[parser + "_accept_excluding_disputed"] = [sum(r["correct"] for r in acc if r["id"] not in DISPUTED),
+                                                       len([r for r in acc if r["id"] not in DISPUTED])]
+        rv = lambda r: next((c.get("protocol_revised") for c in cases if c["id"] == r["id"]), None)  # noqa: E731
+        summ[parser + "_accept_excluding_disputed_and_protocol_revised"] = [sum(r["correct"] for r in acc if r["id"] not in DISPUTED and not rv(r)),
+                                                                           len([r for r in acc if r["id"] not in DISPUTED and not rv(r)])]
+        summ[parser + "_protocol_revised_cases"] = [r["id"] for r in recs if r["parser"] == parser and rv(r)]
         summ[parser] = {"1_accept_correct": [sum(r["correct"] for r in acc), len(acc)], "2_ambiguity_correct": [sum(r["correct"] for r in amb), len(amb)],
                         "2b_ambiguity_candidates_exact": [sum(bool(r.get("cand_exact")) for r in amb), len(amb)],
                         "3_unsupported_reason_correct": [sum(r["correct"] for r in uns), len(uns)], "3b_conflict_reason_correct": [sum(r["correct"] for r in con), len(con)],
@@ -124,8 +153,8 @@ def main() -> int:
                         "guards_triggered": sum(bool(r["guards"]) for r in S(lambda r: True)), "errors": sum(str(r["status"]).startswith("error") for r in S(lambda r: True))}
     sp = client.spend() if client else None
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / f"intake_{a.set}{a.tag}_scores.json").write_text(json.dumps({"prompt_version": INTAKE_PROMPT_VERSION, "summary": summ, "spend": sp, "records": recs}, indent=1, ensure_ascii=False))
-    with (OUT / f"intake_{a.set}{a.tag}_review.jsonl").open("w") as fh:
+    (OUT / f"intake_{a.set}{a.tag if a.out_tag is None else a.out_tag}_scores.json").write_text(json.dumps({"prompt_version": INTAKE_PROMPT_VERSION, "summary": summ, "spend": sp, "records": recs}, indent=1, ensure_ascii=False))
+    with (OUT / f"intake_{a.set}{a.tag if a.out_tag is None else a.out_tag}_review.jsonl").open("w") as fh:
         from synthesis_v2.request_intake import INTAKE_SYSTEM
         fh.write(json.dumps({"system_prompt": INTAKE_SYSTEM, "prompt_version": INTAKE_PROMPT_VERSION}, ensure_ascii=False) + "\n")
         for x in review:
