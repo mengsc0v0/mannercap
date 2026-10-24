@@ -156,6 +156,11 @@ class _Recorder:
     def __init__(self, session: NativeSession, keep_images: bool) -> None:
         self.s = session
         self.keep_images = keep_images
+        self.stage_dtype = "<U16"
+        self.track_binding = False  # program episodes also log which object is measured and the active band
+        self.track_objects: list[str] = []  # scene objects whose position is logged every step
+        self.hold_instance = ""
+        self.hold_band = (math.nan, math.nan)
         self.cols: dict[str, list] = {k: [] for k in (
             "state", "actions", "next_state", "timestamp", "dt", "frame_index", "sim_step_index",
             "terminated", "truncated", "success", "stage",
@@ -181,6 +186,18 @@ class _Recorder:
         c["truncated"].append(False)
         c["success"].append(self.s.success())
         c["stage"].append(stage)
+        if self.track_binding:
+            c.setdefault("force_target", []).append(getattr(self.s, "force_target_name", None) or "")
+            c.setdefault("hold_instance", []).append(self.hold_instance)
+            c.setdefault("hold_lo_n", []).append(self.hold_band[0])
+            c.setdefault("hold_hi_n", []).append(self.hold_band[1])
+            for nm in self.track_objects:
+                c.setdefault("pos_" + nm, []).append(np.asarray(obs_before[f"{nm}_pos"], dtype=np.float64))
+                c.setdefault("pa_" + nm, []).append(np.asarray(obs_after[f"{nm}_pos"], dtype=np.float64))  # post-step pose
+            if self.track_objects and hasattr(self.s, "object_contacts"):
+                for nm, (lf, rf) in self.s.object_contacts(self.track_objects).items():
+                    c.setdefault("cf_L_" + nm, []).append(lf)
+                    c.setdefault("cf_R_" + nm, []).append(rf)
         for k in ("left_mean_n", "right_mean_n", "left_max_n", "right_max_n", "other_max_n",
                   "valid_fraction", "joint_speed_mean", "joint_speed_max"):
             c[k].append(getattr(tel, k))
@@ -198,11 +215,21 @@ class _Recorder:
             "terminated": np.asarray(c["terminated"], dtype=bool),
             "truncated": np.asarray(c["truncated"], dtype=bool),
             "success": np.asarray(c["success"], dtype=bool),
-            "stage": np.asarray(c["stage"], dtype="<U16"),
+            "stage": np.asarray(c["stage"], dtype=self.stage_dtype),
         }
         for k in ("left_mean_n", "right_mean_n", "left_max_n", "right_max_n", "other_max_n",
                   "valid_fraction", "joint_speed_mean", "joint_speed_max"):
             out[k] = np.asarray(c[k], dtype=np.float64)
+        if "force_target" in c:
+            out["force_target"] = np.asarray(c["force_target"], dtype="<U32")
+            out["hold_instance"] = np.asarray(c["hold_instance"], dtype="<U48")
+            out["hold_lo_n"] = np.asarray(c["hold_lo_n"], dtype=np.float64)
+            out["hold_hi_n"] = np.asarray(c["hold_hi_n"], dtype=np.float64)
+            for k in c:
+                if k.startswith(("pos_", "pa_")):
+                    out[k] = np.asarray(c[k], dtype=np.float64).reshape(-1, 3)
+                elif k.startswith("cf_"):
+                    out[k] = np.asarray(c[k], dtype=np.float64)
         if self.keep_images:
             out["images"] = np.asarray(self.images, dtype=np.uint8)
         if len(out["terminated"]):
@@ -240,7 +267,8 @@ class _Runner:
             mp, mr = sp.v_max_mps * DT, sp.w_max_rps * DT
             pos_step = pos_err / pn * mp if pn > mp else pos_err
             rot_step = rot_err / rn * mr if rn > mr else rot_err
-            a = np.concatenate([np.clip(pos_step / POS_SCALE, -1, 1), np.clip(rot_step / ROT_SCALE, -1, 1), [grip_cmd]])
+            ps, rs = getattr(self.s, "pos_scale", POS_SCALE), getattr(self.s, "rot_scale", ROT_SCALE)  # metres / rad per unit action actually realised
+            a = np.concatenate([np.clip(pos_step / ps, -1, 1), np.clip(rot_step / rs, -1, 1), [grip_cmd]])
             self._step(a.astype(np.float32), stage)
         self.timeouts.append(stage)
         return False
@@ -351,145 +379,9 @@ def produce_episode(
     are executed with ``plan``.
     """
 
-    owns = session is None
-    s = session or NativeSession(task, seed, render=keep_images)
-    status = "completed"
-    rn = None
-    try:
-        obs = s.reset()
-        if on_session:
-            on_session(s)
-        if task == "nut_assembly" and resume is None:
-            # The nut is spawned slightly above its resting contact height; let it
-            # settle onto the table (un-recorded) before any pose is captured as
-            # "meta", otherwise obj_pos0 / handle_pos0 / center_offset are stale.
-            neutral = np.array([0, 0, 0, 0, 0, 0, GRIP_OPEN], dtype=np.float32)
-            for _ in range(15):
-                obs, _tel = s.step(neutral)
-        rn = _Runner(s, plan, keep_images)
-        key = "cubeA" if task == "stack" else ("SquareNut" if task == "nut_assembly" else "cube")
-        if resume is not None:
-            if resume.session["control_step_index"] < 0:
-                raise ValueError("invalid snapshot")
-            s.restore_state(resume.session)
-            rn.rec.cols = {k: list(v) for k, v in resume.rec_cols.items()}
-            rn.rec.images = list(resume.rec_images)
-            rn.last_tel, rn.stage_steps, rn.timeouts = resume.last_tel, dict(resume.stage_steps), list(resume.timeouts)
-            status, meta = resume.status, json.loads(json.dumps(resume.meta))
-        else:
-            down = np.asarray(obs["robot0_eef_quat"], dtype=np.float64).copy()
-            if task == "nut_assembly":
-                nut = s.env.nuts[s.env.nut_id]
-                handle_pos0 = np.asarray(s.env.sim.data.get_site_xpos(nut.important_sites["handle"]), dtype=np.float64).copy()
-                nut_pos0 = np.asarray(obs["SquareNut_pos"], dtype=np.float64).copy()
-                quat = _nut_handle_grasp_quat(down, obs["SquareNut_quat"]) if plan.align_yaw else down
-                meta = {
-                    "obj_pos0": handle_pos0.tolist(),
-                    "down_quat_xyzw": down.tolist(),
-                    "grasp_quat_xyzw": quat.tolist(),
-                    "center_offset": (nut_pos0 - handle_pos0).tolist(),
-                    "peg_pos0": np.asarray(s.env.sim.data.body_xpos[s.env.peg1_body_id], dtype=np.float64).tolist(),
-                }
-            else:
-                obj0 = np.asarray(obs[f"{key}_pos"], dtype=np.float64).copy()
-                quat = _yaw_aligned_quat(down, obs[f"{key}_quat"]) if plan.align_yaw else down
-                meta = {"obj_pos0": obj0.tolist(), "down_quat_xyzw": down.tolist(), "grasp_quat_xyzw": quat.tolist()}
-                if task == "stack":
-                    meta["cubeB_pos0"] = np.asarray(obs["cubeB_pos"]).tolist()
-        obj0 = np.asarray(meta["obj_pos0"], dtype=np.float64)
-        quat = np.asarray(meta["grasp_quat_xyzw"], dtype=np.float64)
-        b0 = np.asarray(meta["cubeB_pos0"], dtype=np.float64) if task == "stack" else None
-        center_offset = np.asarray(meta["center_offset"], dtype=np.float64) if task == "nut_assembly" else None
-        peg0 = np.asarray(meta["peg_pos0"], dtype=np.float64) if task == "nut_assembly" else None
-        status_box = [status]
+    from .program_executor import produce_program_episode, program_plan_from_production
+    from .task_program import legacy_program
 
-        def run_grasp():
-            pol = rn.grasp("grasp")
-            meta["grasp_policy"] = {"closing_steps": pol.closing_steps, "reached_band": pol.reached,
-                                    "reverse_pulses": pol.reversed_pulses, "in_band_at": pol.in_band_at}
-            if not pol.reached:
-                status_box[0] = "grasp_band_not_reached"
-
-        def run_place():
-            rn.servo("place", b0 + [0, 0, 0.041], quat, GRIP_HOLD, tol_pos=0.008)
-            rn.grip_only("place", GRIP_OPEN, plan.open_steps)
-
-        def run_place_nut():
-            handle_target_xy = peg0[:2] - center_offset[:2]
-            align_z = obj0[2] + 0.15
-            # The square peg's hole clearance is only a few mm; compliant-grasp
-            # drift during transport means the frozen center_offset is no longer
-            # exact, so re-correct xy using the *live* nut position (closed loop)
-            # before descending, otherwise the nut's square loop catches on the
-            # peg shaft and the servo stalls indefinitely (observed as
-            # stage_timeout:place with the eef stuck near the peg's top).
-            for _ in range(3):
-                cur_nut_xy = np.asarray(s.obs["SquareNut_pos"], dtype=np.float64)[:2]
-                residual = peg0[:2] - cur_nut_xy
-                if np.linalg.norm(residual) < 0.0015:
-                    break
-                handle_target_xy = handle_target_xy + residual
-                rn.servo("place", np.array([handle_target_xy[0], handle_target_xy[1], align_z]),
-                          quat, GRIP_HOLD, tol_pos=0.003)
-            # obj0[2] is the handle's table-contact height measured during descend;
-            # going further below it drives the servo into the table (infeasible,
-            # causes a stage timeout).  Target a touch just above that height,
-            # mirroring the old capx teacher's grasp_pos[2] + 0.01.
-            rn.servo("place", np.array([handle_target_xy[0], handle_target_xy[1], obj0[2] + 0.01]),
-                      quat, GRIP_HOLD, tol_pos=0.006)
-            cur_nut_xy = np.asarray(s.obs["SquareNut_pos"], dtype=np.float64)[:2]
-            residual = peg0[:2] - cur_nut_xy
-            if np.linalg.norm(residual) > 0.015:
-                corr_target = np.asarray(s.obs["robot0_eef_pos"], dtype=np.float64) + np.array([residual[0], residual[1], 0.0])
-                rn.servo("place", corr_target, quat, GRIP_HOLD, tol_pos=0.004)
-            rn.grip_only("place", GRIP_OPEN, plan.open_steps)
-
-        if task == "nut_assembly":
-            handle_target_xy0 = peg0[:2] - center_offset[:2]
-            blocks = {
-                "approach": lambda: rn.servo("approach", obj0 + [0, 0, 0.12], quat, GRIP_OPEN),
-                "descend": lambda: rn.servo("descend", obj0, quat, GRIP_OPEN, tol_pos=0.003),
-                "grasp": run_grasp,
-                "lift": lambda: rn.servo("lift", obj0 + [0, 0, 0.15], quat, GRIP_HOLD),
-                "transport": lambda: rn.servo(
-                    "transport", np.array([handle_target_xy0[0], handle_target_xy0[1], obj0[2] + 0.15]), quat, GRIP_HOLD),
-                "place": run_place_nut,
-                "retreat": lambda: rn.servo("retreat", np.asarray(s.obs["robot0_eef_pos"]) + [0, 0, 0.15], quat, GRIP_OPEN),
-            }
-        else:
-            blocks = {
-                "approach": lambda: rn.servo("approach", obj0 + [0, 0, 0.12], quat, GRIP_OPEN),
-                "descend": lambda: rn.servo("descend", obj0, quat, GRIP_OPEN),
-                "grasp": run_grasp,
-                "lift": lambda: rn.servo("lift", obj0 + [0, 0, 0.15], quat, GRIP_HOLD),
-                "transport": lambda: rn.servo("transport", b0 + [0, 0, 0.15], quat, GRIP_HOLD),
-                "place": run_place,
-                "retreat": lambda: rn.servo("retreat", np.asarray(s.obs["robot0_eef_pos"]) + [0, 0, 0.15], quat, GRIP_OPEN),
-            }
-        order = block_names(task)
-        start = order.index(resume.stage) if resume is not None else 0
-        for name in order[start:]:
-            if snapshots is not None:
-                snapshots[name] = _take(rn, name, status_box[0], meta)
-            blocks[name]()
-        status = status_box[0]
-        task_ok = s.success()
-        if rn.timeouts and status == "completed":
-            status = "stage_timeout:" + ",".join(rn.timeouts)
-        meta["final_obj_pos"] = np.asarray(s.obs[f"{key}_pos"]).tolist()
-        meta["initial_state"] = {k: (v.tolist() if hasattr(v, "tolist") else v) for k, v in s.initial.items()}
-        meta["sim_time_end"] = s.current_sim_time()
-        if resume is not None:
-            meta["resumed_from"] = {"stage": resume.stage, "prefix_steps": resume.prefix_steps}
-        arrays = rn.rec.arrays()
-        if keep_images and "images" not in arrays:
-            arrays["images"] = np.zeros((0, 2, 224, 224, 3), dtype=np.uint8)
-        return RawEpisode(task, seed, plan.to_dict(), plan.plan_hash(), status, bool(task_ok), arrays,
-                          dict(rn.stage_steps), meta)
-    except Exception as exc:  # preserve whatever was recorded
-        arrays = rn.rec.arrays() if rn is not None else {"actions": np.zeros((0, 7), np.float32)}
-        return RawEpisode(task, seed, plan.to_dict(), plan.plan_hash(), f"exception:{type(exc).__name__}:{exc}",
-                          False, arrays, dict(rn.stage_steps) if rn else {}, {})
-    finally:
-        if owns:
-            s.close()
+    return produce_program_episode(
+        legacy_program(task), seed, program_plan_from_production(plan), keep_images=keep_images, session=session,
+        on_session=on_session, snapshots=snapshots, resume=resume, plan_record=(plan.to_dict(), plan.plan_hash()))

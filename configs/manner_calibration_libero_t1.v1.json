@@ -1,0 +1,135 @@
+{
+ "contact_threshold_n": 0.1,
+ "content_hash": "49c77adda98e9639b3098489dcf360f4f6a8808002ca211c878d527654f5a880",
+ "dev_inits": [
+  8,
+  9,
+  10,
+  11,
+  12,
+  13
+ ],
+ "objects": {
+  "butter": {
+   "dev_peak_max_n": 40.97287087901318,
+   "firm_lower": 34.3984654784473,
+   "firm_upper": 49.5050872830119,
+   "gentle_lower": 5.016897594643431,
+   "gentle_upper": 19.759370640759574,
+   "hold_stats": {
+    "firm": {
+     "max": 39.63283666336669,
+     "min": 39.22147559002657,
+     "n": 338,
+     "p5": 39.25148002071204,
+     "p95": 39.364030490407586,
+     "p99": 39.60406982640952
+    },
+    "gentle": {
+     "max": 10.200101905226564,
+     "min": 10.002778307782673,
+     "n": 338,
+     "p5": 10.033795189286861,
+     "p95": 10.085541898162557,
+     "p99": 10.141524338368678
+    },
+    "normal": {
+     "max": 29.795990230359852,
+     "min": 29.41958173793776,
+     "n": 337,
+     "p5": 29.43319938335659,
+     "p95": 29.545450936182565,
+     "p99": 29.671555241319517
+    }
+   },
+   "n_dev": 6,
+   "normal_lower": 19.759370640759574,
+   "normal_upper": 34.3984654784473,
+   "peak_cap_n": 51.216088598766476,
+   "stable_per_level": {
+    "firm": 6,
+    "gentle": 6,
+    "normal": 6
+   },
+   "status": "ok",
+   "task_ok_per_level": {
+    "firm": 6,
+    "gentle": 6,
+    "normal": 6
+   }
+  },
+  "cream_cheese": {
+   "dev_peak_max_n": 60.74291673717355,
+   "firm_lower": 31.425674136744373,
+   "firm_upper": 50.25683743761141,
+   "gentle_lower": 6.550179783846603,
+   "gentle_upper": 17.98056137035099,
+   "hold_stats": {
+    "firm": {
+     "max": 41.27910489413837,
+     "min": 33.33652650918123,
+     "n": 592,
+     "p5": 39.936281319031636,
+     "p95": 40.05525963451529,
+     "p99": 40.205469950089125
+    },
+    "gentle": {
+     "max": 13.800648058893385,
+     "min": 6.905676612516331,
+     "n": 592,
+     "p5": 13.100359567693205,
+     "p95": 13.152461643377652,
+     "p99": 13.265809662852897
+    },
+    "normal": {
+     "max": 23.56188518916148,
+     "min": 16.213976559428147,
+     "n": 591,
+     "p5": 22.808661097324332,
+     "p95": 22.91506695445711,
+     "p99": 23.14900409714914
+    }
+   },
+   "n_dev": 6,
+   "normal_lower": 17.98056137035099,
+   "normal_upper": 31.425674136744373,
+   "peak_cap_n": 75.92864592146694,
+   "stable_per_level": {
+    "firm": 6,
+    "gentle": 6,
+    "normal": 6
+   },
+   "status": "ok",
+   "task_ok_per_level": {
+    "firm": 6,
+    "gentle": 6,
+    "normal": 6
+   }
+  }
+ },
+ "plans": {
+  "firm": {
+   "target_hi_n": 100.0,
+   "target_lo_n": 35.0
+  },
+  "gentle": {
+   "target_hi_n": 22.0,
+   "target_lo_n": 1.0
+  },
+  "normal": {
+   "target_hi_n": 100.0,
+   "target_lo_n": 1.0
+  }
+ },
+ "policy": {
+  "core_trim_fraction": 0.2,
+  "firm_cap_factor": 1.25,
+  "gentle_floor_fraction": 0.5,
+  "hold_trim_head_steps": 2,
+  "percentile_hi": 95.0,
+  "percentile_lo": 5.0,
+  "safety_margin_factor": 1.25
+ },
+ "schema": "mannercap.libero_calibration.v1",
+ "task": "libero_10/1"
+}

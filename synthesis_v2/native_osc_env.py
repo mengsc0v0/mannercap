@@ -204,6 +204,15 @@ class StepTelemetry:
     tool_max_n: float = math.nan
 
 
+def _seed_samplers(sampler: Any, rng: Any) -> None:
+    """Point ``sampler`` and every nested sub-sampler at ``rng`` (robosuite samplers cache it)."""
+    if sampler is None:
+        return
+    sampler.rng = rng
+    for sub in getattr(sampler, "samplers", {}).values():
+        _seed_samplers(sub, rng)
+
+
 class NativeSession:
     """One reset-to-end episode in the deployment controller."""
 
@@ -213,6 +222,7 @@ class NativeSession:
         self.render = bool(render)
         self.env = make_env(task, self.seed, render=render)
         self._binding = None
+        self.force_target_name: Optional[str] = None  # object the force binding currently measures
         self._acc = self._new_acc()
         self._hooked = False
         self.obs: Optional[dict] = None
@@ -242,6 +252,50 @@ class NativeSession:
             if obj is not None and geoms:
                 return attr, tuple(int(self.env.sim.model.geom_name2id(n)) for n in geoms)
         return "", ()
+
+    def _mujoco_objects(self) -> tuple:
+        objs = getattr(getattr(self.env, "model", None), "mujoco_objects", None)
+        return tuple(objs) if objs else ()
+
+    def geom_ids_of(self, env_name: str) -> tuple[int, ...]:
+        """Contact geom ids of the scene object named ``env_name`` (empty if it has none)."""
+        for obj in self._mujoco_objects():
+            if getattr(obj, "name", None) != env_name:
+                continue
+            geoms = getattr(obj, "contact_geoms", None) or ()
+            return tuple(int(self.env.sim.model.geom_name2id(n)) for n in geoms)
+        return ()
+
+    def object_contacts(self, names) -> dict[str, tuple[float, float]]:
+        """Instantaneous (post-step) left/right finger normal force on each named object; NaN = unmeasured."""
+        import mujoco
+        from synthesis_v2.grasp_force_contract import read_grasp_contact_sample, resolve_grasp_binding
+
+        mj_m, mj_d = self._mj()
+        cache = self.__dict__.setdefault("_obj_bindings", {})
+        out: dict[str, tuple[float, float]] = {}
+        for nm in names:
+            if nm not in cache:
+                ids = self.geom_ids_of(nm)
+                cache[nm] = resolve_grasp_binding(mj_m, mujoco, ids, nm) if ids else None
+            smp = read_grasp_contact_sample(mj_m, mj_d, cache[nm]) if cache[nm] is not None else None
+            out[nm] = (float(smp.left_force_n), float(smp.right_force_n)) if smp is not None and smp.valid else (math.nan, math.nan)
+        return out
+
+    def set_force_target(self, env_name: str) -> None:
+        """Point the grasp-force measurement at ``env_name``.
+
+        The binding is re-resolved per grasp *instance*, so a program that grasps two different
+        objects measures each hold against its own object instead of a single task-wide target.
+        """
+        import mujoco
+        from synthesis_v2.grasp_force_contract import resolve_grasp_binding
+
+        ids = self.geom_ids_of(env_name)
+        if not ids:
+            raise ValueError(f"no contact geoms for object {env_name!r}")
+        self._binding = resolve_grasp_binding(self._mj()[0], mujoco, ids, env_name)
+        self.force_target_name = env_name
 
     def _hook(self) -> None:
         import mujoco
@@ -314,8 +368,12 @@ class NativeSession:
     def reset(self) -> dict:
         np.random.seed(self.seed)
         self.env.rng = np.random.default_rng(self.seed)
-        if getattr(self.env, "placement_initializer", None) is not None:
-            self.env.placement_initializer.rng = self.env.rng
+        # Composite samplers (nut_assembly) build their sub-samplers once, during env construction,
+        # each holding a reference to the *original* env.rng.  Re-seeding only the top-level object
+        # leaves those sub-samplers on the construction-time stream, which makes the sampled object
+        # pose depend on how much randomness the process consumed earlier (observed as different
+        # nut poses for the same seed in different processes).  Seed every sampler in the tree.
+        _seed_samplers(getattr(self.env, "placement_initializer", None), self.env.rng)
         self.obs = self.env.reset()
         self.sim_step_index = 0
         self.control_step_index = 0
@@ -392,7 +450,8 @@ class NativeSession:
                 "env": {"timestep": int(self.env.timestep), "cur_time": float(self.env.cur_time),
                         "done": bool(self.env.done)},
                 "obs": dict(self.obs), "sim_step_index": int(self.sim_step_index),
-                "control_step_index": int(self.control_step_index)}
+                "control_step_index": int(self.control_step_index),
+                "force_target": self.force_target_name}
 
     def restore_state(self, st: dict[str, Any]) -> None:
         import copy
@@ -423,6 +482,10 @@ class NativeSession:
         self.sim_step_index = st["sim_step_index"]
         self.control_step_index = st["control_step_index"]
         self._acc = self._new_acc()
+        # the measurement binding is part of the rollout state: a restore into a fresh session must
+        # measure the object that was being held at snapshot time, not the construction-time default
+        if st.get("force_target"):
+            self.set_force_target(st["force_target"])
 
     def success(self) -> bool:
         try:

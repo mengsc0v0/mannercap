@@ -1,0 +1,218 @@
+"""Request intake: one instruction -> (task part, manner part) -> admission decision against a registered task program.
+
+Split on purpose:
+* task part   : what the sentence ITSELF states about the base task (objects, target relations, explicit order);
+* manner part : manner requirements bound to stage instances, each with the evidence it was bound on.
+``admit`` then checks  sentence -> registered task program  (code, no model) and applies guards that do not depend on the
+model: a numeric manner value is never silently dropped or replaced, a binding must carry an admissible basis (never
+"task default order"), a cited antecedent must occur in the instruction, a partial answer is never accepted.
+
+Decisions: accept | ambiguous | unsupported | conflict | invalid.  Final task success is still judged by the environment.
+"""
+from __future__ import annotations
+
+import json
+import re
+from dataclasses import dataclass, field
+from typing import Any, Mapping, Optional
+
+from synthesis_v2.language_compiler import (DIMENSION_LEVELS, MannerBinding, Semantics, check_semantics, lexicon_semantics)
+from synthesis_v2.task_program import PRIMITIVES, TaskProgram
+
+INTAKE_PROMPT_VERSION = "mannercap.intake.v2"
+ACTIONS = ("put", "pick", "close", "turn_on", "open")
+_ACTION_SYN = {"pick_up": "pick", "grasp": "pick", "lift": "pick", "pickup": "pick", "place": "put", "move": "put", "insert": "put", "pick_place": "put", "shut": "close", "switch_on": "turn_on", "turn on": "turn_on"}
+BASES = ("explicit_object", "antecedent", "single_candidate", "lexicon")
+UNSUPPORTED_CODES = ("numeric_level", "dimension_not_on_stage", "quantity_not_measured", "object_not_in_task", "stage_not_in_program", "other")
+NUMERIC_RE = re.compile(r"\b\d+(?:\.\d+)?\s*(?:n|newtons?|kg|g|m/s|cm/s|mm/s|%|percent|cm|mm)(?![a-z])", re.I)
+PRONOUNS = ("it", "them", "its", "one", "that", "this")
+
+
+@dataclass(frozen=True)
+class TaskStep:
+    action: str
+    object_role: Optional[str]
+    object_phrase: str = ""
+    target_role: Optional[str] = None
+    target_phrase: str = ""
+    clause: str = ""
+
+
+@dataclass(frozen=True)
+class Intake:
+    instruction: str
+    restated: bool
+    steps: tuple[TaskStep, ...]
+    order: tuple[tuple[int, int], ...]
+    semantics: Semantics
+    bases: tuple[dict, ...]            # per binding: {"basis":..., "antecedent":...}
+    unsupported_codes: tuple[str, ...] # per semantics.unsupported entry
+    source: str = "llm"
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"instruction": self.instruction, "restated": self.restated, "steps": [s.__dict__ for s in self.steps],
+                "order": [list(o) for o in self.order], "semantics": self.semantics.to_dict(), "bases": list(self.bases),
+                "unsupported_codes": list(self.unsupported_codes), "source": self.source}
+
+
+# ---- program side -----------------------------------------------------------
+def program_steps(program: TaskProgram) -> list[tuple[str, str, Optional[str]]]:
+    out = []
+    for it in program.instances:
+        if it.primitive in ("place", "insert"):
+            out.append(("put", it.object_role, it.target_role))
+        elif it.primitive == "articulate":
+            out.append((it.subtask.split(".")[-1].rsplit("_", 1)[0], it.object_role or it.target_role, None))
+    return out
+
+
+def registered_task_card(program: TaskProgram) -> dict[str, Any]:
+    return {"language": program.language, "steps": [{"action": a, "object_role": o, "target_role": t} for a, o, t in program_steps(program)]}
+
+
+# ---- prompt -----------------------------------------------------------------
+INTAKE_SYSTEM = (
+    "You analyse ONE instruction for a robot task that is already registered. Answer with JSON only.\n"
+    "TASK PART. List only what the sentence itself states about the base task. Never copy the registered task into the answer. "
+    "If the sentence states no task content (only a manner), set restated=false and steps=[]. "
+    "Each step: action (put|pick|close|turn_on|open; 'pick' = pick up / grasp without a stated destination), object_phrase as written, object_role (a key of object_roles, or null if no role "
+    "matches the phrase), target_phrase and target_role likewise (null for close/turn_on). A plural phrase naming several "
+    "registered objects (both moka pots) is one step per object. Never map a phrase to a role that does not "
+    "match it (a red mug is not the white mug). order: pairs [i,j] only if the sentence explicitly puts step i before step j "
+    "(first, then, before, after); 'and' alone is not an order.\n"
+    "MANNER PART. Use ONLY the instance_id values and level words in the scene card; never invent a stage, object, level or number.\n"
+    "1. Every manner clause appears exactly once, in bindings, ambiguous or unsupported. Never drop a clause, never keep only the "
+    "executable part of a clause.\n"
+    "2. A binding needs a basis: 'explicit_object' (the clause names the object), 'antecedent' (a pronoun whose referent is fixed by the "
+    "instruction text; copy that phrase into 'antecedent'), or 'single_candidate' (no object named, exactly one stage instance of the task "
+    "can take that dimension). Never bind by task order, nearest mention, first or last.\n"
+    "3. A pronoun (it, them, one) is resolved from the instruction text alone. If exactly one mentioned object can be meant, bind it with "
+    "basis antecedent. If two or more mentioned objects are plausible referents, return it in ambiguous with candidate instance ids.\n"
+    "4. A numeric value (5 N, 2 cm/s, 30%) is never a level: put the clause in unsupported with code numeric_level.\n"
+    "5. Unsupported codes: numeric_level | dimension_not_on_stage (the stage has no such dimension) | quantity_not_measured (e.g. gentle "
+    "contact, impact, touching) | object_not_in_task (manner on an object the task program does not contain) | stage_not_in_program | other.\n"
+    "6. A clause that names no object and fits several instances (e.g. 'move slowly') is ambiguous with the candidates.\n"
+    'JSON: {"task":{"restated":bool,"steps":[{"action":"...","object_phrase":"...","object_role":"..|null","target_phrase":"...",'
+    '"target_role":"..|null","clause":"..."}],"order":[[0,1]]},'
+    '"bindings":[{"instance_ids":[...],"dimension":"speed|grip|press","level":"...","object_role":"..|null","clause":"...",'
+    '"basis":"explicit_object|antecedent|single_candidate","antecedent":"..|null"}],'
+    '"ambiguous":[{"clause":"...","candidates":[...]}],"unsupported":[{"clause":"...","code":"...","reason":"..."}]}'
+)
+
+
+def build_intake_prompt(instruction: str, program: TaskProgram) -> tuple[str, str]:
+    from synthesis_v2.language_compiler import scene_card
+    card = scene_card(program)
+    card["registered_task"] = registered_task_card(program)
+    return INTAKE_SYSTEM, json.dumps({"instruction": instruction, "scene": card}, sort_keys=True, ensure_ascii=False, indent=2)
+
+
+def _txt(v: Any) -> str:
+    """JSON null / 'None' -> ''."""
+    return "" if v is None or str(v).strip().lower() in ("none", "null") else str(v)
+
+
+def parse_intake(obj: Any, instruction: str) -> Intake:
+    if not isinstance(obj, Mapping):
+        raise ValueError(f"intake answer is not an object: {type(obj).__name__}")
+    t = obj.get("task") or {}
+    steps = []
+    for s in (t.get("steps") or ()):
+        if not isinstance(s, Mapping) or "action" not in s:
+            raise ValueError(f"malformed step: {s!r}")
+        a = str(s["action"]).strip().lower()
+        steps.append(TaskStep(_ACTION_SYN.get(a, a), (str(s["object_role"]) if _txt(s.get("object_role")) else None), _txt(s.get("object_phrase")),
+                              (str(s["target_role"]) if _txt(s.get("target_role")) else None), _txt(s.get("target_phrase")), _txt(s.get("clause"))))
+    bind, bases = [], []
+    for b in obj.get("bindings", ()) or ():
+        if not isinstance(b, Mapping) or "dimension" not in b or "level" not in b:
+            raise ValueError(f"malformed binding: {b!r}")
+        ids = b.get("instance_ids") or ([b["instance_id"]] if b.get("instance_id") else [])
+        bind.append(MannerBinding(tuple(str(i) for i in ids), str(b["dimension"]), str(b["level"]), (str(b["object_role"]) if b.get("object_role") else None),
+                                  str(b.get("clause", "")), "llm"))
+        bases.append({"basis": str(b.get("basis", "")), "antecedent": (str(b["antecedent"]) if b.get("antecedent") else "")})
+    norm = lambda xs: tuple(dict(x) for x in (xs or ()) if isinstance(x, Mapping))
+    unsup = norm(obj.get("unsupported"))
+    order = tuple((int(p[0]), int(p[1])) for p in (t.get("order") or ()) if isinstance(p, (list, tuple)) and len(p) == 2)
+    sem = Semantics(instruction, tuple(bind), norm(obj.get("ambiguous")), unsup, source="llm", prompt_version=INTAKE_PROMPT_VERSION)
+    return Intake(instruction, bool(t.get("restated", bool(steps))), tuple(steps), order, sem, tuple(bases), tuple(str(u.get("code", "other")) for u in unsup))
+
+
+def lexicon_intake(instruction: str, program: TaskProgram) -> Intake:
+    sem = lexicon_semantics(instruction, program)
+    codes = tuple("dimension_not_on_stage" if "dimension_not_on_stage" in str(u.get("reason")) else "other" for u in sem.unsupported)
+    return Intake(instruction, False, (), (), sem, tuple({"basis": "lexicon", "antecedent": ""} for _ in sem.bindings), codes, source="lexicon")
+
+
+# ---- admission --------------------------------------------------------------
+def _step_index(program: TaskProgram) -> dict[tuple, int]:
+    """step key -> instance index; 'pick' steps map to the grasp instance of that object."""
+    out: dict[tuple, int] = {}
+    for k, it in enumerate(program.instances):
+        if it.primitive in ("place", "insert"):
+            out[("put", it.object_role, it.target_role)] = k
+        elif it.primitive == "articulate":
+            out[(it.subtask.split(".")[-1].rsplit("_", 1)[0], it.object_role or it.target_role, None)] = k
+        elif it.primitive == "grasp":
+            out[("pick", it.object_role, None)] = k
+    return out
+
+
+def check_task(intake: Intake, program: TaskProgram) -> tuple[list[dict], list[tuple]]:
+    """sentence -> registered program.  Returns (conflicts, program steps the sentence did not state)."""
+    idx = _step_index(program)
+    errs: list[dict] = []
+    matched: dict[int, int] = {}
+    for i, s in enumerate(intake.steps):
+        if s.object_role is None or s.object_role not in program.objects:
+            errs.append({"code": "object_not_in_program", "step": i, "phrase": s.object_phrase or s.object_role}); continue
+        if s.target_phrase and (s.target_role is None or s.target_role not in program.objects):
+            errs.append({"code": "target_not_in_program", "step": i, "phrase": s.target_phrase}); continue
+        key = (s.action, s.object_role, s.target_role)
+        if key in idx:
+            matched[i] = idx[key]; continue
+        same_obj = [k for k in idx if k[1] == s.object_role and k[0] == s.action]
+        errs.append({"code": "target_mismatch" if same_obj else "step_not_in_program", "step": i, "stated": list(key),
+                     "program": [list(k) for k in same_obj]})
+    for i, j in intake.order:
+        if i in matched and j in matched and matched[i] > matched[j]:
+            errs.append({"code": "order_mismatch", "pair": [i, j]})
+    stated = {k for k, v in idx.items() if v in matched.values()}
+    return errs, ([k for k in idx if k[0] != "pick" and k not in stated] if intake.restated else [])
+
+
+def _has_pronoun(clause: str) -> bool:
+    return any(re.search(rf"\b{p}\b", clause.lower()) for p in PRONOUNS)
+
+
+def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
+    """Decision for one request.  ``guards`` lists rules that overrode / flagged the model's answer."""
+    sem, guards, codes = intake.semantics, [], []
+    errs = check_semantics(sem, program)
+    if errs:
+        return {"status": "invalid", "codes": ["structural"], "detail": errs, "guards": guards, "unstated_program_steps": []}
+    conflicts, unstated = check_task(intake, program)
+    # numeric guard: a numeric manner value must come back as unsupported:numeric_level, never as a binding / nothing
+    text = intake.instruction
+    nums = [m.group(0) for m in NUMERIC_RE.finditer(text)]
+    numeric_unsup = any(c == "numeric_level" for c in intake.unsupported_codes)
+    if nums and not numeric_unsup:
+        guards.append({"guard": "numeric_value_not_returned_as_unsupported", "values": nums})
+    # basis guard
+    ambiguous_extra = []
+    for b, bs in zip(sem.bindings, intake.bases):
+        if bs["basis"] not in BASES:
+            guards.append({"guard": "binding_without_admissible_basis", "clause": b.clause, "basis": bs["basis"]}); ambiguous_extra.append(b.clause)
+        elif bs["basis"] == "antecedent" and (not bs["antecedent"] or bs["antecedent"].lower() not in text.lower()):
+            guards.append({"guard": "antecedent_not_in_instruction", "clause": b.clause, "antecedent": bs["antecedent"]}); ambiguous_extra.append(b.clause)
+    if conflicts:
+        status, codes = "conflict", sorted({c["code"] for c in conflicts})
+    elif nums and (not numeric_unsup or any(NUMERIC_RE.search(b.clause or "") for b in sem.bindings)):
+        status, codes = "unsupported", ["numeric_level"]
+    elif sem.unsupported:
+        status, codes = "unsupported", sorted(set(intake.unsupported_codes))
+    elif sem.ambiguous or ambiguous_extra:
+        status, codes = "ambiguous", ["ambiguous_reference"]
+    else:
+        status = "accept"
+    return {"status": status, "codes": codes, "detail": conflicts, "guards": guards, "unstated_program_steps": [list(u) for u in unstated]}
