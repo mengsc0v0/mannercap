@@ -1,0 +1,155 @@
+{
+ "task": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate",
+ "language": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+ "objects": [
+  "porcelain_mug_1",
+  "red_coffee_mug_1",
+  "white_yellow_mug_1",
+  "plate_1",
+  "plate_2"
+ ],
+ "fixtures": [],
+ "obs_keys": [
+  "agentview_image",
+  "object-state",
+  "plate_1_pos",
+  "plate_1_quat",
+  "plate_1_to_robot0_eef_pos",
+  "plate_1_to_robot0_eef_quat",
+  "plate_2_pos",
+  "plate_2_quat",
+  "plate_2_to_robot0_eef_pos",
+  "plate_2_to_robot0_eef_quat",
+  "porcelain_mug_1_pos",
+  "porcelain_mug_1_quat",
+  "porcelain_mug_1_to_robot0_eef_pos",
+  "porcelain_mug_1_to_robot0_eef_quat",
+  "red_coffee_mug_1_pos",
+  "red_coffee_mug_1_quat",
+  "red_coffee_mug_1_to_robot0_eef_pos",
+  "red_coffee_mug_1_to_robot0_eef_quat",
+  "robot0_eef_pos",
+  "robot0_eef_quat",
+  "robot0_eye_in_hand_image",
+  "robot0_gripper_qpos",
+  "robot0_gripper_qvel",
+  "robot0_joint_pos",
+  "robot0_joint_pos_cos",
+  "robot0_joint_pos_sin",
+  "robot0_joint_vel",
+  "robot0_proprio-state",
+  "white_yellow_mug_1_pos",
+  "white_yellow_mug_1_quat",
+  "white_yellow_mug_1_to_robot0_eef_pos",
+  "white_yellow_mug_1_to_robot0_eef_quat"
+ ],
+ "control_freq": 20,
+ "model_timestep": 0.002,
+ "controller": {
+  "type": "OperationalSpaceController",
+  "kp": [
+   150.0,
+   150.0,
+   150.0,
+   150.0,
+   150.0,
+   150.0
+  ],
+  "input_max": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "output_max": [
+   0.05,
+   0.05,
+   0.05,
+   0.5,
+   0.5,
+   0.5
+  ],
+  "use_delta": true
+ },
+ "gripper": "PandaGripper",
+ "action_sign": {
+  "x": {
+   "delta_m": [
+    0.10204224690472449,
+    0.0010507110910192782,
+    -0.017185650072259917
+   ],
+   "mean_speed_mps_at_cmd1": 0.206969279996503
+  },
+  "y": {
+   "delta_m": [
+    -0.004534144429801962,
+    0.11972207867893937,
+    -0.0019388159421005469
+   ],
+   "mean_speed_mps_at_cmd1": 0.23964718730812426
+  },
+  "z": {
+   "delta_m": [
+    -0.009944427620859661,
+    0.00015487268189678417,
+    0.1168033968553015
+   ],
+   "mean_speed_mps_at_cmd1": 0.23445212000057641
+  }
+ },
+ "gripper_sign": {
+  "close": {
+   "qpos_before": [
+    0.020833,
+    -0.020833
+   ],
+   "qpos_after": [
+    0.001285693537914777,
+    -0.0012824179342577793
+   ]
+  },
+  "hold": {
+   "qpos_before": [
+    0.001285693537914777,
+    -0.0012824179342577793
+   ],
+   "qpos_after": [
+    0.000766520185208668,
+    -0.0007655710475308242
+   ]
+  },
+  "open": {
+   "qpos_before": [
+    0.000766520185208668,
+    -0.0007655710475308242
+   ],
+   "qpos_after": [
+    0.0358041608592466,
+    -0.0358048928264707
+   ]
+  }
+ },
+ "image_shape": [
+  224,
+  224,
+  3
+ ],
+ "image_top_vs_bottom_mean": [
+  60.466815476190476,
+  85.04888392857143
+ ],
+ "n_finger_geoms": 6,
+ "restore_repeat": {
+  "traj_max_abs_diff": 0.010099621093427463,
+  "final_state_max_abs_diff": 0.010000530646943194,
+  "note": "sim state only; controller internal state / gripper / done caches not restored"
+ },
+ "state_dim": 84,
+ "init_states_shape": [
+  50,
+  84
+ ]
+}

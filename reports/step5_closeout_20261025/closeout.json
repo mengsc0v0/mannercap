@@ -1,0 +1,155 @@
+{
+ "workspace_version": {
+  "head": "38762059c670644e3988041b43d4ed74bdcfb358",
+  "branch": "work/experience-library-6phase-20260928",
+  "working_tree_sha256_incl_untracked_code": "6a33b22a7bcd5971d5ff2ee05f2ef762aabbf7ab3da614b49121961e2cd0e34a"
+ },
+ "evaluation_versions": {
+  "v1": {
+   "bands": "configs/manner_calibration.v1.json",
+   "dev_inits_for_pairs": "0-7",
+   "per_combo_all_pass": {
+    "GF": [
+     6,
+     8
+    ],
+    "FG": [
+     8,
+     8
+    ],
+    "GG": [
+     6,
+     8
+    ],
+    "FF": [
+     8,
+     8
+    ]
+   },
+   "pairs_all_pass": [
+    6,
+    8
+   ],
+   "per_check": {
+    "completion": [
+     32,
+     32
+    ],
+    "measure_all_checks": [
+     30,
+     32
+    ],
+    "replay_bitwise": [
+     32,
+     32
+    ],
+    "resume_all": [
+     32,
+     32
+    ],
+    "event_sequence": [
+     32,
+     32
+    ],
+    "events_in_stage": [
+     32,
+     32
+    ],
+    "phase_zero_mismatch": [
+     32,
+     32
+    ],
+    "online_eq_offline": [
+     32,
+     32
+    ],
+    "hold_in_band_both_objects": [
+     30,
+     32
+    ],
+    "peak_le_cap_both_objects": [
+     32,
+     32
+    ]
+   }
+  },
+  "v2": {
+   "bands": "configs/manner_calibration.v2.json (transport_dz=0.175 recalibrated on inits 8-13)",
+   "dev_inits_for_pairs": "14-21",
+   "per_combo_all_pass": {
+    "GF": [
+     7,
+     8
+    ],
+    "FG": [
+     6,
+     8
+    ],
+    "GG": [
+     7,
+     8
+    ],
+    "FF": [
+     6,
+     8
+    ]
+   },
+   "pairs_all_pass": [
+    6,
+    8
+   ],
+   "per_check": {
+    "completion": [
+     28,
+     32
+    ],
+    "measure_all_checks": [
+     28,
+     32
+    ],
+    "replay_bitwise": [
+     32,
+     32
+    ],
+    "resume_all": [
+     32,
+     32
+    ],
+    "event_sequence": [
+     28,
+     32
+    ],
+    "events_in_stage": [
+     28,
+     32
+    ],
+    "phase_zero_mismatch": [
+     28,
+     32
+    ],
+    "online_eq_offline": [
+     32,
+     32
+    ],
+    "hold_in_band_both_objects": [
+     28,
+     32
+    ],
+    "peak_le_cap_both_objects": [
+     30,
+     32
+    ]
+   }
+  },
+  "devcheck_v1_bands_with_fix": null,
+  "evaluation_change": "v1->v2 changes one evaluation value: cream_cheese peak cap 75.93 -> 52.02 N (butter 51.22 -> 51.20; hold bands change <=0.2 N). Calibration protocol unchanged. Caps are operational force caps from dev-trajectory statistics, not object-damage thresholds. v1 and v2 pass rates are on different inits and different caps and must not be pooled or compared as a trend.",
+  "cap_origin": "v1 cream peak cap came from two firm-plan dev trajectories with sub-step finger-rim contact (inits 9: 60.7 N, 12: 56.7 N); after the raised transport the same inits give 41.6 N (v2)."
+ },
+ "init16": {
+  "plan_letter_check": "verified in recorded arrays: letters=(cream,butter); FG executes cream target band (35,100) and butter band (1,22); GG executes (1,22) for both; force_target and hold_instance switch at each object's grasp.",
+  "peak_definition": "audit peak_total_n = max over control steps of (left per-finger sub-step max + right per-finger sub-step max) = conservative upper bound. At init16 butter FG/FF the left and right maxima occur in the same sub-step, so the same-sub-step L+R max is also 69.5 N (44.2 L + 25.2 R); the 69.5 N is a measured synchronous value here, with asymmetric fingers.",
+  "prefix_evidence": "butter and eef poses at butter-approach start are identical to <0.05 mm (eef/butter pose only; the full physical and control state was not shown to be identical) in all four combos; cream-cheese pose in the basket differs by 1.9 mm between firm and gentle prefixes and the butter approach starts one control step later (220 vs 219). Both firm-prefix combos (FG, FF) give 69.5 N on the butter at the 6th grasp step, before the butter's own plan can matter (FG and FF identical); both gentle-prefix combos give 40.1-40.4 N. Gentle in the same prefix situation over inits 14,15,18-21: FG butter 35.7-38.4 N.",
+  "contact_evidence": "in all four init16 combos fingers/hand press on living_room_table_col with 13-20 N during the closing steps (init14 control: none); the butter is pushed ~2.5 mm in y by the left finger one step before the right finger touches (L-only 8.5-10.3 N at step 5).",
+  "conclusion": "黄油抓取存在指尖压桌和先后接触不对称；峰值与前序方式条件关联，但放大机制及因果关系尚未隔离。Not an instance-switching or controller-history bug. Kept as a failure (peak 69.5 N > cap 51.2 N; GG/GF butter peaks 40.1-40.4 N). Step 9 candidates (not a unique fix): adjust butter approach/grasp geometry, or other stage edits. Recovery point depends on the actual edit: if the butter approach geometry is edited, resume from before that parameter takes effect; if a cream-cheese stage is edited, recover earlier and do not reuse the already-affected old prefix. No further mechanism chase."
+ }
+}

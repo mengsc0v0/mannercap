@@ -1,0 +1,684 @@
+[
+ {
+  "seed": 106,
+  "all4_joint": true,
+  "pairs": {
+   "cubeA->cubeB:cubeA": true,
+   "cubeA->cubeB:cubeB": true,
+   "cubeB->cubeA:cubeA": true,
+   "cubeB->cubeA:cubeB": true
+  },
+  "pairs_all": true,
+  "settle_ref_spread_m": 0.0,
+  "runs": [
+   {
+    "execution_end": true,
+    "task_ok": true,
+    "manner_pass": true,
+    "safety_ok": true,
+    "bound_ok": true,
+    "joint_pass": true,
+    "holds": {
+     "cubeA": {
+      "gid": "cubeA.pick_1.grasp",
+      "level": "gentle",
+      "band": [
+       0.459,
+       8.683
+      ],
+      "n_hold": 99,
+      "n_valid": 99,
+      "n_nan": 0,
+      "n_missing_contact": 0,
+      "n_below": 0,
+      "n_above": 0,
+      "min": 0.906,
+      "max": 1.183,
+      "p5": 0.915,
+      "p50": 0.941,
+      "p95": 1.0,
+      "margin_lo": 0.447,
+      "margin_hi": 7.5,
+      "audit_decision": "PASS",
+      "audit_reason": "",
+      "binding": {
+       "steps_in_scope": 209,
+       "steps_measuring_expected": 209,
+       "steps_hold_instance_is_self": 209,
+       "bound_ok": true
+      }
+     },
+     "cubeB": {
+      "gid": "cubeB.pick_1.grasp",
+      "level": "firm",
+      "band": [
+       23.934,
+       39.73
+      ],
+      "n_hold": 104,
+      "n_valid": 104,
+      "n_nan": 0,
+      "n_missing_contact": 0,
+      "n_below": 0,
+      "n_above": 0,
+      "min": 26.272,
+      "max": 26.329,
+      "p5": 26.283,
+      "p50": 26.323,
+      "p95": 26.329,
+      "margin_lo": 2.338,
+      "margin_hi": 13.401,
+      "audit_decision": "PASS",
+      "audit_reason": "",
+      "binding": {
+       "steps_in_scope": 204,
+       "steps_measuring_expected": 204,
+       "steps_hold_instance_is_self": 204,
+       "bound_ok": true
+      }
+     }
+    },
+    "task": {
+     "objects": {
+      "cubeA": {
+       "restored": true,
+       "dxy": 0.0003,
+       "dz": 0.0,
+       "lifted": true,
+       "max_lift_m": 0.1453,
+       "undisturbed_outside_own_subtask": true,
+       "rest_dev_m": 0.0
+      },
+      "cubeB": {
+       "restored": true,
+       "dxy": 0.0034,
+       "dz": 0.0,
+       "lifted": true,
+       "max_lift_m": 0.1441,
+       "undisturbed_outside_own_subtask": true,
+       "rest_dev_m": 0.0
+      }
+     },
+     "task_ok": true
+    },
+    "safety": {
+     "cap_n": 44.07421873891627,
+     "peak_total_n": 34.182,
+     "ok": true,
+     "argmax_stage": "cubeB.pick_1.grasp"
+    },
+    "settle": {
+     "settle_ref_step": 12,
+     "first_grasp_step": 128,
+     "settle_before_first_grasp": true,
+     "ref_pos": {
+      "cubeA": [
+       -0.1601108113141764,
+       0.03261956345151981,
+       0.8198922445561985
+      ],
+      "cubeB": [
+       0.17103614147636612,
+       -0.08369968150463204,
+       0.8248922445561975
+      ]
+     },
+     "cubeA_settle_step_disp_m": 0.0,
+     "cubeA_stable": true,
+     "cubeB_settle_step_disp_m": 0.0,
+     "cubeB_stable": true
+    },
+    "tag": "AB_gentleA_firmB_s106",
+    "seed": 106,
+    "order": "cubeA->cubeB",
+    "levels": {
+     "cubeA": "gentle",
+     "cubeB": "firm"
+    },
+    "n_steps": 1050,
+    "init_qpos_matches_generator": 0.0,
+    "replay": {
+     "execution_end": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true,
+     "diff": {
+      "left_mean_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "right_mean_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "left_max_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "right_max_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "valid_fraction": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "next_state_max_abs": 0.0,
+      "pos_max_abs": 0.0
+     },
+     "same_verdict_as_gen": {
+      "holds_equal": true,
+      "task_ok": true,
+      "manner_pass": true,
+      "safety_ok": true,
+      "bound_ok": true,
+      "joint_pass": true
+     }
+    }
+   },
+   {
+    "execution_end": true,
+    "task_ok": true,
+    "manner_pass": true,
+    "safety_ok": true,
+    "bound_ok": true,
+    "joint_pass": true,
+    "holds": {
+     "cubeA": {
+      "gid": "cubeA.pick_1.grasp",
+      "level": "firm",
+      "band": [
+       23.934,
+       39.73
+      ],
+      "n_hold": 99,
+      "n_valid": 99,
+      "n_nan": 0,
+      "n_missing_contact": 0,
+      "n_below": 0,
+      "n_above": 0,
+      "min": 31.69,
+      "max": 31.795,
+      "p5": 31.71,
+      "p50": 31.775,
+      "p95": 31.78,
+      "margin_lo": 7.756,
+      "margin_hi": 7.936,
+      "audit_decision": "PASS",
+      "audit_reason": "",
+      "binding": {
+       "steps_in_scope": 209,
+       "steps_measuring_expected": 209,
+       "steps_hold_instance_is_self": 209,
+       "bound_ok": true
+      }
+     },
+     "cubeB": {
+      "gid": "cubeB.pick_1.grasp",
+      "level": "gentle",
+      "band": [
+       0.459,
+       8.683
+      ],
+      "n_hold": 104,
+      "n_valid": 104,
+      "n_nan": 0,
+      "n_missing_contact": 0,
+      "n_below": 0,
+      "n_above": 0,
+      "min": 2.874,
+      "max": 2.99,
+      "p5": 2.885,
+      "p50": 2.912,
+      "p95": 2.957,
+      "margin_lo": 2.415,
+      "margin_hi": 5.693,
+      "audit_decision": "PASS",
+      "audit_reason": "",
+      "binding": {
+       "steps_in_scope": 203,
+       "steps_measuring_expected": 203,
+       "steps_hold_instance_is_self": 203,
+       "bound_ok": true
+      }
+     }
+    },
+    "task": {
+     "objects": {
+      "cubeA": {
+       "restored": true,
+       "dxy": 0.0007,
+       "dz": 0.0,
+       "lifted": true,
+       "max_lift_m": 0.1455,
+       "undisturbed_outside_own_subtask": true,
+       "rest_dev_m": 0.0
+      },
+      "cubeB": {
+       "restored": true,
+       "dxy": 0.004,
+       "dz": 0.0,
+       "lifted": true,
+       "max_lift_m": 0.1439,
+       "undisturbed_outside_own_subtask": true,
+       "rest_dev_m": 0.0
+      }
+     },
+     "task_ok": true
+    },
+    "safety": {
+     "cap_n": 44.07421873891627,
+     "peak_total_n": 31.941,
+     "ok": true,
+     "argmax_stage": "cubeA.pick_1.lift"
+    },
+    "settle": {
+     "settle_ref_step": 12,
+     "first_grasp_step": 128,
+     "settle_before_first_grasp": true,
+     "ref_pos": {
+      "cubeA": [
+       -0.1601108113141764,
+       0.03261956345151981,
+       0.8198922445561985
+      ],
+      "cubeB": [
+       0.17103614147636612,
+       -0.08369968150463204,
+       0.8248922445561975
+      ]
+     },
+     "cubeA_settle_step_disp_m": 0.0,
+     "cubeA_stable": true,
+     "cubeB_settle_step_disp_m": 0.0,
+     "cubeB_stable": true
+    },
+    "tag": "AB_firmA_gentleB_s106",
+    "seed": 106,
+    "order": "cubeA->cubeB",
+    "levels": {
+     "cubeA": "firm",
+     "cubeB": "gentle"
+    },
+    "n_steps": 1050,
+    "init_qpos_matches_generator": 0.0,
+    "replay": {
+     "execution_end": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true,
+     "diff": {
+      "left_mean_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "right_mean_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "left_max_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "right_max_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "valid_fraction": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "next_state_max_abs": 0.0,
+      "pos_max_abs": 0.0
+     },
+     "same_verdict_as_gen": {
+      "holds_equal": true,
+      "task_ok": true,
+      "manner_pass": true,
+      "safety_ok": true,
+      "bound_ok": true,
+      "joint_pass": true
+     }
+    }
+   },
+   {
+    "execution_end": true,
+    "task_ok": true,
+    "manner_pass": true,
+    "safety_ok": true,
+    "bound_ok": true,
+    "joint_pass": true,
+    "holds": {
+     "cubeA": {
+      "gid": "cubeA.pick_1.grasp",
+      "level": "gentle",
+      "band": [
+       0.459,
+       8.683
+      ],
+      "n_hold": 98,
+      "n_valid": 98,
+      "n_nan": 0,
+      "n_missing_contact": 0,
+      "n_below": 0,
+      "n_above": 0,
+      "min": 0.902,
+      "max": 1.124,
+      "p5": 0.911,
+      "p50": 0.946,
+      "p95": 0.993,
+      "margin_lo": 0.444,
+      "margin_hi": 7.559,
+      "audit_decision": "PASS",
+      "audit_reason": "",
+      "binding": {
+       "steps_in_scope": 209,
+       "steps_measuring_expected": 209,
+       "steps_hold_instance_is_self": 209,
+       "bound_ok": true
+      }
+     },
+     "cubeB": {
+      "gid": "cubeB.pick_1.grasp",
+      "level": "firm",
+      "band": [
+       23.934,
+       39.73
+      ],
+      "n_hold": 104,
+      "n_valid": 104,
+      "n_nan": 0,
+      "n_missing_contact": 0,
+      "n_below": 0,
+      "n_above": 0,
+      "min": 26.175,
+      "max": 27.596,
+      "p5": 26.178,
+      "p50": 26.381,
+      "p95": 26.486,
+      "margin_lo": 2.242,
+      "margin_hi": 12.134,
+      "audit_decision": "PASS",
+      "audit_reason": "",
+      "binding": {
+       "steps_in_scope": 204,
+       "steps_measuring_expected": 204,
+       "steps_hold_instance_is_self": 204,
+       "bound_ok": true
+      }
+     }
+    },
+    "task": {
+     "objects": {
+      "cubeA": {
+       "restored": true,
+       "dxy": 0.0004,
+       "dz": 0.0,
+       "lifted": true,
+       "max_lift_m": 0.1438,
+       "undisturbed_outside_own_subtask": true,
+       "rest_dev_m": 0.0
+      },
+      "cubeB": {
+       "restored": true,
+       "dxy": 0.0033,
+       "dz": 0.0,
+       "lifted": true,
+       "max_lift_m": 0.1437,
+       "undisturbed_outside_own_subtask": true,
+       "rest_dev_m": 0.0
+      }
+     },
+     "task_ok": true
+    },
+    "safety": {
+     "cap_n": 44.07421873891627,
+     "peak_total_n": 34.148,
+     "ok": true,
+     "argmax_stage": "cubeB.pick_1.grasp"
+    },
+    "settle": {
+     "settle_ref_step": 12,
+     "first_grasp_step": 283,
+     "settle_before_first_grasp": true,
+     "ref_pos": {
+      "cubeA": [
+       -0.1601108113141764,
+       0.03261956345151981,
+       0.8198922445561985
+      ],
+      "cubeB": [
+       0.17103614147636612,
+       -0.08369968150463204,
+       0.8248922445561975
+      ]
+     },
+     "cubeA_settle_step_disp_m": 0.0,
+     "cubeA_stable": true,
+     "cubeB_settle_step_disp_m": 0.0,
+     "cubeB_stable": true
+    },
+    "tag": "BA_gentleA_firmB_s106",
+    "seed": 106,
+    "order": "cubeB->cubeA",
+    "levels": {
+     "cubeA": "gentle",
+     "cubeB": "firm"
+    },
+    "n_steps": 1206,
+    "init_qpos_matches_generator": 0.0,
+    "replay": {
+     "execution_end": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true,
+     "diff": {
+      "left_mean_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "right_mean_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "left_max_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "right_max_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "valid_fraction": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "next_state_max_abs": 0.0,
+      "pos_max_abs": 0.0
+     },
+     "same_verdict_as_gen": {
+      "holds_equal": true,
+      "task_ok": true,
+      "manner_pass": true,
+      "safety_ok": true,
+      "bound_ok": true,
+      "joint_pass": true
+     }
+    }
+   },
+   {
+    "execution_end": true,
+    "task_ok": true,
+    "manner_pass": true,
+    "safety_ok": true,
+    "bound_ok": true,
+    "joint_pass": true,
+    "holds": {
+     "cubeA": {
+      "gid": "cubeA.pick_1.grasp",
+      "level": "firm",
+      "band": [
+       23.934,
+       39.73
+      ],
+      "n_hold": 99,
+      "n_valid": 99,
+      "n_nan": 0,
+      "n_missing_contact": 0,
+      "n_below": 0,
+      "n_above": 0,
+      "min": 31.804,
+      "max": 31.868,
+      "p5": 31.824,
+      "p50": 31.867,
+      "p95": 31.868,
+      "margin_lo": 7.87,
+      "margin_hi": 7.863,
+      "audit_decision": "PASS",
+      "audit_reason": "",
+      "binding": {
+       "steps_in_scope": 210,
+       "steps_measuring_expected": 210,
+       "steps_hold_instance_is_self": 210,
+       "bound_ok": true
+      }
+     },
+     "cubeB": {
+      "gid": "cubeB.pick_1.grasp",
+      "level": "gentle",
+      "band": [
+       0.459,
+       8.683
+      ],
+      "n_hold": 104,
+      "n_valid": 104,
+      "n_nan": 0,
+      "n_missing_contact": 0,
+      "n_below": 0,
+      "n_above": 0,
+      "min": 2.904,
+      "max": 3.017,
+      "p5": 2.913,
+      "p50": 2.922,
+      "p95": 2.994,
+      "margin_lo": 2.445,
+      "margin_hi": 5.666,
+      "audit_decision": "PASS",
+      "audit_reason": "",
+      "binding": {
+       "steps_in_scope": 203,
+       "steps_measuring_expected": 203,
+       "steps_hold_instance_is_self": 203,
+       "bound_ok": true
+      }
+     }
+    },
+    "task": {
+     "objects": {
+      "cubeA": {
+       "restored": true,
+       "dxy": 0.0006,
+       "dz": 0.0,
+       "lifted": true,
+       "max_lift_m": 0.1454,
+       "undisturbed_outside_own_subtask": true,
+       "rest_dev_m": 0.0
+      },
+      "cubeB": {
+       "restored": true,
+       "dxy": 0.0035,
+       "dz": 0.0,
+       "lifted": true,
+       "max_lift_m": 0.1435,
+       "undisturbed_outside_own_subtask": true,
+       "rest_dev_m": 0.0
+      }
+     },
+     "task_ok": true
+    },
+    "safety": {
+     "cap_n": 44.07421873891627,
+     "peak_total_n": 31.875,
+     "ok": true,
+     "argmax_stage": "cubeA.pick_1.place"
+    },
+    "settle": {
+     "settle_ref_step": 12,
+     "first_grasp_step": 283,
+     "settle_before_first_grasp": true,
+     "ref_pos": {
+      "cubeA": [
+       -0.1601108113141764,
+       0.03261956345151981,
+       0.8198922445561985
+      ],
+      "cubeB": [
+       0.17103614147636612,
+       -0.08369968150463204,
+       0.8248922445561975
+      ]
+     },
+     "cubeA_settle_step_disp_m": 0.0,
+     "cubeA_stable": true,
+     "cubeB_settle_step_disp_m": 0.0,
+     "cubeB_stable": true
+    },
+    "tag": "BA_firmA_gentleB_s106",
+    "seed": 106,
+    "order": "cubeB->cubeA",
+    "levels": {
+     "cubeA": "firm",
+     "cubeB": "gentle"
+    },
+    "n_steps": 1207,
+    "init_qpos_matches_generator": 0.0,
+    "replay": {
+     "execution_end": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true,
+     "diff": {
+      "left_mean_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "right_mean_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "left_max_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "right_max_n": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "valid_fraction": {
+       "max_abs": 0.0,
+       "nan_mismatch": 0
+      },
+      "next_state_max_abs": 0.0,
+      "pos_max_abs": 0.0
+     },
+     "same_verdict_as_gen": {
+      "holds_equal": true,
+      "task_ok": true,
+      "manner_pass": true,
+      "safety_ok": true,
+      "bound_ok": true,
+      "joint_pass": true
+     }
+    }
+   }
+  ]
+ }
+]

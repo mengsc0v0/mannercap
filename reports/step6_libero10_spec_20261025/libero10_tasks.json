@@ -1,0 +1,112 @@
+[
+ {
+  "id": 0,
+  "name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket",
+  "language": "put both the alphabet soup and the tomato sauce in the basket",
+  "bddl": "libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.bddl",
+  "objects": "(:objects alphabet_soup_1 - alphabet_soup cream_cheese_1 - cream_cheese tomato_sauce_1 - tomato_sauce ketchup_1 - ketchup orange_juice_1 - orange_juice milk_1 - milk butter_1 - butter basket_1 - basket )",
+  "fixtures": "(:fixtures living_room_table - living_room_table )",
+  "goal": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In tomato_sauce_1 basket_1_contain_region)) )",
+  "init": "(:init (On alphabet_soup_1 living_room_table_alphabet_soup_init_region) (On cream_cheese_1 living_room_table_cream_cheese_init_region) (On tomato_sauce_1 living_room_table_tomato_sauce_init_region) (On ketchup_1 living_room_table_ketchup_init_region) (On milk_1 living_room_table_milk_init_region) (On orange_juice_1 living_room_table_orange_juice_init_region) (On butter_1 living_room_table_butter_init_region) (On basket_1 living_room_table_basket_init_region) )",
+  "n_init_states": 50
+ },
+ {
+  "id": 1,
+  "name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket",
+  "language": "put both the cream cheese box and the butter in the basket",
+  "bddl": "libero_10/LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket.bddl",
+  "objects": "(:objects alphabet_soup_1 - alphabet_soup cream_cheese_1 - cream_cheese tomato_sauce_1 - tomato_sauce ketchup_1 - ketchup orange_juice_1 - orange_juice milk_1 - milk butter_1 - butter basket_1 - basket )",
+  "fixtures": "(:fixtures living_room_table - living_room_table )",
+  "goal": "(:goal (And (In cream_cheese_1 basket_1_contain_region) (In butter_1 basket_1_contain_region)) )",
+  "init": "(:init (On alphabet_soup_1 living_room_table_alphabet_soup_init_region) (On cream_cheese_1 living_room_table_cream_cheese_init_region) (On tomato_sauce_1 living_room_table_tomato_sauce_init_region) (On ketchup_1 living_room_table_ketchup_init_region) (On milk_1 living_room_table_milk_init_region) (On orange_juice_1 living_room_table_orange_juice_init_region) (On butter_1 living_room_table_butter_init_region) (On basket_1 living_room_table_basket_init_region) )",
+  "n_init_states": 50
+ },
+ {
+  "id": 2,
+  "name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+  "language": "turn on the stove and put the moka pot on it",
+  "bddl": "libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.bddl",
+  "objects": "(:objects chefmate_8_frypan_1 - chefmate_8_frypan moka_pot_1 - moka_pot )",
+  "fixtures": "(:fixtures kitchen_table - kitchen_table flat_stove_1 - flat_stove )",
+  "goal": "(:goal (And (Turnon flat_stove_1) (On moka_pot_1 flat_stove_1_cook_region)) )",
+  "init": "(:init (On flat_stove_1 kitchen_table_flat_stove_init_region) (On chefmate_8_frypan_1 kitchen_table_frypan_init_region) (On moka_pot_1 kitchen_table_moka_pot_init_region) )",
+  "n_init_states": 50
+ },
+ {
+  "id": 3,
+  "name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it",
+  "language": "put the black bowl in the bottom drawer of the cabinet and close it",
+  "bddl": "libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.bddl",
+  "objects": "(:objects akita_black_bowl_1 - akita_black_bowl wine_bottle_1 - wine_bottle )",
+  "fixtures": "(:fixtures kitchen_table - kitchen_table white_cabinet_1 - white_cabinet wine_rack_1 - wine_rack )",
+  "goal": "(:goal (And (Close white_cabinet_1_bottom_region) (In akita_black_bowl_1 white_cabinet_1_bottom_region)) )",
+  "init": "(:init (On akita_black_bowl_1 kitchen_table_akita_black_bowl_init_region) (On wine_bottle_1 kitchen_table_wine_bottle_init_region) (On white_cabinet_1 kitchen_table_white_cabinet_init_region) (On wine_rack_1 kitchen_table_wine_rack_init_region) (Open white_cabinet_1_bottom_region) )",
+  "n_init_states": 50
+ },
+ {
+  "id": 4,
+  "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate",
+  "language": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+  "bddl": "libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.bddl",
+  "objects": "(:objects porcelain_mug_1 - porcelain_mug red_coffee_mug_1 - red_coffee_mug white_yellow_mug_1 - white_yellow_mug plate_1 plate_2 - plate )",
+  "fixtures": "(:fixtures living_room_table - living_room_table )",
+  "goal": "(:goal (And (On porcelain_mug_1 plate_1) (On white_yellow_mug_1 plate_2)) )",
+  "init": "(:init (On plate_1 living_room_table_plate_left_region) (On plate_2 living_room_table_plate_right_region) (On red_coffee_mug_1 living_room_table_red_coffee_mug_init_region) (On white_yellow_mug_1 living_room_table_white_yellow_mug_init_region) (On porcelain_mug_1 living_room_table_porcelain_mug_init_region) )",
+  "n_init_states": 50
+ },
+ {
+  "id": 5,
+  "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy",
+  "language": "pick up the book and place it in the back compartment of the caddy",
+  "bddl": "libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy.bddl",
+  "objects": "(:objects black_book_1 - black_book white_yellow_mug_1 - white_yellow_mug )",
+  "fixtures": "(:fixtures study_table - study_table desk_caddy_1 - desk_caddy )",
+  "goal": "(:goal (And (In black_book_1 desk_caddy_1_back_contain_region)) )",
+  "init": "(:init (On desk_caddy_1 study_table_desk_caddy_init_region) (On black_book_1 study_table_black_book_init_region) (On white_yellow_mug_1 study_table_white_yellow_mug_init_region) )",
+  "n_init_states": 50
+ },
+ {
+  "id": 6,
+  "name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate",
+  "language": "put the white mug on the plate and put the chocolate pudding to the right of the plate",
+  "bddl": "libero_10/LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate.bddl",
+  "objects": "(:objects porcelain_mug_1 - porcelain_mug red_coffee_mug_1 - red_coffee_mug plate_1 - plate chocolate_pudding_1 - chocolate_pudding )",
+  "fixtures": "(:fixtures living_room_table - living_room_table )",
+  "goal": "(:goal (And (On porcelain_mug_1 plate_1) (On chocolate_pudding_1 living_room_table_plate_right_region)) )",
+  "init": "(:init (On plate_1 living_room_table_plate_init_region) (On red_coffee_mug_1 living_room_table_red_coffee_mug_init_region) (On chocolate_pudding_1 living_room_table_chocolate_pudding_init_region) (On porcelain_mug_1 living_room_table_porcelain_mug_init_region) )",
+  "n_init_states": 50
+ },
+ {
+  "id": 7,
+  "name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket",
+  "language": "put both the alphabet soup and the cream cheese box in the basket",
+  "bddl": "libero_10/LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket.bddl",
+  "objects": "(:objects alphabet_soup_1 - alphabet_soup cream_cheese_1 - cream_cheese tomato_sauce_1 - tomato_sauce ketchup_1 - ketchup basket_1 - basket )",
+  "fixtures": "(:fixtures living_room_table - living_room_table )",
+  "goal": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In cream_cheese_1 basket_1_contain_region)) )",
+  "init": "(:init (On alphabet_soup_1 living_room_table_alphabet_soup_init_region) (On cream_cheese_1 living_room_table_cream_cheese_init_region) (On tomato_sauce_1 living_room_table_tomato_sauce_init_region) (On ketchup_1 living_room_table_ketchup_init_region) (On basket_1 living_room_table_basket_init_region) )",
+  "n_init_states": 50
+ },
+ {
+  "id": 8,
+  "name": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove",
+  "language": "put both moka pots on the stove",
+  "bddl": "libero_10/KITCHEN_SCENE8_put_both_moka_pots_on_the_stove.bddl",
+  "objects": "(:objects moka_pot_1 moka_pot_2 - moka_pot )",
+  "fixtures": "(:fixtures kitchen_table - kitchen_table flat_stove_1 - flat_stove )",
+  "goal": "(:goal (And (On moka_pot_1 flat_stove_1_cook_region) (On moka_pot_2 flat_stove_1_cook_region) (Turnon flat_stove_1)) )",
+  "init": "(:init (On flat_stove_1 kitchen_table_flat_stove_init_region) (On moka_pot_1 kitchen_table_moka_pot_right_init_region) (On moka_pot_2 kitchen_table_moka_pot_left_init_region) (Turnon flat_stove_1) )",
+  "n_init_states": 50
+ },
+ {
+  "id": 9,
+  "name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+  "language": "put the yellow and white mug in the microwave and close it",
+  "bddl": "libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.bddl",
+  "objects": "(:objects porcelain_mug_1 - porcelain_mug white_yellow_mug_1 - white_yellow_mug )",
+  "fixtures": "(:fixtures kitchen_table - kitchen_table microwave_1 - microwave )",
+  "goal": "(:goal (And (In white_yellow_mug_1 microwave_1_heating_region) (Close microwave_1)) )",
+  "init": "(:init (On porcelain_mug_1 kitchen_table_porcelain_mug_init_region) (On white_yellow_mug_1 kitchen_table_white_yellow_mug_init_region) (On microwave_1 kitchen_table_microwave_init_region) (Open microwave_1) )",
+  "n_init_states": 50
+ }
+]

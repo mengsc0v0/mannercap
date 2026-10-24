@@ -1,0 +1,15 @@
+交接 2026-10-23（v3 设计 §8.4 Step0-8 顺序实施）
+状态：Step0 完成；Step1 进行中；未提交 git（git status 查看改动）。
+Step0 结果：
+- 基线 digests: reports/baseline_20261023/episode_digests.json；比对脚本 scripts/mt/s0_compare_digests.py
+- 跨进程重跑(/tmp/baseline_rerun) 16/23 一致；nut_assembly 6/6 不一致：同 seed 不同进程 nut 初始位置不同（/tmp/nutdet.py 3 次 3 个位置）=> NativeSession reset 播种不完整，需修
+- lift 带图 episode 仅 images 不同（EGL 渲染非确定）
+- wipe 进程内 resume 不 bit 一致（native save_state 未保存 _observables）
+- LIBERO 全快照恢复 bit 一致（scripts/mt/s0_libero_restore_probe.py）
+Step1 已做：
+- synthesis_v2/task_program.py：StageInstance/TaskProgram/legacy_program/resolve_stage_ref
+- synthesis_v2/program_executor.py：ProgramPlan（每 grasp 实例独立 GripPlan）、produce_program_episode 通用执行器
+- native_producer.py：_Recorder.stage_dtype；produce_episode 委托执行器
+- 验证：lift/stack neutral seed0 与基线 digest EQUAL（/tmp/s1_quick.py）
+Step1 待做：修 nut 播种 -> 重建基线并全量比对 -> 两次抓取组合演示 -> tests/test_task_program.py -> 全量 pytest
+阻塞：服务器无外网，LLM 无法调用；需 HTTPS_PROXY 或 SSH 反向隧道。密钥在 ~/.config/mannercap/llm.env（建议轮换）

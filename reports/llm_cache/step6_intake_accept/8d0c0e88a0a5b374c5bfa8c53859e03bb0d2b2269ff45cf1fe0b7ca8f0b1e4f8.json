@@ -1,0 +1,37 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v2",
+  "response": {
+    "ambiguous": [],
+    "bindings": [],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "put the black bowl on top of the cabinet",
+          "object_phrase": "the black bowl",
+          "object_role": "black_bowl",
+          "target_phrase": "on top of the cabinet",
+          "target_role": null
+        },
+        {
+          "action": "close",
+          "clause": "close the drawer",
+          "object_phrase": "the drawer",
+          "object_role": "drawer",
+          "target_phrase": null,
+          "target_role": null
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

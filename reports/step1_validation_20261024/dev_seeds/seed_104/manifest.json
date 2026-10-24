@@ -1,0 +1,65 @@
+{
+  "phase": "seeds",
+  "seeds": [
+    104
+  ],
+  "orders": [
+    [
+      "cubeA",
+      "cubeB"
+    ],
+    [
+      "cubeB",
+      "cubeA"
+    ]
+  ],
+  "levels": [
+    {
+      "cubeA": "gentle",
+      "cubeB": "firm"
+    },
+    {
+      "cubeA": "firm",
+      "cubeB": "gentle"
+    }
+  ],
+  "replay_seed": 7777,
+  "profile": "prod",
+  "plans": {
+    "gentle": [
+      3.0,
+      9.0
+    ],
+    "firm": [
+      28.0,
+      34.0
+    ]
+  },
+  "calibration": "configs/manner_calibration.v3.json",
+  "hold_trim_head_steps": 2,
+  "task_criteria": {
+    "xy_tol": 0.02,
+    "z_tol": 0.015,
+    "lift_min": 0.1,
+    "disturb_tol": 0.01,
+    "settle_ref_step": 12,
+    "stable_step_m": 0.001
+  },
+  "safety": {
+    "peak_cap_n": 44.07421873891627,
+    "def": "max over steps of left_max+right_max (NaN->0)"
+  },
+  "git_head": "38762059c670644e3988041b43d4ed74bdcfb358",
+  "git_dirty_files": 16,
+  "file_sha256_16": {
+    "synthesis_v2/native_osc_env.py": "8d953efe0cd8d661",
+    "synthesis_v2/native_producer.py": "e6bca3c8bed9e1c9",
+    "synthesis_v2/program_executor.py": "27a157171080925b",
+    "synthesis_v2/task_program.py": "e303176b032b883b",
+    "synthesis_v2/grasp_force_contract.py": "560db3acbef5a914",
+    "synthesis_v2/manner_calibration.py": "68ddfe64fa7efafb",
+    "configs/manner_calibration.v3.json": "c04b7dcae531dbe2",
+    "scripts/mt/s1_force_diag.py": "b1e41cfd94ac33ee",
+    "scripts/mt/s1_validate.py": "30b9fdb8f57e0611"
+  }
+}

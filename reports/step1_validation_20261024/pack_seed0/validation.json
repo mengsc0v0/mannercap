@@ -1,0 +1,2374 @@
+[
+ {
+  "gen": {
+   "execution_end": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true,
+   "holds": {
+    "cubeA": {
+     "gid": "cubeA.pick_1.grasp",
+     "level": "gentle",
+     "band": [
+      0.459,
+      8.683
+     ],
+     "n_hold": 96,
+     "n_valid": 96,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 0.933,
+     "max": 1.093,
+     "p5": 0.937,
+     "p50": 0.942,
+     "p95": 0.969,
+     "margin_lo": 0.474,
+     "margin_hi": 7.59,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 202,
+      "steps_measuring_expected": 202,
+      "steps_hold_instance_is_self": 202,
+      "bound_ok": true
+     }
+    },
+    "cubeB": {
+     "gid": "cubeB.pick_1.grasp",
+     "level": "firm",
+     "band": [
+      23.934,
+      39.73
+     ],
+     "n_hold": 104,
+     "n_valid": 104,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 26.328,
+     "max": 26.33,
+     "p5": 26.328,
+     "p50": 26.33,
+     "p95": 26.33,
+     "margin_lo": 2.394,
+     "margin_hi": 13.4,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 206,
+      "steps_measuring_expected": 206,
+      "steps_hold_instance_is_self": 206,
+      "bound_ok": true
+     }
+    }
+   },
+   "task": {
+    "objects": {
+     "cubeA": {
+      "restored": true,
+      "dxy": 0.0008,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1429,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     },
+     "cubeB": {
+      "restored": true,
+      "dxy": 0.0028,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1432,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     }
+    },
+    "task_ok": true
+   },
+   "safety": {
+    "cap_n": 44.07421873891627,
+    "peak_total_n": 34.245,
+    "ok": true,
+    "argmax_stage": "cubeB.pick_1.grasp"
+   },
+   "settle": {
+    "settle_ref_step": 12,
+    "first_grasp_step": 205,
+    "settle_before_first_grasp": true,
+    "ref_pos": {
+     "cubeA": [
+      0.08261876195281412,
+      0.010469997951628661,
+      0.8198922445561985
+     ],
+     "cubeB": [
+      0.11370727948521897,
+      -0.1193427599590456,
+      0.8248922445561975
+     ]
+    },
+    "cubeA_settle_step_disp_m": 0.0,
+    "cubeA_stable": true,
+    "cubeB_settle_step_disp_m": 0.0,
+    "cubeB_stable": true
+   },
+   "tag": "AB_gentleA_firmB_s0",
+   "seed": 0,
+   "order": "cubeA->cubeB",
+   "levels": {
+    "cubeA": "gentle",
+    "cubeB": "firm"
+   },
+   "n_steps": 971,
+   "init_qpos_matches_generator": 0.0
+  },
+  "replay": {
+   "execution_end": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true,
+   "holds": {
+    "cubeA": {
+     "gid": "cubeA.pick_1.grasp",
+     "level": "gentle",
+     "band": [
+      0.459,
+      8.683
+     ],
+     "n_hold": 96,
+     "n_valid": 96,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 0.933,
+     "max": 1.093,
+     "p5": 0.937,
+     "p50": 0.942,
+     "p95": 0.969,
+     "margin_lo": 0.474,
+     "margin_hi": 7.59,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 202,
+      "steps_measuring_expected": 202,
+      "steps_hold_instance_is_self": 202,
+      "bound_ok": true
+     }
+    },
+    "cubeB": {
+     "gid": "cubeB.pick_1.grasp",
+     "level": "firm",
+     "band": [
+      23.934,
+      39.73
+     ],
+     "n_hold": 104,
+     "n_valid": 104,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 26.328,
+     "max": 26.33,
+     "p5": 26.328,
+     "p50": 26.33,
+     "p95": 26.33,
+     "margin_lo": 2.394,
+     "margin_hi": 13.4,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 206,
+      "steps_measuring_expected": 206,
+      "steps_hold_instance_is_self": 206,
+      "bound_ok": true
+     }
+    }
+   },
+   "task": {
+    "objects": {
+     "cubeA": {
+      "restored": true,
+      "dxy": 0.0008,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1429,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     },
+     "cubeB": {
+      "restored": true,
+      "dxy": 0.0028,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1432,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     }
+    },
+    "task_ok": true
+   },
+   "safety": {
+    "cap_n": 44.07421873891627,
+    "peak_total_n": 34.245,
+    "ok": true,
+    "argmax_stage": "cubeB.pick_1.grasp"
+   },
+   "settle": {
+    "settle_ref_step": 12,
+    "first_grasp_step": 205,
+    "settle_before_first_grasp": true,
+    "ref_pos": {
+     "cubeA": [
+      0.08261876195281412,
+      0.010469997951628661,
+      0.8198922445561985
+     ],
+     "cubeB": [
+      0.11370727948521897,
+      -0.1193427599590456,
+      0.8248922445561975
+     ]
+    },
+    "cubeA_settle_step_disp_m": 0.0,
+    "cubeA_stable": true,
+    "cubeB_settle_step_disp_m": 0.0,
+    "cubeB_stable": true
+   },
+   "replay_diff": {
+    "left_mean_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "right_mean_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "left_max_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "right_max_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "valid_fraction": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "next_state_max_abs": 0.0,
+    "pos_max_abs": 0.0
+   }
+  },
+  "replay_same_verdict_as_gen": {
+   "holds_equal": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true
+  },
+  "resume": [
+   {
+    "point": "cubeA:lift+1(in_trim)",
+    "k": 218,
+    "suffix_len": 753,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 1,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift+5(in_window)",
+    "k": 222,
+    "suffix_len": 749,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift_mid",
+    "k": 266,
+    "suffix_len": 705,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift_last-3",
+    "k": 311,
+    "suffix_len": 660,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeB:lift+1(in_trim)",
+    "k": 684,
+    "suffix_len": 287,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 1
+    }
+   },
+   {
+    "point": "cubeB:lift+5(in_window)",
+    "k": 688,
+    "suffix_len": 283,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   },
+   {
+    "point": "cubeB:lift_mid",
+    "k": 736,
+    "suffix_len": 235,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   },
+   {
+    "point": "cubeB:lift_last-3",
+    "k": 785,
+    "suffix_len": 186,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   }
+  ]
+ },
+ {
+  "gen": {
+   "execution_end": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true,
+   "holds": {
+    "cubeA": {
+     "gid": "cubeA.pick_1.grasp",
+     "level": "firm",
+     "band": [
+      23.934,
+      39.73
+     ],
+     "n_hold": 96,
+     "n_valid": 96,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 31.739,
+     "max": 31.868,
+     "p5": 31.758,
+     "p50": 31.775,
+     "p95": 31.78,
+     "margin_lo": 7.805,
+     "margin_hi": 7.863,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 202,
+      "steps_measuring_expected": 202,
+      "steps_hold_instance_is_self": 202,
+      "bound_ok": true
+     }
+    },
+    "cubeB": {
+     "gid": "cubeB.pick_1.grasp",
+     "level": "gentle",
+     "band": [
+      0.459,
+      8.683
+     ],
+     "n_hold": 104,
+     "n_valid": 104,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 2.912,
+     "max": 2.915,
+     "p5": 2.913,
+     "p50": 2.914,
+     "p95": 2.914,
+     "margin_lo": 2.454,
+     "margin_hi": 5.769,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 205,
+      "steps_measuring_expected": 205,
+      "steps_hold_instance_is_self": 205,
+      "bound_ok": true
+     }
+    }
+   },
+   "task": {
+    "objects": {
+     "cubeA": {
+      "restored": true,
+      "dxy": 0.0011,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1432,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     },
+     "cubeB": {
+      "restored": true,
+      "dxy": 0.0027,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1431,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     }
+    },
+    "task_ok": true
+   },
+   "safety": {
+    "cap_n": 44.07421873891627,
+    "peak_total_n": 32.225,
+    "ok": true,
+    "argmax_stage": "cubeA.pick_1.lift"
+   },
+   "settle": {
+    "settle_ref_step": 12,
+    "first_grasp_step": 205,
+    "settle_before_first_grasp": true,
+    "ref_pos": {
+     "cubeA": [
+      0.08261876195281412,
+      0.010469997951628661,
+      0.8198922445561985
+     ],
+     "cubeB": [
+      0.11370727948521897,
+      -0.1193427599590456,
+      0.8248922445561975
+     ]
+    },
+    "cubeA_settle_step_disp_m": 0.0,
+    "cubeA_stable": true,
+    "cubeB_settle_step_disp_m": 0.0,
+    "cubeB_stable": true
+   },
+   "tag": "AB_firmA_gentleB_s0",
+   "seed": 0,
+   "order": "cubeA->cubeB",
+   "levels": {
+    "cubeA": "firm",
+    "cubeB": "gentle"
+   },
+   "n_steps": 970,
+   "init_qpos_matches_generator": 0.0
+  },
+  "replay": {
+   "execution_end": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true,
+   "holds": {
+    "cubeA": {
+     "gid": "cubeA.pick_1.grasp",
+     "level": "firm",
+     "band": [
+      23.934,
+      39.73
+     ],
+     "n_hold": 96,
+     "n_valid": 96,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 31.739,
+     "max": 31.868,
+     "p5": 31.758,
+     "p50": 31.775,
+     "p95": 31.78,
+     "margin_lo": 7.805,
+     "margin_hi": 7.863,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 202,
+      "steps_measuring_expected": 202,
+      "steps_hold_instance_is_self": 202,
+      "bound_ok": true
+     }
+    },
+    "cubeB": {
+     "gid": "cubeB.pick_1.grasp",
+     "level": "gentle",
+     "band": [
+      0.459,
+      8.683
+     ],
+     "n_hold": 104,
+     "n_valid": 104,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 2.912,
+     "max": 2.915,
+     "p5": 2.913,
+     "p50": 2.914,
+     "p95": 2.914,
+     "margin_lo": 2.454,
+     "margin_hi": 5.769,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 205,
+      "steps_measuring_expected": 205,
+      "steps_hold_instance_is_self": 205,
+      "bound_ok": true
+     }
+    }
+   },
+   "task": {
+    "objects": {
+     "cubeA": {
+      "restored": true,
+      "dxy": 0.0011,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1432,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     },
+     "cubeB": {
+      "restored": true,
+      "dxy": 0.0027,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1431,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     }
+    },
+    "task_ok": true
+   },
+   "safety": {
+    "cap_n": 44.07421873891627,
+    "peak_total_n": 32.225,
+    "ok": true,
+    "argmax_stage": "cubeA.pick_1.lift"
+   },
+   "settle": {
+    "settle_ref_step": 12,
+    "first_grasp_step": 205,
+    "settle_before_first_grasp": true,
+    "ref_pos": {
+     "cubeA": [
+      0.08261876195281412,
+      0.010469997951628661,
+      0.8198922445561985
+     ],
+     "cubeB": [
+      0.11370727948521897,
+      -0.1193427599590456,
+      0.8248922445561975
+     ]
+    },
+    "cubeA_settle_step_disp_m": 0.0,
+    "cubeA_stable": true,
+    "cubeB_settle_step_disp_m": 0.0,
+    "cubeB_stable": true
+   },
+   "replay_diff": {
+    "left_mean_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "right_mean_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "left_max_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "right_max_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "valid_fraction": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "next_state_max_abs": 0.0,
+    "pos_max_abs": 0.0
+   }
+  },
+  "replay_same_verdict_as_gen": {
+   "holds_equal": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true
+  },
+  "resume": [
+   {
+    "point": "cubeA:lift+1(in_trim)",
+    "k": 218,
+    "suffix_len": 752,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 1,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift+5(in_window)",
+    "k": 222,
+    "suffix_len": 748,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift_mid",
+    "k": 266,
+    "suffix_len": 704,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift_last-3",
+    "k": 311,
+    "suffix_len": 659,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeB:lift+1(in_trim)",
+    "k": 683,
+    "suffix_len": 287,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 1
+    }
+   },
+   {
+    "point": "cubeB:lift+5(in_window)",
+    "k": 687,
+    "suffix_len": 283,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   },
+   {
+    "point": "cubeB:lift_mid",
+    "k": 735,
+    "suffix_len": 235,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   },
+   {
+    "point": "cubeB:lift_last-3",
+    "k": 784,
+    "suffix_len": 186,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   }
+  ]
+ },
+ {
+  "gen": {
+   "execution_end": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true,
+   "holds": {
+    "cubeA": {
+     "gid": "cubeA.pick_1.grasp",
+     "level": "gentle",
+     "band": [
+      0.459,
+      8.683
+     ],
+     "n_hold": 96,
+     "n_valid": 96,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 0.936,
+     "max": 1.034,
+     "p5": 0.937,
+     "p50": 0.947,
+     "p95": 0.948,
+     "margin_lo": 0.477,
+     "margin_hi": 7.649,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 202,
+      "steps_measuring_expected": 202,
+      "steps_hold_instance_is_self": 202,
+      "bound_ok": true
+     }
+    },
+    "cubeB": {
+     "gid": "cubeB.pick_1.grasp",
+     "level": "firm",
+     "band": [
+      23.934,
+      39.73
+     ],
+     "n_hold": 105,
+     "n_valid": 105,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 26.333,
+     "max": 27.034,
+     "p5": 26.377,
+     "p50": 26.487,
+     "p95": 26.715,
+     "margin_lo": 2.399,
+     "margin_hi": 12.696,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 207,
+      "steps_measuring_expected": 207,
+      "steps_hold_instance_is_self": 207,
+      "bound_ok": true
+     }
+    }
+   },
+   "task": {
+    "objects": {
+     "cubeA": {
+      "restored": true,
+      "dxy": 0.0009,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1432,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     },
+     "cubeB": {
+      "restored": true,
+      "dxy": 0.0029,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1439,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     }
+    },
+    "task_ok": true
+   },
+   "safety": {
+    "cap_n": 44.07421873891627,
+    "peak_total_n": 34.229,
+    "ok": true,
+    "argmax_stage": "cubeB.pick_1.grasp"
+   },
+   "settle": {
+    "settle_ref_step": 12,
+    "first_grasp_step": 250,
+    "settle_before_first_grasp": true,
+    "ref_pos": {
+     "cubeA": [
+      0.08261876195281412,
+      0.010469997951628661,
+      0.8198922445561985
+     ],
+     "cubeB": [
+      0.11370727948521897,
+      -0.1193427599590456,
+      0.8248922445561975
+     ]
+    },
+    "cubeA_settle_step_disp_m": 0.0,
+    "cubeA_stable": true,
+    "cubeB_settle_step_disp_m": 0.0,
+    "cubeB_stable": true
+   },
+   "tag": "BA_gentleA_firmB_s0",
+   "seed": 0,
+   "order": "cubeB->cubeA",
+   "levels": {
+    "cubeA": "gentle",
+    "cubeB": "firm"
+   },
+   "n_steps": 1020,
+   "init_qpos_matches_generator": 0.0
+  },
+  "replay": {
+   "execution_end": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true,
+   "holds": {
+    "cubeA": {
+     "gid": "cubeA.pick_1.grasp",
+     "level": "gentle",
+     "band": [
+      0.459,
+      8.683
+     ],
+     "n_hold": 96,
+     "n_valid": 96,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 0.936,
+     "max": 1.034,
+     "p5": 0.937,
+     "p50": 0.947,
+     "p95": 0.948,
+     "margin_lo": 0.477,
+     "margin_hi": 7.649,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 202,
+      "steps_measuring_expected": 202,
+      "steps_hold_instance_is_self": 202,
+      "bound_ok": true
+     }
+    },
+    "cubeB": {
+     "gid": "cubeB.pick_1.grasp",
+     "level": "firm",
+     "band": [
+      23.934,
+      39.73
+     ],
+     "n_hold": 105,
+     "n_valid": 105,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 26.333,
+     "max": 27.034,
+     "p5": 26.377,
+     "p50": 26.487,
+     "p95": 26.715,
+     "margin_lo": 2.399,
+     "margin_hi": 12.696,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 207,
+      "steps_measuring_expected": 207,
+      "steps_hold_instance_is_self": 207,
+      "bound_ok": true
+     }
+    }
+   },
+   "task": {
+    "objects": {
+     "cubeA": {
+      "restored": true,
+      "dxy": 0.0009,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1432,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     },
+     "cubeB": {
+      "restored": true,
+      "dxy": 0.0029,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1439,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     }
+    },
+    "task_ok": true
+   },
+   "safety": {
+    "cap_n": 44.07421873891627,
+    "peak_total_n": 34.229,
+    "ok": true,
+    "argmax_stage": "cubeB.pick_1.grasp"
+   },
+   "settle": {
+    "settle_ref_step": 12,
+    "first_grasp_step": 250,
+    "settle_before_first_grasp": true,
+    "ref_pos": {
+     "cubeA": [
+      0.08261876195281412,
+      0.010469997951628661,
+      0.8198922445561985
+     ],
+     "cubeB": [
+      0.11370727948521897,
+      -0.1193427599590456,
+      0.8248922445561975
+     ]
+    },
+    "cubeA_settle_step_disp_m": 0.0,
+    "cubeA_stable": true,
+    "cubeB_settle_step_disp_m": 0.0,
+    "cubeB_stable": true
+   },
+   "replay_diff": {
+    "left_mean_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "right_mean_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "left_max_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "right_max_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "valid_fraction": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "next_state_max_abs": 0.0,
+    "pos_max_abs": 0.0
+   }
+  },
+  "replay_same_verdict_as_gen": {
+   "holds_equal": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true
+  },
+  "resume": [
+   {
+    "point": "cubeA:lift+1(in_trim)",
+    "k": 737,
+    "suffix_len": 283,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 1,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift+5(in_window)",
+    "k": 741,
+    "suffix_len": 279,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift_mid",
+    "k": 785,
+    "suffix_len": 235,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift_last-3",
+    "k": 830,
+    "suffix_len": 190,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeB:lift+1(in_trim)",
+    "k": 263,
+    "suffix_len": 757,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 1
+    }
+   },
+   {
+    "point": "cubeB:lift+5(in_window)",
+    "k": 267,
+    "suffix_len": 753,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   },
+   {
+    "point": "cubeB:lift_mid",
+    "k": 315,
+    "suffix_len": 705,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   },
+   {
+    "point": "cubeB:lift_last-3",
+    "k": 365,
+    "suffix_len": 655,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   }
+  ]
+ },
+ {
+  "gen": {
+   "execution_end": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true,
+   "holds": {
+    "cubeA": {
+     "gid": "cubeA.pick_1.grasp",
+     "level": "firm",
+     "band": [
+      23.934,
+      39.73
+     ],
+     "n_hold": 96,
+     "n_valid": 96,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 31.857,
+     "max": 31.868,
+     "p5": 31.862,
+     "p50": 31.868,
+     "p95": 31.868,
+     "margin_lo": 7.923,
+     "margin_hi": 7.863,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 202,
+      "steps_measuring_expected": 202,
+      "steps_hold_instance_is_self": 202,
+      "bound_ok": true
+     }
+    },
+    "cubeB": {
+     "gid": "cubeB.pick_1.grasp",
+     "level": "gentle",
+     "band": [
+      0.459,
+      8.683
+     ],
+     "n_hold": 105,
+     "n_valid": 105,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 2.908,
+     "max": 3.246,
+     "p5": 2.908,
+     "p50": 2.922,
+     "p95": 2.946,
+     "margin_lo": 2.449,
+     "margin_hi": 5.437,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 206,
+      "steps_measuring_expected": 206,
+      "steps_hold_instance_is_self": 206,
+      "bound_ok": true
+     }
+    }
+   },
+   "task": {
+    "objects": {
+     "cubeA": {
+      "restored": true,
+      "dxy": 0.0011,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1433,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     },
+     "cubeB": {
+      "restored": true,
+      "dxy": 0.0027,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1438,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     }
+    },
+    "task_ok": true
+   },
+   "safety": {
+    "cap_n": 44.07421873891627,
+    "peak_total_n": 31.921,
+    "ok": true,
+    "argmax_stage": "cubeA.pick_1.grasp"
+   },
+   "settle": {
+    "settle_ref_step": 12,
+    "first_grasp_step": 250,
+    "settle_before_first_grasp": true,
+    "ref_pos": {
+     "cubeA": [
+      0.08261876195281412,
+      0.010469997951628661,
+      0.8198922445561985
+     ],
+     "cubeB": [
+      0.11370727948521897,
+      -0.1193427599590456,
+      0.8248922445561975
+     ]
+    },
+    "cubeA_settle_step_disp_m": 0.0,
+    "cubeA_stable": true,
+    "cubeB_settle_step_disp_m": 0.0,
+    "cubeB_stable": true
+   },
+   "tag": "BA_firmA_gentleB_s0",
+   "seed": 0,
+   "order": "cubeB->cubeA",
+   "levels": {
+    "cubeA": "firm",
+    "cubeB": "gentle"
+   },
+   "n_steps": 1019,
+   "init_qpos_matches_generator": 0.0
+  },
+  "replay": {
+   "execution_end": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true,
+   "holds": {
+    "cubeA": {
+     "gid": "cubeA.pick_1.grasp",
+     "level": "firm",
+     "band": [
+      23.934,
+      39.73
+     ],
+     "n_hold": 96,
+     "n_valid": 96,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 31.857,
+     "max": 31.868,
+     "p5": 31.862,
+     "p50": 31.868,
+     "p95": 31.868,
+     "margin_lo": 7.923,
+     "margin_hi": 7.863,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 202,
+      "steps_measuring_expected": 202,
+      "steps_hold_instance_is_self": 202,
+      "bound_ok": true
+     }
+    },
+    "cubeB": {
+     "gid": "cubeB.pick_1.grasp",
+     "level": "gentle",
+     "band": [
+      0.459,
+      8.683
+     ],
+     "n_hold": 105,
+     "n_valid": 105,
+     "n_nan": 0,
+     "n_missing_contact": 0,
+     "n_below": 0,
+     "n_above": 0,
+     "min": 2.908,
+     "max": 3.246,
+     "p5": 2.908,
+     "p50": 2.922,
+     "p95": 2.946,
+     "margin_lo": 2.449,
+     "margin_hi": 5.437,
+     "audit_decision": "PASS",
+     "audit_reason": "",
+     "binding": {
+      "steps_in_scope": 206,
+      "steps_measuring_expected": 206,
+      "steps_hold_instance_is_self": 206,
+      "bound_ok": true
+     }
+    }
+   },
+   "task": {
+    "objects": {
+     "cubeA": {
+      "restored": true,
+      "dxy": 0.0011,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1433,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     },
+     "cubeB": {
+      "restored": true,
+      "dxy": 0.0027,
+      "dz": 0.0,
+      "lifted": true,
+      "max_lift_m": 0.1438,
+      "undisturbed_outside_own_subtask": true,
+      "rest_dev_m": 0.0
+     }
+    },
+    "task_ok": true
+   },
+   "safety": {
+    "cap_n": 44.07421873891627,
+    "peak_total_n": 31.921,
+    "ok": true,
+    "argmax_stage": "cubeA.pick_1.grasp"
+   },
+   "settle": {
+    "settle_ref_step": 12,
+    "first_grasp_step": 250,
+    "settle_before_first_grasp": true,
+    "ref_pos": {
+     "cubeA": [
+      0.08261876195281412,
+      0.010469997951628661,
+      0.8198922445561985
+     ],
+     "cubeB": [
+      0.11370727948521897,
+      -0.1193427599590456,
+      0.8248922445561975
+     ]
+    },
+    "cubeA_settle_step_disp_m": 0.0,
+    "cubeA_stable": true,
+    "cubeB_settle_step_disp_m": 0.0,
+    "cubeB_stable": true
+   },
+   "replay_diff": {
+    "left_mean_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "right_mean_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "left_max_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "right_max_n": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "valid_fraction": {
+     "max_abs": 0.0,
+     "nan_mismatch": 0
+    },
+    "next_state_max_abs": 0.0,
+    "pos_max_abs": 0.0
+   }
+  },
+  "replay_same_verdict_as_gen": {
+   "holds_equal": true,
+   "task_ok": true,
+   "manner_pass": true,
+   "safety_ok": true,
+   "bound_ok": true,
+   "joint_pass": true
+  },
+  "resume": [
+   {
+    "point": "cubeA:lift+1(in_trim)",
+    "k": 736,
+    "suffix_len": 283,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 1,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift+5(in_window)",
+    "k": 740,
+    "suffix_len": 279,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift_mid",
+    "k": 784,
+    "suffix_len": 235,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeA:lift_last-3",
+    "k": 829,
+    "suffix_len": 190,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 2,
+     "cubeB": 0
+    }
+   },
+   {
+    "point": "cubeB:lift+1(in_trim)",
+    "k": 262,
+    "suffix_len": 757,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 1
+    }
+   },
+   {
+    "point": "cubeB:lift+5(in_window)",
+    "k": 266,
+    "suffix_len": 753,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   },
+   {
+    "point": "cubeB:lift_mid",
+    "k": 314,
+    "suffix_len": 705,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   },
+   {
+    "point": "cubeB:lift_last-3",
+    "k": 364,
+    "suffix_len": 655,
+    "force_cols_vs_continuous": {
+     "left_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_mean_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "left_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "right_max_n": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     },
+     "valid_fraction": {
+      "max_abs": 0.0,
+      "nan_mismatch": 0
+     }
+    },
+    "verdict_vs_continuous": {
+     "holds_equal": true,
+     "task_ok": true,
+     "manner_pass": true,
+     "safety_ok": true,
+     "bound_ok": true,
+     "joint_pass": true
+    },
+    "naive_suffix_only_extra_dropped": {
+     "cubeA": 0,
+     "cubeB": 2
+    }
+   }
+  ]
+ }
+]

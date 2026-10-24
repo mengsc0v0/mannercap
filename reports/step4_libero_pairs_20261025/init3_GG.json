@@ -1,0 +1,239 @@
+{
+ "init_index": 3,
+ "n_steps": 394,
+ "status": "completed",
+ "task_ok": true,
+ "final_success": true,
+ "grasp_policy": {
+  "cream_cheese.pick_1.grasp": {
+   "closing_steps": 6,
+   "reached_band": true,
+   "reverse_pulses": 1,
+   "in_band_at": 6
+  },
+  "butter.pick_1.grasp": {
+   "closing_steps": 7,
+   "reached_band": true,
+   "reverse_pulses": 2,
+   "in_band_at": 7
+  }
+ },
+ "completion": true,
+ "measure": {
+  "cream_cheese": {
+   "binding_complete_and_correct_target": true,
+   "valid_fraction_ge_0.99": true,
+   "bilateral_every_hold_step": true,
+   "left_right_balance_le_0.10": true,
+   "friction_capacity_ge_weight": true,
+   "no_slip_rel_z_spread_le_1cm": true,
+   "no_force_before_grasp": true,
+   "no_crosstalk_other_object": true,
+   "_values": {
+    "hold_n": 101,
+    "total_force_mean_n": 13.144027214343781,
+    "lr_imbalance": 7.903896226207183e-05,
+    "mu_min": 1.0,
+    "weight_n": 0.06076125809329766,
+    "capacity_over_weight": 216.32249934919713,
+    "rel_z_spread_m": 1.9436787070392647e-05,
+    "pre_grasp_max_n": 0.0,
+    "other_obj_max_n": 0.0,
+    "actuator_vs_contact_rel_err_mean": 0.0028502551404606014,
+    "actuator_total_mean_n": 13.147491656918003
+   },
+   "actuator_force_cross_check_le_10pct": true
+  },
+  "butter": {
+   "binding_complete_and_correct_target": true,
+   "valid_fraction_ge_0.99": true,
+   "bilateral_every_hold_step": true,
+   "left_right_balance_le_0.10": true,
+   "friction_capacity_ge_weight": true,
+   "no_slip_rel_z_spread_le_1cm": true,
+   "no_force_before_grasp": true,
+   "no_crosstalk_other_object": true,
+   "_values": {
+    "hold_n": 59,
+    "total_force_mean_n": 10.055111556002483,
+    "lr_imbalance": 9.20375139463242e-05,
+    "mu_min": 1.0,
+    "weight_n": 0.051474814633943995,
+    "capacity_over_weight": 195.34041312257295,
+    "rel_z_spread_m": 1.2190870086359329e-05,
+    "pre_grasp_max_n": 0.0,
+    "other_obj_max_n": 0.0,
+    "actuator_vs_contact_rel_err_mean": 0.003989901731037727,
+    "actuator_total_mean_n": 10.060487698316152
+   },
+   "actuator_force_cross_check_le_10pct": true
+  }
+ },
+ "measure_pass": {
+  "cream_cheese": true,
+  "butter": true
+ },
+ "events": {
+  "event_sequence_exact": true,
+  "events_inside_expected_generator_stage": true,
+  "phase_mismatch_steps_outside_6step_boundary": 0,
+  "_delays_steps": {
+   "cream_cheese_1": {
+    "contact_established_after_grasp_start": 6,
+    "lifted_after_lift_start": 3,
+    "released_after_place_start": 3
+   },
+   "butter_1": {
+    "contact_established_after_grasp_start": 7,
+    "lifted_after_lift_start": 3,
+    "released_after_place_start": 3
+   }
+  },
+  "_events": [
+   {
+    "step": 76,
+    "onset": 75,
+    "object": "cream_cheese_1",
+    "event": "contact_established"
+   },
+   {
+    "step": 83,
+    "onset": 83,
+    "object": "cream_cheese_1",
+    "event": "lifted"
+   },
+   {
+    "step": 186,
+    "onset": 185,
+    "object": "cream_cheese_1",
+    "event": "released"
+   },
+   {
+    "step": 292,
+    "onset": 291,
+    "object": "butter_1",
+    "event": "contact_established"
+   },
+   {
+    "step": 300,
+    "onset": 300,
+    "object": "butter_1",
+    "event": "lifted"
+   },
+   {
+    "step": 361,
+    "onset": 360,
+    "object": "butter_1",
+    "event": "released"
+   }
+  ]
+ },
+ "replay": {
+  "bitwise_all_columns": true,
+  "columns_not_equal": [],
+  "n_columns": 16
+ },
+ "online_equals_offline_events": true,
+ "resume": [
+  {
+   "point": "cream_cheese:lift+1(in_trim)",
+   "k": 81,
+   "suffix_len": 313,
+   "bitwise": true,
+   "columns_not_equal": []
+  },
+  {
+   "point": "cream_cheese:lift+5(in_window)",
+   "k": 85,
+   "suffix_len": 309,
+   "bitwise": true,
+   "columns_not_equal": []
+  },
+  {
+   "point": "cream_cheese:transport_mid",
+   "k": 143,
+   "suffix_len": 251,
+   "bitwise": true,
+   "columns_not_equal": []
+  },
+  {
+   "point": "cream_cheese:transport_last-3",
+   "k": 179,
+   "suffix_len": 215,
+   "bitwise": true,
+   "columns_not_equal": []
+  },
+  {
+   "point": "cream_cheese:place+3(opening)",
+   "k": 186,
+   "suffix_len": 208,
+   "bitwise": true,
+   "columns_not_equal": []
+  },
+  {
+   "point": "butter:lift+1(in_trim)",
+   "k": 298,
+   "suffix_len": 96,
+   "bitwise": true,
+   "columns_not_equal": []
+  },
+  {
+   "point": "butter:lift+5(in_window)",
+   "k": 302,
+   "suffix_len": 92,
+   "bitwise": true,
+   "columns_not_equal": []
+  },
+  {
+   "point": "butter:transport_mid",
+   "k": 339,
+   "suffix_len": 55,
+   "bitwise": true,
+   "columns_not_equal": []
+  },
+  {
+   "point": "butter:transport_last-3",
+   "k": 354,
+   "suffix_len": 40,
+   "bitwise": true,
+   "columns_not_equal": []
+  },
+  {
+   "point": "butter:place+3(opening)",
+   "k": 361,
+   "suffix_len": 33,
+   "bitwise": true,
+   "columns_not_equal": []
+  }
+ ],
+ "combo": "GG",
+ "calibration_hash": "49c77adda98e9639b3098489dcf360f4f6a8808002ca211c878d527654f5a880",
+ "band_audit": {
+  "cream_cheese": {
+   "level": "gentle",
+   "band": [
+    6.550179783846603,
+    17.98056137035099
+   ],
+   "hold_min": 13.092922805101932,
+   "hold_max": 13.266499322854472,
+   "hold_mean": 13.144027214343781,
+   "all_hold_steps_in_band": true,
+   "peak_total_n": 43.393109160160705,
+   "peak_le_cap": true
+  },
+  "butter": {
+   "level": "gentle",
+   "band": [
+    5.016897594643431,
+    19.759370640759574
+   ],
+   "hold_min": 9.99239491973742,
+   "hold_max": 10.176302394865965,
+   "hold_mean": 10.055111556002483,
+   "all_hold_steps_in_band": true,
+   "peak_total_n": 40.655350308067256,
+   "peak_le_cap": true
+  }
+ }
+}

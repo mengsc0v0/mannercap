@@ -1,0 +1,51 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "turn_on",
+          "clause": "turn on the stove",
+          "object_phrase": "the stove",
+          "object_role": "stove",
+          "target_phrase": null,
+          "target_role": null
+        },
+        {
+          "action": "put",
+          "clause": "put the moka pot on it",
+          "object_phrase": "the moka pot",
+          "object_role": "moka_pot",
+          "target_phrase": "it",
+          "target_role": "stove"
+        },
+        {
+          "action": "turn_on",
+          "clause": "turn on the stove gently",
+          "object_phrase": "the stove",
+          "object_role": "stove",
+          "target_phrase": null,
+          "target_role": null
+        }
+      ]
+    },
+    "unsupported": [
+      {
+        "clause": "turn on the stove gently",
+        "code": "dimension_not_on_stage",
+        "reason": "The level gentle belongs to grip, but the stove turn-on stage has only the speed dimension."
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v2",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "Close the drawer fast.",
+        "dimension": "speed",
+        "instance_ids": [
+          "drawer.close_1.articulate"
+        ],
+        "level": "fast",
+        "object_role": "drawer"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "Put the black bowl in the bottom drawer of the cabinet.",
+          "object_phrase": "the black bowl",
+          "object_role": "black_bowl",
+          "target_phrase": "the bottom drawer of the cabinet",
+          "target_role": "drawer"
+        },
+        {
+          "action": "close",
+          "clause": "Close the drawer fast.",
+          "object_phrase": "the drawer",
+          "object_role": "drawer",
+          "target_phrase": null,
+          "target_role": null
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

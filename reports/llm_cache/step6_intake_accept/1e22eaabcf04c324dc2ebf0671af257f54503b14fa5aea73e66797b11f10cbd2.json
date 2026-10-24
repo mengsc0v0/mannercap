@@ -1,0 +1,37 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v2",
+  "response": {
+    "ambiguous": [],
+    "bindings": [],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "put the yellow and white mug in the microwave",
+          "object_phrase": "the yellow and white mug",
+          "object_role": "yellow_white_mug",
+          "target_phrase": "the microwave",
+          "target_role": "microwave"
+        },
+        {
+          "action": "open",
+          "clause": "open it",
+          "object_phrase": "it",
+          "object_role": "microwave",
+          "target_phrase": null,
+          "target_role": null
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

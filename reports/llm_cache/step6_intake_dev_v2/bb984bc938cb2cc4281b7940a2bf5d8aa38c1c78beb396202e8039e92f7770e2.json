@@ -1,0 +1,60 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v2",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "approach the black bowl quickly",
+        "dimension": "speed",
+        "instance_ids": [
+          "black_bowl.pick_1.approach"
+        ],
+        "level": "fast",
+        "object_role": "black_bowl"
+      },
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "place the black bowl slowly",
+        "dimension": "speed",
+        "instance_ids": [
+          "black_bowl.pick_1.place"
+        ],
+        "level": "slow",
+        "object_role": "black_bowl"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "put the black bowl in the bottom drawer of the cabinet",
+          "object_phrase": "the black bowl",
+          "object_role": "black_bowl",
+          "target_phrase": "the bottom drawer of the cabinet",
+          "target_role": "drawer"
+        },
+        {
+          "action": "close",
+          "clause": "close it",
+          "object_phrase": "it",
+          "object_role": "drawer",
+          "target_phrase": null,
+          "target_role": null
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

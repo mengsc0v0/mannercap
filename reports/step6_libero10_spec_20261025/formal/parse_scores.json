@@ -1,0 +1,4347 @@
+{
+ "summary": {
+  "lexicon/request": {
+   "n": 46,
+   "exact": 16,
+   "structural_ok": 46,
+   "errors": 0,
+   "wrong_scope": 0,
+   "missing_clauses": 56,
+   "extra_bindings": 0
+  },
+  "lexicon/probe": {
+   "n": 10,
+   "exact": 3,
+   "structural_ok": 10,
+   "errors": 0,
+   "returned_as_expected": 8,
+   "silent_execution": 0
+  },
+  "llm/request": {
+   "n": 46,
+   "exact": 46,
+   "structural_ok": 46,
+   "errors": 0,
+   "wrong_scope": 0,
+   "missing_clauses": 0,
+   "extra_bindings": 0
+  },
+  "llm/probe": {
+   "n": 10,
+   "exact": 2,
+   "structural_ok": 10,
+   "errors": 0,
+   "returned_as_expected": 8,
+   "silent_execution": 1
+  }
+ },
+ "spend": {
+  "calls": 56,
+  "cached": 0,
+  "failed": 0,
+  "latency_s": 113.534,
+  "prompt_tokens": 68718,
+  "completion_tokens": 5089,
+  "total_tokens": 73807,
+  "budget": 64
+ },
+ "records": [
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T0-000",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; hold the alphabet soup gently and the tomato sauce firmly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the alphabet soup gently",
+     "candidates": [
+      "alphabet_soup.pick_1.grasp",
+      "tomato_sauce.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the tomato sauce firmly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ],
+    [
+     [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T0-001",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; hold the alphabet soup firmly and the tomato sauce gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the alphabet soup firmly",
+     "candidates": [
+      "alphabet_soup.pick_1.grasp",
+      "tomato_sauce.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the tomato sauce gently",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ],
+    [
+     [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T0-002",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; approach the alphabet soup quickly and place the alphabet soup slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the alphabet soup quickly",
+     "candidates": [
+      "alphabet_soup.pick_1.approach",
+      "tomato_sauce.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the alphabet soup slowly",
+     "candidates": [
+      "alphabet_soup.pick_1.place",
+      "tomato_sauce.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "alphabet_soup.pick_1.approach"
+     ],
+     "speed",
+     "fast"
+    ],
+    [
+     [
+      "alphabet_soup.pick_1.place"
+     ],
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T0-003",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; approach the alphabet soup slowly and place the alphabet soup quickly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the alphabet soup slowly",
+     "candidates": [
+      "alphabet_soup.pick_1.approach",
+      "tomato_sauce.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the alphabet soup quickly",
+     "candidates": [
+      "alphabet_soup.pick_1.place",
+      "tomato_sauce.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "alphabet_soup.pick_1.approach"
+     ],
+     "speed",
+     "slow"
+    ],
+    [
+     [
+      "alphabet_soup.pick_1.place"
+     ],
+     "speed",
+     "fast"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T1-004",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; hold the cream cheese box gently and the butter firmly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the cream cheese box gently",
+     "candidates": [
+      "cream_cheese.pick_1.grasp",
+      "butter.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the butter firmly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "butter.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ],
+    [
+     [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T1-005",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; hold the cream cheese box firmly and the butter gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the cream cheese box firmly",
+     "candidates": [
+      "cream_cheese.pick_1.grasp",
+      "butter.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the butter gently",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "butter.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ],
+    [
+     [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T1-006",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; approach the cream cheese box quickly and place the cream cheese box slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the cream cheese box quickly",
+     "candidates": [
+      "cream_cheese.pick_1.approach",
+      "butter.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the cream cheese box slowly",
+     "candidates": [
+      "cream_cheese.pick_1.place",
+      "butter.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "cream_cheese.pick_1.approach"
+     ],
+     "speed",
+     "fast"
+    ],
+    [
+     [
+      "cream_cheese.pick_1.place"
+     ],
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T1-007",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; approach the cream cheese box slowly and place the cream cheese box quickly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the cream cheese box slowly",
+     "candidates": [
+      "cream_cheese.pick_1.approach",
+      "butter.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the cream cheese box quickly",
+     "candidates": [
+      "cream_cheese.pick_1.place",
+      "butter.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "cream_cheese.pick_1.approach"
+     ],
+     "speed",
+     "slow"
+    ],
+    [
+     [
+      "cream_cheese.pick_1.place"
+     ],
+     "speed",
+     "fast"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T2-008",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; hold the moka pot gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": null,
+     "clause": "hold the moka pot gently",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T2-009",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; hold the moka pot firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": null,
+     "clause": "hold the moka pot firmly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T2-010",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; approach the moka pot quickly and place the moka pot slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": null,
+     "clause": "approach the moka pot quickly",
+     "source": "lexicon"
+    },
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": null,
+     "clause": "place the moka pot slowly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T2-011",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; approach the moka pot slowly and place the moka pot quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": null,
+     "clause": "approach the moka pot slowly",
+     "source": "lexicon"
+    },
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": null,
+     "clause": "place the moka pot quickly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T2-012",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; turn on the stove slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "turn on the stove slowly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 1,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "stove.turn_on_1.articulate"
+     ],
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T2-013",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; turn on the stove quickly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "turn on the stove quickly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 1,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "stove.turn_on_1.articulate"
+     ],
+     "speed",
+     "fast"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T3-014",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; hold the black bowl gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": null,
+     "clause": "hold the black bowl gently",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T3-015",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; hold the black bowl firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": null,
+     "clause": "hold the black bowl firmly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T3-016",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; approach the black bowl quickly and place the black bowl slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": null,
+     "clause": "approach the black bowl quickly",
+     "source": "lexicon"
+    },
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": null,
+     "clause": "place the black bowl slowly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T3-017",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; approach the black bowl slowly and place the black bowl quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": null,
+     "clause": "approach the black bowl slowly",
+     "source": "lexicon"
+    },
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": null,
+     "clause": "place the black bowl quickly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T3-018",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; close the drawer slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "drawer.close_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "drawer",
+     "clause": "close the drawer slowly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T3-019",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; close the drawer quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "drawer.close_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "drawer",
+     "clause": "close the drawer quickly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T4-020",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; hold the white mug gently and the yellow and white mug firmly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the white mug gently",
+     "candidates": [
+      "white_mug.pick_1.grasp",
+      "yellow_white_mug.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "white mug firmly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "white_mug.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ],
+    [
+     [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T4-021",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; hold the white mug firmly and the yellow and white mug gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the white mug firmly",
+     "candidates": [
+      "white_mug.pick_1.grasp",
+      "yellow_white_mug.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "white mug gently",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "white_mug.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ],
+    [
+     [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T4-022",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; approach the white mug quickly and place the white mug slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the white mug quickly",
+     "candidates": [
+      "white_mug.pick_1.approach",
+      "yellow_white_mug.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the white mug slowly",
+     "candidates": [
+      "white_mug.pick_1.place",
+      "yellow_white_mug.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "white_mug.pick_1.approach"
+     ],
+     "speed",
+     "fast"
+    ],
+    [
+     [
+      "white_mug.pick_1.place"
+     ],
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T4-023",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; approach the white mug slowly and place the white mug quickly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the white mug slowly",
+     "candidates": [
+      "white_mug.pick_1.approach",
+      "yellow_white_mug.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the white mug quickly",
+     "candidates": [
+      "white_mug.pick_1.place",
+      "yellow_white_mug.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "white_mug.pick_1.approach"
+     ],
+     "speed",
+     "slow"
+    ],
+    [
+     [
+      "white_mug.pick_1.place"
+     ],
+     "speed",
+     "fast"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T5-024",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; hold the book gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "book",
+     "clause": "hold the book gently",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T5-025",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; hold the book firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "book",
+     "clause": "hold the book firmly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T5-026",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; approach the book quickly and place the book slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "book",
+     "clause": "approach the book quickly",
+     "source": "lexicon"
+    },
+    {
+     "instance_ids": [
+      "book.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "book",
+     "clause": "place the book slowly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T5-027",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; approach the book slowly and place the book quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "book",
+     "clause": "approach the book slowly",
+     "source": "lexicon"
+    },
+    {
+     "instance_ids": [
+      "book.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "book",
+     "clause": "place the book quickly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T6-028",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug gently and the chocolate pudding firmly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the white mug gently",
+     "candidates": [
+      "white_mug.pick_1.grasp",
+      "chocolate_pudding.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the chocolate pudding firmly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "chocolate_pudding.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ],
+    [
+     [
+      "white_mug.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T6-029",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug firmly and the chocolate pudding gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the white mug firmly",
+     "candidates": [
+      "white_mug.pick_1.grasp",
+      "chocolate_pudding.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the chocolate pudding gently",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "chocolate_pudding.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ],
+    [
+     [
+      "white_mug.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T6-030",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; approach the white mug quickly and place the white mug slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the white mug quickly",
+     "candidates": [
+      "white_mug.pick_1.approach",
+      "chocolate_pudding.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the white mug slowly",
+     "candidates": [
+      "white_mug.pick_1.place",
+      "chocolate_pudding.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "white_mug.pick_1.approach"
+     ],
+     "speed",
+     "fast"
+    ],
+    [
+     [
+      "white_mug.pick_1.place"
+     ],
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T6-031",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; approach the white mug slowly and place the white mug quickly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the white mug slowly",
+     "candidates": [
+      "white_mug.pick_1.approach",
+      "chocolate_pudding.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the white mug quickly",
+     "candidates": [
+      "white_mug.pick_1.place",
+      "chocolate_pudding.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "white_mug.pick_1.approach"
+     ],
+     "speed",
+     "slow"
+    ],
+    [
+     [
+      "white_mug.pick_1.place"
+     ],
+     "speed",
+     "fast"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T7-032",
+   "task_id": 7,
+   "text": "put both the alphabet soup and the cream cheese box in the basket; hold the alphabet soup gently and the cream cheese box firmly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the alphabet soup gently",
+     "candidates": [
+      "alphabet_soup.pick_1.grasp",
+      "cream_cheese.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the cream cheese box firmly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ],
+    [
+     [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T7-033",
+   "task_id": 7,
+   "text": "put both the alphabet soup and the cream cheese box in the basket; hold the alphabet soup firmly and the cream cheese box gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the alphabet soup firmly",
+     "candidates": [
+      "alphabet_soup.pick_1.grasp",
+      "cream_cheese.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the cream cheese box gently",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ],
+    [
+     [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T7-034",
+   "task_id": 7,
+   "text": "put both the alphabet soup and the cream cheese box in the basket; approach the alphabet soup quickly and place the alphabet soup slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the alphabet soup quickly",
+     "candidates": [
+      "alphabet_soup.pick_1.approach",
+      "cream_cheese.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the alphabet soup slowly",
+     "candidates": [
+      "alphabet_soup.pick_1.place",
+      "cream_cheese.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "alphabet_soup.pick_1.approach"
+     ],
+     "speed",
+     "fast"
+    ],
+    [
+     [
+      "alphabet_soup.pick_1.place"
+     ],
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T7-035",
+   "task_id": 7,
+   "text": "put both the alphabet soup and the cream cheese box in the basket; approach the alphabet soup slowly and place the alphabet soup quickly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the alphabet soup slowly",
+     "candidates": [
+      "alphabet_soup.pick_1.approach",
+      "cream_cheese.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the alphabet soup quickly",
+     "candidates": [
+      "alphabet_soup.pick_1.place",
+      "cream_cheese.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "alphabet_soup.pick_1.approach"
+     ],
+     "speed",
+     "slow"
+    ],
+    [
+     [
+      "alphabet_soup.pick_1.place"
+     ],
+     "speed",
+     "fast"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T8-036",
+   "task_id": 8,
+   "text": "put both moka pots on the stove; hold the right moka pot gently and the left moka pot firmly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the right moka pot gently",
+     "candidates": [
+      "right_moka_pot.pick_1.grasp",
+      "left_moka_pot.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the left moka pot firmly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "left_moka_pot.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ],
+    [
+     [
+      "right_moka_pot.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T8-037",
+   "task_id": 8,
+   "text": "put both moka pots on the stove; hold the right moka pot firmly and the left moka pot gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the right moka pot firmly",
+     "candidates": [
+      "right_moka_pot.pick_1.grasp",
+      "left_moka_pot.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [
+    {
+     "clause": "the left moka pot gently",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "left_moka_pot.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ],
+    [
+     [
+      "right_moka_pot.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T8-038",
+   "task_id": 8,
+   "text": "put both moka pots on the stove; approach the right moka pot quickly and place the right moka pot slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the right moka pot quickly",
+     "candidates": [
+      "right_moka_pot.pick_1.approach",
+      "left_moka_pot.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the right moka pot slowly",
+     "candidates": [
+      "right_moka_pot.pick_1.place",
+      "left_moka_pot.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "right_moka_pot.pick_1.approach"
+     ],
+     "speed",
+     "fast"
+    ],
+    [
+     [
+      "right_moka_pot.pick_1.place"
+     ],
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T8-039",
+   "task_id": 8,
+   "text": "put both moka pots on the stove; approach the right moka pot slowly and place the right moka pot quickly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "approach the right moka pot slowly",
+     "candidates": [
+      "right_moka_pot.pick_1.approach",
+      "left_moka_pot.pick_1.approach"
+     ]
+    },
+    {
+     "clause": "place the right moka pot quickly",
+     "candidates": [
+      "right_moka_pot.pick_1.place",
+      "left_moka_pot.pick_1.place"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "right_moka_pot.pick_1.approach"
+     ],
+     "speed",
+     "slow"
+    ],
+    [
+     [
+      "right_moka_pot.pick_1.place"
+     ],
+     "speed",
+     "fast"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 2,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T9-040",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; hold the yellow and white mug gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "white mug gently",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 1,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T9-041",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; hold the yellow and white mug firmly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "white mug firmly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 1,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T9-042",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; approach the yellow and white mug quickly and place the yellow and white mug slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "white mug quickly",
+     "reason": "no_stage_word"
+    },
+    {
+     "clause": "white mug slowly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "yellow_white_mug.pick_1.approach"
+     ],
+     "speed",
+     "fast"
+    ],
+    [
+     [
+      "yellow_white_mug.pick_1.place"
+     ],
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 2
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T9-043",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; approach the yellow and white mug slowly and place the yellow and white mug quickly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "white mug slowly",
+     "reason": "no_stage_word"
+    },
+    {
+     "clause": "white mug quickly",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 2,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [
+    [
+     [
+      "yellow_white_mug.pick_1.approach"
+     ],
+     "speed",
+     "slow"
+    ],
+    [
+     [
+      "yellow_white_mug.pick_1.place"
+     ],
+     "speed",
+     "fast"
+    ]
+   ],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 2
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T9-044",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; close the microwave door slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "microwave.close_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "microwave",
+     "clause": "close the microwave door slowly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "request",
+   "id": "L10-T9-045",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; close the microwave door quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "microwave.close_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "microwave",
+     "clause": "close the microwave door quickly",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P0",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; hold the mug gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the mug gently",
+     "candidates": [
+      "white_mug.pick_1.grasp",
+      "yellow_white_mug.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 0,
+   "returned_explicitly": true,
+   "expected": "ambiguous",
+   "silent_execution": false
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P1",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; hold it firmly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold it firmly",
+     "candidates": [
+      "white_mug.pick_1.grasp",
+      "chocolate_pudding.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 0,
+   "returned_explicitly": true,
+   "expected": "ambiguous",
+   "silent_execution": false
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P2",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; hold the mug gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": null,
+     "clause": "hold the mug gently",
+     "source": "lexicon"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0,
+   "returned_explicitly": true,
+   "expected": "resolved",
+   "silent_execution": false
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P3",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; close the drawer with gentle hold force",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "close the drawer with gentle hold force",
+     "reason": "dimension_not_on_stage:grip"
+    }
+   ],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1,
+   "returned_explicitly": true,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P4",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; turn on the stove gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "turn on the stove gently",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1,
+   "returned_explicitly": true,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P5",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; touch the basket gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "touch the basket gently",
+     "reason": "no_stage_word"
+    }
+   ],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1,
+   "returned_explicitly": true,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P6",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; move slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "move slowly",
+     "candidates": [
+      "cream_cheese.pick_1.transport",
+      "butter.pick_1.transport"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 0,
+   "returned_explicitly": true,
+   "expected": "ambiguous",
+   "silent_execution": false
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P7",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; hold the ketchup gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the ketchup gently",
+     "candidates": [
+      "alphabet_soup.pick_1.grasp",
+      "tomato_sauce.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 0,
+   "returned_explicitly": true,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P8",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; hold it with 5 N",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0,
+   "returned_explicitly": false,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "lexicon",
+   "kind": "probe",
+   "id": "P9",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; put the red mug on the left plate",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0,
+   "returned_explicitly": false,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T0-000",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; hold the alphabet soup gently and the tomato sauce firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "alphabet_soup",
+     "clause": "hold the alphabet soup gently",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "tomato_sauce",
+     "clause": "the tomato sauce firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T0-001",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; hold the alphabet soup firmly and the tomato sauce gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "alphabet_soup",
+     "clause": "hold the alphabet soup firmly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "tomato_sauce",
+     "clause": "the tomato sauce gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T0-002",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; approach the alphabet soup quickly and place the alphabet soup slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "alphabet_soup",
+     "clause": "approach the alphabet soup quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "alphabet_soup",
+     "clause": "place the alphabet soup slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T0-003",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; approach the alphabet soup slowly and place the alphabet soup quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "alphabet_soup",
+     "clause": "approach the alphabet soup slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "alphabet_soup",
+     "clause": "place the alphabet soup quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T1-004",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; hold the cream cheese box gently and the butter firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "cream_cheese",
+     "clause": "hold the cream cheese box gently",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "butter.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "butter",
+     "clause": "the butter firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T1-005",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; hold the cream cheese box firmly and the butter gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "cream_cheese",
+     "clause": "hold the cream cheese box firmly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "butter.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "butter",
+     "clause": "the butter gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T1-006",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; approach the cream cheese box quickly and place the cream cheese box slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "cream_cheese.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "cream_cheese",
+     "clause": "approach the cream cheese box quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "cream_cheese.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "cream_cheese",
+     "clause": "place the cream cheese box slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T1-007",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; approach the cream cheese box slowly and place the cream cheese box quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "cream_cheese.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "cream_cheese",
+     "clause": "approach the cream cheese box slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "cream_cheese.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "cream_cheese",
+     "clause": "place the cream cheese box quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T2-008",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; hold the moka pot gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "moka_pot",
+     "clause": "hold the moka pot gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T2-009",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; hold the moka pot firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "moka_pot",
+     "clause": "hold the moka pot firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T2-010",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; approach the moka pot quickly and place the moka pot slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "moka_pot",
+     "clause": "approach the moka pot quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "moka_pot",
+     "clause": "place the moka pot slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T2-011",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; approach the moka pot slowly and place the moka pot quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "moka_pot",
+     "clause": "approach the moka pot slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "moka_pot.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "moka_pot",
+     "clause": "place the moka pot quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T2-012",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; turn on the stove slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "stove.turn_on_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": null,
+     "clause": "turn on the stove slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T2-013",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; turn on the stove quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "stove.turn_on_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": null,
+     "clause": "turn on the stove quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T3-014",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; hold the black bowl gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "black_bowl",
+     "clause": "hold the black bowl gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T3-015",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; hold the black bowl firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "black_bowl",
+     "clause": "hold the black bowl firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T3-016",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; approach the black bowl quickly and place the black bowl slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "black_bowl",
+     "clause": "approach the black bowl quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "black_bowl",
+     "clause": "place the black bowl slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T3-017",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; approach the black bowl slowly and place the black bowl quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "black_bowl",
+     "clause": "approach the black bowl slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "black_bowl.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "black_bowl",
+     "clause": "place the black bowl quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T3-018",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; close the drawer slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "drawer.close_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "drawer",
+     "clause": "close the drawer slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T3-019",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; close the drawer quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "drawer.close_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "drawer",
+     "clause": "close the drawer quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T4-020",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; hold the white mug gently and the yellow and white mug firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "white_mug",
+     "clause": "hold the white mug gently",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "yellow_white_mug",
+     "clause": "the yellow and white mug firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T4-021",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; hold the white mug firmly and the yellow and white mug gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "white_mug",
+     "clause": "hold the white mug firmly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "yellow_white_mug",
+     "clause": "the yellow and white mug gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T4-022",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; approach the white mug quickly and place the white mug slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "white_mug.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "white_mug",
+     "clause": "approach the white mug quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "white_mug.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "white_mug",
+     "clause": "place the white mug slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T4-023",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; approach the white mug slowly and place the white mug quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "white_mug.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "white_mug",
+     "clause": "approach the white mug slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "white_mug.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "white_mug",
+     "clause": "place the white mug quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T5-024",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; hold the book gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "book",
+     "clause": "hold the book gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T5-025",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; hold the book firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "book",
+     "clause": "hold the book firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T5-026",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; approach the book quickly and place the book slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "book",
+     "clause": "approach the book quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "book.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "book",
+     "clause": "place the book slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T5-027",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; approach the book slowly and place the book quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "book",
+     "clause": "approach the book slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "book.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "book",
+     "clause": "place the book quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T6-028",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug gently and the chocolate pudding firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "white_mug",
+     "clause": "hold the white mug gently",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "chocolate_pudding.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "chocolate_pudding",
+     "clause": "the chocolate pudding firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T6-029",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug firmly and the chocolate pudding gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "white_mug",
+     "clause": "hold the white mug firmly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "chocolate_pudding.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "chocolate_pudding",
+     "clause": "the chocolate pudding gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T6-030",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; approach the white mug quickly and place the white mug slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "white_mug.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "white_mug",
+     "clause": "approach the white mug quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "white_mug.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "white_mug",
+     "clause": "place the white mug slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T6-031",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; approach the white mug slowly and place the white mug quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "white_mug.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "white_mug",
+     "clause": "approach the white mug slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "white_mug.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "white_mug",
+     "clause": "place the white mug quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T7-032",
+   "task_id": 7,
+   "text": "put both the alphabet soup and the cream cheese box in the basket; hold the alphabet soup gently and the cream cheese box firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "alphabet_soup",
+     "clause": "hold the alphabet soup gently",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "cream_cheese",
+     "clause": "hold the cream cheese box firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T7-033",
+   "task_id": 7,
+   "text": "put both the alphabet soup and the cream cheese box in the basket; hold the alphabet soup firmly and the cream cheese box gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "alphabet_soup",
+     "clause": "hold the alphabet soup firmly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "cream_cheese",
+     "clause": "the cream cheese box gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T7-034",
+   "task_id": 7,
+   "text": "put both the alphabet soup and the cream cheese box in the basket; approach the alphabet soup quickly and place the alphabet soup slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "alphabet_soup",
+     "clause": "approach the alphabet soup quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "alphabet_soup",
+     "clause": "place the alphabet soup slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T7-035",
+   "task_id": 7,
+   "text": "put both the alphabet soup and the cream cheese box in the basket; approach the alphabet soup slowly and place the alphabet soup quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "alphabet_soup",
+     "clause": "approach the alphabet soup slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "alphabet_soup.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "alphabet_soup",
+     "clause": "place the alphabet soup quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T8-036",
+   "task_id": 8,
+   "text": "put both moka pots on the stove; hold the right moka pot gently and the left moka pot firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "right_moka_pot.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "right_moka_pot",
+     "clause": "hold the right moka pot gently",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "left_moka_pot.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "left_moka_pot",
+     "clause": "the left moka pot firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T8-037",
+   "task_id": 8,
+   "text": "put both moka pots on the stove; hold the right moka pot firmly and the left moka pot gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "right_moka_pot.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "right_moka_pot",
+     "clause": "hold the right moka pot firmly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "left_moka_pot.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "left_moka_pot",
+     "clause": "the left moka pot gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T8-038",
+   "task_id": 8,
+   "text": "put both moka pots on the stove; approach the right moka pot quickly and place the right moka pot slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "right_moka_pot.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "right_moka_pot",
+     "clause": "approach the right moka pot quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "right_moka_pot.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "right_moka_pot",
+     "clause": "place the right moka pot slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T8-039",
+   "task_id": 8,
+   "text": "put both moka pots on the stove; approach the right moka pot slowly and place the right moka pot quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "right_moka_pot.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "right_moka_pot",
+     "clause": "approach the right moka pot slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "right_moka_pot.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "right_moka_pot",
+     "clause": "place the right moka pot quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T9-040",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; hold the yellow and white mug gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "yellow_white_mug",
+     "clause": "hold the yellow and white mug gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T9-041",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; hold the yellow and white mug firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "yellow_white_mug",
+     "clause": "hold the yellow and white mug firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T9-042",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; approach the yellow and white mug quickly and place the yellow and white mug slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "yellow_white_mug",
+     "clause": "approach the yellow and white mug quickly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "yellow_white_mug",
+     "clause": "place the yellow and white mug slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T9-043",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; approach the yellow and white mug slowly and place the yellow and white mug quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.approach"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "yellow_white_mug",
+     "clause": "approach the yellow and white mug slowly",
+     "source": "llm"
+    },
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "yellow_white_mug",
+     "clause": "place the yellow and white mug quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 2,
+   "n_got": 2,
+   "matched": 2,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T9-044",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; close the microwave door slowly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "microwave.close_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "object_role": "microwave",
+     "clause": "close the microwave door slowly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "request",
+   "id": "L10-T9-045",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; close the microwave door quickly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "microwave.close_1.articulate"
+     ],
+     "dimension": "speed",
+     "level": "fast",
+     "object_role": "microwave",
+     "clause": "close the microwave door quickly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P0",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; hold the mug gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "hold the mug gently",
+     "candidates": [
+      "white_mug.pick_1.grasp",
+      "yellow_white_mug.pick_1.grasp"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 0,
+   "returned_explicitly": true,
+   "expected": "ambiguous",
+   "silent_execution": false
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P1",
+   "task_id": 6,
+   "text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; hold it firmly",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "chocolate_pudding.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "firm",
+     "object_role": "chocolate_pudding",
+     "clause": "hold it firmly",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 1,
+   "matched": 0,
+   "missing": [],
+   "extra": [
+    [
+     [
+      "chocolate_pudding.pick_1.grasp"
+     ],
+     "grip",
+     "firm"
+    ]
+   ],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 0,
+   "returned_explicitly": false,
+   "expected": "ambiguous",
+   "silent_execution": true
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P2",
+   "task_id": 9,
+   "text": "put the yellow and white mug in the microwave and close it; hold the mug gently",
+   "structural_errors": [],
+   "bindings": [
+    {
+     "instance_ids": [
+      "yellow_white_mug.pick_1.grasp"
+     ],
+     "dimension": "grip",
+     "level": "gentle",
+     "object_role": "yellow_white_mug",
+     "clause": "hold the mug gently",
+     "source": "llm"
+    }
+   ],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 1,
+   "n_got": 1,
+   "matched": 1,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0,
+   "returned_explicitly": true,
+   "expected": "resolved",
+   "silent_execution": false
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P3",
+   "task_id": 3,
+   "text": "put the black bowl in the bottom drawer of the cabinet and close it; close the drawer with gentle hold force",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "with gentle hold force",
+     "reason": "The drawer closing stage does not support the grip dimension."
+    }
+   ],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1,
+   "returned_explicitly": true,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P4",
+   "task_id": 2,
+   "text": "turn on the stove and put the moka pot on it; turn on the stove gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "turn on the stove gently",
+     "reason": "The stove turn-on instance only supports speed, but \"gentle\" is only available as a grip level."
+    }
+   ],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1,
+   "returned_explicitly": true,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P5",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; touch the basket gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "touch the basket gently",
+     "reason": "No stage instance represents touching the basket with a dimension that supports the level gentle."
+    }
+   ],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1,
+   "returned_explicitly": true,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P6",
+   "task_id": 1,
+   "text": "put both the cream cheese box and the butter in the basket; move slowly",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [
+    {
+     "clause": "move slowly",
+     "candidates": [
+      "cream_cheese.pick_1.approach",
+      "cream_cheese.pick_1.descend",
+      "cream_cheese.pick_1.lift",
+      "cream_cheese.pick_1.transport",
+      "cream_cheese.pick_1.place",
+      "cream_cheese.pick_1.retreat",
+      "butter.pick_1.approach",
+      "butter.pick_1.descend",
+      "butter.pick_1.lift",
+      "butter.pick_1.transport",
+      "butter.pick_1.place",
+      "butter.pick_1.retreat"
+     ]
+    }
+   ],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 1,
+   "unsupported_got": 0,
+   "returned_explicitly": true,
+   "expected": "ambiguous",
+   "silent_execution": false
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P7",
+   "task_id": 0,
+   "text": "put both the alphabet soup and the tomato sauce in the basket; hold the ketchup gently",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "hold the ketchup gently",
+     "reason": "The stage set contains no instance for ketchup."
+    }
+   ],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1,
+   "returned_explicitly": true,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P8",
+   "task_id": 5,
+   "text": "pick up the book and place it in the back compartment of the caddy; hold it with 5 N",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [
+    {
+     "clause": "hold it with 5 N",
+     "reason": "The stage set supports only the grip levels gentle, normal, and firm; it cannot express a numeric force threshold."
+    }
+   ],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": false,
+   "ambiguous_got": 0,
+   "unsupported_got": 1,
+   "returned_explicitly": true,
+   "expected": "unsupported",
+   "silent_execution": false
+  },
+  {
+   "parser": "llm",
+   "kind": "probe",
+   "id": "P9",
+   "task_id": 4,
+   "text": "put the white mug on the left plate and put the yellow and white mug on the right plate; put the red mug on the left plate",
+   "structural_errors": [],
+   "bindings": [],
+   "ambiguous": [],
+   "unsupported": [],
+   "n_gold": 0,
+   "n_got": 0,
+   "matched": 0,
+   "missing": [],
+   "extra": [],
+   "wrong_scope": 0,
+   "exact": true,
+   "ambiguous_got": 0,
+   "unsupported_got": 0,
+   "returned_explicitly": false,
+   "expected": "unsupported",
+   "silent_execution": false
+  }
+ ]
+}

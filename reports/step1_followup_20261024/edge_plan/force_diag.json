@@ -1,0 +1,506 @@
+[
+  {
+    "order": "cubeA->cubeB",
+    "levels": {
+      "cubeA": "gentle",
+      "cubeB": "firm"
+    },
+    "seed": 0,
+    "status": "completed",
+    "n_steps": 969,
+    "grasps": {
+      "cubeA": {
+        "controller_plan_band": [
+          2.0,
+          6.0
+        ],
+        "controller_policy": {
+          "closing_steps": 7,
+          "reached_band": true,
+          "reverse_pulses": 2,
+          "in_band_at": 7
+        },
+        "binding": {
+          "expected_target": "cubeA",
+          "steps_in_scope": 202,
+          "steps_measuring_expected": 202,
+          "steps_hold_instance_is_self": 202,
+          "bound_ok": true
+        },
+        "audit": {
+          "level": "gentle",
+          "band": [
+            0.459,
+            8.683
+          ],
+          "n_hold": 96,
+          "grasp_state": "bilateral",
+          "hold_min": 0.934,
+          "hold_median": 0.942,
+          "hold_max": 1.045,
+          "decision": "PASS",
+          "reason": ""
+        },
+        "grasp_stage": {
+          "n_steps": 12,
+          "stage_mean_total": 2.34,
+          "stage_peak_total": 11.322,
+          "first_step_total_ge_lo": 6,
+          "gripper_cmd_close/hold/open": [
+            7,
+            3,
+            2
+          ]
+        }
+      },
+      "cubeB": {
+        "controller_plan_band": [
+          24.0,
+          34.0
+        ],
+        "controller_policy": {
+          "closing_steps": 7,
+          "reached_band": true,
+          "reverse_pulses": 0,
+          "in_band_at": 7
+        },
+        "binding": {
+          "expected_target": "cubeB",
+          "steps_in_scope": 204,
+          "steps_measuring_expected": 204,
+          "steps_hold_instance_is_self": 204,
+          "bound_ok": true
+        },
+        "audit": {
+          "level": "firm",
+          "band": [
+            23.934,
+            39.73
+          ],
+          "n_hold": 104,
+          "grasp_state": "bilateral",
+          "hold_min": 26.327,
+          "hold_median": 26.33,
+          "hold_max": 26.33,
+          "decision": "PASS",
+          "reason": ""
+        },
+        "grasp_stage": {
+          "n_steps": 10,
+          "stage_mean_total": 11.989,
+          "stage_peak_total": 26.325,
+          "first_step_total_ge_lo": 6,
+          "gripper_cmd_close/hold/open": [
+            7,
+            3,
+            0
+          ]
+        }
+      }
+    },
+    "task": {
+      "objects": {
+        "cubeA": {
+          "restored": true,
+          "dxy": 0.0008,
+          "dz": 0.0101,
+          "lifted": true,
+          "max_lift_m": 0.1328,
+          "undisturbed_outside_own_subtask": true,
+          "rest_dev_m": 0.0
+        },
+        "cubeB": {
+          "restored": true,
+          "dxy": 0.0028,
+          "dz": 0.0,
+          "lifted": true,
+          "max_lift_m": 0.1432,
+          "undisturbed_outside_own_subtask": false,
+          "rest_dev_m": 0.0101
+        }
+      },
+      "task_ok": false
+    },
+    "manner_pass": true,
+    "bound_ok": true,
+    "joint_pass": false
+  },
+  {
+    "order": "cubeA->cubeB",
+    "levels": {
+      "cubeA": "firm",
+      "cubeB": "gentle"
+    },
+    "seed": 0,
+    "status": "completed",
+    "n_steps": 969,
+    "grasps": {
+      "cubeA": {
+        "controller_plan_band": [
+          24.0,
+          34.0
+        ],
+        "controller_policy": {
+          "closing_steps": 8,
+          "reached_band": true,
+          "reverse_pulses": 0,
+          "in_band_at": 8
+        },
+        "binding": {
+          "expected_target": "cubeA",
+          "steps_in_scope": 201,
+          "steps_measuring_expected": 201,
+          "steps_hold_instance_is_self": 201,
+          "bound_ok": true
+        },
+        "audit": {
+          "level": "firm",
+          "band": [
+            23.934,
+            39.73
+          ],
+          "n_hold": 96,
+          "grasp_state": "bilateral",
+          "hold_min": 23.921,
+          "hold_median": 23.949,
+          "hold_max": 24.054,
+          "decision": "FAIL",
+          "reason": "hold_force_below_band"
+        },
+        "grasp_stage": {
+          "n_steps": 11,
+          "stage_mean_total": 9.611,
+          "stage_peak_total": 25.522,
+          "first_step_total_ge_lo": 7,
+          "gripper_cmd_close/hold/open": [
+            8,
+            3,
+            0
+          ]
+        }
+      },
+      "cubeB": {
+        "controller_plan_band": [
+          2.0,
+          6.0
+        ],
+        "controller_policy": {
+          "closing_steps": 6,
+          "reached_band": true,
+          "reverse_pulses": 2,
+          "in_band_at": 6
+        },
+        "binding": {
+          "expected_target": "cubeB",
+          "steps_in_scope": 205,
+          "steps_measuring_expected": 205,
+          "steps_hold_instance_is_self": 205,
+          "bound_ok": true
+        },
+        "audit": {
+          "level": "gentle",
+          "band": [
+            0.459,
+            8.683
+          ],
+          "n_hold": 104,
+          "grasp_state": "bilateral",
+          "hold_min": 2.912,
+          "hold_median": 2.914,
+          "hold_max": 2.915,
+          "decision": "PASS",
+          "reason": ""
+        },
+        "grasp_stage": {
+          "n_steps": 11,
+          "stage_mean_total": 3.96,
+          "stage_peak_total": 16.928,
+          "first_step_total_ge_lo": 5,
+          "gripper_cmd_close/hold/open": [
+            6,
+            3,
+            2
+          ]
+        }
+      }
+    },
+    "task": {
+      "objects": {
+        "cubeA": {
+          "restored": true,
+          "dxy": 0.0011,
+          "dz": 0.0101,
+          "lifted": true,
+          "max_lift_m": 0.133,
+          "undisturbed_outside_own_subtask": true,
+          "rest_dev_m": 0.0
+        },
+        "cubeB": {
+          "restored": true,
+          "dxy": 0.0027,
+          "dz": 0.0,
+          "lifted": true,
+          "max_lift_m": 0.1431,
+          "undisturbed_outside_own_subtask": false,
+          "rest_dev_m": 0.0101
+        }
+      },
+      "task_ok": false
+    },
+    "manner_pass": false,
+    "bound_ok": true,
+    "joint_pass": false
+  },
+  {
+    "order": "cubeB->cubeA",
+    "levels": {
+      "cubeA": "gentle",
+      "cubeB": "firm"
+    },
+    "seed": 0,
+    "status": "completed",
+    "n_steps": 1018,
+    "grasps": {
+      "cubeB": {
+        "controller_plan_band": [
+          24.0,
+          34.0
+        ],
+        "controller_policy": {
+          "closing_steps": 7,
+          "reached_band": true,
+          "reverse_pulses": 0,
+          "in_band_at": 7
+        },
+        "binding": {
+          "expected_target": "cubeB",
+          "steps_in_scope": 205,
+          "steps_measuring_expected": 205,
+          "steps_hold_instance_is_self": 205,
+          "bound_ok": true
+        },
+        "audit": {
+          "level": "firm",
+          "band": [
+            23.934,
+            39.73
+          ],
+          "n_hold": 105,
+          "grasp_state": "bilateral",
+          "hold_min": 26.287,
+          "hold_median": 26.483,
+          "hold_max": 27.929,
+          "decision": "PASS",
+          "reason": ""
+        },
+        "grasp_stage": {
+          "n_steps": 10,
+          "stage_mean_total": 11.977,
+          "stage_peak_total": 26.29,
+          "first_step_total_ge_lo": 6,
+          "gripper_cmd_close/hold/open": [
+            7,
+            3,
+            0
+          ]
+        }
+      },
+      "cubeA": {
+        "controller_plan_band": [
+          2.0,
+          6.0
+        ],
+        "controller_policy": {
+          "closing_steps": 7,
+          "reached_band": true,
+          "reverse_pulses": 2,
+          "in_band_at": 7
+        },
+        "binding": {
+          "expected_target": "cubeA",
+          "steps_in_scope": 202,
+          "steps_measuring_expected": 202,
+          "steps_hold_instance_is_self": 202,
+          "bound_ok": true
+        },
+        "audit": {
+          "level": "gentle",
+          "band": [
+            0.459,
+            8.683
+          ],
+          "n_hold": 96,
+          "grasp_state": "bilateral",
+          "hold_min": 0.935,
+          "hold_median": 0.947,
+          "hold_max": 0.995,
+          "decision": "PASS",
+          "reason": ""
+        },
+        "grasp_stage": {
+          "n_steps": 12,
+          "stage_mean_total": 2.332,
+          "stage_peak_total": 11.311,
+          "first_step_total_ge_lo": 6,
+          "gripper_cmd_close/hold/open": [
+            7,
+            3,
+            2
+          ]
+        }
+      }
+    },
+    "task": {
+      "objects": {
+        "cubeA": {
+          "restored": true,
+          "dxy": 0.0009,
+          "dz": 0.0,
+          "lifted": true,
+          "max_lift_m": 0.1432,
+          "undisturbed_outside_own_subtask": false,
+          "rest_dev_m": 0.0101
+        },
+        "cubeB": {
+          "restored": true,
+          "dxy": 0.0029,
+          "dz": 0.0101,
+          "lifted": true,
+          "max_lift_m": 0.1337,
+          "undisturbed_outside_own_subtask": true,
+          "rest_dev_m": 0.0
+        }
+      },
+      "task_ok": false
+    },
+    "manner_pass": true,
+    "bound_ok": true,
+    "joint_pass": false
+  },
+  {
+    "order": "cubeB->cubeA",
+    "levels": {
+      "cubeA": "firm",
+      "cubeB": "gentle"
+    },
+    "seed": 0,
+    "status": "completed",
+    "n_steps": 1018,
+    "grasps": {
+      "cubeB": {
+        "controller_plan_band": [
+          2.0,
+          6.0
+        ],
+        "controller_policy": {
+          "closing_steps": 6,
+          "reached_band": true,
+          "reverse_pulses": 2,
+          "in_band_at": 6
+        },
+        "binding": {
+          "expected_target": "cubeB",
+          "steps_in_scope": 206,
+          "steps_measuring_expected": 206,
+          "steps_hold_instance_is_self": 206,
+          "bound_ok": true
+        },
+        "audit": {
+          "level": "gentle",
+          "band": [
+            0.459,
+            8.683
+          ],
+          "n_hold": 105,
+          "grasp_state": "bilateral",
+          "hold_min": 2.908,
+          "hold_median": 2.922,
+          "hold_max": 3.246,
+          "decision": "PASS",
+          "reason": ""
+        },
+        "grasp_stage": {
+          "n_steps": 11,
+          "stage_mean_total": 3.965,
+          "stage_peak_total": 16.907,
+          "first_step_total_ge_lo": 5,
+          "gripper_cmd_close/hold/open": [
+            6,
+            3,
+            2
+          ]
+        }
+      },
+      "cubeA": {
+        "controller_plan_band": [
+          24.0,
+          34.0
+        ],
+        "controller_policy": {
+          "closing_steps": 8,
+          "reached_band": true,
+          "reverse_pulses": 0,
+          "in_band_at": 8
+        },
+        "binding": {
+          "expected_target": "cubeA",
+          "steps_in_scope": 201,
+          "steps_measuring_expected": 201,
+          "steps_hold_instance_is_self": 201,
+          "bound_ok": true
+        },
+        "audit": {
+          "level": "firm",
+          "band": [
+            23.934,
+            39.73
+          ],
+          "n_hold": 96,
+          "grasp_state": "bilateral",
+          "hold_min": 24.019,
+          "hold_median": 24.031,
+          "hold_max": 24.031,
+          "decision": "PASS",
+          "reason": ""
+        },
+        "grasp_stage": {
+          "n_steps": 11,
+          "stage_mean_total": 9.635,
+          "stage_peak_total": 25.4,
+          "first_step_total_ge_lo": 7,
+          "gripper_cmd_close/hold/open": [
+            8,
+            3,
+            0
+          ]
+        }
+      }
+    },
+    "task": {
+      "objects": {
+        "cubeA": {
+          "restored": true,
+          "dxy": 0.0011,
+          "dz": 0.0,
+          "lifted": true,
+          "max_lift_m": 0.1433,
+          "undisturbed_outside_own_subtask": false,
+          "rest_dev_m": 0.0101
+        },
+        "cubeB": {
+          "restored": true,
+          "dxy": 0.0027,
+          "dz": 0.0101,
+          "lifted": true,
+          "max_lift_m": 0.1337,
+          "undisturbed_outside_own_subtask": true,
+          "rest_dev_m": 0.0
+        }
+      },
+      "task_ok": false
+    },
+    "manner_pass": true,
+    "bound_ok": true,
+    "joint_pass": false
+  }
+]

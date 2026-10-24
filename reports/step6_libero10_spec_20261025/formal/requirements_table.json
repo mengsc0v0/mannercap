@@ -1,0 +1,1797 @@
+{
+ "summary": {
+  "implemented_primitives": [
+   "approach",
+   "descend",
+   "grasp",
+   "insert",
+   "lift",
+   "place",
+   "retreat",
+   "transport"
+  ],
+  "n_requests": 46,
+  "class_counts": {
+   "expressible_unverified": 26,
+   "executable_verified": 2,
+   "needs_new_primitive": 18
+  },
+  "allowed_contacts": {
+   "approach": [],
+   "descend": [
+    [
+     "finger",
+     "support_surface",
+     "record_only"
+    ]
+   ],
+   "grasp": [
+    [
+     "finger",
+     "target_object",
+     "allowed"
+    ],
+    [
+     "finger",
+     "support_surface",
+     "record_only"
+    ],
+    [
+     "target_object",
+     "support_surface",
+     "allowed"
+    ]
+   ],
+   "lift": [
+    [
+     "finger",
+     "target_object",
+     "allowed"
+    ],
+    [
+     "target_object",
+     "support_surface",
+     "allowed_until_clear"
+    ]
+   ],
+   "transport": [
+    [
+     "finger",
+     "target_object",
+     "allowed"
+    ]
+   ],
+   "place": [
+    [
+     "finger",
+     "target_object",
+     "allowed"
+    ],
+    [
+     "target_object",
+     "place_target",
+     "allowed"
+    ]
+   ],
+   "retreat": [],
+   "articulate": [
+    [
+     "finger_or_hand",
+     "articulated_part",
+     "allowed"
+    ]
+   ],
+   "note": "everything not listed (hand/finger/arm vs other object, vs fixture rim/wall, target container by the fingers) is recorded with stage, pair, max force and classified unintended unless the task registers it; no severity score yet"
+  }
+ },
+ "requests": [
+  {
+   "request_id": "L10-T0-000",
+   "task_id": 0,
+   "request_text": "put both the alphabet soup and the tomato sauce in the basket; hold the alphabet soup gently and the tomato sauce firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    },
+    {
+     "clause_object": "tomato_sauce",
+     "stage_instance": "tomato_sauce.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In tomato_sauce_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "alphabet_soup.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "tomato_sauce.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T0-001",
+   "task_id": 0,
+   "request_text": "put both the alphabet soup and the tomato sauce in the basket; hold the alphabet soup firmly and the tomato sauce gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    },
+    {
+     "clause_object": "tomato_sauce",
+     "stage_instance": "tomato_sauce.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In tomato_sauce_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "alphabet_soup.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "tomato_sauce.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T0-002",
+   "task_id": 0,
+   "request_text": "put both the alphabet soup and the tomato sauce in the basket; approach the alphabet soup quickly and place the alphabet soup slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In tomato_sauce_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "alphabet_soup.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "alphabet_soup.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T0-003",
+   "task_id": 0,
+   "request_text": "put both the alphabet soup and the tomato sauce in the basket; approach the alphabet soup slowly and place the alphabet soup quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In tomato_sauce_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "alphabet_soup.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "alphabet_soup.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T1-004",
+   "task_id": 1,
+   "request_text": "put both the cream cheese box and the butter in the basket; hold the cream cheese box gently and the butter firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "cream_cheese",
+     "stage_instance": "cream_cheese.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    },
+    {
+     "clause_object": "butter",
+     "stage_instance": "butter.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In cream_cheese_1 basket_1_contain_region) (In butter_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "cream_cheese.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "butter.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "configs/manner_calibration.v1.json / v2.json (per object)",
+   "class": "executable_verified",
+   "reason": "all stages executed+validated on dev inits of this task; band frozen (v1/v2); not all dev inits pass (see Step 5 close-out)",
+   "missing_primitives": [],
+   "when_not_executable": "n/a"
+  },
+  {
+   "request_id": "L10-T1-005",
+   "task_id": 1,
+   "request_text": "put both the cream cheese box and the butter in the basket; hold the cream cheese box firmly and the butter gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "cream_cheese",
+     "stage_instance": "cream_cheese.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    },
+    {
+     "clause_object": "butter",
+     "stage_instance": "butter.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In cream_cheese_1 basket_1_contain_region) (In butter_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "cream_cheese.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "butter.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "configs/manner_calibration.v1.json / v2.json (per object)",
+   "class": "executable_verified",
+   "reason": "all stages executed+validated on dev inits of this task; band frozen (v1/v2); not all dev inits pass (see Step 5 close-out)",
+   "missing_primitives": [],
+   "when_not_executable": "n/a"
+  },
+  {
+   "request_id": "L10-T1-006",
+   "task_id": 1,
+   "request_text": "put both the cream cheese box and the butter in the basket; approach the cream cheese box quickly and place the cream cheese box slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "cream_cheese",
+     "stage_instance": "cream_cheese.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "cream_cheese",
+     "stage_instance": "cream_cheese.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In cream_cheese_1 basket_1_contain_region) (In butter_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "cream_cheese.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "cream_cheese.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T1-007",
+   "task_id": 1,
+   "request_text": "put both the cream cheese box and the butter in the basket; approach the cream cheese box slowly and place the cream cheese box quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "cream_cheese",
+     "stage_instance": "cream_cheese.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "cream_cheese",
+     "stage_instance": "cream_cheese.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In cream_cheese_1 basket_1_contain_region) (In butter_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "cream_cheese.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "cream_cheese.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T2-008",
+   "task_id": 2,
+   "request_text": "turn on the stove and put the moka pot on it; hold the moka pot gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "moka_pot",
+     "stage_instance": "moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Turnon flat_stove_1) (On moka_pot_1 flat_stove_1_cook_region)) )",
+   "windows": [
+    {
+     "instance": "moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T2-009",
+   "task_id": 2,
+   "request_text": "turn on the stove and put the moka pot on it; hold the moka pot firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "moka_pot",
+     "stage_instance": "moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Turnon flat_stove_1) (On moka_pot_1 flat_stove_1_cook_region)) )",
+   "windows": [
+    {
+     "instance": "moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T2-010",
+   "task_id": 2,
+   "request_text": "turn on the stove and put the moka pot on it; approach the moka pot quickly and place the moka pot slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "moka_pot",
+     "stage_instance": "moka_pot.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "moka_pot",
+     "stage_instance": "moka_pot.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Turnon flat_stove_1) (On moka_pot_1 flat_stove_1_cook_region)) )",
+   "windows": [
+    {
+     "instance": "moka_pot.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "moka_pot.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T2-011",
+   "task_id": 2,
+   "request_text": "turn on the stove and put the moka pot on it; approach the moka pot slowly and place the moka pot quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "moka_pot",
+     "stage_instance": "moka_pot.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "moka_pot",
+     "stage_instance": "moka_pot.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Turnon flat_stove_1) (On moka_pot_1 flat_stove_1_cook_region)) )",
+   "windows": [
+    {
+     "instance": "moka_pot.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "moka_pot.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T2-012",
+   "task_id": 2,
+   "request_text": "turn on the stove and put the moka pot on it; turn on the stove slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "stove",
+     "stage_instance": "stove.turn_on_1.articulate",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Turnon flat_stove_1) (On moka_pot_1 flat_stove_1_cook_region)) )",
+   "windows": [
+    {
+     "instance": "stove.turn_on_1.articulate",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "first gripper/hand contact with the articulated part -> articulated predicate satisfied or part at rest"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause itself is on the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T2-013",
+   "task_id": 2,
+   "request_text": "turn on the stove and put the moka pot on it; turn on the stove quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "stove",
+     "stage_instance": "stove.turn_on_1.articulate",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Turnon flat_stove_1) (On moka_pot_1 flat_stove_1_cook_region)) )",
+   "windows": [
+    {
+     "instance": "stove.turn_on_1.articulate",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "first gripper/hand contact with the articulated part -> articulated predicate satisfied or part at rest"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause itself is on the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T3-014",
+   "task_id": 3,
+   "request_text": "put the black bowl in the bottom drawer of the cabinet and close it; hold the black bowl gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "black_bowl",
+     "stage_instance": "black_bowl.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Close white_cabinet_1_bottom_region) (In akita_black_bowl_1 white_cabinet_1_bottom_region)) )",
+   "windows": [
+    {
+     "instance": "black_bowl.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T3-015",
+   "task_id": 3,
+   "request_text": "put the black bowl in the bottom drawer of the cabinet and close it; hold the black bowl firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "black_bowl",
+     "stage_instance": "black_bowl.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Close white_cabinet_1_bottom_region) (In akita_black_bowl_1 white_cabinet_1_bottom_region)) )",
+   "windows": [
+    {
+     "instance": "black_bowl.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T3-016",
+   "task_id": 3,
+   "request_text": "put the black bowl in the bottom drawer of the cabinet and close it; approach the black bowl quickly and place the black bowl slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "black_bowl",
+     "stage_instance": "black_bowl.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "black_bowl",
+     "stage_instance": "black_bowl.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Close white_cabinet_1_bottom_region) (In akita_black_bowl_1 white_cabinet_1_bottom_region)) )",
+   "windows": [
+    {
+     "instance": "black_bowl.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "black_bowl.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T3-017",
+   "task_id": 3,
+   "request_text": "put the black bowl in the bottom drawer of the cabinet and close it; approach the black bowl slowly and place the black bowl quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "black_bowl",
+     "stage_instance": "black_bowl.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "black_bowl",
+     "stage_instance": "black_bowl.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Close white_cabinet_1_bottom_region) (In akita_black_bowl_1 white_cabinet_1_bottom_region)) )",
+   "windows": [
+    {
+     "instance": "black_bowl.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "black_bowl.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T3-018",
+   "task_id": 3,
+   "request_text": "put the black bowl in the bottom drawer of the cabinet and close it; close the drawer slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "drawer",
+     "stage_instance": "drawer.close_1.articulate",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Close white_cabinet_1_bottom_region) (In akita_black_bowl_1 white_cabinet_1_bottom_region)) )",
+   "windows": [
+    {
+     "instance": "drawer.close_1.articulate",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "first gripper/hand contact with the articulated part -> articulated predicate satisfied or part at rest"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause itself is on the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T3-019",
+   "task_id": 3,
+   "request_text": "put the black bowl in the bottom drawer of the cabinet and close it; close the drawer quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "drawer",
+     "stage_instance": "drawer.close_1.articulate",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (Close white_cabinet_1_bottom_region) (In akita_black_bowl_1 white_cabinet_1_bottom_region)) )",
+   "windows": [
+    {
+     "instance": "drawer.close_1.articulate",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "first gripper/hand contact with the articulated part -> articulated predicate satisfied or part at rest"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause itself is on the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T4-020",
+   "task_id": 4,
+   "request_text": "put the white mug on the left plate and put the yellow and white mug on the right plate; hold the white mug gently and the yellow and white mug firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    },
+    {
+     "clause_object": "yellow_white_mug",
+     "stage_instance": "yellow_white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On porcelain_mug_1 plate_1) (On white_yellow_mug_1 plate_2)) )",
+   "windows": [
+    {
+     "instance": "white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "yellow_white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T4-021",
+   "task_id": 4,
+   "request_text": "put the white mug on the left plate and put the yellow and white mug on the right plate; hold the white mug firmly and the yellow and white mug gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    },
+    {
+     "clause_object": "yellow_white_mug",
+     "stage_instance": "yellow_white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On porcelain_mug_1 plate_1) (On white_yellow_mug_1 plate_2)) )",
+   "windows": [
+    {
+     "instance": "white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "yellow_white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T4-022",
+   "task_id": 4,
+   "request_text": "put the white mug on the left plate and put the yellow and white mug on the right plate; approach the white mug quickly and place the white mug slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On porcelain_mug_1 plate_1) (On white_yellow_mug_1 plate_2)) )",
+   "windows": [
+    {
+     "instance": "white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T4-023",
+   "task_id": 4,
+   "request_text": "put the white mug on the left plate and put the yellow and white mug on the right plate; approach the white mug slowly and place the white mug quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On porcelain_mug_1 plate_1) (On white_yellow_mug_1 plate_2)) )",
+   "windows": [
+    {
+     "instance": "white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T5-024",
+   "task_id": 5,
+   "request_text": "pick up the book and place it in the back compartment of the caddy; hold the book gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "book",
+     "stage_instance": "book.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In black_book_1 desk_caddy_1_back_contain_region)) )",
+   "windows": [
+    {
+     "instance": "book.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T5-025",
+   "task_id": 5,
+   "request_text": "pick up the book and place it in the back compartment of the caddy; hold the book firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "book",
+     "stage_instance": "book.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In black_book_1 desk_caddy_1_back_contain_region)) )",
+   "windows": [
+    {
+     "instance": "book.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T5-026",
+   "task_id": 5,
+   "request_text": "pick up the book and place it in the back compartment of the caddy; approach the book quickly and place the book slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "book",
+     "stage_instance": "book.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "book",
+     "stage_instance": "book.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In black_book_1 desk_caddy_1_back_contain_region)) )",
+   "windows": [
+    {
+     "instance": "book.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "book.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T5-027",
+   "task_id": 5,
+   "request_text": "pick up the book and place it in the back compartment of the caddy; approach the book slowly and place the book quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "book",
+     "stage_instance": "book.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "book",
+     "stage_instance": "book.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In black_book_1 desk_caddy_1_back_contain_region)) )",
+   "windows": [
+    {
+     "instance": "book.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "book.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T6-028",
+   "task_id": 6,
+   "request_text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug gently and the chocolate pudding firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    },
+    {
+     "clause_object": "chocolate_pudding",
+     "stage_instance": "chocolate_pudding.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On porcelain_mug_1 plate_1) (On chocolate_pudding_1 living_room_table_plate_right_region)) )",
+   "windows": [
+    {
+     "instance": "white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "chocolate_pudding.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T6-029",
+   "task_id": 6,
+   "request_text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug firmly and the chocolate pudding gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    },
+    {
+     "clause_object": "chocolate_pudding",
+     "stage_instance": "chocolate_pudding.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On porcelain_mug_1 plate_1) (On chocolate_pudding_1 living_room_table_plate_right_region)) )",
+   "windows": [
+    {
+     "instance": "white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "chocolate_pudding.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T6-030",
+   "task_id": 6,
+   "request_text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; approach the white mug quickly and place the white mug slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On porcelain_mug_1 plate_1) (On chocolate_pudding_1 living_room_table_plate_right_region)) )",
+   "windows": [
+    {
+     "instance": "white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T6-031",
+   "task_id": 6,
+   "request_text": "put the white mug on the plate and put the chocolate pudding to the right of the plate; approach the white mug slowly and place the white mug quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "white_mug",
+     "stage_instance": "white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On porcelain_mug_1 plate_1) (On chocolate_pudding_1 living_room_table_plate_right_region)) )",
+   "windows": [
+    {
+     "instance": "white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T7-032",
+   "task_id": 7,
+   "request_text": "put both the alphabet soup and the cream cheese box in the basket; hold the alphabet soup gently and the cream cheese box firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    },
+    {
+     "clause_object": "cream_cheese",
+     "stage_instance": "cream_cheese.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In cream_cheese_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "alphabet_soup.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "cream_cheese.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T7-033",
+   "task_id": 7,
+   "request_text": "put both the alphabet soup and the cream cheese box in the basket; hold the alphabet soup firmly and the cream cheese box gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    },
+    {
+     "clause_object": "cream_cheese",
+     "stage_instance": "cream_cheese.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In cream_cheese_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "alphabet_soup.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "cream_cheese.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T7-034",
+   "task_id": 7,
+   "request_text": "put both the alphabet soup and the cream cheese box in the basket; approach the alphabet soup quickly and place the alphabet soup slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In cream_cheese_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "alphabet_soup.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "alphabet_soup.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T7-035",
+   "task_id": 7,
+   "request_text": "put both the alphabet soup and the cream cheese box in the basket; approach the alphabet soup slowly and place the alphabet soup quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "alphabet_soup",
+     "stage_instance": "alphabet_soup.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In alphabet_soup_1 basket_1_contain_region) (In cream_cheese_1 basket_1_contain_region)) )",
+   "windows": [
+    {
+     "instance": "alphabet_soup.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "alphabet_soup.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T8-036",
+   "task_id": 8,
+   "request_text": "put both moka pots on the stove; hold the right moka pot gently and the left moka pot firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "right_moka_pot",
+     "stage_instance": "right_moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    },
+    {
+     "clause_object": "left_moka_pot",
+     "stage_instance": "left_moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On moka_pot_1 flat_stove_1_cook_region) (On moka_pot_2 flat_stove_1_cook_region) (Turnon flat_stove_1)) )",
+   "windows": [
+    {
+     "instance": "right_moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "left_moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T8-037",
+   "task_id": 8,
+   "request_text": "put both moka pots on the stove; hold the right moka pot firmly and the left moka pot gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "right_moka_pot",
+     "stage_instance": "right_moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    },
+    {
+     "clause_object": "left_moka_pot",
+     "stage_instance": "left_moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On moka_pot_1 flat_stove_1_cook_region) (On moka_pot_2 flat_stove_1_cook_region) (Turnon flat_stove_1)) )",
+   "windows": [
+    {
+     "instance": "right_moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    },
+    {
+     "instance": "left_moka_pot.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for grip on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T8-038",
+   "task_id": 8,
+   "request_text": "put both moka pots on the stove; approach the right moka pot quickly and place the right moka pot slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "right_moka_pot",
+     "stage_instance": "right_moka_pot.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "right_moka_pot",
+     "stage_instance": "right_moka_pot.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On moka_pot_1 flat_stove_1_cook_region) (On moka_pot_2 flat_stove_1_cook_region) (Turnon flat_stove_1)) )",
+   "windows": [
+    {
+     "instance": "right_moka_pot.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "right_moka_pot.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T8-039",
+   "task_id": 8,
+   "request_text": "put both moka pots on the stove; approach the right moka pot slowly and place the right moka pot quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "right_moka_pot",
+     "stage_instance": "right_moka_pot.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "right_moka_pot",
+     "stage_instance": "right_moka_pot.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (On moka_pot_1 flat_stove_1_cook_region) (On moka_pot_2 flat_stove_1_cook_region) (Turnon flat_stove_1)) )",
+   "windows": [
+    {
+     "instance": "right_moka_pot.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "right_moka_pot.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "expressible_unverified",
+   "reason": "pick-place on this object/target not yet run in this scene; no calibrated response/band for speed on this task",
+   "missing_primitives": [],
+   "when_not_executable": "return {status:'unverified', code:'no_calibrated_band'} if scoring is requested"
+  },
+  {
+   "request_id": "L10-T9-040",
+   "task_id": 9,
+   "request_text": "put the yellow and white mug in the microwave and close it; hold the yellow and white mug gently",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "yellow_white_mug",
+     "stage_instance": "yellow_white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In white_yellow_mug_1 microwave_1_heating_region) (Close microwave_1)) )",
+   "windows": [
+    {
+     "instance": "yellow_white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "gentle",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T9-041",
+   "task_id": 9,
+   "request_text": "put the yellow and white mug in the microwave and close it; hold the yellow and white mug firmly",
+   "manner_axis": "grip",
+   "requirements": [
+    {
+     "clause_object": "yellow_white_mug",
+     "stage_instance": "yellow_white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In white_yellow_mug_1 microwave_1_heating_region) (Close microwave_1)) )",
+   "windows": [
+    {
+     "instance": "yellow_white_mug.pick_1.grasp",
+     "dimension": "grip",
+     "level": "firm",
+     "event_window": "both finger-object normal forces >= 0.1 N on the grasped object (first 2 steps trimmed) -> first step either finger loses contact after the release command"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T9-042",
+   "task_id": 9,
+   "request_text": "put the yellow and white mug in the microwave and close it; approach the yellow and white mug quickly and place the yellow and white mug slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "yellow_white_mug",
+     "stage_instance": "yellow_white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast"
+    },
+    {
+     "clause_object": "yellow_white_mug",
+     "stage_instance": "yellow_white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In white_yellow_mug_1 microwave_1_heating_region) (Close microwave_1)) )",
+   "windows": [
+    {
+     "instance": "yellow_white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "yellow_white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T9-043",
+   "task_id": 9,
+   "request_text": "put the yellow and white mug in the microwave and close it; approach the yellow and white mug slowly and place the yellow and white mug quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "yellow_white_mug",
+     "stage_instance": "yellow_white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow"
+    },
+    {
+     "clause_object": "yellow_white_mug",
+     "stage_instance": "yellow_white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In white_yellow_mug_1 microwave_1_heating_region) (Close microwave_1)) )",
+   "windows": [
+    {
+     "instance": "yellow_white_mug.pick_1.approach",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "motion onset toward the object (end of previous stage release) -> first finger-object contact"
+    },
+    {
+     "instance": "yellow_white_mug.pick_1.place",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "object lifted clear of its support (support-contact loss) -> release (finger-object contact loss) after object-target contact"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause is on an implemented pick-place stage but the task cannot complete without the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T9-044",
+   "task_id": 9,
+   "request_text": "put the yellow and white mug in the microwave and close it; close the microwave door slowly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "microwave",
+     "stage_instance": "microwave.close_1.articulate",
+     "dimension": "speed",
+     "level": "slow"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In white_yellow_mug_1 microwave_1_heating_region) (Close microwave_1)) )",
+   "windows": [
+    {
+     "instance": "microwave.close_1.articulate",
+     "dimension": "speed",
+     "level": "slow",
+     "event_window": "first gripper/hand contact with the articulated part -> articulated predicate satisfied or part at rest"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause itself is on the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  },
+  {
+   "request_id": "L10-T9-045",
+   "task_id": 9,
+   "request_text": "put the yellow and white mug in the microwave and close it; close the microwave door quickly",
+   "manner_axis": "speed",
+   "requirements": [
+    {
+     "clause_object": "microwave",
+     "stage_instance": "microwave.close_1.articulate",
+     "dimension": "speed",
+     "level": "fast"
+    }
+   ],
+   "base_task_requirement": "(:goal (And (In white_yellow_mug_1 microwave_1_heating_region) (Close microwave_1)) )",
+   "windows": [
+    {
+     "instance": "microwave.close_1.articulate",
+     "dimension": "speed",
+     "level": "fast",
+     "event_window": "first gripper/hand contact with the articulated part -> articulated predicate satisfied or part at rest"
+    }
+   ],
+   "target_band": "none yet (calibration required before the request can be scored)",
+   "class": "needs_new_primitive",
+   "reason": "program needs ['articulate']; no executor implementation; the manner clause itself is on the missing stage",
+   "missing_primitives": [
+    "articulate"
+   ],
+   "when_not_executable": "return {status:'unsupported', code:'primitive_missing:articulate'}"
+  }
+ ]
+}

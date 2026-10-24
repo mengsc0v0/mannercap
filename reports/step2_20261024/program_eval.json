@@ -1,0 +1,59 @@
+{
+  "goal": "Pick up cubeA and put it back down where it started, then do the same for cubeB. Use one pick-and-put-down subtask per cube.",
+  "records": [
+    {
+      "source": "hand_written",
+      "structural_errors": [],
+      "status": "completed",
+      "n_steps": 970,
+      "n_instances": 14,
+      "n_grasps": 2,
+      "displacement_m": {
+        "cubeA": 0.0101,
+        "cubeB": 0.0028
+      },
+      "program_hash": "ed44a00ddb441cc1da87a6b4bfca6099990fcfb314a9337c2d8fe06d94de58a3"
+    },
+    {
+      "source": "llm",
+      "structural_errors": [],
+      "raw_instances": [
+        "cubeA.pick_put_1.approach",
+        "cubeA.pick_put_1.descend",
+        "cubeA.pick_put_1.grasp",
+        "cubeA.pick_put_1.lift",
+        "cubeA.pick_put_1.transport",
+        "cubeA.pick_put_1.place",
+        "cubeA.pick_put_1.retreat",
+        "cubeB.pick_put_1.approach",
+        "cubeB.pick_put_1.descend",
+        "cubeB.pick_put_1.grasp",
+        "cubeB.pick_put_1.lift",
+        "cubeB.pick_put_1.transport",
+        "cubeB.pick_put_1.place",
+        "cubeB.pick_put_1.retreat"
+      ],
+      "status": "completed",
+      "n_steps": 970,
+      "n_instances": 14,
+      "n_grasps": 2,
+      "displacement_m": {
+        "cubeA": 0.0101,
+        "cubeB": 0.0028
+      },
+      "program_hash": "19eae2a9b8cb1d2f3c1fe10dcea61b2a0a0100529bc4adf825784b93a3f4414a",
+      "max_action_diff_vs_reference": 0.0
+    }
+  ],
+  "spend": {
+    "calls": 0,
+    "cached": 1,
+    "failed": 0,
+    "latency_s": 0.0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget": 8
+  },
+  "prompt_version": "mannercap.program.v1"
+}

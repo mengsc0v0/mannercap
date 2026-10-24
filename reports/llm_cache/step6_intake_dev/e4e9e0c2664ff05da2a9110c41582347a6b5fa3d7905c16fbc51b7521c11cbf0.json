@@ -1,0 +1,60 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "approach the alphabet soup slowly",
+        "dimension": "speed",
+        "instance_ids": [
+          "alphabet_soup.pick_1.approach"
+        ],
+        "level": "slow",
+        "object_role": "alphabet_soup"
+      },
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "place the alphabet soup quickly",
+        "dimension": "speed",
+        "instance_ids": [
+          "alphabet_soup.pick_1.place"
+        ],
+        "level": "fast",
+        "object_role": "alphabet_soup"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "put both the alphabet soup and the tomato sauce in the basket",
+          "object_phrase": "the alphabet soup",
+          "object_role": "alphabet_soup",
+          "target_phrase": "the basket",
+          "target_role": "basket"
+        },
+        {
+          "action": "put",
+          "clause": "put both the alphabet soup and the tomato sauce in the basket",
+          "object_phrase": "the tomato sauce",
+          "object_role": "tomato_sauce",
+          "target_phrase": "the basket",
+          "target_role": "basket"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

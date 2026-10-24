@@ -1,0 +1,405 @@
+{
+  "records": [
+    {
+      "parser": "lexicon",
+      "case": "clauses",
+      "instruction": "pick up cubeA gently and pick up cubeB firmly",
+      "structural_errors": [],
+      "n_gold": 2,
+      "n_got": 2,
+      "matched": 2,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 0,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": [
+        {
+          "instance_ids": [
+            "cubeA.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "gentle",
+          "object_role": "cubeA",
+          "clause": "pick up cubea gently",
+          "source": "lexicon"
+        },
+        {
+          "instance_ids": [
+            "cubeB.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "firm",
+          "object_role": "cubeB",
+          "clause": "pick up cubeb firmly",
+          "source": "lexicon"
+        }
+      ]
+    },
+    {
+      "parser": "lexicon",
+      "case": "swap",
+      "instruction": "pick up cubeA firmly and pick up cubeB gently",
+      "structural_errors": [],
+      "n_gold": 2,
+      "n_got": 2,
+      "matched": 2,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 0,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": [
+        {
+          "instance_ids": [
+            "cubeA.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "firm",
+          "object_role": "cubeA",
+          "clause": "pick up cubea firmly",
+          "source": "lexicon"
+        },
+        {
+          "instance_ids": [
+            "cubeB.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "gentle",
+          "object_role": "cubeB",
+          "clause": "pick up cubeb gently",
+          "source": "lexicon"
+        }
+      ]
+    },
+    {
+      "parser": "lexicon",
+      "case": "repeat_stage",
+      "instruction": "grasp cubeA gently, then grasp cubeB gently",
+      "structural_errors": [],
+      "n_gold": 2,
+      "n_got": 2,
+      "matched": 2,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 0,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": [
+        {
+          "instance_ids": [
+            "cubeA.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "gentle",
+          "object_role": "cubeA",
+          "clause": "grasp cubea gently",
+          "source": "lexicon"
+        },
+        {
+          "instance_ids": [
+            "cubeB.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "gentle",
+          "object_role": "cubeB",
+          "clause": "grasp cubeb gently",
+          "source": "lexicon"
+        }
+      ]
+    },
+    {
+      "parser": "lexicon",
+      "case": "mixed_dims",
+      "instruction": "approach cubeA slowly, grasp it gently, then transport cubeB fast",
+      "structural_errors": [],
+      "n_gold": 3,
+      "n_got": 2,
+      "matched": 2,
+      "missing": [
+        [
+          [
+            "cubeA.pick_1.grasp"
+          ],
+          "grip",
+          "gentle"
+        ]
+      ],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": false,
+      "ambiguous_got": 1,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": [
+        {
+          "instance_ids": [
+            "cubeA.pick_1.approach"
+          ],
+          "dimension": "speed",
+          "level": "slow",
+          "object_role": "cubeA",
+          "clause": "approach cubea slowly",
+          "source": "lexicon"
+        },
+        {
+          "instance_ids": [
+            "cubeB.pick_1.transport"
+          ],
+          "dimension": "speed",
+          "level": "fast",
+          "object_role": "cubeB",
+          "clause": "transport cubeb fast",
+          "source": "lexicon"
+        }
+      ]
+    },
+    {
+      "parser": "lexicon",
+      "case": "ambiguous",
+      "instruction": "grasp it gently",
+      "structural_errors": [],
+      "n_gold": 0,
+      "n_got": 0,
+      "matched": 0,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 1,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": []
+    },
+    {
+      "parser": "lexicon",
+      "case": "unsupported",
+      "instruction": "open the drawer slowly",
+      "structural_errors": [],
+      "n_gold": 0,
+      "n_got": 0,
+      "matched": 0,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 0,
+      "unsupported_got": 1,
+      "status": "ok",
+      "bindings": []
+    },
+    {
+      "parser": "llm",
+      "case": "clauses",
+      "instruction": "pick up cubeA gently and pick up cubeB firmly",
+      "structural_errors": [],
+      "n_gold": 2,
+      "n_got": 2,
+      "matched": 2,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 0,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": [
+        {
+          "instance_ids": [
+            "cubeA.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "gentle",
+          "object_role": "cubeA",
+          "clause": "pick up cubeA gently",
+          "source": "llm"
+        },
+        {
+          "instance_ids": [
+            "cubeB.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "firm",
+          "object_role": "cubeB",
+          "clause": "pick up cubeB firmly",
+          "source": "llm"
+        }
+      ]
+    },
+    {
+      "parser": "llm",
+      "case": "swap",
+      "instruction": "pick up cubeA firmly and pick up cubeB gently",
+      "structural_errors": [],
+      "n_gold": 2,
+      "n_got": 2,
+      "matched": 2,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 0,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": [
+        {
+          "instance_ids": [
+            "cubeA.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "firm",
+          "object_role": "cubeA",
+          "clause": "pick up cubeA firmly",
+          "source": "llm"
+        },
+        {
+          "instance_ids": [
+            "cubeB.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "gentle",
+          "object_role": "cubeB",
+          "clause": "pick up cubeB gently",
+          "source": "llm"
+        }
+      ]
+    },
+    {
+      "parser": "llm",
+      "case": "repeat_stage",
+      "instruction": "grasp cubeA gently, then grasp cubeB gently",
+      "structural_errors": [],
+      "n_gold": 2,
+      "n_got": 2,
+      "matched": 2,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 0,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": [
+        {
+          "instance_ids": [
+            "cubeA.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "gentle",
+          "object_role": "cubeA",
+          "clause": "grasp cubeA gently",
+          "source": "llm"
+        },
+        {
+          "instance_ids": [
+            "cubeB.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "gentle",
+          "object_role": "cubeB",
+          "clause": "grasp cubeB gently",
+          "source": "llm"
+        }
+      ]
+    },
+    {
+      "parser": "llm",
+      "case": "mixed_dims",
+      "instruction": "approach cubeA slowly, grasp it gently, then transport cubeB fast",
+      "structural_errors": [],
+      "n_gold": 3,
+      "n_got": 3,
+      "matched": 3,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 0,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": [
+        {
+          "instance_ids": [
+            "cubeA.pick_1.approach"
+          ],
+          "dimension": "speed",
+          "level": "slow",
+          "object_role": "cubeA",
+          "clause": "approach cubeA slowly",
+          "source": "llm"
+        },
+        {
+          "instance_ids": [
+            "cubeA.pick_1.grasp"
+          ],
+          "dimension": "grip",
+          "level": "gentle",
+          "object_role": "cubeA",
+          "clause": "grasp it gently",
+          "source": "llm"
+        },
+        {
+          "instance_ids": [
+            "cubeB.pick_1.transport"
+          ],
+          "dimension": "speed",
+          "level": "fast",
+          "object_role": "cubeB",
+          "clause": "transport cubeB fast",
+          "source": "llm"
+        }
+      ]
+    },
+    {
+      "parser": "llm",
+      "case": "ambiguous",
+      "instruction": "grasp it gently",
+      "structural_errors": [],
+      "n_gold": 0,
+      "n_got": 0,
+      "matched": 0,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 1,
+      "unsupported_got": 0,
+      "status": "ok",
+      "bindings": []
+    },
+    {
+      "parser": "llm",
+      "case": "unsupported",
+      "instruction": "open the drawer slowly",
+      "structural_errors": [],
+      "n_gold": 0,
+      "n_got": 0,
+      "matched": 0,
+      "missing": [],
+      "extra": [],
+      "wrong_scope": 0,
+      "exact": true,
+      "ambiguous_got": 0,
+      "unsupported_got": 1,
+      "status": "ok",
+      "bindings": []
+    }
+  ],
+  "spend": {
+    "calls": 6,
+    "cached": 0,
+    "failed": 0,
+    "latency_s": 14.98,
+    "prompt_tokens": 8318,
+    "completion_tokens": 553,
+    "total_tokens": 8871,
+    "budget": 24
+  },
+  "prompt_version": "mannercap.semantics.v1"
+}

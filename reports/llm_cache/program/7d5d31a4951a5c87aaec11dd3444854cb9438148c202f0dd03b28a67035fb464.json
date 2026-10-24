@@ -1,0 +1,193 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.program.v1",
+  "response": {
+    "backend": "robosuite_native",
+    "env_task": "stack",
+    "goal": [
+      "At(cubeA, @spot:cubeA)",
+      "At(cubeB, @spot:cubeB)"
+    ],
+    "instances": [
+      {
+        "instance_id": "cubeA.pick_put_1.approach",
+        "label": "approach cubeA",
+        "object_role": "cubeA",
+        "occurrence": 1,
+        "preds": [],
+        "primitive": "approach",
+        "subtask": "cubeA.pick_put_1",
+        "target_role": null
+      },
+      {
+        "instance_id": "cubeA.pick_put_1.descend",
+        "label": "descend to cubeA",
+        "object_role": "cubeA",
+        "occurrence": 1,
+        "preds": [
+          "cubeA.pick_put_1.approach"
+        ],
+        "primitive": "descend",
+        "subtask": "cubeA.pick_put_1",
+        "target_role": null
+      },
+      {
+        "instance_id": "cubeA.pick_put_1.grasp",
+        "label": "grasp cubeA",
+        "object_role": "cubeA",
+        "occurrence": 1,
+        "preds": [
+          "cubeA.pick_put_1.descend"
+        ],
+        "primitive": "grasp",
+        "subtask": "cubeA.pick_put_1",
+        "target_role": null
+      },
+      {
+        "instance_id": "cubeA.pick_put_1.lift",
+        "label": "lift cubeA",
+        "object_role": "cubeA",
+        "occurrence": 1,
+        "preds": [
+          "cubeA.pick_put_1.grasp"
+        ],
+        "primitive": "lift",
+        "subtask": "cubeA.pick_put_1",
+        "target_role": null
+      },
+      {
+        "instance_id": "cubeA.pick_put_1.transport",
+        "label": "transport cubeA to its starting spot",
+        "object_role": "cubeA",
+        "occurrence": 1,
+        "preds": [
+          "cubeA.pick_put_1.lift"
+        ],
+        "primitive": "transport",
+        "subtask": "cubeA.pick_put_1",
+        "target_role": "spotA"
+      },
+      {
+        "instance_id": "cubeA.pick_put_1.place",
+        "label": "place cubeA at its starting spot",
+        "object_role": "cubeA",
+        "occurrence": 1,
+        "preds": [
+          "cubeA.pick_put_1.transport"
+        ],
+        "primitive": "place",
+        "subtask": "cubeA.pick_put_1",
+        "target_role": "spotA"
+      },
+      {
+        "instance_id": "cubeA.pick_put_1.retreat",
+        "label": "retreat from cubeA",
+        "object_role": null,
+        "occurrence": 1,
+        "preds": [
+          "cubeA.pick_put_1.place"
+        ],
+        "primitive": "retreat",
+        "subtask": "cubeA.pick_put_1",
+        "target_role": null
+      },
+      {
+        "instance_id": "cubeB.pick_put_1.approach",
+        "label": "approach cubeB",
+        "object_role": "cubeB",
+        "occurrence": 1,
+        "preds": [
+          "cubeA.pick_put_1.retreat"
+        ],
+        "primitive": "approach",
+        "subtask": "cubeB.pick_put_1",
+        "target_role": null
+      },
+      {
+        "instance_id": "cubeB.pick_put_1.descend",
+        "label": "descend to cubeB",
+        "object_role": "cubeB",
+        "occurrence": 1,
+        "preds": [
+          "cubeB.pick_put_1.approach"
+        ],
+        "primitive": "descend",
+        "subtask": "cubeB.pick_put_1",
+        "target_role": null
+      },
+      {
+        "instance_id": "cubeB.pick_put_1.grasp",
+        "label": "grasp cubeB",
+        "object_role": "cubeB",
+        "occurrence": 1,
+        "preds": [
+          "cubeB.pick_put_1.descend"
+        ],
+        "primitive": "grasp",
+        "subtask": "cubeB.pick_put_1",
+        "target_role": null
+      },
+      {
+        "instance_id": "cubeB.pick_put_1.lift",
+        "label": "lift cubeB",
+        "object_role": "cubeB",
+        "occurrence": 1,
+        "preds": [
+          "cubeB.pick_put_1.grasp"
+        ],
+        "primitive": "lift",
+        "subtask": "cubeB.pick_put_1",
+        "target_role": null
+      },
+      {
+        "instance_id": "cubeB.pick_put_1.transport",
+        "label": "transport cubeB to its starting spot",
+        "object_role": "cubeB",
+        "occurrence": 1,
+        "preds": [
+          "cubeB.pick_put_1.lift"
+        ],
+        "primitive": "transport",
+        "subtask": "cubeB.pick_put_1",
+        "target_role": "spotB"
+      },
+      {
+        "instance_id": "cubeB.pick_put_1.place",
+        "label": "place cubeB at its starting spot",
+        "object_role": "cubeB",
+        "occurrence": 1,
+        "preds": [
+          "cubeB.pick_put_1.transport"
+        ],
+        "primitive": "place",
+        "subtask": "cubeB.pick_put_1",
+        "target_role": "spotB"
+      },
+      {
+        "instance_id": "cubeB.pick_put_1.retreat",
+        "label": "retreat from cubeB",
+        "object_role": null,
+        "occurrence": 1,
+        "preds": [
+          "cubeB.pick_put_1.place"
+        ],
+        "primitive": "retreat",
+        "subtask": "cubeB.pick_put_1",
+        "target_role": null
+      }
+    ],
+    "name": "restore_cubes",
+    "objects": {
+      "cubeA": "cubeA",
+      "cubeB": "cubeB",
+      "spotA": "@spot:cubeA",
+      "spotB": "@spot:cubeB"
+    }
+  }
+}

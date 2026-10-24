@@ -1,0 +1,39 @@
+id	task	expect	text	gold	llm_status	codes	correct
+A01	1	accept	Put the cream cheese box and the butter in the basket. Hold the butter firmly.	[["butter.pick_1.grasp", "grip", "firm", "butter"]]	accept	[]	True
+A02	0	accept	put the alphabet soup and the tomato sauce in the basket, grasp the tomato sauce gently	[["tomato_sauce.pick_1.grasp", "grip", "gentle", "tomato_sauce"]]	accept	[]	True
+A04	4	accept	put the white mug on the left plate and the yellow and white mug on the right plate, holding the yellow and white mug firmly	[["yellow_white_mug.pick_1.grasp", "grip", "firm", "yellow_white_mug"]]	accept	[]	True
+A05	6	accept	Put the white mug on the plate. Then put the chocolate pudding to the right of the plate. Hold the mug gently.	[["white_mug.pick_1.grasp", "grip", "gentle", "white_mug"]]	accept	[]	True
+A06	8	accept	put both moka pots on the stove; hold the left moka pot gently	[["left_moka_pot.pick_1.grasp", "grip", "gentle", "left_moka_pot"]]	accept	[]	True
+A07	9	accept	put the yellow and white mug in the microwave and close the microwave slowly	[["microwave.close_1.articulate", "speed", "slow", "microwave"]]	accept	[]	True
+A08	3	accept	Put the black bowl in the bottom drawer of the cabinet. Close the drawer fast.	[["drawer.close_1.articulate", "speed", "fast", "drawer"]]	accept	[]	True
+A09	2	accept	Turn on the stove slowly and put the moka pot on the stove.	[["stove.turn_on_1.articulate", "speed", "slow", "stove"]]	accept	[]	True
+A10	5	accept	Pick up the book and place it in the back compartment of the caddy. Hold the book firmly.	[["book.pick_1.grasp", "grip", "firm", "book"]]	accept	[]	True
+A16	0	accept	Put the alphabet soup in the basket and the tomato sauce in the basket. Grip the alphabet soup gently and the tomato sauce firmly.	[["alphabet_soup.pick_1.grasp", "grip", "gentle", "alphabet_soup"], ["tomato_sauce.pick_1.grasp", "grip", "firm", "tomato_sauce"]]	accept	[]	True
+A19	0	accept	put the alphabet soup and the tomato sauce in the basket and hold both of them gently	[["alphabet_soup.pick_1.grasp", "grip", "gentle", "alphabet_soup"], ["tomato_sauce.pick_1.grasp", "grip", "gentle", "tomato_sauce"]]	accept	[]	False
+A03	7	accept	Pick up the cream cheese box. Hold it gently.	[["cream_cheese.pick_1.grasp", "grip", "gentle", "cream_cheese"]]	accept	[]	True
+A15	1	accept	Pick up the butter. Hold it gently.	[["butter.pick_1.grasp", "grip", "gentle", "butter"]]	accept	[]	True
+A12	9	accept	put the yellow and white mug in the microwave and close it, hold it gently	[["yellow_white_mug.pick_1.grasp", "grip", "gentle", "yellow_white_mug"]]	ambiguous	['ambiguous_reference']	False
+A13	3	accept	put the black bowl in the bottom drawer of the cabinet and close it; hold it firmly	[["black_bowl.pick_1.grasp", "grip", "firm", "black_bowl"]]	accept	[]	True
+A14	2	accept	turn on the stove and put the moka pot on it. Hold it gently.	[["moka_pot.pick_1.grasp", "grip", "gentle", "moka_pot"]]	accept	[]	True
+A11	5	accept	Hold it firmly.	[["book.pick_1.grasp", "grip", "firm", "book"]]	accept	[]	True
+A18	5	accept	抓取的时候轻一点	[["book.pick_1.grasp", "grip", "gentle", "book"]]	accept	[]	True
+B01	1	ambiguous	put the cream cheese box and the butter in the basket; hold one of them gently	["butter", "cream_cheese"]	ambiguous	['ambiguous_reference']	True
+B02	7	ambiguous	Put the alphabet soup and the cream cheese box in the basket. Grip it firmly.	["alphabet_soup", "cream_cheese"]	ambiguous	['ambiguous_reference']	True
+B03	8	ambiguous	put both moka pots on the stove; hold the pot firmly	["left_moka_pot", "right_moka_pot"]	ambiguous	['ambiguous_reference']	True
+B04	4	ambiguous	put the white mug on the left plate and the yellow and white mug on the right plate; grip it gently	["white_mug", "yellow_white_mug"]	ambiguous	['ambiguous_reference']	True
+B05	6	ambiguous	put the white mug on the plate and the chocolate pudding to the right of the plate, then hold it gently	["chocolate_pudding", "white_mug"]	ambiguous	['ambiguous_reference']	True
+B06	7	ambiguous	put both the alphabet soup and the cream cheese box in the basket; go slowly when approaching	["alphabet_soup", "cream_cheese"]	ambiguous	['ambiguous_reference']	True
+B07	9	ambiguous	put the yellow and white mug in the microwave and close it; go slowly	["microwave", "yellow_white_mug"]	ambiguous	['ambiguous_reference']	True
+U01	5	unsupported	Pick up the book and place it in the back compartment of the caddy. Hold the book with 20 N of force.	"numeric_level"	unsupported	['numeric_level']	True
+U02	1	unsupported	put the cream cheese box and the butter in the basket; hold the butter at 40% grip	"numeric_level"	unsupported	['numeric_level']	True
+U03	3	unsupported	Put the black bowl in the bottom drawer of the cabinet and close it, squeezing the drawer gently	"dimension_not_on_stage"	unsupported	['dimension_not_on_stage']	True
+U04	9	unsupported	put the yellow and white mug in the microwave and close it without any impact	"quantity_not_measured"	unsupported	['quantity_not_measured']	True
+U05	6	unsupported	put the white mug on the plate and the chocolate pudding to the right of the plate; hold the pudding gently and move the mug at 3 cm/s	"numeric_level"	unsupported	['numeric_level']	True
+U06	0	unsupported	put the alphabet soup and the tomato sauce in the basket; grip the cream cheese firmly	"object_not_in_task"	unsupported	['object_not_in_task']	True
+C01	7	conflict	put the cream cheese box in the basket and then the alphabet soup in the basket; hold the soup gently	"order_mismatch"	conflict	['order_mismatch']	True
+C02	3	conflict	put the black bowl on top of the cabinet and close the drawer	"target_not_in_program"	conflict	['target_not_in_program']	True
+C03	6	conflict	put the white mug on the plate and the chocolate pudding on the plate; hold the pudding firmly	"target_mismatch"	conflict	['target_mismatch']	True
+C04	4	conflict	put the red mug on the left plate and the yellow and white mug on the right plate	"object_not_in_program"	conflict	['object_not_in_program']	True
+C05	0	conflict	put the alphabet soup and the ketchup in the basket; hold the soup gently	"object_not_in_program"	conflict	['object_not_in_program']	True
+C06	2	conflict	put the moka pot on the stove and then turn on the stove	"order_mismatch"	conflict	['order_mismatch']	True
+C07	9	conflict	put the yellow and white mug in the microwave and open it	"step_not_in_program"	conflict	['step_not_in_program']	True

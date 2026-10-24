@@ -1,0 +1,34 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.semantics.v1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "clause": "hold the white mug firmly",
+        "dimension": "grip",
+        "instance_ids": [
+          "white_mug.pick_1.grasp"
+        ],
+        "level": "firm",
+        "object_role": "white_mug"
+      },
+      {
+        "clause": "the chocolate pudding gently",
+        "dimension": "grip",
+        "instance_ids": [
+          "chocolate_pudding.pick_1.grasp"
+        ],
+        "level": "gentle",
+        "object_role": "chocolate_pudding"
+      }
+    ],
+    "unsupported": []
+  }
+}

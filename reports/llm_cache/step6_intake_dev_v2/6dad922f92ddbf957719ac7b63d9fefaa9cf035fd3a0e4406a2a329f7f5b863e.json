@@ -1,0 +1,45 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v2",
+  "response": {
+    "ambiguous": [
+      {
+        "candidates": [
+          "white_mug.pick_1.grasp",
+          "chocolate_pudding.pick_1.grasp"
+        ],
+        "clause": "hold it firmly"
+      }
+    ],
+    "bindings": [],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "put the white mug on the plate",
+          "object_phrase": "the white mug",
+          "object_role": "white_mug",
+          "target_phrase": "the plate",
+          "target_role": "plate"
+        },
+        {
+          "action": "put",
+          "clause": "put the chocolate pudding to the right of the plate",
+          "object_phrase": "the chocolate pudding",
+          "object_role": "chocolate_pudding",
+          "target_phrase": "to the right of the plate",
+          "target_role": "plate_right_region"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

@@ -1,0 +1,8 @@
+DIFF ('nut_assembly', 'neutral', 0) ['actions', 'dt', 'frame_index', 'joint_speed_max', 'joint_speed_mean', 'left_max_n', 'left_mean_n', 'next_state'] stage_timeout:place stage_timeout:transport,place,place,place,place,place
+DIFF ('nut_assembly', 'neutral', 1) ['actions', 'dt', 'frame_index', 'joint_speed_max', 'joint_speed_mean', 'left_max_n', 'left_mean_n', 'next_state'] stage_timeout:place stage_timeout:transport,place,place,place,place,place,retreat
+DIFF ('nut_assembly', 'fast_firm', 0) ['actions', 'dt', 'frame_index', 'joint_speed_max', 'joint_speed_mean', 'left_max_n', 'left_mean_n', 'next_state'] stage_timeout:place stage_timeout:transport,place,place,place,place,place
+DIFF ('nut_assembly', 'fast_firm', 1) ['actions', 'dt', 'frame_index', 'joint_speed_max', 'joint_speed_mean', 'left_max_n', 'left_mean_n', 'next_state'] stage_timeout:transport,place,place,place,place,place,retreat stage_timeout:transport,place,place,place,place,place,retreat
+DIFF ('nut_assembly', 'slow_gentle', 0) ['actions', 'dt', 'frame_index', 'joint_speed_max', 'joint_speed_mean', 'left_max_n', 'left_mean_n', 'next_state'] stage_timeout:transport,place,place,place,place stage_timeout:place
+DIFF ('nut_assembly', 'slow_gentle', 1) ['actions', 'dt', 'frame_index', 'joint_speed_max', 'joint_speed_mean', 'left_max_n', 'left_mean_n', 'next_state'] stage_timeout:place stage_timeout:place
+DIFF ('lift', 'neutral_with_images', 0) ['images'] completed completed
+SUMMARY identical=16 different=7 missing=0 of 23
