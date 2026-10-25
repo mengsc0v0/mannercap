@@ -270,6 +270,10 @@ def produce_program_episode(
                 gc = it.params.get("grasp_candidate")  # opt-in: evaluate exactly this placement (same clearance criterion)
                 grid = None if gc is None else [(float(gc["yaw_deg"]), float(gc.get("lateral_m", 0.0)),
                                                  float(gc.get("dz_m", 0.0)), float(gc.get("longitudinal_m", 0.0)))]
+                gg = it.params.get("grasp_grid")  # opt-in: wider candidate ranges, same preference order and criterion
+                if gg is not None:
+                    from .approach_planner import candidate_grid
+                    grid = candidate_grid(tuple(gg["yaws_deg"]), tuple(gg["laterals_m"]), tuple(gg["dzs_m"]))
                 pl = plan_approach(m_, d_, site_, env_, obst_, start_pos=np.asarray(s.obs["robot0_eef_pos"], float),
                                    start_quat_xyzw=np.asarray(s.obs["robot0_eef_quat"], float),
                                    grasp_pos=np.asarray(r["obj_pos0"], float),

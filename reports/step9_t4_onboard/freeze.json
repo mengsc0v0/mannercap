@@ -1,0 +1,108 @@
+{
+ "git_head": "342e6013b026255c9e3fa3c083b949ea468f723f",
+ "frozen_files_sha256": {
+  "synthesis_v2/program_executor.py": "2f08b789077ccc7f406fc80904c6c374a39d5239321f44e6f5b9246c4523da2a",
+  "synthesis_v2/task_program.py": "e303176b032b883b4da4e9f4a9a668422423b9f4f4f04701299d6c0addde81c8",
+  "synthesis_v2/libero_backend.py": "37ce1cd9f3c09a5d7796028f4a31a03957bb0b65771ec7892c23d26d98a8336e",
+  "synthesis_v2/approach_planner.py": "b1c3b7411590808f5e74c41bb0925c7ac4ce0a50c5a77a14dc3be37791267e1f",
+  "synthesis_v2/contact_audit.py": "6abf8a6932e81f8d426734bc2d8a4917111e203a853ea187779017e6adecd4cb",
+  "synthesis_v2/native_producer.py": "8803cc72136396c239c538ffb2b3888c4aa0696fe78e8eb520ba4d3784060107",
+  "synthesis_v2/grasp_audit.py": "c6bd896a9ee93df048aec8ae55b9f3013f92a943ce6a8a16ad83e579c5fae162",
+  "synthesis_v2/substep_recorder.py": "e254c2bf0feec79085f63900a961a9e4e6750e8404bb19f6bd03e87c65aca87f",
+  "synthesis_v2/manner_calibration.py": "68ddfe64fa7efafbeff7632a2c41b252eacc7522ff37618ae31391a998572507",
+  "synthesis_v2/grasp_force_contract.py": "465cd3a1ae370faf23a3ea678e1df9e5cc2ea37c4675edc9213754de6c95366d",
+  "scripts/mt/s8_task_force.py": "b7e9e02c61db53dff19c6d310a6d090e9008ad0125c99c130a223ce09f3c708f",
+  "scripts/mt/s8_transport_repair.py": "b9b6207c33bf092fc4ce6fbbb494a9eba8ed534863dffbfbe7f1fe77c3d83c9c",
+  "scripts/mt/s7_task_config.py": "6d20c375b6e0c9859d2adecb62a915cf210da588c874ffb73b9293e397b8cc1a"
+ },
+ "primitives_available": {
+  "approach": {
+   "dims": [
+    "speed"
+   ],
+   "needs": "('object_or_target',)"
+  },
+  "descend": {
+   "dims": [
+    "speed"
+   ],
+   "needs": "('object_or_target',)"
+  },
+  "grasp": {
+   "dims": [
+    "grip"
+   ],
+   "needs": "('object',)"
+  },
+  "lift": {
+   "dims": [
+    "speed"
+   ],
+   "needs": "('object',)"
+  },
+  "transport": {
+   "dims": [
+    "speed"
+   ],
+   "needs": "('object', 'target')"
+  },
+  "place": {
+   "dims": [
+    "speed"
+   ],
+   "needs": "('object', 'target')"
+  },
+  "insert": {
+   "dims": [
+    "speed"
+   ],
+   "needs": "('object', 'target')"
+  },
+  "retreat": {
+   "dims": [
+    "speed"
+   ],
+   "needs": "()"
+  },
+  "sweep": {
+   "dims": [
+    "speed",
+    "press"
+   ],
+   "needs": "('target',)"
+  },
+  "articulate": {
+   "dims": [
+    "speed"
+   ],
+   "needs": "('target',)"
+  }
+ },
+ "task": {
+  "id": 4,
+  "language": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+  "goal": "(And (On porcelain_mug_1 plate_1) (On white_yellow_mug_1 plate_2))",
+  "distractor": "red_coffee_mug_1",
+  "n_init_states": 50
+ },
+ "why_T4_before_T6": "T6 second stage target is a table REGION (living_room_table_plate_right_region), not an object body: capture() reads obs[<name>_pos] only for objects, so T6 needs a new region-target capability in the shared executor. T4 targets are two plate objects (plate_1, plate_2) with the same pick_place template.",
+ "reuse_expected": [
+  "pick_place_instances template",
+  "approach/descend/grasp/lift/transport/place/retreat primitives",
+  "approach planner + contact audit + force measurement",
+  "grip plans gentle/normal/firm",
+  "hold_checks v1",
+  "calibration/pairs pipeline (s8_task_force)"
+ ],
+ "new_expected": [
+  "TaskSpec: per-object target (plate_1/plate_2) and no basket release/transport constants (spec table only)",
+  "grip force bands for porcelain_mug_1 / white_yellow_mug_1 (calibration)",
+  "release/transport heights if executor defaults (0.041 / 0.15) fail"
+ ],
+ "unknown": [
+  "whether mug grasp at body origin works (handle geometry)",
+  "whether s8_task_force assumes basket-specific checks",
+  "whether place_dz default works for plates"
+ ],
+ "init_splits": "calibration 8-13; dev 0-7,14-21; reserved 22-39; holdout 40-49 untouched"
+}
