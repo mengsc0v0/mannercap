@@ -111,9 +111,12 @@ def score(c, intake, dec, prog) -> dict:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(); ap.add_argument("--set", default="dev"); ap.add_argument("--live", action="store_true"); ap.add_argument("--tag", default=""); ap.add_argument("--out-tag", default=None); ap.add_argument("--protocol", default=None)
+    ap = argparse.ArgumentParser(); ap.add_argument("--set", default="dev"); ap.add_argument("--live", action="store_true"); ap.add_argument("--tag", default=""); ap.add_argument("--out-tag", default=None); ap.add_argument("--protocol", default=None); ap.add_argument("--ids", default=None, help="comma list: run only these case ids")
     a = ap.parse_args()
-    cases = load_cases(a.set, a.protocol); progs = {t: F.program(t) for t in F.CFG}
+    cases = load_cases(a.set, a.protocol)
+    if a.ids:
+        keep = set(a.ids.split(",")); cases = [c for c in cases if c["id"] in keep]
+    progs = {t: F.program(t) for t in F.CFG}
     client = None
     if a.live:
         from synthesis_v2.llm_interface import LLMClient, LLMConfig

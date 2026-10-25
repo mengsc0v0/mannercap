@@ -1,0 +1,362 @@
+{
+ "prompt_version": "mannercap.intake.v3_1",
+ "summary": {
+  "lexicon_accept_excluding_disputed": [
+   1,
+   2
+  ],
+  "lexicon_accept_excluding_disputed_and_protocol_revised": [
+   1,
+   1
+  ],
+  "lexicon_protocol_revised_cases": [
+   "P6"
+  ],
+  "lexicon": {
+   "1_accept_correct": [
+    1,
+    2
+   ],
+   "2_ambiguity_correct": [
+    4,
+    4
+   ],
+   "2b_ambiguity_candidates_exact": [
+    4,
+    4
+   ],
+   "3_unsupported_reason_correct": [
+    0,
+    0
+   ],
+   "3b_conflict_reason_correct": [
+    0,
+    0
+   ],
+   "4_false_accept": [
+    0,
+    4
+   ],
+   "5_false_reject": [
+    1,
+    2
+   ],
+   "guards_triggered": 0,
+   "errors": 0
+  },
+  "llm_accept_excluding_disputed": [
+   2,
+   2
+  ],
+  "llm_accept_excluding_disputed_and_protocol_revised": [
+   1,
+   1
+  ],
+  "llm_protocol_revised_cases": [
+   "P6"
+  ],
+  "llm": {
+   "1_accept_correct": [
+    2,
+    2
+   ],
+   "2_ambiguity_correct": [
+    4,
+    4
+   ],
+   "2b_ambiguity_candidates_exact": [
+    4,
+    4
+   ],
+   "3_unsupported_reason_correct": [
+    0,
+    0
+   ],
+   "3b_conflict_reason_correct": [
+    0,
+    0
+   ],
+   "4_false_accept": [
+    0,
+    4
+   ],
+   "5_false_reject": [
+    0,
+    2
+   ],
+   "guards_triggered": 0,
+   "errors": 0
+  }
+ },
+ "spend": {
+  "calls": 6,
+  "cached": 0,
+  "failed": 0,
+  "latency_s": 20.763,
+  "prompt_tokens": 12525,
+  "completion_tokens": 1304,
+  "total_tokens": 13829,
+  "budget": 200
+ },
+ "records": [
+  {
+   "parser": "lexicon",
+   "id": "P0",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "white_mug",
+    "yellow_white_mug"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "P1",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "chocolate_pudding",
+    "white_mug"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "P6",
+   "expect": "accept",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "butter.pick_1.approach",
+     "speed",
+     "slow"
+    ],
+    [
+     "butter.pick_1.descend",
+     "speed",
+     "slow"
+    ],
+    [
+     "butter.pick_1.lift",
+     "speed",
+     "slow"
+    ],
+    [
+     "butter.pick_1.place",
+     "speed",
+     "slow"
+    ],
+    [
+     "butter.pick_1.retreat",
+     "speed",
+     "slow"
+    ],
+    [
+     "butter.pick_1.transport",
+     "speed",
+     "slow"
+    ],
+    [
+     "cream_cheese.pick_1.approach",
+     "speed",
+     "slow"
+    ],
+    [
+     "cream_cheese.pick_1.descend",
+     "speed",
+     "slow"
+    ],
+    [
+     "cream_cheese.pick_1.lift",
+     "speed",
+     "slow"
+    ],
+    [
+     "cream_cheese.pick_1.place",
+     "speed",
+     "slow"
+    ],
+    [
+     "cream_cheese.pick_1.retreat",
+     "speed",
+     "slow"
+    ],
+    [
+     "cream_cheese.pick_1.transport",
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "D2",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "butter",
+    "cream_cheese"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "D7",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "butter",
+    "cream_cheese"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "D8",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "P0",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "white_mug",
+    "yellow_white_mug"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "P1",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "chocolate_pudding",
+    "white_mug"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "P6",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "D2",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "butter",
+    "cream_cheese"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "D7",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "butter",
+    "cream_cheese"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "D8",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  }
+ ]
+}

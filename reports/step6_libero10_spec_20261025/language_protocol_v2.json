@@ -42,5 +42,12 @@
    "P6"
   ],
   "plan": "dev live (--protocol v2 --tag _v3) then acceptance once; no prompt edits between or after; results reported as subset excluding disputed and protocol-revised cases, revised cases reported separately"
+ },
+ "freeze_v3_1": {
+  "prompt_version": "mannercap.intake.v3_1",
+  "system_prompt_sha256_16": "fb76c3e0ef037225",
+  "change_vs_v3": "rule 2: single_candidate includes a pronoun-only request when the sentence states no task content and mentions no other object; rule 6 ambiguity limited to contradictions or >=2 plausible referents",
+  "targeted_check": "16 calls (dev D8,P6,P0,P1,D2,D7; accept A11,A12,A13,B06,B07,B01-B05): D8,A11 restored; A13 still ambiguous; A12 accepted via antecedent basis; no further prompt edits",
+  "full_run": "dev + accept once, both reported as regression sets (accept set already used for analysis); original v3 gold kept, 17/20 reported with disputed listed separately"
  }
 }

@@ -21,7 +21,7 @@ from synthesis_v2.language_compiler import (DIMENSION_LEVELS, LEVEL_WORDS, Manne
                                             lexicon_semantics)
 from synthesis_v2.task_program import PRIMITIVES, TaskProgram
 
-INTAKE_PROMPT_VERSION = "mannercap.intake.v3"
+INTAKE_PROMPT_VERSION = "mannercap.intake.v3_1"
 ACTIONS = ("put", "pick", "close", "turn_on", "open")
 _ACTION_SYN = {"pick_up": "pick", "grasp": "pick", "lift": "pick", "pickup": "pick", "place": "put", "move": "put", "insert": "put", "pick_place": "put", "shut": "close", "switch_on": "turn_on", "turn on": "turn_on"}
 BASES = ("explicit_object", "antecedent", "single_candidate", "lexicon", "request_scope")
@@ -92,7 +92,8 @@ INTAKE_SYSTEM = (
     "executable part of a clause.\n"
     "2. A binding needs a basis: 'request_scope' (rule 6), 'explicit_object' (the clause names the object), 'antecedent' (a pronoun whose referent is fixed by the "
     "instruction text; copy that phrase into 'antecedent'), or 'single_candidate' (no object named, exactly one stage instance of the task "
-    "can take that dimension). Never bind by task order, nearest mention, first or last.\n"
+    "can take that dimension; this includes a pronoun-only request such as 'hold it gently' when the sentence states no task content and mentions "
+    "no other object or target that 'it' could mean). Never bind by task order, nearest mention, first or last.\n"
     "3. A pronoun (it, them, one) is resolved from the instruction text alone. If exactly one mentioned object can be meant, bind it with "
     "basis antecedent. If two or more mentioned objects are plausible referents, return it in ambiguous with candidate instance ids.\n"
     "4. A numeric value (5 N, 2 cm/s, 30%) is never a level: put the clause in unsupported with code numeric_level.\n"
@@ -103,7 +104,7 @@ INTAKE_SYSTEM = (
     "carrying') bind ALL instances of that stage for every object of the task. Use basis 'request_scope' for such a binding, "
     "leave object_role null, and list every instance_id the rule covers. A global speed request never changes grip or press (separate "
     "dimensions). A grip or press clause that names no object and fits several grasp or press instances stays ambiguous with the candidates. "
-    "Use ambiguous only when two clauses on the same stage and dimension contradict each other or a pronoun/quantifier has no resolvable referent.\n"
+    "Use ambiguous only when two clauses on the same stage and dimension contradict each other or a pronoun/quantifier has two or more plausible referents in the sentence (rule 3). A pronoun with exactly one registered candidate and no competing mention is NOT ambiguous (rule 2).\n"
     'JSON: {"task":{"restated":bool,"steps":[{"action":"...","object_phrase":"...","object_role":"..|null","target_phrase":"...",'
     '"target_role":"..|null","clause":"..."}],"order":[[0,1]]},'
     '"bindings":[{"instance_ids":[...],"dimension":"speed|grip|press","level":"...","object_role":"..|null","clause":"...",'
