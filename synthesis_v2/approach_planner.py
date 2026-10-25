@@ -81,6 +81,7 @@ class Candidate:
     phase: Optional[str]
     at_grasp_clearance_m: float
     feasible: bool
+    longitudinal_m: float = 0.0  # shift along the hand x axis (perpendicular to the finger row); 0 for the default grid
 
 
 @dataclass
@@ -97,7 +98,8 @@ class ApproachPlan:
             return None if x is None else {
                 "yaw_deg": x.yaw_deg, "lateral_m": x.lateral_m, "dz_m": x.dz_m, "offset": [round(v, 5) for v in x.offset],
                 "min_clearance_m": round(x.min_clearance_m, 5), "blocking": x.blocking, "phase": x.phase,
-                "at_grasp_clearance_m": round(x.at_grasp_clearance_m, 5), "feasible": x.feasible}
+                "at_grasp_clearance_m": round(x.at_grasp_clearance_m, 5), "feasible": x.feasible,
+                **({"longitudinal_m": x.longitudinal_m} if x.longitudinal_m else {})}
         return {"feasible": self.feasible, "default_feasible": self.default_feasible, "margin_m": self.margin_m,
                 "n_samples": self.n_samples, "chosen": c(self.chosen), "candidates": [c(x) for x in self.candidates]}
 
@@ -150,9 +152,19 @@ def candidate_grid(yaws_deg=(0,), laterals_m=(0.0, 0.01, -0.01, 0.02, -0.02, 0.0
     return sorted(g, key=lambda t: (abs(t[1]) + 0.5 * abs(t[2]), t[0] != yaws_deg[0], t[1] < 0))
 
 
+def extended_grid(yaws_deg=DEFAULT_YAWS_DEG, laterals_m=(0.0, 0.01, -0.01, 0.02, -0.02, 0.03, -0.03),
+                  longitudinals_m=(0.0, 0.01, -0.01, 0.02, -0.02), dzs_m=(0.0, 0.01, 0.02, 0.03, 0.04)):
+    """Opt-in widened candidate set: yaw x lateral x longitudinal x height as (yaw, lat, dz, lon) tuples.  Only a
+    larger set of placements is offered; the feasibility criterion in ``plan_approach`` is not changed.  Preference
+    order = smallest departure from the centred grasp (|lat| + |lon| + 0.5|dz|), then yaw order, then mirror sign."""
+    g = [(y, l, z, o) for y in yaws_deg for l in laterals_m for o in longitudinals_m for z in dzs_m]
+    order = {y: i for i, y in enumerate(yaws_deg)}
+    return sorted(g, key=lambda t: (abs(t[1]) + abs(t[3]) + 0.5 * abs(t[2]), order[t[0]], t[1] < 0, t[3] < 0))
+
+
 def plan_approach(m, d, site_id: int, env: HandEnvelope, obstacles: Sequence[Obstacle], *,
                   start_pos, start_quat_xyzw, grasp_pos, grasp_quat_xyzw, hover_dz: float,
-                  margin_m: float = 0.0, grid=None, target: Optional[Obstacle] = None,
+                  margin_m: float = 0.0, grid=None, target: Optional[Obstacle] = None, evaluate_all: bool = False,
                   n_traverse: int = 10, n_descent: int = 10, above_grasp_m: float = 0.02) -> ApproachPlan:
     """Evaluate grasp placements in preference order; the first whose whole path clears ``margin_m`` is chosen.
 
@@ -169,10 +181,12 @@ def plan_approach(m, d, site_id: int, env: HandEnvelope, obstacles: Sequence[Obs
     R0 = quat_to_mat(start_quat_xyzw) @ env.obs_to_site
     cands: list[Candidate] = []
     chosen: Optional[Candidate] = None
-    for yaw, lat, dz in (grid or candidate_grid()):
+    for entry in (grid or candidate_grid()):
+        yaw, lat, dz = entry[:3]
+        lon = float(entry[3]) if len(entry) > 3 else 0.0
         q = yaw_quat(grasp_quat_xyzw, np.deg2rad(yaw))
         Rq = quat_to_mat(q) @ env.obs_to_site
-        off = Rq[:, 1] * lat + np.array([0.0, 0.0, dz])
+        off = Rq[:, 1] * lat + Rq[:, 0] * lon + np.array([0.0, 0.0, dz])
         gp = grasp_pos + off
         hover = gp + [0, 0, hover_dz]
         trav = [start_pos + (hover - start_pos) * t for t in np.linspace(0, 1, n_traverse)]
@@ -194,10 +208,11 @@ def plan_approach(m, d, site_id: int, env: HandEnvelope, obstacles: Sequence[Obs
         # cost of accepting it: the palm rested on a tall can (clearance 0.0 reported, 13-26 N palm contact, lift lost).
         ok = worst > margin_m and at_grasp > 0.0
         cd = Candidate(float(yaw), float(lat), float(dz), [float(x) for x in q], [float(x) for x in off],
-                       float(worst), who, phase, float(at_grasp), bool(ok))
+                       float(worst), who, phase, float(at_grasp), bool(ok), lon)
         cands.append(cd)
-        if ok:
+        if ok and chosen is None:
             chosen = cd
+        if ok and not evaluate_all:
             break
     return ApproachPlan(chosen is not None, chosen, cands, bool(cands and cands[0].feasible), margin_m,
                         n_traverse + n_descent)

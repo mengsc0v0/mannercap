@@ -267,11 +267,14 @@ def produce_program_episode(
                 from .approach_planner import plan_approach, scene_from_libero
                 nm0 = program.objects[it.object_role]
                 m_, d_, site_, env_, obst_, tgt_, look_ = scene_from_libero(s, nm0, return_steps=True)
+                gc = it.params.get("grasp_candidate")  # opt-in: evaluate exactly this placement (same clearance criterion)
+                grid = None if gc is None else [(float(gc["yaw_deg"]), float(gc.get("lateral_m", 0.0)),
+                                                 float(gc.get("dz_m", 0.0)), float(gc.get("longitudinal_m", 0.0)))]
                 pl = plan_approach(m_, d_, site_, env_, obst_, start_pos=np.asarray(s.obs["robot0_eef_pos"], float),
                                    start_quat_xyzw=np.asarray(s.obs["robot0_eef_quat"], float),
                                    grasp_pos=np.asarray(r["obj_pos0"], float),
                                    grasp_quat_xyzw=np.asarray(r["grasp_quat_xyzw"], float),
-                                   hover_dz=APPROACH_DZ, target=tgt_)
+                                   hover_dz=APPROACH_DZ, target=tgt_, grid=grid)
                 meta.setdefault("approach_plan", {})[it.subtask] = {**pl.to_dict(), "lookahead_control_steps": int(look_)}   # generation cost, not part of the episode
                 if not pl.feasible:
                     status_box[0] = f"approach_infeasible:{it.instance_id}"

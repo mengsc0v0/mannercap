@@ -1,0 +1,1452 @@
+{
+ "request": "T7_init23_alphabet_soup",
+ "selected_candidate": {
+  "yaw_deg": 90.0,
+  "lateral_m": 0.0,
+  "dz_m": 0.01,
+  "longitudinal_m": 0.0
+ },
+ "selection": {
+  "yaw_deg": 90.0,
+  "lateral_m": 0.0,
+  "dz_m": 0.01,
+  "offset": [
+   0.0,
+   0.0,
+   0.01
+  ],
+  "min_clearance_m": 0.00772,
+  "blocking": "alphabet_soup_1",
+  "phase": "descent",
+  "at_grasp_clearance_m": 0.00278,
+  "feasible": true
+ },
+ "default_chosen": {
+  "yaw_deg": 0.0,
+  "lateral_m": -0.03,
+  "dz_m": 0.01,
+  "offset": [
+   -0.02995,
+   -0.0,
+   0.0117
+  ],
+  "min_clearance_m": 0.00321,
+  "blocking": "tomato_sauce_1",
+  "phase": "descent",
+  "at_grasp_clearance_m": 0.00473,
+  "feasible": true
+ },
+ "resume_point": {
+  "stage_instance": "alphabet_soup.pick_1.approach",
+  "control_step_index": 0,
+  "prefix_steps": 0
+ },
+ "executor": {
+  "settle_after_open": 1,
+  "approach_check": true
+ },
+ "plan": "gentle",
+ "plan_range_n": [
+  1.0,
+  22.0
+ ],
+ "trajectories": {
+  "A": {
+   "path": "reports/step8_shared_repair/trajectories/gc1_T7_init23_A.npz",
+   "sha256": "55802820a3556e9a51ee99c9c6cce279d60f6e49e48319c31392595645dbc379",
+   "bytes": 104652
+  },
+  "B": {
+   "path": "reports/step8_shared_repair/trajectories/gc1_T7_init23_B.npz",
+   "sha256": "51973b8ef25646feb645c06b0ad05169a41b37cfc2b54012aaeca00e54c15df7",
+   "bytes": 165258
+  },
+  "C": {
+   "path": "reports/step8_shared_repair/trajectories/gc1_T7_init23_C.npz",
+   "sha256": "51973b8ef25646feb645c06b0ad05169a41b37cfc2b54012aaeca00e54c15df7",
+   "bytes": 165258
+  }
+ },
+ "A": {
+  "checks": {
+   "checks_version": "hold_checks_v1",
+   "status": "completed",
+   "task_ok": false,
+   "all_stage_instances_executed": true,
+   "hold_state_counts_by_object": {
+    "alphabet_soup": {
+     "n_hold": 85,
+     "bilateral": 13,
+     "one_sided": 0,
+     "no_contact": 72,
+     "invalid": 0
+    },
+    "cream_cheese": {
+     "n_hold": 67,
+     "bilateral": 67,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "basket": {
+     "n_hold": 0,
+     "bilateral": 0,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    }
+   },
+   "non_bilateral_steps_by_object": {
+    "alphabet_soup": 72,
+    "cream_cheese": 0,
+    "basket": 0
+   },
+   "unknown_objects": [],
+   "residual_triggers": [],
+   "task_and_hold_checks_passed": false,
+   "scope": "task end state + hold-window bilateral contact + no residual transport-repair trigger; not force band / speed / contact policy"
+  },
+  "n_steps": 380,
+  "program_hash": "782f2e6615bc609964953dc609b749061f3c3054651dca715da8fad6a3cd15ef",
+  "plan_hash": "ddd4eb31394dd12669793719e372852f89accd568510e1ae16df9d8954ec7d99",
+  "cost_executed_substeps": 10900,
+  "wall_s": 14.4,
+  "object_contact_events_all_stages": [
+   {
+    "object": "cream_cheese_1",
+    "other_body": "basket_1_main",
+    "peak_n": 1.4,
+    "control_steps": 2
+   }
+  ],
+  "approach_choice": {
+   "alphabet_soup.pick_1": {
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": -0.03,
+     "dz_m": 0.01,
+     "offset": [
+      -0.02995,
+      -0.0,
+      0.0117
+     ],
+     "min_clearance_m": 0.00321,
+     "blocking": "tomato_sauce_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00473,
+     "feasible": true
+    },
+    "default_feasible": false,
+    "n_candidates_evaluated": 25
+   },
+   "cream_cheese.pick_1": {
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.0,
+     "offset": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "min_clearance_m": 0.02013,
+     "blocking": "cream_cheese_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01797,
+     "feasible": true
+    },
+    "default_feasible": true,
+    "n_candidates_evaluated": 1
+   }
+  },
+  "full_audit": {
+   "status": "completed",
+   "task_ok": false,
+   "objects": {
+    "alphabet_soup": {
+     "grasp_stable": false,
+     "measurement_valid": true,
+     "hold_n": 85,
+     "left_min_n": 0.0,
+     "right_min_n": 0.0,
+     "one_sided_control_steps": 72,
+     "bilateral_strict": false,
+     "lr_imbalance": 0.03955458227329708,
+     "rel_z_spread_m": 0.1570034989614687,
+     "hold_total_min": 0.0,
+     "hold_total_max": 10.675503732638163,
+     "hold_total_mean": 1.5681228636248072,
+     "plan_band_1_22_all_hold_steps": false,
+     "peak_simultaneous_n": 37.807186884761215,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 0.0,
+       "substeps": 0,
+       "control_steps": 0,
+       "first_control_step": null,
+       "first_stage": null
+      },
+      "by_stage_all": {},
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.0,
+     "transport_eef_z_end_m": 0.618354082107544,
+     "transport_eef_z_max_m": 0.6407386660575867,
+     "transport_steps": 62
+    },
+    "cream_cheese": {
+     "grasp_stable": true,
+     "measurement_valid": true,
+     "hold_n": 67,
+     "left_min_n": 6.551798212687739,
+     "right_min_n": 6.549638958251145,
+     "one_sided_control_steps": 0,
+     "bilateral_strict": true,
+     "lr_imbalance": 0.00010497560830777818,
+     "rel_z_spread_m": 5.099853432311008e-05,
+     "hold_total_min": 13.101437170938883,
+     "hold_total_max": 13.272685444648289,
+     "hold_total_mean": 13.140822099056365,
+     "plan_band_1_22_all_hold_steps": true,
+     "peak_simultaneous_n": 37.76790377845465,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 0.0,
+       "substeps": 0,
+       "control_steps": 0,
+       "first_control_step": null,
+       "first_stage": null
+      },
+      "by_stage_all": {
+       "cream_cheese.pick_1.place": {
+        "peak_n": 5.487087214097632,
+        "substeps": 2,
+        "control_steps": 2,
+        "first_control_step": 349
+       }
+      },
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.0,
+     "transport_eef_z_end_m": 0.606073260307312,
+     "transport_eef_z_max_m": 0.606073260307312,
+     "transport_steps": 44
+    }
+   },
+   "contact_policy": {
+    "clean": false,
+    "max_forbidden_n": 14.3,
+    "forbidden_contacts": [
+     {
+      "robot_body": "leftfinger[finger_link_on_target]",
+      "other": "alphabet_soup_1_main",
+      "max_n": 14.3,
+      "control_steps": 22,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@alphabet_soup",
+       "lift@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "alphabet_soup_1_main",
+      "max_n": 6.1,
+      "control_steps": 22,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@alphabet_soup",
+       "lift@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "cream_cheese_1_main",
+      "max_n": 0.4,
+      "control_steps": 2,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     }
+    ],
+    "n_event_keys": 6
+   },
+   "cost": {
+    "executed_substeps": 10900,
+    "formal_substeps_simulated": 9500,
+    "discarded_substeps_lookahead": 1400,
+    "discarded_branches": 2,
+    "wall_s": 14.4,
+    "inherited_prefix_substeps": 0
+   }
+  },
+  "per_stage": [
+   {
+    "stage": "approach",
+    "steps": [
+     0,
+     26
+    ],
+    "n": 27,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 27,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0366,
+    "obj_minus_eef_z_m_start_end": [
+     -0.2074,
+     -0.1343
+    ]
+   },
+   {
+    "stage": "descend",
+    "steps": [
+     27,
+     46
+    ],
+    "n": 20,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 20,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0295,
+    "obj_minus_eef_z_m_start_end": [
+     -0.132,
+     -0.0205
+    ]
+   },
+   {
+    "stage": "grasp",
+    "steps": [
+     47,
+     58
+    ],
+    "n": 12,
+    "bilateral": 6,
+    "one_sided": 1,
+    "no_contact": 5,
+    "invalid": 0,
+    "L_mean_min_max": [
+     2.95,
+     0.0,
+     9.37
+    ],
+    "R_mean_min_max": [
+     4.01,
+     0.0,
+     13.44
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0003
+    ],
+    "obj_minus_eef_xy_m_end": 0.0349,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0141,
+     -0.0086
+    ]
+   },
+   {
+    "stage": "lift",
+    "steps": [
+     59,
+     83
+    ],
+    "n": 25,
+    "bilateral": 15,
+    "one_sided": 0,
+    "no_contact": 10,
+    "invalid": 0,
+    "L_mean_min_max": [
+     2.54,
+     0.0,
+     4.52
+    ],
+    "R_mean_min_max": [
+     3.66,
+     0.0,
+     6.36
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0003,
+     -0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0419,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0086,
+     -0.1529
+    ]
+   },
+   {
+    "stage": "transport",
+    "steps": [
+     84,
+     145
+    ],
+    "n": 62,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 62,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.372,
+    "obj_minus_eef_z_m_start_end": [
+     -0.1588,
+     -0.1432
+    ]
+   },
+   {
+    "stage": "place",
+    "steps": [
+     146,
+     161
+    ],
+    "n": 16,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 16,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.3793,
+    "obj_minus_eef_z_m_start_end": [
+     -0.1431,
+     -0.1097
+    ]
+   }
+  ]
+ },
+ "B": {
+  "checks": {
+   "checks_version": "hold_checks_v1",
+   "status": "completed",
+   "task_ok": true,
+   "all_stage_instances_executed": true,
+   "hold_state_counts_by_object": {
+    "alphabet_soup": {
+     "n_hold": 85,
+     "bilateral": 85,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "cream_cheese": {
+     "n_hold": 67,
+     "bilateral": 67,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "basket": {
+     "n_hold": 0,
+     "bilateral": 0,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    }
+   },
+   "non_bilateral_steps_by_object": {
+    "alphabet_soup": 0,
+    "cream_cheese": 0,
+    "basket": 0
+   },
+   "unknown_objects": [],
+   "residual_triggers": [],
+   "task_and_hold_checks_passed": true,
+   "scope": "task end state + hold-window bilateral contact + no residual transport-repair trigger; not force band / speed / contact policy"
+  },
+  "n_steps": 389,
+  "program_hash": "e71d458f7263da08391663624369ca21e4e0ade02af50157515b612d3d42bad6",
+  "plan_hash": "6d958d051f18f947e36e72f8099be3e98302a4bf327d341cc2925761b4315aee",
+  "cost_executed_substeps": 10950,
+  "wall_s": 14.1,
+  "object_contact_events_all_stages": [
+   {
+    "object": "alphabet_soup_1",
+    "other_body": "basket_1_main",
+    "peak_n": 11.9,
+    "control_steps": 229
+   },
+   {
+    "object": "alphabet_soup_1",
+    "other_body": "cream_cheese_1_main",
+    "peak_n": 32.0,
+    "control_steps": 2
+   },
+   {
+    "object": "cream_cheese_1",
+    "other_body": "alphabet_soup_1_main",
+    "peak_n": 32.0,
+    "control_steps": 2
+   }
+  ],
+  "approach_choice": {
+   "alphabet_soup.pick_1": {
+    "chosen": {
+     "yaw_deg": 90.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.01,
+     "offset": [
+      0.0,
+      0.0,
+      0.01
+     ],
+     "min_clearance_m": 0.00772,
+     "blocking": "alphabet_soup_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00278,
+     "feasible": true
+    },
+    "default_feasible": true,
+    "n_candidates_evaluated": 1
+   },
+   "cream_cheese.pick_1": {
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.0,
+     "offset": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "min_clearance_m": 0.02011,
+     "blocking": "cream_cheese_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01792,
+     "feasible": true
+    },
+    "default_feasible": true,
+    "n_candidates_evaluated": 1
+   }
+  },
+  "full_audit": {
+   "status": "completed",
+   "task_ok": true,
+   "objects": {
+    "alphabet_soup": {
+     "grasp_stable": true,
+     "measurement_valid": true,
+     "hold_n": 85,
+     "left_min_n": 6.275454633592187,
+     "right_min_n": 5.8162383991952815,
+     "one_sided_control_steps": 0,
+     "bilateral_strict": true,
+     "lr_imbalance": 0.0032244629448639484,
+     "rel_z_spread_m": 4.427632919346003e-05,
+     "hold_total_min": 12.091693032787468,
+     "hold_total_max": 13.636693758351637,
+     "hold_total_mean": 13.146205503275304,
+     "plan_band_1_22_all_hold_steps": true,
+     "peak_simultaneous_n": 41.27585895772724,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 14.579281654768192,
+       "substeps": 5,
+       "control_steps": 3,
+       "first_control_step": 143,
+       "first_stage": "alphabet_soup.pick_1.transport"
+      },
+      "by_stage_all": {
+       "alphabet_soup.pick_1.place": {
+        "peak_n": 12.992433253984478,
+        "substeps": 137,
+        "control_steps": 6,
+        "first_control_step": 163
+       },
+       "alphabet_soup.pick_1.retreat": {
+        "peak_n": 0.37613643541728226,
+        "substeps": 625,
+        "control_steps": 25,
+        "first_control_step": 169
+       },
+       "alphabet_soup.pick_1.transport": {
+        "peak_n": 14.579281654768192,
+        "substeps": 5,
+        "control_steps": 3,
+        "first_control_step": 143
+       },
+       "cream_cheese.pick_1.approach": {
+        "peak_n": 0.2536026841614636,
+        "substeps": 1325,
+        "control_steps": 53,
+        "first_control_step": 194
+       },
+       "cream_cheese.pick_1.descend": {
+        "peak_n": 0.25360268416147047,
+        "substeps": 475,
+        "control_steps": 19,
+        "first_control_step": 247
+       },
+       "cream_cheese.pick_1.grasp": {
+        "peak_n": 0.2536026841614147,
+        "substeps": 275,
+        "control_steps": 11,
+        "first_control_step": 266
+       },
+       "cream_cheese.pick_1.lift": {
+        "peak_n": 0.25360268416141507,
+        "substeps": 625,
+        "control_steps": 25,
+        "first_control_step": 277
+       },
+       "cream_cheese.pick_1.place": {
+        "peak_n": 3.602934181344866,
+        "substeps": 448,
+        "control_steps": 18,
+        "first_control_step": 346
+       },
+       "cream_cheese.pick_1.retreat": {
+        "peak_n": 0.35516814249245043,
+        "substeps": 625,
+        "control_steps": 25,
+        "first_control_step": 364
+       },
+       "cream_cheese.pick_1.transport": {
+        "peak_n": 0.2536026841614576,
+        "substeps": 1100,
+        "control_steps": 44,
+        "first_control_step": 302
+       }
+      },
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.027918920936496325,
+     "transport_eef_z_end_m": 0.6164484620094299,
+     "transport_eef_z_max_m": 0.6389021873474121,
+     "transport_steps": 62
+    },
+    "cream_cheese": {
+     "grasp_stable": true,
+     "measurement_valid": true,
+     "hold_n": 67,
+     "left_min_n": 6.550058255518635,
+     "right_min_n": 6.549253985301832,
+     "one_sided_control_steps": 0,
+     "bilateral_strict": true,
+     "lr_imbalance": 0.0001002113947555603,
+     "rel_z_spread_m": 5.127784929381818e-05,
+     "hold_total_min": 13.099312240820467,
+     "hold_total_max": 13.217676202531386,
+     "hold_total_mean": 13.140529468266394,
+     "plan_band_1_22_all_hold_steps": true,
+     "peak_simultaneous_n": 39.45797367669955,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 0.0,
+       "substeps": 0,
+       "control_steps": 0,
+       "first_control_step": null,
+       "first_stage": null
+      },
+      "by_stage_all": {},
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.0,
+     "transport_eef_z_end_m": 0.6060736775398254,
+     "transport_eef_z_max_m": 0.6060736775398254,
+     "transport_steps": 44
+    }
+   },
+   "contact_policy": {
+    "clean": false,
+    "max_forbidden_n": 18.0,
+    "forbidden_contacts": [
+     {
+      "robot_body": "leftfinger[finger_link_on_target]",
+      "other": "cream_cheese_1_main",
+      "max_n": 0.2,
+      "control_steps": 3,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     },
+     {
+      "robot_body": "right_gripper",
+      "other": "alphabet_soup_1_main",
+      "max_n": 18.0,
+      "control_steps": 44,
+      "class": "other",
+      "stages": [
+       "grasp@alphabet_soup",
+       "lift@alphabet_soup",
+       "transport@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "cream_cheese_1_main",
+      "max_n": 0.1,
+      "control_steps": 3,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     }
+    ],
+    "n_event_keys": 5
+   },
+   "cost": {
+    "executed_substeps": 10950,
+    "formal_substeps_simulated": 9725,
+    "discarded_substeps_lookahead": 1225,
+    "discarded_branches": 2,
+    "wall_s": 14.1,
+    "inherited_prefix_substeps": 0
+   }
+  },
+  "per_stage": [
+   {
+    "stage": "approach",
+    "steps": [
+     0,
+     37
+    ],
+    "n": 38,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 38,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0021,
+    "obj_minus_eef_z_m_start_end": [
+     -0.2074,
+     -0.1316
+    ]
+   },
+   {
+    "stage": "descend",
+    "steps": [
+     38,
+     56
+    ],
+    "n": 19,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 19,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0015,
+    "obj_minus_eef_z_m_start_end": [
+     -0.131,
+     -0.0158
+    ]
+   },
+   {
+    "stage": "grasp",
+    "steps": [
+     57,
+     65
+    ],
+    "n": 9,
+    "bilateral": 6,
+    "one_sided": 0,
+    "no_contact": 3,
+    "invalid": 0,
+    "L_mean_min_max": [
+     5.36,
+     0.0,
+     11.14
+    ],
+    "R_mean_min_max": [
+     5.19,
+     0.0,
+     10.94
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0005
+    ],
+    "obj_minus_eef_xy_m_end": 0.0,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0094,
+     -0.007
+    ]
+   },
+   {
+    "stage": "lift",
+    "steps": [
+     66,
+     90
+    ],
+    "n": 25,
+    "bilateral": 25,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0,
+    "L_mean_min_max": [
+     6.63,
+     6.61,
+     6.66
+    ],
+    "R_mean_min_max": [
+     6.53,
+     6.51,
+     6.56
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0005,
+     0.144
+    ],
+    "obj_minus_eef_xy_m_end": 0.0,
+    "obj_minus_eef_z_m_start_end": [
+     -0.007,
+     -0.007
+    ]
+   },
+   {
+    "stage": "transport",
+    "steps": [
+     91,
+     152
+    ],
+    "n": 62,
+    "bilateral": 62,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0,
+    "L_mean_min_max": [
+     6.58,
+     6.28,
+     6.82
+    ],
+    "R_mean_min_max": [
+     6.56,
+     5.82,
+     6.82
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.1499,
+     0.1343
+    ],
+    "obj_minus_eef_xy_m_end": 0.0003,
+    "obj_minus_eef_z_m_start_end": [
+     -0.007,
+     -0.007
+    ]
+   },
+   {
+    "stage": "place",
+    "steps": [
+     153,
+     168
+    ],
+    "n": 16,
+    "bilateral": 8,
+    "one_sided": 0,
+    "no_contact": 8,
+    "invalid": 0,
+    "L_mean_min_max": [
+     2.82,
+     0.0,
+     6.58
+    ],
+    "R_mean_min_max": [
+     2.82,
+     0.0,
+     6.58
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.1343,
+     0.017
+    ],
+    "obj_minus_eef_xy_m_end": 0.0016,
+    "obj_minus_eef_z_m_start_end": [
+     -0.007,
+     -0.0908
+    ]
+   }
+  ]
+ },
+ "C": {
+  "checks": {
+   "checks_version": "hold_checks_v1",
+   "status": "completed",
+   "task_ok": true,
+   "all_stage_instances_executed": true,
+   "hold_state_counts_by_object": {
+    "alphabet_soup": {
+     "n_hold": 85,
+     "bilateral": 85,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "cream_cheese": {
+     "n_hold": 67,
+     "bilateral": 67,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "basket": {
+     "n_hold": 0,
+     "bilateral": 0,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    }
+   },
+   "non_bilateral_steps_by_object": {
+    "alphabet_soup": 0,
+    "cream_cheese": 0,
+    "basket": 0
+   },
+   "unknown_objects": [],
+   "residual_triggers": [],
+   "task_and_hold_checks_passed": true,
+   "scope": "task end state + hold-window bilateral contact + no residual transport-repair trigger; not force band / speed / contact policy"
+  },
+  "n_steps": 389,
+  "program_hash": "e71d458f7263da08391663624369ca21e4e0ade02af50157515b612d3d42bad6",
+  "plan_hash": "6d958d051f18f947e36e72f8099be3e98302a4bf327d341cc2925761b4315aee",
+  "cost_executed_substeps": 10950,
+  "wall_s": 14.0,
+  "object_contact_events_all_stages": [
+   {
+    "object": "alphabet_soup_1",
+    "other_body": "basket_1_main",
+    "peak_n": 11.9,
+    "control_steps": 229
+   },
+   {
+    "object": "alphabet_soup_1",
+    "other_body": "cream_cheese_1_main",
+    "peak_n": 32.0,
+    "control_steps": 2
+   },
+   {
+    "object": "cream_cheese_1",
+    "other_body": "alphabet_soup_1_main",
+    "peak_n": 32.0,
+    "control_steps": 2
+   }
+  ],
+  "approach_choice": {
+   "alphabet_soup.pick_1": {
+    "chosen": {
+     "yaw_deg": 90.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.01,
+     "offset": [
+      0.0,
+      0.0,
+      0.01
+     ],
+     "min_clearance_m": 0.00772,
+     "blocking": "alphabet_soup_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00278,
+     "feasible": true
+    },
+    "default_feasible": true,
+    "n_candidates_evaluated": 1
+   },
+   "cream_cheese.pick_1": {
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.0,
+     "offset": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "min_clearance_m": 0.02011,
+     "blocking": "cream_cheese_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01792,
+     "feasible": true
+    },
+    "default_feasible": true,
+    "n_candidates_evaluated": 1
+   }
+  },
+  "full_audit": {
+   "status": "completed",
+   "task_ok": true,
+   "objects": {
+    "alphabet_soup": {
+     "grasp_stable": true,
+     "measurement_valid": true,
+     "hold_n": 85,
+     "left_min_n": 6.275454633592187,
+     "right_min_n": 5.8162383991952815,
+     "one_sided_control_steps": 0,
+     "bilateral_strict": true,
+     "lr_imbalance": 0.0032244629448639484,
+     "rel_z_spread_m": 4.427632919346003e-05,
+     "hold_total_min": 12.091693032787468,
+     "hold_total_max": 13.636693758351637,
+     "hold_total_mean": 13.146205503275304,
+     "plan_band_1_22_all_hold_steps": true,
+     "peak_simultaneous_n": 41.27585895772724,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 14.579281654768192,
+       "substeps": 5,
+       "control_steps": 3,
+       "first_control_step": 143,
+       "first_stage": "alphabet_soup.pick_1.transport"
+      },
+      "by_stage_all": {
+       "alphabet_soup.pick_1.place": {
+        "peak_n": 12.992433253984478,
+        "substeps": 137,
+        "control_steps": 6,
+        "first_control_step": 163
+       },
+       "alphabet_soup.pick_1.retreat": {
+        "peak_n": 0.37613643541728226,
+        "substeps": 625,
+        "control_steps": 25,
+        "first_control_step": 169
+       },
+       "alphabet_soup.pick_1.transport": {
+        "peak_n": 14.579281654768192,
+        "substeps": 5,
+        "control_steps": 3,
+        "first_control_step": 143
+       },
+       "cream_cheese.pick_1.approach": {
+        "peak_n": 0.2536026841614636,
+        "substeps": 1325,
+        "control_steps": 53,
+        "first_control_step": 194
+       },
+       "cream_cheese.pick_1.descend": {
+        "peak_n": 0.25360268416147047,
+        "substeps": 475,
+        "control_steps": 19,
+        "first_control_step": 247
+       },
+       "cream_cheese.pick_1.grasp": {
+        "peak_n": 0.2536026841614147,
+        "substeps": 275,
+        "control_steps": 11,
+        "first_control_step": 266
+       },
+       "cream_cheese.pick_1.lift": {
+        "peak_n": 0.25360268416141507,
+        "substeps": 625,
+        "control_steps": 25,
+        "first_control_step": 277
+       },
+       "cream_cheese.pick_1.place": {
+        "peak_n": 3.602934181344866,
+        "substeps": 448,
+        "control_steps": 18,
+        "first_control_step": 346
+       },
+       "cream_cheese.pick_1.retreat": {
+        "peak_n": 0.35516814249245043,
+        "substeps": 625,
+        "control_steps": 25,
+        "first_control_step": 364
+       },
+       "cream_cheese.pick_1.transport": {
+        "peak_n": 0.2536026841614576,
+        "substeps": 1100,
+        "control_steps": 44,
+        "first_control_step": 302
+       }
+      },
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.027918920936496325,
+     "transport_eef_z_end_m": 0.6164484620094299,
+     "transport_eef_z_max_m": 0.6389021873474121,
+     "transport_steps": 62
+    },
+    "cream_cheese": {
+     "grasp_stable": true,
+     "measurement_valid": true,
+     "hold_n": 67,
+     "left_min_n": 6.550058255518635,
+     "right_min_n": 6.549253985301832,
+     "one_sided_control_steps": 0,
+     "bilateral_strict": true,
+     "lr_imbalance": 0.0001002113947555603,
+     "rel_z_spread_m": 5.127784929381818e-05,
+     "hold_total_min": 13.099312240820467,
+     "hold_total_max": 13.217676202531386,
+     "hold_total_mean": 13.140529468266394,
+     "plan_band_1_22_all_hold_steps": true,
+     "peak_simultaneous_n": 39.45797367669955,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 0.0,
+       "substeps": 0,
+       "control_steps": 0,
+       "first_control_step": null,
+       "first_stage": null
+      },
+      "by_stage_all": {},
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.0,
+     "transport_eef_z_end_m": 0.6060736775398254,
+     "transport_eef_z_max_m": 0.6060736775398254,
+     "transport_steps": 44
+    }
+   },
+   "contact_policy": {
+    "clean": false,
+    "max_forbidden_n": 18.0,
+    "forbidden_contacts": [
+     {
+      "robot_body": "leftfinger[finger_link_on_target]",
+      "other": "cream_cheese_1_main",
+      "max_n": 0.2,
+      "control_steps": 3,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     },
+     {
+      "robot_body": "right_gripper",
+      "other": "alphabet_soup_1_main",
+      "max_n": 18.0,
+      "control_steps": 44,
+      "class": "other",
+      "stages": [
+       "grasp@alphabet_soup",
+       "lift@alphabet_soup",
+       "transport@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "cream_cheese_1_main",
+      "max_n": 0.1,
+      "control_steps": 3,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     }
+    ],
+    "n_event_keys": 5
+   },
+   "cost": {
+    "executed_substeps": 10950,
+    "formal_substeps_simulated": 9725,
+    "discarded_substeps_lookahead": 1225,
+    "discarded_branches": 2,
+    "wall_s": 14.0,
+    "inherited_prefix_substeps": 0
+   }
+  },
+  "per_stage": [
+   {
+    "stage": "approach",
+    "steps": [
+     0,
+     37
+    ],
+    "n": 38,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 38,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0021,
+    "obj_minus_eef_z_m_start_end": [
+     -0.2074,
+     -0.1316
+    ]
+   },
+   {
+    "stage": "descend",
+    "steps": [
+     38,
+     56
+    ],
+    "n": 19,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 19,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0015,
+    "obj_minus_eef_z_m_start_end": [
+     -0.131,
+     -0.0158
+    ]
+   },
+   {
+    "stage": "grasp",
+    "steps": [
+     57,
+     65
+    ],
+    "n": 9,
+    "bilateral": 6,
+    "one_sided": 0,
+    "no_contact": 3,
+    "invalid": 0,
+    "L_mean_min_max": [
+     5.36,
+     0.0,
+     11.14
+    ],
+    "R_mean_min_max": [
+     5.19,
+     0.0,
+     10.94
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0005
+    ],
+    "obj_minus_eef_xy_m_end": 0.0,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0094,
+     -0.007
+    ]
+   },
+   {
+    "stage": "lift",
+    "steps": [
+     66,
+     90
+    ],
+    "n": 25,
+    "bilateral": 25,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0,
+    "L_mean_min_max": [
+     6.63,
+     6.61,
+     6.66
+    ],
+    "R_mean_min_max": [
+     6.53,
+     6.51,
+     6.56
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0005,
+     0.144
+    ],
+    "obj_minus_eef_xy_m_end": 0.0,
+    "obj_minus_eef_z_m_start_end": [
+     -0.007,
+     -0.007
+    ]
+   },
+   {
+    "stage": "transport",
+    "steps": [
+     91,
+     152
+    ],
+    "n": 62,
+    "bilateral": 62,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0,
+    "L_mean_min_max": [
+     6.58,
+     6.28,
+     6.82
+    ],
+    "R_mean_min_max": [
+     6.56,
+     5.82,
+     6.82
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.1499,
+     0.1343
+    ],
+    "obj_minus_eef_xy_m_end": 0.0003,
+    "obj_minus_eef_z_m_start_end": [
+     -0.007,
+     -0.007
+    ]
+   },
+   {
+    "stage": "place",
+    "steps": [
+     153,
+     168
+    ],
+    "n": 16,
+    "bilateral": 8,
+    "one_sided": 0,
+    "no_contact": 8,
+    "invalid": 0,
+    "L_mean_min_max": [
+     2.82,
+     0.0,
+     6.58
+    ],
+    "R_mean_min_max": [
+     2.82,
+     0.0,
+     6.58
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.1343,
+     0.017
+    ],
+    "obj_minus_eef_xy_m_end": 0.0016,
+    "obj_minus_eef_z_m_start_end": [
+     -0.007,
+     -0.0908
+    ]
+   }
+  ]
+ },
+ "B_vs_C": {
+  "from_k0": {
+   "n_steps": [
+    389,
+    389
+   ],
+   "stage_sequence_equal_from_k0": true,
+   "max_abs_diff_actions": 0.0,
+   "max_abs_diff_state": 0.0,
+   "max_abs_diff_next_state": 0.0,
+   "max_abs_diff_left_mean_n": 0.0,
+   "max_abs_diff_right_mean_n": 0.0,
+   "substep_mean_force_max_abs_diff_n": 0.0,
+   "control_steps_with_force_diff_gt_1N": 0,
+   "compared_control_steps": 389
+  },
+  "all_substeps_bitwise_equal": true
+ },
+ "cost": {
+  "A": 10900,
+  "B_full_rerun": 10950,
+  "C_stage_resume": 10950
+ }
+}
