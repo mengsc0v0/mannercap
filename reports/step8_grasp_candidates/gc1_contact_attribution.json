@@ -1,0 +1,14 @@
+{
+ "scope": "init23 yaw90 candidate, palm (gripper0_hand_collision) contact with the target can; replay of the same episode with a read-only observer; correlation/geometry only, no intervention tested",
+ "localisation": {
+  "robot_geom": "gripper0_hand_collision (mesh, palm underside)",
+  "contact_on_target": "top rim of the can: contact point 0.037 m above can centre, 0.030 m from the can axis; 0.031 m above the eef site in the hand frame",
+  "control_steps": "first at grasp start (57-59, peak single-contact 6.3 N for most soup geoms), one soup geom (g2) keeps a low-force palm contact until the end of the logged window (18 N max, 39 control steps)",
+  "eef_minus_soup_z_at_palm_contact_m": [0.0061, 0.0069],
+  "init22_A_reference": "no palm contact; eef-soup z during grasp 0.0075-0.0077 m"
+ },
+ "reading": "palm-underside-to-can-rim margin is ~1 mm: contact when eef-soup z <~ 6.1-7.0 mm. Commanded offset z is 0.010 m in both runs; the controller settles 2.3 mm (init22) / 3.0 mm (init23 C) below it and dips ~1 mm more during the grasp start. The planner's at-grasp clearance (open hand vs target at the COMMANDED pose, 2.0 mm init22 / 2.8 mm init23 C, threshold >0) does not model that sag, so 'clearance>0' is not a no-palm-contact guarantee. Not shown: why init23 settles 0.7 mm lower than init22 (arm pose / joint speed 0.41 vs 0.37 at descent end are correlates only).",
+ "not_resolved": ["soup-cream_cheese 32 N at the cheese place stage (not localised)", "earlier 41.3 N palm column vs audit 18 N: different aggregation, not verified"],
+ "stricter_rule_candidate_space_init23": {"feasible_of_2800": 595, "at_grasp_clearance_ge_3mm": 392, "ge_5mm": 282, "ge_5mm_with_dz_0.01": 7, "ge_8mm": 118, "ge_10mm": 66, "note": "NOT applied; a stricter margin needs a pre-stated rule and fresh inits (26-39)"},
+ "files": ["gc1loc_T7_init23.contact_localize.json", "gc1loc_T7_init22.contact_localize.json", "gc1_enumeration.json"]
+}
