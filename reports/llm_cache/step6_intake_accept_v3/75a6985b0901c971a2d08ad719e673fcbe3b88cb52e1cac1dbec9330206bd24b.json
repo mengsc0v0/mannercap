@@ -1,0 +1,49 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "Hold the butter firmly.",
+        "dimension": "grip",
+        "instance_ids": [
+          "butter.pick_1.grasp"
+        ],
+        "level": "firm",
+        "object_role": "butter"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "Put the cream cheese box and the butter in the basket.",
+          "object_phrase": "the cream cheese box",
+          "object_role": "cream_cheese",
+          "target_phrase": "the basket",
+          "target_role": "basket"
+        },
+        {
+          "action": "put",
+          "clause": "Put the cream cheese box and the butter in the basket.",
+          "object_phrase": "the butter",
+          "object_role": "butter",
+          "target_phrase": "the basket",
+          "target_role": "basket"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": "the cream cheese box",
+        "basis": "antecedent",
+        "clause": "Hold it gently.",
+        "dimension": "grip",
+        "instance_ids": [
+          "cream_cheese.pick_1.grasp"
+        ],
+        "level": "gentle",
+        "object_role": "cream_cheese"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "pick",
+          "clause": "Pick up the cream cheese box.",
+          "object_phrase": "the cream cheese box",
+          "object_role": "cream_cheese",
+          "target_phrase": null,
+          "target_role": null
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3",
+  "response": {
+    "ambiguous": [],
+    "bindings": [],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "put both the alphabet soup and the tomato sauce in the basket",
+          "object_phrase": "the alphabet soup",
+          "object_role": "alphabet_soup",
+          "target_phrase": "the basket",
+          "target_role": "basket"
+        },
+        {
+          "action": "put",
+          "clause": "put both the alphabet soup and the tomato sauce in the basket",
+          "object_phrase": "the tomato sauce",
+          "object_role": "tomato_sauce",
+          "target_phrase": "the basket",
+          "target_role": "basket"
+        }
+      ]
+    },
+    "unsupported": [
+      {
+        "clause": "hold the ketchup gently",
+        "code": "object_not_in_task",
+        "reason": "The ketchup is not an object in the task program."
+      }
+    ]
+  }
+}
