@@ -1,17 +1,46 @@
 {
-  "version": "language_protocol.v2",
-  "status": "proposed; not yet implemented in the intake prompt (prompt mannercap.intake.v2 was written before this rule)",
-  "rules": [
-    "R1 A speed request with no object and no stage ('go slowly', 'move slowly') applies to every motion stage of the program that supports speed control. It is not an ambiguity.",
-    "R2 A request that names a stage ('when approaching') applies to that stage of every manipulated object named or implied by the task ('both ...'); a request that names an object applies to that object's stages. The narrower scope overrides the global one on the stages it covers.",
-    "R3 A global speed request does not change grip force or press level (dimensions are independent).",
-    "R4 Clarification is required only when requests on the same stage and dimension contradict each other, or the referent of a pronoun/quantifier ('it', 'one of them') cannot be resolved. Grip/press requests without an object remain ambiguous when several grasps exist (v1 behaviour kept).",
-    "R5 A stage that the request covers but that has no speed control must be reported as a limitation, never skipped silently."
-  ],
-  "gold_revisions": {
-    "P6": {"set": "dev", "scope": "all_speed_stages", "dimension": "speed", "level": "slow", "was": "ambiguous"},
-    "B06": {"set": "accept", "scope": "approach_stages", "dimension": "speed", "level": "slow", "was": "ambiguous", "note": "consequence of R2 (stage named, objects given by 'both'); needs owner confirmation"},
-    "B07": {"set": "accept", "scope": "all_speed_stages", "dimension": "speed", "level": "slow", "was": "ambiguous"}
+ "version": "language_protocol.v2",
+ "status": "frozen; implemented in prompt mannercap.intake.v3 (basis request_scope + code-side scope check) before any live v3 call",
+ "rules": [
+  "R1 A speed request with no object and no stage ('go slowly', 'move slowly') applies to every motion stage of the program that supports speed control. It is not an ambiguity.",
+  "R2 A request that names a stage ('when approaching') applies to that stage of every manipulated object named or implied by the task ('both ...'); a request that names an object applies to that object's stages. The narrower scope overrides the global one on the stages it covers.",
+  "R3 A global speed request does not change grip force or press level (dimensions are independent).",
+  "R4 Clarification is required only when requests on the same stage and dimension contradict each other, or the referent of a pronoun/quantifier ('it', 'one of them') cannot be resolved. Grip/press requests without an object remain ambiguous when several grasps exist (v1 behaviour kept).",
+  "R5 A stage that the request covers but that has no speed control must be reported as a limitation, never skipped silently."
+ ],
+ "gold_revisions": {
+  "P6": {
+   "set": "dev",
+   "scope": "all_speed_stages",
+   "dimension": "speed",
+   "level": "slow",
+   "was": "ambiguous"
   },
-  "evaluation": "revised gold is applied only with `s6_intake_eval.py --protocol v2` on the existing cached model outputs; outputs of the v1 prompt are not expected to follow R1/R2, so those cases are reported as protocol-revised, not as model errors. Original gold and results are kept."
+  "B06": {
+   "set": "accept",
+   "scope": "approach_stages",
+   "dimension": "speed",
+   "level": "slow",
+   "was": "ambiguous",
+   "note": "consequence of R2 (stage named, objects given by 'both'); needs owner confirmation"
+  },
+  "B07": {
+   "set": "accept",
+   "scope": "all_speed_stages",
+   "dimension": "speed",
+   "level": "slow",
+   "was": "ambiguous"
+  }
+ },
+ "evaluation": "revised gold is applied only with `s6_intake_eval.py --protocol v2` on the existing cached model outputs; outputs of the v1 prompt are not expected to follow R1/R2, so those cases are reported as protocol-revised, not as model errors. Original gold and results are kept.",
+ "freeze": {
+  "prompt_version": "mannercap.intake.v3",
+  "system_prompt_sha256_16": "dec4b4b1d01484b4",
+  "revised_cases": [
+   "B06",
+   "B07",
+   "P6"
+  ],
+  "plan": "dev live (--protocol v2 --tag _v3) then acceptance once; no prompt edits between or after; results reported as subset excluding disputed and protocol-revised cases, revised cases reported separately"
+ }
 }

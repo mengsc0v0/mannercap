@@ -143,3 +143,36 @@ def test_identical_clause_repeated_in_the_sentence_needs_one_answer_each():
     one = copy.deepcopy(GOOD2); one["bindings"] = [BIND("alphabet_soup", "hold it gently")]
     d = run(one, t)
     assert d["status"] == "incomplete" and "repeated_requirement_not_covered" in d["codes"], d
+
+
+# --- language protocol v2 (prompt v3): object-free speed requests cover every matching instance ---
+def _scope(clause, ids, dim="speed", level="slow"):
+    b = MannerBinding(tuple(ids), dim, level, None, clause)
+    return intake(f"put a and b in the basket; {clause}", sem=Semantics(f"put a and b in the basket; {clause}", (b,)),
+                  bases=({"basis": "request_scope", "antecedent": ""},))
+
+
+def _speed_ids(prim=None):
+    return [i.instance_id for i in PROG.instances if "speed" in i.dims and (prim is None or i.primitive == prim)]
+
+
+def test_global_speed_request_covers_all_speed_instances():
+    assert admit(_scope("move slowly", _speed_ids()), PROG)["status"] == "accept"
+
+
+def test_named_stage_covers_that_stage_of_every_object():
+    assert admit(_scope("go slowly when approaching", _speed_ids("approach")), PROG)["status"] == "accept"
+
+
+def test_partial_scope_is_incomplete_not_accepted():
+    d = admit(_scope("go slowly when approaching", _speed_ids("approach")[:1]), PROG)
+    assert d["status"] == "incomplete" and "request_scope_not_covered" in d["codes"]
+    d = admit(_scope("move slowly", _speed_ids("approach")), PROG)
+    assert d["status"] == "incomplete"
+
+
+def test_request_scope_never_applies_to_grip_or_names_an_object():
+    d = admit(_scope("hold gently", ["a.pick_1.grasp", "b.pick_1.grasp"], dim="grip", level="gentle"), PROG)
+    assert d["status"] == "ambiguous"
+    d = admit(_scope("move a slowly", _speed_ids()), PROG)
+    assert d["status"] == "ambiguous"

@@ -21,10 +21,15 @@ from synthesis_v2.language_compiler import (DIMENSION_LEVELS, LEVEL_WORDS, Manne
                                             lexicon_semantics)
 from synthesis_v2.task_program import PRIMITIVES, TaskProgram
 
-INTAKE_PROMPT_VERSION = "mannercap.intake.v2"
+INTAKE_PROMPT_VERSION = "mannercap.intake.v3"
 ACTIONS = ("put", "pick", "close", "turn_on", "open")
 _ACTION_SYN = {"pick_up": "pick", "grasp": "pick", "lift": "pick", "pickup": "pick", "place": "put", "move": "put", "insert": "put", "pick_place": "put", "shut": "close", "switch_on": "turn_on", "turn on": "turn_on"}
-BASES = ("explicit_object", "antecedent", "single_candidate", "lexicon")
+BASES = ("explicit_object", "antecedent", "single_candidate", "lexicon", "request_scope")
+# language protocol v2 (R1-R4): a SPEED request that names a stage (or no stage) and no object applies to every matching
+# instance of the task; grip/press requests keep requiring an object.
+STAGE_WORDS = {"approach": "approach", "approaching": "approach", "descend": "descend", "descending": "descend",
+               "lift": "lift", "lifting": "lift", "carry": "transport", "carrying": "transport", "transport": "transport",
+               "transporting": "transport", "place": "place", "placing": "place", "retreat": "retreat", "retreating": "retreat"}
 UNSUPPORTED_CODES = ("numeric_level", "dimension_not_on_stage", "quantity_not_measured", "object_not_in_task", "stage_not_in_program", "other")
 NUMERIC_RE = re.compile(r"\b\d+(?:\.\d+)?\s*(?:n|newtons?|kg|g|m/s|cm/s|mm/s|%|percent|cm|mm)(?![a-z])", re.I)
 PRONOUNS = ("it", "them", "its", "one", "that", "this")
@@ -85,7 +90,7 @@ INTAKE_SYSTEM = (
     "MANNER PART. Use ONLY the instance_id values and level words in the scene card; never invent a stage, object, level or number.\n"
     "1. Every manner clause appears exactly once, in bindings, ambiguous or unsupported. Never drop a clause, never keep only the "
     "executable part of a clause.\n"
-    "2. A binding needs a basis: 'explicit_object' (the clause names the object), 'antecedent' (a pronoun whose referent is fixed by the "
+    "2. A binding needs a basis: 'request_scope' (rule 6), 'explicit_object' (the clause names the object), 'antecedent' (a pronoun whose referent is fixed by the "
     "instruction text; copy that phrase into 'antecedent'), or 'single_candidate' (no object named, exactly one stage instance of the task "
     "can take that dimension). Never bind by task order, nearest mention, first or last.\n"
     "3. A pronoun (it, them, one) is resolved from the instruction text alone. If exactly one mentioned object can be meant, bind it with "
@@ -93,11 +98,16 @@ INTAKE_SYSTEM = (
     "4. A numeric value (5 N, 2 cm/s, 30%) is never a level: put the clause in unsupported with code numeric_level.\n"
     "5. Unsupported codes: numeric_level | dimension_not_on_stage (the stage has no such dimension) | quantity_not_measured (e.g. gentle "
     "contact, impact, touching) | object_not_in_task (manner on an object the task program does not contain) | stage_not_in_program | other.\n"
-    "6. A clause that names no object and fits several instances (e.g. 'move slowly') is ambiguous with the candidates.\n"
+    "6. A SPEED clause that names no object applies to every matching stage instance of the task and is NOT ambiguous: with no stage word "
+    "('move slowly', 'go slowly') bind ALL instances whose dimension list contains speed; with a stage word ('when approaching', 'while "
+    "carrying') bind ALL instances of that stage for every object of the task. Use basis 'request_scope' for such a binding, "
+    "leave object_role null, and list every instance_id the rule covers. A global speed request never changes grip or press (separate "
+    "dimensions). A grip or press clause that names no object and fits several grasp or press instances stays ambiguous with the candidates. "
+    "Use ambiguous only when two clauses on the same stage and dimension contradict each other or a pronoun/quantifier has no resolvable referent.\n"
     'JSON: {"task":{"restated":bool,"steps":[{"action":"...","object_phrase":"...","object_role":"..|null","target_phrase":"...",'
     '"target_role":"..|null","clause":"..."}],"order":[[0,1]]},'
     '"bindings":[{"instance_ids":[...],"dimension":"speed|grip|press","level":"...","object_role":"..|null","clause":"...",'
-    '"basis":"explicit_object|antecedent|single_candidate","antecedent":"..|null"}],'
+    '"basis":"explicit_object|antecedent|single_candidate|request_scope","antecedent":"..|null"}],'
     '"ambiguous":[{"clause":"...","candidates":[...]}],"unsupported":[{"clause":"...","code":"...","reason":"..."}]}'
 )
 
@@ -266,6 +276,14 @@ def _has_pronoun(clause: str) -> bool:
     return any(re.search(rf"\b{p}\b", clause.lower()) for p in PRONOUNS)
 
 
+def request_scope_expected(clause: str, program: TaskProgram) -> set[str]:
+    """Instances a speed ``request_scope`` clause must cover (protocol R1/R2): the instances of the stage types it names, or every
+    instance that supports speed when it names none.  Code, not the model's claim."""
+    words = re.findall(r"[a-z]+", clause.lower())
+    prims = {STAGE_WORDS[w] for w in words if w in STAGE_WORDS}
+    return {it.instance_id for it in program.instances if "speed" in it.dims and (not prims or it.primitive in prims)}
+
+
 def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
     """Decision for one request.  ``guards`` lists rules that overrode / flagged the model's answer."""
     sem, guards, codes = intake.semantics, [], []
@@ -284,9 +302,16 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
     for b, bs in zip(sem.bindings, intake.bases):
         if bs["basis"] not in BASES:
             guards.append({"guard": "binding_without_admissible_basis", "clause": b.clause, "basis": bs["basis"]}); ambiguous_extra.append(b.clause)
+        elif bs["basis"] == "request_scope" and (b.dimension != "speed" or _mentioned_roles(b.clause, program)):
+            guards.append({"guard": "request_scope_only_for_object_free_speed", "clause": b.clause, "dimension": b.dimension}); ambiguous_extra.append(b.clause)
         elif bs["basis"] == "antecedent" and (not bs["antecedent"] or bs["antecedent"].lower() not in text.lower()):
             guards.append({"guard": "antecedent_not_in_instruction", "clause": b.clause, "antecedent": bs["antecedent"]}); ambiguous_extra.append(b.clause)
     gaps = coverage_gaps(intake, program)
+    for b, bs in zip(sem.bindings, intake.bases):
+        if bs["basis"] == "request_scope" and b.dimension == "speed" and not _mentioned_roles(b.clause, program):
+            exp, got = request_scope_expected(b.clause, program), set(b.instance_ids)
+            if got != exp:
+                gaps.append({"gap": "request_scope_not_covered", "clause": b.clause, "missing": sorted(exp - got), "extra": sorted(got - exp)})
     guards.extend({"guard": "incomplete_answer", **g} for g in gaps)
     if conflicts:
         status, codes = "conflict", sorted({c["code"] for c in conflicts})

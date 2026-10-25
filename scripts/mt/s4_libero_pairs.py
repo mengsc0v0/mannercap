@@ -20,6 +20,7 @@ from synthesis_v2.native_producer import GripPlan  # noqa: E402
 
 CFG = ROOT / "configs" / os.environ.get("MC_CFG", "manner_calibration_libero_t1.v1.json")
 OUT = ROOT / "reports" / os.environ.get("MC_PAIRS_DIR", "step4_libero_pairs_20261025")
+SETTLE = int(os.environ.get("MC_SETTLE", "0"))  # 0 = historical release path; 1 = settle_after_open (Step 7 grasp-closure fix)
 TEST_INIT = tuple(range(8))
 LV = {"G": "gentle", "F": "firm"}
 COMBOS = ("GF", "FG", "GG", "FF")
@@ -61,7 +62,7 @@ def main() -> int:
             f = OUT / f"init{i}_{combo}.json"
             if f.exists():
                 continue
-            grips = {role: GripPlan(cal["plans"][LV[c]]["target_lo_n"], cal["plans"][LV[c]]["target_hi_n"]) for (role, _), c in zip(OBJECTS, combo)}
+            grips = {role: GripPlan(cal["plans"][LV[c]]["target_lo_n"], cal["plans"][LV[c]]["target_hi_n"], settle_after_open=SETTLE) for (role, _), c in zip(OBJECTS, combo)}
             rec = one_init(i, grip=grips, out=OUT, tag=f"_{combo}")
             a = np.load(OUT / f"gen_init{i}_{combo}.npz")
             rec["combo"], rec["calibration_hash"] = combo, cal["content_hash"]
