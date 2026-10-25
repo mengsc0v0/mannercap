@@ -72,3 +72,39 @@ def test_resumed_recorder_inherits_prefix_events():
     s2.restore_state(A)
     _run(s2, [("gripper0_hand", "obj_c", 3.0)])
     assert {k[1] for k in r2.events} == {"obj_a", "obj_c"}
+
+
+# --- physical identity: force measurement and contact policy share one geom-role rule ---
+from synthesis_v2.grasp_force_contract import classify_finger_geom  # noqa: E402
+
+
+def test_finger_geom_roles_single_source():
+    assert classify_finger_geom("gripper0_finger1_pad_collision", "gripper0_finger_joint1_tip") == ("L", "pad")
+    assert classify_finger_geom("gripper0_finger2_pad_collision", "gripper0_finger_joint2_tip") == ("R", "pad")
+    assert classify_finger_geom("gripper0_finger1_collision", "gripper0_leftfinger") == ("L", "finger_link")
+    assert classify_finger_geom("gripper0_finger2_collision", "gripper0_rightfinger") == ("R", "finger_link")
+    assert classify_finger_geom("gripper0_hand_collision", "gripper0_right_gripper") is None   # palm is not a finger
+    assert classify_finger_geom("alphabet_soup_1_g1", "alphabet_soup_1_main") is None
+
+
+class _IdRec(_Rec):
+    ROLES = {1: ("L", "pad"), 2: ("L", "finger_link"), 3: None}
+
+    def _role(self, gid):
+        return self.ROLES.get(gid)
+
+
+def test_audit_roles_pad_allowed_link_identified_palm_and_other_object_kept():
+    s = _Sess()
+    r = _IdRec(s).install()
+    s.pairs = [("gripper0_finger_joint1_tip", "x_1_main", 8.0, 1),    # pad on target: allowed, not recorded
+               ("gripper0_leftfinger", "x_1_main", 1.0, 2),           # finger link on target: forbidden, identified
+               ("gripper0_leftfinger", "y_1_main", 1.0, 2),           # finger link on ANOTHER object: plain forbidden
+               ("gripper0_right_gripper", "x_1_main", 0.7, 3)]        # palm on target: plain forbidden
+    s.step(None)
+    rep = r.report(["x.pick_1.grasp"])
+    got = {(c["robot_body"], c["other"]): c["class"] for c in rep["forbidden_contacts"]}
+    assert got == {("leftfinger[finger_link_on_target]", "x_1_main"): "finger_link_on_target",
+                   ("leftfinger", "y_1_main"): "other", ("right_gripper", "x_1_main"): "other"}
+    assert rep["clean"] is False and rep["clean_if_finger_link_on_target_allowed__preview_not_verdict"] is False
+    assert rep["forbidden_by_class"] == {"finger_link_on_target": 1, "other": 2}

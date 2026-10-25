@@ -26,6 +26,7 @@ from s8_task_force import EXECUTOR, PLANS, CONTACT_THR_N, audit_role, cfg_path, 
 from synthesis_v2.contact_audit import ContactRecorder  # noqa: E402
 from synthesis_v2.program_executor import produce_program_episode  # noqa: E402
 from synthesis_v2.substep_recorder import SubstepRecorder  # noqa: E402
+from synthesis_v2.transport_repair_rule import CarriedContactRecorder  # noqa: E402
 
 THR = CONTACT_THR_N
 _J = lambda o: o.item() if hasattr(o, "item") else str(o)  # noqa: E731
@@ -102,8 +103,10 @@ def run(t, init, prog, grips, *, snapshots=None, resume=None, seed=None):
 
     def on_session(ss):                  # AFTER reset: reset rebuilds the sim, a wrapper installed earlier would be lost
         box["crec"] = ContactRecorder(ss).install()
+        box["car"] = CarriedContactRecorder(ss, names).install()
         if resume is not None:
             box["crec"].seed(seed["crec"].events_at(resume.session))
+            box["car"].seed(seed["car"].events_at(resume.session))
 
     if resume is not None:
         sub.seed_prefix(*seed["sub"].rows_at(resume.session))
@@ -115,7 +118,7 @@ def run(t, init, prog, grips, *, snapshots=None, resume=None, seed=None):
     ctrl, rows = sub.formal_arrays()
     arr = np.asarray(rows, dtype=np.float64).reshape(len(ctrl), 4 * len(names))
     crec = box["crec"]
-    return {"ep": ep, "plan": plan, "sub": sub, "crec": crec, "ctrl": ctrl, "arr": arr, "names": names, "wall": wall,
+    return {"ep": ep, "plan": plan, "sub": sub, "crec": crec, "car": box["car"], "ctrl": ctrl, "arr": arr, "names": names, "wall": wall,
             "prefix_rows": 0 if resume is None else len(seed["sub"].rows_at(resume.session)[0])}
 
 
@@ -202,7 +205,7 @@ def main(t, init, role, dz):
     snap = snaps[label]
     k0 = int(snap.session["control_step_index"])
     B = run(t, init, prog1, grips)
-    C = run(t, init, prog1, grips, resume=snap, seed={"sub": A["sub"], "crec": A["crec"]})
+    C = run(t, init, prog1, grips, resume=snap, seed={"sub": A["sub"], "crec": A["crec"], "car": A["car"]})
     sa, sb, sc = (summarize(t, role, R, p) for R, p in ((A, prog0), (B, prog1), (C, prog1)))
     ncols = 4 * len(A["names"])
     stored = np.load(ROOT / "reports" / f"step8_t{t}_raw" / f"resp_init{init}_gentle.npz", allow_pickle=True)

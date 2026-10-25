@@ -79,6 +79,37 @@ def invalid_sample(reason: str) -> GraspContactSample:
     )
 
 
+def classify_finger_geom(gname: str, bname: str) -> Optional[tuple[str, str]]:
+    """Single physical-identity rule for the Panda gripper's finger collision geoms.
+
+    Returns (side, role) or None.  side: "L"/"R".  role: "pad" (the finger pad box on ``finger_joint?_tip``) or
+    "finger_link" (the finger-body collision geom on ``leftfinger``/``rightfinger``, adjacent to the pad).  The force
+    measurement counts BOTH roles as the finger (this function is its only source); the contact policy decides separately
+    which roles are allowed."""
+    g, b = gname.lower(), bname.lower()
+    if "gripper0" not in g or "collision" not in g:
+        return None
+    if "finger1" in g or "leftfinger" in b or "finger_joint1" in b:
+        side = "L"
+    elif "finger2" in g or "rightfinger" in b or "finger_joint2" in b:
+        side = "R"
+    else:
+        return None
+    return side, ("pad" if "pad" in g else "finger_link")
+
+
+def finger_geom_roles(model: Any, mj: Any) -> dict[int, tuple[str, str]]:
+    """geom id -> (side, role) for every gripper finger collision geom of the model."""
+    out: dict[int, tuple[str, str]] = {}
+    for gi in range(int(model.ngeom)):
+        gname = mj.mj_id2name(model, mj.mjtObj.mjOBJ_GEOM, gi) or ""
+        bname = mj.mj_id2name(model, mj.mjtObj.mjOBJ_BODY, int(model.geom_bodyid[gi])) or ""
+        r = classify_finger_geom(gname, bname)
+        if r is not None:
+            out[gi] = r
+    return out
+
+
 def resolve_grasp_binding(
     model: Any,
     mj: Any,
@@ -93,17 +124,8 @@ def resolve_grasp_binding(
     """
     left: list[int] = []
     right: list[int] = []
-    for gi in range(int(model.ngeom)):
-        gname = (mj.mj_id2name(model, mj.mjtObj.mjOBJ_GEOM, gi) or "").lower()
-        if "gripper0" not in gname or "collision" not in gname:
-            continue
-        bname = (
-            mj.mj_id2name(model, mj.mjtObj.mjOBJ_BODY, int(model.geom_bodyid[gi])) or ""
-        ).lower()
-        if "finger1" in gname or "leftfinger" in bname or "finger_joint1" in bname:
-            left.append(gi)
-        elif "finger2" in gname or "rightfinger" in bname or "finger_joint2" in bname:
-            right.append(gi)
+    for gi, (side, _role) in finger_geom_roles(model, mj).items():
+        (left if side == "L" else right).append(gi)
     return GraspBinding(
         tuple(left), tuple(right), tuple(int(g) for g in target_geom_ids), target_name
     )

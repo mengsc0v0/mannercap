@@ -1,0 +1,506 @@
+[
+ {
+  "request": "T0_init8",
+  "rule": "transport_repair_v0",
+  "A": {
+   "checks": {
+    "status": "completed",
+    "task_ok": true,
+    "all_stage_instances_executed": true,
+    "one_sided_steps_by_object": {
+     "alphabet_soup": 1,
+     "tomato_sauce": 0,
+     "basket": 0
+    },
+    "all_grasps_stable": false,
+    "residual_triggers": [
+     {
+      "object_role": "alphabet_soup",
+      "contact_body": "basket_1_main",
+      "contact_stage": "alphabet_soup.pick_1.transport",
+      "contact_first_step": 133,
+      "contact_last_step": 135,
+      "contact_peak_n_pair_all_stages": 30.606249260541915,
+      "contact_steps_in_transport": 3,
+      "first_one_sided_step": 134,
+      "one_sided_steps": 1
+     }
+    ],
+    "request_ok": false
+   },
+   "n_steps": 366,
+   "program_hash": "7193ce73e1f3d0ddd178cb8b7ab0a207cf720f6083aedb66f6631acd271877d6",
+   "plan_hash": "4179bc02c40bb52f4545264ebd99c7c874d9f184ed3ad20b4b5d047516e37d0a",
+   "cost_executed_substeps": 10375,
+   "wall_s": 17.5,
+   "object_contact_events_all_stages": [
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "basket_1_main",
+     "peak_n": 30.6,
+     "control_steps": 211
+    },
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "tomato_sauce_1_main",
+     "peak_n": 2.8,
+     "control_steps": 15
+    },
+    {
+     "object": "tomato_sauce_1",
+     "other_body": "alphabet_soup_1_main",
+     "peak_n": 2.8,
+     "control_steps": 15
+    },
+    {
+     "object": "tomato_sauce_1",
+     "other_body": "basket_1_main",
+     "peak_n": 30.9,
+     "control_steps": 7
+    }
+   ]
+  },
+  "decision": {
+   "rule": "transport_repair_v0",
+   "n_triggers": 1,
+   "per_trigger": [
+    {
+     "trigger": {
+      "object_role": "alphabet_soup",
+      "contact_body": "basket_1_main",
+      "contact_stage": "alphabet_soup.pick_1.transport",
+      "contact_first_step": 133,
+      "contact_last_step": 135,
+      "contact_peak_n_pair_all_stages": 30.606249260541915,
+      "contact_steps_in_transport": 3,
+      "first_one_sided_step": 134,
+      "one_sided_steps": 1
+     },
+     "candidate": {
+      "instance": "alphabet_soup.pick_1.transport",
+      "old_dz": 0.175,
+      "new_dz": 0.205
+     },
+     "not_proposed_because": null,
+     "selected": true
+    }
+   ]
+  },
+  "proposal": {
+   "instance": "alphabet_soup.pick_1.transport",
+   "old_dz": 0.175,
+   "new_dz": 0.205,
+   "failure_step": 134,
+   "trigger": {
+    "object_role": "alphabet_soup",
+    "contact_body": "basket_1_main",
+    "contact_stage": "alphabet_soup.pick_1.transport",
+    "contact_first_step": 133,
+    "contact_last_step": 135,
+    "contact_peak_n_pair_all_stages": 30.606249260541915,
+    "contact_steps_in_transport": 3,
+    "first_one_sided_step": 134,
+    "one_sided_steps": 1
+   }
+  },
+  "resume_point": {
+   "stage_instance": "alphabet_soup.pick_1.transport",
+   "control_step_index": 80,
+   "prefix_steps": 80
+  },
+  "B_full_rerun": {
+   "checks": {
+    "status": "completed",
+    "task_ok": true,
+    "all_stage_instances_executed": true,
+    "one_sided_steps_by_object": {
+     "alphabet_soup": 0,
+     "tomato_sauce": 0,
+     "basket": 0
+    },
+    "all_grasps_stable": true,
+    "residual_triggers": [],
+    "request_ok": true
+   },
+   "n_steps": 371,
+   "program_hash": "70ded7ab670aa0a9137492462081a4cea3076e402f98711ae96f96416daf9167",
+   "plan_hash": "132056f34621feb29f1a3268516735fd5793752558c1ef19e6260bfecec95798",
+   "cost_executed_substeps": 10525,
+   "wall_s": 18.0,
+   "object_contact_events_all_stages": [
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "basket_1_main",
+     "peak_n": 8.5,
+     "control_steps": 208
+    },
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "tomato_sauce_1_main",
+     "peak_n": 2.3,
+     "control_steps": 33
+    },
+    {
+     "object": "tomato_sauce_1",
+     "other_body": "alphabet_soup_1_main",
+     "peak_n": 2.3,
+     "control_steps": 33
+    },
+    {
+     "object": "tomato_sauce_1",
+     "other_body": "basket_1_main",
+     "peak_n": 31.4,
+     "control_steps": 7
+    }
+   ]
+  },
+  "C_stage_resume": {
+   "checks": {
+    "status": "completed",
+    "task_ok": true,
+    "all_stage_instances_executed": true,
+    "one_sided_steps_by_object": {
+     "alphabet_soup": 0,
+     "tomato_sauce": 0,
+     "basket": 0
+    },
+    "all_grasps_stable": true,
+    "residual_triggers": [],
+    "request_ok": true
+   },
+   "n_steps": 371,
+   "program_hash": "70ded7ab670aa0a9137492462081a4cea3076e402f98711ae96f96416daf9167",
+   "plan_hash": "132056f34621feb29f1a3268516735fd5793752558c1ef19e6260bfecec95798",
+   "cost_executed_substeps": 7925,
+   "wall_s": 13.8,
+   "object_contact_events_all_stages": [
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "basket_1_main",
+     "peak_n": 8.5,
+     "control_steps": 208
+    },
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "tomato_sauce_1_main",
+     "peak_n": 2.3,
+     "control_steps": 33
+    },
+    {
+     "object": "tomato_sauce_1",
+     "other_body": "alphabet_soup_1_main",
+     "peak_n": 2.3,
+     "control_steps": 33
+    },
+    {
+     "object": "tomato_sauce_1",
+     "other_body": "basket_1_main",
+     "peak_n": 31.4,
+     "control_steps": 7
+    }
+   ]
+  },
+  "B_vs_C": {
+   "from_k0": {
+    "n_steps": [
+     371,
+     371
+    ],
+    "stage_sequence_equal_from_k0": true,
+    "max_abs_diff_actions": 0.0,
+    "max_abs_diff_state": 0.0,
+    "max_abs_diff_next_state": 0.0,
+    "max_abs_diff_left_mean_n": 0.0,
+    "max_abs_diff_right_mean_n": 0.0,
+    "substep_mean_force_max_abs_diff_n": 0.0,
+    "control_steps_with_force_diff_gt_1N": 0,
+    "compared_control_steps": 291
+   },
+   "all_substeps_bitwise_equal": true,
+   "ctrl_index_equal": true
+  },
+  "cost": {
+   "A_full": 10375,
+   "B_extra_full_rerun": 10525,
+   "C_extra_stage_resume": 7925,
+   "first_run_plus_one_repair_attempt_via_B_rerun": 20900,
+   "first_run_plus_one_repair_attempt_via_C_resume": 18300
+  },
+  "outcome": {
+   "repaired_by_resume": true,
+   "repaired_by_full_rerun": true,
+   "task_ok_A_to_C": [
+    true,
+    true
+   ]
+  }
+ },
+ {
+  "request": "T7_init13",
+  "rule": "transport_repair_v0",
+  "A": {
+   "checks": {
+    "status": "completed",
+    "task_ok": true,
+    "all_stage_instances_executed": true,
+    "one_sided_steps_by_object": {
+     "alphabet_soup": 1,
+     "cream_cheese": 0,
+     "basket": 0
+    },
+    "all_grasps_stable": false,
+    "residual_triggers": [
+     {
+      "object_role": "alphabet_soup",
+      "contact_body": "basket_1_main",
+      "contact_stage": "alphabet_soup.pick_1.transport",
+      "contact_first_step": 122,
+      "contact_last_step": 124,
+      "contact_peak_n_pair_all_stages": 45.31303039924594,
+      "contact_steps_in_transport": 3,
+      "first_one_sided_step": 123,
+      "one_sided_steps": 1
+     }
+    ],
+    "request_ok": false
+   },
+   "n_steps": 361,
+   "program_hash": "782f2e6615bc609964953dc609b749061f3c3054651dca715da8fad6a3cd15ef",
+   "plan_hash": "ddd4eb31394dd12669793719e372852f89accd568510e1ae16df9d8954ec7d99",
+   "cost_executed_substeps": 9800,
+   "wall_s": 12.6,
+   "object_contact_events_all_stages": [
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "basket_1_main",
+     "peak_n": 45.3,
+     "control_steps": 219
+    },
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "cream_cheese_1_main",
+     "peak_n": 43.3,
+     "control_steps": 2
+    },
+    {
+     "object": "cream_cheese_1",
+     "other_body": "alphabet_soup_1_main",
+     "peak_n": 43.3,
+     "control_steps": 2
+    }
+   ]
+  },
+  "decision": {
+   "rule": "transport_repair_v0",
+   "n_triggers": 1,
+   "per_trigger": [
+    {
+     "trigger": {
+      "object_role": "alphabet_soup",
+      "contact_body": "basket_1_main",
+      "contact_stage": "alphabet_soup.pick_1.transport",
+      "contact_first_step": 122,
+      "contact_last_step": 124,
+      "contact_peak_n_pair_all_stages": 45.31303039924594,
+      "contact_steps_in_transport": 3,
+      "first_one_sided_step": 123,
+      "one_sided_steps": 1
+     },
+     "candidate": {
+      "instance": "alphabet_soup.pick_1.transport",
+      "old_dz": 0.175,
+      "new_dz": 0.205
+     },
+     "not_proposed_because": null,
+     "selected": true
+    }
+   ]
+  },
+  "proposal": {
+   "instance": "alphabet_soup.pick_1.transport",
+   "old_dz": 0.175,
+   "new_dz": 0.205,
+   "failure_step": 123,
+   "trigger": {
+    "object_role": "alphabet_soup",
+    "contact_body": "basket_1_main",
+    "contact_stage": "alphabet_soup.pick_1.transport",
+    "contact_first_step": 122,
+    "contact_last_step": 124,
+    "contact_peak_n_pair_all_stages": 45.31303039924594,
+    "contact_steps_in_transport": 3,
+    "first_one_sided_step": 123,
+    "one_sided_steps": 1
+   }
+  },
+  "resume_point": {
+   "stage_instance": "alphabet_soup.pick_1.transport",
+   "control_step_index": 77,
+   "prefix_steps": 77
+  },
+  "B_full_rerun": {
+   "checks": {
+    "status": "completed",
+    "task_ok": true,
+    "all_stage_instances_executed": true,
+    "one_sided_steps_by_object": {
+     "alphabet_soup": 0,
+     "cream_cheese": 0,
+     "basket": 0
+    },
+    "all_grasps_stable": true,
+    "residual_triggers": [],
+    "request_ok": true
+   },
+   "n_steps": 365,
+   "program_hash": "0eb8259d5f8c6cebed6a31873fda9eeaec860fac56e16aa0649d92a115f6e623",
+   "plan_hash": "e1fd9fa92570087d6b90db64d9a4bcf95397155052d84b261dd707338deecdef",
+   "cost_executed_substeps": 9900,
+   "wall_s": 12.4,
+   "object_contact_events_all_stages": [
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "basket_1_main",
+     "peak_n": 6.6,
+     "control_steps": 216
+    },
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "cream_cheese_1_main",
+     "peak_n": 0.9,
+     "control_steps": 1
+    },
+    {
+     "object": "cream_cheese_1",
+     "other_body": "alphabet_soup_1_main",
+     "peak_n": 0.9,
+     "control_steps": 1
+    }
+   ]
+  },
+  "C_stage_resume": {
+   "checks": {
+    "status": "completed",
+    "task_ok": true,
+    "all_stage_instances_executed": true,
+    "one_sided_steps_by_object": {
+     "alphabet_soup": 0,
+     "cream_cheese": 0,
+     "basket": 0
+    },
+    "all_grasps_stable": true,
+    "residual_triggers": [],
+    "request_ok": true
+   },
+   "n_steps": 365,
+   "program_hash": "0eb8259d5f8c6cebed6a31873fda9eeaec860fac56e16aa0649d92a115f6e623",
+   "plan_hash": "e1fd9fa92570087d6b90db64d9a4bcf95397155052d84b261dd707338deecdef",
+   "cost_executed_substeps": 7825,
+   "wall_s": 10.2,
+   "object_contact_events_all_stages": [
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "basket_1_main",
+     "peak_n": 6.6,
+     "control_steps": 216
+    },
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "cream_cheese_1_main",
+     "peak_n": 0.9,
+     "control_steps": 1
+    },
+    {
+     "object": "cream_cheese_1",
+     "other_body": "alphabet_soup_1_main",
+     "peak_n": 0.9,
+     "control_steps": 1
+    }
+   ]
+  },
+  "B_vs_C": {
+   "from_k0": {
+    "n_steps": [
+     365,
+     365
+    ],
+    "stage_sequence_equal_from_k0": true,
+    "max_abs_diff_actions": 0.0,
+    "max_abs_diff_state": 0.0,
+    "max_abs_diff_next_state": 0.0,
+    "max_abs_diff_left_mean_n": 0.0,
+    "max_abs_diff_right_mean_n": 0.0,
+    "substep_mean_force_max_abs_diff_n": 0.0,
+    "control_steps_with_force_diff_gt_1N": 0,
+    "compared_control_steps": 288
+   },
+   "all_substeps_bitwise_equal": true,
+   "ctrl_index_equal": true
+  },
+  "cost": {
+   "A_full": 9800,
+   "B_extra_full_rerun": 9900,
+   "C_extra_stage_resume": 7825,
+   "first_run_plus_one_repair_attempt_via_B_rerun": 19700,
+   "first_run_plus_one_repair_attempt_via_C_resume": 17625
+  },
+  "outcome": {
+   "repaired_by_resume": true,
+   "repaired_by_full_rerun": true,
+   "task_ok_A_to_C": [
+    true,
+    true
+   ]
+  }
+ },
+ {
+  "request": "T7_init8",
+  "rule": "transport_repair_v0",
+  "A": {
+   "checks": {
+    "status": "completed",
+    "task_ok": true,
+    "all_stage_instances_executed": true,
+    "one_sided_steps_by_object": {
+     "alphabet_soup": 0,
+     "cream_cheese": 0,
+     "basket": 0
+    },
+    "all_grasps_stable": true,
+    "residual_triggers": [],
+    "request_ok": true
+   },
+   "n_steps": 385,
+   "program_hash": "782f2e6615bc609964953dc609b749061f3c3054651dca715da8fad6a3cd15ef",
+   "plan_hash": "ddd4eb31394dd12669793719e372852f89accd568510e1ae16df9d8954ec7d99",
+   "cost_executed_substeps": 10750,
+   "wall_s": 13.8,
+   "object_contact_events_all_stages": [
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "basket_1_main",
+     "peak_n": 13.6,
+     "control_steps": 226
+    },
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "cream_cheese_1_main",
+     "peak_n": 1.1,
+     "control_steps": 1
+    },
+    {
+     "object": "cream_cheese_1",
+     "other_body": "alphabet_soup_1_main",
+     "peak_n": 1.1,
+     "control_steps": 1
+    }
+   ]
+  },
+  "decision": {
+   "rule": "transport_repair_v0",
+   "n_triggers": 0,
+   "per_trigger": []
+  },
+  "proposal": null
+ }
+]

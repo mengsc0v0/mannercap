@@ -17,6 +17,7 @@ import numpy as np
 
 CONTACT_THR_N = 0.1  # same contact threshold as the force calibration
 SUPPORT_PREFIXES = ("living_room_table", "floor")
+FINGER_LINK_ON_TARGET = "[finger_link_on_target]"
 
 
 def _is_robot(body: str) -> bool:
@@ -37,6 +38,7 @@ class ContactRecorder:
         self.events: dict[tuple[str, str], list] = {}   # (robot body, other body) -> [max N, {control steps}]
         self.rolled_back: dict[tuple[str, str], float] = {}
         self.k = -1
+        self._roles: Optional[dict] = None
         self._saved: dict[int, tuple[dict, dict]] = {}  # id(state) -> (events copy, state): holding state keeps the id valid
 
     def _scan(self):
@@ -51,16 +53,35 @@ class ContactRecorder:
                 continue
             rb, ob = (b1, b2) if _is_robot(b1) else (b2, b1)
             mujoco.mj_contactForce(self.m, self.d, ci, buf)
-            yield rb, ob, abs(float(buf[0]))
+            rg = int(c.geom1) if _is_robot(b1) else int(c.geom2)
+            yield rb, ob, abs(float(buf[0])), rg
 
-    def _allowed(self, rb: str, ob: str) -> bool:
-        return "finger_joint" in rb and "tip" in rb and ob == f"{self.s.force_target_name}_main".replace("_1_1", "_1")
+    def _on_target(self, ob: str) -> bool:
+        return ob == f"{self.s.force_target_name}_main".replace("_1_1", "_1")
+
+    def _role(self, geom_id) -> Optional[tuple[str, str]]:
+        """(side, role) of a robot geom from the SAME identity rule the force measurement uses (grasp_force_contract)."""
+        if geom_id is None:
+            return None
+        if self._roles is None:
+            import mujoco
+            from synthesis_v2.grasp_force_contract import finger_geom_roles
+            self._roles = finger_geom_roles(self.m, mujoco)
+        return self._roles.get(int(geom_id))
 
     def _observe(self) -> None:
-        for rb, ob, f in self._scan():
-            if f > 0 and not self._allowed(rb, ob):
-                v = self.events.setdefault((rb.replace("gripper0_", ""), ob), [0.0, set()])
-                v[0] = max(v[0], f); v[1].add(self.k)
+        for item in self._scan():
+            rb, ob, f, *rest = item
+            if f <= 0:
+                continue
+            role = self._role(rest[0]) if rest else None
+            if role is not None and role[1] == "pad" and self._on_target(ob):
+                continue                       # allowed: finger pad <-> current grasp target (measured by the force check)
+            label = rb.replace("gripper0_", "")
+            if role is not None and role[1] == "finger_link" and self._on_target(ob):
+                label += FINGER_LINK_ON_TARGET  # forbidden under the frozen policy, but identified: grasp finger link on the grasp target
+            v = self.events.setdefault((label, ob), [0.0, set()])
+            v[0] = max(v[0], f); v[1].add(self.k)
 
     def install(self) -> "ContactRecorder":
         s = self.s
@@ -116,11 +137,15 @@ def classify(events: dict, stages: Optional[Sequence[str]] = None, thr: float = 
         if f < thr:
             continue
         row = {"robot_body": rb, "other": ob, "max_n": round(f, 1), "control_steps": len(ks)}
+        row["class"] = "finger_link_on_target" if rb.endswith(FINGER_LINK_ON_TARGET) else "other"
         if ob.startswith(SUPPORT_PREFIXES):
             support.append(row)
         else:
             row["stages"] = sorted({stages[k].split(".")[-1] + "@" + stages[k].split(".")[0] for k in ks if 0 <= k < len(stages)})
             forbidden.append(row)
+    other = [c for c in forbidden if c["class"] == "other"]
     return {"clean": not forbidden, "max_forbidden_n": max([c["max_n"] for c in forbidden], default=0.0), "forbidden_contacts": forbidden, "support_contacts_observed": support,
+            "forbidden_by_class": {"finger_link_on_target": len(forbidden) - len(other), "other": len(other)},
+            "clean_if_finger_link_on_target_allowed__preview_not_verdict": not other,
             "policy": {"threshold_n": thr, "allowed": "fingertip pads <-> current grasp target",
                        "forbidden": "any other robot body <-> any movable object", "observed_only": "robot <-> table/floor"}}
