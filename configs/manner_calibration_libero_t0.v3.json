@@ -1,0 +1,208 @@
+{
+ "content_hash": "4eacd971e048424c39ef72f44ea1c4f5c2d07c716f6f0443864b68f44ec63f82",
+ "criteria": {
+  "bilateral": "min(L,R)>thr on every hold control step",
+  "contact_thr_n": 0.1,
+  "lr_max": 0.1,
+  "valid_fraction_min": 0.99,
+  "z_spread_max_m": 0.01
+ },
+ "dev_inits": [
+  8,
+  9,
+  10,
+  11,
+  12,
+  13
+ ],
+ "executor": {
+  "approach_check": true,
+  "settle_after_open": 1
+ },
+ "independent_safety_bound": null,
+ "objects": {
+  "alphabet_soup": {
+   "calibration_usable": false,
+   "counts_per_level": {
+    "firm": {
+     "eligible": 6,
+     "measurement_valid": 6,
+     "stable": 6,
+     "task_ok": 6
+    },
+    "gentle": {
+     "eligible": 0,
+     "measurement_valid": 6,
+     "stable": 0,
+     "task_ok": 6
+    },
+    "normal": {
+     "eligible": 0,
+     "measurement_valid": 6,
+     "stable": 0,
+     "task_ok": 6
+    }
+   },
+   "diagnostic_hold_stats_all_task_ok": {
+    "firm": {
+     "max": 40.793713059405405,
+     "min": 36.11379915724046,
+     "n": 546,
+     "p5": 36.995750183072275,
+     "p95": 39.998827460660195,
+     "p99": 39.999021688259596
+    },
+    "gentle": {
+     "max": 18.277869858576086,
+     "min": 11.175085297304244,
+     "n": 548,
+     "p5": 13.214770508859997,
+     "p95": 13.98385696480779,
+     "p99": 16.486961505635637
+    },
+    "normal": {
+     "max": 18.277869858576086,
+     "min": 11.175085297304244,
+     "n": 548,
+     "p5": 13.214770508859997,
+     "p95": 13.98385696480779,
+     "p99": 16.486961505635637
+    }
+   },
+   "diagnostic_peak_simultaneous_max_n_all": 90.9681393866204,
+   "firm_lower": null,
+   "firm_upper": null,
+   "gentle_lower": null,
+   "gentle_upper": null,
+   "grasp_stable_used_levels": false,
+   "levels_used": [
+    "gentle",
+    "firm"
+   ],
+   "measurement_valid_used_levels": true,
+   "n_dev": 6,
+   "normal_diagnostic": "normal_equals_gentle",
+   "response_alert_threshold_n": null,
+   "separability_gentle_vs_firm": true,
+   "unusable_reasons": [
+    "grasp_stability_failed"
+   ]
+  },
+  "tomato_sauce": {
+   "calibration_usable": true,
+   "counts_per_level": {
+    "firm": {
+     "eligible": 6,
+     "measurement_valid": 6,
+     "stable": 6,
+     "task_ok": 6
+    },
+    "gentle": {
+     "eligible": 6,
+     "measurement_valid": 6,
+     "stable": 6,
+     "task_ok": 6
+    },
+    "normal": {
+     "eligible": 6,
+     "measurement_valid": 6,
+     "stable": 6,
+     "task_ok": 6
+    }
+   },
+   "diagnostic_hold_stats_all_task_ok": {
+    "firm": {
+     "max": 40.23714338754496,
+     "min": 37.927068652634205,
+     "n": 368,
+     "p5": 38.48628951910396,
+     "p95": 39.99613384904967,
+     "p99": 40.02985121588579
+    },
+    "gentle": {
+     "max": 13.192165777571333,
+     "min": 10.983364059300891,
+     "n": 369,
+     "p5": 12.421241346456071,
+     "p95": 12.538399270018093,
+     "p99": 13.153370370856502
+    },
+    "normal": {
+     "max": 13.192165777571333,
+     "min": 10.983364059300891,
+     "n": 369,
+     "p5": 12.421241346456071,
+     "p95": 12.538399270018093,
+     "p99": 13.153370370856502
+    }
+   },
+   "diagnostic_peak_simultaneous_max_n_all": 54.819366801114775,
+   "firm_lower": 25.512344394561026,
+   "firm_upper": 50.03731401985724,
+   "gentle_lower": 6.210620673228036,
+   "gentle_upper": 25.512344394561026,
+   "grasp_stable_used_levels": true,
+   "hold_stats": {
+    "firm": {
+     "max": 40.23714338754496,
+     "min": 37.927068652634205,
+     "n": 368,
+     "p5": 38.48628951910396,
+     "p95": 39.99613384904967,
+     "p99": 40.02985121588579
+    },
+    "gentle": {
+     "max": 13.192165777571333,
+     "min": 10.983364059300891,
+     "n": 369,
+     "p5": 12.421241346456071,
+     "p95": 12.538399270018093,
+     "p99": 13.153370370856502
+    }
+   },
+   "levels_used": [
+    "gentle",
+    "firm"
+   ],
+   "measurement_valid_used_levels": true,
+   "n_dev": 6,
+   "normal_diagnostic": "normal_equals_gentle",
+   "response_alert_basis": "margin * max simultaneous two-finger substep peak over used-level eligible calibration records; NOT a safety bound",
+   "response_alert_threshold_n": 68.52420850139347,
+   "separability_gentle_vs_firm": true,
+   "unusable_reasons": []
+  }
+ },
+ "plans": {
+  "firm": {
+   "target_hi_n": 100.0,
+   "target_lo_n": 35.0
+  },
+  "gentle": {
+   "target_hi_n": 22.0,
+   "target_lo_n": 1.0
+  },
+  "normal": {
+   "target_hi_n": 100.0,
+   "target_lo_n": 1.0
+  }
+ },
+ "policy": {
+  "firm_cap_factor": 1.25,
+  "gentle_floor_fraction": 0.5,
+  "safety_margin_factor": 1.25
+ },
+ "protocol": {
+  "diagnostic_only": [
+   "normal"
+  ],
+  "levels_used": [
+   "gentle",
+   "firm"
+  ],
+  "origin": "development choice after observing gentle == normal; not pre-registered"
+ },
+ "response_key": "c91270896a32b94ac9805afd76cab9476ab92bf81fdf57c9d50b5a2932fb4f1b",
+ "schema": "mannercap.libero_calibration.v4",
+ "task": "libero_10/0"
+}

@@ -1,0 +1,137 @@
+{
+ "task": 7,
+ "init": 13,
+ "role": "alphabet_soup",
+ "level": "gentle",
+ "status": "completed",
+ "task_ok": true,
+ "n_hold": 81,
+ "rolled_back_cost": {
+  "branches": 2,
+  "substeps": 775
+ },
+ "recorder_vs_telemetry": {
+  "checked_steps": 198,
+  "max_abs_diff_n": 3.552713678800501e-15,
+  "ctrl_range_ok": true,
+  "no_duplicate_control_steps": true,
+  "n_substeps_per_step_min_max": [
+   25,
+   25
+  ]
+ },
+ "binding": {
+  "left": [
+   "gripper0_finger1_collision",
+   "gripper0_finger1_pad_collision"
+  ],
+  "right": [
+   "gripper0_finger2_collision",
+   "gripper0_finger2_pad_collision"
+  ]
+ },
+ "dropout_steps": [
+  {
+   "control_step": 123,
+   "stage": "alphabet_soup.pick_1.transport",
+   "weak_side": "R",
+   "telemetry_L_R_mean": [
+    15.427405792110019,
+    0.0
+   ],
+   "n_substeps": 25,
+   "weak_side_force": {
+    "min": 0.0,
+    "max": 0.0,
+    "mean": 0.0,
+    "n_zero": 25,
+    "n_lt_thr": 25,
+    "n_ge_thr": 0
+   },
+   "weak_side_contacts_per_substep": [
+    0,
+    0
+   ],
+   "weak_side_min_dist_m": [
+    9.0,
+    9.0
+   ],
+   "strong_side_force_mean": 15.42740579211002,
+   "other_gripper_geoms_G": {
+    "mean": 0.0,
+    "max": 0.0
+   },
+   "pair_names_seen": [
+    "gripper0_finger1_collision",
+    "gripper0_finger1_pad_collision"
+   ],
+   "external_contacts_on_target_k-3..k+1": {
+    "basket_1_main": {
+     "max_n": 45.31303039924594,
+     "substeps": 124,
+     "first_step": 122
+    }
+   },
+   "finger_opening_m": [
+    0.06338349886528467,
+    0.06429382804842836
+   ],
+   "target_rel_to_finger_mid_m": {
+    "min": [
+     -0.0011887420090395,
+     0.0025985909333321178,
+     -0.05478904899116299
+    ],
+    "max": [
+     -0.001128821506683083,
+     0.0034054607402725923,
+     -0.053559951969293196
+    ]
+   },
+   "action_gripper": [
+    0.0,
+    0.0
+   ],
+   "eef_step_m": 0.005153987556695938
+  }
+ ],
+ "wall_s": 10.9,
+ "context": {
+  "123": {
+   "L": [
+    6.62,
+    6.62,
+    8.23,
+    15.43,
+    15.59,
+    7.13,
+    7.17
+   ],
+   "R": [
+    6.62,
+    6.62,
+    6.18,
+    0.0,
+    1.22,
+    7.13,
+    7.2
+   ],
+   "stage": [
+    "alphabet_soup.pick_1.transport",
+    "alphabet_soup.pick_1.transport",
+    "alphabet_soup.pick_1.transport",
+    "alphabet_soup.pick_1.transport",
+    "alphabet_soup.pick_1.transport",
+    "alphabet_soup.pick_1.transport",
+    "alphabet_soup.pick_1.transport"
+   ]
+  }
+ },
+ "external_contacts_on_target_whole_transport": {
+  "basket_1_main": {
+   "max_n": 45.31303039924594,
+   "substeps": 124,
+   "first_step": 122
+  }
+ }
+}
