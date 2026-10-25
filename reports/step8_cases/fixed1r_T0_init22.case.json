@@ -1,0 +1,309 @@
+{
+ "schema": "mannercap.repair_case.v1",
+ "request": {
+  "task": 0,
+  "init": 22,
+  "spec_program_hash": "7193ce73e1f3d0ddd178cb8b7ab0a207cf720f6083aedb66f6631acd271877d6",
+  "objects": {
+   "alphabet_soup": "alphabet_soup_1",
+   "tomato_sauce": "tomato_sauce_1",
+   "basket": "basket_1"
+  },
+  "stage_instances": [
+   "alphabet_soup.pick_1.approach",
+   "alphabet_soup.pick_1.descend",
+   "alphabet_soup.pick_1.grasp",
+   "alphabet_soup.pick_1.lift",
+   "alphabet_soup.pick_1.transport",
+   "alphabet_soup.pick_1.place",
+   "alphabet_soup.pick_1.retreat",
+   "tomato_sauce.pick_1.approach",
+   "tomato_sauce.pick_1.descend",
+   "tomato_sauce.pick_1.grasp",
+   "tomato_sauce.pick_1.lift",
+   "tomato_sauce.pick_1.transport",
+   "tomato_sauce.pick_1.place",
+   "tomato_sauce.pick_1.retreat"
+  ]
+ },
+ "versions": {
+  "rule": "transport_repair_v0",
+  "checks": "hold_checks_v1",
+  "executor": {
+   "settle_after_open": 1,
+   "approach_check": true
+  },
+  "plan": "gentle",
+  "plan_range_n": [
+   1.0,
+   22.0
+  ],
+  "calibration_file": "configs/manner_calibration_libero_t0.v3.json",
+  "calibration_sha256": "bc1c8b05a3c6b7ef7f84ef0bfd4051e75a284cd9a6ce683b78f696c57df849ab"
+ },
+ "failure_state": {
+  "task_ok": true,
+  "hold_state_counts_by_object": {
+   "alphabet_soup": {
+    "n_hold": 91,
+    "bilateral": 90,
+    "one_sided": 1,
+    "no_contact": 0,
+    "invalid": 0
+   },
+   "tomato_sauce": {
+    "n_hold": 63,
+    "bilateral": 63,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0
+   },
+   "basket": {
+    "n_hold": 0,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0
+   }
+  },
+  "unknown_objects": [],
+  "residual_triggers": [
+   {
+    "object_role": "alphabet_soup",
+    "contact_body": "basket_1_main",
+    "contact_stage": "alphabet_soup.pick_1.transport",
+    "contact_first_step": 131,
+    "contact_last_step": 138,
+    "contact_peak_n_pair_all_stages": 48.137803655585344,
+    "contact_steps_in_transport": 4,
+    "first_non_bilateral_step": 132,
+    "non_bilateral_steps": 1
+   }
+  ],
+  "object_contact_events_all_stages": [
+   {
+    "object": "alphabet_soup_1",
+    "other_body": "basket_1_main",
+    "peak_n": 48.1,
+    "control_steps": 213
+   },
+   {
+    "object": "alphabet_soup_1",
+    "other_body": "tomato_sauce_1_main",
+    "peak_n": 2.7,
+    "control_steps": 33
+   },
+   {
+    "object": "tomato_sauce_1",
+    "other_body": "alphabet_soup_1_main",
+    "peak_n": 2.7,
+    "control_steps": 33
+   },
+   {
+    "object": "tomato_sauce_1",
+    "other_body": "basket_1_main",
+    "peak_n": 42.1,
+    "control_steps": 4
+   }
+  ]
+ },
+ "candidate": {
+  "instance": "alphabet_soup.pick_1.transport",
+  "old_dz": 0.175,
+  "new_dz": 0.205,
+  "failure_step": 132,
+  "trigger": {
+   "object_role": "alphabet_soup",
+   "contact_body": "basket_1_main",
+   "contact_stage": "alphabet_soup.pick_1.transport",
+   "contact_first_step": 131,
+   "contact_last_step": 138,
+   "contact_peak_n_pair_all_stages": 48.137803655585344,
+   "contact_steps_in_transport": 4,
+   "first_non_bilateral_step": 132,
+   "non_bilateral_steps": 1
+  }
+ },
+ "resume_point": {
+  "stage_instance": "alphabet_soup.pick_1.transport",
+  "control_step_index": 77,
+  "prefix_steps": 77
+ },
+ "before": {
+  "checks": {
+   "checks_version": "hold_checks_v1",
+   "status": "completed",
+   "task_ok": true,
+   "all_stage_instances_executed": true,
+   "hold_state_counts_by_object": {
+    "alphabet_soup": {
+     "n_hold": 91,
+     "bilateral": 90,
+     "one_sided": 1,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "tomato_sauce": {
+     "n_hold": 63,
+     "bilateral": 63,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "basket": {
+     "n_hold": 0,
+     "bilateral": 0,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    }
+   },
+   "non_bilateral_steps_by_object": {
+    "alphabet_soup": 1,
+    "tomato_sauce": 0,
+    "basket": 0
+   },
+   "unknown_objects": [],
+   "residual_triggers": [
+    {
+     "object_role": "alphabet_soup",
+     "contact_body": "basket_1_main",
+     "contact_stage": "alphabet_soup.pick_1.transport",
+     "contact_first_step": 131,
+     "contact_last_step": 138,
+     "contact_peak_n_pair_all_stages": 48.137803655585344,
+     "contact_steps_in_transport": 4,
+     "first_non_bilateral_step": 132,
+     "non_bilateral_steps": 1
+    }
+   ],
+   "task_and_hold_checks_passed": false,
+   "scope": "task end state + hold-window bilateral contact + no residual transport-repair trigger; not force band / speed / contact policy"
+  },
+  "audit_contact_policy": {
+   "clean": false,
+   "max_forbidden_n": 11.5,
+   "forbidden_contacts": [
+    {
+     "robot_body": "leftfinger[finger_link_on_target]",
+     "other": "alphabet_soup_1_main",
+     "max_n": 2.3,
+     "control_steps": 2,
+     "class": "finger_link_on_target",
+     "stages": [
+      "transport@alphabet_soup"
+     ]
+    },
+    {
+     "robot_body": "right_gripper",
+     "other": "alphabet_soup_1_main",
+     "max_n": 5.8,
+     "control_steps": 2,
+     "class": "other",
+     "stages": [
+      "transport@alphabet_soup"
+     ]
+    },
+    {
+     "robot_body": "right_gripper",
+     "other": "tomato_sauce_1_main",
+     "max_n": 11.5,
+     "control_steps": 50,
+     "class": "other",
+     "stages": [
+      "grasp@tomato_sauce",
+      "lift@tomato_sauce",
+      "place@tomato_sauce",
+      "transport@tomato_sauce"
+     ]
+    }
+   ],
+   "n_event_keys": 3
+  }
+ },
+ "after": {
+  "checks": {
+   "checks_version": "hold_checks_v1",
+   "status": "completed",
+   "task_ok": true,
+   "all_stage_instances_executed": true,
+   "hold_state_counts_by_object": {
+    "alphabet_soup": {
+     "n_hold": 91,
+     "bilateral": 91,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "tomato_sauce": {
+     "n_hold": 63,
+     "bilateral": 63,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "basket": {
+     "n_hold": 0,
+     "bilateral": 0,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    }
+   },
+   "non_bilateral_steps_by_object": {
+    "alphabet_soup": 0,
+    "tomato_sauce": 0,
+    "basket": 0
+   },
+   "unknown_objects": [],
+   "residual_triggers": [],
+   "task_and_hold_checks_passed": true,
+   "scope": "task end state + hold-window bilateral contact + no residual transport-repair trigger; not force band / speed / contact policy"
+  },
+  "audit_contact_policy": {
+   "clean": false,
+   "max_forbidden_n": 13.7,
+   "forbidden_contacts": [
+    {
+     "robot_body": "right_gripper",
+     "other": "tomato_sauce_1_main",
+     "max_n": 13.7,
+     "control_steps": 47,
+     "class": "other",
+     "stages": [
+      "grasp@tomato_sauce",
+      "lift@tomato_sauce",
+      "transport@tomato_sauce"
+     ]
+    }
+   ],
+   "n_event_keys": 1
+  },
+  "B_vs_C_bitwise": true
+ },
+ "cost": {
+  "A_full": 9850,
+  "B_extra_full_rerun": 9975,
+  "C_extra_stage_resume": 7900,
+  "first_run_plus_one_repair_attempt_via_B_rerun": 19825,
+  "first_run_plus_one_repair_attempt_via_C_resume": 17750
+ },
+ "trajectories": {
+  "A": {
+   "path": "reports/step8_shared_repair/trajectories/fixed1r_T0_init22_A.npz",
+   "sha256": "fef66a1c861414a38e043a9542af31ae2743dc0726a0a0828be02f1b215166d4",
+   "bytes": 167433
+  },
+  "B": {
+   "path": "reports/step8_shared_repair/trajectories/fixed1r_T0_init22_B.npz",
+   "sha256": "999fd5e3f8763e33f61db2d0da5037a83f19a72b5396700cf68e7574fc5e3802",
+   "bytes": 169966
+  },
+  "C": {
+   "path": "reports/step8_shared_repair/trajectories/fixed1r_T0_init22_C.npz",
+   "sha256": "999fd5e3f8763e33f61db2d0da5037a83f19a72b5396700cf68e7574fc5e3802",
+   "bytes": 169966
+  }
+ },
+ "tag": "fixed1r"
+}

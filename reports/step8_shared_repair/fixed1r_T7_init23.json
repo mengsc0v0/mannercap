@@ -1,0 +1,365 @@
+{
+ "request": "T7_init23",
+ "rule": "transport_repair_v0",
+ "A": {
+  "checks": {
+   "checks_version": "hold_checks_v1",
+   "status": "completed",
+   "task_ok": false,
+   "all_stage_instances_executed": true,
+   "hold_state_counts_by_object": {
+    "alphabet_soup": {
+     "n_hold": 85,
+     "bilateral": 13,
+     "one_sided": 0,
+     "no_contact": 72,
+     "invalid": 0
+    },
+    "cream_cheese": {
+     "n_hold": 67,
+     "bilateral": 67,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "basket": {
+     "n_hold": 0,
+     "bilateral": 0,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    }
+   },
+   "non_bilateral_steps_by_object": {
+    "alphabet_soup": 72,
+    "cream_cheese": 0,
+    "basket": 0
+   },
+   "unknown_objects": [],
+   "residual_triggers": [],
+   "task_and_hold_checks_passed": false,
+   "scope": "task end state + hold-window bilateral contact + no residual transport-repair trigger; not force band / speed / contact policy"
+  },
+  "n_steps": 380,
+  "program_hash": "782f2e6615bc609964953dc609b749061f3c3054651dca715da8fad6a3cd15ef",
+  "plan_hash": "ddd4eb31394dd12669793719e372852f89accd568510e1ae16df9d8954ec7d99",
+  "cost_executed_substeps": 10900,
+  "wall_s": 13.6,
+  "object_contact_events_all_stages": [
+   {
+    "object": "cream_cheese_1",
+    "other_body": "basket_1_main",
+    "peak_n": 1.4,
+    "control_steps": 2
+   }
+  ],
+  "full_audit": {
+   "status": "completed",
+   "task_ok": false,
+   "objects": {
+    "alphabet_soup": {
+     "grasp_stable": false,
+     "measurement_valid": true,
+     "hold_n": 85,
+     "left_min_n": 0.0,
+     "right_min_n": 0.0,
+     "one_sided_control_steps": 72,
+     "bilateral_strict": false,
+     "lr_imbalance": 0.03955458227329708,
+     "rel_z_spread_m": 0.1570034989614687,
+     "hold_total_min": 0.0,
+     "hold_total_max": 10.675503732638163,
+     "hold_total_mean": 1.5681228636248072,
+     "plan_band_1_22_all_hold_steps": false,
+     "peak_simultaneous_n": 37.807186884761215,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 0.0,
+       "substeps": 0,
+       "control_steps": 0,
+       "first_control_step": null,
+       "first_stage": null
+      },
+      "by_stage_all": {},
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.0,
+     "transport_eef_z_end_m": 0.618354082107544,
+     "transport_eef_z_max_m": 0.6407386660575867,
+     "transport_steps": 62
+    },
+    "cream_cheese": {
+     "grasp_stable": true,
+     "measurement_valid": true,
+     "hold_n": 67,
+     "left_min_n": 6.551798212687739,
+     "right_min_n": 6.549638958251145,
+     "one_sided_control_steps": 0,
+     "bilateral_strict": true,
+     "lr_imbalance": 0.00010497560830777818,
+     "rel_z_spread_m": 5.099853432311008e-05,
+     "hold_total_min": 13.101437170938883,
+     "hold_total_max": 13.272685444648289,
+     "hold_total_mean": 13.140822099056365,
+     "plan_band_1_22_all_hold_steps": true,
+     "peak_simultaneous_n": 37.76790377845465,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 0.0,
+       "substeps": 0,
+       "control_steps": 0,
+       "first_control_step": null,
+       "first_stage": null
+      },
+      "by_stage_all": {
+       "cream_cheese.pick_1.place": {
+        "peak_n": 5.487087214097632,
+        "substeps": 2,
+        "control_steps": 2,
+        "first_control_step": 349
+       }
+      },
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.0,
+     "transport_eef_z_end_m": 0.606073260307312,
+     "transport_eef_z_max_m": 0.606073260307312,
+     "transport_steps": 44
+    }
+   },
+   "contact_policy": {
+    "clean": false,
+    "max_forbidden_n": 14.3,
+    "forbidden_contacts": [
+     {
+      "robot_body": "leftfinger[finger_link_on_target]",
+      "other": "alphabet_soup_1_main",
+      "max_n": 14.3,
+      "control_steps": 22,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@alphabet_soup",
+       "lift@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "alphabet_soup_1_main",
+      "max_n": 6.1,
+      "control_steps": 22,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@alphabet_soup",
+       "lift@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "cream_cheese_1_main",
+      "max_n": 0.4,
+      "control_steps": 2,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     }
+    ],
+    "n_event_keys": 6
+   },
+   "cost": {
+    "executed_substeps": 10900,
+    "formal_substeps_simulated": 9500,
+    "discarded_substeps_lookahead": 1400,
+    "discarded_branches": 2,
+    "wall_s": 13.6,
+    "inherited_prefix_substeps": 0
+   }
+  }
+ },
+ "decision": {
+  "rule": "transport_repair_v0",
+  "n_triggers": 0,
+  "per_trigger": []
+ },
+ "proposal": null,
+ "trajectories": {
+  "A": {
+   "path": "reports/step8_shared_repair/trajectories/fixed1r_T7_init23_A.npz",
+   "sha256": "55802820a3556e9a51ee99c9c6cce279d60f6e49e48319c31392595645dbc379",
+   "bytes": 104652
+  }
+ },
+ "case": {
+  "schema": "mannercap.repair_case.v1",
+  "request": {
+   "task": 7,
+   "init": 23,
+   "spec_program_hash": "782f2e6615bc609964953dc609b749061f3c3054651dca715da8fad6a3cd15ef",
+   "objects": {
+    "alphabet_soup": "alphabet_soup_1",
+    "cream_cheese": "cream_cheese_1",
+    "basket": "basket_1"
+   },
+   "stage_instances": [
+    "alphabet_soup.pick_1.approach",
+    "alphabet_soup.pick_1.descend",
+    "alphabet_soup.pick_1.grasp",
+    "alphabet_soup.pick_1.lift",
+    "alphabet_soup.pick_1.transport",
+    "alphabet_soup.pick_1.place",
+    "alphabet_soup.pick_1.retreat",
+    "cream_cheese.pick_1.approach",
+    "cream_cheese.pick_1.descend",
+    "cream_cheese.pick_1.grasp",
+    "cream_cheese.pick_1.lift",
+    "cream_cheese.pick_1.transport",
+    "cream_cheese.pick_1.place",
+    "cream_cheese.pick_1.retreat"
+   ]
+  },
+  "versions": {
+   "rule": "transport_repair_v0",
+   "checks": "hold_checks_v1",
+   "executor": {
+    "settle_after_open": 1,
+    "approach_check": true
+   },
+   "plan": "gentle",
+   "plan_range_n": [
+    1.0,
+    22.0
+   ],
+   "calibration_file": "configs/manner_calibration_libero_t7.v3.json",
+   "calibration_sha256": "09e7d5d58170ce2ca71b6f8001233b7b524103dd7a25824d5bd019d6a1e1d8ad"
+  },
+  "failure_state": {
+   "task_ok": false,
+   "hold_state_counts_by_object": {
+    "alphabet_soup": {
+     "n_hold": 85,
+     "bilateral": 13,
+     "one_sided": 0,
+     "no_contact": 72,
+     "invalid": 0
+    },
+    "cream_cheese": {
+     "n_hold": 67,
+     "bilateral": 67,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "basket": {
+     "n_hold": 0,
+     "bilateral": 0,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    }
+   },
+   "unknown_objects": [],
+   "residual_triggers": [],
+   "object_contact_events_all_stages": [
+    {
+     "object": "cream_cheese_1",
+     "other_body": "basket_1_main",
+     "peak_n": 1.4,
+     "control_steps": 2
+    }
+   ]
+  },
+  "candidate": null,
+  "resume_point": null,
+  "before": {
+   "checks": {
+    "checks_version": "hold_checks_v1",
+    "status": "completed",
+    "task_ok": false,
+    "all_stage_instances_executed": true,
+    "hold_state_counts_by_object": {
+     "alphabet_soup": {
+      "n_hold": 85,
+      "bilateral": 13,
+      "one_sided": 0,
+      "no_contact": 72,
+      "invalid": 0
+     },
+     "cream_cheese": {
+      "n_hold": 67,
+      "bilateral": 67,
+      "one_sided": 0,
+      "no_contact": 0,
+      "invalid": 0
+     },
+     "basket": {
+      "n_hold": 0,
+      "bilateral": 0,
+      "one_sided": 0,
+      "no_contact": 0,
+      "invalid": 0
+     }
+    },
+    "non_bilateral_steps_by_object": {
+     "alphabet_soup": 72,
+     "cream_cheese": 0,
+     "basket": 0
+    },
+    "unknown_objects": [],
+    "residual_triggers": [],
+    "task_and_hold_checks_passed": false,
+    "scope": "task end state + hold-window bilateral contact + no residual transport-repair trigger; not force band / speed / contact policy"
+   },
+   "audit_contact_policy": {
+    "clean": false,
+    "max_forbidden_n": 14.3,
+    "forbidden_contacts": [
+     {
+      "robot_body": "leftfinger[finger_link_on_target]",
+      "other": "alphabet_soup_1_main",
+      "max_n": 14.3,
+      "control_steps": 22,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@alphabet_soup",
+       "lift@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "alphabet_soup_1_main",
+      "max_n": 6.1,
+      "control_steps": 22,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@alphabet_soup",
+       "lift@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "cream_cheese_1_main",
+      "max_n": 0.4,
+      "control_steps": 2,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     }
+    ],
+    "n_event_keys": 6
+   }
+  },
+  "after": null,
+  "cost": {
+   "A_full": 10900
+  },
+  "trajectories": {
+   "A": {
+    "path": "reports/step8_shared_repair/trajectories/fixed1r_T7_init23_A.npz",
+    "sha256": "55802820a3556e9a51ee99c9c6cce279d60f6e49e48319c31392595645dbc379",
+    "bytes": 104652
+   }
+  },
+  "tag": "fixed1r"
+ }
+}

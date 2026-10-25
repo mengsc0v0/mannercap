@@ -1,0 +1,421 @@
+{
+ "request": "T7_init25",
+ "rule": "transport_repair_v0",
+ "A": {
+  "checks": {
+   "checks_version": "hold_checks_v1",
+   "status": "completed",
+   "task_ok": true,
+   "all_stage_instances_executed": true,
+   "hold_state_counts_by_object": {
+    "alphabet_soup": {
+     "n_hold": 83,
+     "bilateral": 83,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "cream_cheese": {
+     "n_hold": 65,
+     "bilateral": 65,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "basket": {
+     "n_hold": 0,
+     "bilateral": 0,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    }
+   },
+   "non_bilateral_steps_by_object": {
+    "alphabet_soup": 0,
+    "cream_cheese": 0,
+    "basket": 0
+   },
+   "unknown_objects": [],
+   "residual_triggers": [],
+   "task_and_hold_checks_passed": true,
+   "scope": "task end state + hold-window bilateral contact + no residual transport-repair trigger; not force band / speed / contact policy"
+  },
+  "n_steps": 372,
+  "program_hash": "782f2e6615bc609964953dc609b749061f3c3054651dca715da8fad6a3cd15ef",
+  "plan_hash": "ddd4eb31394dd12669793719e372852f89accd568510e1ae16df9d8954ec7d99",
+  "cost_executed_substeps": 10050,
+  "wall_s": 12.4,
+  "object_contact_events_all_stages": [
+   {
+    "object": "alphabet_soup_1",
+    "other_body": "basket_1_main",
+    "peak_n": 33.3,
+    "control_steps": 229
+   },
+   {
+    "object": "alphabet_soup_1",
+    "other_body": "cream_cheese_1_main",
+    "peak_n": 1.0,
+    "control_steps": 1
+   },
+   {
+    "object": "cream_cheese_1",
+    "other_body": "alphabet_soup_1_main",
+    "peak_n": 1.0,
+    "control_steps": 1
+   }
+  ],
+  "full_audit": {
+   "status": "completed",
+   "task_ok": true,
+   "objects": {
+    "alphabet_soup": {
+     "grasp_stable": true,
+     "measurement_valid": true,
+     "hold_n": 83,
+     "left_min_n": 6.6185806859759415,
+     "right_min_n": 4.859931422770105,
+     "one_sided_control_steps": 0,
+     "bilateral_strict": true,
+     "lr_imbalance": 0.007524043086381729,
+     "rel_z_spread_m": 0.0011622903501464776,
+     "hold_total_min": 12.300060862579281,
+     "hold_total_max": 14.220732298488446,
+     "hold_total_mean": 13.27373016815578,
+     "plan_band_1_22_all_hold_steps": true,
+     "peak_simultaneous_n": 34.718661789702516,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 41.129765524359186,
+       "substeps": 21,
+       "control_steps": 4,
+       "first_control_step": 126,
+       "first_stage": "alphabet_soup.pick_1.transport"
+      },
+      "by_stage_all": {
+       "alphabet_soup.pick_1.place": {
+        "peak_n": 14.819747146374073,
+        "substeps": 134,
+        "control_steps": 6,
+        "first_control_step": 147
+       },
+       "alphabet_soup.pick_1.retreat": {
+        "peak_n": 0.3610891405857052,
+        "substeps": 625,
+        "control_steps": 25,
+        "first_control_step": 153
+       },
+       "alphabet_soup.pick_1.transport": {
+        "peak_n": 41.129765524359186,
+        "substeps": 21,
+        "control_steps": 4,
+        "first_control_step": 126
+       },
+       "cream_cheese.pick_1.approach": {
+        "peak_n": 0.25360268416145565,
+        "substeps": 1275,
+        "control_steps": 51,
+        "first_control_step": 178
+       },
+       "cream_cheese.pick_1.descend": {
+        "peak_n": 0.25360268416145054,
+        "substeps": 475,
+        "control_steps": 19,
+        "first_control_step": 229
+       },
+       "cream_cheese.pick_1.grasp": {
+        "peak_n": 0.25360268416145554,
+        "substeps": 350,
+        "control_steps": 14,
+        "first_control_step": 248
+       },
+       "cream_cheese.pick_1.lift": {
+        "peak_n": 0.25360268416144954,
+        "substeps": 625,
+        "control_steps": 25,
+        "first_control_step": 262
+       },
+       "cream_cheese.pick_1.place": {
+        "peak_n": 2.074907616101446,
+        "substeps": 449,
+        "control_steps": 18,
+        "first_control_step": 329
+       },
+       "cream_cheese.pick_1.retreat": {
+        "peak_n": 0.31436394225467046,
+        "substeps": 625,
+        "control_steps": 25,
+        "first_control_step": 347
+       },
+       "cream_cheese.pick_1.transport": {
+        "peak_n": 0.25360268416146176,
+        "substeps": 1050,
+        "control_steps": 42,
+        "first_control_step": 287
+       }
+      },
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.0,
+     "transport_eef_z_end_m": 0.6168973445892334,
+     "transport_eef_z_max_m": 0.6385849118232727,
+     "transport_steps": 60
+    },
+    "cream_cheese": {
+     "grasp_stable": true,
+     "measurement_valid": true,
+     "hold_n": 65,
+     "left_min_n": 6.457980073562708,
+     "right_min_n": 6.429106750100123,
+     "one_sided_control_steps": 0,
+     "bilateral_strict": true,
+     "lr_imbalance": 0.0003754084781188636,
+     "rel_z_spread_m": 5.3250783696723314e-05,
+     "hold_total_min": 12.88708682366283,
+     "hold_total_max": 13.184129262831789,
+     "hold_total_mean": 13.113104593323799,
+     "plan_band_1_22_all_hold_steps": true,
+     "peak_simultaneous_n": 47.475950666225,
+     "basket_contact": {
+      "carried_phase_lift_transport": {
+       "peak_n": 0.0,
+       "substeps": 0,
+       "control_steps": 0,
+       "first_control_step": null,
+       "first_stage": null
+      },
+      "by_stage_all": {},
+      "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"
+     },
+     "palm_or_other_gripper_geom_mean_n_in_hold": 0.0,
+     "transport_eef_z_end_m": 0.605851948261261,
+     "transport_eef_z_max_m": 0.605851948261261,
+     "transport_steps": 42
+    }
+   },
+   "contact_policy": {
+    "clean": false,
+    "max_forbidden_n": 2.5,
+    "forbidden_contacts": [
+     {
+      "robot_body": "leftfinger[finger_link_on_target]",
+      "other": "alphabet_soup_1_main",
+      "max_n": 0.8,
+      "control_steps": 2,
+      "class": "finger_link_on_target",
+      "stages": [
+       "transport@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "cream_cheese_1_main",
+      "max_n": 2.5,
+      "control_steps": 18,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@cream_cheese",
+       "lift@cream_cheese"
+      ]
+     }
+    ],
+    "n_event_keys": 4
+   },
+   "cost": {
+    "executed_substeps": 10050,
+    "formal_substeps_simulated": 9300,
+    "discarded_substeps_lookahead": 750,
+    "discarded_branches": 2,
+    "wall_s": 12.4,
+    "inherited_prefix_substeps": 0
+   }
+  }
+ },
+ "decision": {
+  "rule": "transport_repair_v0",
+  "n_triggers": 0,
+  "per_trigger": []
+ },
+ "proposal": null,
+ "trajectories": {
+  "A": {
+   "path": "reports/step8_shared_repair/trajectories/fixed1r_T7_init25_A.npz",
+   "sha256": "17f5ac24d3fb2f53c5454f07c48e129721e807513220cb1a667fc82e142eaeec",
+   "bytes": 154110
+  }
+ },
+ "case": {
+  "schema": "mannercap.repair_case.v1",
+  "request": {
+   "task": 7,
+   "init": 25,
+   "spec_program_hash": "782f2e6615bc609964953dc609b749061f3c3054651dca715da8fad6a3cd15ef",
+   "objects": {
+    "alphabet_soup": "alphabet_soup_1",
+    "cream_cheese": "cream_cheese_1",
+    "basket": "basket_1"
+   },
+   "stage_instances": [
+    "alphabet_soup.pick_1.approach",
+    "alphabet_soup.pick_1.descend",
+    "alphabet_soup.pick_1.grasp",
+    "alphabet_soup.pick_1.lift",
+    "alphabet_soup.pick_1.transport",
+    "alphabet_soup.pick_1.place",
+    "alphabet_soup.pick_1.retreat",
+    "cream_cheese.pick_1.approach",
+    "cream_cheese.pick_1.descend",
+    "cream_cheese.pick_1.grasp",
+    "cream_cheese.pick_1.lift",
+    "cream_cheese.pick_1.transport",
+    "cream_cheese.pick_1.place",
+    "cream_cheese.pick_1.retreat"
+   ]
+  },
+  "versions": {
+   "rule": "transport_repair_v0",
+   "checks": "hold_checks_v1",
+   "executor": {
+    "settle_after_open": 1,
+    "approach_check": true
+   },
+   "plan": "gentle",
+   "plan_range_n": [
+    1.0,
+    22.0
+   ],
+   "calibration_file": "configs/manner_calibration_libero_t7.v3.json",
+   "calibration_sha256": "09e7d5d58170ce2ca71b6f8001233b7b524103dd7a25824d5bd019d6a1e1d8ad"
+  },
+  "failure_state": {
+   "task_ok": true,
+   "hold_state_counts_by_object": {
+    "alphabet_soup": {
+     "n_hold": 83,
+     "bilateral": 83,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "cream_cheese": {
+     "n_hold": 65,
+     "bilateral": 65,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    },
+    "basket": {
+     "n_hold": 0,
+     "bilateral": 0,
+     "one_sided": 0,
+     "no_contact": 0,
+     "invalid": 0
+    }
+   },
+   "unknown_objects": [],
+   "residual_triggers": [],
+   "object_contact_events_all_stages": [
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "basket_1_main",
+     "peak_n": 33.3,
+     "control_steps": 229
+    },
+    {
+     "object": "alphabet_soup_1",
+     "other_body": "cream_cheese_1_main",
+     "peak_n": 1.0,
+     "control_steps": 1
+    },
+    {
+     "object": "cream_cheese_1",
+     "other_body": "alphabet_soup_1_main",
+     "peak_n": 1.0,
+     "control_steps": 1
+    }
+   ]
+  },
+  "candidate": null,
+  "resume_point": null,
+  "before": {
+   "checks": {
+    "checks_version": "hold_checks_v1",
+    "status": "completed",
+    "task_ok": true,
+    "all_stage_instances_executed": true,
+    "hold_state_counts_by_object": {
+     "alphabet_soup": {
+      "n_hold": 83,
+      "bilateral": 83,
+      "one_sided": 0,
+      "no_contact": 0,
+      "invalid": 0
+     },
+     "cream_cheese": {
+      "n_hold": 65,
+      "bilateral": 65,
+      "one_sided": 0,
+      "no_contact": 0,
+      "invalid": 0
+     },
+     "basket": {
+      "n_hold": 0,
+      "bilateral": 0,
+      "one_sided": 0,
+      "no_contact": 0,
+      "invalid": 0
+     }
+    },
+    "non_bilateral_steps_by_object": {
+     "alphabet_soup": 0,
+     "cream_cheese": 0,
+     "basket": 0
+    },
+    "unknown_objects": [],
+    "residual_triggers": [],
+    "task_and_hold_checks_passed": true,
+    "scope": "task end state + hold-window bilateral contact + no residual transport-repair trigger; not force band / speed / contact policy"
+   },
+   "audit_contact_policy": {
+    "clean": false,
+    "max_forbidden_n": 2.5,
+    "forbidden_contacts": [
+     {
+      "robot_body": "leftfinger[finger_link_on_target]",
+      "other": "alphabet_soup_1_main",
+      "max_n": 0.8,
+      "control_steps": 2,
+      "class": "finger_link_on_target",
+      "stages": [
+       "transport@alphabet_soup"
+      ]
+     },
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "cream_cheese_1_main",
+      "max_n": 2.5,
+      "control_steps": 18,
+      "class": "finger_link_on_target",
+      "stages": [
+       "grasp@cream_cheese",
+       "lift@cream_cheese"
+      ]
+     }
+    ],
+    "n_event_keys": 4
+   }
+  },
+  "after": null,
+  "cost": {
+   "A_full": 10050
+  },
+  "trajectories": {
+   "A": {
+    "path": "reports/step8_shared_repair/trajectories/fixed1r_T7_init25_A.npz",
+    "sha256": "17f5ac24d3fb2f53c5454f07c48e129721e807513220cb1a667fc82e142eaeec",
+    "bytes": 154110
+   }
+  },
+  "tag": "fixed1r"
+ }
+}

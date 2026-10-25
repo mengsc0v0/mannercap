@@ -1,0 +1,1095 @@
+{
+ "tag": "fixed1r",
+ "task": 7,
+ "role": "alphabet_soup",
+ "object": "alphabet_soup_1",
+ "failed": "init23",
+ "references": [
+  "init22",
+  "init24"
+ ],
+ "init23": {
+  "per_stage": [
+   {
+    "stage": "approach",
+    "steps": [
+     0,
+     26
+    ],
+    "n": 27,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 27,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0366,
+    "obj_minus_eef_z_m_start_end": [
+     -0.2074,
+     -0.1343
+    ]
+   },
+   {
+    "stage": "descend",
+    "steps": [
+     27,
+     46
+    ],
+    "n": 20,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 20,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0295,
+    "obj_minus_eef_z_m_start_end": [
+     -0.132,
+     -0.0205
+    ]
+   },
+   {
+    "stage": "grasp",
+    "steps": [
+     47,
+     58
+    ],
+    "n": 12,
+    "bilateral": 6,
+    "one_sided": 1,
+    "no_contact": 5,
+    "invalid": 0,
+    "L_mean_min_max": [
+     2.95,
+     0.0,
+     9.37
+    ],
+    "R_mean_min_max": [
+     4.01,
+     0.0,
+     13.44
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0003
+    ],
+    "obj_minus_eef_xy_m_end": 0.0349,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0141,
+     -0.0086
+    ]
+   },
+   {
+    "stage": "lift",
+    "steps": [
+     59,
+     83
+    ],
+    "n": 25,
+    "bilateral": 15,
+    "one_sided": 0,
+    "no_contact": 10,
+    "invalid": 0,
+    "L_mean_min_max": [
+     2.54,
+     0.0,
+     4.52
+    ],
+    "R_mean_min_max": [
+     3.66,
+     0.0,
+     6.36
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0003,
+     -0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0419,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0086,
+     -0.1529
+    ]
+   },
+   {
+    "stage": "transport",
+    "steps": [
+     84,
+     145
+    ],
+    "n": 62,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 62,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.372,
+    "obj_minus_eef_z_m_start_end": [
+     -0.1588,
+     -0.1432
+    ]
+   },
+   {
+    "stage": "place",
+    "steps": [
+     146,
+     161
+    ],
+    "n": 16,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 16,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.3793,
+    "obj_minus_eef_z_m_start_end": [
+     -0.1431,
+     -0.1097
+    ]
+   }
+  ],
+  "first_deviation": {
+   "first_non_bilateral_step": 74,
+   "stage": "alphabet_soup.pick_1.lift",
+   "n_non_bilateral": 72,
+   "steps_window": [
+    {
+     "k": 70,
+     "stage": "lift",
+     "state": "bilateral",
+     "L": 4.18,
+     "R": 6.06,
+     "obj_minus_eef_z": -0.0086,
+     "obj_z": 0.5395,
+     "other_max_n": 0.0
+    },
+    {
+     "k": 71,
+     "stage": "lift",
+     "state": "bilateral",
+     "L": 4.16,
+     "R": 6.03,
+     "obj_minus_eef_z": -0.0086,
+     "obj_z": 0.5457,
+     "other_max_n": 0.0
+    },
+    {
+     "k": 72,
+     "stage": "lift",
+     "state": "bilateral",
+     "L": 4.13,
+     "R": 6.01,
+     "obj_minus_eef_z": -0.0086,
+     "obj_z": 0.5519,
+     "other_max_n": 0.0
+    },
+    {
+     "k": 73,
+     "stage": "lift",
+     "state": "bilateral",
+     "L": 3.38,
+     "R": 5.03,
+     "obj_minus_eef_z": -0.0086,
+     "obj_z": 0.5581,
+     "other_max_n": 0.0
+    },
+    {
+     "k": 74,
+     "stage": "lift",
+     "state": "no_contact",
+     "L": 0.0,
+     "R": 0.01,
+     "obj_minus_eef_z": -0.0086,
+     "obj_z": 0.5643,
+     "other_max_n": 0.0
+    },
+    {
+     "k": 75,
+     "stage": "lift",
+     "state": "no_contact",
+     "L": 0.0,
+     "R": 0.0,
+     "obj_minus_eef_z": -0.0201,
+     "obj_z": 0.5589,
+     "other_max_n": 0.0
+    },
+    {
+     "k": 76,
+     "stage": "lift",
+     "state": "no_contact",
+     "L": 0.0,
+     "R": 0.0,
+     "obj_minus_eef_z": -0.056,
+     "obj_z": 0.5292,
+     "other_max_n": 0.0
+    },
+    {
+     "k": 77,
+     "stage": "lift",
+     "state": "no_contact",
+     "L": 0.0,
+     "R": 0.0,
+     "obj_minus_eef_z": -0.1163,
+     "obj_z": 0.475,
+     "other_max_n": 0.0
+    },
+    {
+     "k": 78,
+     "stage": "lift",
+     "state": "no_contact",
+     "L": 0.0,
+     "R": 0.0,
+     "obj_minus_eef_z": -0.12,
+     "obj_z": 0.4775,
+     "other_max_n": 0.0
+    },
+    {
+     "k": 79,
+     "stage": "lift",
+     "state": "no_contact",
+     "L": 0.0,
+     "R": 0.0,
+     "obj_minus_eef_z": -0.1285,
+     "obj_z": 0.4752,
+     "other_max_n": 0.0
+    }
+   ]
+  },
+  "substep_by_stage": {
+   "approach": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "descend": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "grasp": {
+    "L": {
+     "mean": 2.95,
+     "max": 16.5
+    },
+    "R": {
+     "mean": 4.01,
+     "max": 23.5
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "lift": {
+    "L": {
+     "mean": 2.54,
+     "max": 4.58
+    },
+    "R": {
+     "mean": 3.66,
+     "max": 6.37
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "place": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "retreat": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "transport": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   }
+  },
+  "task_success_last": false
+ },
+ "init22": {
+  "per_stage": [
+   {
+    "stage": "approach",
+    "steps": [
+     0,
+     26
+    ],
+    "n": 27,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 27,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0081,
+    "obj_minus_eef_z_m_start_end": [
+     -0.2114,
+     -0.1327
+    ]
+   },
+   {
+    "stage": "descend",
+    "steps": [
+     27,
+     46
+    ],
+    "n": 20,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 20,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0005,
+    "obj_minus_eef_z_m_start_end": [
+     -0.1303,
+     -0.0187
+    ]
+   },
+   {
+    "stage": "grasp",
+    "steps": [
+     47,
+     52
+    ],
+    "n": 6,
+    "bilateral": 3,
+    "one_sided": 1,
+    "no_contact": 2,
+    "invalid": 0,
+    "L_mean_min_max": [
+     3.38,
+     0.0,
+     6.75
+    ],
+    "R_mean_min_max": [
+     2.59,
+     0.0,
+     6.75
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0001
+    ],
+    "obj_minus_eef_xy_m_end": 0.0033,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0123,
+     -0.0076
+    ]
+   },
+   {
+    "stage": "lift",
+    "steps": [
+     53,
+     77
+    ],
+    "n": 25,
+    "bilateral": 25,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0,
+    "L_mean_min_max": [
+     6.61,
+     6.61,
+     6.62
+    ],
+    "R_mean_min_max": [
+     6.61,
+     6.61,
+     6.62
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0001,
+     0.144
+    ],
+    "obj_minus_eef_xy_m_end": 0.0037,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0076,
+     -0.0077
+    ]
+   },
+   {
+    "stage": "transport",
+    "steps": [
+     78,
+     135
+    ],
+    "n": 58,
+    "bilateral": 58,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0,
+    "L_mean_min_max": [
+     6.73,
+     6.61,
+     9.45
+    ],
+    "R_mean_min_max": [
+     6.6,
+     5.01,
+     7.03
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.1499,
+     0.1328
+    ],
+    "obj_minus_eef_xy_m_end": 0.0027,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0077,
+     -0.009
+    ]
+   },
+   {
+    "stage": "place",
+    "steps": [
+     136,
+     151
+    ],
+    "n": 16,
+    "bilateral": 8,
+    "one_sided": 0,
+    "no_contact": 8,
+    "invalid": 0,
+    "L_mean_min_max": [
+     2.88,
+     0.0,
+     6.78
+    ],
+    "R_mean_min_max": [
+     2.89,
+     0.0,
+     6.83
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.1325,
+     0.0178
+    ],
+    "obj_minus_eef_xy_m_end": 0.0051,
+    "obj_minus_eef_z_m_start_end": [
+     -0.009,
+     -0.0895
+    ]
+   }
+  ],
+  "first_deviation": null,
+  "substep_by_stage": {
+   "approach": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "descend": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "grasp": {
+    "L": {
+     "mean": 3.38,
+     "max": 15.85
+    },
+    "R": {
+     "mean": 2.59,
+     "max": 16.2
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "lift": {
+    "L": {
+     "mean": 6.61,
+     "max": 6.62
+    },
+    "R": {
+     "mean": 6.61,
+     "max": 6.62
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "place": {
+    "L": {
+     "mean": 2.88,
+     "max": 6.81
+    },
+    "R": {
+     "mean": 2.89,
+     "max": 6.87
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.13,
+     "max": 12.84
+    }
+   },
+   "retreat": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.25,
+     "max": 0.94
+    }
+   },
+   "transport": {
+    "L": {
+     "mean": 6.73,
+     "max": 29.77
+    },
+    "R": {
+     "mean": 6.6,
+     "max": 9.15
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.19,
+     "max": 41.34
+    }
+   }
+  },
+  "task_success_last": true
+ },
+ "init24": {
+  "per_stage": [
+   {
+    "stage": "approach",
+    "steps": [
+     0,
+     26
+    ],
+    "n": 27,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 27,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.007,
+    "obj_minus_eef_z_m_start_end": [
+     -0.2094,
+     -0.132
+    ]
+   },
+   {
+    "stage": "descend",
+    "steps": [
+     27,
+     46
+    ],
+    "n": 20,
+    "bilateral": 0,
+    "one_sided": 0,
+    "no_contact": 20,
+    "invalid": 0,
+    "L_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "R_mean_min_max": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0
+    ],
+    "obj_minus_eef_xy_m_end": 0.0006,
+    "obj_minus_eef_z_m_start_end": [
+     -0.1297,
+     -0.0189
+    ]
+   },
+   {
+    "stage": "grasp",
+    "steps": [
+     47,
+     52
+    ],
+    "n": 6,
+    "bilateral": 3,
+    "one_sided": 1,
+    "no_contact": 2,
+    "invalid": 0,
+    "L_mean_min_max": [
+     3.18,
+     0.0,
+     6.58
+    ],
+    "R_mean_min_max": [
+     2.71,
+     0.0,
+     6.58
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0,
+     0.0003
+    ],
+    "obj_minus_eef_xy_m_end": 0.0036,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0125,
+     -0.0079
+    ]
+   },
+   {
+    "stage": "lift",
+    "steps": [
+     53,
+     77
+    ],
+    "n": 25,
+    "bilateral": 25,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0,
+    "L_mean_min_max": [
+     6.61,
+     6.61,
+     6.62
+    ],
+    "R_mean_min_max": [
+     6.61,
+     6.61,
+     6.62
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.0002,
+     0.1441
+    ],
+    "obj_minus_eef_xy_m_end": 0.0038,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0079,
+     -0.0079
+    ]
+   },
+   {
+    "stage": "transport",
+    "steps": [
+     78,
+     135
+    ],
+    "n": 58,
+    "bilateral": 58,
+    "one_sided": 0,
+    "no_contact": 0,
+    "invalid": 0,
+    "L_mean_min_max": [
+     6.73,
+     6.62,
+     8.79
+    ],
+    "R_mean_min_max": [
+     6.58,
+     4.88,
+     6.83
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.15,
+     0.1326
+    ],
+    "obj_minus_eef_xy_m_end": 0.0025,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0079,
+     -0.0091
+    ]
+   },
+   {
+    "stage": "place",
+    "steps": [
+     136,
+     151
+    ],
+    "n": 16,
+    "bilateral": 8,
+    "one_sided": 0,
+    "no_contact": 8,
+    "invalid": 0,
+    "L_mean_min_max": [
+     2.87,
+     0.0,
+     6.75
+    ],
+    "R_mean_min_max": [
+     2.87,
+     0.0,
+     6.8
+    ],
+    "other_max_n_max": 0.0,
+    "obj_z_rise_from_start_m": [
+     0.1324,
+     0.0171
+    ],
+    "obj_minus_eef_xy_m_end": 0.0063,
+    "obj_minus_eef_z_m_start_end": [
+     -0.0091,
+     -0.0909
+    ]
+   }
+  ],
+  "first_deviation": null,
+  "substep_by_stage": {
+   "approach": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "descend": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "grasp": {
+    "L": {
+     "mean": 3.18,
+     "max": 15.73
+    },
+    "R": {
+     "mean": 2.71,
+     "max": 20.95
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "lift": {
+    "L": {
+     "mean": 6.61,
+     "max": 6.62
+    },
+    "R": {
+     "mean": 6.61,
+     "max": 6.62
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.0,
+     "max": 0.0
+    }
+   },
+   "place": {
+    "L": {
+     "mean": 2.87,
+     "max": 6.78
+    },
+    "R": {
+     "mean": 2.87,
+     "max": 6.83
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.13,
+     "max": 14.59
+    }
+   },
+   "retreat": {
+    "L": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "R": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.25,
+     "max": 0.28
+    }
+   },
+   "transport": {
+    "L": {
+     "mean": 6.73,
+     "max": 30.48
+    },
+    "R": {
+     "mean": 6.58,
+     "max": 7.43
+    },
+    "palm_other_gripper": {
+     "mean": 0.0,
+     "max": 0.0
+    },
+    "basket": {
+     "mean": 0.22,
+     "max": 42.56
+    }
+   }
+  },
+  "task_success_last": true
+ }
+}
