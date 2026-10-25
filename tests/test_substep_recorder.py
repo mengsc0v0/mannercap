@@ -77,3 +77,56 @@ def test_index_only_selection_would_be_contaminated_without_rollback():
     ctrl, rows = s.recorder.formal_arrays()
     sel = np.isin(ctrl, [1, 2])                                        # a "hold window" selected by index
     assert len(ctrl) == 10 * SUBSTEPS and max(rows[i][0] for i in np.flatnonzero(sel)) == 40.0
+
+
+# ---- snapshot-identity restore (stage retry restores an OLDER snapshot, and the same one repeatedly)
+def _run(s, force, n):
+    s.force = force
+    for _ in range(n):
+        s.step(None)
+
+
+def test_restore_older_snapshot_drops_everything_after_it_even_with_newer_snapshots():
+    s = _mk()
+    _run(s, 1.0, 1)
+    A = s.save_state()
+    _run(s, 2.0, 2)
+    B = s.save_state()
+    _run(s, 3.0, 2)
+    s.restore_state(A)                      # skip over B: must drop rows of both branches, not only B's
+    ctrl, rows = s.recorder.formal_arrays()
+    assert len(ctrl) == SUBSTEPS and all(r[0] == 1.0 for r in rows)
+    assert s.recorder.rolled_back_cost()["substeps"] == 4 * SUBSTEPS
+    assert s.control_step_index == 1
+
+
+def test_same_snapshot_restored_twice_clears_the_second_branch_too():
+    s = _mk()
+    _run(s, 1.0, 1)
+    A = s.save_state()
+    _run(s, 2.0, 3)
+    s.restore_state(A)
+    _run(s, 9.0, 2)                         # retry branch
+    s.restore_state(A)                      # second restore of the same snapshot
+    _run(s, 5.0, 2)                         # final executed continuation
+    ctrl, rows = s.recorder.formal_arrays()
+    assert [r[0] for r in rows[::SUBSTEPS]] == [1.0, 5.0, 5.0]
+    assert 9.0 not in {r[0] for r in rows} and 2.0 not in {r[0] for r in rows}
+    assert list(np.unique(ctrl)) == [0, 1, 2]
+    c = s.recorder.cost()
+    assert c["executed_substeps"] == (1 + 3 + 2 + 2) * SUBSTEPS and c["formal_rows"] == 3 * SUBSTEPS
+    assert c["executed_substeps"] - c["formal_rows"] == c["discarded_substeps_listed"]
+
+
+def test_resumed_recorder_is_seeded_from_the_snapshot_prefix():
+    s1 = _mk()
+    _run(s1, 1.0, 2)
+    A = s1.save_state()
+    _run(s1, 7.0, 2)
+    s2 = _mk()                              # new session, continues from A
+    s2.recorder.seed_prefix(*s1.recorder.rows_at(A))
+    s2.restore_state(A)
+    _run(s2, 4.0, 1)
+    ctrl, rows = s2.recorder.formal_arrays()
+    assert [r[0] for r in rows[::SUBSTEPS]] == [1.0, 1.0, 4.0] and list(np.unique(ctrl)) == [0, 1, 2]
+    assert s2.recorder.executed_substeps == SUBSTEPS      # only the resumed part was simulated here

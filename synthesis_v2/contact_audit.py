@@ -93,6 +93,16 @@ class ContactRecorder:
         s.env.sim.step, s.step, s.save_state, s.restore_state = sub, step, save, restore
         return self
 
+    def events_at(self, state) -> dict:
+        """Events as they were when ``state`` was saved (the prefix a stage resume inherits)."""
+        return {k: [v[0], set(v[1])] for k, v in self._saved[id(state)][0].items()}
+
+    def seed(self, events: dict) -> None:
+        """Start a resumed session with the prefix events of the run that took the snapshot."""
+        for k, v in events.items():      # merge by max: the new session's own reset may already have observed contacts
+            cur = self.events.setdefault(k, [0.0, set()])
+            cur[0], cur[1] = max(cur[0], v[0]), cur[1] | set(v[1])
+
     def report(self, stages: Optional[Sequence[str]] = None) -> dict[str, Any]:
         r = classify(self.events, stages)
         r["rolled_back_not_counted"] = [{"robot_body": a, "other": b, "max_n": round(f, 1)} for (a, b), f in sorted(self.rolled_back.items()) if f >= CONTACT_THR_N]

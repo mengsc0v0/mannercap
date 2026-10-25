@@ -132,10 +132,11 @@ def run_episode(t, init, grips, raw_path=None):
     s = make_session(t, init, prog)
     names = [n for _, n in SPECS[t].objects]
     sub = install_recorder(s, names)
-    crec = ContactRecorder(s).install()          # frozen contact policy (rollback-isolated as well)
+    box = {}                                     # frozen contact policy (rollback-isolated); installed AFTER reset (reset rebuilds the sim)
     t0 = time.time()
     plan = make_plan(t, prog, grip=grips, approach_check=EXECUTOR["approach_check"])
-    ep = produce_program_episode(prog, init, plan, keep_images=False, session=s)
+    ep = produce_program_episode(prog, init, plan, keep_images=False, session=s, on_session=lambda ss: box.update(c=ContactRecorder(ss).install()))
+    crec = box["c"]
     s.close()
     ctrl, rows = sub.formal_arrays()
     arr = np.asarray(rows, dtype=np.float64).reshape(len(ctrl), 2 * len(names))

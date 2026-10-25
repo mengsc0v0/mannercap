@@ -1,0 +1,626 @@
+{
+ "task": 0,
+ "init": 8,
+ "role": "alphabet_soup",
+ "candidate": {
+  "transport_dz_m": 0.205,
+  "original_m": 0.175,
+  "changed_instances": [
+   [
+    "alphabet_soup.pick_1.transport",
+    0.175,
+    0.205
+   ]
+  ]
+ },
+ "resume_point": {
+  "stage": "alphabet_soup.pick_1.transport",
+  "control_step_index": 80,
+  "prefix_steps": 80,
+  "meta_contains_transport_dz": false
+ },
+ "A": {
+  "status": "completed",
+  "task_ok": true,
+  "n_steps": 366,
+  "program_hash": "7193ce73e1f3d0ddd178cb8b7ab0a207cf720f6083aedb66f6631acd271877d6",
+  "plan_hash": "4179bc02c40bb52f4545264ebd99c7c874d9f184ed3ad20b4b5d047516e37d0a",
+  "recorder_vs_telemetry": {
+   "checked_steps": 318,
+   "max_abs_diff_n": 3.552713678800501e-15,
+   "ctrl_range_ok": true,
+   "no_duplicate_control_steps": true,
+   "n_substeps_per_step_min_max": [
+    25,
+    25
+   ]
+  },
+  "objects": {
+   "alphabet_soup": {
+    "grasp_stable": false,
+    "measurement_valid": true,
+    "hold_n": 91,
+    "left_min_n": 6.62153001170391,
+    "right_min_n": 0.0,
+    "one_sided_control_steps": 1,
+    "bilateral_strict": false,
+    "lr_imbalance": 0.05575801107902451,
+    "rel_z_spread_m": 0.0022023964373164007,
+    "hold_total_min": 11.744332462454794,
+    "hold_total_max": 17.93949891348342,
+    "hold_total_mean": 13.386011102631741,
+    "plan_band_1_22_all_hold_steps": true,
+    "peak_simultaneous_n": 38.57003592096696,
+    "basket_contact": {
+     "carried_phase_lift_transport": {
+      "peak_n": 59.4783395305948,
+      "substeps": 44,
+      "control_steps": 3,
+      "first_control_step": 133,
+      "first_stage": "alphabet_soup.pick_1.transport"
+     },
+     "by_stage_all": {
+      "alphabet_soup.pick_1.place": {
+       "peak_n": 18.53269412469778,
+       "substeps": 138,
+       "control_steps": 6,
+       "first_control_step": 158
+      },
+      "alphabet_soup.pick_1.retreat": {
+       "peak_n": 0.2751849946972202,
+       "substeps": 625,
+       "control_steps": 25,
+       "first_control_step": 164
+      },
+      "alphabet_soup.pick_1.transport": {
+       "peak_n": 59.4783395305948,
+       "substeps": 44,
+       "control_steps": 3,
+       "first_control_step": 133
+      },
+      "tomato_sauce.pick_1.approach": {
+       "peak_n": 0.25360268416143106,
+       "substeps": 1125,
+       "control_steps": 45,
+       "first_control_step": 189
+      },
+      "tomato_sauce.pick_1.descend": {
+       "peak_n": 0.2536026841614211,
+       "substeps": 475,
+       "control_steps": 19,
+       "first_control_step": 234
+      },
+      "tomato_sauce.pick_1.grasp": {
+       "peak_n": 0.2536026841614154,
+       "substeps": 150,
+       "control_steps": 6,
+       "first_control_step": 253
+      },
+      "tomato_sauce.pick_1.lift": {
+       "peak_n": 0.2536026841614211,
+       "substeps": 650,
+       "control_steps": 26,
+       "first_control_step": 259
+      },
+      "tomato_sauce.pick_1.place": {
+       "peak_n": 5.626861005531754,
+       "substeps": 424,
+       "control_steps": 17,
+       "first_control_step": 324
+      },
+      "tomato_sauce.pick_1.retreat": {
+       "peak_n": 0.6748088919084384,
+       "substeps": 625,
+       "control_steps": 25,
+       "first_control_step": 341
+      },
+      "tomato_sauce.pick_1.transport": {
+       "peak_n": 1.2061861191443788,
+       "substeps": 959,
+       "control_steps": 39,
+       "first_control_step": 285
+      }
+     },
+     "note": "place/retreat/next-object stages: the object rests in / is released into the basket (intended contact); only the carried phase is a disturbance"
+    },
+    "palm_or_other_gripper_geom_mean_n_in_hold": 0.6486689570101046,
+    "transport_eef_z_end_m": 0.6168203949928284,
+    "transport_eef_z_max_m": 0.6392013430595398,
+    "transport_steps": 67
+   },
+   "tomato_sauce": {
+    "grasp_stable": true,
+    "measurement_valid": true,
+    "hold_n": 63,
+    "left_min_n": 6.251779042592545,
+    "right_min_n": 4.088593624495541,
+    "one_sided_control_steps": 0,
+    "bilateral_strict": true,
+    "lr_imbalance": 0.07490275458662249,
+    "rel_z_spread_m": 0.00030225999387811786,
+    "hold_total_min": 12.481329973399719,
+    "hold_total_max": 13.192165777571333,
+    "hold_total_mean": 12.635430161944326,
+    "plan_band_1_22_all_hold_steps": true,
+    "peak_simultaneous_n": 35.79189997369787,
+    "basket_contact": {
+     "carried_phase_lift_transport": {
+      "peak_n": 30.88586471826557,
+      "substeps": 24,
+      "control_steps": 7,
+      "first_control_step": 308,
+      "first_stage": "tomato_sauce.pick_1.transport"
+     },
+     "by_stage_all": {
+      "tomato_sauce.pick_1.transport": {
+       "peak_n": 30.88586471826557,
+       "substeps": 24,
+       "control_steps": 7,
+       "first_control_step": 308
+      }
+     },
+     "note": "place/retreat/next-object stages: the object rests in / is released into the basket (intended contact); only the carried phase is a disturbance"
+    },
+    "palm_or_other_gripper_geom_mean_n_in_hold": 0.7365738154702275,
+    "transport_eef_z_end_m": 0.6167818903923035,
+    "transport_eef_z_max_m": 0.638075590133667,
+    "transport_steps": 39
+   }
+  },
+  "contact_policy": {
+   "clean": false,
+   "max_forbidden_n": 8.7,
+   "forbidden_contacts": [
+    {
+     "robot_body": "leftfinger",
+     "other": "alphabet_soup_1_main",
+     "max_n": 1.4,
+     "control_steps": 2,
+     "stages": [
+      "transport@alphabet_soup"
+     ]
+    },
+    {
+     "robot_body": "right_gripper",
+     "other": "alphabet_soup_1_main",
+     "max_n": 6.0,
+     "control_steps": 72,
+     "stages": [
+      "grasp@alphabet_soup",
+      "lift@alphabet_soup",
+      "transport@alphabet_soup"
+     ]
+    },
+    {
+     "robot_body": "right_gripper",
+     "other": "tomato_sauce_1_main",
+     "max_n": 8.7,
+     "control_steps": 56,
+     "stages": [
+      "grasp@tomato_sauce",
+      "lift@tomato_sauce",
+      "transport@tomato_sauce"
+     ]
+    }
+   ],
+   "n_event_keys": 3
+  },
+  "cost": {
+   "executed_substeps": 10375,
+   "formal_substeps_simulated": 9150,
+   "discarded_substeps_lookahead": 1225,
+   "discarded_branches": 2,
+   "wall_s": 15.7,
+   "inherited_prefix_substeps": 0
+  }
+ },
+ "B": {
+  "status": "completed",
+  "task_ok": true,
+  "n_steps": 371,
+  "program_hash": "70ded7ab670aa0a9137492462081a4cea3076e402f98711ae96f96416daf9167",
+  "plan_hash": "132056f34621feb29f1a3268516735fd5793752558c1ef19e6260bfecec95798",
+  "recorder_vs_telemetry": {
+   "checked_steps": 323,
+   "max_abs_diff_n": 5.329070518200751e-15,
+   "ctrl_range_ok": true,
+   "no_duplicate_control_steps": true,
+   "n_substeps_per_step_min_max": [
+    25,
+    25
+   ]
+  },
+  "objects": {
+   "alphabet_soup": {
+    "grasp_stable": true,
+    "measurement_valid": true,
+    "hold_n": 91,
+    "left_min_n": 6.620197640150957,
+    "right_min_n": 4.826835256651124,
+    "one_sided_control_steps": 0,
+    "bilateral_strict": true,
+    "lr_imbalance": 0.03364301751449265,
+    "rel_z_spread_m": 6.0861600883643785e-05,
+    "hold_total_min": 13.232223277352514,
+    "hold_total_max": 13.247831285714659,
+    "hold_total_mean": 13.242433006162226,
+    "plan_band_1_22_all_hold_steps": true,
+    "peak_simultaneous_n": 20.471493429304573,
+    "basket_contact": {
+     "carried_phase_lift_transport": {
+      "peak_n": 0.0,
+      "substeps": 0,
+      "control_steps": 0,
+      "first_control_step": null,
+      "first_stage": null
+     },
+     "by_stage_all": {
+      "alphabet_soup.pick_1.place": {
+       "peak_n": 16.879292720278862,
+       "substeps": 136,
+       "control_steps": 6,
+       "first_control_step": 163
+      },
+      "alphabet_soup.pick_1.retreat": {
+       "peak_n": 0.2715368465958867,
+       "substeps": 625,
+       "control_steps": 25,
+       "first_control_step": 169
+      },
+      "tomato_sauce.pick_1.approach": {
+       "peak_n": 0.2536026841613447,
+       "substeps": 1125,
+       "control_steps": 45,
+       "first_control_step": 194
+      },
+      "tomato_sauce.pick_1.descend": {
+       "peak_n": 0.2536026841613401,
+       "substeps": 475,
+       "control_steps": 19,
+       "first_control_step": 239
+      },
+      "tomato_sauce.pick_1.grasp": {
+       "peak_n": 0.25360268416146337,
+       "substeps": 150,
+       "control_steps": 6,
+       "first_control_step": 258
+      },
+      "tomato_sauce.pick_1.lift": {
+       "peak_n": 0.2536026841613395,
+       "substeps": 650,
+       "control_steps": 26,
+       "first_control_step": 264
+      },
+      "tomato_sauce.pick_1.place": {
+       "peak_n": 4.574233350615775,
+       "substeps": 425,
+       "control_steps": 17,
+       "first_control_step": 329
+      },
+      "tomato_sauce.pick_1.retreat": {
+       "peak_n": 0.5512124125295773,
+       "substeps": 625,
+       "control_steps": 25,
+       "first_control_step": 346
+      },
+      "tomato_sauce.pick_1.transport": {
+       "peak_n": 1.7164021714942694,
+       "substeps": 963,
+       "control_steps": 39,
+       "first_control_step": 290
+      }
+     },
+     "note": "place/retreat/next-object stages: the object rests in / is released into the basket (intended contact); only the carried phase is a disturbance"
+    },
+    "palm_or_other_gripper_geom_mean_n_in_hold": 0.44595471059640374,
+    "transport_eef_z_end_m": 0.6458808779716492,
+    "transport_eef_z_max_m": 0.6458808779716492,
+    "transport_steps": 67
+   },
+   "tomato_sauce": {
+    "grasp_stable": true,
+    "measurement_valid": true,
+    "hold_n": 63,
+    "left_min_n": 6.2461490028487425,
+    "right_min_n": 4.193153079795346,
+    "one_sided_control_steps": 0,
+    "bilateral_strict": true,
+    "lr_imbalance": 0.06781857134444748,
+    "rel_z_spread_m": 0.0002331848187528962,
+    "hold_total_min": 12.09723642946777,
+    "hold_total_max": 13.70128220144355,
+    "hold_total_mean": 12.601556222793038,
+    "plan_band_1_22_all_hold_steps": true,
+    "peak_simultaneous_n": 35.85861047589618,
+    "basket_contact": {
+     "carried_phase_lift_transport": {
+      "peak_n": 31.40993384514603,
+      "substeps": 24,
+      "control_steps": 7,
+      "first_control_step": 313,
+      "first_stage": "tomato_sauce.pick_1.transport"
+     },
+     "by_stage_all": {
+      "tomato_sauce.pick_1.transport": {
+       "peak_n": 31.40993384514603,
+       "substeps": 24,
+       "control_steps": 7,
+       "first_control_step": 313
+      }
+     },
+     "note": "place/retreat/next-object stages: the object rests in / is released into the basket (intended contact); only the carried phase is a disturbance"
+    },
+    "palm_or_other_gripper_geom_mean_n_in_hold": 0.6710602201533592,
+    "transport_eef_z_end_m": 0.6167661547660828,
+    "transport_eef_z_max_m": 0.6380745768547058,
+    "transport_steps": 39
+   }
+  },
+  "contact_policy": {
+   "clean": false,
+   "max_forbidden_n": 8.9,
+   "forbidden_contacts": [
+    {
+     "robot_body": "right_gripper",
+     "other": "alphabet_soup_1_main",
+     "max_n": 2.9,
+     "control_steps": 68,
+     "stages": [
+      "grasp@alphabet_soup",
+      "lift@alphabet_soup",
+      "transport@alphabet_soup"
+     ]
+    },
+    {
+     "robot_body": "right_gripper",
+     "other": "tomato_sauce_1_main",
+     "max_n": 8.9,
+     "control_steps": 49,
+     "stages": [
+      "grasp@tomato_sauce",
+      "lift@tomato_sauce",
+      "transport@tomato_sauce"
+     ]
+    }
+   ],
+   "n_event_keys": 2
+  },
+  "cost": {
+   "executed_substeps": 10525,
+   "formal_substeps_simulated": 9275,
+   "discarded_substeps_lookahead": 1250,
+   "discarded_branches": 2,
+   "wall_s": 15.9,
+   "inherited_prefix_substeps": 0
+  }
+ },
+ "C": {
+  "status": "completed",
+  "task_ok": true,
+  "n_steps": 371,
+  "program_hash": "70ded7ab670aa0a9137492462081a4cea3076e402f98711ae96f96416daf9167",
+  "plan_hash": "132056f34621feb29f1a3268516735fd5793752558c1ef19e6260bfecec95798",
+  "recorder_vs_telemetry": {
+   "checked_steps": 323,
+   "max_abs_diff_n": 5.329070518200751e-15,
+   "ctrl_range_ok": true,
+   "no_duplicate_control_steps": true,
+   "n_substeps_per_step_min_max": [
+    25,
+    25
+   ]
+  },
+  "objects": {
+   "alphabet_soup": {
+    "grasp_stable": true,
+    "measurement_valid": true,
+    "hold_n": 91,
+    "left_min_n": 6.620197640150957,
+    "right_min_n": 4.826835256651124,
+    "one_sided_control_steps": 0,
+    "bilateral_strict": true,
+    "lr_imbalance": 0.03364301751449265,
+    "rel_z_spread_m": 6.0861600883643785e-05,
+    "hold_total_min": 13.232223277352514,
+    "hold_total_max": 13.247831285714659,
+    "hold_total_mean": 13.242433006162226,
+    "plan_band_1_22_all_hold_steps": true,
+    "peak_simultaneous_n": 20.471493429304573,
+    "basket_contact": {
+     "carried_phase_lift_transport": {
+      "peak_n": 0.0,
+      "substeps": 0,
+      "control_steps": 0,
+      "first_control_step": null,
+      "first_stage": null
+     },
+     "by_stage_all": {
+      "alphabet_soup.pick_1.place": {
+       "peak_n": 16.879292720278862,
+       "substeps": 136,
+       "control_steps": 6,
+       "first_control_step": 163
+      },
+      "alphabet_soup.pick_1.retreat": {
+       "peak_n": 0.2715368465958867,
+       "substeps": 625,
+       "control_steps": 25,
+       "first_control_step": 169
+      },
+      "tomato_sauce.pick_1.approach": {
+       "peak_n": 0.2536026841613447,
+       "substeps": 1125,
+       "control_steps": 45,
+       "first_control_step": 194
+      },
+      "tomato_sauce.pick_1.descend": {
+       "peak_n": 0.2536026841613401,
+       "substeps": 475,
+       "control_steps": 19,
+       "first_control_step": 239
+      },
+      "tomato_sauce.pick_1.grasp": {
+       "peak_n": 0.25360268416146337,
+       "substeps": 150,
+       "control_steps": 6,
+       "first_control_step": 258
+      },
+      "tomato_sauce.pick_1.lift": {
+       "peak_n": 0.2536026841613395,
+       "substeps": 650,
+       "control_steps": 26,
+       "first_control_step": 264
+      },
+      "tomato_sauce.pick_1.place": {
+       "peak_n": 4.574233350615775,
+       "substeps": 425,
+       "control_steps": 17,
+       "first_control_step": 329
+      },
+      "tomato_sauce.pick_1.retreat": {
+       "peak_n": 0.5512124125295773,
+       "substeps": 625,
+       "control_steps": 25,
+       "first_control_step": 346
+      },
+      "tomato_sauce.pick_1.transport": {
+       "peak_n": 1.7164021714942694,
+       "substeps": 963,
+       "control_steps": 39,
+       "first_control_step": 290
+      }
+     },
+     "note": "place/retreat/next-object stages: the object rests in / is released into the basket (intended contact); only the carried phase is a disturbance"
+    },
+    "palm_or_other_gripper_geom_mean_n_in_hold": 0.44595471059640374,
+    "transport_eef_z_end_m": 0.6458808779716492,
+    "transport_eef_z_max_m": 0.6458808779716492,
+    "transport_steps": 67
+   },
+   "tomato_sauce": {
+    "grasp_stable": true,
+    "measurement_valid": true,
+    "hold_n": 63,
+    "left_min_n": 6.2461490028487425,
+    "right_min_n": 4.193153079795346,
+    "one_sided_control_steps": 0,
+    "bilateral_strict": true,
+    "lr_imbalance": 0.06781857134444748,
+    "rel_z_spread_m": 0.0002331848187528962,
+    "hold_total_min": 12.09723642946777,
+    "hold_total_max": 13.70128220144355,
+    "hold_total_mean": 12.601556222793038,
+    "plan_band_1_22_all_hold_steps": true,
+    "peak_simultaneous_n": 35.85861047589618,
+    "basket_contact": {
+     "carried_phase_lift_transport": {
+      "peak_n": 31.40993384514603,
+      "substeps": 24,
+      "control_steps": 7,
+      "first_control_step": 313,
+      "first_stage": "tomato_sauce.pick_1.transport"
+     },
+     "by_stage_all": {
+      "tomato_sauce.pick_1.transport": {
+       "peak_n": 31.40993384514603,
+       "substeps": 24,
+       "control_steps": 7,
+       "first_control_step": 313
+      }
+     },
+     "note": "place/retreat/next-object stages: the object rests in / is released into the basket (intended contact); only the carried phase is a disturbance"
+    },
+    "palm_or_other_gripper_geom_mean_n_in_hold": 0.6710602201533592,
+    "transport_eef_z_end_m": 0.6167661547660828,
+    "transport_eef_z_max_m": 0.6380745768547058,
+    "transport_steps": 39
+   }
+  },
+  "contact_policy": {
+   "clean": false,
+   "max_forbidden_n": 8.9,
+   "forbidden_contacts": [
+    {
+     "robot_body": "right_gripper",
+     "other": "alphabet_soup_1_main",
+     "max_n": 2.9,
+     "control_steps": 68,
+     "stages": [
+      "grasp@alphabet_soup",
+      "lift@alphabet_soup",
+      "transport@alphabet_soup"
+     ]
+    },
+    {
+     "robot_body": "right_gripper",
+     "other": "tomato_sauce_1_main",
+     "max_n": 8.9,
+     "control_steps": 49,
+     "stages": [
+      "grasp@tomato_sauce",
+      "lift@tomato_sauce",
+      "transport@tomato_sauce"
+     ]
+    }
+   ],
+   "n_event_keys": 2
+  },
+  "cost": {
+   "executed_substeps": 7925,
+   "formal_substeps_simulated": 7275,
+   "discarded_substeps_lookahead": 650,
+   "discarded_branches": 1,
+   "wall_s": 12.2,
+   "inherited_prefix_substeps": 2000
+  }
+ },
+ "checks": {
+  "program_hash_A_ne_B": true,
+  "program_hash_B_eq_C": true,
+  "plan_hash_B_eq_C": true,
+  "A_vs_stored_response_record": {
+   "actions": 0.0,
+   "state": 0.0
+  },
+  "prefix_A_vs_B_before_k0": {
+   "actions": 0.0,
+   "state": 0.0,
+   "left_mean_n": 0.0,
+   "right_mean_n": 0.0
+  },
+  "B_vs_C_from_k0": {
+   "n_steps": [
+    371,
+    371
+   ],
+   "stage_sequence_equal_from_k0": true,
+   "max_abs_diff_actions": 0.0,
+   "max_abs_diff_state": 0.0,
+   "max_abs_diff_next_state": 0.0,
+   "max_abs_diff_left_mean_n": 0.0,
+   "max_abs_diff_right_mean_n": 0.0,
+   "substep_mean_force_max_abs_diff_n": 0.0,
+   "control_steps_with_force_diff_gt_1N": 0,
+   "compared_control_steps": 291
+  },
+  "A_vs_B_from_k0": {
+   "n_steps": [
+    366,
+    371
+   ],
+   "stage_sequence_equal_from_k0": false
+  }
+ },
+ "cost_summary": {
+  "A_full": 10375,
+  "B_extra_full_rerun": 10525,
+  "C_extra_stage_resume": 7925,
+  "total_to_final_demo_via_B": 20900,
+  "total_to_final_demo_via_C": 18300,
+  "wall_s": {
+   "A": 15.7,
+   "B": 15.9,
+   "C": 12.2
+  }
+ }
+}
