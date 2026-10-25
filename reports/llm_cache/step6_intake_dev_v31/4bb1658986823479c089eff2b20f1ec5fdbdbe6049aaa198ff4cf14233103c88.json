@@ -1,0 +1,49 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "hold the moka pot gently",
+        "dimension": "grip",
+        "instance_ids": [
+          "moka_pot.pick_1.grasp"
+        ],
+        "level": "gentle",
+        "object_role": "moka_pot"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "turn_on",
+          "clause": "turn on the stove",
+          "object_phrase": "the stove",
+          "object_role": "stove",
+          "target_phrase": null,
+          "target_role": null
+        },
+        {
+          "action": "put",
+          "clause": "put the moka pot on it",
+          "object_phrase": "the moka pot",
+          "object_role": "moka_pot",
+          "target_phrase": "it",
+          "target_role": "stove"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "hold the pudding gently",
+        "dimension": "grip",
+        "instance_ids": [
+          "chocolate_pudding.pick_1.grasp"
+        ],
+        "level": "gentle",
+        "object_role": "chocolate_pudding"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "put the white mug on the plate",
+          "object_phrase": "the white mug",
+          "object_role": "white_mug",
+          "target_phrase": "on the plate",
+          "target_role": "plate"
+        },
+        {
+          "action": "put",
+          "clause": "the chocolate pudding to the right of the plate",
+          "object_phrase": "the chocolate pudding",
+          "object_role": "chocolate_pudding",
+          "target_phrase": "to the right of the plate",
+          "target_role": "plate_right_region"
+        }
+      ]
+    },
+    "unsupported": [
+      {
+        "clause": "move the mug at 3 cm/s",
+        "code": "numeric_level",
+        "reason": "3 cm/s is a numeric speed value, not a registered speed level."
+      }
+    ]
+  }
+}

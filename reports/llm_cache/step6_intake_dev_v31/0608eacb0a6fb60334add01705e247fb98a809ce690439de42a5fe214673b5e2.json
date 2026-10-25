@@ -1,0 +1,60 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "hold the white mug gently",
+        "dimension": "grip",
+        "instance_ids": [
+          "white_mug.pick_1.grasp"
+        ],
+        "level": "gentle",
+        "object_role": "white_mug"
+      },
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "hold the yellow and white mug firmly",
+        "dimension": "grip",
+        "instance_ids": [
+          "yellow_white_mug.pick_1.grasp"
+        ],
+        "level": "firm",
+        "object_role": "yellow_white_mug"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "put the white mug on the left plate",
+          "object_phrase": "the white mug",
+          "object_role": "white_mug",
+          "target_phrase": "the left plate",
+          "target_role": "left_plate"
+        },
+        {
+          "action": "put",
+          "clause": "put the yellow and white mug on the right plate",
+          "object_phrase": "the yellow and white mug",
+          "object_role": "yellow_white_mug",
+          "target_phrase": "the right plate",
+          "target_role": "right_plate"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

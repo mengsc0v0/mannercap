@@ -1,0 +1,1418 @@
+{
+ "prompt_version": "mannercap.intake.v3_1",
+ "summary": {
+  "lexicon_accept_excluding_disputed": [
+   2,
+   19
+  ],
+  "lexicon_accept_excluding_disputed_and_protocol_revised": [
+   2,
+   17
+  ],
+  "lexicon_protocol_revised_cases": [
+   "B06",
+   "B07"
+  ],
+  "lexicon": {
+   "1_accept_correct": [
+    2,
+    20
+   ],
+   "2_ambiguity_correct": [
+    4,
+    5
+   ],
+   "2b_ambiguity_candidates_exact": [
+    4,
+    5
+   ],
+   "3_unsupported_reason_correct": [
+    3,
+    6
+   ],
+   "3b_conflict_reason_correct": [
+    0,
+    7
+   ],
+   "4_false_accept": [
+    5,
+    18
+   ],
+   "5_false_reject": [
+    13,
+    20
+   ],
+   "guards_triggered": 4,
+   "errors": 0
+  },
+  "llm_accept_excluding_disputed": [
+   18,
+   19
+  ],
+  "llm_accept_excluding_disputed_and_protocol_revised": [
+   16,
+   17
+  ],
+  "llm_protocol_revised_cases": [
+   "B06",
+   "B07"
+  ],
+  "llm": {
+   "1_accept_correct": [
+    19,
+    20
+   ],
+   "2_ambiguity_correct": [
+    5,
+    5
+   ],
+   "2b_ambiguity_candidates_exact": [
+    5,
+    5
+   ],
+   "3_unsupported_reason_correct": [
+    6,
+    6
+   ],
+   "3b_conflict_reason_correct": [
+    7,
+    7
+   ],
+   "4_false_accept": [
+    0,
+    18
+   ],
+   "5_false_reject": [
+    1,
+    20
+   ],
+   "guards_triggered": 2,
+   "errors": 0
+  }
+ },
+ "spend": {
+  "calls": 23,
+  "cached": 15,
+  "failed": 0,
+  "latency_s": 87.182,
+  "prompt_tokens": 45654,
+  "completion_tokens": 5873,
+  "total_tokens": 51527,
+  "budget": 200
+ },
+ "records": [
+  {
+   "parser": "lexicon",
+   "id": "A01",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "steps_missing": [
+    [
+     "put",
+     "butter",
+     "basket"
+    ],
+    [
+     "put",
+     "cream_cheese",
+     "basket"
+    ]
+   ],
+   "steps_extra": [],
+   "correct": false,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "A02",
+   "expect": "accept",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "tomato_sauce.pick_1.grasp",
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A04",
+   "expect": "accept",
+   "status": "unsupported",
+   "codes": [
+    "other"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "yellow_white_mug.pick_1.grasp",
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A05",
+   "expect": "accept",
+   "status": "unsupported",
+   "codes": [
+    "dimension_not_on_stage"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "white_mug.pick_1.grasp",
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A06",
+   "expect": "accept",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "left_moka_pot.pick_1.grasp",
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A07",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "steps_missing": [
+    [
+     "close",
+     "microwave",
+     null
+    ],
+    [
+     "put",
+     "yellow_white_mug",
+     "microwave"
+    ]
+   ],
+   "steps_extra": [],
+   "correct": false,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "A08",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "drawer.close_1.articulate",
+     "speed",
+     "fast"
+    ]
+   ],
+   "extra": [
+    [
+     "black_bowl.pick_1.place",
+     "speed",
+     "fast"
+    ]
+   ],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "A09",
+   "expect": "accept",
+   "status": "unsupported",
+   "codes": [
+    "other"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "stove.turn_on_1.articulate",
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A10",
+   "expect": "accept",
+   "status": "unsupported",
+   "codes": [
+    "dimension_not_on_stage"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "book.pick_1.grasp",
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A16",
+   "expect": "accept",
+   "status": "unsupported",
+   "codes": [
+    "other"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "alphabet_soup.pick_1.grasp",
+     "grip",
+     "gentle"
+    ],
+    [
+     "tomato_sauce.pick_1.grasp",
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A19",
+   "expect": "accept",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "alphabet_soup.pick_1.grasp",
+     "grip",
+     "gentle"
+    ],
+    [
+     "tomato_sauce.pick_1.grasp",
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A03",
+   "expect": "accept",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "cream_cheese.pick_1.grasp",
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A15",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "A12",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "steps_missing": [
+    [
+     "close",
+     "microwave",
+     null
+    ],
+    [
+     "put",
+     "yellow_white_mug",
+     "microwave"
+    ]
+   ],
+   "steps_extra": [],
+   "correct": false,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "A13",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "steps_missing": [
+    [
+     "close",
+     "drawer",
+     null
+    ],
+    [
+     "put",
+     "black_bowl",
+     "drawer"
+    ]
+   ],
+   "steps_extra": [],
+   "correct": false,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "A14",
+   "expect": "accept",
+   "status": "unsupported",
+   "codes": [
+    "dimension_not_on_stage"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "moka_pot.pick_1.grasp",
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "A11",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "A18",
+   "expect": "accept",
+   "status": "incomplete",
+   "codes": [
+    "manner_word_not_answered"
+   ],
+   "guards": [
+    {
+     "guard": "incomplete_answer",
+     "gap": "manner_word_not_answered",
+     "word": "轻"
+    }
+   ],
+   "correct": false,
+   "missing": [
+    [
+     "book.pick_1.grasp",
+     "grip",
+     "gentle"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "B01",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "butter",
+    "cream_cheese"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "B02",
+   "expect": "ambiguous",
+   "status": "unsupported",
+   "codes": [
+    "other"
+   ],
+   "guards": [],
+   "correct": false,
+   "cand_roles": [],
+   "cand_exact": false,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "B03",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "left_moka_pot",
+    "right_moka_pot"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "B04",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "white_mug",
+    "yellow_white_mug"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "B05",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "chocolate_pudding",
+    "white_mug"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "B06",
+   "expect": "accept",
+   "status": "unsupported",
+   "codes": [
+    "other"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "alphabet_soup.pick_1.approach",
+     "speed",
+     "slow"
+    ],
+    [
+     "cream_cheese.pick_1.approach",
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "B07",
+   "expect": "accept",
+   "status": "unsupported",
+   "codes": [
+    "other"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "microwave.close_1.articulate",
+     "speed",
+     "slow"
+    ],
+    [
+     "yellow_white_mug.pick_1.approach",
+     "speed",
+     "slow"
+    ],
+    [
+     "yellow_white_mug.pick_1.descend",
+     "speed",
+     "slow"
+    ],
+    [
+     "yellow_white_mug.pick_1.lift",
+     "speed",
+     "slow"
+    ],
+    [
+     "yellow_white_mug.pick_1.place",
+     "speed",
+     "slow"
+    ],
+    [
+     "yellow_white_mug.pick_1.retreat",
+     "speed",
+     "slow"
+    ],
+    [
+     "yellow_white_mug.pick_1.transport",
+     "speed",
+     "slow"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "lexicon",
+   "id": "U01",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "guards": [
+    {
+     "guard": "numeric_value_not_returned_as_unsupported",
+     "values": [
+      "20 N"
+     ]
+    }
+   ],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "U02",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "guards": [
+    {
+     "guard": "numeric_value_not_returned_as_unsupported",
+     "values": [
+      "40%"
+     ]
+    }
+   ],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "U03",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "other"
+   ],
+   "guards": [],
+   "correct": false,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "U04",
+   "expect": "unsupported",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": false,
+   "status_ok": false,
+   "false_accept": true,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "U05",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "guards": [
+    {
+     "guard": "numeric_value_not_returned_as_unsupported",
+     "values": [
+      "3 cm/s"
+     ]
+    }
+   ],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "U06",
+   "expect": "unsupported",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "status_ok": false,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "C01",
+   "expect": "conflict",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "status_ok": false,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "C02",
+   "expect": "conflict",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": false,
+   "status_ok": false,
+   "false_accept": true,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "C03",
+   "expect": "conflict",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "status_ok": false,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "C04",
+   "expect": "conflict",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": false,
+   "status_ok": false,
+   "false_accept": true,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "C05",
+   "expect": "conflict",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "status_ok": false,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "C06",
+   "expect": "conflict",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": false,
+   "status_ok": false,
+   "false_accept": true,
+   "false_reject": false
+  },
+  {
+   "parser": "lexicon",
+   "id": "C07",
+   "expect": "conflict",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": false,
+   "status_ok": false,
+   "false_accept": true,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A01",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A02",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A04",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A05",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A06",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A07",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A08",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A09",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A10",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A16",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A19",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A03",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A15",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A12",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A13",
+   "expect": "accept",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": false,
+   "missing": [
+    [
+     "black_bowl.pick_1.grasp",
+     "grip",
+     "firm"
+    ]
+   ],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": true
+  },
+  {
+   "parser": "llm",
+   "id": "A14",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A11",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "A18",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "B01",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "butter",
+    "cream_cheese"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "B02",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "alphabet_soup",
+    "cream_cheese"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "B03",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "left_moka_pot",
+    "right_moka_pot"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "B04",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [],
+   "correct": true,
+   "cand_roles": [
+    "white_mug",
+    "yellow_white_mug"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "B05",
+   "expect": "ambiguous",
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "guards": [
+    {
+     "guard": "incomplete_answer",
+     "gap": "order_word_without_order",
+     "word": "then"
+    }
+   ],
+   "correct": true,
+   "cand_roles": [
+    "chocolate_pudding",
+    "white_mug"
+   ],
+   "cand_exact": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "B06",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "B07",
+   "expect": "accept",
+   "status": "accept",
+   "codes": [],
+   "guards": [],
+   "correct": true,
+   "missing": [],
+   "extra": [],
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "U01",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "U02",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "U03",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "dimension_not_on_stage"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "U04",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "quantity_not_measured"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "U05",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "U06",
+   "expect": "unsupported",
+   "status": "unsupported",
+   "codes": [
+    "object_not_in_task"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "C01",
+   "expect": "conflict",
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "C02",
+   "expect": "conflict",
+   "status": "conflict",
+   "codes": [
+    "target_not_in_program"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "C03",
+   "expect": "conflict",
+   "status": "conflict",
+   "codes": [
+    "target_mismatch"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "C04",
+   "expect": "conflict",
+   "status": "conflict",
+   "codes": [
+    "object_not_in_program"
+   ],
+   "guards": [
+    {
+     "guard": "incomplete_answer",
+     "gap": "named_object_not_in_answer",
+     "roles": [
+      "white_mug"
+     ]
+    }
+   ],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "C05",
+   "expect": "conflict",
+   "status": "conflict",
+   "codes": [
+    "object_not_in_program"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "C06",
+   "expect": "conflict",
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  },
+  {
+   "parser": "llm",
+   "id": "C07",
+   "expect": "conflict",
+   "status": "conflict",
+   "codes": [
+    "step_not_in_program"
+   ],
+   "guards": [],
+   "correct": true,
+   "status_ok": true,
+   "false_accept": false,
+   "false_reject": false
+  }
+ ]
+}

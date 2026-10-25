@@ -1,0 +1,49 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "Turn on the stove slowly",
+        "dimension": "speed",
+        "instance_ids": [
+          "stove.turn_on_1.articulate"
+        ],
+        "level": "slow",
+        "object_role": "stove"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "turn_on",
+          "clause": "Turn on the stove slowly",
+          "object_phrase": "the stove",
+          "object_role": "stove",
+          "target_phrase": null,
+          "target_role": null
+        },
+        {
+          "action": "put",
+          "clause": "put the moka pot on the stove",
+          "object_phrase": "the moka pot",
+          "object_role": "moka_pot",
+          "target_phrase": "the stove",
+          "target_role": "stove"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

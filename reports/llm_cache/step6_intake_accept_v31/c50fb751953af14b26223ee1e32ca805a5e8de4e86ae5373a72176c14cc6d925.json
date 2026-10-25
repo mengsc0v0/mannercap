@@ -1,0 +1,41 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "Hold the book firmly.",
+        "dimension": "grip",
+        "instance_ids": [
+          "book.pick_1.grasp"
+        ],
+        "level": "firm",
+        "object_role": "book"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "Pick up the book and place it in the back compartment of the caddy.",
+          "object_phrase": "the book",
+          "object_role": "book",
+          "target_phrase": "the back compartment of the caddy",
+          "target_role": "caddy_back"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}
