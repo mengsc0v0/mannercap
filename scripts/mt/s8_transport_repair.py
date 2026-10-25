@@ -153,7 +153,7 @@ def summarize(t, role, R, prog):
             "plan_band_1_22_all_hold_steps": bool(o.get("hold_min") is not None and o["hold_min"] >= 1.0 and o["hold_max"] <= 22.0),
             "peak_simultaneous_n": o.get("peak_simultaneous_n"),
             "basket_contact": {"carried_phase_lift_transport": carried, "by_stage_all": by_stage,
-                               "note": "place/retreat/next-object stages: the object rests in / is released into the basket (intended contact); only the carried phase is a disturbance"},
+                               "note": "by_stage_all is NOT a verdict: contact in place/retreat/later stages is not auto-expected. Still to be separated: (a) intended support contact of the released object, (b) unintended contact (basket rim, neighbours), (c) excessive impact on an intended contact. Only the carried phase (lift/transport) is evaluated here"},
             "palm_or_other_gripper_geom_mean_n_in_hold": float(G[np.isin(ctrl, h)].mean()) if np.isin(ctrl, h).any() else None,
             "transport_eef_z_end_m": float(np.asarray(a["state"])[tr[-1], 2]) if len(tr) else None,
             "transport_eef_z_max_m": float(np.asarray(a["state"])[tr, 2].max()) if len(tr) else None, "transport_steps": int(len(tr))}
@@ -206,16 +206,19 @@ def main(t, init, role, dz):
     sa, sb, sc = (summarize(t, role, R, p) for R, p in ((A, prog0), (B, prog1), (C, prog1)))
     ncols = 4 * len(A["names"])
     stored = np.load(ROOT / "reports" / f"step8_t{t}_raw" / f"resp_init{init}_gentle.npz", allow_pickle=True)
+    sub_cmp = {"substep_rows": [int(len(B["ctrl"])), int(len(C["ctrl"]))], "ctrl_index_equal": bool(np.array_equal(B["ctrl"], C["ctrl"])),
+               "force_array_max_abs_diff_n": float(np.abs(B["arr"] - C["arr"]).max()) if B["arr"].shape == C["arr"].shape else "shape_differs",
+               "force_array_bitwise_equal": bool(B["arr"].shape == C["arr"].shape and np.array_equal(B["arr"], C["arr"]))}
     out = {"task": t, "init": init, "role": role, "candidate": {"transport_dz_m": dz, "original_m": prog0.instances[[i.label for i in prog0.instances].index(label)].params["transport_dz"], "changed_instances": diff},
            "resume_point": {"stage": snap.stage, "control_step_index": k0, "prefix_steps": int(snap.prefix_steps), "meta_contains_transport_dz": "transport_dz" in json.dumps(snap.meta)},
            "A": sa, "B": sb, "C": sc,
            "checks": {"program_hash_A_ne_B": sa["program_hash"] != sb["program_hash"], "program_hash_B_eq_C": sb["program_hash"] == sc["program_hash"], "plan_hash_B_eq_C": sb["plan_hash"] == sc["plan_hash"],
                       "A_vs_stored_response_record": {key: float(np.nanmax(np.abs(np.asarray(A["ep"].arrays[key], float) - np.asarray(stored[key], float)))) if len(stored[key]) == len(A["ep"].arrays[key]) else "length_differs" for key in ("actions", "state")},
                       "prefix_A_vs_B_before_k0": {key: float(np.nanmax(np.abs(np.asarray(A["ep"].arrays[key], float)[:k0] - np.asarray(B["ep"].arrays[key], float)[:k0]))) for key in ("actions", "state", "left_mean_n", "right_mean_n")},
-                      "B_vs_C_from_k0": compare(B, C, k0, ncols), "A_vs_B_from_k0": compare(A, B, k0, ncols)}}
+                      "B_vs_C_from_k0": compare(B, C, k0, ncols), "B_vs_C_all_substeps": sub_cmp, "A_vs_B_from_k0": compare(A, B, k0, ncols)}}
     totals = {"A_full": sa["cost"]["executed_substeps"], "B_extra_full_rerun": sb["cost"]["executed_substeps"], "C_extra_stage_resume": sc["cost"]["executed_substeps"]}
-    totals["total_to_final_demo_via_B"] = totals["A_full"] + totals["B_extra_full_rerun"]
-    totals["total_to_final_demo_via_C"] = totals["A_full"] + totals["C_extra_stage_resume"]
+    totals["first_run_plus_one_repair_attempt_via_B_rerun"] = totals["A_full"] + totals["B_extra_full_rerun"]
+    totals["first_run_plus_one_repair_attempt_via_C_resume"] = totals["A_full"] + totals["C_extra_stage_resume"]
     totals["wall_s"] = {"A": sa["cost"]["wall_s"], "B": sb["cost"]["wall_s"], "C": sc["cost"]["wall_s"]}
     out["cost_summary"] = totals
     d = ROOT / "reports" / "step8_transport_repair"
