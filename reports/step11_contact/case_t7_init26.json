@@ -1,0 +1,89 @@
+{
+ "schema": "mannercap.contact_attribution.v1",
+ "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "task": 7,
+ "init": 26,
+ "request": "R1",
+ "band_n": [
+  8.0,
+  16.0
+ ],
+ "candidate": [
+  1.0,
+  22.0
+ ],
+ "requested_object": "cream_cheese_1",
+ "other_objects": [
+  "alphabet_soup_1"
+ ],
+ "role": "cream_cheese",
+ "task_ok": true,
+ "n_steps": 360,
+ "wall_s": 12.04,
+ "measured": {
+  "hold_min": 13.035428107215399,
+  "hold_mean": 13.128662090253423,
+  "hold_max": 13.152833335031197
+ },
+ "development_criterion_passed": true,
+ "contact_audit": {
+  "clean": false,
+  "max_forbidden_n": 2.5,
+  "forbidden_contacts": [
+   {
+    "robot_body": "leftfinger[finger_link_on_target]",
+    "other": "cream_cheese_1_main",
+    "max_n": 0.5,
+    "control_steps": 3,
+    "class": "finger_link_on_target",
+    "stages": [
+     "grasp@cream_cheese"
+    ],
+    "involves_requested_object": true,
+    "involves_non_requested_fixed_object": false
+   },
+   {
+    "robot_body": "rightfinger[finger_link_on_target]",
+    "other": "cream_cheese_1_main",
+    "max_n": 2.5,
+    "control_steps": 8,
+    "class": "finger_link_on_target",
+    "stages": [
+     "grasp@cream_cheese",
+     "lift@cream_cheese"
+    ],
+    "involves_requested_object": true,
+    "involves_non_requested_fixed_object": false
+   }
+  ],
+  "support_contacts_observed": [
+   {
+    "robot_body": "leftfinger",
+    "other": "living_room_table_col",
+    "max_n": 523.8,
+    "control_steps": 2,
+    "class": "other"
+   },
+   {
+    "robot_body": "rightfinger",
+    "other": "living_room_table_col",
+    "max_n": 525.4,
+    "control_steps": 12,
+    "class": "other"
+   }
+  ],
+  "forbidden_by_class": {
+   "finger_link_on_target": 2,
+   "other": 0
+  },
+  "clean_if_finger_link_on_target_allowed__preview_not_verdict": true,
+  "policy": {
+   "threshold_n": 0.1,
+   "allowed": "fingertip pads <-> current grasp target",
+   "forbidden": "any other robot body <-> any movable object",
+   "observed_only": "robot <-> table/floor"
+  },
+  "rolled_back_not_counted": []
+ },
+ "note": "re-execution of a single committed E3 episode; the simulator is deterministic for a fixed init and plan, so the counts below must match the counts stored in the E3 trial record."
+}

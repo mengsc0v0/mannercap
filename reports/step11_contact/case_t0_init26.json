@@ -1,0 +1,102 @@
+{
+ "schema": "mannercap.contact_attribution.v1",
+ "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "task": 0,
+ "init": 26,
+ "request": "R1",
+ "band_n": [
+  8.0,
+  16.0
+ ],
+ "candidate": [
+  1.0,
+  100.0
+ ],
+ "requested_object": "tomato_sauce_1",
+ "other_objects": [
+  "alphabet_soup_1"
+ ],
+ "role": "tomato_sauce",
+ "task_ok": true,
+ "n_steps": 371,
+ "wall_s": 18.44,
+ "measured": {
+  "hold_min": 11.399721725101173,
+  "hold_mean": 12.455287813367457,
+  "hold_max": 12.688713249091101
+ },
+ "development_criterion_passed": true,
+ "contact_audit": {
+  "clean": false,
+  "max_forbidden_n": 12.8,
+  "forbidden_contacts": [
+   {
+    "robot_body": "leftfinger[finger_link_on_target]",
+    "other": "alphabet_soup_1_main",
+    "max_n": 0.6,
+    "control_steps": 1,
+    "class": "finger_link_on_target",
+    "stages": [
+     "transport@alphabet_soup"
+    ],
+    "involves_requested_object": false,
+    "involves_non_requested_fixed_object": true
+   },
+   {
+    "robot_body": "right_gripper",
+    "other": "alphabet_soup_1_main",
+    "max_n": 8.7,
+    "control_steps": 67,
+    "class": "other",
+    "stages": [
+     "grasp@alphabet_soup",
+     "lift@alphabet_soup",
+     "transport@alphabet_soup"
+    ],
+    "involves_requested_object": false,
+    "involves_non_requested_fixed_object": true
+   },
+   {
+    "robot_body": "right_gripper",
+    "other": "tomato_sauce_1_main",
+    "max_n": 12.8,
+    "control_steps": 64,
+    "class": "other",
+    "stages": [
+     "grasp@tomato_sauce",
+     "lift@tomato_sauce",
+     "place@tomato_sauce",
+     "transport@tomato_sauce"
+    ],
+    "involves_requested_object": true,
+    "involves_non_requested_fixed_object": false
+   },
+   {
+    "robot_body": "rightfinger[finger_link_on_target]",
+    "other": "tomato_sauce_1_main",
+    "max_n": 0.3,
+    "control_steps": 5,
+    "class": "finger_link_on_target",
+    "stages": [
+     "retreat@tomato_sauce"
+    ],
+    "involves_requested_object": true,
+    "involves_non_requested_fixed_object": false
+   }
+  ],
+  "support_contacts_observed": [],
+  "forbidden_by_class": {
+   "finger_link_on_target": 2,
+   "other": 2
+  },
+  "clean_if_finger_link_on_target_allowed__preview_not_verdict": false,
+  "policy": {
+   "threshold_n": 0.1,
+   "allowed": "fingertip pads <-> current grasp target",
+   "forbidden": "any other robot body <-> any movable object",
+   "observed_only": "robot <-> table/floor"
+  },
+  "rolled_back_not_counted": []
+ },
+ "note": "re-execution of a single committed E3 episode; the simulator is deterministic for a fixed init and plan, so the counts below must match the counts stored in the E3 trial record."
+}

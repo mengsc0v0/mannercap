@@ -1,0 +1,101 @@
+{
+ "schema": "mannercap.gripper_geom_identity.v1",
+ "task": 0,
+ "init": 26,
+ "n_gripper_geoms": 8,
+ "geoms": [
+  {
+   "geom_id": 73,
+   "geom": "gripper0_hand_visual",
+   "body": "gripper0_right_gripper",
+   "contype": 0,
+   "conaffinity": 0,
+   "group": 1,
+   "classified_as": null,
+   "audit_label_if_contacted": "right_gripper"
+  },
+  {
+   "geom_id": 74,
+   "geom": "gripper0_hand_collision",
+   "body": "gripper0_right_gripper",
+   "contype": 1,
+   "conaffinity": 1,
+   "group": 0,
+   "classified_as": null,
+   "audit_label_if_contacted": "right_gripper"
+  },
+  {
+   "geom_id": 75,
+   "geom": "gripper0_finger1_visual",
+   "body": "gripper0_leftfinger",
+   "contype": 0,
+   "conaffinity": 0,
+   "group": 1,
+   "classified_as": null,
+   "audit_label_if_contacted": "leftfinger"
+  },
+  {
+   "geom_id": 76,
+   "geom": "gripper0_finger1_collision",
+   "body": "gripper0_leftfinger",
+   "contype": 0,
+   "conaffinity": 1,
+   "group": 0,
+   "classified_as": {
+    "side": "L",
+    "role": "finger_link"
+   },
+   "audit_label_if_contacted": "leftfinger"
+  },
+  {
+   "geom_id": 77,
+   "geom": "gripper0_finger1_pad_collision",
+   "body": "gripper0_finger_joint1_tip",
+   "contype": 1,
+   "conaffinity": 1,
+   "group": 0,
+   "classified_as": {
+    "side": "L",
+    "role": "pad"
+   },
+   "audit_label_if_contacted": "finger_joint1_tip"
+  },
+  {
+   "geom_id": 78,
+   "geom": "gripper0_finger2_visual",
+   "body": "gripper0_rightfinger",
+   "contype": 0,
+   "conaffinity": 0,
+   "group": 1,
+   "classified_as": null,
+   "audit_label_if_contacted": "rightfinger"
+  },
+  {
+   "geom_id": 79,
+   "geom": "gripper0_finger2_collision",
+   "body": "gripper0_rightfinger",
+   "contype": 0,
+   "conaffinity": 1,
+   "group": 0,
+   "classified_as": {
+    "side": "R",
+    "role": "finger_link"
+   },
+   "audit_label_if_contacted": "rightfinger"
+  },
+  {
+   "geom_id": 80,
+   "geom": "gripper0_finger2_pad_collision",
+   "body": "gripper0_finger_joint2_tip",
+   "contype": 1,
+   "conaffinity": 1,
+   "group": 0,
+   "classified_as": {
+    "side": "R",
+    "role": "pad"
+   },
+   "audit_label_if_contacted": "finger_joint2_tip"
+  }
+ ],
+ "note": "contype/conaffinity 0 means the geom cannot generate contacts (visual only)."
+}
