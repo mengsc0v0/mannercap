@@ -17,12 +17,13 @@
  "guard_config": {
   "enabled": true,
   "min_clearance_m": 0.0,
-  "contact_threshold_n": 0.1
+  "contact_threshold_n": 0.1,
+  "max_retries": 3
  },
  "status": "completed",
  "task_ok": true,
  "n_steps": 368,
- "wall_s": 16.19,
+ "wall_s": 16.61,
  "measured": {
   "hold_n": 65,
   "hold_min": 13.108258774161472,
@@ -107,9 +108,10 @@
   ]
  },
  "contact_policy_v1": {
-  "policy_version": "contact_policy_v1",
+  "policy_version": "contact_policy_v1.1",
   "inner_cos_min": 0.5,
   "threshold_n": 0.1,
+  "contact_permission_window": "[close_step, release_end_step): covers the opening motion; distinct from the hold/force window [close_step, release_command_step)",
   "v0_clean_preserved": false,
   "contacts": [
    {
@@ -144,8 +146,8 @@
     ],
     "peak_step": 127,
     "peak_geom": "gripper0_finger1_collision",
-    "min_inner_cos": 0.9989000252632723,
-    "min_inward_offset_m": 0.011956630550933423,
+    "min_inner_cos": 0.9989040754945397,
+    "min_inward_offset_m": 0.011959411293484544,
     "region_fail_steps": [],
     "region_fail_samples": []
    },
@@ -168,7 +170,7 @@
     "n_substeps": 100,
     "n_substeps_inner_region": 100,
     "peak_normal_inward_cos": 1.0,
-    "peak_inward_offset_m": 0.01198,
+    "peak_inward_offset_m": 0.01205,
     "peak_contact_point_geom_local_m": [
      0.008897,
      -0.00714,
@@ -181,8 +183,8 @@
     ],
     "peak_step": 249,
     "peak_geom": "gripper0_finger1_collision",
-    "min_inner_cos": 0.9999391283457982,
-    "min_inward_offset_m": 0.011904403495735967,
+    "min_inner_cos": 0.9999775398734857,
+    "min_inward_offset_m": 0.011979430047092595,
     "region_fail_steps": [],
     "region_fail_samples": []
    },
@@ -205,7 +207,7 @@
     "n_substeps": 125,
     "n_substeps_inner_region": 125,
     "peak_normal_inward_cos": 1.0,
-    "peak_inward_offset_m": 0.0121,
+    "peak_inward_offset_m": 0.01209,
     "peak_contact_point_geom_local_m": [
      0.008898,
      -0.007177,
@@ -218,8 +220,8 @@
     ],
     "peak_step": 249,
     "peak_geom": "gripper0_finger2_collision",
-    "min_inner_cos": 0.9999367318689873,
-    "min_inward_offset_m": 0.01200354744647643,
+    "min_inner_cos": 0.9999741035940146,
+    "min_inward_offset_m": 0.01200336948040099,
     "region_fail_steps": [],
     "region_fail_samples": []
    }
@@ -289,6 +291,7 @@
     "restored_to_stage": "cream_cheese.pick_1.approach",
     "steps_discarded": 69,
     "resume_prefix_steps": 176,
+    "retry_index": 1,
     "next_candidate": [
      0.0,
      0.0,
@@ -422,135 +425,12 @@
   ]
  },
  "contact_detail": {
-  "leftfinger||living_room_table_col": {
-   "n_substeps": 12,
-   "n_substeps_inner_region": 0,
-   "peak_n": 645.3328067443778,
-   "min_inner_cos": -0.0011430061575268412,
-   "min_inward_offset_m": -0.0023277343375450524,
-   "region_fail_steps": [
-    244
-   ],
-   "region_fail_samples": [
-    {
-     "control_step": 244,
-     "force_n": 645.333,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002318
-    },
-    {
-     "control_step": 244,
-     "force_n": 414.859,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002318
-    },
-    {
-     "control_step": 244,
-     "force_n": 360.115,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002319
-    },
-    {
-     "control_step": 244,
-     "force_n": 311.84,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.00232
-    },
-    {
-     "control_step": 244,
-     "force_n": 267.3,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.00232
-    },
-    {
-     "control_step": 244,
-     "force_n": 226.567,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002321
-    },
-    {
-     "control_step": 244,
-     "force_n": 191.336,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002322
-    },
-    {
-     "control_step": 244,
-     "force_n": 162.194,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002323
-    },
-    {
-     "control_step": 244,
-     "force_n": 138.68,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002324
-    },
-    {
-     "control_step": 244,
-     "force_n": 119.99,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002326
-    },
-    {
-     "control_step": 244,
-     "force_n": 105.388,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002327
-    },
-    {
-     "control_step": 244,
-     "force_n": 94.217,
-     "inner_cos": -0.0011,
-     "inward_offset_m": -0.002328
-    }
-   ],
-   "peak_step": 244,
-   "peak_geom": "gripper0_finger1_collision",
-   "peak_other_geom": "?",
-   "peak_contact_point_geom_local_m": [
-    0.005772,
-    0.007579,
-    0.029126
-   ],
-   "peak_contact_point_body_local_m": [
-    0.005838,
-    0.014274,
-    0.053771
-   ],
-   "geom_half_extent_m": [
-    0.01068,
-    0.01356,
-    0.03159
-   ],
-   "inward_axis_geom_local": [
-    0.019,
-    -0.9848,
-    0.1726
-   ],
-   "peak_normal_world": [
-    -0.0,
-    0.0,
-    -1.0
-   ],
-   "peak_normal_inward_cos": -0.0011,
-   "peak_inward_offset_m": -0.00232,
-   "peak_eef_pos": [
-    -0.14532,
-    0.0702,
-    0.44626
-   ],
-   "side_role": [
-    "L",
-    "finger_link"
-   ]
-  },
   "leftfinger[finger_link_on_target]||alphabet_soup_1_main": {
    "n_substeps": 4,
    "n_substeps_inner_region": 4,
    "peak_n": 3.446428350916777,
-   "min_inner_cos": 0.9989000252632723,
-   "min_inward_offset_m": 0.011956630550933423,
+   "min_inner_cos": 0.9989040754945397,
+   "min_inward_offset_m": 0.011959411293484544,
    "region_fail_steps": [],
    "region_fail_samples": [],
    "peak_step": 127,
@@ -572,9 +452,9 @@
     0.03159
    ],
    "inward_axis_geom_local": [
-    0.0187,
+    0.0188,
     -0.9847,
-    0.173
+    0.1731
    ],
    "peak_normal_world": [
     0.0026,
@@ -597,8 +477,8 @@
    "n_substeps": 100,
    "n_substeps_inner_region": 100,
    "peak_n": 0.7532318843631902,
-   "min_inner_cos": 0.9999391283457982,
-   "min_inward_offset_m": 0.011904403495735967,
+   "min_inner_cos": 0.9999775398734857,
+   "min_inward_offset_m": 0.011979430047092595,
    "region_fail_steps": [],
    "region_fail_samples": [],
    "peak_step": 249,
@@ -620,9 +500,9 @@
     0.03159
    ],
    "inward_axis_geom_local": [
-    0.0147,
-    -0.985,
-    0.1719
+    0.0189,
+    -0.9847,
+    0.1731
    ],
    "peak_normal_world": [
     0.0055,
@@ -630,7 +510,7 @@
     -0.0061
    ],
    "peak_normal_inward_cos": 1.0,
-   "peak_inward_offset_m": 0.01198,
+   "peak_inward_offset_m": 0.01205,
    "peak_eef_pos": [
     -0.15009,
     0.07289,
@@ -641,129 +521,12 @@
     "finger_link"
    ]
   },
-  "rightfinger||living_room_table_col": {
-   "n_substeps": 11,
-   "n_substeps_inner_region": 0,
-   "peak_n": 367.1721064449012,
-   "min_inner_cos": 0.001143006157110225,
-   "min_inward_offset_m": -0.0023317470534539447,
-   "region_fail_steps": [
-    244
-   ],
-   "region_fail_samples": [
-    {
-     "control_step": 244,
-     "force_n": 367.172,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.002332
-    },
-    {
-     "control_step": 244,
-     "force_n": 310.147,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.002331
-    },
-    {
-     "control_step": 244,
-     "force_n": 259.265,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.00233
-    },
-    {
-     "control_step": 244,
-     "force_n": 216.133,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.00233
-    },
-    {
-     "control_step": 244,
-     "force_n": 180.468,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.002329
-    },
-    {
-     "control_step": 244,
-     "force_n": 151.511,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.002328
-    },
-    {
-     "control_step": 244,
-     "force_n": 128.504,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.002327
-    },
-    {
-     "control_step": 244,
-     "force_n": 110.716,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.002326
-    },
-    {
-     "control_step": 244,
-     "force_n": 97.347,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.002324
-    },
-    {
-     "control_step": 244,
-     "force_n": 87.536,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.002323
-    },
-    {
-     "control_step": 244,
-     "force_n": 80.477,
-     "inner_cos": 0.0011,
-     "inward_offset_m": -0.002322
-    }
-   ],
-   "peak_step": 244,
-   "peak_geom": "gripper0_finger2_collision",
-   "peak_other_geom": "?",
-   "peak_contact_point_geom_local_m": [
-    -0.005338,
-    0.007393,
-    0.029145
-   ],
-   "peak_contact_point_body_local_m": [
-    0.005274,
-    -0.014293,
-    0.053774
-   ],
-   "geom_half_extent_m": [
-    0.01068,
-    0.01356,
-    0.03159
-   ],
-   "inward_axis_geom_local": [
-    0.019,
-    -0.9846,
-    0.1736
-   ],
-   "peak_normal_world": [
-    0.0,
-    -0.0,
-    -1.0
-   ],
-   "peak_normal_inward_cos": 0.0011,
-   "peak_inward_offset_m": -0.00233,
-   "peak_eef_pos": [
-    -0.1453,
-    0.07022,
-    0.44608
-   ],
-   "side_role": [
-    "R",
-    "finger_link"
-   ]
-  },
   "rightfinger[finger_link_on_target]||cream_cheese_1_main": {
    "n_substeps": 125,
    "n_substeps_inner_region": 125,
    "peak_n": 0.9768994650570071,
-   "min_inner_cos": 0.9999367318689873,
-   "min_inward_offset_m": 0.01200354744647643,
+   "min_inner_cos": 0.9999741035940146,
+   "min_inward_offset_m": 0.01200336948040099,
    "region_fail_steps": [],
    "region_fail_samples": [],
    "peak_step": 249,
@@ -785,9 +548,9 @@
     0.03159
    ],
    "inward_axis_geom_local": [
-    0.0149,
-    -0.9846,
-    0.1743
+    0.0189,
+    -0.9847,
+    0.1731
    ],
    "peak_normal_world": [
     -0.0055,
@@ -795,7 +558,7 @@
     0.0061
    ],
    "peak_normal_inward_cos": 1.0,
-   "peak_inward_offset_m": 0.0121,
+   "peak_inward_offset_m": 0.01209,
    "peak_eef_pos": [
     -0.15009,
     0.07289,
@@ -810,5 +573,25 @@
  "rolled_back_cost": {
   "branches": 4,
   "substeps": 3250
+ },
+ "contact_detail_discarded": {
+  "branches": 1,
+  "rows": [
+   {
+    "leftfinger||living_room_table_col": {
+     "n_substeps": 12,
+     "peak_n": 645.3328067443778,
+     "peak_step": 244,
+     "peak_geom": "gripper0_finger1_collision"
+    },
+    "rightfinger||living_room_table_col": {
+     "n_substeps": 11,
+     "peak_n": 367.1721064449012,
+     "peak_step": 244,
+     "peak_geom": "gripper0_finger2_collision"
+    }
+   }
+  ],
+  "note": "contact geometry produced only by rolled-back branches; excluded from the v1 verdict"
  }
 }

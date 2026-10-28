@@ -315,9 +315,14 @@ def produce_program_episode(
         guard_on = bool(guard.get("enabled"))
         rejected: dict[str, list] = {}               # instance_id -> grasp candidate keys already refused by the guard
         retry = [None]                               # set by run() when the guard refuses the current candidate
+        # geometry-retry budget: without it an outer "at most N force candidates" budget silently contains an
+        # unbounded number of physical executions.  max_retries counts guard refusals over the WHOLE episode.
+        max_retries = guard.get("max_retries")
+        max_retries = None if max_retries is None else int(max_retries)
+        n_retries = [0]
         if guard_on:
             meta.setdefault("execution_guard", {"config": {k: v for k, v in guard.items()},
-                                                "checks": [], "retries": []})
+                                                "max_retries": max_retries, "checks": [], "retries": []})
 
         def rec_for(sub: str) -> dict:
             r = geo.record(sub)
@@ -463,12 +468,19 @@ def produce_program_episode(
                 if snap is None or key is None:
                     status_box[0] = f"guard_refused_no_snapshot:{it.instance_id}"
                     break
+                if max_retries is not None and n_retries[0] >= max_retries:
+                    meta["execution_guard"]["retries"].append({**ev, "approach_instance": owner,
+                                                               "refused_candidate": key, "budget_exhausted": True})
+                    status_box[0] = f"guard_retry_budget_exhausted:{it.instance_id}"
+                    break
+                n_retries[0] += 1
                 rejected.setdefault(owner, []).append(key)
                 meta["execution_guard"]["retries"].append({**ev, "approach_instance": owner,
                                                            "refused_candidate": key,
                                                            "restored_to_stage": snap[1].stage,
                                                            "steps_discarded": int(len(rn.rec.cols["actions"]) - snap[1].prefix_steps),
-                                                           "resume_prefix_steps": int(snap[1].prefix_steps)})
+                                                           "resume_prefix_steps": int(snap[1].prefix_steps),
+                                                           "retry_index": n_retries[0]})
                 _restore_snapshot(rn, s, snap[1], meta)
                 rn.rec.hold_instance, rn.rec.hold_band = snap[2]
                 i = snap[0]

@@ -17,12 +17,13 @@
  "guard_config": {
   "enabled": true,
   "min_clearance_m": 0.0,
-  "contact_threshold_n": 0.1
+  "contact_threshold_n": 0.1,
+  "max_retries": 3
  },
  "status": "completed",
  "task_ok": true,
  "n_steps": 361,
- "wall_s": 16.61,
+ "wall_s": 17.05,
  "measured": {
   "hold_n": 64,
   "hold_min": 13.095796328008237,
@@ -97,9 +98,10 @@
   ]
  },
  "contact_policy_v1": {
-  "policy_version": "contact_policy_v1",
+  "policy_version": "contact_policy_v1.1",
   "inner_cos_min": 0.5,
   "threshold_n": 0.1,
+  "contact_permission_window": "[close_step, release_end_step): covers the opening motion; distinct from the hold/force window [close_step, release_command_step)",
   "v0_clean_preserved": false,
   "contacts": [
    {
@@ -121,7 +123,7 @@
     "n_substeps": 38,
     "n_substeps_inner_region": 38,
     "peak_normal_inward_cos": 1.0,
-    "peak_inward_offset_m": 0.01195,
+    "peak_inward_offset_m": 0.01194,
     "peak_contact_point_geom_local_m": [
      -0.008042,
      -0.009339,
@@ -134,8 +136,8 @@
     ],
     "peak_step": 247,
     "peak_geom": "gripper0_finger1_collision",
-    "min_inner_cos": 0.9999826829362828,
-    "min_inward_offset_m": 0.01191547909017178,
+    "min_inner_cos": 0.9999540034749608,
+    "min_inward_offset_m": 0.01191131702759422,
     "region_fail_steps": [],
     "region_fail_samples": []
    },
@@ -157,8 +159,8 @@
     ],
     "n_substeps": 32,
     "n_substeps_inner_region": 32,
-    "peak_normal_inward_cos": 1.0,
-    "peak_inward_offset_m": 0.01208,
+    "peak_normal_inward_cos": 0.9999,
+    "peak_inward_offset_m": 0.01202,
     "peak_contact_point_geom_local_m": [
      -0.005281,
      -0.006754,
@@ -171,8 +173,8 @@
     ],
     "peak_step": 247,
     "peak_geom": "gripper0_finger2_collision",
-    "min_inner_cos": 0.9999742846329405,
-    "min_inward_offset_m": 0.012031527552356945,
+    "min_inner_cos": 0.9999394694259277,
+    "min_inward_offset_m": 0.011963439078496868,
     "region_fail_steps": [],
     "region_fail_samples": []
    }
@@ -188,14 +190,16 @@
     "object": "alphabet_soup_1_main",
     "env_object": "alphabet_soup_1",
     "close_step": 45,
-    "release_step": 138
+    "release_step": 148,
+    "release_command_step": 138
    },
    {
     "instance_id": "cream_cheese.pick_1.grasp",
     "object": "cream_cheese_1_main",
     "env_object": "cream_cheese_1",
     "close_step": 241,
-    "release_step": 326
+    "release_step": 336,
+    "release_command_step": 326
    }
   ],
   "force_accounting": "classify_finger_geom is the single identity rule and the grasp force measurement counts both pad and finger_link geoms as that finger, so an excused finger-link contact is already inside the measured hold force.",
@@ -207,14 +211,16 @@
    "object": "alphabet_soup_1_main",
    "env_object": "alphabet_soup_1",
    "close_step": 45,
-   "release_step": 138
+   "release_step": 148,
+   "release_command_step": 138
   },
   {
    "instance_id": "cream_cheese.pick_1.grasp",
    "object": "cream_cheese_1_main",
    "env_object": "cream_cheese_1",
    "close_step": 241,
-   "release_step": 326
+   "release_step": 336,
+   "release_command_step": 326
   }
  ],
  "guard": {
@@ -238,6 +244,7 @@
     "restored_to_stage": "cream_cheese.pick_1.approach",
     "steps_discarded": 68,
     "resume_prefix_steps": 173,
+    "retry_index": 1,
     "next_candidate": [
      0.0,
      0.0,
@@ -371,87 +378,12 @@
   ]
  },
  "contact_detail": {
-  "leftfinger||living_room_table_col": {
-   "n_substeps": 4,
-   "n_substeps_inner_region": 0,
-   "peak_n": 523.8035965908183,
-   "min_inner_cos": -0.00019637001241302825,
-   "min_inward_offset_m": -0.002314843438666149,
-   "region_fail_steps": [
-    240
-   ],
-   "region_fail_samples": [
-    {
-     "control_step": 240,
-     "force_n": 523.804,
-     "inner_cos": -0.0002,
-     "inward_offset_m": -0.002314
-    },
-    {
-     "control_step": 240,
-     "force_n": 449.816,
-     "inner_cos": -0.0002,
-     "inward_offset_m": -0.002314
-    },
-    {
-     "control_step": 240,
-     "force_n": 379.351,
-     "inner_cos": -0.0002,
-     "inward_offset_m": -0.002314
-    },
-    {
-     "control_step": 240,
-     "force_n": 312.038,
-     "inner_cos": -0.0002,
-     "inward_offset_m": -0.002315
-    }
-   ],
-   "peak_step": 240,
-   "peak_geom": "gripper0_finger1_collision",
-   "peak_other_geom": "?",
-   "peak_contact_point_geom_local_m": [
-    0.005767,
-    0.007564,
-    0.029042
-   ],
-   "peak_contact_point_body_local_m": [
-    0.005833,
-    0.014274,
-    0.053685
-   ],
-   "geom_half_extent_m": [
-    0.01068,
-    0.01356,
-    0.03159
-   ],
-   "inward_axis_geom_local": [
-    0.0187,
-    -0.9847,
-    0.173
-   ],
-   "peak_normal_world": [
-    -0.0,
-    0.0,
-    -1.0
-   ],
-   "peak_normal_inward_cos": -0.0002,
-   "peak_inward_offset_m": -0.00231,
-   "peak_eef_pos": [
-    -0.13092,
-    0.06919,
-    0.44604
-   ],
-   "side_role": [
-    "L",
-    "finger_link"
-   ]
-  },
   "leftfinger[finger_link_on_target]||cream_cheese_1_main": {
    "n_substeps": 38,
    "n_substeps_inner_region": 38,
    "peak_n": 0.716830799655097,
-   "min_inner_cos": 0.9999826829362828,
-   "min_inward_offset_m": 0.01191547909017178,
+   "min_inner_cos": 0.9999540034749608,
+   "min_inward_offset_m": 0.01191131702759422,
    "region_fail_steps": [],
    "region_fail_samples": [],
    "peak_step": 247,
@@ -473,9 +405,9 @@
     0.03159
    ],
    "inward_axis_geom_local": [
-    0.0153,
-    -0.985,
-    0.1716
+    0.0189,
+    -0.9847,
+    0.1731
    ],
    "peak_normal_world": [
     -0.0082,
@@ -483,7 +415,7 @@
     0.0011
    ],
    "peak_normal_inward_cos": 1.0,
-   "peak_inward_offset_m": 0.01195,
+   "peak_inward_offset_m": 0.01194,
    "peak_eef_pos": [
     -0.135,
     0.07169,
@@ -494,87 +426,12 @@
     "finger_link"
    ]
   },
-  "rightfinger||living_room_table_col": {
-   "n_substeps": 4,
-   "n_substeps_inner_region": 0,
-   "peak_n": 525.3750778384623,
-   "min_inner_cos": 0.00019637001199920162,
-   "min_inward_offset_m": -0.00233598360838202,
-   "region_fail_steps": [
-    240
-   ],
-   "region_fail_samples": [
-    {
-     "control_step": 240,
-     "force_n": 525.375,
-     "inner_cos": 0.0002,
-     "inward_offset_m": -0.002336
-    },
-    {
-     "control_step": 240,
-     "force_n": 450.24,
-     "inner_cos": 0.0002,
-     "inward_offset_m": -0.002336
-    },
-    {
-     "control_step": 240,
-     "force_n": 390.946,
-     "inner_cos": 0.0002,
-     "inward_offset_m": -0.002336
-    },
-    {
-     "control_step": 240,
-     "force_n": 329.04,
-     "inner_cos": 0.0002,
-     "inward_offset_m": -0.002335
-    }
-   ],
-   "peak_step": 240,
-   "peak_geom": "gripper0_finger2_collision",
-   "peak_other_geom": "?",
-   "peak_contact_point_geom_local_m": [
-    -0.005336,
-    0.007386,
-    0.029106
-   ],
-   "peak_contact_point_body_local_m": [
-    0.005272,
-    -0.014293,
-    0.053735
-   ],
-   "geom_half_extent_m": [
-    0.01068,
-    0.01356,
-    0.03159
-   ],
-   "inward_axis_geom_local": [
-    0.0187,
-    -0.9847,
-    0.1731
-   ],
-   "peak_normal_world": [
-    -0.0,
-    -0.0,
-    -1.0
-   ],
-   "peak_normal_inward_cos": 0.0002,
-   "peak_inward_offset_m": -0.00234,
-   "peak_eef_pos": [
-    -0.13092,
-    0.06919,
-    0.44604
-   ],
-   "side_role": [
-    "R",
-    "finger_link"
-   ]
-  },
   "rightfinger[finger_link_on_target]||cream_cheese_1_main": {
    "n_substeps": 32,
    "n_substeps_inner_region": 32,
    "peak_n": 0.42476028994653214,
-   "min_inner_cos": 0.9999742846329405,
-   "min_inward_offset_m": 0.012031527552356945,
+   "min_inner_cos": 0.9999394694259277,
+   "min_inward_offset_m": 0.011963439078496868,
    "region_fail_steps": [],
    "region_fail_samples": [],
    "peak_step": 247,
@@ -596,17 +453,17 @@
     0.03159
    ],
    "inward_axis_geom_local": [
-    0.0153,
-    -0.9845,
-    0.1746
+    0.0189,
+    -0.9847,
+    0.1731
    ],
    "peak_normal_world": [
     0.0082,
     -1.0,
     -0.0045
    ],
-   "peak_normal_inward_cos": 1.0,
-   "peak_inward_offset_m": 0.01208,
+   "peak_normal_inward_cos": 0.9999,
+   "peak_inward_offset_m": 0.01202,
    "peak_eef_pos": [
     -0.135,
     0.07169,
@@ -621,5 +478,25 @@
  "rolled_back_cost": {
   "branches": 4,
   "substeps": 3600
+ },
+ "contact_detail_discarded": {
+  "branches": 1,
+  "rows": [
+   {
+    "leftfinger||living_room_table_col": {
+     "n_substeps": 4,
+     "peak_n": 523.8035965908183,
+     "peak_step": 240,
+     "peak_geom": "gripper0_finger1_collision"
+    },
+    "rightfinger||living_room_table_col": {
+     "n_substeps": 4,
+     "peak_n": 525.3750778384623,
+     "peak_step": 240,
+     "peak_geom": "gripper0_finger2_collision"
+    }
+   }
+  ],
+  "note": "contact geometry produced only by rolled-back branches; excluded from the v1 verdict"
  }
 }

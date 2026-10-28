@@ -24,7 +24,9 @@ E1 = json.loads((ROOT / "configs" / "experience_retrieval_e1.json").read_text())
 OUT = ROOT / "reports" / "step11_contact"
 OTHER = E1["scope"]["other_object_fixed_plan"]
 SETTLE = E1["executor"]["settle_after_open"]
-GUARD = {"enabled": True, "min_clearance_m": 0.0, "contact_threshold_n": 0.1}
+# frozen for the 2x2: 3 geometry retries per episode (the representative cases needed at most 2), so an outer
+# "at most N force candidates" budget bounds the number of physical executions at N * (1 + max_retries).
+GUARD = {"enabled": True, "min_clearance_m": 0.0, "contact_threshold_n": 0.1, "max_retries": 3}
 
 
 def accepted(task, init, rid):
@@ -60,10 +62,11 @@ def run(task, init, grips, guard):
 
 
 def windows_from(ep, task):
-    """[close_step, release_step) per grasp instance, from the executor's own record, with the bound force target.
+    """Contact-permission windows per grasp instance, from the executor's own record, with the bound force target.
 
-    release_step is the step at which the fingers have FINISHED opening, not the step at which the open command is
-    issued: the opening motion is still authorised contact with the held object.
+    ``release_step`` is the step at which the fingers have FINISHED opening (contact-permission window, policy v1.1);
+    ``release_command_step`` is where the hold/force window ends.  A missing release record yields release_step=None,
+    which the policy treats as ``window_bound_missing`` -- it is NOT replaced by the end of the trajectory.
     """
     m = ep.meta
     out = []
@@ -73,7 +76,7 @@ def windows_from(ep, task):
         obj = m.get("force_target_by_instance", {}).get(iid)
         out.append({"instance_id": iid, "object": None if obj is None else f"{obj}_main".replace("_1_1", "_1"),
                     "env_object": obj, "close_step": int(cs),
-                    "release_step": int(ep.n_steps if rs is None else rs),
+                    "release_step": None if rs is None else int(rs),
                     "release_command_step": None if rs0 is None else int(rs0)})
     return out
 
@@ -116,7 +119,8 @@ def main() -> int:
                      "retries": g.get("retries", []), "chosen_candidate": g.get("chosen_candidate", {}),
                      "checks": g.get("checks", [])},
            "contact_detail": det.export(),
-           "rolled_back_cost": rec["rolled_back_cost"]}
+           "rolled_back_cost": rec["rolled_back_cost"],
+           "contact_detail_discarded": det.discarded_report()}
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f"guarded_t{task}_init{init}_{rid}.json").write_text(json.dumps(out, indent=1, default=float))
     print(f"\n=== T{task} i{init} {rid} band={band} cand={list(cand)} obj={obj}")

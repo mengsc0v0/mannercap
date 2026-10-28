@@ -12,9 +12,19 @@ geom next to the pad is forbidden even when it is plainly part of the grasp.  v1
             origin sits at an arbitrary joint frame and says nothing about which face of the solid was touched.
   object    the other body is the object this grasp instance is actually bound to (``force_target`` at close time),
             not merely "some object the audit called the target".
-  window    every control step of the contact lies in [close_step, release_step) of that instance: the window opens
-            when the gripper starts closing and ends when the release command is issued.  The ``place`` stage is NOT
-            treated as held throughout, because the release happens inside it.
+  window    every control step of the contact lies in [close_step, contact_release_step) of that instance.
+
+            TWO DIFFERENT WINDOWS EXIST and must not be conflated (this is a policy decision, not bookkeeping):
+              * the HOLD / force window  [close_step, release_command_step)  -- what the force measurement and the
+                grasp-stability check use.  It ends when the release command is issued, because after that the
+                commanded grip force is no longer the requested one.
+              * the CONTACT-PERMISSION window  [close_step, release_end_step)  -- what THIS policy uses.  It also
+                covers the opening motion, because while the fingers are travelling open they are still in authorised
+                contact with the object they were holding.  v1.0 ended it at the release command and therefore
+                flagged the opening motion itself as a violation.
+            The ``place`` stage is NOT treated as held throughout; the release happens inside it.  A window whose
+            ``release_step`` is unknown is NOT silently extended to the end of the trajectory: it is reported as
+            ``window_bound_missing`` and nothing inside it can be excused.
 
 Everything else keeps the v0 treatment: palm / arm contacts, contacts on another object, and contacts after release are
 violations.  The v0 verdict is recomputed and reported alongside, never replaced.
@@ -36,7 +46,7 @@ import numpy as np
 from synthesis_v2.contact_audit import CONTACT_THR_N, FINGER_LINK_ON_TARGET, SUPPORT_PREFIXES, ContactRecorder
 from synthesis_v2.grasp_force_contract import classify_finger_geom
 
-POLICY_VERSION = "contact_policy_v1"
+POLICY_VERSION = "contact_policy_v1.1"   # v1.1: contact-permission window extended over the opening motion
 INNER_COS_MIN = 0.5      # contact normal must point inward, not graze the side; 60 deg half-angle
 
 
@@ -50,25 +60,64 @@ class DetailRecorder:
     def __init__(self, rec: ContactRecorder) -> None:
         self.rec = rec
         self.detail: dict[tuple[str, str], dict] = {}
-        self._inward: dict[str, np.ndarray] = {}
+        self.discarded: list[dict] = []     # per rolled-back branch: the detail rows that branch alone produced
         self._site = None
         rec.detail_hook = self._hook
+        rec.companion = self                # roll these statistics back together with the events
 
     def _inward_axis(self, side: str) -> Optional[np.ndarray]:
-        """Unit vector from this finger's geoms toward the opposite finger's geoms, read from the live model."""
-        if not self._inward:
-            m, d = self.rec.m, self.rec.d
-            roles = self.rec._roles or {}
-            pts: dict[str, list] = {"L": [], "R": []}
-            for gi, (sd, _role) in roles.items():
-                pts[sd].append(d.geom_xpos[gi])
-            if pts["L"] and pts["R"]:
-                cl, cr = np.mean(pts["L"], axis=0), np.mean(pts["R"], axis=0)
-                v = cr - cl
-                n = float(np.linalg.norm(v))
-                if n > 1e-9:
-                    self._inward = {"L": v / n, "R": -v / n}
-        return self._inward.get(side)
+        """Unit vector from this finger's geoms toward the opposite finger's geoms, in the CURRENT pose.
+
+        Recomputed on every call, never cached: the closing axis is a world-frame direction that rotates with the
+        hand, so a value captured at the first contact of the episode is wrong for any later grasp at a different yaw.
+        """
+        d = self.rec.d
+        roles = self.rec._roles or {}
+        pts: dict[str, list] = {"L": [], "R": []}
+        for gi, (sd, _role) in roles.items():
+            pts[sd].append(np.asarray(d.geom_xpos[gi], float))
+        if not (pts["L"] and pts["R"]):
+            return None
+        v = np.mean(pts["R"], axis=0) - np.mean(pts["L"], axis=0)
+        n = float(np.linalg.norm(v))
+        if n <= 1e-9:
+            return None
+        return (v / n) if side == "L" else (-v / n)
+
+    # ---- rollback support: the kept trajectory must not inherit a refused branch's contact geometry ----
+    @staticmethod
+    def _copy(detail: dict) -> dict:
+        out = {}
+        for k, v in detail.items():
+            r = dict(v)
+            r["region_fail_steps"] = set(r.get("region_fail_steps", ()))
+            r["region_fail_samples"] = list(r.get("region_fail_samples", ()))
+            out[k] = r
+        return out
+
+    def snapshot(self) -> dict:
+        return self._copy(self.detail)
+
+    def restore(self, snap: Optional[dict]) -> None:
+        if snap is None:
+            return
+        drop = {f"{a}||{b}": {"n_substeps": v["n_substeps"] - snap.get((a, b), {}).get("n_substeps", 0),
+                              "peak_n": v.get("peak_n"), "peak_step": v.get("peak_step"),
+                              "peak_geom": v.get("peak_geom")}
+                for (a, b), v in self.detail.items()
+                if v["n_substeps"] > snap.get((a, b), {}).get("n_substeps", 0)}
+        if drop:                      # cost and diagnosis of the discarded branch, never part of the final verdict
+            self.discarded.append(drop)
+        self.detail = self._copy(snap)
+
+    def seed(self, snap: Optional[dict]) -> None:
+        """Inherit the prefix statistics of the run that took the snapshot (cross-session stage resume)."""
+        if snap:
+            self.detail = self._copy(snap)
+
+    def discarded_report(self) -> dict:
+        return {"branches": len(self.discarded), "rows": self.discarded,
+                "note": "contact geometry produced only by rolled-back branches; excluded from the v1 verdict"}
 
     def _hook(self, rec: ContactRecorder, key: tuple[str, str], rest: Sequence, f: float) -> None:
         import mujoco
@@ -173,8 +222,10 @@ def evaluate(v0_report: dict, events: dict, detail: dict[tuple[str, str], dict],
         if not cand:
             reasons.append("object_is_not_a_bound_grasp_target")
         else:
-            win = next((w for w in cand if steps and min(steps) >= int(w["close_step"])
-                        and max(steps) < int(w["release_step"])), None)
+            if any(w.get("release_step") is None for w in cand):
+                reasons.append("window_bound_missing")   # never silently fall back to the end of the trajectory
+            win = next((w for w in cand if steps and w.get("release_step") is not None
+                        and min(steps) >= int(w["close_step"]) and max(steps) < int(w["release_step"])), None)
             if win is None:
                 reasons.append("outside_hold_window_close_to_release")
         n, ninner = det.get("n_substeps", 0), det.get("n_substeps_inner_region", 0)
@@ -211,6 +262,8 @@ def evaluate(v0_report: dict, events: dict, detail: dict[tuple[str, str], dict],
                         "explained": False})
     return {
         "policy_version": POLICY_VERSION, "inner_cos_min": INNER_COS_MIN, "threshold_n": CONTACT_THR_N,
+        "contact_permission_window": "[close_step, release_end_step): covers the opening motion; distinct from the "
+                                     "hold/force window [close_step, release_command_step)",
         "v0_clean_preserved": bool(v0_report["clean"]),
         "contacts": rows, "n_excused": sum(r["v1_excused"] for r in rows), "unexcused_contacts": unexcused,
         "support_contacts_unexplained": [s for s in support if not s["explained"]],

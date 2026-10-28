@@ -39,8 +39,11 @@ class ContactRecorder:
         self.rolled_back: dict[tuple[str, str], float] = {}
         self.k = -1
         self._roles: Optional[dict] = None
-        self._saved: dict[int, tuple[dict, dict]] = {}  # id(state) -> (events copy, state): holding state keeps the id valid
+        self._saved: dict[int, tuple[dict, dict, Any]] = {}  # id(state) -> (events copy, state, companion snapshot)
         self.detail_hook = None                 # set by contact_policy_v1 to record per-contact geometry; None = v0 behaviour
+        self.companion = None                   # optional object with snapshot()/restore(snap)/seed(x): rolled back WITH the
+        # events.  Any statistic that feeds the final verdict must live here, otherwise a refused branch's contacts leak into
+        # the kept trajectory's judgement (the events are restored, the companion's would not be).
 
     def _scan(self):
         """Yield (robot body, other body, normal force N) for every robot<->non-robot contact of the current physics state."""
@@ -101,7 +104,8 @@ class ContactRecorder:
 
         def save(*a, **kw):
             st = orig_save(*a, **kw)
-            self._saved[id(st)] = ({k: [v[0], set(v[1])] for k, v in self.events.items()}, st)
+            self._saved[id(st)] = ({k: [v[0], set(v[1])] for k, v in self.events.items()}, st,
+                                   None if self.companion is None else self.companion.snapshot())
             return st
 
         def restore(st, *a, **kw):
@@ -112,6 +116,8 @@ class ContactRecorder:
                     if k not in snap[0] or f > snap[0][k][0]:
                         self.rolled_back[k] = max(self.rolled_back.get(k, 0.0), f)
                 self.events = {k: [v[0], set(v[1])] for k, v in snap[0].items()}
+                if self.companion is not None:
+                    self.companion.restore(snap[2])
             return out
 
         s.env.sim.step, s.step, s.save_state, s.restore_state = sub, step, save, restore
@@ -121,11 +127,17 @@ class ContactRecorder:
         """Events as they were when ``state`` was saved (the prefix a stage resume inherits)."""
         return {k: [v[0], set(v[1])] for k, v in self._saved[id(state)][0].items()}
 
-    def seed(self, events: dict) -> None:
-        """Start a resumed session with the prefix events of the run that took the snapshot."""
+    def companion_at(self, state):
+        """Companion statistics as they were when ``state`` was saved; the resumed session must inherit these too."""
+        return self._saved[id(state)][2]
+
+    def seed(self, events: dict, companion=None) -> None:
+        """Start a resumed session with the prefix events (and companion statistics) of the run that took the snapshot."""
         for k, v in events.items():      # merge by max: the new session's own reset may already have observed contacts
             cur = self.events.setdefault(k, [0.0, set()])
             cur[0], cur[1] = max(cur[0], v[0]), cur[1] | set(v[1])
+        if companion is not None and self.companion is not None:
+            self.companion.seed(companion)
 
     def report(self, stages: Optional[Sequence[str]] = None) -> dict[str, Any]:
         r = classify(self.events, stages)

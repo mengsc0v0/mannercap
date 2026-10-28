@@ -105,8 +105,8 @@ def run(t, init, prog, grips, *, snapshots=None, resume=None, seed=None):
         box["crec"] = ContactRecorder(ss).install()
         box["car"] = CarriedContactRecorder(ss, names).install()
         if resume is not None:
-            box["crec"].seed(seed["crec"].events_at(resume.session))
-            box["car"].seed(seed["car"].events_at(resume.session))
+            box["crec"].seed(seed["crec"].events_at(resume.session), seed["crec"].companion_at(resume.session))
+            box["car"].seed(seed["car"].events_at(resume.session), seed["car"].companion_at(resume.session))
 
     if resume is not None:
         sub.seed_prefix(*seed["sub"].rows_at(resume.session))
