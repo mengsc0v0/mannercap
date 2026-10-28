@@ -40,6 +40,7 @@ class ContactRecorder:
         self.k = -1
         self._roles: Optional[dict] = None
         self._saved: dict[int, tuple[dict, dict]] = {}  # id(state) -> (events copy, state): holding state keeps the id valid
+        self.detail_hook = None                 # set by contact_policy_v1 to record per-contact geometry; None = v0 behaviour
 
     def _scan(self):
         """Yield (robot body, other body, normal force N) for every robot<->non-robot contact of the current physics state."""
@@ -54,7 +55,7 @@ class ContactRecorder:
             rb, ob = (b1, b2) if _is_robot(b1) else (b2, b1)
             mujoco.mj_contactForce(self.m, self.d, ci, buf)
             rg = int(c.geom1) if _is_robot(b1) else int(c.geom2)
-            yield rb, ob, abs(float(buf[0])), rg
+            yield rb, ob, abs(float(buf[0])), rg, ci
 
     def _on_target(self, ob: str) -> bool:
         return ob == f"{self.s.force_target_name}_main".replace("_1_1", "_1")
@@ -82,6 +83,8 @@ class ContactRecorder:
                 label += FINGER_LINK_ON_TARGET  # forbidden under the frozen policy, but identified: grasp finger link on the grasp target
             v = self.events.setdefault((label, ob), [0.0, set()])
             v[0] = max(v[0], f); v[1].add(self.k)
+            if self.detail_hook is not None:    # opt-in per-contact geometry (contact point, normal); no-op by default
+                self.detail_hook(self, (label, ob), rest, f)
 
     def install(self) -> "ContactRecorder":
         s = self.s

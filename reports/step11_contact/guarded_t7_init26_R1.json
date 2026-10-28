@@ -1,0 +1,625 @@
+{
+ "schema": "mannercap.guarded_case.v1",
+ "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "task": 7,
+ "init": 26,
+ "request": "R1",
+ "band_n": [
+  8.0,
+  16.0
+ ],
+ "candidate": [
+  1.0,
+  22.0
+ ],
+ "requested_object": "cream_cheese_1",
+ "role": "cream_cheese",
+ "guard_config": {
+  "enabled": true,
+  "min_clearance_m": 0.0,
+  "contact_threshold_n": 0.1
+ },
+ "status": "completed",
+ "task_ok": true,
+ "n_steps": 361,
+ "wall_s": 16.61,
+ "measured": {
+  "hold_n": 64,
+  "hold_min": 13.095796328008237,
+  "hold_mean": 13.149422264183302,
+  "hold_max": 13.395621831331876,
+  "lr_imbalance": 6.090675683623949e-05,
+  "rel_z_spread_m": 3.621233189110562e-05,
+  "peak_simultaneous_n": 34.96639462502953
+ },
+ "validity": {
+  "status": "ok",
+  "measurement_valid": true,
+  "grasp_stable": true
+ },
+ "development_criterion_passed": true,
+ "development_criterion_source": "recomputed by s10_retrieval_trial.passed() on this episode",
+ "unguarded_reference": {
+  "development_criterion_passed": true,
+  "n_steps": 360,
+  "hold_min": 13.035428107215399,
+  "hold_max": 13.152833335031197,
+  "contact_policy_passed_v0": false
+ },
+ "contact_policy_v0": {
+  "clean": false,
+  "max_forbidden_n": 0.7,
+  "forbidden_contacts": [
+   {
+    "robot_body": "leftfinger[finger_link_on_target]",
+    "other": "cream_cheese_1_main",
+    "max_n": 0.7,
+    "control_steps": 3,
+    "class": "finger_link_on_target",
+    "stages": [
+     "grasp@cream_cheese"
+    ]
+   },
+   {
+    "robot_body": "rightfinger[finger_link_on_target]",
+    "other": "cream_cheese_1_main",
+    "max_n": 0.4,
+    "control_steps": 3,
+    "class": "finger_link_on_target",
+    "stages": [
+     "grasp@cream_cheese"
+    ]
+   }
+  ],
+  "support_contacts_observed": [],
+  "forbidden_by_class": {
+   "finger_link_on_target": 2,
+   "other": 0
+  },
+  "clean_if_finger_link_on_target_allowed__preview_not_verdict": true,
+  "policy": {
+   "threshold_n": 0.1,
+   "allowed": "fingertip pads <-> current grasp target",
+   "forbidden": "any other robot body <-> any movable object",
+   "observed_only": "robot <-> table/floor"
+  },
+  "rolled_back_not_counted": [
+   {
+    "robot_body": "leftfinger",
+    "other": "living_room_table_col",
+    "max_n": 523.8
+   },
+   {
+    "robot_body": "rightfinger",
+    "other": "living_room_table_col",
+    "max_n": 525.4
+   }
+  ]
+ },
+ "contact_policy_v1": {
+  "policy_version": "contact_policy_v1",
+  "inner_cos_min": 0.5,
+  "threshold_n": 0.1,
+  "v0_clean_preserved": false,
+  "contacts": [
+   {
+    "robot_body": "leftfinger[finger_link_on_target]",
+    "other": "cream_cheese_1_main",
+    "max_n": 0.7,
+    "control_steps": 3,
+    "class": "finger_link_on_target",
+    "stages": [
+     "grasp@cream_cheese"
+    ],
+    "v1_excused": true,
+    "v1_reasons": [],
+    "matched_instance": "cream_cheese.pick_1.grasp",
+    "control_step_range": [
+     246,
+     248
+    ],
+    "n_substeps": 38,
+    "n_substeps_inner_region": 38,
+    "peak_normal_inward_cos": 1.0,
+    "peak_inward_offset_m": 0.01195,
+    "peak_contact_point_geom_local_m": [
+     -0.008042,
+     -0.009339,
+     0.016753
+    ],
+    "geom_half_extent_m": [
+     0.01068,
+     0.01356,
+     0.03159
+    ],
+    "peak_step": 247,
+    "peak_geom": "gripper0_finger1_collision",
+    "min_inner_cos": 0.9999826829362828,
+    "min_inward_offset_m": 0.01191547909017178,
+    "region_fail_steps": [],
+    "region_fail_samples": []
+   },
+   {
+    "robot_body": "rightfinger[finger_link_on_target]",
+    "other": "cream_cheese_1_main",
+    "max_n": 0.4,
+    "control_steps": 3,
+    "class": "finger_link_on_target",
+    "stages": [
+     "grasp@cream_cheese"
+    ],
+    "v1_excused": true,
+    "v1_reasons": [],
+    "matched_instance": "cream_cheese.pick_1.grasp",
+    "control_step_range": [
+     246,
+     248
+    ],
+    "n_substeps": 32,
+    "n_substeps_inner_region": 32,
+    "peak_normal_inward_cos": 1.0,
+    "peak_inward_offset_m": 0.01208,
+    "peak_contact_point_geom_local_m": [
+     -0.005281,
+     -0.006754,
+     0.03158
+    ],
+    "geom_half_extent_m": [
+     0.01068,
+     0.01356,
+     0.03159
+    ],
+    "peak_step": 247,
+    "peak_geom": "gripper0_finger2_collision",
+    "min_inner_cos": 0.9999742846329405,
+    "min_inward_offset_m": 0.012031527552356945,
+    "region_fail_steps": [],
+    "region_fail_samples": []
+   }
+  ],
+  "n_excused": 2,
+  "unexcused_contacts": [],
+  "support_contacts_unexplained": [],
+  "clean_v1": true,
+  "clean_v1_ignoring_support": true,
+  "windows": [
+   {
+    "instance_id": "alphabet_soup.pick_1.grasp",
+    "object": "alphabet_soup_1_main",
+    "env_object": "alphabet_soup_1",
+    "close_step": 45,
+    "release_step": 138
+   },
+   {
+    "instance_id": "cream_cheese.pick_1.grasp",
+    "object": "cream_cheese_1_main",
+    "env_object": "cream_cheese_1",
+    "close_step": 241,
+    "release_step": 326
+   }
+  ],
+  "force_accounting": "classify_finger_geom is the single identity rule and the grasp force measurement counts both pad and finger_link geoms as that finger, so an excused finger-link contact is already inside the measured hold force.",
+  "note": "clean_v1 requires BOTH no unexcused forbidden contact AND no unexplained robot<->support contact. v0 reports support contact as observation only; v1 refuses to call that complete."
+ },
+ "hold_windows": [
+  {
+   "instance_id": "alphabet_soup.pick_1.grasp",
+   "object": "alphabet_soup_1_main",
+   "env_object": "alphabet_soup_1",
+   "close_step": 45,
+   "release_step": 138
+  },
+  {
+   "instance_id": "cream_cheese.pick_1.grasp",
+   "object": "cream_cheese_1_main",
+   "env_object": "cream_cheese_1",
+   "close_step": 241,
+   "release_step": 326
+  }
+ ],
+ "guard": {
+  "n_checks": 5,
+  "n_retries": 1,
+  "retries": [
+   {
+    "instance_id": "cream_cheese.pick_1.grasp",
+    "check": "pre_close",
+    "violations": {
+     "__support__": -0.00061
+    },
+    "control_step": 241,
+    "approach_instance": "cream_cheese.pick_1.approach",
+    "refused_candidate": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "restored_to_stage": "cream_cheese.pick_1.approach",
+    "steps_discarded": 68,
+    "resume_prefix_steps": 173,
+    "next_candidate": [
+     0.0,
+     0.0,
+     0.01,
+     0.0
+    ]
+   }
+  ],
+  "chosen_candidate": {
+   "alphabet_soup.pick_1.approach": [
+    0.0,
+    0.0,
+    0.01,
+    0.0
+   ],
+   "cream_cheese.pick_1.approach": [
+    0.0,
+    0.0,
+    0.01,
+    0.0
+   ]
+  },
+  "checks": [
+   {
+    "check": "pre_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "min_clearance_m": 0.0,
+    "clearance_m": {
+     "alphabet_soup_1": 0.00492,
+     "cream_cheese_1": null,
+     "tomato_sauce_1": 0.00415,
+     "ketchup_1": null,
+     "basket_1": null,
+     "__support__": 0.04019
+    },
+    "violations": {},
+    "palm_geoms": [
+     "gripper0_hand_collision"
+    ],
+    "support_probe_geoms": [
+     "gripper0_hand_collision",
+     "gripper0_finger1_collision",
+     "gripper0_finger1_pad_collision",
+     "gripper0_finger2_collision",
+     "gripper0_finger2_pad_collision"
+    ],
+    "target": "alphabet_soup_1",
+    "note": "distances from the live state; a value equal to a ladder rung is a lower bound, which is enough for a >0 decision but is not a measured distance.",
+    "instance_id": "alphabet_soup.pick_1.grasp",
+    "control_step": 45
+   },
+   {
+    "check": "post_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "threshold_n": 0.1,
+    "forbidden_contacts_now": [],
+    "instance_id": "alphabet_soup.pick_1.grasp",
+    "control_step": 51
+   },
+   {
+    "check": "pre_close",
+    "guard_version": "execution_guard_v0",
+    "ok": false,
+    "min_clearance_m": 0.0,
+    "clearance_m": {
+     "alphabet_soup_1": null,
+     "cream_cheese_1": 0.02155,
+     "tomato_sauce_1": null,
+     "ketchup_1": null,
+     "basket_1": 0.04728,
+     "__support__": -0.00061
+    },
+    "violations": {
+     "__support__": -0.00061
+    },
+    "palm_geoms": [
+     "gripper0_hand_collision"
+    ],
+    "support_probe_geoms": [
+     "gripper0_hand_collision",
+     "gripper0_finger1_collision",
+     "gripper0_finger1_pad_collision",
+     "gripper0_finger2_collision",
+     "gripper0_finger2_pad_collision"
+    ],
+    "target": "cream_cheese_1",
+    "note": "distances from the live state; a value equal to a ladder rung is a lower bound, which is enough for a >0 decision but is not a measured distance.",
+    "instance_id": "cream_cheese.pick_1.grasp",
+    "control_step": 241
+   },
+   {
+    "check": "pre_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "min_clearance_m": 0.0,
+    "clearance_m": {
+     "alphabet_soup_1": null,
+     "cream_cheese_1": 0.02987,
+     "tomato_sauce_1": null,
+     "ketchup_1": null,
+     "basket_1": 0.04678,
+     "__support__": 0.005
+    },
+    "violations": {},
+    "palm_geoms": [
+     "gripper0_hand_collision"
+    ],
+    "support_probe_geoms": [
+     "gripper0_hand_collision",
+     "gripper0_finger1_collision",
+     "gripper0_finger1_pad_collision",
+     "gripper0_finger2_collision",
+     "gripper0_finger2_pad_collision"
+    ],
+    "target": "cream_cheese_1",
+    "note": "distances from the live state; a value equal to a ladder rung is a lower bound, which is enough for a >0 decision but is not a measured distance.",
+    "instance_id": "cream_cheese.pick_1.grasp",
+    "control_step": 241
+   },
+   {
+    "check": "post_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "threshold_n": 0.1,
+    "forbidden_contacts_now": [],
+    "instance_id": "cream_cheese.pick_1.grasp",
+    "control_step": 252
+   }
+  ]
+ },
+ "contact_detail": {
+  "leftfinger||living_room_table_col": {
+   "n_substeps": 4,
+   "n_substeps_inner_region": 0,
+   "peak_n": 523.8035965908183,
+   "min_inner_cos": -0.00019637001241302825,
+   "min_inward_offset_m": -0.002314843438666149,
+   "region_fail_steps": [
+    240
+   ],
+   "region_fail_samples": [
+    {
+     "control_step": 240,
+     "force_n": 523.804,
+     "inner_cos": -0.0002,
+     "inward_offset_m": -0.002314
+    },
+    {
+     "control_step": 240,
+     "force_n": 449.816,
+     "inner_cos": -0.0002,
+     "inward_offset_m": -0.002314
+    },
+    {
+     "control_step": 240,
+     "force_n": 379.351,
+     "inner_cos": -0.0002,
+     "inward_offset_m": -0.002314
+    },
+    {
+     "control_step": 240,
+     "force_n": 312.038,
+     "inner_cos": -0.0002,
+     "inward_offset_m": -0.002315
+    }
+   ],
+   "peak_step": 240,
+   "peak_geom": "gripper0_finger1_collision",
+   "peak_other_geom": "?",
+   "peak_contact_point_geom_local_m": [
+    0.005767,
+    0.007564,
+    0.029042
+   ],
+   "peak_contact_point_body_local_m": [
+    0.005833,
+    0.014274,
+    0.053685
+   ],
+   "geom_half_extent_m": [
+    0.01068,
+    0.01356,
+    0.03159
+   ],
+   "inward_axis_geom_local": [
+    0.0187,
+    -0.9847,
+    0.173
+   ],
+   "peak_normal_world": [
+    -0.0,
+    0.0,
+    -1.0
+   ],
+   "peak_normal_inward_cos": -0.0002,
+   "peak_inward_offset_m": -0.00231,
+   "peak_eef_pos": [
+    -0.13092,
+    0.06919,
+    0.44604
+   ],
+   "side_role": [
+    "L",
+    "finger_link"
+   ]
+  },
+  "leftfinger[finger_link_on_target]||cream_cheese_1_main": {
+   "n_substeps": 38,
+   "n_substeps_inner_region": 38,
+   "peak_n": 0.716830799655097,
+   "min_inner_cos": 0.9999826829362828,
+   "min_inward_offset_m": 0.01191547909017178,
+   "region_fail_steps": [],
+   "region_fail_samples": [],
+   "peak_step": 247,
+   "peak_geom": "gripper0_finger1_collision",
+   "peak_other_geom": "cream_cheese_1_g1",
+   "peak_contact_point_geom_local_m": [
+    -0.008042,
+    -0.009339,
+    0.016753
+   ],
+   "peak_contact_point_body_local_m": [
+    -0.008265,
+    1.1e-05,
+    0.038678
+   ],
+   "geom_half_extent_m": [
+    0.01068,
+    0.01356,
+    0.03159
+   ],
+   "inward_axis_geom_local": [
+    0.0153,
+    -0.985,
+    0.1716
+   ],
+   "peak_normal_world": [
+    -0.0082,
+    1.0,
+    0.0011
+   ],
+   "peak_normal_inward_cos": 1.0,
+   "peak_inward_offset_m": 0.01195,
+   "peak_eef_pos": [
+    -0.135,
+    0.07169,
+    0.44829
+   ],
+   "side_role": [
+    "L",
+    "finger_link"
+   ]
+  },
+  "rightfinger||living_room_table_col": {
+   "n_substeps": 4,
+   "n_substeps_inner_region": 0,
+   "peak_n": 525.3750778384623,
+   "min_inner_cos": 0.00019637001199920162,
+   "min_inward_offset_m": -0.00233598360838202,
+   "region_fail_steps": [
+    240
+   ],
+   "region_fail_samples": [
+    {
+     "control_step": 240,
+     "force_n": 525.375,
+     "inner_cos": 0.0002,
+     "inward_offset_m": -0.002336
+    },
+    {
+     "control_step": 240,
+     "force_n": 450.24,
+     "inner_cos": 0.0002,
+     "inward_offset_m": -0.002336
+    },
+    {
+     "control_step": 240,
+     "force_n": 390.946,
+     "inner_cos": 0.0002,
+     "inward_offset_m": -0.002336
+    },
+    {
+     "control_step": 240,
+     "force_n": 329.04,
+     "inner_cos": 0.0002,
+     "inward_offset_m": -0.002335
+    }
+   ],
+   "peak_step": 240,
+   "peak_geom": "gripper0_finger2_collision",
+   "peak_other_geom": "?",
+   "peak_contact_point_geom_local_m": [
+    -0.005336,
+    0.007386,
+    0.029106
+   ],
+   "peak_contact_point_body_local_m": [
+    0.005272,
+    -0.014293,
+    0.053735
+   ],
+   "geom_half_extent_m": [
+    0.01068,
+    0.01356,
+    0.03159
+   ],
+   "inward_axis_geom_local": [
+    0.0187,
+    -0.9847,
+    0.1731
+   ],
+   "peak_normal_world": [
+    -0.0,
+    -0.0,
+    -1.0
+   ],
+   "peak_normal_inward_cos": 0.0002,
+   "peak_inward_offset_m": -0.00234,
+   "peak_eef_pos": [
+    -0.13092,
+    0.06919,
+    0.44604
+   ],
+   "side_role": [
+    "R",
+    "finger_link"
+   ]
+  },
+  "rightfinger[finger_link_on_target]||cream_cheese_1_main": {
+   "n_substeps": 32,
+   "n_substeps_inner_region": 32,
+   "peak_n": 0.42476028994653214,
+   "min_inner_cos": 0.9999742846329405,
+   "min_inward_offset_m": 0.012031527552356945,
+   "region_fail_steps": [],
+   "region_fail_samples": [],
+   "peak_step": 247,
+   "peak_geom": "gripper0_finger2_collision",
+   "peak_other_geom": "cream_cheese_1_g1",
+   "peak_contact_point_geom_local_m": [
+    -0.005281,
+    -0.006754,
+    0.03158
+   ],
+   "peak_contact_point_body_local_m": [
+    0.005481,
+    6e-05,
+    0.053725
+   ],
+   "geom_half_extent_m": [
+    0.01068,
+    0.01356,
+    0.03159
+   ],
+   "inward_axis_geom_local": [
+    0.0153,
+    -0.9845,
+    0.1746
+   ],
+   "peak_normal_world": [
+    0.0082,
+    -1.0,
+    -0.0045
+   ],
+   "peak_normal_inward_cos": 1.0,
+   "peak_inward_offset_m": 0.01208,
+   "peak_eef_pos": [
+    -0.135,
+    0.07169,
+    0.44829
+   ],
+   "side_role": [
+    "R",
+    "finger_link"
+   ]
+  }
+ },
+ "rolled_back_cost": {
+  "branches": 4,
+  "substeps": 3600
+ }
+}

@@ -1,0 +1,532 @@
+{
+ "schema": "mannercap.guarded_case.v1",
+ "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "task": 0,
+ "init": 27,
+ "request": "R1",
+ "band_n": [
+  8.0,
+  16.0
+ ],
+ "candidate": [
+  1.0,
+  100.0
+ ],
+ "requested_object": "tomato_sauce_1",
+ "role": "tomato_sauce",
+ "guard_config": {
+  "enabled": true,
+  "min_clearance_m": 0.0,
+  "contact_threshold_n": 0.1
+ },
+ "status": "completed",
+ "task_ok": true,
+ "n_steps": 374,
+ "wall_s": 20.46,
+ "measured": {
+  "hold_n": 66,
+  "hold_min": 11.350888356474872,
+  "hold_mean": 12.447347748737212,
+  "hold_max": 12.653574921374188,
+  "lr_imbalance": 0.00437330234897773,
+  "rel_z_spread_m": 0.00010889349370485357,
+  "peak_simultaneous_n": 29.3089780618156
+ },
+ "validity": {
+  "status": "ok",
+  "measurement_valid": true,
+  "grasp_stable": true
+ },
+ "development_criterion_passed": true,
+ "development_criterion_source": "recomputed by s10_retrieval_trial.passed() on this episode",
+ "unguarded_reference": {
+  "development_criterion_passed": true,
+  "n_steps": 374,
+  "hold_min": 10.990344644249191,
+  "hold_max": 13.17197876793583,
+  "contact_policy_passed_v0": false
+ },
+ "contact_policy_v0": {
+  "clean": false,
+  "max_forbidden_n": 4.4,
+  "forbidden_contacts": [
+   {
+    "robot_body": "right_gripper",
+    "other": "alphabet_soup_1_main",
+    "max_n": 4.4,
+    "control_steps": 11,
+    "class": "other",
+    "stages": [
+     "place@alphabet_soup",
+     "transport@alphabet_soup"
+    ]
+   }
+  ],
+  "support_contacts_observed": [],
+  "forbidden_by_class": {
+   "finger_link_on_target": 0,
+   "other": 1
+  },
+  "clean_if_finger_link_on_target_allowed__preview_not_verdict": false,
+  "policy": {
+   "threshold_n": 0.1,
+   "allowed": "fingertip pads <-> current grasp target",
+   "forbidden": "any other robot body <-> any movable object",
+   "observed_only": "robot <-> table/floor"
+  },
+  "rolled_back_not_counted": [
+   {
+    "robot_body": "right_gripper",
+    "other": "tomato_sauce_1_main",
+    "max_n": 5.8
+   }
+  ]
+ },
+ "contact_policy_v1": {
+  "policy_version": "contact_policy_v1",
+  "inner_cos_min": 0.5,
+  "threshold_n": 0.1,
+  "v0_clean_preserved": false,
+  "contacts": [
+   {
+    "robot_body": "right_gripper",
+    "other": "alphabet_soup_1_main",
+    "max_n": 4.4,
+    "control_steps": 11,
+    "class": "other",
+    "stages": [
+     "place@alphabet_soup",
+     "transport@alphabet_soup"
+    ],
+    "v1_excused": false,
+    "v1_reasons": [
+     "not_a_finger_link_contact",
+     "not_all_substeps_on_inner_face (0/224)"
+    ],
+    "matched_instance": "alphabet_soup.pick_1.grasp",
+    "control_step_range": [
+     136,
+     157
+    ],
+    "n_substeps": 224,
+    "n_substeps_inner_region": 0,
+    "peak_normal_inward_cos": null,
+    "peak_inward_offset_m": null,
+    "peak_contact_point_geom_local_m": [
+     0.013493,
+     0.042376,
+     0.023066
+    ],
+    "geom_half_extent_m": null,
+    "peak_step": 136,
+    "peak_geom": "gripper0_hand_collision",
+    "min_inner_cos": null,
+    "min_inward_offset_m": null,
+    "region_fail_steps": [],
+    "region_fail_samples": []
+   }
+  ],
+  "n_excused": 0,
+  "unexcused_contacts": [
+   {
+    "robot_body": "right_gripper",
+    "other": "alphabet_soup_1_main",
+    "max_n": 4.4,
+    "control_steps": 11,
+    "class": "other",
+    "stages": [
+     "place@alphabet_soup",
+     "transport@alphabet_soup"
+    ],
+    "v1_excused": false,
+    "v1_reasons": [
+     "not_a_finger_link_contact",
+     "not_all_substeps_on_inner_face (0/224)"
+    ],
+    "matched_instance": "alphabet_soup.pick_1.grasp",
+    "control_step_range": [
+     136,
+     157
+    ],
+    "n_substeps": 224,
+    "n_substeps_inner_region": 0,
+    "peak_normal_inward_cos": null,
+    "peak_inward_offset_m": null,
+    "peak_contact_point_geom_local_m": [
+     0.013493,
+     0.042376,
+     0.023066
+    ],
+    "geom_half_extent_m": null,
+    "peak_step": 136,
+    "peak_geom": "gripper0_hand_collision",
+    "min_inner_cos": null,
+    "min_inward_offset_m": null,
+    "region_fail_steps": [],
+    "region_fail_samples": []
+   }
+  ],
+  "support_contacts_unexplained": [],
+  "clean_v1": false,
+  "clean_v1_ignoring_support": false,
+  "windows": [
+   {
+    "instance_id": "alphabet_soup.pick_1.grasp",
+    "object": "alphabet_soup_1_main",
+    "env_object": "alphabet_soup_1",
+    "close_step": 48,
+    "release_step": 166,
+    "release_command_step": 156
+   },
+   {
+    "instance_id": "tomato_sauce.pick_1.grasp",
+    "object": "tomato_sauce_1_main",
+    "env_object": "tomato_sauce_1",
+    "close_step": 257,
+    "release_step": 349,
+    "release_command_step": 339
+   }
+  ],
+  "force_accounting": "classify_finger_geom is the single identity rule and the grasp force measurement counts both pad and finger_link geoms as that finger, so an excused finger-link contact is already inside the measured hold force.",
+  "note": "clean_v1 requires BOTH no unexcused forbidden contact AND no unexplained robot<->support contact. v0 reports support contact as observation only; v1 refuses to call that complete."
+ },
+ "hold_windows": [
+  {
+   "instance_id": "alphabet_soup.pick_1.grasp",
+   "object": "alphabet_soup_1_main",
+   "env_object": "alphabet_soup_1",
+   "close_step": 48,
+   "release_step": 166,
+   "release_command_step": 156
+  },
+  {
+   "instance_id": "tomato_sauce.pick_1.grasp",
+   "object": "tomato_sauce_1_main",
+   "env_object": "tomato_sauce_1",
+   "close_step": 257,
+   "release_step": 349,
+   "release_command_step": 339
+  }
+ ],
+ "guard": {
+  "n_checks": 6,
+  "n_retries": 1,
+  "retries": [
+   {
+    "instance_id": "tomato_sauce.pick_1.grasp",
+    "check": "post_close",
+    "violations": [
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.86
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.87
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.85
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.85
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.88
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.88
+     }
+    ],
+    "control_step": 264,
+    "approach_instance": "tomato_sauce.pick_1.approach",
+    "refused_candidate": [
+     0.0,
+     0.0,
+     0.01,
+     0.0
+    ],
+    "restored_to_stage": "tomato_sauce.pick_1.approach",
+    "steps_discarded": 73,
+    "resume_prefix_steps": 191,
+    "next_candidate": [
+     0.0,
+     0.0,
+     0.02,
+     0.0
+    ]
+   }
+  ],
+  "chosen_candidate": {
+   "alphabet_soup.pick_1.approach": [
+    0.0,
+    0.0,
+    0.01,
+    0.0
+   ],
+   "tomato_sauce.pick_1.approach": [
+    0.0,
+    0.0,
+    0.02,
+    0.0
+   ]
+  },
+  "checks": [
+   {
+    "check": "pre_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "min_clearance_m": 0.0,
+    "clearance_m": {
+     "alphabet_soup_1": 0.005,
+     "cream_cheese_1": null,
+     "tomato_sauce_1": 0.05,
+     "ketchup_1": 0.05,
+     "orange_juice_1": 0.03265,
+     "milk_1": 0.05,
+     "butter_1": null,
+     "basket_1": null,
+     "__support__": 0.04145
+    },
+    "violations": {},
+    "palm_geoms": [
+     "gripper0_hand_collision"
+    ],
+    "support_probe_geoms": [
+     "gripper0_hand_collision",
+     "gripper0_finger1_collision",
+     "gripper0_finger1_pad_collision",
+     "gripper0_finger2_collision",
+     "gripper0_finger2_pad_collision"
+    ],
+    "target": "alphabet_soup_1",
+    "note": "distances from the live state; a value equal to a ladder rung is a lower bound, which is enough for a >0 decision but is not a measured distance.",
+    "instance_id": "alphabet_soup.pick_1.grasp",
+    "control_step": 48
+   },
+   {
+    "check": "post_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "threshold_n": 0.1,
+    "forbidden_contacts_now": [],
+    "instance_id": "alphabet_soup.pick_1.grasp",
+    "control_step": 54
+   },
+   {
+    "check": "pre_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "min_clearance_m": 0.0,
+    "clearance_m": {
+     "alphabet_soup_1": null,
+     "cream_cheese_1": null,
+     "tomato_sauce_1": 0.00229,
+     "ketchup_1": null,
+     "orange_juice_1": null,
+     "milk_1": 0.05,
+     "butter_1": 0.05,
+     "basket_1": 0.05,
+     "__support__": 0.03754
+    },
+    "violations": {},
+    "palm_geoms": [
+     "gripper0_hand_collision"
+    ],
+    "support_probe_geoms": [
+     "gripper0_hand_collision",
+     "gripper0_finger1_collision",
+     "gripper0_finger1_pad_collision",
+     "gripper0_finger2_collision",
+     "gripper0_finger2_pad_collision"
+    ],
+    "target": "tomato_sauce_1",
+    "note": "distances from the live state; a value equal to a ladder rung is a lower bound, which is enough for a >0 decision but is not a measured distance.",
+    "instance_id": "tomato_sauce.pick_1.grasp",
+    "control_step": 258
+   },
+   {
+    "check": "post_close",
+    "guard_version": "execution_guard_v0",
+    "ok": false,
+    "threshold_n": 0.1,
+    "forbidden_contacts_now": [
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.86
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.87
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.85
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.85
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.88
+     },
+     {
+      "robot_geom": "gripper0_hand_collision",
+      "robot_body": "gripper0_right_gripper",
+      "other": "tomato_sauce_1_main",
+      "force_n": 0.88
+     }
+    ],
+    "instance_id": "tomato_sauce.pick_1.grasp",
+    "control_step": 264
+   },
+   {
+    "check": "pre_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "min_clearance_m": 0.0,
+    "clearance_m": {
+     "alphabet_soup_1": null,
+     "cream_cheese_1": null,
+     "tomato_sauce_1": 0.01,
+     "ketchup_1": null,
+     "orange_juice_1": null,
+     "milk_1": 0.05,
+     "butter_1": 0.05,
+     "basket_1": 0.05,
+     "__support__": 0.0477
+    },
+    "violations": {},
+    "palm_geoms": [
+     "gripper0_hand_collision"
+    ],
+    "support_probe_geoms": [
+     "gripper0_hand_collision",
+     "gripper0_finger1_collision",
+     "gripper0_finger1_pad_collision",
+     "gripper0_finger2_collision",
+     "gripper0_finger2_pad_collision"
+    ],
+    "target": "tomato_sauce_1",
+    "note": "distances from the live state; a value equal to a ladder rung is a lower bound, which is enough for a >0 decision but is not a measured distance.",
+    "instance_id": "tomato_sauce.pick_1.grasp",
+    "control_step": 257
+   },
+   {
+    "check": "post_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "threshold_n": 0.1,
+    "forbidden_contacts_now": [],
+    "instance_id": "tomato_sauce.pick_1.grasp",
+    "control_step": 263
+   }
+  ]
+ },
+ "contact_detail": {
+  "right_gripper||alphabet_soup_1_main": {
+   "n_substeps": 224,
+   "n_substeps_inner_region": 0,
+   "peak_n": 4.413217621339353,
+   "min_inner_cos": null,
+   "min_inward_offset_m": null,
+   "region_fail_steps": [],
+   "region_fail_samples": [],
+   "peak_step": 136,
+   "peak_geom": "gripper0_hand_collision",
+   "peak_other_geom": "alphabet_soup_1_g21",
+   "peak_contact_point_geom_local_m": [
+    0.013493,
+    0.042376,
+    0.023066
+   ],
+   "peak_contact_point_body_local_m": [
+    0.024768,
+    0.013466,
+    0.065703
+   ],
+   "geom_half_extent_m": null,
+   "inward_axis_geom_local": null,
+   "peak_normal_world": [
+    0.0161,
+    -0.0014,
+    -0.9999
+   ],
+   "peak_normal_inward_cos": null,
+   "peak_inward_offset_m": null,
+   "peak_eef_pos": [
+    -0.02458,
+    0.19274,
+    0.61924
+   ],
+   "side_role": null
+  },
+  "right_gripper||tomato_sauce_1_main": {
+   "n_substeps": 1085,
+   "n_substeps_inner_region": 0,
+   "peak_n": 5.802887343258341,
+   "min_inner_cos": null,
+   "min_inward_offset_m": null,
+   "region_fail_steps": [],
+   "region_fail_samples": [],
+   "peak_step": 258,
+   "peak_geom": "gripper0_hand_collision",
+   "peak_other_geom": "tomato_sauce_1_g13",
+   "peak_contact_point_geom_local_m": [
+    0.013502,
+    0.040643,
+    -0.032233
+   ],
+   "peak_contact_point_body_local_m": [
+    -0.030557,
+    0.013487,
+    0.065395
+   ],
+   "geom_half_extent_m": null,
+   "inward_axis_geom_local": null,
+   "peak_normal_world": [
+    -0.0074,
+    -0.0011,
+    -1.0
+   ],
+   "peak_normal_inward_cos": null,
+   "peak_inward_offset_m": null,
+   "peak_eef_pos": [
+    -0.11011,
+    0.03596,
+    0.48091
+   ],
+   "side_role": null
+  }
+ },
+ "rolled_back_cost": {
+  "branches": 4,
+  "substeps": 3250
+ }
+}

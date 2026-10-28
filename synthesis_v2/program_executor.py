@@ -234,6 +234,29 @@ def grasp_grid_from_params(params: dict, reference_candidate: Optional[tuple] = 
     return None, "default_grid"
 
 
+def _candidate_key(c) -> tuple:
+    """Identity of a grasp candidate, used only to refuse one the guard has already rejected."""
+    return (round(float(c.yaw_deg), 6), round(float(c.lateral_m), 6), round(float(c.dz_m), 6),
+            round(float(getattr(c, "longitudinal_m", 0.0)), 6))
+
+
+def _restore_snapshot(rn, s, snap, meta: dict) -> None:
+    """Rewind the session and the recorder to ``snap`` (same mechanism as ``resume``, in-episode).
+
+    ``meta`` is mutated in place because the geometry recorder and ``run`` close over this dict; rebinding it would
+    leave them pointing at the stale copy.  Dropping the post-snapshot ``subtasks`` entries is what makes the approach
+    replan instead of reusing the refused grasp offset."""
+    import json as _json
+    s.restore_state(snap.session)
+    rn.rec.cols = {k: list(v) for k, v in snap.rec_cols.items()}
+    rn.rec.images = list(snap.rec_images)
+    rn.last_tel, rn.stage_steps, rn.timeouts = snap.last_tel, dict(snap.stage_steps), list(snap.timeouts)
+    keep = {k: meta[k] for k in ("execution_guard",) if k in meta}
+    meta.clear()
+    meta.update(_json.loads(_json.dumps(snap.meta)))
+    meta.update(keep)
+
+
 def produce_program_episode(
     program: TaskProgram,
     seed: int,
@@ -245,6 +268,7 @@ def produce_program_episode(
     snapshots: Optional[dict[str, StageSnapshot]] = None,
     resume: Optional[StageSnapshot] = None,
     plan_record: Optional[tuple[dict, str]] = None,
+    execution_guard: Optional[dict] = None,
 ) -> RawEpisode:
     """Execute ``program`` once; same contract as ``produce_episode`` (snapshots keyed by instance label)."""
     errs = program.validate()
@@ -287,6 +311,13 @@ def produce_program_episode(
             first = program.instances[0].subtask
             geo.capture(first, *_subtask_roles(program, first))
         status_box = [status]
+        guard = dict(execution_guard or {})          # opt-in; absent => behaviour unchanged
+        guard_on = bool(guard.get("enabled"))
+        rejected: dict[str, list] = {}               # instance_id -> grasp candidate keys already refused by the guard
+        retry = [None]                               # set by run() when the guard refuses the current candidate
+        if guard_on:
+            meta.setdefault("execution_guard", {"config": {k: v for k, v in guard.items()},
+                                                "checks": [], "retries": []})
 
         def rec_for(sub: str) -> dict:
             r = geo.record(sub)
@@ -305,18 +336,29 @@ def produce_program_episode(
                     ref_c = reference_to_candidate(it.params["grasp_reference"], s.obs[f"{nm0}_quat"],
                                                    r["grasp_quat_xyzw"], env_.obs_to_site)
                 grid, grid_source = grasp_grid_from_params(it.params, ref_c)
+                # plan_approach stops at the first feasible candidate; a guard retry needs the alternatives too
+                all_c = bool(rejected.get(it.instance_id))
                 pl = plan_approach(m_, d_, site_, env_, obst_, start_pos=np.asarray(s.obs["robot0_eef_pos"], float),
                                    start_quat_xyzw=np.asarray(s.obs["robot0_eef_quat"], float),
                                    grasp_pos=np.asarray(r["obj_pos0"], float),
                                    grasp_quat_xyzw=np.asarray(r["grasp_quat_xyzw"], float),
-                                   hover_dz=APPROACH_DZ, target=tgt_, grid=grid)
+                                   hover_dz=APPROACH_DZ, target=tgt_, grid=grid, evaluate_all=all_c)
                 meta.setdefault("approach_plan", {})[it.subtask] = {**pl.to_dict(), "lookahead_control_steps": int(look_),
                                                                     "grid_source": grid_source, "grid_size": 0 if grid is None else len(grid)}   # generation cost, not part of the episode
-                if not pl.feasible:
-                    status_box[0] = f"approach_infeasible:{it.instance_id}"
+                chosen = pl.chosen
+                rej = rejected.get(it.instance_id, [])
+                if rej:   # guard retry: keep the planner's preference order, skip what the guard already refused
+                    chosen = next((c for c in pl.candidates
+                                   if c.feasible and _candidate_key(c) not in rej), None)
+                    meta["execution_guard"]["retries"][-1]["next_candidate"] = None if chosen is None else _candidate_key(chosen)
+                if chosen is None:
+                    status_box[0] = (f"approach_infeasible:{it.instance_id}" if not rej
+                                     else f"guard_candidates_exhausted:{it.instance_id}")
                     stop[0] = True
                     return
-                r["grasp_offset"], r["grasp_quat_xyzw"] = list(pl.chosen.offset), list(pl.chosen.quat_xyzw)
+                if guard_on:
+                    meta["execution_guard"].setdefault("chosen_candidate", {})[it.instance_id] = _candidate_key(chosen)
+                r["grasp_offset"], r["grasp_quat_xyzw"] = list(chosen.offset), list(chosen.quat_xyzw)
             off = np.asarray(r.get("grasp_offset", (0.0, 0.0, 0.0)), dtype=np.float64)
             obj0 = np.asarray(r["obj_pos0"], dtype=np.float64) if "obj_pos0" in r else None
             quat = np.asarray(r.get("grasp_quat_xyzw", meta["down_quat_xyzw"]), dtype=np.float64)
@@ -335,7 +377,27 @@ def produce_program_episode(
                     # measure this hold against the object this instance grasps, not a task-wide target
                     s.set_force_target(program.objects[it.object_role])
                     meta.setdefault("force_target_by_instance", {})[it.instance_id] = program.objects[it.object_role]
+                tgt_name = program.objects[it.object_role]
+                if guard_on:
+                    from .execution_guard import pre_close_check
+                    chk = pre_close_check(s, tgt_name, min_clearance_m=float(guard.get("min_clearance_m", 0.0)))
+                    chk.update(instance_id=it.instance_id, control_step=int(s.control_step_index))
+                    meta["execution_guard"]["checks"].append(chk)
+                    if not chk["ok"]:
+                        retry[0] = {"instance_id": it.instance_id, "check": "pre_close",
+                                    "violations": chk["violations"], "control_step": chk["control_step"]}
+                        return
+                meta.setdefault("close_start_step_by_instance", {})[it.instance_id] = int(s.control_step_index)
                 pol = rn.grasp_with(lab, plan.grip_for(lab))
+                if guard_on:
+                    from .execution_guard import forbidden_contacts_now
+                    chk2 = forbidden_contacts_now(s, thr=float(guard.get("contact_threshold_n", 0.1)))
+                    chk2.update(instance_id=it.instance_id, control_step=int(s.control_step_index))
+                    meta["execution_guard"]["checks"].append(chk2)
+                    if not chk2["ok"]:
+                        retry[0] = {"instance_id": it.instance_id, "check": "post_close",
+                                    "violations": chk2["forbidden_contacts_now"], "control_step": chk2["control_step"]}
+                        return
                 info = {"closing_steps": pol.closing_steps, "reached_band": pol.reached,
                         "reverse_pulses": pol.reversed_pulses, "in_band_at": pol.in_band_at, "reclose_pulses": pol.reclose_pulses,
                         "final": pol.final, "trace": pol.trace}
@@ -358,7 +420,13 @@ def produce_program_episode(
                 dz = SPOT_PLACE_DZ if _kind(program.objects[it.target_role]) == "spot" else STACK_PLACE_DZ
                 dz = float(it.params.get("place_dz", dz))  # per-instance release height (e.g. above a container rim)
                 rn.servo(lab, tgt0 + off + [0, 0, dz], quat, GRIP_HOLD, tol_pos=0.008)
+                # the hold window ends here, inside place: the release is issued before the stage does.  Both
+                # bounds are recorded because the opening motion itself is still authorised contact with the held
+                # object -- the window closes only once the fingers have finished opening.
+                _hold_id = rn.rec.hold_instance or it.instance_id
+                meta.setdefault("release_start_step_by_instance", {})[_hold_id] = int(s.control_step_index)
                 rn.grip_only(lab, GRIP_OPEN, plan.open_steps)
+                meta.setdefault("release_end_step_by_instance", {})[_hold_id] = int(s.control_step_index)
             elif prim == "insert":
                 _insert_nut(rn, s, lab, program.objects[it.object_role], obj0, quat, tgt0,
                             np.asarray(r["center_offset"], dtype=np.float64), plan.open_steps)
@@ -372,14 +440,42 @@ def produce_program_episode(
         if not legacy:  # a resumed run re-enters the middle of a hold: rebuild the active window from the program
             for it in program.instances[:start]:
                 _update_hold(rn.rec, program, plan, it)
-        for it in program.instances[start:]:
+        approach_snap: dict[str, tuple] = {}   # instance_id -> (loop index, snapshot, hold state) before approach
+        i = start
+        while i < len(program.instances):
+            it = program.instances[i]
             if not legacy:
                 _update_hold(rn.rec, program, plan, it)
             if snapshots is not None:
                 snapshots[it.label] = _take(rn, it.label, status_box[0], meta)
+            if guard_on and it.primitive == "approach" and it.instance_id not in approach_snap:
+                approach_snap[it.instance_id] = (i, _take(rn, it.label, status_box[0], meta),
+                                                 (rn.rec.hold_instance, rn.rec.hold_band))
             run(it)
+            if retry[0] is not None:
+                ev = retry[0]
+                retry[0] = None
+                # the grasp instance shares its subtask with the approach that chose the candidate
+                owner = next((x.instance_id for x in program.instances
+                              if x.primitive == "approach" and x.subtask == it.subtask), None)
+                snap = approach_snap.get(owner)
+                key = meta.get("execution_guard", {}).get("chosen_candidate", {}).get(owner)
+                if snap is None or key is None:
+                    status_box[0] = f"guard_refused_no_snapshot:{it.instance_id}"
+                    break
+                rejected.setdefault(owner, []).append(key)
+                meta["execution_guard"]["retries"].append({**ev, "approach_instance": owner,
+                                                           "refused_candidate": key,
+                                                           "restored_to_stage": snap[1].stage,
+                                                           "steps_discarded": int(len(rn.rec.cols["actions"]) - snap[1].prefix_steps),
+                                                           "resume_prefix_steps": int(snap[1].prefix_steps)})
+                _restore_snapshot(rn, s, snap[1], meta)
+                rn.rec.hold_instance, rn.rec.hold_band = snap[2]
+                i = snap[0]
+                continue
             if stop[0]:
                 break
+            i += 1
         status = status_box[0]
         task_ok = s.success()
         if rn.timeouts and status == "completed":

@@ -37,6 +37,9 @@ def accepted_candidate(task, init, rid):
     return tuple(a["candidate"]), r["object"], r["request"]["band_n"]
 
 
+from s10_retrieval_trial import passed as dev_criterion  # noqa: E402
+
+
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     for task, init, rid in CASES:
@@ -59,7 +62,13 @@ def main() -> int:
                "requested_object": obj, "other_objects": sorted(other_names), "role": req_role,
                "task_ok": bool(ep.task_ok), "n_steps": int(ep.n_steps), "wall_s": round(dt, 2),
                "measured": {k: o.get(k) for k in ("hold_min", "hold_mean", "hold_max")},
-               "development_criterion_passed": True,
+               "development_criterion_passed": dev_criterion(
+                   {"task_ok": bool(ep.task_ok),
+                    "measured": {k: o.get(k) for k in ("hold_n", "hold_min", "hold_mean", "hold_max",
+                                                       "lr_imbalance", "rel_z_spread_m", "peak_simultaneous_n")},
+                    "validity": {"status": o.get("status"), "measurement_valid": o.get("measurement_valid"),
+                                 "grasp_stable": o.get("grasp_stable")}}, band),
+               "development_criterion_source": "recomputed by s10_retrieval_trial.passed() on this episode",
                "contact_audit": ca,
                "note": "re-execution of a single committed E3 episode; the simulator is deterministic for a fixed "
                        "init and plan, so the counts below must match the counts stored in the E3 trial record."}
