@@ -1,7 +1,14 @@
-"""Step 9.3 diagnosis: in-hand pose drift of each mug between the end of its grasp stage and the end of its place stage.
+"""Step 9.3 diagnosis (INCONCLUSIVE, limitations below): change of the hand-minus-mug position between the last control
+step of the grasp stage and the last control step of the place stage.  Usage: s9_t4_inhand_drift.py INIT...
 
-Reports, per mug, the hand-minus-object vector (world xy) at both moments and the drift between them, plus where the mug
-lands relative to its plate.  Usage: s9_t4_inhand_drift.py INIT..."""
+What this does NOT establish:
+  * the place stage ends AFTER the gripper has opened, so the reported change may be produced by the release, by the mug
+    settling on the plate, or by contact with the plate -- not necessarily by slip while the mug is held;
+  * only the world-frame position difference is compared, so no statement about rotation of the mug in the fingers is
+    supported;
+  * no per-stage breakdown (hold / contact with the plate / release) is recorded.
+To decide this, re-measure the mug pose IN THE HAND FRAME (position and orientation) inside the effective holding window,
+i.e. strictly before the release command.  Not re-run for now (T4 development is paused)."""
 import sys, json
 from pathlib import Path
 import numpy as np

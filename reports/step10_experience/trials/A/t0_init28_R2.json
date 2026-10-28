@@ -1,0 +1,158 @@
+{
+ "schema": "mannercap.e3_trial.v1",
+ "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+ "group": "A",
+ "task": 0,
+ "init": 28,
+ "request": {
+  "band_n": [
+   16.0,
+   24.0
+  ],
+  "id": "R2",
+  "text": "hold the object with a moderate grip"
+ },
+ "object": "tomato_sauce_1",
+ "order": [
+  [
+   1.0,
+   22.0
+  ],
+  [
+   1.0,
+   100.0
+  ],
+  [
+   10.0,
+   22.0
+  ],
+  [
+   10.0,
+   100.0
+  ],
+  [
+   20.0,
+   100.0
+  ],
+  [
+   25.0,
+   100.0
+  ],
+  [
+   30.0,
+   100.0
+  ],
+  [
+   40.0,
+   100.0
+  ]
+ ],
+ "retrieval_ranking": null,
+ "retrieval_seconds": 0.0,
+ "attempts": [
+  {
+   "candidate": [
+    1.0,
+    22.0
+   ],
+   "role": "tomato_sauce",
+   "object": "tomato_sauce_1",
+   "status": "completed",
+   "task_ok": true,
+   "n_steps": 368,
+   "wall_s": 14.67,
+   "measured": {
+    "hold_n": 67,
+    "hold_min": 11.478814248219633,
+    "hold_mean": 12.45865771745371,
+    "hold_max": 13.09452209280878,
+    "lr_imbalance": 0.054467504358433165,
+    "rel_z_spread_m": 0.0003554100098044355,
+    "peak_simultaneous_n": 35.32006922525302
+   },
+   "validity": {
+    "status": "ok",
+    "measurement_valid": true,
+    "grasp_stable": true
+   },
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 1,
+   "n_forbidden_ge5N": 1,
+   "reused_cached_episode": true,
+   "attempt": 1,
+   "task_and_force_band_checks_passed": false
+  },
+  {
+   "candidate": [
+    1.0,
+    100.0
+   ],
+   "role": "tomato_sauce",
+   "object": "tomato_sauce_1",
+   "status": "completed",
+   "task_ok": true,
+   "n_steps": 368,
+   "wall_s": 14.77,
+   "measured": {
+    "hold_n": 67,
+    "hold_min": 11.478814248219633,
+    "hold_mean": 12.45865771745371,
+    "hold_max": 13.09452209280878,
+    "lr_imbalance": 0.054467504358433165,
+    "rel_z_spread_m": 0.0003554100098044355,
+    "peak_simultaneous_n": 35.32006922525302
+   },
+   "validity": {
+    "status": "ok",
+    "measurement_valid": true,
+    "grasp_stable": true
+   },
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 1,
+   "n_forbidden_ge5N": 1,
+   "reused_cached_episode": false,
+   "attempt": 2,
+   "task_and_force_band_checks_passed": false
+  },
+  {
+   "candidate": [
+    10.0,
+    22.0
+   ],
+   "role": "tomato_sauce",
+   "object": "tomato_sauce_1",
+   "status": "completed",
+   "task_ok": true,
+   "n_steps": 371,
+   "wall_s": 17.35,
+   "measured": {
+    "hold_n": 67,
+    "hold_min": 11.049278541471281,
+    "hold_mean": 12.476624770471238,
+    "hold_max": 13.754573080209024,
+    "lr_imbalance": 0.05369605020402654,
+    "rel_z_spread_m": 0.00042325997381365,
+    "peak_simultaneous_n": 43.99024305448155
+   },
+   "validity": {
+    "status": "ok",
+    "measurement_valid": true,
+    "grasp_stable": true
+   },
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 1,
+   "n_forbidden_ge5N": 1,
+   "reused_cached_episode": false,
+   "attempt": 3,
+   "task_and_force_band_checks_passed": false
+  }
+ ],
+ "n_attempts": 3,
+ "passed_at_attempt": null,
+ "first_attempt_pass": false,
+ "pass_within_budget": false,
+ "control_steps_used": 1107,
+ "episode_wall_s": 46.79,
+ "contact_policy_passed_any_attempt": false
+}

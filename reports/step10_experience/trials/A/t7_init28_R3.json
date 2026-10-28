@@ -1,0 +1,126 @@
+{
+ "schema": "mannercap.e3_trial.v1",
+ "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+ "group": "A",
+ "task": 7,
+ "init": 28,
+ "request": {
+  "band_n": [
+   24.0,
+   34.0
+  ],
+  "id": "R3",
+  "text": "hold the object with a firm grip"
+ },
+ "object": "cream_cheese_1",
+ "order": [
+  [
+   1.0,
+   22.0
+  ],
+  [
+   1.0,
+   100.0
+  ],
+  [
+   10.0,
+   22.0
+  ],
+  [
+   10.0,
+   100.0
+  ],
+  [
+   20.0,
+   100.0
+  ],
+  [
+   25.0,
+   100.0
+  ],
+  [
+   30.0,
+   100.0
+  ],
+  [
+   40.0,
+   100.0
+  ]
+ ],
+ "retrieval_ranking": null,
+ "retrieval_seconds": 0.0,
+ "attempts": [
+  {
+   "candidate": [
+    1.0,
+    22.0
+   ],
+   "role": "cream_cheese",
+   "object": "cream_cheese_1",
+   "status": "completed",
+   "task_ok": true,
+   "n_steps": 383,
+   "wall_s": 12.49,
+   "measured": {
+    "hold_n": 66,
+    "hold_min": 13.051191598007446,
+    "hold_mean": 13.132330480339071,
+    "hold_max": 13.155091087412782,
+    "lr_imbalance": 6.785331428451855e-05,
+    "rel_z_spread_m": 4.941744768394152e-05,
+    "peak_simultaneous_n": 42.458932557192554
+   },
+   "validity": {
+    "status": "ok",
+    "measurement_valid": true,
+    "grasp_stable": true
+   },
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 4,
+   "n_forbidden_ge5N": 0,
+   "reused_cached_episode": true,
+   "attempt": 1,
+   "task_and_force_band_checks_passed": false
+  },
+  {
+   "candidate": [
+    1.0,
+    100.0
+   ],
+   "role": "cream_cheese",
+   "object": "cream_cheese_1",
+   "status": "completed",
+   "task_ok": true,
+   "n_steps": 379,
+   "wall_s": 12.34,
+   "measured": {
+    "hold_n": 66,
+    "hold_min": 32.398991667178834,
+    "hold_mean": 32.63988885324818,
+    "hold_max": 32.71363768266821,
+    "lr_imbalance": 4.3974231446742105e-05,
+    "rel_z_spread_m": 3.817544901385528e-05,
+    "peak_simultaneous_n": 42.458932557192554
+   },
+   "validity": {
+    "status": "ok",
+    "measurement_valid": true,
+    "grasp_stable": true
+   },
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 4,
+   "n_forbidden_ge5N": 0,
+   "reused_cached_episode": true,
+   "attempt": 2,
+   "task_and_force_band_checks_passed": true
+  }
+ ],
+ "n_attempts": 2,
+ "passed_at_attempt": 2,
+ "first_attempt_pass": false,
+ "pass_within_budget": true,
+ "control_steps_used": 762,
+ "episode_wall_s": 24.83,
+ "contact_policy_passed_any_attempt": false
+}

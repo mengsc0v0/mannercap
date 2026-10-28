@@ -1,0 +1,94 @@
+{
+ "schema": "mannercap.e3_trial.v1",
+ "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+ "group": "A",
+ "task": 7,
+ "init": 26,
+ "request": {
+  "band_n": [
+   8.0,
+   16.0
+  ],
+  "id": "R1",
+  "text": "hold the object with a very light grip"
+ },
+ "object": "cream_cheese_1",
+ "order": [
+  [
+   1.0,
+   22.0
+  ],
+  [
+   1.0,
+   100.0
+  ],
+  [
+   10.0,
+   22.0
+  ],
+  [
+   10.0,
+   100.0
+  ],
+  [
+   20.0,
+   100.0
+  ],
+  [
+   25.0,
+   100.0
+  ],
+  [
+   30.0,
+   100.0
+  ],
+  [
+   40.0,
+   100.0
+  ]
+ ],
+ "retrieval_ranking": null,
+ "retrieval_seconds": 0.0,
+ "attempts": [
+  {
+   "candidate": [
+    1.0,
+    22.0
+   ],
+   "role": "cream_cheese",
+   "object": "cream_cheese_1",
+   "status": "completed",
+   "task_ok": true,
+   "n_steps": 360,
+   "wall_s": 12.49,
+   "measured": {
+    "hold_n": 63,
+    "hold_min": 13.035428107215399,
+    "hold_mean": 13.128662090253423,
+    "hold_max": 13.152833335031197,
+    "lr_imbalance": 0.00010135344577406113,
+    "rel_z_spread_m": 4.2215638259235355e-05,
+    "peak_simultaneous_n": 41.38177079287071
+   },
+   "validity": {
+    "status": "ok",
+    "measurement_valid": true,
+    "grasp_stable": true
+   },
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 2,
+   "n_forbidden_ge5N": 0,
+   "reused_cached_episode": false,
+   "attempt": 1,
+   "task_and_force_band_checks_passed": true
+  }
+ ],
+ "n_attempts": 1,
+ "passed_at_attempt": 1,
+ "first_attempt_pass": true,
+ "pass_within_budget": true,
+ "control_steps_used": 360,
+ "episode_wall_s": 12.49,
+ "contact_policy_passed_any_attempt": false
+}

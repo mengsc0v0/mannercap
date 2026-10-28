@@ -1,1 +1,46 @@
-{"init": 5, "task_ok": true, "mugs": {"white_mug": {"hand_minus_obj_at_grasp_xy": [-0.0103, 0.0341], "hand_minus_obj_at_place_xy": [-0.0099, 0.0214], "in_hand_drift_xy_m": 0.012732439064358905, "mug_minus_plate_xy_at_place": [-0.0061, 0.0111], "hand_minus_plate_xy_at_place": [-0.016, 0.0324]}, "yellow_mug": {"hand_minus_obj_at_grasp_xy": [-0.0155, 0.0585], "hand_minus_obj_at_place_xy": [-0.0137, 0.0445], "in_hand_drift_xy_m": 0.01416362664768073, "mug_minus_plate_xy_at_place": [-0.0053, 0.0115], "hand_minus_plate_xy_at_place": [-0.0189, 0.056]}}}
+{
+ "init": 5,
+ "task_ok": true,
+ "mugs": {
+  "white_mug": {
+   "hand_minus_obj_at_grasp_xy": [
+    -0.0103,
+    0.0341
+   ],
+   "hand_minus_obj_at_place_xy": [
+    -0.0099,
+    0.0214
+   ],
+   "in_hand_drift_xy_m": 0.012732439064358905,
+   "mug_minus_plate_xy_at_place": [
+    -0.0061,
+    0.0111
+   ],
+   "hand_minus_plate_xy_at_place": [
+    -0.016,
+    0.0324
+   ]
+  },
+  "yellow_mug": {
+   "hand_minus_obj_at_grasp_xy": [
+    -0.0155,
+    0.0585
+   ],
+   "hand_minus_obj_at_place_xy": [
+    -0.0137,
+    0.0445
+   ],
+   "in_hand_drift_xy_m": 0.01416362664768073,
+   "mug_minus_plate_xy_at_place": [
+    -0.0053,
+    0.0115
+   ],
+   "hand_minus_plate_xy_at_place": [
+    -0.0189,
+    0.056
+   ]
+  }
+ },
+ "interpretation_limitation": "the compared frames are the end of the grasp stage and the end of the place stage; the place stage ends after the gripper opens, so this difference may come from the release, the mug settling on the plate, or plate contact. It does NOT by itself show slip while the mug is held, and position-only data says nothing about rotation in the fingers. Status: failure mechanism UNDETERMINED; to be re-measured in the hand frame inside the holding window before release.",
+ "conclusion_status": "undetermined"
+}

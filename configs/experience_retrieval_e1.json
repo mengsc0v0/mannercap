@@ -1,0 +1,150 @@
+{
+ "attempt_budget": 3,
+ "budget_note": "one attempt = one full episode with one candidate; a request stops early on the first attempt that passes",
+ "candidates": [
+  [
+   1.0,
+   22.0
+  ],
+  [
+   1.0,
+   100.0
+  ],
+  [
+   10.0,
+   22.0
+  ],
+  [
+   10.0,
+   100.0
+  ],
+  [
+   20.0,
+   100.0
+  ],
+  [
+   25.0,
+   100.0
+  ],
+  [
+   30.0,
+   100.0
+  ],
+  [
+   40.0,
+   100.0
+  ]
+ ],
+ "candidates_note": "(target_lo_n, target_hi_n) of the contact-feedback grip. Identical set for both groups.",
+ "content_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "executor": {
+  "approach_check": true,
+  "settle_after_open": 1
+ },
+ "frozen_before_running": true,
+ "group_A": {
+  "bias_note": "the direction of this order favours low-force requests and penalises high-force ones; the request set spans both directions on purpose, but the baseline order remains a design choice and is reported as such",
+  "name": "fixed order",
+  "order": "the candidate list above, as written (ascending target_lo_n, then target_hi_n)"
+ },
+ "group_B": {
+  "name": "retrieval by measured response",
+  "no_write_back": "the library is frozen before the trials; no trial result is added to it during the comparison",
+  "rule": [
+   "1. candidate pool and budget are identical to group A; only the ORDER differs",
+   "2. for each candidate (lo, hi), predict the measured hold interval [hold_min, hold_max] from the frozen experience library",
+   "3. record selection: records of the SAME object name with measurement_valid and grasp_stable; if fewer than 2, fall back to the same task (any object); if still fewer than 2, all records",
+   "4. among the selected records prefer those with the same target_hi_n; if none has it, use all selected",
+   "5. predict by piecewise-linear interpolation of hold_min and hold_max against target_lo_n over the selected records (clamped to the nearest record outside the observed range)",
+   "6. order: first the candidates whose predicted interval lies inside the requested band, by descending margin to the band edges; then the rest, by ascending distance from the predicted interval centre to the band centre",
+   "7. ties are broken by the group A order"
+  ]
+ },
+ "manner_requests": [
+  {
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "id": "R1",
+   "text": "hold the object with a very light grip"
+  },
+  {
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "id": "R2",
+   "text": "hold the object with a moderate grip"
+  },
+  {
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "id": "R3",
+   "text": "hold the object with a firm grip"
+  },
+  {
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "id": "R4",
+   "text": "hold the object with a very firm grip"
+  }
+ ],
+ "manner_requests_note": "the four bands are declared here before any trial is run; they are NOT the calibration bands, so no candidate is known in advance to satisfy any of them. A request may turn out to be unsatisfiable by every candidate; such requests are kept and reported, not replaced.",
+ "max_episodes": 192,
+ "metrics": [
+  "first_attempt_pass / n_requests",
+  "pass_within_budget / n_requests",
+  "attempts_used per request",
+  "physical control steps per request",
+  "episode wall seconds per request",
+  "retrieval seconds per request",
+  "library build seconds (once)",
+  "per-request change A -> B"
+ ],
+ "n_requests": 32,
+ "n_requests_detail": "2 tasks x 1 requested object x 4 manner requests x 4 inits",
+ "pass_criterion": {
+  "definition": "task_ok AND measurement_valid AND grasp_stable AND hold_min >= band_lo AND hold_max <= band_hi, for the requested object only",
+  "explicitly_not": "this is a DEVELOPMENT criterion. It is not a qualified-demonstration yield: it contains no contact-policy verdict, no stage-speed check, no pair logic and no safety conclusion.",
+  "judge": "scripts/mt/s8_task_force.py per_object() (unchanged) on the executed episode",
+  "name": "task_and_force_band_checks_passed"
+ },
+ "question": "Does retrieval over previously MEASURED responses let the system pick a grip parameter that satisfies a requested hold-force band in fewer attempts than a fixed-order search over the same candidate set?",
+ "reported_separately": {
+  "contact_policy_passed": "frozen contact_audit policy (non-fingertip robot body vs movable object above 0.1 N is forbidden), recorded per attempt; on T0/T7 earlier runs this policy did not pass, so it is expected to be 0 and must never be merged into the pass criterion",
+  "forbidden_contacts_ge_5N": "auxiliary descriptive count only"
+ },
+ "schema": "mannercap.experience_retrieval.e1",
+ "scope": {
+  "calibration_hashes_for_reference_only": {
+   "0": "4eacd971e048424c",
+   "7": "5dbd30e5f60e834a"
+  },
+  "inits": [
+   26,
+   27,
+   28,
+   29
+  ],
+  "inits_reason": "reserved split 22-39; 22-25 already consumed by earlier work; 30-39 stay unused; holdout 40-49 untouched; calibration inits 8-13 and dev inits 0-7/14-21 are NOT used so that the experience library (built from 8-13) and the test are on different initial states",
+  "other_object_fixed_plan": {
+   "target_hi_n": 22.0,
+   "target_lo_n": 1.0
+  },
+  "other_object_fixed_plan_reason": "the non-requested object must not vary between groups; the gentlest named plan is used for it in every episode of both groups",
+  "requested_object": {
+   "0": "tomato_sauce",
+   "7": "cream_cheese"
+  },
+  "requested_object_reason": "calibration_usable == true in the frozen v3 calibration; alphabet_soup is calibration_usable == false (grasp_stability_failed) and is NEVER the subject of a request",
+  "tasks": [
+   0,
+   7
+  ]
+ }
+}

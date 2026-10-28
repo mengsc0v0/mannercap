@@ -1,0 +1,831 @@
+{
+ "schema": "mannercap.e4_order_robustness.v1",
+ "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "n_requests": 32,
+ "attempt_budget": 3,
+ "n_candidates": 8,
+ "counts": {
+  "satisfiable": {
+   "first": 30,
+   "budget": 30
+  },
+  "A_ascending": {
+   "first": 8,
+   "budget": 12
+  },
+  "A_descending": {
+   "first": 8,
+   "budget": 16
+  },
+  "B_retrieval": {
+   "first": 29,
+   "budget": 30
+  },
+  "random_order_expected": {
+   "first": 8.0,
+   "budget": 19.32
+  }
+ },
+ "reading": "'satisfiable' is an order-independent upper bound (an oracle that already knew the answer). The gap between A_ascending and A_descending is the effect of the baseline's direction alone; the gap between random_order_expected and B_retrieval is the part that the ordering rule itself has to explain.",
+ "no_new_simulation": "computed from reports/step10_experience/grid; every candidate was executed once per init",
+ "per_request": [
+  {
+   "task": 0,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "n_passing_candidates": 3,
+   "passing_candidates": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 1,
+    "A_descending": 6,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "n_passing_candidates": 1,
+   "passing_candidates": [
+    [
+     10.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 4,
+    "A_descending": 5,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 5,
+    "A_descending": 3,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 7,
+    "A_descending": 1,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "n_passing_candidates": 3,
+   "passing_candidates": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 1,
+    "A_descending": 6,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "n_passing_candidates": 1,
+   "passing_candidates": [
+    [
+     10.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 4,
+    "A_descending": 5,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 5,
+    "A_descending": 3,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 7,
+    "A_descending": 1,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "n_passing_candidates": 3,
+   "passing_candidates": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 1,
+    "A_descending": 6,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "n_passing_candidates": 1,
+   "passing_candidates": [
+    [
+     10.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 4,
+    "A_descending": 5,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 5,
+    "A_descending": 3,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 7,
+    "A_descending": 1,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "n_passing_candidates": 3,
+   "passing_candidates": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 1,
+    "A_descending": 6,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "n_passing_candidates": 1,
+   "passing_candidates": [
+    [
+     10.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 4,
+    "A_descending": 5,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 5,
+    "A_descending": 3,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 0,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 7,
+    "A_descending": 1,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 1,
+    "A_descending": 6,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "n_passing_candidates": 1,
+   "passing_candidates": [
+    [
+     1.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 2,
+    "A_descending": 7,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "n_passing_candidates": 3,
+   "passing_candidates": [
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 4,
+    "A_descending": 3,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 7,
+    "A_descending": 1,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "n_passing_candidates": 1,
+   "passing_candidates": [
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 3,
+    "A_descending": 6,
+    "B_retrieval": 2
+   }
+  },
+  {
+   "task": 7,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     1.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 1,
+    "A_descending": 7,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "n_passing_candidates": 3,
+   "passing_candidates": [
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 4,
+    "A_descending": 3,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 7,
+    "A_descending": 1,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 1,
+    "A_descending": 6,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "n_passing_candidates": 0,
+   "passing_candidates": [],
+   "first_pass_rank": {
+    "A_ascending": null,
+    "A_descending": null,
+    "B_retrieval": null
+   }
+  },
+  {
+   "task": 7,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "n_passing_candidates": 4,
+   "passing_candidates": [
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 2,
+    "A_descending": 3,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 7,
+    "A_descending": 1,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 1,
+    "A_descending": 6,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "n_passing_candidates": 0,
+   "passing_candidates": [],
+   "first_pass_rank": {
+    "A_ascending": null,
+    "A_descending": null,
+    "B_retrieval": null
+   }
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "n_passing_candidates": 4,
+   "passing_candidates": [
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 2,
+    "A_descending": 3,
+    "B_retrieval": 1
+   }
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "n_passing_candidates": 2,
+   "passing_candidates": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "first_pass_rank": {
+    "A_ascending": 7,
+    "A_descending": 1,
+    "B_retrieval": 1
+   }
+  }
+ ]
+}

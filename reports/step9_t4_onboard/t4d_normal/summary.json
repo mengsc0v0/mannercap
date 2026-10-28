@@ -1,9 +1,5 @@
 {
- "task_ok": 3,
- "white_carried": 8,
- "yellow_carried": 3,
- "audit_clean_ge5N": 0,
- "qualified": 0,
+ "what_this_is": "ordinary operation of T4 (no manner request); NOT a manner-demonstration result",
  "n_inits": 8,
  "inits": [
   0,
@@ -15,6 +11,101 @@
   6,
   7
  ],
- "grip_plan": "normal (1,100) settle_after_open=1",
- "grasp_source": "grasp_reference (official-demo median)"
+ "grip_plan": "step8 'normal' GripPlan(1.0,100.0,settle_after_open=1)",
+ "grasp_source": "grasp_reference (median over replay-successful official demonstrations)",
+ "task_ok": 3,
+ "white_carried": 8,
+ "yellow_carried": 3,
+ "contact_policy_passed": {
+  "count": 0,
+  "criterion": "frozen contact_audit policy: any non-fingertip robot body vs any movable object above 0.1 N is forbidden; read from contact_audit.clean"
+ },
+ "no_forbidden_contact_ge_5N": {
+  "count": 0,
+  "criterion": "auxiliary descriptive count of LARGE forbidden contacts only; NOT a pass criterion"
+ },
+ "task_ok_and_contact_policy_passed": 0,
+ "note": "'qualified manner demonstration' is not defined here: T4 has no manner request and no frozen calibration. The only joint count reported is task_ok AND contact_policy_passed.",
+ "per_init": [
+  {
+   "init": 0,
+   "task_ok": false,
+   "white_carried": true,
+   "yellow_carried": false,
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 4,
+   "max_forbidden_n": 9.0,
+   "n_forbidden_ge5N": 4
+  },
+  {
+   "init": 1,
+   "task_ok": false,
+   "white_carried": true,
+   "yellow_carried": false,
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 4,
+   "max_forbidden_n": 8.9,
+   "n_forbidden_ge5N": 3
+  },
+  {
+   "init": 2,
+   "task_ok": true,
+   "white_carried": true,
+   "yellow_carried": true,
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 3,
+   "max_forbidden_n": 15.7,
+   "n_forbidden_ge5N": 2
+  },
+  {
+   "init": 3,
+   "task_ok": false,
+   "white_carried": true,
+   "yellow_carried": false,
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 5,
+   "max_forbidden_n": 8.7,
+   "n_forbidden_ge5N": 3
+  },
+  {
+   "init": 4,
+   "task_ok": false,
+   "white_carried": true,
+   "yellow_carried": false,
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 4,
+   "max_forbidden_n": 9.4,
+   "n_forbidden_ge5N": 3
+  },
+  {
+   "init": 5,
+   "task_ok": true,
+   "white_carried": true,
+   "yellow_carried": true,
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 4,
+   "max_forbidden_n": 11.7,
+   "n_forbidden_ge5N": 2
+  },
+  {
+   "init": 6,
+   "task_ok": true,
+   "white_carried": true,
+   "yellow_carried": true,
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 4,
+   "max_forbidden_n": 11.1,
+   "n_forbidden_ge5N": 2
+  },
+  {
+   "init": 7,
+   "task_ok": false,
+   "white_carried": true,
+   "yellow_carried": false,
+   "contact_policy_passed": false,
+   "n_forbidden_contacts_0p1N": 5,
+   "max_forbidden_n": 10.1,
+   "n_forbidden_ge5N": 3
+  }
+ ]
 }

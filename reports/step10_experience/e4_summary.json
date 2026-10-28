@@ -1,0 +1,1263 @@
+{
+ "schema": "mannercap.e4_summary.v1",
+ "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+ "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+ "question": "Does retrieval over previously MEASURED responses let the system pick a grip parameter that satisfies a requested hold-force band in fewer attempts than a fixed-order search over the same candidate set?",
+ "pass_criterion": {
+  "definition": "task_ok AND measurement_valid AND grasp_stable AND hold_min >= band_lo AND hold_max <= band_hi, for the requested object only",
+  "explicitly_not": "this is a DEVELOPMENT criterion. It is not a qualified-demonstration yield: it contains no contact-policy verdict, no stage-speed check, no pair logic and no safety conclusion.",
+  "judge": "scripts/mt/s8_task_force.py per_object() (unchanged) on the executed episode",
+  "name": "task_and_force_band_checks_passed"
+ },
+ "n_paired_requests": 32,
+ "unpaired_requests": [],
+ "A_fixed_order": {
+  "n_requests": 32,
+  "first_attempt_pass": 8,
+  "pass_within_budget": 12,
+  "attempts_total": 77,
+  "attempts_mean": 2.406,
+  "control_steps_total": 28620,
+  "episode_wall_s_total": 1071.2,
+  "retrieval_s_total": 0.0,
+  "contact_policy_passed_any_attempt": 0
+ },
+ "B_retrieval": {
+  "n_requests": 32,
+  "first_attempt_pass": 29,
+  "pass_within_budget": 30,
+  "attempts_total": 37,
+  "attempts_mean": 1.156,
+  "control_steps_total": 13825,
+  "episode_wall_s_total": 503.9,
+  "retrieval_s_total": 0.015,
+  "contact_policy_passed_any_attempt": 0
+ },
+ "per_request_change": {
+  "B better": 22,
+  "A better": 0,
+  "same": 10
+ },
+ "library_build_seconds": 0.03,
+ "library_n_records": 174,
+ "episode_sharing_note": "A and B execute the same (task, init, candidate) episodes; each episode is simulated once and its cost is charged to every attempt that uses it, so the control-step and wall-second totals are the cost of the attempts each group WOULD have paid, not of distinct simulations.",
+ "determinism_checks": [
+  {
+   "task": 0,
+   "init": 26,
+   "candidate": [
+    1.0,
+    22.0
+   ],
+   "identical_measurements": true,
+   "first": {
+    "hold_n": 65,
+    "hold_min": 11.399721725101173,
+    "hold_mean": 12.455287813367457,
+    "hold_max": 12.688713249091101,
+    "lr_imbalance": 0.05619547934305304,
+    "rel_z_spread_m": 0.00046928661686673756,
+    "peak_simultaneous_n": 35.35007111370627
+   },
+   "second": {
+    "hold_n": 65,
+    "hold_min": 11.399721725101173,
+    "hold_mean": 12.455287813367457,
+    "hold_max": 12.688713249091101,
+    "lr_imbalance": 0.05619547934305304,
+    "rel_z_spread_m": 0.00046928661686673756,
+    "peak_simultaneous_n": 35.35007111370627
+   }
+  },
+  {
+   "task": 7,
+   "init": 26,
+   "candidate": [
+    1.0,
+    22.0
+   ],
+   "identical_measurements": true,
+   "first": {
+    "hold_n": 63,
+    "hold_min": 13.035428107215399,
+    "hold_mean": 13.128662090253423,
+    "hold_max": 13.152833335031197,
+    "lr_imbalance": 0.00010135344577406113,
+    "rel_z_spread_m": 4.2215638259235355e-05,
+    "peak_simultaneous_n": 41.38177079287071
+   },
+   "second": {
+    "hold_n": 63,
+    "hold_min": 13.035428107215399,
+    "hold_mean": 13.128662090253423,
+    "hold_max": 13.152833335031197,
+    "lr_imbalance": 0.00010135344577406113,
+    "rel_z_spread_m": 4.2215638259235355e-05,
+    "peak_simultaneous_n": 41.38177079287071
+   }
+  }
+ ],
+ "contact_policy_note": "contact_policy_passed is reported separately and is NOT part of the pass criterion; a passing request here is NOT a qualified manner demonstration.",
+ "per_request": [
+  {
+   "task": 0,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "A": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 0,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      10.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      25.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      40.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "A": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      10.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      25.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      40.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "A": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 0,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      10.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      25.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      40.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "A": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 0,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      10.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      25.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 0,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      40.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "A": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 7,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "A": {
+    "attempts": 2,
+    "passed_at": 2,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      10.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      40.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": 3,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 2,
+    "passed_at": 2,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "A": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 7,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      10.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      40.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "A": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 7,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      100.0
+     ],
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 7,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "A": {
+    "attempts": 2,
+    "passed_at": 2,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      10.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      40.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "A": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      100.0
+     ],
+     [
+      1.0,
+      22.0
+     ]
+    ]
+   },
+   "change": "same"
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "A": {
+    "attempts": 2,
+    "passed_at": 2,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      10.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "A": {
+    "attempts": 3,
+    "passed_at": null,
+    "order_tried": [
+     [
+      1.0,
+      22.0
+     ],
+     [
+      1.0,
+      100.0
+     ],
+     [
+      10.0,
+      22.0
+     ]
+    ]
+   },
+   "B": {
+    "attempts": 1,
+    "passed_at": 1,
+    "order_tried": [
+     [
+      40.0,
+      100.0
+     ]
+    ]
+   },
+   "change": "B better"
+  }
+ ]
+}
