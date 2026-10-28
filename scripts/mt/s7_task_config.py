@@ -25,6 +25,7 @@ class TaskSpec:
     suite: str = "libero_10"
     targets: tuple = ()       # optional per-object targets ((role, backend object), ...) aligned with ``objects``
     grasp_grid: tuple = ()     # optional wider grasp-candidate ranges (yaws_deg, laterals_m, dzs_m); () = executor default grid
+    grasp_reference: tuple = ()  # optional per-object grasp reference aligned with ``objects`` (dict(rel_obj, hand_yaw_rel_deg) or None)
     container_dz: bool = True  # True: basket release/transport heights; False: executor defaults (STACK_PLACE_DZ / LIFT_DZ)
 
 
@@ -36,7 +37,11 @@ SPECS = {
     4: TaskSpec(4, (("white_mug", "porcelain_mug_1"), ("yellow_mug", "white_yellow_mug_1")), ("plate_left", "plate_1"),
                 targets=(("plate_left", "plate_1"), ("plate_right", "plate_2")), container_dz=False,
                 grasp_grid=((0, 90, -90, 45, -45, 135, -135, 180, 30, -30, 60, -60, 120, -120, 150, -150), (0.0, 0.03, -0.03, 0.04, -0.04, 0.05, -0.05, 0.06, -0.06),
-                            (0.0, 0.02, 0.04, 0.06, 0.08, 0.10))),
+                            (0.0, 0.02, 0.04, 0.06, 0.08, 0.10)),
+                # reference = median over official-demo grasps (replay-successful demos; reports/step9_t4_onboard/ref_grasp.json): hand offset in the
+                # object yaw frame + hand yaw relative to the executor's yaw-aligned quaternion.  Used as is (no tuning).
+                grasp_reference=({"rel_obj": [-0.0319, -0.013, 0.101], "hand_yaw_rel_deg": 10.3},
+                                 {"rel_obj": [-0.0572, -0.0163, 0.0762], "hand_yaw_rel_deg": 1.8})),
 }
 
 
@@ -60,6 +65,9 @@ def make_program(t: int) -> TaskProgram:
     if sp.grasp_grid:
         gg = {"yaws_deg": list(sp.grasp_grid[0]), "laterals_m": list(sp.grasp_grid[1]), "dzs_m": list(sp.grasp_grid[2])}
         inst = tuple(replace(i, params={**i.params, "grasp_grid": gg}) if i.primitive == "approach" else i for i in inst)
+    if sp.grasp_reference:
+        ref = {sp.objects[k][0]: g for k, g in enumerate(sp.grasp_reference) if g}
+        inst = tuple(replace(i, params={**i.params, "grasp_reference": ref[i.object_role]}) if i.primitive == "approach" and i.object_role in ref else i for i in inst)
     return TaskProgram(f"libero_t{t}_{'basket' if sp.container_dz else 'plates'}_{len(sp.objects)}", "libero", f"libero:{sp.suite}:{t}", roles, inst, source="composed")
 
 

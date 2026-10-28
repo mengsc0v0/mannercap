@@ -1,0 +1,52 @@
+{
+ "onboarding_task": "libero_10 task 4 (two mugs -> two plates)",
+ "elapsed_note": "wall-clock elapsed of the agent session (includes simulator waiting and download waiting); not human working time",
+ "session_start_utc": "2026-10-25T13:15:27Z",
+ "reference_acquisition": {
+  "source": "official LIBERO demonstrations (HuggingFace yifengzhu-hf/LIBERO-datasets, libero_10)",
+  "file_bytes": 1285266594,
+  "download_start_utc": "2026-10-25T14:25:24Z",
+  "download_end_utc": "2026-10-25T14:33:22Z",
+  "download_resumed_once": true,
+  "replay": {
+   "n_demos": 50,
+   "replay_success": 40,
+   "sim_wall_s": 334.6,
+   "note": "replayed in the matched env/init/controller; reference uses only replay-successful demos; no force labels needed"
+  },
+  "reference_extracted": "per mug: median hand-minus-object offset in the object yaw frame + hand yaw relative to the executor's yaw-aligned quaternion"
+ },
+ "execution_runs": {
+  "t4a_default_grid": {
+   "episodes": 13,
+   "sim_wall_s": 219.1
+  },
+  "t4b_wide_grid": {
+   "episodes": 16,
+   "sim_wall_s": 755.1
+  },
+  "t4c_reference_default_grip": {
+   "episodes": 16,
+   "sim_wall_s": 325.5
+  },
+  "t4d_reference_normal_grip": {
+   "episodes": 8,
+   "sim_wall_s": 112.8
+  }
+ },
+ "geometry_search": {
+  "grid_probe_files": 14,
+  "candidates_per_probe": 864,
+  "note": "864 = 16 yaws x 9 laterals x 6 heights, evaluated for both mugs per init"
+ },
+ "shared_code_changes": [
+  "program_executor.grasp_grid_from_params (candidate priority)",
+  "program_executor.reference_to_candidate (reference -> planner candidate)",
+  "s7_task_config.TaskSpec.grasp_reference / .grasp_grid / .targets / .container_dz"
+ ],
+ "task_constants_added": [
+  "T4 wide grasp grid ranges",
+  "T4 per-mug grasp reference (two 4-number records)"
+ ],
+ "reuse_note": "first-time onboarding cost; later tasks reuse the executor fields and the replay/reference scripts, paying only reference acquisition + runs"
+}

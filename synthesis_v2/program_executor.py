@@ -201,6 +201,39 @@ def _subtask_roles(program: TaskProgram, sub: str) -> tuple[Optional[str], Optio
     return obj, tgt
 
 
+def reference_to_candidate(ref: dict, obj_quat_xyzw, grasp_quat_xyzw, obs_to_site) -> tuple:
+    """Express a task-adapter grasp reference as one planner candidate (yaw_deg, lateral_m, dz_m, longitudinal_m).
+
+    ``ref`` = {"rel_obj": hand position minus object position in the object's yaw frame (m),
+               "hand_yaw_rel_deg": hand yaw relative to the executor's yaw-aligned grasp quaternion}.
+    The planner places the hand at obj + lat*Rq[:,1] + lon*Rq[:,0] + [0,0,dz]; the three offsets are solved exactly."""
+    from scipy.spatial.transform import Rotation as R
+    from .approach_planner import quat_to_mat, yaw_quat
+    oyaw = R.from_quat(obj_quat_xyzw).as_euler("xyz")[2]
+    off_w = R.from_euler("z", oyaw).apply(np.asarray(ref["rel_obj"], float))
+    yaw = float(ref["hand_yaw_rel_deg"])
+    Rq = quat_to_mat(yaw_quat(np.asarray(grasp_quat_xyzw, float), np.deg2rad(yaw))) @ np.asarray(obs_to_site, float)
+    lon, lat, dz = np.linalg.solve(np.stack([Rq[:, 0], Rq[:, 1], [0.0, 0.0, 1.0]], axis=1), off_w)
+    return (yaw, float(lat), float(dz), float(lon))
+
+
+def grasp_grid_from_params(params: dict, reference_candidate: Optional[tuple] = None):
+    """Candidate list for plan_approach from instance params.  Priority: explicit ``grasp_candidate`` (one placement, e.g.
+    chosen by a repair/experience step) > ``grasp_reference`` (task-adapter reference, passed in resolved as
+    ``reference_candidate``) > configured ``grasp_grid`` (task ranges) > None (planner default grid).  Returns (grid, source)."""
+    gc = params.get("grasp_candidate")
+    if gc is not None:
+        return [(float(gc["yaw_deg"]), float(gc.get("lateral_m", 0.0)), float(gc.get("dz_m", 0.0)),
+                 float(gc.get("longitudinal_m", 0.0)))], "grasp_candidate"
+    if reference_candidate is not None:
+        return [tuple(reference_candidate)], "grasp_reference"
+    gg = params.get("grasp_grid")
+    if gg is not None:
+        from .approach_planner import candidate_grid
+        return candidate_grid(tuple(gg["yaws_deg"]), tuple(gg["laterals_m"]), tuple(gg["dzs_m"])), "grasp_grid"
+    return None, "default_grid"
+
+
 def produce_program_episode(
     program: TaskProgram,
     seed: int,
@@ -267,19 +300,18 @@ def produce_program_episode(
                 from .approach_planner import plan_approach, scene_from_libero
                 nm0 = program.objects[it.object_role]
                 m_, d_, site_, env_, obst_, tgt_, look_ = scene_from_libero(s, nm0, return_steps=True)
-                gc = it.params.get("grasp_candidate")  # opt-in: evaluate exactly this placement (same clearance criterion)
-                grid = None if gc is None else [(float(gc["yaw_deg"]), float(gc.get("lateral_m", 0.0)),
-                                                 float(gc.get("dz_m", 0.0)), float(gc.get("longitudinal_m", 0.0)))]
-                gg = it.params.get("grasp_grid")  # opt-in: wider candidate ranges, same preference order and criterion
-                if gg is not None:
-                    from .approach_planner import candidate_grid
-                    grid = candidate_grid(tuple(gg["yaws_deg"]), tuple(gg["laterals_m"]), tuple(gg["dzs_m"]))
+                ref_c = None
+                if "grasp_reference" in it.params and "grasp_candidate" not in it.params:
+                    ref_c = reference_to_candidate(it.params["grasp_reference"], s.obs[f"{nm0}_quat"],
+                                                   r["grasp_quat_xyzw"], env_.obs_to_site)
+                grid, grid_source = grasp_grid_from_params(it.params, ref_c)
                 pl = plan_approach(m_, d_, site_, env_, obst_, start_pos=np.asarray(s.obs["robot0_eef_pos"], float),
                                    start_quat_xyzw=np.asarray(s.obs["robot0_eef_quat"], float),
                                    grasp_pos=np.asarray(r["obj_pos0"], float),
                                    grasp_quat_xyzw=np.asarray(r["grasp_quat_xyzw"], float),
                                    hover_dz=APPROACH_DZ, target=tgt_, grid=grid)
-                meta.setdefault("approach_plan", {})[it.subtask] = {**pl.to_dict(), "lookahead_control_steps": int(look_)}   # generation cost, not part of the episode
+                meta.setdefault("approach_plan", {})[it.subtask] = {**pl.to_dict(), "lookahead_control_steps": int(look_),
+                                                                    "grid_source": grid_source, "grid_size": 0 if grid is None else len(grid)}   # generation cost, not part of the episode
                 if not pl.feasible:
                     status_box[0] = f"approach_infeasible:{it.instance_id}"
                     stop[0] = True
