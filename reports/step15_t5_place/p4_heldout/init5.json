@@ -1,0 +1,282 @@
+{
+ "init": 5,
+ "status": "completed",
+ "task_ok": false,
+ "env_success_now": false,
+ "grasp_established": true,
+ "grasp_policy": {
+  "book.pick_1.grasp": {
+   "reached_band": true,
+   "reverse_pulses": 0,
+   "closing_steps": 7,
+   "final": {
+    "left_n": 9.296300524313379,
+    "right_n": 9.723842862822362,
+    "total_n": 19.02014338713574
+   }
+  }
+ },
+ "grasp_failure": null,
+ "stages_executed": [
+  "book.pick_1.approach",
+  "book.pick_1.descend",
+  "book.pick_1.grasp",
+  "book.pick_1.lift",
+  "book.pick_1.transport",
+  "book.pick_1.place",
+  "book.pick_1.retreat"
+ ],
+ "book_max_rise_during_lift_transport_m": 0.313,
+ "book_carried": true,
+ "book_in_region_frame_at_end_of_transport_m": [
+  -0.0014,
+  0.0114,
+  -0.223
+ ],
+ "entered_official_region_any_step": true,
+ "first_step_in_region": 183,
+ "book_final_in_region_frame_m": [
+  -0.0023,
+  0.0098,
+  0.0739
+ ],
+ "final_in_region": false,
+ "back_region_half_size": [
+  0.0278,
+  0.0622,
+  0.0605
+ ],
+ "contact_audit": {
+  "clean": false,
+  "max_forbidden_n": 1.3,
+  "forbidden_contacts": [
+   {
+    "robot_body": "rightfinger[finger_link_on_target]",
+    "other": "black_book_1_main",
+    "max_n": 1.3,
+    "control_steps": 1,
+    "class": "finger_link_on_target",
+    "stages": [
+     "grasp@book"
+    ]
+   }
+  ],
+  "forbidden_by_class": {
+   "finger_link_on_target": 1,
+   "other": 0
+  }
+ },
+ "contact_policy_v0_clean": false,
+ "contact_policy_v1_1": {
+  "policy_version": "contact_policy_v1.1",
+  "inner_cos_min": 0.5,
+  "threshold_n": 0.1,
+  "contact_permission_window": "[close_step, release_end_step): covers the opening motion; distinct from the hold/force window [close_step, release_command_step)",
+  "v0_clean_preserved": false,
+  "contacts": [
+   {
+    "robot_body": "rightfinger[finger_link_on_target]",
+    "other": "black_book_1_main",
+    "max_n": 1.3,
+    "control_steps": 1,
+    "class": "finger_link_on_target",
+    "stages": [
+     "grasp@book"
+    ],
+    "v1_excused": true,
+    "v1_reasons": [],
+    "matched_instance": "book.pick_1.grasp",
+    "control_step_range": [
+     54,
+     54
+    ],
+    "n_substeps": 2,
+    "n_substeps_inner_region": 2,
+    "peak_normal_inward_cos": 0.9944,
+    "peak_inward_offset_m": 0.0119,
+    "peak_contact_point_geom_local_m": [
+     -0.008411,
+     -0.007182,
+     0.028828
+    ],
+    "geom_half_extent_m": [
+     0.01068,
+     0.01356,
+     0.03159
+    ],
+    "peak_step": 54,
+    "peak_geom": "gripper0_finger2_collision",
+    "min_inner_cos": 0.9943741875828002,
+    "min_inward_offset_m": 0.011901676857865591,
+    "region_fail_steps": [],
+    "region_fail_samples": []
+   }
+  ],
+  "n_excused": 1,
+  "unexcused_contacts": [],
+  "support_contacts_unexplained": [],
+  "clean_v1": true,
+  "clean_v1_ignoring_support": true,
+  "windows": [
+   {
+    "instance_id": "book.pick_1.grasp",
+    "object": "black_book_1_main",
+    "env_object": "black_book_1",
+    "close_step": 47,
+    "release_step": 194,
+    "release_command_step": 184
+   }
+  ],
+  "force_accounting": "classify_finger_geom is the single identity rule and the grasp force measurement counts both pad and finger_link geoms as that finger, so an excused finger-link contact is already inside the measured hold force.",
+  "note": "clean_v1 requires BOTH no unexcused forbidden contact AND no unexplained robot<->support contact. v0 reports support contact as observation only; v1 refuses to call that complete."
+ },
+ "hold_windows": [
+  {
+   "instance_id": "book.pick_1.grasp",
+   "object": "black_book_1_main",
+   "env_object": "black_book_1",
+   "close_step": 47,
+   "release_step": 194,
+   "release_command_step": 184
+  }
+ ],
+ "contact_detail": {
+  "rightfinger[finger_link_on_target]||black_book_1_main": {
+   "n_substeps": 2,
+   "n_substeps_inner_region": 2,
+   "peak_n": 1.2908765165589877,
+   "min_inner_cos": 0.9943741875828002,
+   "min_inward_offset_m": 0.011901676857865591,
+   "region_fail_steps": [],
+   "region_fail_samples": [],
+   "peak_step": 54,
+   "peak_geom": "gripper0_finger2_collision",
+   "peak_other_geom": "black_book_1_g1",
+   "peak_contact_point_geom_local_m": [
+    -0.008411,
+    -0.007182,
+    0.028828
+   ],
+   "peak_contact_point_body_local_m": [
+    0.008615,
+    -5.2e-05,
+    0.050945
+   ],
+   "geom_half_extent_m": [
+    0.01068,
+    0.01356,
+    0.03159
+   ],
+   "inward_axis_geom_local": [
+    0.019,
+    -0.9847,
+    0.1731
+   ],
+   "peak_normal_world": [
+    -0.2795,
+    -0.9571,
+    -0.0761
+   ],
+   "peak_normal_inward_cos": 0.9944,
+   "peak_inward_offset_m": 0.0119,
+   "peak_eef_pos": [
+    -0.23413,
+    0.13724,
+    1.00066
+   ],
+   "side_role": [
+    "R",
+    "finger_link"
+   ]
+  }
+ },
+ "guard": {
+  "n_checks": 2,
+  "n_retries": 0,
+  "retries": [],
+  "chosen_candidate": {
+   "book.pick_1.approach": [
+    -4.1,
+    -0.011685,
+    0.120241,
+    -0.009259
+   ]
+  }
+ },
+ "approach_plan": {
+  "book.pick_1": {
+   "feasible": true,
+   "default_feasible": true,
+   "margin_m": 0.0,
+   "n_samples": 20,
+   "chosen": {
+    "yaw_deg": -4.1,
+    "lateral_m": -0.011685319298416711,
+    "dz_m": 0.12024137224309216,
+    "offset": [
+     -0.01416,
+     -0.00462,
+     0.1209
+    ],
+    "min_clearance_m": 0.01559,
+    "blocking": "black_book_1",
+    "phase": "descent",
+    "at_grasp_clearance_m": 0.01,
+    "feasible": true,
+    "longitudinal_m": -0.009259433212471479
+   },
+   "candidates": [
+    {
+     "yaw_deg": -4.1,
+     "lateral_m": -0.011685319298416711,
+     "dz_m": 0.12024137224309216,
+     "offset": [
+      -0.01416,
+      -0.00462,
+      0.1209
+     ],
+     "min_clearance_m": 0.01559,
+     "blocking": "black_book_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01,
+     "feasible": true,
+     "longitudinal_m": -0.009259433212471479
+    }
+   ],
+   "lookahead_control_steps": 11,
+   "grid_source": "grasp_reference",
+   "grid_size": 1
+  }
+ },
+ "place_failure": null,
+ "release_start_step": 184,
+ "place_completed": true,
+ "in_region_at_release_start": true,
+ "book_at_release_start_in_region_frame_m": [
+  -0.0016,
+  0.01,
+  -0.0545
+ ],
+ "official_first_success_step": 183,
+ "stage_at_official_first_success": "book.pick_1.place",
+ "release_issued_before_official_first_success": false,
+ "release_end_step": 194,
+ "post_release": {
+  "official_in_final": false,
+  "book_origin_final_world": [
+   -0.4267,
+   -0.1515,
+   0.8986
+  ],
+  "z_margin_to_official_In_lower_bound_m": -0.0035,
+  "xy_inside_region_footprint": true,
+  "tilt_deg": 0.0,
+  "book_displacement_last_10_control_steps_m": 0.0,
+  "robot_book_contact_steps_after_release_end": [],
+  "detached_from_hand": true
+ },
+ "cost": {
+  "control_steps": 219,
+  "sim_wall_s": 5.9
+ }
+}
