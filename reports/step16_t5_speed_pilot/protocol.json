@@ -1,0 +1,99 @@
+{
+ "schema": "mannercap.t5_place_speed_pilot_protocol.v1",
+ "label": "方式执行先导 (structured request; NOT a language end-to-end test)",
+ "purpose": "show that T5 reuses the shared manner layer and produces a language-required physical change in the specified stage (place descent) only",
+ "requests": {
+  "N": "把书放入后部隔间，松开并退出。 -> intents=[] (neutral, all stages normal)",
+  "S": "把书缓慢放入后部隔间，松开并退出。 -> structured intent (stage=place, dimension=speed, level=slow); sentence->binding NOT tested here"
+ },
+ "conditions": {
+  "N": {
+   "all_stages": "shared normal level v_max=0.12 m/s, w_max=1.0 (== frozen ordinary plan, untouched)"
+  },
+  "S": {
+   "place_stage": "shared slow default v_max=0.06 m/s, w_max=min(3.0, v/0.12)=0.5 (candidate_plan rotation coupling)",
+   "other_stages": "identical to N"
+  }
+ },
+ "shared_layer_reused": [
+  "manner_request.LEVEL_RANGES/speed_range",
+  "MannerIntent",
+  "candidate_plan ROT_PER_LIN/MAX_ROT_RPS",
+  "manner_calibration.eef_speed_mps",
+  "contact_policy_v1 (v1.1)",
+  "frozen T5 ordinary protocol (GUARD, GripPlan, s15 judgement fields)"
+ ],
+ "frozen": {
+  "guard": {
+   "enabled": true,
+   "min_clearance_m": 0.0,
+   "contact_threshold_n": 0.1,
+   "max_retries": 3
+  },
+  "grip": "GripPlan(1.0,100.0,settle_after_open=1)",
+  "per_init_tuning": false
+ },
+ "time_budget_rule": {
+  "rule": "max_steps stays at the shared default 250 for EVERY stage in BOTH conditions; no per-init change",
+  "reachability_arithmetic": "place descent ~0.17 m; slow 0.06 m/s * dt 0.05 s = 3 mm/step -> ~57 steps nominal << 250 (4x margin); commanded speed is an upper bound, realised speed is measured",
+  "check": "no stage timeout and status==completed in dev runs; record descent step counts"
+ },
+ "windows": {
+  "descent": "place-stage control steps k with place_start <= k < release_start  (SPEED WINDOW)",
+  "release": "[release_start, release_end) (not counted as slow descent)",
+  "retreat": "retreat stage (not counted as slow descent)",
+  "full_request_evaluation": "descent + release + retreat completed"
+ },
+ "speed_metric": "manner_calibration.eef_speed_mps (state->next_state xyz / dt); mean, median, p95, duration, path length per window",
+ "criteria": {
+  "pair_ratio_mean_speed_max": 0.75,
+  "pair_ratio_duration_min": 1.33,
+  "status": "pre-registered WORKING thresholds, not validated (commanded ratio is 0.5; realised ratio is an outcome to be reported)",
+  "absolute": "dev-derived slow_upper (midpoint of slow max / normal min of per-run descent median speed, shared separation rule) from dev inits only; labelled development calibration n=4/level; applied unchanged to new inits",
+  "manner_pass": "pair_manner_pass = ratio_mean<=0.75 AND ratio_duration>=1.33 (+ absolute criterion on new inits when the dev threshold exists)",
+  "ordinary_gate": "official_success_ever AND instruction_completed AND contact_clean_v1_1",
+  "joint_pass": "pair_manner_pass AND ordinary_gate(N) AND ordinary_gate(S)"
+ },
+ "labels_never_merged": [
+  "official_success_ever",
+  "instruction_completed",
+  "contact_clean_v1_1",
+  "official_success_final"
+ ],
+ "post_release_reported_separately": [
+  "M3 final origin / z margin to official In lower bound",
+  "detached_from_hand",
+  "tilt",
+  "last-10-step displacement",
+  "rest"
+ ],
+ "prefix_check": "bitwise equality of state/actions/next_state/dt/book pose/forces/stage labels on steps < place_start between N and S",
+ "inits": {
+  "dev": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "new": [
+   10,
+   25,
+   30,
+   40
+  ],
+  "new_note": "fixed before any run; not used for any T5 tuning (T5 policy runs used inits 0-7; scene-only static inspection used 0-7 and 14-21); inits 4-7 are excluded because they served ordinary-execution validation"
+ },
+ "out_of_scope": [
+  "fast level",
+  "force/grip combinations",
+  "new repair mechanism",
+  "leaning placement",
+  "2x2 rerun",
+  "T4",
+  "LLM prompt change",
+  "classifier/SPARC/many significance tests"
+ ],
+ "code_hash": {
+  "s16_t5_speed_pilot.py": "0eee990562c9af99"
+ }
+}
