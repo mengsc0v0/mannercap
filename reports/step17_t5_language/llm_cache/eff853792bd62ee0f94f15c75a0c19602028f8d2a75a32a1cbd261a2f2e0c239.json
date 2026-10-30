@@ -1,0 +1,45 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "\u628a\u4e66\u7f13\u6162\u653e\u5165\u540e\u90e8\u9694\u95f4",
+        "dimension": "speed",
+        "instance_ids": [
+          "book.pick_1.approach",
+          "book.pick_1.descend",
+          "book.pick_1.lift",
+          "book.pick_1.transport",
+          "book.pick_1.place"
+        ],
+        "level": "slow",
+        "object_role": "book"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "\u628a\u4e66\u7f13\u6162\u653e\u5165\u540e\u90e8\u9694\u95f4",
+          "object_phrase": "\u4e66",
+          "object_role": "book",
+          "target_phrase": "\u540e\u90e8\u9694\u95f4",
+          "target_role": "caddy_back"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

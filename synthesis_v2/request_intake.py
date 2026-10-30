@@ -20,6 +20,7 @@ from typing import Any, Mapping, Optional
 from synthesis_v2.language_compiler import (DIMENSION_LEVELS, LEVEL_WORDS, MannerBinding, Semantics, _CLAUSE_SPLIT, check_semantics,
                                             lexicon_semantics)
 from synthesis_v2.task_program import PRIMITIVES, TaskProgram
+from synthesis_v2.language_scope import expected_speed_instances, has_cjk
 
 INTAKE_PROMPT_VERSION = "mannercap.intake.v3_1"
 ACTIONS = ("put", "pick", "close", "turn_on", "open")
@@ -307,9 +308,19 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
             guards.append({"guard": "request_scope_only_for_object_free_speed", "clause": b.clause, "dimension": b.dimension}); ambiguous_extra.append(b.clause)
         elif bs["basis"] == "antecedent" and (not bs["antecedent"] or bs["antecedent"].lower() not in text.lower()):
             guards.append({"guard": "antecedent_not_in_instruction", "clause": b.clause, "antecedent": bs["antecedent"]}); ambiguous_extra.append(b.clause)
+    scope_undetermined: list[str] = []
     gaps = coverage_gaps(intake, program)
     for b, bs in zip(sem.bindings, intake.bases):
-        if bs["basis"] == "request_scope" and b.dimension == "speed" and not _mentioned_roles(b.clause, program):
+        if b.dimension == "speed" and has_cjk(b.clause):
+            # Chinese speed clause (any basis): the scope comes from language_scope (code), never from the model's claim
+            exp = expected_speed_instances(b.clause, b.level, program, b.object_role, text=text)
+            if exp is None:
+                scope_undetermined.append(b.clause)
+                guards.append({"guard": "speed_scope_undetermined", "clause": b.clause})
+            elif set(b.instance_ids) != exp:
+                got = set(b.instance_ids)
+                gaps.append({"gap": "language_scope_mismatch", "clause": b.clause, "missing": sorted(exp - got), "extra": sorted(got - exp)})
+        elif bs["basis"] == "request_scope" and b.dimension == "speed" and not _mentioned_roles(b.clause, program):
             exp, got = request_scope_expected(b.clause, program), set(b.instance_ids)
             if got != exp:
                 gaps.append({"gap": "request_scope_not_covered", "clause": b.clause, "missing": sorted(exp - got), "extra": sorted(got - exp)})
@@ -320,7 +331,7 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
         status, codes = "unsupported", ["numeric_level"]
     elif sem.unsupported:
         status, codes = "unsupported", sorted(set(intake.unsupported_codes))
-    elif sem.ambiguous or ambiguous_extra:
+    elif sem.ambiguous or ambiguous_extra or scope_undetermined:
         status, codes = "ambiguous", ["ambiguous_reference"]
     elif gaps:
         status, codes = "incomplete", sorted({g["gap"] for g in gaps})

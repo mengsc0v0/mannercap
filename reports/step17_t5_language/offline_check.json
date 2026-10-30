@@ -1,0 +1,785 @@
+{
+ "schema": "mannercap.t5_language_offline_check.v1",
+ "all_ok": false,
+ "spend": {
+  "calls": 0,
+  "cached": 6,
+  "failed": 0,
+  "latency_s": 0.0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "total_tokens": 0,
+  "budget": 12
+ },
+ "model": {
+  "interface": "llm_interface.v1",
+  "model": "gpt-5.6-sol-disc",
+  "base_url": "https://aihubmix.com/v1",
+  "temperature": 0.0,
+  "max_output_tokens": 2048
+ },
+ "rows": [
+  {
+   "id": "S0",
+   "text": "把书放入后部隔间，松开并退出。",
+   "expect_status": "accept",
+   "status": "accept",
+   "status_ok": true,
+   "needs_clarification": false,
+   "bindings": [],
+   "bases": [],
+   "ambiguous": [],
+   "guards": [],
+   "llm": {
+    "status": "cached",
+    "request_hash": "a7a5bc252dd780224a07b089c4be1409b5a0b4643f827edba0a61b9194296b4e",
+    "usage": {},
+    "n_records": 1
+   },
+   "versions": {
+    "plan": "language_plan.v1",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "scope": "language_scope.zh.v1",
+    "scope_rules_hash": "7d40e1c5ac9208c4"
+   },
+   "trace": [
+    {
+     "instance_id": "book.pick_1.approach",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.descend",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.grasp",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.lift",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.transport",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.place",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.retreat",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    }
+   ],
+   "plan_hash": "c1aa27bab76b2d177351e89c1dae4c65c6c2c9e695921eca762da5e9bb43a2cc",
+   "lexicon_baseline_native_family_stack": {
+    "status": "neutral",
+    "intents": []
+   },
+   "ref_plan_hash": "c1aa27bab76b2d177351e89c1dae4c65c6c2c9e695921eca762da5e9bb43a2cc",
+   "plan_equals_structured": true,
+   "plan_table": {
+    "approach": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "descend": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "grasp": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "lift": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "transport": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "place": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "retreat": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    }
+   },
+   "levels_ok": true
+  },
+  {
+   "id": "S1",
+   "text": "把书搬过去，缓慢放入后部隔间。",
+   "expect_status": "accept",
+   "status": "accept",
+   "status_ok": true,
+   "needs_clarification": false,
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "clause": "缓慢放入后部隔间"
+    }
+   ],
+   "bases": [
+    {
+     "basis": "single_candidate",
+     "antecedent": ""
+    }
+   ],
+   "ambiguous": [],
+   "guards": [],
+   "llm": {
+    "status": "cached",
+    "request_hash": "2fcf76f2668baedbe0bb7956c8bf0ef8cad67b78a63e824ca0a8cf37afbecf55",
+    "usage": {},
+    "n_records": 1
+   },
+   "versions": {
+    "plan": "language_plan.v1",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "scope": "language_scope.zh.v1",
+    "scope_rules_hash": "7d40e1c5ac9208c4"
+   },
+   "trace": [
+    {
+     "instance_id": "book.pick_1.approach",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.descend",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.grasp",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.lift",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.transport",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.place",
+     "level": "slow",
+     "v_max_mps": 0.06,
+     "w_max_rps": 0.5,
+     "clause": "缓慢放入后部隔间"
+    },
+    {
+     "instance_id": "book.pick_1.retreat",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    }
+   ],
+   "plan_hash": "1f564afd92919e1555b6e4ab6b6200ec8b445602a4df08f81a9318a54fe5ed19",
+   "lexicon_baseline_native_family_stack": {
+    "status": "ok",
+    "intents": [
+     [
+      "place",
+      "speed",
+      "slow"
+     ]
+    ]
+   },
+   "ref_plan_hash": "1f564afd92919e1555b6e4ab6b6200ec8b445602a4df08f81a9318a54fe5ed19",
+   "plan_equals_structured": true,
+   "plan_table": {
+    "approach": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "descend": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "grasp": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "lift": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "transport": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "place": {
+     "v": 0.06,
+     "w": 0.5,
+     "max_steps": 250
+    },
+    "retreat": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    }
+   },
+   "levels_ok": true
+  },
+  {
+   "id": "S1b",
+   "text": "把书缓慢放入后部隔间，松开并退出。",
+   "expect_status": "accept",
+   "status": "incomplete",
+   "status_ok": false,
+   "needs_clarification": false,
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.approach",
+      "book.pick_1.descend",
+      "book.pick_1.lift",
+      "book.pick_1.transport",
+      "book.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "clause": "把书缓慢放入后部隔间"
+    }
+   ],
+   "bases": [
+    {
+     "basis": "explicit_object",
+     "antecedent": ""
+    }
+   ],
+   "ambiguous": [],
+   "guards": [
+    {
+     "guard": "incomplete_answer",
+     "gap": "language_scope_mismatch",
+     "clause": "把书缓慢放入后部隔间",
+     "missing": [],
+     "extra": [
+      "book.pick_1.approach",
+      "book.pick_1.descend",
+      "book.pick_1.lift",
+      "book.pick_1.transport"
+     ]
+    }
+   ],
+   "llm": {
+    "status": "cached",
+    "request_hash": "eff853792bd62ee0f94f15c75a0c19602028f8d2a75a32a1cbd261a2f2e0c239",
+    "usage": {},
+    "n_records": 1
+   },
+   "versions": {
+    "plan": "language_plan.v1",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "scope": "language_scope.zh.v1",
+    "scope_rules_hash": "7d40e1c5ac9208c4"
+   },
+   "trace": null,
+   "plan_hash": null,
+   "lexicon_baseline_native_family_stack": {
+    "status": "ok",
+    "intents": [
+     [
+      "approach",
+      "speed",
+      "slow"
+     ],
+     [
+      "descend",
+      "speed",
+      "slow"
+     ],
+     [
+      "lift",
+      "speed",
+      "slow"
+     ],
+     [
+      "place",
+      "speed",
+      "slow"
+     ],
+     [
+      "retreat",
+      "speed",
+      "slow"
+     ],
+     [
+      "transport",
+      "speed",
+      "slow"
+     ]
+    ]
+   },
+   "ref_plan_hash": "1f564afd92919e1555b6e4ab6b6200ec8b445602a4df08f81a9318a54fe5ed19",
+   "plan_equals_structured": false
+  },
+  {
+   "id": "S2",
+   "text": "缓慢搬运书，到隔间后正常放下。",
+   "expect_status": "accept",
+   "status": "accept",
+   "status_ok": true,
+   "needs_clarification": false,
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.transport"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "clause": "缓慢搬运书"
+    },
+    {
+     "instance_ids": [
+      "book.pick_1.place"
+     ],
+     "dimension": "speed",
+     "level": "normal",
+     "clause": "正常放下"
+    }
+   ],
+   "bases": [
+    {
+     "basis": "explicit_object",
+     "antecedent": ""
+    },
+    {
+     "basis": "request_scope",
+     "antecedent": ""
+    }
+   ],
+   "ambiguous": [],
+   "guards": [],
+   "llm": {
+    "status": "cached",
+    "request_hash": "0cf337e6267ad72ccf2dba7b3750612badc5249cd02f81249a51c5163ccd2404",
+    "usage": {},
+    "n_records": 1
+   },
+   "versions": {
+    "plan": "language_plan.v1",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "scope": "language_scope.zh.v1",
+    "scope_rules_hash": "7d40e1c5ac9208c4"
+   },
+   "trace": [
+    {
+     "instance_id": "book.pick_1.approach",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.descend",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.grasp",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.lift",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.transport",
+     "level": "slow",
+     "v_max_mps": 0.06,
+     "w_max_rps": 0.5,
+     "clause": "缓慢搬运书"
+    },
+    {
+     "instance_id": "book.pick_1.place",
+     "level": "normal",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": "正常放下"
+    },
+    {
+     "instance_id": "book.pick_1.retreat",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    }
+   ],
+   "plan_hash": "816045e6901692200a817e48a15b0c7f28b8683f181f50ddf728bc01c2ddf26d",
+   "lexicon_baseline_native_family_stack": {
+    "status": "ok",
+    "intents": [
+     [
+      "transport",
+      "speed",
+      "slow"
+     ]
+    ]
+   },
+   "ref_plan_hash": "816045e6901692200a817e48a15b0c7f28b8683f181f50ddf728bc01c2ddf26d",
+   "plan_equals_structured": true,
+   "plan_table": {
+    "approach": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "descend": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "grasp": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "lift": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "transport": {
+     "v": 0.06,
+     "w": 0.5,
+     "max_steps": 250
+    },
+    "place": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "retreat": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    }
+   },
+   "levels_ok": true
+  },
+  {
+   "id": "S3",
+   "text": "整个过程都慢一些。",
+   "expect_status": "accept",
+   "status": "accept",
+   "status_ok": true,
+   "needs_clarification": false,
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.approach",
+      "book.pick_1.descend",
+      "book.pick_1.lift",
+      "book.pick_1.transport",
+      "book.pick_1.place",
+      "book.pick_1.retreat"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "clause": "整个过程都慢一些"
+    }
+   ],
+   "bases": [
+    {
+     "basis": "request_scope",
+     "antecedent": ""
+    }
+   ],
+   "ambiguous": [],
+   "guards": [],
+   "llm": {
+    "status": "cached",
+    "request_hash": "d85e442d4c1c6b2c90ffa9897f49988fcf6ca511ded5ae6a419b5ba5eef4c8cf",
+    "usage": {},
+    "n_records": 1
+   },
+   "versions": {
+    "plan": "language_plan.v1",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "scope": "language_scope.zh.v1",
+    "scope_rules_hash": "7d40e1c5ac9208c4"
+   },
+   "trace": [
+    {
+     "instance_id": "book.pick_1.approach",
+     "level": "slow",
+     "v_max_mps": 0.06,
+     "w_max_rps": 0.5,
+     "clause": "整个过程都慢一些"
+    },
+    {
+     "instance_id": "book.pick_1.descend",
+     "level": "slow",
+     "v_max_mps": 0.06,
+     "w_max_rps": 0.5,
+     "clause": "整个过程都慢一些"
+    },
+    {
+     "instance_id": "book.pick_1.grasp",
+     "level": "neutral (not bound)",
+     "v_max_mps": 0.12,
+     "w_max_rps": 1.0,
+     "clause": ""
+    },
+    {
+     "instance_id": "book.pick_1.lift",
+     "level": "slow",
+     "v_max_mps": 0.06,
+     "w_max_rps": 0.5,
+     "clause": "整个过程都慢一些"
+    },
+    {
+     "instance_id": "book.pick_1.transport",
+     "level": "slow",
+     "v_max_mps": 0.06,
+     "w_max_rps": 0.5,
+     "clause": "整个过程都慢一些"
+    },
+    {
+     "instance_id": "book.pick_1.place",
+     "level": "slow",
+     "v_max_mps": 0.06,
+     "w_max_rps": 0.5,
+     "clause": "整个过程都慢一些"
+    },
+    {
+     "instance_id": "book.pick_1.retreat",
+     "level": "slow",
+     "v_max_mps": 0.06,
+     "w_max_rps": 0.5,
+     "clause": "整个过程都慢一些"
+    }
+   ],
+   "plan_hash": "48207c9ede813deece280e96b867a70d44f08ced96024ec6551eea229def85f0",
+   "lexicon_baseline_native_family_stack": {
+    "status": "ok",
+    "intents": [
+     [
+      "approach",
+      "speed",
+      "slow"
+     ],
+     [
+      "descend",
+      "speed",
+      "slow"
+     ],
+     [
+      "lift",
+      "speed",
+      "slow"
+     ],
+     [
+      "place",
+      "speed",
+      "slow"
+     ],
+     [
+      "retreat",
+      "speed",
+      "slow"
+     ],
+     [
+      "transport",
+      "speed",
+      "slow"
+     ]
+    ]
+   },
+   "ref_plan_hash": "48207c9ede813deece280e96b867a70d44f08ced96024ec6551eea229def85f0",
+   "plan_equals_structured": true,
+   "plan_table": {
+    "approach": {
+     "v": 0.06,
+     "w": 0.5,
+     "max_steps": 250
+    },
+    "descend": {
+     "v": 0.06,
+     "w": 0.5,
+     "max_steps": 250
+    },
+    "grasp": {
+     "v": 0.12,
+     "w": 1.0,
+     "max_steps": 250
+    },
+    "lift": {
+     "v": 0.06,
+     "w": 0.5,
+     "max_steps": 250
+    },
+    "transport": {
+     "v": 0.06,
+     "w": 0.5,
+     "max_steps": 250
+    },
+    "place": {
+     "v": 0.06,
+     "w": 0.5,
+     "max_steps": 250
+    },
+    "retreat": {
+     "v": 0.06,
+     "w": 0.5,
+     "max_steps": 250
+    }
+   },
+   "levels_ok": true
+  },
+  {
+   "id": "A1",
+   "text": "缓慢地把书搬到隔间里放好。",
+   "expect_status": "ambiguous",
+   "status": "ambiguous",
+   "status_ok": true,
+   "needs_clarification": true,
+   "bindings": [
+    {
+     "instance_ids": [
+      "book.pick_1.approach",
+      "book.pick_1.descend",
+      "book.pick_1.lift",
+      "book.pick_1.transport",
+      "book.pick_1.place",
+      "book.pick_1.retreat"
+     ],
+     "dimension": "speed",
+     "level": "slow",
+     "clause": "缓慢地"
+    }
+   ],
+   "bases": [
+    {
+     "basis": "request_scope",
+     "antecedent": ""
+    }
+   ],
+   "ambiguous": [],
+   "guards": [
+    {
+     "guard": "speed_scope_undetermined",
+     "clause": "缓慢地"
+    }
+   ],
+   "llm": {
+    "status": "cached",
+    "request_hash": "bc2ce14bf60110913a6f031d27fae2c8004565d34de09741102f9cf0d99132d5",
+    "usage": {},
+    "n_records": 1
+   },
+   "versions": {
+    "plan": "language_plan.v1",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "scope": "language_scope.zh.v1",
+    "scope_rules_hash": "7d40e1c5ac9208c4"
+   },
+   "trace": null,
+   "plan_hash": null,
+   "lexicon_baseline_native_family_stack": {
+    "status": "ok",
+    "intents": [
+     [
+      "approach",
+      "speed",
+      "slow"
+     ],
+     [
+      "descend",
+      "speed",
+      "slow"
+     ],
+     [
+      "lift",
+      "speed",
+      "slow"
+     ],
+     [
+      "place",
+      "speed",
+      "slow"
+     ],
+     [
+      "retreat",
+      "speed",
+      "slow"
+     ],
+     [
+      "transport",
+      "speed",
+      "slow"
+     ]
+    ]
+   },
+   "plan": null
+  }
+ ]
+}

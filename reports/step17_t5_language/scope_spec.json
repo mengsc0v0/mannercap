@@ -1,0 +1,28 @@
+{
+ "schema": "mannercap.t5_language_scope_spec.v1",
+ "task": "T5 libero_t5_plates_1 (book -> desk_caddy back compartment)",
+ "scope_rules": {"module": "synthesis_v2/language_scope.py", "version": "language_scope.zh.v1",
+  "R1": "speed word directly followed by a stage word -> that stage only",
+  "R2": "stage word + 得/时/的时候 + speed word -> that stage only",
+  "R3": "global cue (整个过程/全程/...) or no stage word in the clause -> every speed-eligible stage",
+  "R4": "stage words present but not related to the speed word -> ambiguous, clarification required, no plan"},
+ "global_scope_definition": "all stage instances that support speed in the registered program: approach, descend, lift, transport, place, retreat (grasp has no speed dimension and is never changed by a speed word)",
+ "word_to_stage": {"放入/放下/放置/放": "place", "搬运/运送/端过去/移动": "transport", "靠近/接近": "approach", "下降/下探": "descend", "抬/提起/举": "lift", "退/撤/离开": "retreat"},
+ "unchanged_stages_keep": "shared normal level (v_max 0.12 m/s, w_max 1.0 rad/s), the frozen ordinary T5 plan",
+ "level_values": "shared LEVEL_RANGES defaults: slow v_max 0.06 m/s with w_max = min(3.0, v/0.12) = 0.5; normal untouched",
+ "sentences": [
+  {"id": "S0", "text": "把书放入后部隔间，松开并退出。", "object": "book (black_book_1)", "expect_status": "accept",
+   "expect_levels": {}, "expect_structured_plan": "N", "confirmed_by": "assistant-proposed neutral control (no manner word); pending user confirmation"},
+  {"id": "S1", "text": "把书搬过去，缓慢放入后部隔间。", "object": "book (black_book_1)", "expect_status": "accept",
+   "expect_levels": {"place": "slow"}, "expect_structured_plan": "S_place", "confirmed_by": "user directive: slow-place sentence affects only the place stage"},
+  {"id": "S1b", "text": "把书缓慢放入后部隔间，松开并退出。", "object": "book (black_book_1)", "expect_status": "accept",
+   "expect_levels": {"place": "slow"}, "expect_structured_plan": "S_place", "confirmed_by": "user directive (step-16 pilot request: place-only slow)"},
+  {"id": "S2", "text": "缓慢搬运书，到隔间后正常放下。", "object": "book (black_book_1)", "expect_status": "accept",
+   "expect_levels": {"transport": "slow", "place": "normal"}, "expect_structured_plan": "S_transport", "confirmed_by": "user directive: slow-carry sentence affects only the carry stage"},
+  {"id": "S3", "text": "整个过程都慢一些。", "object": "book (black_book_1)", "expect_status": "accept",
+   "expect_levels": {"approach": "slow", "descend": "slow", "lift": "slow", "transport": "slow", "place": "slow", "retreat": "slow"},
+   "expect_structured_plan": "S_global", "confirmed_by": "user directive: global scope as defined in global_scope_definition"},
+  {"id": "A1", "text": "缓慢地把书搬到隔间里放好。", "object": "book (black_book_1)", "expect_status": "ambiguous",
+   "expect_levels": null, "expect_structured_plan": null, "confirmed_by": "assistant-proposed ambiguity probe (R4: speed word not tied to either carry or place); pending user confirmation"}
+ ]
+}
