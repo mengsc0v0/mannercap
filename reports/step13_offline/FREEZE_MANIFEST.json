@@ -1,0 +1,98 @@
+{
+ "schema": "mannercap.freeze.v1",
+ "scope": "T0/T7 x init26-29 x R1-R4 (128 cells = 4 arms x 32 requests)",
+ "code_commit": "da011cc1829d12b8f04a559e9752594c58e02cc3",
+ "branch": "work/experience-library-6phase-20260928",
+ "tests": "546 passed, 14 subtests (full suite, immediately before the commit)",
+ "executor_guard": {
+  "contact_threshold_n": 0.1,
+  "enabled": true,
+  "max_retries": 3,
+  "min_clearance_m": 0.0
+ },
+ "contact_policy_version": "contact_policy_v1.1",
+ "e1_config": {
+  "path": "configs/experience_retrieval_e1.json",
+  "content_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+  "sha256_file": "b5a30deede47d16134c811ecf4d67350c9fbc685b0b621d227fee68026f54fc1",
+  "attempt_budget": 3,
+  "inits": [
+   26,
+   27,
+   28,
+   29
+  ],
+  "manner_requests": [
+   {
+    "band_n": [
+     8.0,
+     16.0
+    ],
+    "id": "R1",
+    "text": "hold the object with a very light grip"
+   },
+   {
+    "band_n": [
+     16.0,
+     24.0
+    ],
+    "id": "R2",
+    "text": "hold the object with a moderate grip"
+   },
+   {
+    "band_n": [
+     24.0,
+     34.0
+    ],
+    "id": "R3",
+    "text": "hold the object with a firm grip"
+   },
+   {
+    "band_n": [
+     34.0,
+     46.0
+    ],
+    "id": "R4",
+    "text": "hold the object with a very firm grip"
+   }
+  ]
+ },
+ "experience_library": {
+  "path": "reports/step10_experience/library.json",
+  "content_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+  "sha256_file": "f49007915b1eadd1e9ae7c18b3f10e93e905653f79d62184c8007fadacd892ce"
+ },
+ "code_sha256": {
+  "synthesis_v2/program_executor.py": "0b578ae45149ca1d2a412a421ac045b426cc290b1c3ceff3a1223c2abc00d750",
+  "synthesis_v2/contact_policy_v1.py": "593aa454cf1660457e1a4cb4a90c7b323f53616571c8f84668e8c0ac3562c956",
+  "synthesis_v2/execution_guard.py": "4ca75070d48c4f5261d986b34aab643d7e16c6d76b4199d5cf4797bbe99cb723",
+  "synthesis_v2/contact_audit.py": "b32def76c9b266194eda644c0449dcdb1b899bfb20c373896c659feb5bac2cd2",
+  "synthesis_v2/approach_planner.py": "b1c3b7411590808f5e74c41bb0925c7ac4ce0a50c5a77a14dc3be37791267e1f",
+  "synthesis_v2/substep_recorder.py": "e254c2bf0feec79085f63900a961a9e4e6750e8404bb19f6bd03e87c65aca87f",
+  "scripts/mt/s11_guarded_case.py": "d6a83f89f243c2b994c0a0dbcfa81d7ff6fbdd7d448399c3e2c5707def6b38a2",
+  "scripts/mt/s12_recovery_ablation.py": "a4ba74b40346b2022ea1cac4acc6ce2f04a8d5203e5f278bf97ee9a9abab0c8a",
+  "scripts/mt/s10_retrieval_trial.py": "176966c7d68d45d29cb6d5b90b25bb5ba887a864c68a03df2ee501f879d70f73"
+ },
+ "result_files": {
+  "reports/step12_ablation/t0_init26.json": "9c2ea54c567031e60546bf55d64834e759febde23af0b72d955e5f22697a65b5",
+  "reports/step12_ablation/t0_init27.json": "e58a53ef4f6ce2ed067e4049b98a70b7d71dfc0dc90f067057f296182556416c",
+  "reports/step12_ablation/t0_init28.json": "678ed13bde141119750b41b4d4107670fd3477dc4378e64019cfb02a68128728",
+  "reports/step12_ablation/t0_init29.json": "c3335d933244fa3f4b5554c9a1879f2e4e27e4b8872d426ab77938c2a15b01ab",
+  "reports/step12_ablation/t7_init26.json": "2196ba9225eeaf8bf7f1a9e23fd912b067b68b8a8e57eb6830215dea980dedc0",
+  "reports/step12_ablation/t7_init27.json": "10182300d2141a4ca12aaa53befcf8847d715f32128f4dcc6d1e037d2ecf85a6",
+  "reports/step12_ablation/t7_init28.json": "c4ee3d92dec664d936702f762e9a1c99ea28f04835a0d83557b6965fc0394550",
+  "reports/step12_ablation/t7_init29.json": "718e3ad5afd1bc97dd6ac050e5ce634d3456eafffa694adc8ef7dfde09aa0eb1"
+ },
+ "n_cells": 128,
+ "analysis_files": {
+  "reports/step13_offline/joint_pass_vs_budget.png": "4d16f96b0ffb09f7d5898c210a53b2192f30921dea9951cc5e3c818f9e211b4c",
+  "reports/step13_offline/step1_consistency.json": "e99146f12bc46a575d073ef066d76866931c171cee08aba6fe142446b08d3557",
+  "reports/step13_offline/step2_rescue.json": "ddd28c83939090dd2240583a35df422906f1ed832a2dd8c6214fba9b03973a6c",
+  "reports/step13_offline/step3_budget_curves.json": "f2629e9bd3c53a3a9923accf309b7a201b4e5ce6d1786595c63d0798bed3ee70"
+ },
+ "cost_books": {
+  "spent": "executed_substeps of non-cached executions",
+  "method": "executed_substeps of every execution, cache hits at recorded cost"
+ },
+ "init_splits": "calibration 8-13; dev 0-7,14-21; reserved 22-39 (26-29 = this batch); holdout 40-49 untouched"
+}
