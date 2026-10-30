@@ -1,0 +1,98 @@
+{
+ "init": 2,
+ "place_start_step_equal": true,
+ "prefix_bitwise_columns": {
+  "state": true,
+  "actions": true,
+  "next_state": true,
+  "dt": true,
+  "pos_black_book_1": true,
+  "pa_black_book_1": true,
+  "left_mean_n": true,
+  "right_mean_n": true,
+  "left_max_n": true,
+  "right_max_n": true,
+  "other_max_n": true,
+  "joint_speed_mean": true,
+  "joint_speed_max": true,
+  "state_at_place_start": true,
+  "stage_labels": true
+ },
+ "prefix_identical": true,
+ "descent_N": {
+  "n_steps": 27,
+  "duration_s": 1.35,
+  "mean_speed_mps": 0.12709,
+  "median_speed_mps": 0.13058,
+  "p95_speed_mps": 0.1327,
+  "max_speed_mps": 0.13317,
+  "path_length_m": 0.17157,
+  "net_displacement_m": 0.16933,
+  "first_step": 164,
+  "last_step": 190
+ },
+ "descent_S": {
+  "n_steps": 53,
+  "duration_s": 2.65,
+  "mean_speed_mps": 0.06457,
+  "median_speed_mps": 0.06444,
+  "p95_speed_mps": 0.0651,
+  "max_speed_mps": 0.07515,
+  "path_length_m": 0.1711,
+  "net_displacement_m": 0.16803,
+  "first_step": 164,
+  "last_step": 216
+ },
+ "ratio_mean_speed_S_over_N": 0.508,
+ "ratio_p95_speed_S_over_N": 0.491,
+ "ratio_duration_S_over_N": 1.963,
+ "ratio_path_length_S_over_N": 0.997,
+ "pair_manner_pass": true,
+ "other_stages_N_vs_S": {
+  "approach": {
+   "n_steps_N": 30,
+   "n_steps_S": 30,
+   "mean_speed_N": 0.11927,
+   "mean_speed_S": 0.11927
+  },
+  "descend": {
+   "n_steps_N": 21,
+   "n_steps_S": 21,
+   "mean_speed_N": 0.11912,
+   "mean_speed_S": 0.11912
+  },
+  "grasp": {
+   "n_steps_N": 10,
+   "n_steps_S": 10,
+   "mean_speed_N": 0.01071,
+   "mean_speed_S": 0.01071
+  },
+  "lift": {
+   "n_steps_N": 44,
+   "n_steps_S": 44,
+   "mean_speed_N": 0.12016,
+   "mean_speed_S": 0.12016
+  },
+  "transport": {
+   "n_steps_N": 59,
+   "n_steps_S": 59,
+   "mean_speed_N": 0.12452,
+   "mean_speed_S": 0.12452
+  },
+  "retreat": {
+   "n_steps_N": 25,
+   "n_steps_S": 25,
+   "mean_speed_N": 0.11897,
+   "mean_speed_S": 0.11888
+  },
+  "release_window": {
+   "n_steps_N": 10,
+   "n_steps_S": 10,
+   "mean_speed_N": 0.01068,
+   "mean_speed_S": 0.00479
+  }
+ },
+ "ordinary_gate_N": true,
+ "ordinary_gate_S": true,
+ "pair_joint_pass": true
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "mannercap.t5_place_speed_pilot_freeze.v1",
+ "frozen_after": "dev inits 0-3 (8 runs); before any new-init run",
+ "slow_upper_mps": 0.09753,
+ "status": "development calibration, n=4 per level, not a validated threshold; commanded v_max not used",
+ "dev_checks": {
+  "all_completed_no_timeout": true,
+  "descent_steps_normal": 27,
+  "descent_steps_slow": 53,
+  "max_steps_cap": 250,
+  "prefix_identical_all": true,
+  "pair_manner_pass_all": true
+ },
+ "time_budget_rule": "max_steps=250 per stage in both conditions, unchanged; slow descent used 53/250 steps; no per-init adjustment",
+ "criteria_unchanged": "pair ratio_mean<=0.75, ratio_duration>=1.33; absolute: S median<=slow_upper and N median>slow_upper",
+ "new_inits": [
+  10,
+  25,
+  30,
+  40
+ ],
+ "settings_unchanged_vs_protocol": true
+}

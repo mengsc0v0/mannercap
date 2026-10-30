@@ -1,0 +1,30 @@
+{
+ "schema": "mannercap.t5_place_speed_dev_calibration.v1",
+ "status": "development_calibration_not_validated",
+ "n_slow": 4,
+ "n_normal": 4,
+ "slow_medians_mps": [
+  0.0645,
+  0.06451,
+  0.06444,
+  0.06439
+ ],
+ "normal_medians_mps": [
+  0.13055,
+  0.13057,
+  0.13058,
+  0.13055
+ ],
+ "dev_inits": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "commanded_v_max_mps": {
+  "slow": 0.06,
+  "normal": 0.12
+ },
+ "note": "the commanded v_max is NOT used as a threshold; the threshold comes from the realised eef speeds of the dev runs",
+ "slow_upper_mps": 0.09753
+}
