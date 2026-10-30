@@ -240,6 +240,17 @@ def _candidate_key(c) -> tuple:
             round(float(getattr(c, "longitudinal_m", 0.0)), 6))
 
 
+def _seed_rejected(pre) -> dict:
+    """Normalise caller-supplied refusals to the tuples :func:`_candidate_key` produces.  A caller that round-trips
+    through JSON hands us lists, and ``tuple not in [list, ...]`` silently never matches, so a whole-episode re-run
+    would keep re-picking the very candidate the guard already refused."""
+    return {k: [_candidate_key_of(x) for x in v] for k, v in (pre or {}).items()}
+
+
+def _candidate_key_of(x) -> tuple:
+    return tuple(round(float(v), 6) for v in x)
+
+
 def _restore_snapshot(rn, s, snap, meta: dict) -> None:
     """Rewind the session and the recorder to ``snap`` (same mechanism as ``resume``, in-episode).
 
@@ -314,12 +325,19 @@ def produce_program_episode(
         guard = dict(execution_guard or {})          # opt-in; absent => behaviour unchanged
         guard_on = bool(guard.get("enabled"))
         rejected: dict[str, list] = {}               # instance_id -> grasp candidate keys already refused by the guard
+        # (seeded from guard["pre_rejected"] below so a whole-episode re-run can carry the refusals forward)
         retry = [None]                               # set by run() when the guard refuses the current candidate
         # geometry-retry budget: without it an outer "at most N force candidates" budget silently contains an
         # unbounded number of physical executions.  max_retries counts guard refusals over the WHOLE episode.
         max_retries = guard.get("max_retries")
         max_retries = None if max_retries is None else int(max_retries)
         n_retries = [0]
+        # "restore": roll back to the approach snapshot and retry in-episode (stage recovery).
+        # "abort":   stop the episode and report the refused candidate, so the CALLER must re-run the whole episode.
+        #            The whole-rerun arm of the recovery ablation must use this, otherwise it would silently be
+        #            using stage recovery inside the episode and the comparison would be meaningless.
+        on_refusal = str(guard.get("on_refusal", "restore"))
+        rejected.update(_seed_rejected(guard.get("pre_rejected")))
         if guard_on:
             meta.setdefault("execution_guard", {"config": {k: v for k, v in guard.items()},
                                                 "max_retries": max_retries, "checks": [], "retries": []})
@@ -355,7 +373,8 @@ def produce_program_episode(
                 if rej:   # guard retry: keep the planner's preference order, skip what the guard already refused
                     chosen = next((c for c in pl.candidates
                                    if c.feasible and _candidate_key(c) not in rej), None)
-                    meta["execution_guard"]["retries"][-1]["next_candidate"] = None if chosen is None else _candidate_key(chosen)
+                    if meta["execution_guard"]["retries"]:   # empty when the refusals were pre-seeded by the caller
+                        meta["execution_guard"]["retries"][-1]["next_candidate"] = None if chosen is None else _candidate_key(chosen)
                 if chosen is None:
                     status_box[0] = (f"approach_infeasible:{it.instance_id}" if not rej
                                      else f"guard_candidates_exhausted:{it.instance_id}")
@@ -465,6 +484,11 @@ def produce_program_episode(
                               if x.primitive == "approach" and x.subtask == it.subtask), None)
                 snap = approach_snap.get(owner)
                 key = meta.get("execution_guard", {}).get("chosen_candidate", {}).get(owner)
+                if on_refusal == "abort":
+                    meta["execution_guard"]["retries"].append({**ev, "approach_instance": owner,
+                                                               "refused_candidate": key, "aborted_episode": True})
+                    status_box[0] = f"guard_refused_abort:{it.instance_id}"
+                    break
                 if snap is None or key is None:
                     status_box[0] = f"guard_refused_no_snapshot:{it.instance_id}"
                     break

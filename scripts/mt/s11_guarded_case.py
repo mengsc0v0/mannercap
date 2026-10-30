@@ -56,7 +56,7 @@ def run(task, init, grips, guard):
     ctrl, rows = sub.formal_arrays()
     arr = np.asarray(rows, dtype=np.float64).reshape(len(ctrl), 2 * len(names))
     rec = {"ctrl": ctrl, "L": {n: arr[:, 2 * i] for i, n in enumerate(names)}, "R": {n: arr[:, 2 * i + 1] for i, n in enumerate(names)},
-           "rolled_back_cost": sub.rolled_back_cost(),
+           "rolled_back_cost": sub.rolled_back_cost(), "substep_cost": sub.cost(),
            "contact_audit": crec.report([str(x) for x in ep.arrays["stage"]])}
     return prog, ep, rec, crec, det, time.time() - t0
 

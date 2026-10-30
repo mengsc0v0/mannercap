@@ -1,0 +1,6912 @@
+{
+ "table_pass_fail_und": {
+  "rule": {
+   "n": 32,
+   "task": [
+    "0/0/32",
+    "32/0/0",
+    "32/0/0"
+   ],
+   "manner": [
+    "0/0/32",
+    "16/16/0",
+    "18/14/0"
+   ],
+   "contact": [
+    "0/32/0",
+    "21/11/0",
+    "24/8/0"
+   ],
+   "joint": [
+    "0/32/0",
+    "10/22/0",
+    "16/16/0"
+   ]
+  },
+  "retrieval": {
+   "n": 32,
+   "task": [
+    "0/0/32",
+    "32/0/0",
+    "32/0/0"
+   ],
+   "manner": [
+    "0/0/32",
+    "28/4/0",
+    "21/11/0"
+   ],
+   "contact": [
+    "0/32/0",
+    "22/10/0",
+    "24/8/0"
+   ],
+   "joint": [
+    "0/32/0",
+    "19/13/0",
+    "19/13/0"
+   ]
+  }
+ },
+ "path_mismatch": 0,
+ "rescued": [
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 265,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14975,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 4,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 265,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14900,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact+manner(first force cand. missed the band)",
+   "rescue_mechanism": "geometry-repair x4; force-candidate-switch x1"
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 267,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15475,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 259,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12650,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 259,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12575,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact+manner(first force cand. missed the band)",
+   "rescue_mechanism": "geometry-repair x2; force-candidate-switch x1"
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 261,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 13150,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 266,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14600,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 4,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 266,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14500,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact+manner(first force cand. missed the band)",
+   "rescue_mechanism": "geometry-repair x4; force-candidate-switch x1"
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 268,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15075,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12700,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12625,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact+manner(first force cand. missed the band)",
+   "rescue_mechanism": "geometry-repair x2; force-candidate-switch x1"
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12950,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12450,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12375,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact+manner(first force cand. missed the band)",
+   "rescue_mechanism": "geometry-repair x2; force-candidate-switch x1"
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 4,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15125,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact+manner(first force cand. missed the band)",
+   "rescue_mechanism": "geometry-repair x4; force-candidate-switch x1"
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15150,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 262,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14750,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 264,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    25.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14850,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 267,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15475,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12425,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 258,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    25.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12525,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 261,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 13150,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 263,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14375,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 265,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    25.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14450,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 268,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15075,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    22.0
+   ],
+   "final_candidate": [
+    1.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12625,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12575,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12600,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12950,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    22.0
+   ],
+   "final_candidate": [
+    1.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12375,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12325,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12350,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x1"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15075,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15100,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15150,
+   "recover_first_call_restore_point_logged": false,
+   "rescue_category": "contact",
+   "rescue_mechanism": "geometry-repair x2"
+  }
+ ],
+ "per_request": [
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 262,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14750,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 6,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 263,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    22.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14825,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 264,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    25.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14850,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 267,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15475,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 264,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12600,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 265,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    22.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12650,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 266,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    25.0,
+    100.0
+   ],
+   "final_candidate": [
+    30.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12675,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 269,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 13300,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12425,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 257,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    22.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12500,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 258,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    25.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12525,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 261,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 13150,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 263,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14375,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 6,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 264,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    22.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14425,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 265,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    25.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14450,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 268,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15075,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    22.0
+   ],
+   "final_candidate": [
+    1.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12625,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12575,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12600,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12950,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    22.0
+   ],
+   "final_candidate": [
+    1.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12375,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12325,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12350,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12400,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 6,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    22.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15125,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15075,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15100,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15150,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    22.0
+   ],
+   "final_candidate": [
+    1.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12725,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    1.0,
+    100.0
+   ],
+   "final_candidate": [
+    1.0,
+    22.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12675,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12700,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12750,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 265,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14975,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 6,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 264,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    20.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14850,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 4,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 265,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14900,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 53,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 267,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15475,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 267,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    20.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12800,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 266,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    20.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12675,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 267,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    20.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12725,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 269,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 13300,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 259,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12650,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 258,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    20.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12525,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 259,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 12575,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 261,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 13150,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 266,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14600,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 6,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 265,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    20.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14450,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 4,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 266,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 14500,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "grasp_band_not_reached",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 54,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "post_close",
+     "control_step": 268,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "tomato_sauce.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15075,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12700,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    20.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12600,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12625,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 241,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12950,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 1,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    10.0,
+    22.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12450,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    20.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12350,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12375,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 245,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12400,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 6,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    20.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15200,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 6,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    20.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15100,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "pass",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 4,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 1,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 2,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15125,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "pass",
+    "joint": "pass"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 2,
+   "geometry_repairs_attempt1": 2,
+   "force_candidate_switches": 0,
+   "refusal_chain_attempt1": [
+    {
+     "check": "post_close",
+     "control_step": 58,
+     "refused": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "approach": "alphabet_soup.pick_1.approach"
+    },
+    {
+     "check": "pre_close",
+     "control_step": 260,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    40.0,
+    100.0
+   ],
+   "joint_at_force_attempt": 1,
+   "first_branch_contact_evidence": "non_finger_link",
+   "recover_first_call_substeps": 15150,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    10.0,
+    22.0
+   ],
+   "final_candidate": [
+    20.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12800,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    20.0,
+    100.0
+   ],
+   "final_candidate": [
+    10.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12700,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    30.0,
+    100.0
+   ],
+   "final_candidate": [
+    20.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12725,
+   "recover_first_call_restore_point_logged": false
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "L0": {
+    "task": "und",
+    "manner": "und",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L0_status": "guard_refused_abort",
+   "L0_first_call_return_recover_arm": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L1": {
+    "task": "pass",
+    "manner": "pass",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2": {
+    "task": "pass",
+    "manner": "fail",
+    "contact": "fail",
+    "joint": "fail"
+   },
+   "L2_status": "completed",
+   "geometry_repairs_total": 3,
+   "geometry_repairs_attempt1": 1,
+   "force_candidate_switches": 2,
+   "refusal_chain_attempt1": [
+    {
+     "check": "pre_close",
+     "control_step": 256,
+     "refused": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "approach": "cream_cheese.pick_1.approach"
+    }
+   ],
+   "first_candidate": [
+    40.0,
+    100.0
+   ],
+   "final_candidate": [
+    25.0,
+    100.0
+   ],
+   "joint_at_force_attempt": null,
+   "first_branch_contact_evidence": "support",
+   "recover_first_call_substeps": 12750,
+   "recover_first_call_restore_point_logged": false
+  }
+ ]
+}

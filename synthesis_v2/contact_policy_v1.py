@@ -207,6 +207,9 @@ def evaluate(v0_report: dict, events: dict, detail: dict[tuple[str, str], dict],
              windows: Sequence[dict], stages: Optional[Sequence[str]] = None) -> dict[str, Any]:
     """v1 verdict from the v0 report plus per-contact geometry.  ``windows``: one dict per grasp instance with
     ``instance_id``, ``object`` (the bound force target body name), ``close_step`` and ``release_step``."""
+    # accept either the live dict (tuple keys) or an exported one (``"a||b"`` strings): passing the serialised form
+    # used to degrade silently to "no contact geometry recorded", which excuses nothing but hides the real evidence.
+    detail = {tuple(k.split("||", 1)) if isinstance(k, str) else k: v for k, v in detail.items()}
     by_obj: dict[str, list] = {}
     for w in windows:
         by_obj.setdefault(str(w["object"]), []).append(w)

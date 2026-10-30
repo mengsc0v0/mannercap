@@ -1,0 +1,5183 @@
+{
+ "schema": "mannercap.ablation_2x2_summary.v1",
+ "n_cells": 128,
+ "table": [
+  {
+   "selection": "rule",
+   "recovery": "rerun",
+   "n_requests": 32,
+   "task_passed": 32,
+   "force_passed": 18,
+   "contact_passed": 24,
+   "joint_passed": 16,
+   "substeps_spent": 888525,
+   "substeps_method": 1287175,
+   "wall_spent_s": 1392.8,
+   "wall_method_s": 1984.3,
+   "executions_real": 114,
+   "executions_cached": 49,
+   "selection_s": 0.0
+  },
+  {
+   "selection": "rule",
+   "recovery": "recover",
+   "n_requests": 32,
+   "task_passed": 32,
+   "force_passed": 18,
+   "contact_passed": 24,
+   "joint_passed": 16,
+   "substeps_spent": 647625,
+   "substeps_method": 936725,
+   "wall_spent_s": 960.8,
+   "wall_method_s": 1373.8,
+   "executions_real": 48,
+   "executions_cached": 22,
+   "selection_s": 0.0
+  },
+  {
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "n_requests": 32,
+   "task_passed": 32,
+   "force_passed": 21,
+   "contact_passed": 24,
+   "joint_passed": 19,
+   "substeps_spent": 294100,
+   "substeps_method": 1062975,
+   "wall_spent_s": 451.1,
+   "wall_method_s": 1638.9,
+   "executions_real": 38,
+   "executions_cached": 96,
+   "selection_s": 0.0169
+  },
+  {
+   "selection": "retrieval",
+   "recovery": "recover",
+   "n_requests": 32,
+   "task_passed": 32,
+   "force_passed": 21,
+   "contact_passed": 24,
+   "joint_passed": 19,
+   "substeps_spent": 213800,
+   "substeps_method": 773125,
+   "wall_spent_s": 310.9,
+   "wall_method_s": 1135.7,
+   "executions_real": 16,
+   "executions_cached": 42,
+   "selection_s": 0.0137
+  }
+ ],
+ "rerun_vs_recover_agreement": [
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 26,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 27,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 27,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 27,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 27,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 28,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 0,
+   "init": 29,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 26,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 27,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 28,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 29,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 29,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 29,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     20.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "rule",
+   "task": 7,
+   "init": 29,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 26,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 27,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 27,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 27,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     30.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     30.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 27,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 28,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 0,
+   "init": 29,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "tomato_sauce.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 26,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 27,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     10.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 28,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   },
+   "recover": {
+    "cand": [
+     40.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": true
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 29,
+   "request": "R1",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 29,
+   "request": "R2",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     1.0,
+     22.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 29,
+   "request": "R3",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  },
+  {
+   "selection": "retrieval",
+   "task": 7,
+   "init": 29,
+   "request": "R4",
+   "same_force_candidate": true,
+   "same_geometry_candidate": true,
+   "same_joint_verdict": true,
+   "rerun": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   },
+   "recover": {
+    "cand": [
+     25.0,
+     100.0
+    ],
+    "geom": {
+     "alphabet_soup.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "cream_cheese.pick_1.approach": [
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ]
+    },
+    "joint": false
+   }
+  }
+ ],
+ "never_passed_in_any_arm": [
+  {
+   "task": 0,
+   "init": 26,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 31.19305182682151,
+      "hold_mean": 32.231707584216366,
+      "hold_max": 32.29365758139345,
+      "lr_imbalance": 0.0037575552707975845,
+      "rel_z_spread_m": 0.00014235827540021173,
+      "peak_simultaneous_n": 53.26754210991493
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 31.19305182682151,
+      "hold_mean": 32.231707584216366,
+      "hold_max": 32.29365758139345,
+      "lr_imbalance": 0.0037575552707975845,
+      "rel_z_spread_m": 0.00014235827540021173,
+      "peak_simultaneous_n": 53.26754210991493
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 11.101387266181748,
+      "hold_mean": 12.456398790677577,
+      "hold_max": 13.042968530506712,
+      "lr_imbalance": 0.005835579007061096,
+      "rel_z_spread_m": 0.00020992570036415525,
+      "peak_simultaneous_n": 28.184149950040997
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 11.101387266181748,
+      "hold_mean": 12.456398790677577,
+      "hold_max": 13.042968530506712,
+      "lr_imbalance": 0.005835579007061096,
+      "rel_z_spread_m": 0.00020992570036415525,
+      "peak_simultaneous_n": 28.184149950040997
+     },
+     "unexcused": [],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": true,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 11.364329904110965,
+      "hold_mean": 12.454585732918149,
+      "hold_max": 12.924870255137183,
+      "lr_imbalance": 0.00558982046442789,
+      "rel_z_spread_m": 0.00015233855059615387,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": true,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 11.364329904110965,
+      "hold_mean": 12.454585732918149,
+      "hold_max": 12.924870255137183,
+      "lr_imbalance": 0.00558982046442789,
+      "rel_z_spread_m": 0.00015233855059615387,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      }
+     ],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 11.350888356474872,
+      "hold_mean": 12.447347748737212,
+      "hold_max": 12.653574921374188,
+      "lr_imbalance": 0.00437330234897773,
+      "rel_z_spread_m": 0.00010889349370485357,
+      "peak_simultaneous_n": 29.3089780618156
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 11.350888356474872,
+      "hold_mean": 12.447347748737212,
+      "hold_max": 12.653574921374188,
+      "lr_imbalance": 0.00437330234897773,
+      "rel_z_spread_m": 0.00010889349370485357,
+      "peak_simultaneous_n": 29.3089780618156
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      }
+     ],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": true,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": true,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 38.12136490192508,
+      "hold_mean": 39.73439083985191,
+      "hold_max": 39.97836538253879,
+      "lr_imbalance": 0.0019822021840558575,
+      "rel_z_spread_m": 8.585991450982267e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 38.12136490192508,
+      "hold_mean": 39.73439083985191,
+      "hold_max": 39.97836538253879,
+      "lr_imbalance": 0.0019822021840558575,
+      "rel_z_spread_m": 8.585991450982267e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      }
+     ],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 0,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 66,
+      "hold_min": 30.96980708136173,
+      "hold_mean": 32.24765527901109,
+      "hold_max": 32.34069879805098,
+      "lr_imbalance": 0.002241142375331418,
+      "rel_z_spread_m": 9.005684374668865e-05,
+      "peak_simultaneous_n": 53.5101002112127
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 4.4,
+       "stages": [
+        "place@alphabet_soup",
+        "transport@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/224)"
+       ]
+      },
+      {
+       "robot_body": "rightfinger[finger_link_on_target]",
+       "other": "tomato_sauce_1_main",
+       "max_n": 0.3,
+       "stages": [
+        "place@tomato_sauce",
+        "retreat@tomato_sauce"
+       ],
+       "reasons": [
+        "outside_hold_window_close_to_release"
+       ]
+      }
+     ],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 0,
+   "init": 28,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 31.001460882528676,
+      "hold_mean": 32.23869782226692,
+      "hold_max": 32.292884210573135,
+      "lr_imbalance": 0.003715103171019745,
+      "rel_z_spread_m": 0.00012422969390335492,
+      "peak_simultaneous_n": 53.249441978540176
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 31.001460882528676,
+      "hold_mean": 32.23869782226692,
+      "hold_max": 32.292884210573135,
+      "lr_imbalance": 0.003715103171019745,
+      "rel_z_spread_m": 0.00012422969390335492,
+      "peak_simultaneous_n": 53.249441978540176
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 11.054797894657636,
+      "hold_mean": 12.440084133463493,
+      "hold_max": 12.789293741995891,
+      "lr_imbalance": 0.007084953705877369,
+      "rel_z_spread_m": 0.00028734560437715384,
+      "peak_simultaneous_n": 28.31189289929857
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 11.054797894657636,
+      "hold_mean": 12.440084133463493,
+      "hold_max": 12.789293741995891,
+      "lr_imbalance": 0.007084953705877369,
+      "rel_z_spread_m": 0.00028734560437715384,
+      "peak_simultaneous_n": 28.31189289929857
+     },
+     "unexcused": [],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 0,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 65,
+      "hold_min": 31.327483867468967,
+      "hold_mean": 32.251480420896605,
+      "hold_max": 32.3496079195194,
+      "lr_imbalance": 0.010656273471355606,
+      "rel_z_spread_m": 0.0005479857447051595,
+      "peak_simultaneous_n": 47.41226947973637
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 65,
+      "hold_min": 31.327483867468967,
+      "hold_mean": 32.251480420896605,
+      "hold_max": 32.3496079195194,
+      "lr_imbalance": 0.010656273471355606,
+      "rel_z_spread_m": 0.0005479857447051595,
+      "peak_simultaneous_n": 47.41226947973637
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 65,
+      "hold_min": 11.817750713016135,
+      "hold_mean": 12.448895169628559,
+      "hold_max": 12.58364931539858,
+      "lr_imbalance": 0.006103204441186961,
+      "rel_z_spread_m": 0.0001509448146130854,
+      "peak_simultaneous_n": 29.967993738780084
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 65,
+      "hold_min": 11.817750713016135,
+      "hold_mean": 12.448895169628559,
+      "hold_max": 12.58364931539858,
+      "lr_imbalance": 0.006103204441186961,
+      "rel_z_spread_m": 0.0001509448146130854,
+      "peak_simultaneous_n": 29.967993738780084
+     },
+     "unexcused": [],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 7,
+   "init": 27,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 65,
+      "hold_min": 32.60279184733072,
+      "hold_mean": 32.66144992219833,
+      "hold_max": 32.72230129604138,
+      "lr_imbalance": 3.865709311201782e-05,
+      "rel_z_spread_m": 4.08232754739446e-05,
+      "peak_simultaneous_n": 35.641023525565714
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 65,
+      "hold_min": 32.60279184733072,
+      "hold_mean": 32.66144992219833,
+      "hold_max": 32.72230129604138,
+      "lr_imbalance": 3.865709311201782e-05,
+      "rel_z_spread_m": 4.08232754739446e-05,
+      "peak_simultaneous_n": 35.641023525565714
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 65,
+      "hold_min": 32.60279184733072,
+      "hold_mean": 32.66144992219833,
+      "hold_max": 32.72230129604138,
+      "lr_imbalance": 3.865709311201782e-05,
+      "rel_z_spread_m": 4.08232754739446e-05,
+      "peak_simultaneous_n": 35.641023525565714
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 65,
+      "hold_min": 32.60279184733072,
+      "hold_mean": 32.66144992219833,
+      "hold_max": 32.72230129604138,
+      "lr_imbalance": 3.865709311201782e-05,
+      "rel_z_spread_m": 4.08232754739446e-05,
+      "peak_simultaneous_n": 35.641023525565714
+     },
+     "unexcused": [],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 7,
+   "init": 28,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 68,
+      "hold_min": 32.581960455830426,
+      "hold_mean": 32.66804792012937,
+      "hold_max": 32.927069631023436,
+      "lr_imbalance": 4.379757204173593e-05,
+      "rel_z_spread_m": 4.006319569527239e-05,
+      "peak_simultaneous_n": 37.13358386139665
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 68,
+      "hold_min": 32.581960455830426,
+      "hold_mean": 32.66804792012937,
+      "hold_max": 32.927069631023436,
+      "lr_imbalance": 4.379757204173593e-05,
+      "rel_z_spread_m": 4.006319569527239e-05,
+      "peak_simultaneous_n": 37.13358386139665
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 68,
+      "hold_min": 22.780699781873178,
+      "hold_mean": 22.87402265767099,
+      "hold_max": 23.057013873799782,
+      "lr_imbalance": 5.327635473426005e-05,
+      "rel_z_spread_m": 3.708822674425294e-05,
+      "peak_simultaneous_n": 37.13358386139665
+     },
+     "unexcused": [],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": true,
+     "hold": {
+      "hold_n": 68,
+      "hold_min": 22.780699781873178,
+      "hold_mean": 22.87402265767099,
+      "hold_max": 23.057013873799782,
+      "lr_imbalance": 5.327635473426005e-05,
+      "rel_z_spread_m": 3.708822674425294e-05,
+      "peak_simultaneous_n": 37.13358386139665
+     },
+     "unexcused": [],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R1",
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 22.793849945417364,
+      "hold_mean": 22.873479680466495,
+      "hold_max": 22.975927624366562,
+      "lr_imbalance": 4.604157257954105e-05,
+      "rel_z_spread_m": 3.701698226626915e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 22.793849945417364,
+      "hold_mean": 22.873479680466495,
+      "hold_max": 22.975927624366562,
+      "lr_imbalance": 4.604157257954105e-05,
+      "rel_z_spread_m": 3.701698226626915e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R2",
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 13.12824034996563,
+      "hold_mean": 13.147393659542134,
+      "hold_max": 13.217625347459798,
+      "lr_imbalance": 6.239156912750201e-05,
+      "rel_z_spread_m": 3.894633716894358e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 13.12824034996563,
+      "hold_mean": 13.147393659542134,
+      "hold_max": 13.217625347459798,
+      "lr_imbalance": 6.239156912750201e-05,
+      "rel_z_spread_m": 3.894633716894358e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R3",
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": true,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": true,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": true,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": true,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "task": 7,
+   "init": 29,
+   "request": "R4",
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "arms": {
+    "rule/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "rule/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/rerun": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    },
+    "retrieval/recover": {
+     "task_ok": true,
+     "force": false,
+     "contact": false,
+     "hold": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "status": "completed"
+    }
+   }
+  }
+ ],
+ "audit_t7_init26_R1": [
+  {
+   "selection": "rule",
+   "recovery": "rerun",
+   "candidate": [
+    10.0,
+    22.0
+   ],
+   "cached": false,
+   "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+   "executed_substeps": 7350,
+   "formal_rows": 6025,
+   "kept_control_steps": 241,
+   "discarded_substeps": 1325,
+   "discarded_branches": 2,
+   "guard_refusals": 1,
+   "wall_s": 9.63,
+   "joint": false
+  },
+  {
+   "selection": "rule",
+   "recovery": "rerun",
+   "candidate": [
+    10.0,
+    22.0
+   ],
+   "cached": false,
+   "status": "completed",
+   "executed_substeps": 10425,
+   "formal_rows": 9100,
+   "kept_control_steps": 364,
+   "discarded_substeps": 1325,
+   "discarded_branches": 2,
+   "guard_refusals": 0,
+   "wall_s": 14.11,
+   "joint": true
+  },
+  {
+   "selection": "rule",
+   "recovery": "recover",
+   "candidate": [
+    10.0,
+    22.0
+   ],
+   "cached": false,
+   "status": "completed",
+   "executed_substeps": 12700,
+   "formal_rows": 9100,
+   "kept_control_steps": 364,
+   "discarded_substeps": 3600,
+   "discarded_branches": 4,
+   "guard_refusals": 1,
+   "wall_s": 15.81,
+   "joint": true
+  },
+  {
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "candidate": [
+    1.0,
+    22.0
+   ],
+   "cached": false,
+   "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+   "executed_substeps": 7350,
+   "formal_rows": 6025,
+   "kept_control_steps": 241,
+   "discarded_substeps": 1325,
+   "discarded_branches": 2,
+   "guard_refusals": 1,
+   "wall_s": 8.74,
+   "joint": false
+  },
+  {
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "candidate": [
+    1.0,
+    22.0
+   ],
+   "cached": false,
+   "status": "completed",
+   "executed_substeps": 10350,
+   "formal_rows": 9025,
+   "kept_control_steps": 361,
+   "discarded_substeps": 1325,
+   "discarded_branches": 2,
+   "guard_refusals": 0,
+   "wall_s": 13.6,
+   "joint": true
+  },
+  {
+   "selection": "retrieval",
+   "recovery": "recover",
+   "candidate": [
+    1.0,
+    22.0
+   ],
+   "cached": false,
+   "status": "completed",
+   "executed_substeps": 12625,
+   "formal_rows": 9025,
+   "kept_control_steps": 361,
+   "discarded_substeps": 3600,
+   "discarded_branches": 4,
+   "guard_refusals": 1,
+   "wall_s": 15.59,
+   "joint": true
+  }
+ ]
+}

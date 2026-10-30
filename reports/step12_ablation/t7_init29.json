@@ -1,0 +1,7953 @@
+{
+ "schema": "mannercap.ablation_2x2_grid.v1",
+ "task": 7,
+ "init": 29,
+ "executed_episodes_total": 24,
+ "cache_hits_total": 48,
+ "cells": [
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "rule",
+   "recovery": "rerun",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     8.0,
+     16.0
+    ],
+    "id": "R1",
+    "text": "hold the object with a very light grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     10.0,
+     22.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     1.0,
+     22.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "selection_seconds": 0.0,
+   "executions": [
+    {
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 9.31,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 382,
+     "wall_s": 13.96,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 13.141547809897746,
+      "hold_mean": 13.147445956538467,
+      "hold_max": 13.186863873679712,
+      "lr_imbalance": 7.239145095646787e-05,
+      "rel_z_spread_m": 3.88798657694478e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10425,
+     "formal_rows": 9550,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.69,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.07,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.79,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.17,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 6,
+   "n_actually_executed": 6,
+   "n_cache_hits": 0,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1906,
+   "discarded_substeps": 5250,
+   "substeps_spent": 52900,
+   "substeps_method": 52900,
+   "wall_spent_s": 68.99,
+   "wall_method_s": 68.99
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "rule",
+   "recovery": "rerun",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     16.0,
+     24.0
+    ],
+    "id": "R2",
+    "text": "hold the object with a moderate grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     1.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0,
+   "executions": [
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.79,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.17,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.85,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.09,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.69,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.07,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 6,
+   "n_actually_executed": 2,
+   "n_cache_hits": 4,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1902,
+   "discarded_substeps": 5250,
+   "substeps_spent": 17600,
+   "substeps_method": 52800,
+   "wall_spent_s": 22.94,
+   "wall_method_s": 68.66
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "rule",
+   "recovery": "rerun",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     24.0,
+     34.0
+    ],
+    "id": "R3",
+    "text": "hold the object with a firm grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     1.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0,
+   "executions": [
+    {
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.58,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 14.29,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.93559135587397,
+      "hold_mean": 40.00133188500227,
+      "hold_max": 40.11067956251138,
+      "lr_imbalance": 3.546766590313407e-05,
+      "rel_z_spread_m": 3.963070541945779e-05,
+      "peak_simultaneous_n": 41.07349518886889
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10350,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.85,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.09,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.79,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.17,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": true,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 6,
+   "n_actually_executed": 2,
+   "n_cache_hits": 4,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": true,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1903,
+   "discarded_substeps": 5250,
+   "substeps_spent": 17625,
+   "substeps_method": 52825,
+   "wall_spent_s": 22.87,
+   "wall_method_s": 68.77
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "rule",
+   "recovery": "rerun",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     34.0,
+     46.0
+    ],
+    "id": "R4",
+    "text": "hold the object with a very firm grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     40.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     1.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0,
+   "executions": [
+    {
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.7,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 380,
+     "wall_s": 14.13,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.933832847384664,
+      "hold_mean": 39.99953234372658,
+      "hold_max": 40.060982578700674,
+      "lr_imbalance": 4.2061211021313314e-05,
+      "rel_z_spread_m": 3.934981595610232e-05,
+      "peak_simultaneous_n": 41.10161955026999
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10375,
+     "formal_rows": 9500,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.58,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 14.29,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.93559135587397,
+      "hold_mean": 40.00133188500227,
+      "hold_max": 40.11067956251138,
+      "lr_imbalance": 3.546766590313407e-05,
+      "rel_z_spread_m": 3.963070541945779e-05,
+      "peak_simultaneous_n": 41.07349518886889
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10350,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.85,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.09,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 6,
+   "n_actually_executed": 2,
+   "n_cache_hits": 4,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1905,
+   "discarded_substeps": 5250,
+   "substeps_spent": 17650,
+   "substeps_method": 52875,
+   "wall_spent_s": 22.83,
+   "wall_method_s": 68.64
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "rule",
+   "recovery": "recover",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     8.0,
+     16.0
+    ],
+    "id": "R1",
+    "text": "hold the object with a very light grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     10.0,
+     22.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     1.0,
+     22.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "selection_seconds": 0.0,
+   "executions": [
+    {
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 382,
+     "wall_s": 16.08,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 13.141547809897746,
+      "hold_mean": 13.147445956538467,
+      "hold_max": 13.186863873679712,
+      "lr_imbalance": 7.239145095646787e-05,
+      "rel_z_spread_m": 3.88798657694478e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12800,
+     "formal_rows": 9550,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.31,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": false,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.26,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": false,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 3,
+   "n_actually_executed": 3,
+   "n_cache_hits": 0,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1138,
+   "discarded_substeps": 9750,
+   "substeps_spent": 38200,
+   "substeps_method": 38200,
+   "wall_spent_s": 48.65,
+   "wall_method_s": 48.65
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "rule",
+   "recovery": "recover",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     16.0,
+     24.0
+    ],
+    "id": "R2",
+    "text": "hold the object with a moderate grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     1.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0,
+   "executions": [
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.26,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.1,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": false,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.31,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 3,
+   "n_actually_executed": 1,
+   "n_cache_hits": 2,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1134,
+   "discarded_substeps": 9750,
+   "substeps_spent": 12700,
+   "substeps_method": 38100,
+   "wall_spent_s": 16.1,
+   "wall_method_s": 48.67
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "rule",
+   "recovery": "recover",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     24.0,
+     34.0
+    ],
+    "id": "R3",
+    "text": "hold the object with a firm grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     30.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     1.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0,
+   "executions": [
+    {
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 15.86,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.93559135587397,
+      "hold_mean": 40.00133188500227,
+      "hold_max": 40.11067956251138,
+      "lr_imbalance": 3.546766590313407e-05,
+      "rel_z_spread_m": 3.963070541945779e-05,
+      "peak_simultaneous_n": 41.07349518886889
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12725,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.1,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.26,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": true,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 3,
+   "n_actually_executed": 1,
+   "n_cache_hits": 2,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": true,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1135,
+   "discarded_substeps": 9750,
+   "substeps_spent": 12725,
+   "substeps_method": 38125,
+   "wall_spent_s": 15.86,
+   "wall_method_s": 48.22
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "rule",
+   "recovery": "recover",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     34.0,
+     46.0
+    ],
+    "id": "R4",
+    "text": "hold the object with a very firm grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     40.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     1.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0,
+   "executions": [
+    {
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 380,
+     "wall_s": 16.03,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.933832847384664,
+      "hold_mean": 39.99953234372658,
+      "hold_max": 40.060982578700674,
+      "lr_imbalance": 4.2061211021313314e-05,
+      "rel_z_spread_m": 3.934981595610232e-05,
+      "peak_simultaneous_n": 41.10161955026999
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12750,
+     "formal_rows": 9500,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 15.86,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.93559135587397,
+      "hold_mean": 40.00133188500227,
+      "hold_max": 40.11067956251138,
+      "lr_imbalance": 3.546766590313407e-05,
+      "rel_z_spread_m": 3.963070541945779e-05,
+      "peak_simultaneous_n": 41.07349518886889
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12725,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.1,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 3,
+   "n_actually_executed": 1,
+   "n_cache_hits": 2,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1137,
+   "discarded_substeps": 9750,
+   "substeps_spent": 12750,
+   "substeps_method": 38175,
+   "wall_spent_s": 16.03,
+   "wall_method_s": 47.99
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     8.0,
+     16.0
+    ],
+    "id": "R1",
+    "text": "hold the object with a very light grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "selection_seconds": 0.0008,
+   "executions": [
+    {
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 9.18,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 14.26,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 13.12824034996563,
+      "hold_mean": 13.147393659542134,
+      "hold_max": 13.217625347459798,
+      "lr_imbalance": 6.239156912750201e-05,
+      "rel_z_spread_m": 3.894633716894358e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10350,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 9.31,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 382,
+     "wall_s": 13.96,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 13.141547809897746,
+      "hold_mean": 13.147445956538467,
+      "hold_max": 13.186863873679712,
+      "lr_imbalance": 7.239145095646787e-05,
+      "rel_z_spread_m": 3.88798657694478e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10425,
+     "formal_rows": 9550,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 9.38,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 377,
+     "wall_s": 14.71,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 22.793849945417364,
+      "hold_mean": 22.873479680466495,
+      "hold_max": 22.975927624366562,
+      "lr_imbalance": 4.604157257954105e-05,
+      "rel_z_spread_m": 3.701698226626915e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10300,
+     "formal_rows": 9425,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": false,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 6,
+   "n_actually_executed": 4,
+   "n_cache_hits": 2,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1906,
+   "discarded_substeps": 5250,
+   "substeps_spent": 35200,
+   "substeps_method": 52900,
+   "wall_spent_s": 47.53,
+   "wall_method_s": 70.8
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     16.0,
+     24.0
+    ],
+    "id": "R2",
+    "text": "hold the object with a moderate grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "selection_seconds": 0.0005,
+   "executions": [
+    {
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 9.38,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 377,
+     "wall_s": 14.71,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 22.793849945417364,
+      "hold_mean": 22.873479680466495,
+      "hold_max": 22.975927624366562,
+      "lr_imbalance": 4.604157257954105e-05,
+      "rel_z_spread_m": 3.701698226626915e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10300,
+     "formal_rows": 9425,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.69,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.07,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 9.18,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 14.26,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 13.12824034996563,
+      "hold_mean": 13.147393659542134,
+      "hold_max": 13.217625347459798,
+      "lr_imbalance": 6.239156912750201e-05,
+      "rel_z_spread_m": 3.894633716894358e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10350,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 6,
+   "n_actually_executed": 0,
+   "n_cache_hits": 6,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1902,
+   "discarded_substeps": 5250,
+   "substeps_spent": 0,
+   "substeps_method": 52800,
+   "wall_spent_s": 0.0,
+   "wall_method_s": 70.29
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     24.0,
+     34.0
+    ],
+    "id": "R3",
+    "text": "hold the object with a firm grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ],
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0004,
+   "executions": [
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.69,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.07,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.79,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.17,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.85,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.09,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": true,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 6,
+   "n_actually_executed": 0,
+   "n_cache_hits": 6,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": true,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1902,
+   "discarded_substeps": 5250,
+   "substeps_spent": 0,
+   "substeps_method": 52800,
+   "wall_spent_s": 0.0,
+   "wall_method_s": 68.66
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     34.0,
+     46.0
+    ],
+    "id": "R4",
+    "text": "hold the object with a very firm grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     40.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0004,
+   "executions": [
+    {
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.7,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 380,
+     "wall_s": 14.13,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.933832847384664,
+      "hold_mean": 39.99953234372658,
+      "hold_max": 40.060982578700674,
+      "lr_imbalance": 4.2061211021313314e-05,
+      "rel_z_spread_m": 3.934981595610232e-05,
+      "peak_simultaneous_n": 41.10161955026999
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10375,
+     "formal_rows": 9500,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.58,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 14.29,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.93559135587397,
+      "hold_mean": 40.00133188500227,
+      "hold_max": 40.11067956251138,
+      "lr_imbalance": 3.546766590313407e-05,
+      "rel_z_spread_m": 3.963070541945779e-05,
+      "peak_simultaneous_n": 41.07349518886889
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10350,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "guard_refused_abort:cream_cheese.pick_1.grasp",
+     "task_ok": false,
+     "n_steps": 256,
+     "wall_s": 8.85,
+     "measured": {
+      "hold_n": 0,
+      "hold_min": null,
+      "hold_mean": null,
+      "hold_max": null,
+      "lr_imbalance": null,
+      "rel_z_spread_m": null,
+      "peak_simultaneous_n": null
+     },
+     "validity": {
+      "status": "no_hold_window",
+      "measurement_valid": false,
+      "grasp_stable": null
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [
+      {
+       "robot_body": "leftfinger",
+       "other": "living_room_table_col",
+       "max_n": 554.5
+      },
+      {
+       "robot_body": "rightfinger",
+       "other": "living_room_table_col",
+       "max_n": 545.3
+      }
+     ],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": true
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.0,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 7275,
+     "formal_rows": 6400,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 14.09,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 2,
+      "substeps": 875
+     },
+     "executed_substeps": 10325,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 0,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 6,
+   "n_actually_executed": 0,
+   "n_cache_hits": 6,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1905,
+   "discarded_substeps": 5250,
+   "substeps_spent": 0,
+   "substeps_method": 52875,
+   "wall_spent_s": 0.0,
+   "wall_method_s": 68.64
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "retrieval",
+   "recovery": "recover",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     8.0,
+     16.0
+    ],
+    "id": "R1",
+    "text": "hold the object with a very light grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "selection_seconds": 0.0004,
+   "executions": [
+    {
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 16.65,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 13.12824034996563,
+      "hold_mean": 13.147393659542134,
+      "hold_max": 13.217625347459798,
+      "lr_imbalance": 6.239156912750201e-05,
+      "rel_z_spread_m": 3.894633716894358e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12725,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": false,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 382,
+     "wall_s": 16.08,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 13.141547809897746,
+      "hold_mean": 13.147445956538467,
+      "hold_max": 13.186863873679712,
+      "lr_imbalance": 7.239145095646787e-05,
+      "rel_z_spread_m": 3.88798657694478e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12800,
+     "formal_rows": 9550,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 377,
+     "wall_s": 16.95,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 22.793849945417364,
+      "hold_mean": 22.873479680466495,
+      "hold_max": 22.975927624366562,
+      "lr_imbalance": 4.604157257954105e-05,
+      "rel_z_spread_m": 3.701698226626915e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12675,
+     "formal_rows": 9425,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": false,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 3,
+   "n_actually_executed": 2,
+   "n_cache_hits": 1,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1138,
+   "discarded_substeps": 9750,
+   "substeps_spent": 25400,
+   "substeps_method": 38200,
+   "wall_spent_s": 33.6,
+   "wall_method_s": 49.68
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "retrieval",
+   "recovery": "recover",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     16.0,
+     24.0
+    ],
+    "id": "R2",
+    "text": "hold the object with a moderate grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     1.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ]
+   ],
+   "selection_seconds": 0.0005,
+   "executions": [
+    {
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 377,
+     "wall_s": 16.95,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 22.793849945417364,
+      "hold_mean": 22.873479680466495,
+      "hold_max": 22.975927624366562,
+      "lr_imbalance": 4.604157257954105e-05,
+      "rel_z_spread_m": 3.701698226626915e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12675,
+     "formal_rows": 9425,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.31,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": false,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 16.65,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 13.12824034996563,
+      "hold_mean": 13.147393659542134,
+      "hold_max": 13.217625347459798,
+      "lr_imbalance": 6.239156912750201e-05,
+      "rel_z_spread_m": 3.894633716894358e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12725,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 3,
+   "n_actually_executed": 0,
+   "n_cache_hits": 3,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1134,
+   "discarded_substeps": 9750,
+   "substeps_spent": 0,
+   "substeps_method": 38100,
+   "wall_spent_s": 0.0,
+   "wall_method_s": 49.91
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "retrieval",
+   "recovery": "recover",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     24.0,
+     34.0
+    ],
+    "id": "R3",
+    "text": "hold the object with a firm grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     10.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     40.0,
+     100.0
+    ],
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0004,
+   "executions": [
+    {
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.31,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.26,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.1,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": true,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 3,
+   "n_actually_executed": 0,
+   "n_cache_hits": 3,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": true,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1134,
+   "discarded_substeps": 9750,
+   "substeps_spent": 0,
+   "substeps_method": 38100,
+   "wall_spent_s": 0.0,
+   "wall_method_s": 48.67
+  },
+  {
+   "schema": "mannercap.ablation_2x2.v1",
+   "e1_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+   "library_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "policy_version": "contact_policy_v1.1",
+   "guard": {
+    "enabled": true,
+    "min_clearance_m": 0.0,
+    "contact_threshold_n": 0.1,
+    "max_retries": 3
+   },
+   "selection": "retrieval",
+   "recovery": "recover",
+   "task": 7,
+   "init": 29,
+   "request": {
+    "band_n": [
+     34.0,
+     46.0
+    ],
+    "id": "R4",
+    "text": "hold the object with a very firm grip"
+   },
+   "object": "cream_cheese_1",
+   "budget": {
+    "force_candidates": 3,
+    "geometry_retries_per_episode": 3,
+    "max_physical_executions": 12
+   },
+   "order": [
+    [
+     40.0,
+     100.0
+    ],
+    [
+     30.0,
+     100.0
+    ],
+    [
+     25.0,
+     100.0
+    ],
+    [
+     20.0,
+     100.0
+    ],
+    [
+     10.0,
+     100.0
+    ],
+    [
+     1.0,
+     100.0
+    ],
+    [
+     1.0,
+     22.0
+    ],
+    [
+     10.0,
+     22.0
+    ]
+   ],
+   "selection_seconds": 0.0004,
+   "executions": [
+    {
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 380,
+     "wall_s": 16.03,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.933832847384664,
+      "hold_mean": 39.99953234372658,
+      "hold_max": 40.060982578700674,
+      "lr_imbalance": 4.2061211021313314e-05,
+      "rel_z_spread_m": 3.934981595610232e-05,
+      "peak_simultaneous_n": 41.10161955026999
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12750,
+     "formal_rows": 9500,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 1,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 379,
+     "wall_s": 15.86,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 39.93559135587397,
+      "hold_mean": 40.00133188500227,
+      "hold_max": 40.11067956251138,
+      "lr_imbalance": 3.546766590313407e-05,
+      "rel_z_spread_m": 3.963070541945779e-05,
+      "peak_simultaneous_n": 41.07349518886889
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12725,
+     "formal_rows": 9475,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 2,
+     "force_band_passed": true,
+     "joint_passed": false
+    },
+    {
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "status": "completed",
+     "task_ok": true,
+     "n_steps": 378,
+     "wall_s": 16.1,
+     "measured": {
+      "hold_n": 67,
+      "hold_min": 32.60539516016194,
+      "hold_mean": 32.66589559905766,
+      "hold_max": 32.79463192183658,
+      "lr_imbalance": 4.5114081622238315e-05,
+      "rel_z_spread_m": 3.488165783094299e-05,
+      "peak_simultaneous_n": 36.69601373161396
+     },
+     "validity": {
+      "status": "ok",
+      "measurement_valid": true,
+      "grasp_stable": true
+     },
+     "contact_v0_clean": false,
+     "contact_v1_clean": false,
+     "v1_unexcused": [
+      {
+       "robot_body": "right_gripper",
+       "other": "alphabet_soup_1_main",
+       "max_n": 3.1,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "not_all_substeps_on_inner_face (0/535)"
+       ]
+      },
+      {
+       "robot_body": "right_gripper",
+       "other": "tomato_sauce_1_main",
+       "max_n": 1.0,
+       "stages": [
+        "grasp@alphabet_soup"
+       ],
+       "reasons": [
+        "not_a_finger_link_contact",
+        "object_is_not_a_bound_grasp_target",
+        "not_all_substeps_on_inner_face (0/26)"
+       ]
+      }
+     ],
+     "v1_support_unexplained": [],
+     "guard_refused": [
+      {
+       "check": "pre_close",
+       "control_step": 256,
+       "refused_candidate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ],
+       "approach_instance": "cream_cheese.pick_1.approach",
+       "aborted_episode": false
+      }
+     ],
+     "guard_chosen": {
+      "alphabet_soup.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ],
+      "cream_cheese.pick_1.approach": [
+       0.0,
+       0.0,
+       0.01,
+       0.0
+      ]
+     },
+     "rolled_back_cost": {
+      "branches": 4,
+      "substeps": 3250
+     },
+     "executed_substeps": 12700,
+     "formal_rows": 9450,
+     "discarded_contact_rows": 1,
+     "reused_cached_episode": true,
+     "force_attempt": 3,
+     "force_band_passed": false,
+     "joint_passed": false
+    }
+   ],
+   "n_physical_executions": 3,
+   "n_actually_executed": 0,
+   "n_cache_hits": 3,
+   "joint_passed_at_force_attempt": null,
+   "task_passed": true,
+   "force_band_passed": false,
+   "contact_v1_passed": false,
+   "joint_passed": false,
+   "control_steps_used": 1137,
+   "discarded_substeps": 9750,
+   "substeps_spent": 0,
+   "substeps_method": 38175,
+   "wall_spent_s": 0.0,
+   "wall_method_s": 47.99
+  }
+ ]
+}
