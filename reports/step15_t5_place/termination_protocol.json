@@ -1,0 +1,44 @@
+{
+ "schema": "mannercap.t5_protocol.v1",
+ "fixed_before_heldout_run": true,
+ "environment": {
+  "libero": "LIBERO-PRO fork, commit 5368540790fde9a18584d64105ec5ac16d8926bd (origin uynitsuj/LIBERO-PRO), libero 0.1.0, robosuite 1.4.0, mujoco 3.5.0",
+  "official_done": "bddl_base_domain.py BDDLBaseDomain.step(): done = self._check_success() on EVERY control step; no hold, no release, no settling requirement",
+  "official_In": "In(book, region) = check_contact AND check_contain; for a SITE target check_contact returns True always (base_object_states.py), check_contain = SiteObject.in_box on the book BODY ORIGIN (world frame, lb_z -= 0.01); i.e. In is a pure origin-in-box test",
+  "gap_to_replay": "demos came from the official LIBERO dataset and replay-succeeded in this env (Step 14); not re-verified against upstream LIBERO master source"
+ },
+ "metrics_and_judgement_points": {
+  "M1_official_task_success": "first control step k at which the official In is true (geometric rule verified equal to env In on 500/500 states, frame_check.json). Under the official protocol the episode ends at k. Recorded trajectories are NOT truncated; k and the stage at k are reported.",
+  "M2_instruction_completion": "ordinary T5 request = 'pick the book and place it in the back compartment of the caddy': all executor stages complete (approach, descend, grasp, lift, transport, place WITHOUT timeout, release command + fingers open, retreat), status 'completed', no guard abort / place_failure. A manner request that names a stage (e.g. 'lower slowly and release') is judged over THAT stage to its end, which includes the release; the evaluation may not end at M1's step k.",
+  "M3_post_release_observation": "reported separately, NOT part of the ordinary gate: official In on the final state, book detached from the hand, book settled inside the compartment footprint (xy), tilt, last-10-step displacement, z margin to the In lower bound. 'settled in the compartment' and 'official In true' are different facts and are never merged.",
+  "M4_contact_audit": "frozen contact_policy_v1.1 (DetailRecorder + evaluate; windows from the executor record, unchanged), v0 shown alongside. clean_v1 required. Not relaxed for T5."
+ },
+ "ordinary_gate_per_init": "M1 reached AND M2 complete AND M4 clean_v1; M3 reported, not gated",
+ "forbidden": [
+  "truncating an existing run to its M1 frame and calling it qualified data",
+  "changing In, GUARD, GripPlan, contact policy or place_tol_m after seeing the held-out result",
+  "per-init tuning",
+  "new execution capability (leaning placement) before this gate is judged"
+ ],
+ "heldout_inits": [
+  4,
+  5,
+  6,
+  7
+ ],
+ "diagnostic_inits_already_seen": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "on_heldout_failure": "classify by stage from failure records (pose tracking / in-hand holding / missing execution capability); no parameter expansion",
+ "code_sha256_16": {
+  "synthesis_v2/program_executor.py": "3d6a8f53d0ab2674",
+  "synthesis_v2/contact_policy_v1.py": "593aa454cf166045",
+  "synthesis_v2/contact_audit.py": "b32def76c9b26619",
+  "scripts/mt/s7_task_config.py": "d74dad34146ed8de",
+  "scripts/mt/s15_t5_run.py": "5f468d017453a521"
+ },
+ "git_head_before": "be775b70e759d2435401e77da653303a4a8b75c3"
+}
