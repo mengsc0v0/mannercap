@@ -1,0 +1,224 @@
+{
+ "init": 10,
+ "cond": "N",
+ "request_intents": [],
+ "status": "completed",
+ "plan_stage_speeds": {
+  "approach": {
+   "v_max_mps": 0.12,
+   "w_max_rps": 1.0,
+   "max_steps": 250
+  },
+  "descend": {
+   "v_max_mps": 0.12,
+   "w_max_rps": 1.0,
+   "max_steps": 250
+  },
+  "grasp": {
+   "v_max_mps": 0.12,
+   "w_max_rps": 1.0,
+   "max_steps": 250
+  },
+  "lift": {
+   "v_max_mps": 0.12,
+   "w_max_rps": 1.0,
+   "max_steps": 250
+  },
+  "transport": {
+   "v_max_mps": 0.12,
+   "w_max_rps": 1.0,
+   "max_steps": 250
+  },
+  "place": {
+   "v_max_mps": 0.12,
+   "w_max_rps": 1.0,
+   "max_steps": 250
+  },
+  "retreat": {
+   "v_max_mps": 0.12,
+   "w_max_rps": 1.0,
+   "max_steps": 250
+  }
+ },
+ "official_success_ever": true,
+ "official_first_success_step": 182,
+ "stage_at_official_first_success": "book.pick_1.place",
+ "instruction_completed": true,
+ "contact_clean_v1_1": true,
+ "contact_clean_v0": false,
+ "official_success_final": false,
+ "ordinary_gate": true,
+ "grasp_established": true,
+ "place_failure": null,
+ "guard_retries": 0,
+ "release_start_step": 183,
+ "release_end_step": 193,
+ "place_start_step": 156,
+ "release_issued_before_official_first_success": false,
+ "in_region_at_release_start": true,
+ "book_at_release_start_in_region_frame_m": [
+  -0.0015,
+  0.0102,
+  -0.0539
+ ],
+ "post_release_M3": {
+  "official_in_final": false,
+  "book_origin_final_world": [
+   -0.4266,
+   -0.1518,
+   0.8986
+  ],
+  "z_margin_to_official_In_lower_bound_m": -0.0035,
+  "xy_inside_region_footprint": true,
+  "tilt_deg": 0.0,
+  "book_displacement_last_10_control_steps_m": 0.0,
+  "robot_book_contact_steps_after_release_end": [],
+  "detached_from_hand": true
+ },
+ "descent": {
+  "n_steps": 27,
+  "duration_s": 1.35,
+  "mean_speed_mps": 0.12662,
+  "median_speed_mps": 0.13056,
+  "p95_speed_mps": 0.13267,
+  "max_speed_mps": 0.13324,
+  "path_length_m": 0.17094,
+  "net_displacement_m": 0.16866,
+  "first_step": 156,
+  "last_step": 182
+ },
+ "release_window": {
+  "n_steps": 10,
+  "duration_s": 0.5,
+  "mean_speed_mps": 0.01045,
+  "median_speed_mps": 0.00112,
+  "p95_speed_mps": 0.05082,
+  "max_speed_mps": 0.07791,
+  "path_length_m": 0.00523,
+  "net_displacement_m": 0.00496,
+  "first_step": 183,
+  "last_step": 192
+ },
+ "retreat": {
+  "n_steps": 25,
+  "duration_s": 1.25,
+  "mean_speed_mps": 0.11895,
+  "median_speed_mps": 0.12146,
+  "p95_speed_mps": 0.12258,
+  "max_speed_mps": 0.12353,
+  "path_length_m": 0.14868,
+  "net_displacement_m": 0.14839,
+  "first_step": 193,
+  "last_step": 217
+ },
+ "by_stage": {
+  "book.pick_1.approach": {
+   "n_steps": 27,
+   "duration_s": 1.35,
+   "mean_speed_mps": 0.12009,
+   "median_speed_mps": 0.12436,
+   "p95_speed_mps": 0.14342,
+   "max_speed_mps": 0.15308,
+   "path_length_m": 0.16212,
+   "net_displacement_m": 0.16118,
+   "first_step": 0,
+   "last_step": 26
+  },
+  "book.pick_1.descend": {
+   "n_steps": 20,
+   "duration_s": 1.0,
+   "mean_speed_mps": 0.12024,
+   "median_speed_mps": 0.12731,
+   "p95_speed_mps": 0.12799,
+   "max_speed_mps": 0.1282,
+   "path_length_m": 0.12024,
+   "net_displacement_m": 0.1173,
+   "first_step": 27,
+   "last_step": 46
+  },
+  "book.pick_1.grasp": {
+   "n_steps": 10,
+   "duration_s": 0.5,
+   "mean_speed_mps": 0.01291,
+   "median_speed_mps": 0.00381,
+   "p95_speed_mps": 0.04969,
+   "max_speed_mps": 0.07398,
+   "path_length_m": 0.00646,
+   "net_displacement_m": 0.00572,
+   "first_step": 47,
+   "last_step": 56
+  },
+  "book.pick_1.lift": {
+   "n_steps": 44,
+   "duration_s": 2.2,
+   "mean_speed_mps": 0.12006,
+   "median_speed_mps": 0.12235,
+   "p95_speed_mps": 0.12433,
+   "max_speed_mps": 0.12452,
+   "path_length_m": 0.26413,
+   "net_displacement_m": 0.26379,
+   "first_step": 57,
+   "last_step": 100
+  },
+  "book.pick_1.transport": {
+   "n_steps": 55,
+   "duration_s": 2.75,
+   "mean_speed_mps": 0.12409,
+   "median_speed_mps": 0.12605,
+   "p95_speed_mps": 0.12831,
+   "max_speed_mps": 0.13395,
+   "path_length_m": 0.34126,
+   "net_displacement_m": 0.3371,
+   "first_step": 101,
+   "last_step": 155
+  },
+  "book.pick_1.place#descent": {
+   "n_steps": 27,
+   "duration_s": 1.35,
+   "mean_speed_mps": 0.12662,
+   "median_speed_mps": 0.13056,
+   "p95_speed_mps": 0.13267,
+   "max_speed_mps": 0.13324,
+   "path_length_m": 0.17094,
+   "net_displacement_m": 0.16866,
+   "first_step": 156,
+   "last_step": 182
+  },
+  "book.pick_1.retreat": {
+   "n_steps": 25,
+   "duration_s": 1.25,
+   "mean_speed_mps": 0.11895,
+   "median_speed_mps": 0.12146,
+   "p95_speed_mps": 0.12258,
+   "max_speed_mps": 0.12353,
+   "path_length_m": 0.14868,
+   "net_displacement_m": 0.14839,
+   "first_step": 193,
+   "last_step": 217
+  }
+ },
+ "stages_executed": [
+  "book.pick_1.approach",
+  "book.pick_1.descend",
+  "book.pick_1.grasp",
+  "book.pick_1.lift",
+  "book.pick_1.transport",
+  "book.pick_1.place",
+  "book.pick_1.retreat"
+ ],
+ "v11_contacts": [
+  {
+   "body": "rightfinger[finger_link_on_target]",
+   "max_n": 1.2,
+   "excused": true,
+   "steps": [
+    54,
+    54
+   ]
+  }
+ ],
+ "cost": {
+  "control_steps": 218,
+  "sim_wall_s": 6.1
+ }
+}
