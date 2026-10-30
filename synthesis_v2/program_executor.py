@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from dataclasses import dataclass, field
 from typing import Any, Callable, Mapping, Optional
 
@@ -41,6 +42,9 @@ class ProgramPlan:
     open_steps: int = 10
     align_yaw: bool = True
     approach_check: bool = False  # Step 7.0: whole-hand collision check + alternative grasp placements
+    # Step 14 (A): end the branch at a grasp that did not reach its force band instead of lifting/transporting/placing
+    # an object that is not held.  Off by default so every earlier result stays reproducible bit for bit.
+    stop_on_grasp_failure: bool = False
 
     def stage(self, label: str) -> StagePlan:
         for sp in self.stages:
@@ -63,6 +67,7 @@ class ProgramPlan:
                       for k, g in sorted(self.grips.items())},
             "open_steps": self.open_steps, "align_yaw": self.align_yaw,
             **({"approach_check": True} if self.approach_check else {}),
+            **({"stop_on_grasp_failure": True} if self.stop_on_grasp_failure else {}),
         }
 
     def plan_hash(self) -> str:
@@ -100,9 +105,17 @@ class _GripView:
         return self._base.stage(label)
 
 
+def _rotate_grasp_about_z(off: np.ndarray, quat_xyzw: np.ndarray, delta_rad: float) -> tuple[np.ndarray, np.ndarray]:
+    from scipy.spatial.transform import Rotation as R
+    rz = R.from_euler("z", delta_rad)
+    return rz.apply(off), (rz * R.from_quat(quat_xyzw)).as_quat()
+
+
 def _kind(env_name: str) -> str:
     if env_name.startswith("@spot:"):
         return "spot"
+    if env_name.startswith("@site:"):
+        return "site"
     if env_name.endswith("Nut"):
         return "nut"
     if env_name.startswith("peg"):
@@ -144,6 +157,8 @@ class _Geometry:
                 if nm != "peg1":
                     raise ValueError(f"unsupported peg {nm!r}")
                 rec["target_pos0"] = np.asarray(s.env.sim.data.body_xpos[s.env.peg1_body_id], dtype=np.float64).tolist()
+            elif k == "site":
+                self._capture_site_target(rec, sub, nm, obj_role)
             elif k == "spot":
                 ref = nm.split(":", 1)[1]
                 if ref == obj_role:  # put the object back where this subtask just picked it up
@@ -168,6 +183,33 @@ class _Geometry:
             rec.update(obj_role=obj_role, target_role=tgt_role)
             self.meta["subtasks"][sub] = rec
         return rec
+
+    def _capture_site_target(self, rec: dict, sub: str, nm: str, obj_role: Optional[str]) -> None:
+        """Target = a named region site of the scene (``@site:<site name>``), optionally displaced / yawed in the SITE frame.
+        The task config supplies, as instance params of the subtask: ``target_offset_site`` (x, y, z in the site frame),
+        ``target_yaw_deg`` (object yaw relative to the site) and ``target_yaw_symmetry_deg`` (the object looks the same after
+        this rotation; the smallest rotation is used).  ``target_pos0`` is where the OBJECT should be; the hand target is
+        derived from it through the grasp pose (executor: ``tgt0 + grasp offset``, rotated by ``target_yaw_delta_rad``)."""
+        if not hasattr(self.s, "site_pose"):
+            raise ValueError(f"backend {type(self.s).__name__} cannot resolve site targets")
+        pos, mat = self.s.site_pose(nm.split(":", 1)[1])
+        prm: dict[str, Any] = {}
+        for i in self.p.instances:
+            if i.subtask == sub and i.target_role:
+                prm.update(i.params)
+        off = np.asarray(prm.get("target_offset_site", (0.0, 0.0, 0.0)), dtype=np.float64)
+        rec["target_pos0"] = (pos + mat @ off).tolist()
+        rec["target_site"] = nm.split(":", 1)[1]
+        if "target_yaw_deg" in prm:
+            if obj_role is None:
+                raise ValueError("a target yaw needs the object role of the subtask")
+            from scipy.spatial.transform import Rotation as R
+            obj_yaw = R.from_quat(np.asarray(self.s.obs[f"{self.name(obj_role)}_quat"], dtype=np.float64)).as_euler("xyz")[2]
+            site_yaw = math.atan2(mat[1, 0], mat[0, 0])
+            sym = math.radians(float(prm.get("target_yaw_symmetry_deg", 360.0)))
+            want = site_yaw + math.radians(float(prm["target_yaw_deg"]))
+            rec["target_yaw_delta_rad"] = float((want - obj_yaw + sym / 2) % sym - sym / 2)
+            rec["target_yaw_want_rad"], rec["target_yaw_symmetry_rad"] = float(want), float(sym)
 
     def record(self, sub: str) -> Optional[dict]:
         if self.legacy:
@@ -389,6 +431,25 @@ def produce_program_episode(
             tgt0 = np.asarray(r["target_pos0"], dtype=np.float64) if "target_pos0" in r else None
             lab, prim = it.label, it.primitive
             nut = "center_offset" in r
+            if "target_yaw_want_rad" in r and prim == "transport" and not r.get("target_yaw_refreshed"):
+                # the object may have turned in the hand while it was grasped and lifted: from here on use the object's
+                # ACTUAL yaw and the ACTUAL hand pose relative to it, not the planned grasp pose
+                from scipy.spatial.transform import Rotation as R
+                nm_o = program.objects[it.object_role]
+                o_pos = np.asarray(s.obs[f"{nm_o}_pos"], dtype=np.float64)
+                o_yaw = R.from_quat(np.asarray(s.obs[f"{nm_o}_quat"], dtype=np.float64)).as_euler("xyz")[2]
+                sym_r = float(r["target_yaw_symmetry_rad"])
+                r["target_yaw_delta_rad"] = float((r["target_yaw_want_rad"] - o_yaw + sym_r / 2) % sym_r - sym_r / 2)
+                r["grasp_offset_actual"] = (np.asarray(s.obs["robot0_eef_pos"], dtype=np.float64) - o_pos).tolist()
+                r["grasp_quat_actual_xyzw"] = np.asarray(s.obs["robot0_eef_quat"], dtype=np.float64).tolist()
+                r["target_yaw_refreshed"] = True
+            if r.get("target_yaw_refreshed") and prim in ("transport", "place", "retreat"):
+                off = np.asarray(r["grasp_offset_actual"], dtype=np.float64)
+                quat = np.asarray(r["grasp_quat_actual_xyzw"], dtype=np.float64)
+            if "target_yaw_delta_rad" in r and prim in ("transport", "place", "retreat"):
+                # the object must end up yawed by delta; the hand keeps its pose relative to the object, so the hand
+                # offset and the hand orientation are rotated by the same delta about the vertical axis
+                off, quat = _rotate_grasp_about_z(off, quat, float(r["target_yaw_delta_rad"]))
             if prim == "approach":
                 rn.servo(lab, obj0 + off + [0, 0, APPROACH_DZ], quat, GRIP_OPEN)
             elif prim == "descend":
@@ -431,8 +492,16 @@ def produce_program_episode(
                     meta.setdefault("grasp_policy_by_instance", {})[it.instance_id] = info
                 if not pol.reached and status_box[0] == "completed":
                     status_box[0] = "grasp_band_not_reached" if legacy else f"grasp_band_not_reached:{it.instance_id}"
+                if not pol.reached and plan.stop_on_grasp_failure:
+                    # nothing after the grasp depends on a held object any more: record why and end the branch; the caller
+                    # (bounded repair / the request) decides what happens next
+                    meta.setdefault("grasp_failure", {})[it.instance_id] = {
+                        "control_step": int(s.control_step_index), "object": tgt_name, "reached_band": False,
+                        "reverse_pulses": pol.reversed_pulses, "closing_steps": pol.closing_steps, "final": pol.final}
+                    stop[0] = True
             elif prim == "lift":
-                rn.servo(lab, obj0 + off + [0, 0, LIFT_DZ], quat, GRIP_HOLD)
+                # per-instance lift height (e.g. above a fixture wall the carry path crosses); default unchanged
+                rn.servo(lab, obj0 + off + [0, 0, float(it.params.get("lift_dz", LIFT_DZ))], quat, GRIP_HOLD)
             elif prim == "transport":
                 if nut:
                     hxy = tgt0[:2] - np.asarray(r["center_offset"])[:2]

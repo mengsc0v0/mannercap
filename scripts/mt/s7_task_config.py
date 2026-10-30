@@ -4,7 +4,7 @@ constant, a code branch) is a shared-code or task-specific change and must be lo
 from __future__ import annotations
 
 import sys
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -27,6 +27,9 @@ class TaskSpec:
     grasp_grid: tuple = ()     # optional wider grasp-candidate ranges (yaws_deg, laterals_m, dzs_m); () = executor default grid
     grasp_reference: tuple = ()  # optional per-object grasp reference aligned with ``objects`` (dict(rel_obj, hand_yaw_rel_deg) or None)
     container_dz: bool = True  # True: basket release/transport heights; False: executor defaults (STACK_PLACE_DZ / LIFT_DZ)
+    # Step 14 (B): per-task constants for a target given as a scene region (``@site:<name>``).  Keys: target_offset_site (x, y, z in
+    # the site frame), target_yaw_deg / target_yaw_symmetry_deg (object yaw in the site frame), lift_dz, transport_dz, place_dz.
+    target_params: dict = field(default_factory=dict)
 
 
 SPECS = {
@@ -35,7 +38,18 @@ SPECS = {
     7: TaskSpec(7, (("alphabet_soup", "alphabet_soup_1"), ("cream_cheese", "cream_cheese_1")), ("basket", "basket_1")),
     # Step 14 (T5 pre-check): config-only entry.  One object, target = the desk caddy BODY (not its back compartment);
     # executor defaults for carry/release heights.  Whatever this cannot express is a gap, not tuned here.
-    5: TaskSpec(5, (("book", "black_book_1"),), ("caddy", "desk_caddy_1"), container_dz=False),
+    5: TaskSpec(5, (("book", "black_book_1"),), ("caddy_back", "@site:desk_caddy_1_back_contain_region"), container_dz=False,
+                # Official goal In(black_book_1, desk_caddy_1_back_contain_region).  Offset 0: the site centre is the book's resting
+                # pose in the compartment (floor top 0.901 + book half height 0.067 = 0.968 vs site z 0.973), place_dz 0 releases there.
+                # Yaw 0 mod 180: book thin axis along the site x axis (the compartment is 6.1 cm wide for a 2.9 cm book).
+                # lift/transport heights from the scene (read from the fixture collision geoms, not searched): carried book bottom =
+                # compartment end-wall top 1.054 + 0.02 margin -> centre 1.141 -> lift 0.26 above the book's start, transport 0.17 above the site.
+                target_params={"target_offset_site": (0.0, 0.0, 0.0), "target_yaw_deg": 0.0, "target_yaw_symmetry_deg": 180.0,
+                               "lift_dz": 0.26, "transport_dz": 0.17, "place_dz": 0.0},
+                # Step 14 (C): ONE ordinary official demonstration, used as is (no averaging, no per-init choice).  Pre-registered
+                # rule: replay-successful in two independent replays, lowest index -> demo_0 (reports/step14_t5_onboard/demo_replay).
+                # hand minus book origin in the book yaw frame at the demo's last close + hand yaw vs the executor's yaw-aligned quat.
+                grasp_reference=({"rel_obj": [0.0084, -0.0123, 0.1209], "hand_yaw_rel_deg": -4.1},)),
     # Step 9: first task whose targets are two different objects (plates) and that has no container
     4: TaskSpec(4, (("white_mug", "porcelain_mug_1"), ("yellow_mug", "white_yellow_mug_1")), ("plate_left", "plate_1"),
                 targets=(("plate_left", "plate_1"), ("plate_right", "plate_2")), container_dz=False,
@@ -48,10 +62,8 @@ SPECS = {
 }
 
 
-# Step 14 (T5 pre-check): the default grasp grid blocked all 35 candidates on every probed init (book is 2.9 cm thin x 13.4 cm
-# tall; descent collides with the book itself at the default yaw).  One pre-registered config retry: T4's existing wide grid,
-# reused unchanged (no T5-specific range).  No reference grasp (the T5 official demonstrations are not on disk).
-SPECS[5] = replace(SPECS[5], grasp_grid=SPECS[4].grasp_grid)
+# Step 14 (T5): no grasp grid of its own any more.  The pre-check showed that widening the grid (T4's grid) still never reached the
+# grasp band; T5 takes its grasp from one ordinary official demonstration (grasp_reference in its TaskSpec).
 
 
 # Named grasp-closure configurations (algorithm settings, saved here rather than patched at call sites).
@@ -71,6 +83,11 @@ def make_program(t: int) -> TaskProgram:
     if sp.container_dz:
         inst = tuple(replace(i, params={**i.params, "place_dz": BASKET_RELEASE_DZ}) if i.primitive == "place" else i for i in inst)
         inst = tuple(replace(i, params={**i.params, "transport_dz": BASKET_TRANSPORT_DZ}) if i.primitive == "transport" else i for i in inst)
+    if sp.target_params:
+        tp = dict(sp.target_params)
+        lift = {"lift_dz": tp.pop("lift_dz")} if "lift_dz" in tp else {}
+        inst = tuple(replace(i, params={**i.params, **tp}) if i.primitive in ("transport", "place")
+                     else replace(i, params={**i.params, **lift}) if i.primitive == "lift" and lift else i for i in inst)
     if sp.grasp_grid:
         gg = {"yaws_deg": list(sp.grasp_grid[0]), "laterals_m": list(sp.grasp_grid[1]), "dzs_m": list(sp.grasp_grid[2])}
         inst = tuple(replace(i, params={**i.params, "grasp_grid": gg}) if i.primitive == "approach" else i for i in inst)

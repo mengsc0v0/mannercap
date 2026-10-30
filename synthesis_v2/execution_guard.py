@@ -62,7 +62,8 @@ def pre_close_check(session, target_name: str, *, min_clearance_m: float = MIN_C
     import mujoco
     m, d = session._mj()
     palm = non_finger_gripper_geoms(m, mujoco)
-    obstacles = {n: tuple(session.geom_ids_of(n)) for n in session.env.objects_dict}
+    obstacles = ({n: tuple(g) for n, g in session.obstacle_geoms().items()} if hasattr(session, "obstacle_geoms")
+                 else {n: tuple(session.geom_ids_of(n)) for n in session.env.objects_dict})
     support = tuple(g for g in range(int(m.ngeom))
                     if ((mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_BODY, int(m.geom_bodyid[g])) or "")
                         .startswith(SUPPORT_PREFIXES)) and (m.geom_contype[g] or m.geom_conaffinity[g]))

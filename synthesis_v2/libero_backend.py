@@ -79,6 +79,34 @@ class LiberoSession(NativeSession):
             raise ValueError(f"unresolved contact geom for {env_name!r}")
         return ids
 
+    def fixture_geom_ids(self, name: str) -> tuple[int, ...]:
+        """Collision geoms of a BDDL fixture (every collision-enabled geom of its kinematic tree).  Fixtures have no
+        ``contact_geoms`` list; the region SITES of a fixture are not geoms and are never included here."""
+        import mujoco
+        m = self._mj()[0]
+        bid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_BODY, name + "_main")
+        if bid < 0:
+            return ()
+        root = m.body_rootid[bid]
+        return tuple(int(g) for g in range(int(m.ngeom))
+                     if m.body_rootid[m.geom_bodyid[g]] == root and (m.geom_contype[g] or m.geom_conaffinity[g]))
+
+    def obstacle_geoms(self) -> dict[str, tuple[int, ...]]:
+        """Collision geometry of everything the hand must not touch, movable objects first (their order is what every
+        earlier task saw), then fixtures.  One source for the approach planner and the execution guard."""
+        out = {n: self.geom_ids_of(n) for n in getattr(self.env, "objects_dict", {})}
+        out.update({n: self.fixture_geom_ids(n) for n in getattr(self.env, "fixtures_dict", {})})
+        return out
+
+    def site_pose(self, site_name: str):
+        """World position and rotation matrix of a named site (a region of the scene; no collision geometry)."""
+        import mujoco
+        m, d = self._mj()
+        sid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_SITE, site_name)
+        if sid < 0:
+            raise ValueError(f"unknown site {site_name!r}")
+        return d.site_xpos[sid].astype(np.float64).copy(), d.site_xmat[sid].reshape(3, 3).astype(np.float64).copy()
+
     # --- episode --------------------------------------------------------
     def reset(self) -> dict:
         self.wrapper.seed(0)

@@ -1,0 +1,152 @@
+{
+ "init": 2,
+ "status": "stage_timeout:book.pick_1.place",
+ "task_ok": false,
+ "env_success_now": false,
+ "grasp_established": true,
+ "grasp_policy": {
+  "book.pick_1.grasp": {
+   "reached_band": true,
+   "reverse_pulses": 0,
+   "closing_steps": 7,
+   "final": {
+    "left_n": 9.037250261033659,
+    "right_n": 9.287885838831023,
+    "total_n": 18.325136099864682
+   }
+  }
+ },
+ "grasp_failure": null,
+ "stages_executed": [
+  "book.pick_1.approach",
+  "book.pick_1.descend",
+  "book.pick_1.grasp",
+  "book.pick_1.lift",
+  "book.pick_1.transport",
+  "book.pick_1.place",
+  "book.pick_1.retreat"
+ ],
+ "book_max_rise_during_lift_transport_m": 0.278,
+ "book_carried": true,
+ "book_in_region_frame_at_end_of_transport_m": [
+  -0.0003,
+  -0.0003,
+  -0.1696
+ ],
+ "entered_official_region_any_step": true,
+ "first_step_in_region": 418,
+ "book_final_in_region_frame_m": [
+  0.1783,
+  0.0217,
+  0.0409
+ ],
+ "final_in_region": false,
+ "back_region_half_size": [
+  0.0278,
+  0.0622,
+  0.0605
+ ],
+ "contact_audit": {
+  "clean": false,
+  "max_forbidden_n": 57.8,
+  "forbidden_contacts": [
+   {
+    "robot_body": "leftfinger[finger_link_on_target]",
+    "other": "black_book_1_main",
+    "max_n": 15.6,
+    "control_steps": 234,
+    "class": "finger_link_on_target",
+    "stages": [
+     "place@book"
+    ]
+   },
+   {
+    "robot_body": "right_gripper",
+    "other": "black_book_1_main",
+    "max_n": 57.8,
+    "control_steps": 237,
+    "class": "other",
+    "stages": [
+     "place@book"
+    ]
+   },
+   {
+    "robot_body": "rightfinger[finger_link_on_target]",
+    "other": "black_book_1_main",
+    "max_n": 13.6,
+    "control_steps": 231,
+    "class": "finger_link_on_target",
+    "stages": [
+     "grasp@book",
+     "place@book"
+    ]
+   }
+  ],
+  "forbidden_by_class": {
+   "finger_link_on_target": 2,
+   "other": 1
+  }
+ },
+ "guard": {
+  "n_checks": 2,
+  "n_retries": 0,
+  "retries": [],
+  "chosen_candidate": {
+   "book.pick_1.approach": [
+    -4.1,
+    -0.011693,
+    0.120247,
+    -0.009249
+   ]
+  }
+ },
+ "approach_plan": {
+  "book.pick_1": {
+   "feasible": true,
+   "default_feasible": true,
+   "margin_m": 0.0,
+   "n_samples": 20,
+   "chosen": {
+    "yaw_deg": -4.1,
+    "lateral_m": -0.011693473357157877,
+    "dz_m": 0.12024708990366888,
+    "offset": [
+     -0.01468,
+     0.00254,
+     0.1209
+    ],
+    "min_clearance_m": 0.0159,
+    "blocking": "black_book_1",
+    "phase": "descent",
+    "at_grasp_clearance_m": 0.01481,
+    "feasible": true,
+    "longitudinal_m": -0.009248728152526193
+   },
+   "candidates": [
+    {
+     "yaw_deg": -4.1,
+     "lateral_m": -0.011693473357157877,
+     "dz_m": 0.12024708990366888,
+     "offset": [
+      -0.01468,
+      0.00254,
+      0.1209
+     ],
+     "min_clearance_m": 0.0159,
+     "blocking": "black_book_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01481,
+     "feasible": true,
+     "longitudinal_m": -0.009248728152526193
+    }
+   ],
+   "lookahead_control_steps": 23,
+   "grid_source": "grasp_reference",
+   "grid_size": 1
+  }
+ },
+ "cost": {
+  "control_steps": 448,
+  "sim_wall_s": 10.4
+ }
+}

@@ -258,6 +258,6 @@ def scene_from_libero(session, target_env_name: str, *, settled: bool = True, re
     gids = [g for g in range(m.ngeom) if (m.geom_contype[g] or m.geom_conaffinity[g])
             and (mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_BODY, int(m.geom_bodyid[g])) or "").startswith("gripper0")]
     env = HandEnvelope.from_sim(m, d, site, gids, obs_quat)
-    obstacles = [Obstacle(n, tuple(session.geom_ids_of(n))) for n in session.env.objects_dict if n != target_env_name]
+    obstacles = [Obstacle(n, tuple(g)) for n, g in session.obstacle_geoms().items() if n != target_env_name]
     target = Obstacle(target_env_name, tuple(session.geom_ids_of(target_env_name)))
     return (m, d, site, env, obstacles, target, used) if return_steps else (m, d, site, env, obstacles, target)

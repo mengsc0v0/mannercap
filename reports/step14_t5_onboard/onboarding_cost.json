@@ -1,0 +1,53 @@
+{
+ "note": "T5 onboarding cost, Step 14 A-D. Pre-check cost (~10 min / 12 attempts) is a separate, failed-pre-check cost and not included here.",
+ "added_shared_code_lines_vs_05b64ff": {
+  "program_executor.py": "+71",
+  "libero_backend.py": "+28",
+  "approach_planner.py": "+/-2",
+  "execution_guard.py": "+/-3",
+  "tests/test_stop_on_grasp_failure.py": "4 tests",
+  "note_git_diff_stat": "5 files, 124 insertions, 9 deletions"
+ },
+ "task_config": "scripts/mt/s7_task_config.py: T5 TaskSpec (site target, target_params, one grasp_reference); +29/-? lines",
+ "demo_processing": {
+  "download_bytes": 940528916,
+  "download_wall_s": 367,
+  "replay_demos": "0-7 twice, ~4 s each",
+  "poses_extracted": 3,
+  "reference_used": "demo_0 unaveraged",
+  "selection_rule": "replay-successful in both replays, lowest index"
+ },
+ "execution": {
+  "runs": [
+   "d_demo0_ref (before yaw refresh)",
+   "d_demo0_ref_yawfix (after yaw refresh, committed code)"
+  ],
+  "episodes_each": 4,
+  "sim_wall_s_per_episode": "10-11",
+  "sim_wall_total_s_first_run": 54,
+  "control_steps_per_episode": "~450"
+ },
+ "results": {
+  "d_demo0_ref": {
+   "grasp_established": "4/4",
+   "book_carried": "4/4",
+   "entered_region_and_ended_inside_env_success": "4/4",
+   "contact_audit_clean": "0/4",
+   "status": "stage_timeout:place 4/4",
+   "max_forbidden_n": "67.0-72.4 right_gripper<->book (place)"
+  },
+  "d_demo0_ref_yawfix": {
+   "grasp_established": "4/4",
+   "book_carried": "4/4",
+   "env_success": "3/4 (init 2 False)",
+   "contact_audit_clean": "0/4",
+   "status": "stage_timeout:place 4/4",
+   "max_forbidden_n": "55.2-57.8"
+  }
+ },
+ "diagnosis": {
+  "yaw": "book turned 4 deg in hand during lift; yaw refresh now aligns to 180.0 deg but does not remove the stall",
+  "stall": "book is lowered onto the caddy end wall (geom 135, y[-0.0805,-0.0681], top z 1.054) while the compartment inner width (~0.129 m, walls y -0.2093..-0.0805) is only ~2-3 mm wider per side than the book (~0.124 m); the hand body (right_gripper) is then pressed on the book 40-60 N until the time-out releases it",
+  "frames": "s14_t5_run.py site-frame columns book_in_region_frame_* are not trustworthy (site matrix is diag(1,-1,-1): sign/z flipped); authoritative signals are env success() and In check"
+ }
+}
