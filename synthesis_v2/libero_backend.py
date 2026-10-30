@@ -86,7 +86,7 @@ class LiberoSession(NativeSession):
         obs = self.wrapper.set_init_state(self._init_state)
         for _ in range(SETTLE_STEPS):
             obs, *_ = self.env.step(np.array([0, 0, 0, 0, 0, 0, -1.0], dtype=np.float32))
-        self.obs = obs
+        self.obs = obs = self._with_fixtures(obs)
         self.sim_step_index = 0
         self.control_step_index = 0
         if "step" in vars(self.env.sim):  # drop a hook left by an earlier reset
@@ -100,6 +100,27 @@ class LiberoSession(NativeSession):
                 if f"{nm}_{suf}" in obs:
                     self.initial[f"{nm}_{suf}"] = np.asarray(obs[f"{nm}_{suf}"], dtype=np.float64).copy()
         return obs
+
+    def _with_fixtures(self, obs: dict) -> dict:
+        """env.step() publishes poses for objects only.  A task whose placement target is a BDDL *fixture* (T5: the desk
+        caddy) therefore has no ``<name>_pos`` for it, and the shared executor cannot name it as a target.  Publish
+        ``<name>_pos`` / ``<name>_quat`` (xyzw, as for objects) for every entry of ``env.fixtures_dict``.  Tasks whose
+        BDDL lists no fixture (T0/T1/T4/T7) get an unchanged observation dict."""
+        import mujoco
+        m, d = self._mj()
+        for nm in getattr(self.env, "fixtures_dict", {}):
+            bid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_BODY, nm + "_main")
+            if bid < 0:
+                continue
+            w, x, y, z = d.xquat[bid]
+            obs[f"{nm}_pos"] = np.asarray(d.xpos[bid], dtype=np.float64).copy()
+            obs[f"{nm}_quat"] = np.array([x, y, z, w], dtype=np.float64)
+        return obs
+
+    def step(self, action7):
+        obs, tel = super().step(action7)
+        self.obs = obs = self._with_fixtures(obs)
+        return obs, tel
 
     def success(self) -> bool:
         try:

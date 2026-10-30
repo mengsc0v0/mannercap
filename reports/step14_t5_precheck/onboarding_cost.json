@@ -1,0 +1,24 @@
+{
+ "task": "libero_10 task 5: pick up the book and place it in the back compartment of the caddy",
+ "stage": "pre-check only (no manner request, no calibration, no retrieval/audit/recovery run)",
+ "elapsed_note": "agent-session wall clock, includes simulator waiting; not human working time",
+ "session_start_utc": "2026-10-30T09:24:02Z", "session_end_utc": "2026-10-30T09:34:11Z",
+ "static_check": {"inits": "0-7,14-21 (dev)", "script": "scripts/mt/s14_t5_static.py", "result": "static.json (book/caddy/mug pose, back-region site frame); goal = In(black_book_1, desk_caddy_1_back_contain_region)"},
+ "ordinary_runs": {
+  "a_config_only (default grasp grid, caddy body as target)": {"inits": [0,1,2,3], "episodes": 4, "status": "exception: KeyError desk_caddy_1_pos (fixture pose not in obs)", "sim_wall_s": 6.2},
+  "b_adapter_obs (+ fixture pose published)": {"inits": [0,1,2,3], "episodes": 4, "status": "approach_infeasible:book.pick_1.approach (0/35 default-grid candidates; blocking=black_book_1, descent)", "sim_wall_s": 13.0},
+  "c_wide_grid_t4 (+ T4 wide grasp grid, unchanged)": {"inits": [0,1,2,3], "episodes": 4, "status": "grasp_band_not_reached:book.pick_1.grasp in 4/4; approach feasible 4/4; book rise 0.000/0.000/0.015/0.000 m; task_ok 0/4", "sim_wall_s": 121.8}
+ },
+ "task_config_added": ["s7_task_config.SPECS[5] (one TaskSpec line, container_dz=False)", "s7_task_config: SPECS[5] = replace(..., grasp_grid=SPECS[4].grasp_grid)  (T4's grid reused, no T5 range)"],
+ "shared_code_changed": ["libero_backend.LiberoSession._with_fixtures + step() override: publish <fixture>_pos/_quat for env.fixtures_dict (about 20 lines).  fixtures_dict is empty for T0/T1/T4/T7, so those observation dicts are unchanged"],
+ "task_specific_scripts": ["scripts/mt/s14_t5_static.py", "scripts/mt/s14_t5_ordinary.py"],
+ "calibration_added": "none (no force calibration, no pairs, no reference grasp; T5 official demonstrations are not on disk)",
+ "manual_decisions": ["target = caddy body (config could not express the back compartment)", "one pre-registered config retry: T4 wide grid", "stopped after 2 grid settings per the stop rule"],
+ "gaps_found": [
+  "G1 target region: tgt0 = caddy BODY position (+ place_dz); the goal region is a site on the caddy.  No parameter in TaskSpec/instances selects a site or a body-frame offset",
+  "G2 fixtures are not obstacles: approach_planner.scene_from_libero and execution_guard use env.objects_dict only, so the caddy is invisible to the approach check and to the pre/post-close guard",
+  "G3 grasp of a thin upright object (2.9 cm x 11 cm x 13.4 cm): approach clearance is satisfiable with the wide grid but the grasp never reaches the force band (0 reverse pulses, book not lifted); cause NOT diagnosed",
+  "G4 after grasp_band_not_reached the program keeps executing transport/place, so the 1000+ N caddy contacts in place@book are downstream of G3, not evidence about G1/G2 by themselves"
+ ],
+ "not_done": ["no further grid, no T5-specific grasp range, no force-band change, no manner layer"]
+}

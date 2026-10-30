@@ -33,6 +33,9 @@ SPECS = {
     1: TaskSpec(1, (("cream_cheese", "cream_cheese_1"), ("butter", "butter_1")), ("basket", "basket_1")),
     0: TaskSpec(0, (("alphabet_soup", "alphabet_soup_1"), ("tomato_sauce", "tomato_sauce_1")), ("basket", "basket_1")),
     7: TaskSpec(7, (("alphabet_soup", "alphabet_soup_1"), ("cream_cheese", "cream_cheese_1")), ("basket", "basket_1")),
+    # Step 14 (T5 pre-check): config-only entry.  One object, target = the desk caddy BODY (not its back compartment);
+    # executor defaults for carry/release heights.  Whatever this cannot express is a gap, not tuned here.
+    5: TaskSpec(5, (("book", "black_book_1"),), ("caddy", "desk_caddy_1"), container_dz=False),
     # Step 9: first task whose targets are two different objects (plates) and that has no container
     4: TaskSpec(4, (("white_mug", "porcelain_mug_1"), ("yellow_mug", "white_yellow_mug_1")), ("plate_left", "plate_1"),
                 targets=(("plate_left", "plate_1"), ("plate_right", "plate_2")), container_dz=False,
@@ -43,6 +46,12 @@ SPECS = {
                 grasp_reference=({"rel_obj": [-0.0319, -0.013, 0.101], "hand_yaw_rel_deg": 10.3},
                                  {"rel_obj": [-0.0572, -0.0163, 0.0762], "hand_yaw_rel_deg": 1.8})),
 }
+
+
+# Step 14 (T5 pre-check): the default grasp grid blocked all 35 candidates on every probed init (book is 2.9 cm thin x 13.4 cm
+# tall; descent collides with the book itself at the default yaw).  One pre-registered config retry: T4's existing wide grid,
+# reused unchanged (no T5-specific range).  No reference grasp (the T5 official demonstrations are not on disk).
+SPECS[5] = replace(SPECS[5], grasp_grid=SPECS[4].grasp_grid)
 
 
 # Named grasp-closure configurations (algorithm settings, saved here rather than patched at call sites).
