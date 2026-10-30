@@ -39,13 +39,16 @@ SPECS = {
     # Step 14 (T5 pre-check): config-only entry.  One object, target = the desk caddy BODY (not its back compartment);
     # executor defaults for carry/release heights.  Whatever this cannot express is a gap, not tuned here.
     5: TaskSpec(5, (("book", "black_book_1"),), ("caddy_back", "@site:desk_caddy_1_back_contain_region"), container_dz=False,
-                # Official goal In(black_book_1, desk_caddy_1_back_contain_region).  Offset 0: the site centre is the book's resting
-                # pose in the compartment (floor top 0.901 + book half height 0.067 = 0.968 vs site z 0.973), place_dz 0 releases there.
-                # Yaw 0 mod 180: book thin axis along the site x axis (the compartment is 6.1 cm wide for a 2.9 cm book).
+                # Official goal In(black_book_1, desk_caddy_1_back_contain_region).  Step 15: the region is "the book fits in here", so the
+                # book's COLLISION centre (not its body origin, 1.2 cm away in y) is aligned over the site (target_align); the height is the
+                # demo_0 book-origin height at its first environment success (region frame z -0.0533, i.e. 5.3 cm above the site centre).
+                # Yaw 0 mod 180: book thin axis along the site x axis.  place_tol_m: the measured lateral margin between the book's
+                # collision box and the compartment walls is ~6 mm on one side (reports/step15_t5_place/fit_margin.json), so the place pose
+                # is accepted only within 4 mm (the executor default 8 mm would not guarantee the book is inside the walls).
                 # lift/transport heights from the scene (read from the fixture collision geoms, not searched): carried book bottom =
                 # compartment end-wall top 1.054 + 0.02 margin -> centre 1.141 -> lift 0.26 above the book's start, transport 0.17 above the site.
-                target_params={"target_offset_site": (0.0, 0.0, 0.0), "target_yaw_deg": 0.0, "target_yaw_symmetry_deg": 180.0,
-                               "lift_dz": 0.26, "transport_dz": 0.17, "place_dz": 0.0},
+                target_params={"target_offset_site": (0.0, 0.0, -0.0533), "target_align": "collision_center", "target_yaw_deg": 0.0,
+                               "target_yaw_symmetry_deg": 180.0, "lift_dz": 0.26, "transport_dz": 0.17, "place_dz": 0.0, "place_tol_m": 0.004},
                 # Step 14 (C): ONE ordinary official demonstration, used as is (no averaging, no per-init choice).  Pre-registered
                 # rule: replay-successful in two independent replays, lowest index -> demo_0 (reports/step14_t5_onboard/demo_replay).
                 # hand minus book origin in the book yaw frame at the demo's last close + hand yaw vs the executor's yaw-aligned quat.

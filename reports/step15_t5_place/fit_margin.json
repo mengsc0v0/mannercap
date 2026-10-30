@@ -1,0 +1,19 @@
+{
+ "note": "book collision-box half-width vs compartment inner width, region frame y; measured in Step 15 (init 0 geometry); the 8 mm place tolerance was NOT shrunk to fit this margin - the tolerance used (4 mm) is a servo-reach criterion and the collision-centre alignment (not the tolerance) removed the wall overlap",
+ "book_box_half_extent_m": [
+  0.0143,
+  0.0552,
+  0.0672
+ ],
+ "compartment_inner_width_m": 0.1288,
+ "book_width_m": 0.1104,
+ "margin_total_m": 0.0184,
+ "margin_front_m_at_site_centre_alignment": 0.006,
+ "margin_back_m_at_site_centre_alignment": 0.0124,
+ "body_origin_vs_collision_centre_offset_m": [
+  -0.0005,
+  -0.0122,
+  0.0694
+ ],
+ "official_demo_rest_check": "reports/step15_t5_place/demo_rest_check.json: 3/3 official demos lose env success once the book rests flat on the compartment floor (origin z 0.8986-0.8987 < In lower bound 0.90212)"
+}

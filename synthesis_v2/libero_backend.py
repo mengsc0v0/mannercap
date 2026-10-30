@@ -98,6 +98,21 @@ class LiberoSession(NativeSession):
         out.update({n: self.fixture_geom_ids(n) for n in getattr(self.env, "fixtures_dict", {})})
         return out
 
+    def collision_center_in_body(self, name: str):
+        """Centre of the axis-aligned (in the BODY frame) box around all collision geoms of a movable object, relative to the
+        body origin, in the body frame.  The origin of a LIBERO object is not its collision centre (the success predicates
+        use the origin, the contacts use the geoms)."""
+        import mujoco
+        m, d = self._mj()
+        bid = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_BODY, name + "_main")
+        Rb = d.xmat[bid].reshape(3, 3)
+        lo, hi = np.full(3, np.inf), np.full(3, -np.inf)
+        for g in self.geom_ids_of(name):
+            c = Rb.T @ (d.geom_xpos[g] - d.xpos[bid])
+            h = np.abs(Rb.T @ d.geom_xmat[g].reshape(3, 3)) @ m.geom_size[g] if m.geom_type[g] == 6 else np.full(3, m.geom_rbound[g])
+            lo, hi = np.minimum(lo, c - h), np.maximum(hi, c + h)
+        return ((lo + hi) / 2).astype(np.float64)
+
     def site_pose(self, site_name: str):
         """World position and rotation matrix of a named site (a region of the scene; no collision geometry)."""
         import mujoco

@@ -45,6 +45,7 @@ class ProgramPlan:
     # Step 14 (A): end the branch at a grasp that did not reach its force band instead of lifting/transporting/placing
     # an object that is not held.  Off by default so every earlier result stays reproducible bit for bit.
     stop_on_grasp_failure: bool = False
+    stop_on_place_failure: bool = False   # a place that did not reach its pose must not release (see the place branch)
 
     def stage(self, label: str) -> StagePlan:
         for sp in self.stages:
@@ -67,6 +68,7 @@ class ProgramPlan:
                       for k, g in sorted(self.grips.items())},
             "open_steps": self.open_steps, "align_yaw": self.align_yaw,
             **({"approach_check": True} if self.approach_check else {}),
+            **({"stop_on_place_failure": True} if self.stop_on_place_failure else {}),
             **({"stop_on_grasp_failure": True} if self.stop_on_grasp_failure else {}),
         }
 
@@ -109,6 +111,16 @@ def _rotate_grasp_about_z(off: np.ndarray, quat_xyzw: np.ndarray, delta_rad: flo
     from scipy.spatial.transform import Rotation as R
     rz = R.from_euler("z", delta_rad)
     return rz.apply(off), (rz * R.from_quat(quat_xyzw)).as_quat()
+
+
+def _origin_for_center(site_xyz: np.ndarray, center_body: np.ndarray, quat_xyzw: np.ndarray, delta_rad: float) -> np.ndarray:
+    """Object-origin target such that the object's collision-box centre sits over ``site_xyz`` in x/y after the object has been
+    turned about the vertical axis by ``delta_rad`` (z stays as given: the height is the task's release height)."""
+    from scipy.spatial.transform import Rotation as R
+    c = (R.from_euler("z", delta_rad) * R.from_quat(quat_xyzw)).apply(center_body)
+    out = np.asarray(site_xyz, dtype=np.float64).copy()
+    out[:2] -= c[:2]
+    return out
 
 
 def _kind(env_name: str) -> str:
@@ -200,6 +212,15 @@ class _Geometry:
         off = np.asarray(prm.get("target_offset_site", (0.0, 0.0, 0.0)), dtype=np.float64)
         rec["target_pos0"] = (pos + mat @ off).tolist()
         rec["target_site"] = nm.split(":", 1)[1]
+        if prm.get("target_align") == "collision_center":
+            # the region means "the object fits in here": put the object's COLLISION centre (not its body origin) over the
+            # site; the success predicate still looks at the origin, which therefore ends up offset by the same amount
+            if not hasattr(self.s, "collision_center_in_body") or obj_role is None:
+                raise ValueError("target_align needs a backend with collision_center_in_body and an object role")
+            rec["target_site_xyz"] = list(rec["target_pos0"])
+            rec["target_align_center_body"] = self.s.collision_center_in_body(self.name(obj_role)).tolist()
+            rec["target_pos0"] = _origin_for_center(np.asarray(rec["target_site_xyz"]), np.asarray(rec["target_align_center_body"]),
+                                                    np.asarray(self.s.obs[f"{self.name(obj_role)}_quat"], dtype=np.float64), 0.0).tolist()
         if "target_yaw_deg" in prm:
             if obj_role is None:
                 raise ValueError("a target yaw needs the object role of the subtask")
@@ -210,6 +231,10 @@ class _Geometry:
             want = site_yaw + math.radians(float(prm["target_yaw_deg"]))
             rec["target_yaw_delta_rad"] = float((want - obj_yaw + sym / 2) % sym - sym / 2)
             rec["target_yaw_want_rad"], rec["target_yaw_symmetry_rad"] = float(want), float(sym)
+            if "target_align_center_body" in rec:
+                rec["target_pos0"] = _origin_for_center(np.asarray(rec["target_site_xyz"]), np.asarray(rec["target_align_center_body"]),
+                                                        np.asarray(self.s.obs[f"{self.name(obj_role)}_quat"], dtype=np.float64),
+                                                        rec["target_yaw_delta_rad"]).tolist()
 
     def record(self, sub: str) -> Optional[dict]:
         if self.legacy:
@@ -442,6 +467,11 @@ def produce_program_episode(
                 r["target_yaw_delta_rad"] = float((r["target_yaw_want_rad"] - o_yaw + sym_r / 2) % sym_r - sym_r / 2)
                 r["grasp_offset_actual"] = (np.asarray(s.obs["robot0_eef_pos"], dtype=np.float64) - o_pos).tolist()
                 r["grasp_quat_actual_xyzw"] = np.asarray(s.obs["robot0_eef_quat"], dtype=np.float64).tolist()
+                if "target_align_center_body" in r:   # re-aim with the object's ACTUAL orientation in the hand
+                    r["target_pos0"] = _origin_for_center(np.asarray(r["target_site_xyz"]), np.asarray(r["target_align_center_body"]),
+                                                          np.asarray(s.obs[f"{nm_o}_quat"], dtype=np.float64),
+                                                          r["target_yaw_delta_rad"]).tolist()
+                    tgt0 = np.asarray(r["target_pos0"], dtype=np.float64)
                 r["target_yaw_refreshed"] = True
             if r.get("target_yaw_refreshed") and prim in ("transport", "place", "retreat"):
                 off = np.asarray(r["grasp_offset_actual"], dtype=np.float64)
@@ -512,7 +542,24 @@ def produce_program_episode(
             elif prim == "place":
                 dz = SPOT_PLACE_DZ if _kind(program.objects[it.target_role]) == "spot" else STACK_PLACE_DZ
                 dz = float(it.params.get("place_dz", dz))  # per-instance release height (e.g. above a container rim)
-                rn.servo(lab, tgt0 + off + [0, 0, dz], quat, GRIP_HOLD, tol_pos=0.008)
+                place_tol = float(it.params.get("place_tol_m", 0.008))
+                place_goal = tgt0 + off + [0, 0, dz]
+                placed = rn.servo(lab, place_goal, quat, GRIP_HOLD, tol_pos=place_tol)
+                if not placed and plan.stop_on_place_failure:
+                    # the release is only issued once the place pose is reached: a timed-out place is a place FAILURE (the
+                    # object is still held), recorded for the bounded repair / the request -- it is not turned into a
+                    # release by luck
+                    _eef = np.asarray(s.obs["robot0_eef_pos"], dtype=np.float64)
+                    _obj = np.asarray(s.obs[f"{program.objects[it.object_role]}_pos"], dtype=np.float64)
+                    meta.setdefault("place_failure", {})[it.instance_id] = {
+                        "control_step": int(s.control_step_index), "tol_pos_m": place_tol,
+                        "eef_pos": _eef.tolist(), "eef_goal": np.asarray(place_goal, dtype=np.float64).tolist(),
+                        "eef_error_m": float(np.linalg.norm(place_goal - _eef)),
+                        "object_pos": _obj.tolist(), "target_pos0": np.asarray(tgt0, dtype=np.float64).tolist()}
+                    if status_box[0] == "completed":
+                        status_box[0] = f"place_not_reached:{it.instance_id}"
+                    stop[0] = True
+                    return
                 # the hold window ends here, inside place: the release is issued before the stage does.  Both
                 # bounds are recorded because the opening motion itself is still authorised contact with the held
                 # object -- the window closes only once the fingers have finished opening.
