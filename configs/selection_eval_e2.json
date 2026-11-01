@@ -1,0 +1,220 @@
+{
+ "analysis": {
+  "interval": "cluster bootstrap over the 8 (task x init) clusters, 10000 resamples, seed 20261101",
+  "never": "no threshold, library, guard or policy change after seeing results; no write-back to the library",
+  "paired_by": "(task, init, request)",
+  "reported_separately": [
+   "pair-level",
+   "run-level (init-level)"
+  ]
+ },
+ "arms": {
+  "calibrated_lookup_arm": "none (equivalent, see configs/calibrated_lookup_c1.json). Median-aggregation ranking is computed OFFLINE only and reported as sensitivity; its candidates may lack executions and are then reported as 'not executed'",
+  "not_repeated": "rule/rerun: development result exists (step12) and is not re-run on the new inits",
+  "phase_A_select_quality": [
+   {
+    "id": "rule_recover",
+    "recovery": "recover",
+    "selection": "rule (face-value lower target, as in step12)"
+   },
+   {
+    "id": "retrieval_recover",
+    "recovery": "recover",
+    "selection": "library order_B (envelope)"
+   }
+  ],
+  "phase_B_recovery_effect": [
+   {
+    "id": "retrieval_rerun",
+    "recovery": "rerun",
+    "selection": "library order_B (envelope)"
+   }
+  ]
+ },
+ "base_commit_at_freeze": "43e3c9b",
+ "content_hash": "719fcda95fef2547776fbddc8266e111d53dd164919d587481cfe35a6033d2e0",
+ "known_limits_to_state_with_results": [
+  "library supports directly 2 of 8 pool candidates; others are interpolated between lo=1 and lo=35 anchors",
+  "same-task same-object reuse only; no cross-task transfer claim",
+  "guard and contact policy were tuned on T0/T7 inits 26-27, which are not in this evaluation",
+  "rule baseline is a face-value rule; the library is information-equivalent to a calibrated lookup, so a 'better than calibration' claim is not tested"
+ ],
+ "no_preset_expectation": "no direction of improvement is assumed; null and negative results are reported with the same tables",
+ "prerequisites_before_running": [
+  "implement and unit-test the logging fields above in synthesis_v2/program_executor.py (currently the refusal record has only check, control_step, refused_candidate, approach_instance, aborted_episode)",
+  "full test suite must pass; re-hash executor/guard/contact-policy/planner/backend files into the freeze manifest and commit BEFORE any run",
+  "add a post-run full-trajectory comparison of the final execution of recover vs rerun when the candidate sequence is equal"
+ ],
+ "primary_outcomes": [
+  "first-candidate task + manner(force band) + contact joint pass, per selection",
+  "final joint pass within the fixed candidate budget (3 force candidates, guard max_retries 3 over the whole request)",
+  "complete generation cost per request, failed requests included (METHOD book substeps; spent book reported separately and never used as per-arm cost)",
+  "same selection: rerun vs recover agreement of candidate sequence, per-candidate verdicts, hold_min/hold_max (retrieval arm only, phase B)",
+  "qualified requests within a fixed physical budget, computed offline from the logs: budgets = {0.25, 0.5, 0.75, 1.0} x total METHOD substeps of retrieval_rerun; requests ordered by (task, init, request id)"
+ ],
+ "questions": [
+  "does measured-response retrieval beat the face-value rule on the first candidate and on final joint pass within the fixed candidate budget?",
+  "does stage recovery keep candidates/verdicts identical to whole-episode rerun and raise qualified output per fixed physical budget?"
+ ],
+ "required_record_fields_per_refusal_and_execution": {
+  "executed_substeps_split": {
+   "discarded_by_guard": "int",
+   "executed_after_restore": "int",
+   "prefix_reused_not_executed": "int"
+  },
+  "parameter_effective_stage": "first stage instance in which the modified parameter (grasp candidate / force candidate) takes effect",
+  "real_executed_substeps": "int per execution, excluding cache hits (cache hits listed separately with recorded cost)",
+  "restore_state_identity": "sha256 of the serialised restored session state plus the snapshot's control step",
+  "restored_to_stage": "instance id of the approach snapshot that was restored (rerun arm: 'episode_start')"
+ },
+ "schema": "mannercap.selection_eval.v1",
+ "scope": {
+  "clusters": "8 (task x init); request-level pairs are NOT independent within an init",
+  "init_basis": "reports/archive_20261101/init_usage_ledger.json: T0/T7 inits 30-49 never used in any file under reports/; 22-25 were used for repair, 26-29 for the previous evaluation (and tuning on 26-27)",
+  "inits": {
+   "0": [
+    30,
+    31,
+    32,
+    33
+   ],
+   "7": [
+    30,
+    31,
+    32,
+    33
+   ]
+  },
+  "kept_untouched": {
+   "final_holdout": [
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+   ],
+   "spare": [
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+   ]
+  },
+  "n_requests_per_arm": 32,
+  "requested_objects": {
+   "0": "tomato_sauce",
+   "7": "cream_cheese"
+  },
+  "requests": [
+   {
+    "band_n": [
+     8.0,
+     16.0
+    ],
+    "id": "R1",
+    "text": "hold the object with a very light grip"
+   },
+   {
+    "band_n": [
+     16.0,
+     24.0
+    ],
+    "id": "R2",
+    "text": "hold the object with a moderate grip"
+   },
+   {
+    "band_n": [
+     24.0,
+     34.0
+    ],
+    "id": "R3",
+    "text": "hold the object with a firm grip"
+   },
+   {
+    "band_n": [
+     34.0,
+     46.0
+    ],
+    "id": "R4",
+    "text": "hold the object with a very firm grip"
+   }
+  ],
+  "tasks": [
+   0,
+   7
+  ]
+ },
+ "shared_across_arms": {
+  "attempt_budget": 3,
+  "candidate_pool": [
+   [
+    1.0,
+    22.0
+   ],
+   [
+    1.0,
+    100.0
+   ],
+   [
+    10.0,
+    22.0
+   ],
+   [
+    10.0,
+    100.0
+   ],
+   [
+    20.0,
+    100.0
+   ],
+   [
+    25.0,
+    100.0
+   ],
+   [
+    30.0,
+    100.0
+   ],
+   [
+    40.0,
+    100.0
+   ]
+  ],
+  "contact_policy": "contact_policy_v1.1",
+  "e1_config_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+  "episode_cache": "per (task, init, candidate, guard-state); cache hits are charged at recorded cost in the METHOD book",
+  "executor": {
+   "approach_check": true,
+   "settle_after_open": 1
+  },
+  "guard": {
+   "contact_threshold_n": 0.1,
+   "enabled": true,
+   "max_retries": 3,
+   "min_clearance_m": 0.0
+  },
+  "library": {
+   "content_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+   "path": "reports/step10_experience/library.json",
+   "write_back": false
+  },
+  "other_object_fixed_plan": {
+   "target_hi_n": 22.0,
+   "target_lo_n": 1.0
+  },
+  "pass_criterion": {
+   "definition": "task_ok AND measurement_valid AND grasp_stable AND hold_min >= band_lo AND hold_max <= band_hi, for the requested object only",
+   "explicitly_not": "this is a DEVELOPMENT criterion. It is not a qualified-demonstration yield: it contains no contact-policy verdict, no stage-speed check, no pair logic and no safety conclusion.",
+   "judge": "scripts/mt/s8_task_force.py per_object() (unchanged) on the executed episode",
+   "name": "task_and_force_band_checks_passed"
+  }
+ },
+ "status": "PLAN FROZEN FOR REVIEW; not run; run only after fairness confirmation and the logging patch below"
+}
