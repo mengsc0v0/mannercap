@@ -25,6 +25,7 @@ from .native_producer import (
     _yaw_aligned_quat,
 )
 from .task_program import TaskProgram, legacy_program
+from .stage_capabilities import param_issues, primitive_issues
 
 _REQUIRED_SERVO = ("approach", "descend", "lift", "transport")   # Step 23: stages whose timeout stops the branch (opt-in)
 LIFT_DZ = 0.15
@@ -390,6 +391,8 @@ def produce_program_episode(
 ) -> RawEpisode:
     """Execute ``program`` once; same contract as ``produce_episode`` (snapshots keyed by instance label)."""
     errs = program.validate()
+    # Step 24: ask for nothing the executor cannot do (no silent fallback to the default motion)
+    errs += [e for e in primitive_issues(program) + param_issues(program, plan)[0] if e not in errs]
     if errs:
         raise ValueError(f"invalid program: {errs}")
     task = program.env_task

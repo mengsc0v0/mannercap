@@ -167,6 +167,8 @@ class TaskProgram:
         labels = [it.label for it in self.instances]
         if self.backend == "robosuite_native" and len(set(labels)) != len(labels) and not self.multi_label_ok:
             errs.append("duplicate_labels_require_instance_column")
+        from .stage_capabilities import param_issues  # Step 24: undeclared / out-of-domain params are errors, not silently ignored
+        errs.extend(param_issues(self)[0])
         return errs
 
     @property
