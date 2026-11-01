@@ -278,15 +278,28 @@ def reference_to_candidate(ref: dict, obj_quat_xyzw, grasp_quat_xyzw, obs_to_sit
     """Express a task-adapter grasp reference as one planner candidate (yaw_deg, lateral_m, dz_m, longitudinal_m).
 
     ``ref`` = {"rel_obj": hand position minus object position in the object's yaw frame (m),
-               "hand_yaw_rel_deg": hand yaw relative to the executor's yaw-aligned grasp quaternion}.
+               "hand_yaw_rel_deg": hand yaw relative to the executor's yaw-aligned grasp quaternion,
+               optional "hand_quat_obj_xyzw": full hand orientation in the object's yaw frame (Step 23; tilt kept)}.
     The planner places the hand at obj + lat*Rq[:,1] + lon*Rq[:,0] + [0,0,dz]; the three offsets are solved exactly."""
     from scipy.spatial.transform import Rotation as R
     from .approach_planner import quat_to_mat, yaw_quat
     oyaw = R.from_quat(obj_quat_xyzw).as_euler("xyz")[2]
     off_w = R.from_euler("z", oyaw).apply(np.asarray(ref["rel_obj"], float))
     yaw = float(ref["hand_yaw_rel_deg"])
-    Rq = quat_to_mat(yaw_quat(np.asarray(grasp_quat_xyzw, float), np.deg2rad(yaw))) @ np.asarray(obs_to_site, float)
+    q_world = None
+    if ref.get("hand_quat_obj_xyzw") is not None:
+        # Step 23 full-pose reference: the hand's orientation in the object's yaw frame (R_hand = Rz(obj_yaw) * R_ref),
+        # the same frame as ``rel_obj``; rotated with the CURRENT object yaw, so a tilt follows the object.  Without
+        # this key the yaw-only path below is used unchanged.
+        q_world = (R.from_euler("z", oyaw) * R.from_quat(np.asarray(ref["hand_quat_obj_xyzw"], float))).as_quat()
+        rel = (R.from_quat(q_world) * R.from_quat(np.asarray(grasp_quat_xyzw, float)).inv()).as_matrix()
+        yaw = float(np.degrees(np.arctan2(rel[1, 0], rel[0, 0])))        # informational (the yaw part of the rotation)
+        Rq = quat_to_mat(q_world) @ np.asarray(obs_to_site, float)
+    else:
+        Rq = quat_to_mat(yaw_quat(np.asarray(grasp_quat_xyzw, float), np.deg2rad(yaw))) @ np.asarray(obs_to_site, float)
     lon, lat, dz = np.linalg.solve(np.stack([Rq[:, 0], Rq[:, 1], [0.0, 0.0, 1.0]], axis=1), off_w)
+    if q_world is not None:
+        return (yaw, float(lat), float(dz), float(lon), [float(x) for x in q_world])
     return (yaw, float(lat), float(dz), float(lon))
 
 

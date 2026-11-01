@@ -185,6 +185,11 @@ def plan_approach(m, d, site_id: int, env: HandEnvelope, obstacles: Sequence[Obs
         yaw, lat, dz = entry[:3]
         lon = float(entry[3]) if len(entry) > 3 else 0.0
         q = yaw_quat(grasp_quat_xyzw, np.deg2rad(yaw))
+        if len(entry) > 4 and entry[4] is not None:
+            # Step 23: a full hand orientation (e.g. a tilted demonstration grasp).  ``yaw`` is then informational only;
+            # ``lat``/``lon``/``dz`` are the offset expressed in THIS orientation's axes, exactly as for a yaw-only entry.
+            q = np.asarray(entry[4], dtype=np.float64)
+            q = q / np.linalg.norm(q)
         Rq = quat_to_mat(q) @ env.obs_to_site
         off = Rq[:, 1] * lat + Rq[:, 0] * lon + np.array([0.0, 0.0, dz])
         gp = grasp_pos + off

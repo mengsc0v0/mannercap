@@ -80,8 +80,12 @@ SPECS = {
                 target_params={"place_dz": 0.0},
                 object_target_params=({"target_offset_site": (-0.0656, -0.0289, 0.0916), "lift_dz": 0.12, "transport_dz": 0.09},
                                       {"target_offset_site": (0.0291, 0.0189, 0.0925), "lift_dz": 0.16, "transport_dz": 0.13}),
-                grasp_reference=({"rel_obj": [-0.0027, 0.0236, 0.0424], "hand_yaw_rel_deg": -89.2},
-                                 {"rel_obj": [0.0118, 0.051, 0.0421], "hand_yaw_rel_deg": -87.0})),
+                # Step 23: + full hand orientation in the object yaw frame (demo_0 closes; tilt 24.1 / 30.3 deg), derived by
+                # scripts/mt/s23_full_pose_ref.py from the SAME demo and the SAME close events; rel_obj / yaw values unchanged
+                grasp_reference=({"rel_obj": [-0.0027, 0.0236, 0.0424], "hand_yaw_rel_deg": -89.2,
+                                  "hand_quat_obj_xyzw": [0.706618, 0.676219, -0.188638, 0.088517]},
+                                 {"rel_obj": [0.0118, 0.051, 0.0421], "hand_yaw_rel_deg": -87.0,
+                                  "hand_quat_obj_xyzw": [0.684631, 0.6805, -0.212008, 0.152488]})),
 }
 
 
