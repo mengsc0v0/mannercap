@@ -1,0 +1,6599 @@
+{
+ "schema": "mannercap.selection_eval.v2",
+ "launch": {
+  "git_head": "496dbecddbabc9adca1c6a83ae5bd4881aef6b65",
+  "freeze_code_commit": "7c6121e312964d02b19fbca5c2f7d504fced5d49 (parent of the freeze commit that adds this file; code files below are hashed in the working tree)",
+  "config_hash": "7e9357dbc7638e29017935da56e41bf93d659da7158d07c7c5a8edb04487c771",
+  "started_unix": 1793516415.5478554,
+  "started_utc": "2026-11-01T07:00:15Z"
+ },
+ "task": 0,
+ "init": 33,
+ "phases_done": "B_recovery_effect",
+ "executed_episodes_total": 20,
+ "cache_hits_total": 5,
+ "finished_unix": 1793516797.0528219,
+ "cells": [
+  {
+   "request_id": "T0-i33-R1",
+   "arm": "rule+recover",
+   "selection": "rule",
+   "recovery": "recover",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     8.0,
+     16.0
+    ],
+    "id": "R1",
+    "text": "hold the object with a very light grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "brackets": true,
+     "distance": 2.0,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "brackets": true,
+     "distance": 2.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "brackets": true,
+     "distance": 8.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "brackets": true,
+     "distance": 11.0,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "brackets": true,
+     "distance": 11.0,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "brackets": true,
+     "distance": 13.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "brackets": true,
+     "distance": 18.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "brackets": true,
+     "distance": 28.0,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0007,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R1/rule+recover/a1",
+     "force_attempt": 1,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c10_22-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c10_22-recover-pre0.npz",
+       "candidate": [
+        10.0,
+        22.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 367,
+       "wall_s": 22.21,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 11.135987185343339,
+        "hold_mean": 12.439718234148666,
+        "hold_max": 12.686003759649772,
+        "lr_imbalance": 0.006583006632694434,
+        "rel_z_spread_m": 0.00019180140899277554,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.74
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.87
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.72
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.71
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.88
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.88
+          }
+         ],
+         "control_step": 258,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 72,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7750,
+         "discarded_substeps_by_this_restore": 1800,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12900,
+        "formal_rows": 9175,
+        "discarded_total_listed": 3725,
+        "discarded_by_guard_restore": 1800,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5150,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 367
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R1/rule+recover/a1/x1",
+       "attempt_id": "T0-i33-R1/rule+recover/a1",
+       "request_id": "T0-i33-R1",
+       "arm": "rule+recover",
+       "force_attempt": 1,
+       "force_band_passed": true,
+       "joint_passed": true,
+       "prediction_vs_actual": {
+        "pred_min": 10.352451895958584,
+        "pred_max": 15.335061206777663,
+        "actual_hold_min": 11.135987185343339,
+        "actual_hold_max": 12.686003759649772,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": true,
+     "force_band_passed": true,
+     "task_ok": true,
+     "substeps_method": 12900,
+     "wall_method_s": 22.21
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 1,
+    "executions": 1,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": true,
+   "joint_passed_at_force_attempt": 1,
+   "first_candidate_joint_passed": true,
+   "first_candidate_force_passed": true,
+   "n_physical_executions": 1,
+   "n_actually_executed": 1,
+   "n_cache_hits": 0,
+   "substeps_method": 12900,
+   "substeps_spent": 12900,
+   "wall_method_s": 22.21
+  },
+  {
+   "request_id": "T0-i33-R1",
+   "arm": "retrieval+recover",
+   "selection": "retrieval",
+   "recovery": "recover",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     8.0,
+     16.0
+    ],
+    "id": "R1",
+    "text": "hold the object with a very light grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "inside": true,
+     "margin": 2.807834222428667,
+     "centre_gap": 0.08776491843611112,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "inside": true,
+     "margin": 0.664938793222337,
+     "centre_gap": 0.8437565513681236,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "inside": true,
+     "margin": 0.664938793222337,
+     "centre_gap": 0.8437565513681236,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "inside": false,
+     "margin": -4.427168384854472,
+     "centre_gap": 7.035881048325081,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "inside": false,
+     "margin": -12.466060170724631,
+     "centre_gap": 14.756010081535045,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "inside": false,
+     "margin": -16.485506063659706,
+     "centre_gap": 18.616074598140024,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "inside": false,
+     "margin": -20.50495195659478,
+     "centre_gap": 22.476139114745003,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "inside": false,
+     "margin": -24.524397849529862,
+     "centre_gap": 26.33620363134999,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0008,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R1/retrieval+recover/a1",
+     "force_attempt": 1,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c1_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c1_100-recover-pre0.npz",
+       "candidate": [
+        1.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 361,
+       "wall_s": 21.02,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 11.204674701554138,
+        "hold_mean": 12.423189012978018,
+        "hold_max": 12.610473001475757,
+        "lr_imbalance": 0.007500765773683516,
+        "rel_z_spread_m": 0.00012983222322771049,
+        "peak_simultaneous_n": 29.497486452896013
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.06
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.24
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.19
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.05
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.05
+          }
+         ],
+         "control_step": 255,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 69,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7675,
+         "discarded_substeps_by_this_restore": 1725,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12675,
+        "formal_rows": 9025,
+        "discarded_total_listed": 3650,
+        "discarded_by_guard_restore": 1725,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5000,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 361
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R1/retrieval+recover/a1/x1",
+       "attempt_id": "T0-i33-R1/retrieval+recover/a1",
+       "request_id": "T0-i33-R1",
+       "arm": "retrieval+recover",
+       "force_attempt": 1,
+       "force_band_passed": true,
+       "joint_passed": true,
+       "prediction_vs_actual": {
+        "pred_min": 10.983364059300891,
+        "pred_max": 13.192165777571333,
+        "actual_hold_min": 11.204674701554138,
+        "actual_hold_max": 12.610473001475757,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": true,
+     "force_band_passed": true,
+     "task_ok": true,
+     "substeps_method": 12675,
+     "wall_method_s": 21.02
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 1,
+    "executions": 1,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": true,
+   "joint_passed_at_force_attempt": 1,
+   "first_candidate_joint_passed": true,
+   "first_candidate_force_passed": true,
+   "n_physical_executions": 1,
+   "n_actually_executed": 1,
+   "n_cache_hits": 0,
+   "substeps_method": 12675,
+   "substeps_spent": 12675,
+   "wall_method_s": 21.02
+  },
+  {
+   "request_id": "T0-i33-R2",
+   "arm": "rule+recover",
+   "selection": "rule",
+   "recovery": "recover",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     16.0,
+     24.0
+    ],
+    "id": "R2",
+    "text": "hold the object with a moderate grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "brackets": true,
+     "distance": 0.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "brackets": true,
+     "distance": 5.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "brackets": true,
+     "distance": 10.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "brackets": true,
+     "distance": 10.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "brackets": true,
+     "distance": 19.0,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "brackets": true,
+     "distance": 20.0,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "brackets": false,
+     "distance": 10.0,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "brackets": false,
+     "distance": 19.0,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0005,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R2/rule+recover/a1",
+     "force_attempt": 1,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c20_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c20_100-recover-pre0.npz",
+       "candidate": [
+        20.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 20.59,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.86
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.15
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.85
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.84
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.96
+          }
+         ],
+         "control_step": 257,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 71,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7725,
+         "discarded_substeps_by_this_restore": 1775,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12775,
+        "formal_rows": 9075,
+        "discarded_total_listed": 3700,
+        "discarded_by_guard_restore": 1775,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5050,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/rule+recover/a1/x1",
+       "attempt_id": "T0-i33-R2/rule+recover/a1",
+       "request_id": "T0-i33-R2",
+       "arm": "rule+recover",
+       "force_attempt": 1,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 25.045959992345455,
+        "pred_max": 28.46606017072463,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": false
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 12775,
+     "wall_method_s": 20.59
+    },
+    {
+     "attempt_id": "T0-i33-R2/rule+recover/a2",
+     "force_attempt": 2,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c25_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c25_100-recover-pre0.npz",
+       "candidate": [
+        25.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 20.92,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.86
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.15
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.85
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.84
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.96
+          }
+         ],
+         "control_step": 257,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 71,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7725,
+         "discarded_substeps_by_this_restore": 1775,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12775,
+        "formal_rows": 9075,
+        "discarded_total_listed": 3700,
+        "discarded_by_guard_restore": 1775,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5050,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/rule+recover/a2/x1",
+       "attempt_id": "T0-i33-R2/rule+recover/a2",
+       "request_id": "T0-i33-R2",
+       "arm": "rule+recover",
+       "force_attempt": 2,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 28.746643132620342,
+        "pred_max": 32.485506063659706,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": false
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 12775,
+     "wall_method_s": 20.92
+    },
+    {
+     "attempt_id": "T0-i33-R2/rule+recover/a3",
+     "force_attempt": 3,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c10_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c10_100-recover-pre0.npz",
+       "candidate": [
+        10.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 20.79,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.99
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.13
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.17
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.94
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.94
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.99
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.99
+          }
+         ],
+         "control_step": 256,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 70,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7700,
+         "discarded_substeps_by_this_restore": 1750,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12750,
+        "formal_rows": 9075,
+        "discarded_total_listed": 3675,
+        "discarded_by_guard_restore": 1750,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5050,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/rule+recover/a3/x1",
+       "attempt_id": "T0-i33-R2/rule+recover/a3",
+       "request_id": "T0-i33-R2",
+       "arm": "rule+recover",
+       "force_attempt": 3,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 17.644593711795686,
+        "pred_max": 20.427168384854472,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 12750,
+     "wall_method_s": 20.79
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 3,
+    "executions": 3,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": false,
+   "joint_passed_at_force_attempt": null,
+   "first_candidate_joint_passed": false,
+   "first_candidate_force_passed": false,
+   "n_physical_executions": 3,
+   "n_actually_executed": 3,
+   "n_cache_hits": 0,
+   "substeps_method": 38300,
+   "substeps_spent": 38300,
+   "wall_method_s": 62.3
+  },
+  {
+   "request_id": "T0-i33-R2",
+   "arm": "retrieval+recover",
+   "selection": "retrieval",
+   "recovery": "recover",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     16.0,
+     24.0
+    ],
+    "id": "R2",
+    "text": "hold the object with a moderate grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "inside": true,
+     "margin": 1.644593711795686,
+     "centre_gap": 0.9641189516749193,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "inside": false,
+     "margin": -4.4660601707246315,
+     "centre_gap": 6.756010081535045,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "inside": false,
+     "margin": -5.647548104041416,
+     "centre_gap": 7.1562434486318764,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "inside": false,
+     "margin": -5.647548104041416,
+     "centre_gap": 7.1562434486318764,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "inside": false,
+     "margin": -5.016635940699109,
+     "centre_gap": 7.912235081563889,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "inside": false,
+     "margin": -8.485506063659706,
+     "centre_gap": 10.616074598140024,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "inside": false,
+     "margin": -12.50495195659478,
+     "centre_gap": 14.476139114745003,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "inside": false,
+     "margin": -16.524397849529862,
+     "centre_gap": 18.33620363134999,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0009,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R2/retrieval+recover/a1",
+     "force_attempt": 1,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c10_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c10_100-recover-pre0.npz",
+       "candidate": [
+        10.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 20.79,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.99
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.13
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.17
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.94
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.94
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.99
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.99
+          }
+         ],
+         "control_step": 256,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 70,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7700,
+         "discarded_substeps_by_this_restore": 1750,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12750,
+        "formal_rows": 9075,
+        "discarded_total_listed": 3675,
+        "discarded_by_guard_restore": 1750,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5050,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": true,
+       "execution_id": "T0-i33-R2/retrieval+recover/a1/x1",
+       "attempt_id": "T0-i33-R2/retrieval+recover/a1",
+       "request_id": "T0-i33-R2",
+       "arm": "retrieval+recover",
+       "force_attempt": 1,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 17.644593711795686,
+        "pred_max": 20.427168384854472,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 12750,
+     "wall_method_s": 20.79
+    },
+    {
+     "attempt_id": "T0-i33-R2/retrieval+recover/a2",
+     "force_attempt": 2,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c20_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c20_100-recover-pre0.npz",
+       "candidate": [
+        20.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 20.59,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.86
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.15
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.85
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.84
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.96
+          }
+         ],
+         "control_step": 257,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 71,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7725,
+         "discarded_substeps_by_this_restore": 1775,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12775,
+        "formal_rows": 9075,
+        "discarded_total_listed": 3700,
+        "discarded_by_guard_restore": 1775,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5050,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": true,
+       "execution_id": "T0-i33-R2/retrieval+recover/a2/x1",
+       "attempt_id": "T0-i33-R2/retrieval+recover/a2",
+       "request_id": "T0-i33-R2",
+       "arm": "retrieval+recover",
+       "force_attempt": 2,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 25.045959992345455,
+        "pred_max": 28.46606017072463,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": false
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 12775,
+     "wall_method_s": 20.59
+    },
+    {
+     "attempt_id": "T0-i33-R2/retrieval+recover/a3",
+     "force_attempt": 3,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c1_22-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c1_22-recover-pre0.npz",
+       "candidate": [
+        1.0,
+        22.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 361,
+       "wall_s": 20.24,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 11.204674701554138,
+        "hold_mean": 12.423189012978018,
+        "hold_max": 12.610473001475757,
+        "lr_imbalance": 0.007500765773683516,
+        "rel_z_spread_m": 0.00012983222322771049,
+        "peak_simultaneous_n": 29.497486452896013
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.06
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.24
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.19
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.05
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.05
+          }
+         ],
+         "control_step": 255,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 69,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7675,
+         "discarded_substeps_by_this_restore": 1725,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12675,
+        "formal_rows": 9025,
+        "discarded_total_listed": 3650,
+        "discarded_by_guard_restore": 1725,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5000,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 361
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/retrieval+recover/a3/x1",
+       "attempt_id": "T0-i33-R2/retrieval+recover/a3",
+       "request_id": "T0-i33-R2",
+       "arm": "retrieval+recover",
+       "force_attempt": 3,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 10.352451895958584,
+        "pred_max": 15.335061206777663,
+        "actual_hold_min": 11.204674701554138,
+        "actual_hold_max": 12.610473001475757,
+        "predicted_inside_band": false
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 12675,
+     "wall_method_s": 20.24
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 3,
+    "executions": 3,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": false,
+   "joint_passed_at_force_attempt": null,
+   "first_candidate_joint_passed": false,
+   "first_candidate_force_passed": false,
+   "n_physical_executions": 3,
+   "n_actually_executed": 1,
+   "n_cache_hits": 2,
+   "substeps_method": 38200,
+   "substeps_spent": 12675,
+   "wall_method_s": 61.62
+  },
+  {
+   "request_id": "T0-i33-R3",
+   "arm": "rule+recover",
+   "selection": "rule",
+   "recovery": "recover",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     24.0,
+     34.0
+    ],
+    "id": "R3",
+    "text": "hold the object with a firm grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "brackets": true,
+     "distance": 1.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "brackets": true,
+     "distance": 4.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "brackets": true,
+     "distance": 9.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "brackets": true,
+     "distance": 11.0,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "brackets": true,
+     "distance": 19.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "brackets": true,
+     "distance": 28.0,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "brackets": false,
+     "distance": 19.0,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "brackets": false,
+     "distance": 28.0,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0005,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R3/rule+recover/a1",
+     "force_attempt": 1,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c30_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c30_100-recover-pre0.npz",
+       "candidate": [
+        30.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 364,
+       "wall_s": 20.13,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 37.587877828448924,
+        "hold_mean": 39.38104464010203,
+        "hold_max": 39.7910928466778,
+        "lr_imbalance": 0.00390635716288577,
+        "rel_z_spread_m": 0.00026281412600359655,
+        "peak_simultaneous_n": 53.45558728581622
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.83
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.88
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.82
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.82
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.89
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.89
+          }
+         ],
+         "control_step": 258,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 72,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7750,
+         "discarded_substeps_by_this_restore": 1800,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12825,
+        "formal_rows": 9100,
+        "discarded_total_listed": 3725,
+        "discarded_by_guard_restore": 1800,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5075,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 364
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R3/rule+recover/a1/x1",
+       "attempt_id": "T0-i33-R3/rule+recover/a1",
+       "request_id": "T0-i33-R3",
+       "arm": "rule+recover",
+       "force_attempt": 1,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 32.447326272895225,
+        "pred_max": 36.50495195659478,
+        "actual_hold_min": 37.587877828448924,
+        "actual_hold_max": 39.7910928466778,
+        "predicted_inside_band": false
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 12825,
+     "wall_method_s": 20.13
+    },
+    {
+     "attempt_id": "T0-i33-R3/rule+recover/a2",
+     "force_attempt": 2,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c25_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c25_100-recover-pre0.npz",
+       "candidate": [
+        25.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 20.92,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.86
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.15
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.85
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.84
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.96
+          }
+         ],
+         "control_step": 257,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 71,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7725,
+         "discarded_substeps_by_this_restore": 1775,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12775,
+        "formal_rows": 9075,
+        "discarded_total_listed": 3700,
+        "discarded_by_guard_restore": 1775,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5050,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": true,
+       "execution_id": "T0-i33-R3/rule+recover/a2/x1",
+       "attempt_id": "T0-i33-R3/rule+recover/a2",
+       "request_id": "T0-i33-R3",
+       "arm": "rule+recover",
+       "force_attempt": 2,
+       "force_band_passed": true,
+       "joint_passed": true,
+       "prediction_vs_actual": {
+        "pred_min": 28.746643132620342,
+        "pred_max": 32.485506063659706,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": true,
+     "force_band_passed": true,
+     "task_ok": true,
+     "substeps_method": 12775,
+     "wall_method_s": 20.92
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 2,
+    "executions": 2,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": true,
+   "joint_passed_at_force_attempt": 2,
+   "first_candidate_joint_passed": false,
+   "first_candidate_force_passed": false,
+   "n_physical_executions": 2,
+   "n_actually_executed": 1,
+   "n_cache_hits": 1,
+   "substeps_method": 25600,
+   "substeps_spent": 12825,
+   "wall_method_s": 41.05
+  },
+  {
+   "request_id": "T0-i33-R3",
+   "arm": "retrieval+recover",
+   "selection": "retrieval",
+   "recovery": "recover",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     24.0,
+     34.0
+    ],
+    "id": "R3",
+    "text": "hold the object with a firm grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "inside": true,
+     "margin": 1.514493936340294,
+     "centre_gap": 1.616074598140024,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "inside": true,
+     "margin": 1.0459599923454554,
+     "centre_gap": 2.2439899184649548,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "inside": false,
+     "margin": -2.5049519565947804,
+     "centre_gap": 5.476139114745003,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "inside": false,
+     "margin": -6.524397849529862,
+     "centre_gap": 9.336203631349989,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "inside": false,
+     "margin": -6.355406288204314,
+     "centre_gap": 9.96411895167492,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "inside": false,
+     "margin": -13.647548104041416,
+     "centre_gap": 16.156243448631876,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "inside": false,
+     "margin": -13.647548104041416,
+     "centre_gap": 16.156243448631876,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "inside": false,
+     "margin": -13.016635940699109,
+     "centre_gap": 16.91223508156389,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0008,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R3/retrieval+recover/a1",
+     "force_attempt": 1,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c25_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c25_100-recover-pre0.npz",
+       "candidate": [
+        25.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 20.92,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.86
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.15
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.85
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.84
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.96
+          }
+         ],
+         "control_step": 257,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 71,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7725,
+         "discarded_substeps_by_this_restore": 1775,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 12775,
+        "formal_rows": 9075,
+        "discarded_total_listed": 3700,
+        "discarded_by_guard_restore": 1775,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5050,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": true,
+       "execution_id": "T0-i33-R3/retrieval+recover/a1/x1",
+       "attempt_id": "T0-i33-R3/retrieval+recover/a1",
+       "request_id": "T0-i33-R3",
+       "arm": "retrieval+recover",
+       "force_attempt": 1,
+       "force_band_passed": true,
+       "joint_passed": true,
+       "prediction_vs_actual": {
+        "pred_min": 28.746643132620342,
+        "pred_max": 32.485506063659706,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": true,
+     "force_band_passed": true,
+     "task_ok": true,
+     "substeps_method": 12775,
+     "wall_method_s": 20.92
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 1,
+    "executions": 1,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": true,
+   "joint_passed_at_force_attempt": 1,
+   "first_candidate_joint_passed": true,
+   "first_candidate_force_passed": true,
+   "n_physical_executions": 1,
+   "n_actually_executed": 0,
+   "n_cache_hits": 1,
+   "substeps_method": 12775,
+   "substeps_spent": 0,
+   "wall_method_s": 20.92
+  },
+  {
+   "request_id": "T0-i33-R4",
+   "arm": "rule+recover",
+   "selection": "rule",
+   "recovery": "recover",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     34.0,
+     46.0
+    ],
+    "id": "R4",
+    "text": "hold the object with a very firm grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "brackets": true,
+     "distance": 0.0,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "brackets": true,
+     "distance": 10.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "brackets": true,
+     "distance": 15.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "brackets": true,
+     "distance": 20.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "brackets": true,
+     "distance": 30.0,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "brackets": true,
+     "distance": 39.0,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "brackets": false,
+     "distance": 30.0,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "brackets": false,
+     "distance": 39.0,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0004,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R4/rule+recover/a1",
+     "force_attempt": 1,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c40_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c40_100-recover-pre0.npz",
+       "candidate": [
+        40.0,
+        100.0
+       ],
+       "status": "grasp_band_not_reached:tomato_sauce.pick_1.grasp",
+       "task_ok": true,
+       "n_steps": 384,
+       "wall_s": 21.26,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 39.29700735097617,
+        "hold_mean": 39.983229340241984,
+        "hold_max": 40.140638307659835,
+        "lr_imbalance": 0.005704689667358203,
+        "rel_z_spread_m": 0.00021091553629637438,
+        "peak_simultaneous_n": 52.49143540228374
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.74
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.79
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.73
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.73
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.79
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.79
+          }
+         ],
+         "control_step": 260,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 74,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7800,
+         "discarded_substeps_by_this_restore": 1850,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 13375,
+        "formal_rows": 9600,
+        "discarded_total_listed": 3775,
+        "discarded_by_guard_restore": 1850,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5575,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 384
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R4/rule+recover/a1/x1",
+       "attempt_id": "T0-i33-R4/rule+recover/a1",
+       "request_id": "T0-i33-R4",
+       "arm": "rule+recover",
+       "force_attempt": 1,
+       "force_band_passed": true,
+       "joint_passed": true,
+       "prediction_vs_actual": {
+        "pred_min": 36.14800941317011,
+        "pred_max": 40.52439784952986,
+        "actual_hold_min": 39.29700735097617,
+        "actual_hold_max": 40.140638307659835,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "grasp_band_not_reached:tomato_sauce.pick_1.grasp",
+     "joint_passed": true,
+     "force_band_passed": true,
+     "task_ok": true,
+     "substeps_method": 13375,
+     "wall_method_s": 21.26
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 1,
+    "executions": 1,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": true,
+   "joint_passed_at_force_attempt": 1,
+   "first_candidate_joint_passed": true,
+   "first_candidate_force_passed": true,
+   "n_physical_executions": 1,
+   "n_actually_executed": 1,
+   "n_cache_hits": 0,
+   "substeps_method": 13375,
+   "substeps_spent": 13375,
+   "wall_method_s": 21.26
+  },
+  {
+   "request_id": "T0-i33-R4",
+   "arm": "retrieval+recover",
+   "selection": "retrieval",
+   "recovery": "recover",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     34.0,
+     46.0
+    ],
+    "id": "R4",
+    "text": "hold the object with a very firm grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "inside": true,
+     "margin": 2.148009413170108,
+     "centre_gap": 1.6637963686500115,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "inside": false,
+     "margin": -1.552673727104775,
+     "centre_gap": 5.523860885254997,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "inside": false,
+     "margin": -5.253356867379658,
+     "centre_gap": 9.383925401859976,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "inside": false,
+     "margin": -8.954040007654545,
+     "centre_gap": 13.243989918464955,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "inside": false,
+     "margin": -16.355406288204314,
+     "centre_gap": 20.96411895167492,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "inside": false,
+     "margin": -23.647548104041416,
+     "centre_gap": 27.156243448631876,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "inside": false,
+     "margin": -23.647548104041416,
+     "centre_gap": 27.156243448631876,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "inside": false,
+     "margin": -23.01663594069911,
+     "centre_gap": 27.91223508156389,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0009,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R4/retrieval+recover/a1",
+     "force_attempt": 1,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c40_100-recover-pre0",
+       "trajectory_file": "traj/T0-i33-c40_100-recover-pre0.npz",
+       "candidate": [
+        40.0,
+        100.0
+       ],
+       "status": "grasp_band_not_reached:tomato_sauce.pick_1.grasp",
+       "task_ok": true,
+       "n_steps": 384,
+       "wall_s": 21.26,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 39.29700735097617,
+        "hold_mean": 39.983229340241984,
+        "hold_max": 40.140638307659835,
+        "lr_imbalance": 0.005704689667358203,
+        "rel_z_spread_m": 0.00021091553629637438,
+        "peak_simultaneous_n": 52.49143540228374
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.74
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.79
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.73
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.73
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.79
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.79
+          }
+         ],
+         "control_step": 260,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "restored_to_stage": "tomato_sauce.pick_1.approach",
+         "steps_discarded": 74,
+         "resume_prefix_steps": 186,
+         "retry_index": 1,
+         "restored_control_step": 186,
+         "state_digest_snapshot": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_digest_after_restore": "e8ec2a91c16c0413cae6d5e6e237716d54fcc35ff1301e79da191fb737f7232d",
+         "state_identity_match": true,
+         "executed_substeps_before_restore": 7800,
+         "discarded_substeps_by_this_restore": 1850,
+         "prefix_rows_kept": 4650,
+         "next_candidate": [
+          0.0,
+          0.0,
+          0.02,
+          0.0
+         ]
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 13375,
+        "formal_rows": 9600,
+        "discarded_total_listed": 3775,
+        "discarded_by_guard_restore": 1850,
+        "discarded_planner_lookahead": 1925,
+        "executed_after_last_restore": 5575,
+        "prefix_rows_not_resimulated": 4650,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 384
+       },
+       "discarded_contact_rows": 1,
+       "reused_cached_episode": true,
+       "execution_id": "T0-i33-R4/retrieval+recover/a1/x1",
+       "attempt_id": "T0-i33-R4/retrieval+recover/a1",
+       "request_id": "T0-i33-R4",
+       "arm": "retrieval+recover",
+       "force_attempt": 1,
+       "force_band_passed": true,
+       "joint_passed": true,
+       "prediction_vs_actual": {
+        "pred_min": 36.14800941317011,
+        "pred_max": 40.52439784952986,
+        "actual_hold_min": 39.29700735097617,
+        "actual_hold_max": 40.140638307659835,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "grasp_band_not_reached:tomato_sauce.pick_1.grasp",
+     "joint_passed": true,
+     "force_band_passed": true,
+     "task_ok": true,
+     "substeps_method": 13375,
+     "wall_method_s": 21.26
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 1,
+    "executions": 1,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": true,
+   "joint_passed_at_force_attempt": 1,
+   "first_candidate_joint_passed": true,
+   "first_candidate_force_passed": true,
+   "n_physical_executions": 1,
+   "n_actually_executed": 0,
+   "n_cache_hits": 1,
+   "substeps_method": 13375,
+   "substeps_spent": 0,
+   "wall_method_s": 21.26
+  },
+  {
+   "request_id": "T0-i33-R1",
+   "arm": "retrieval+rerun",
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     8.0,
+     16.0
+    ],
+    "id": "R1",
+    "text": "hold the object with a very light grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "inside": true,
+     "margin": 2.807834222428667,
+     "centre_gap": 0.08776491843611112,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "inside": true,
+     "margin": 0.664938793222337,
+     "centre_gap": 0.8437565513681236,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "inside": true,
+     "margin": 0.664938793222337,
+     "centre_gap": 0.8437565513681236,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "inside": false,
+     "margin": -4.427168384854472,
+     "centre_gap": 7.035881048325081,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "inside": false,
+     "margin": -12.466060170724631,
+     "centre_gap": 14.756010081535045,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "inside": false,
+     "margin": -16.485506063659706,
+     "centre_gap": 18.616074598140024,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "inside": false,
+     "margin": -20.50495195659478,
+     "centre_gap": 22.476139114745003,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "inside": false,
+     "margin": -24.524397849529862,
+     "centre_gap": 26.33620363134999,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0007,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R1/retrieval+rerun/a1",
+     "force_attempt": 1,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c1_100-rerun-pre0",
+       "trajectory_file": "traj/T0-i33-c1_100-rerun-pre0.npz",
+       "candidate": [
+        1.0,
+        100.0
+       ],
+       "status": "guard_refused_abort:tomato_sauce.pick_1.grasp",
+       "task_ok": false,
+       "n_steps": 255,
+       "wall_s": 11.69,
+       "measured": {
+        "hold_n": 0,
+        "hold_min": null,
+        "hold_mean": null,
+        "hold_max": null,
+        "lr_imbalance": null,
+        "rel_z_spread_m": null,
+        "peak_simultaneous_n": null
+       },
+       "validity": {
+        "status": "no_hold_window",
+        "measurement_valid": false,
+        "grasp_stable": null
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": false,
+       "v1_unexcused": [
+        {
+         "robot_body": "right_gripper",
+         "other": "tomato_sauce_1_main",
+         "max_n": 6.3,
+         "stages": [
+          "grasp@tomato_sauce"
+         ],
+         "reasons": [
+          "not_a_finger_link_contact",
+          "window_bound_missing",
+          "outside_hold_window_close_to_release",
+          "not_all_substeps_on_inner_face (0/1081)"
+         ]
+        }
+       ],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.06
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.24
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.19
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.05
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.05
+          }
+         ],
+         "control_step": 255,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "aborted_episode": true
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 7675,
+        "formal_rows": 6375,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 255
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R1/retrieval+rerun/a1/x1",
+       "attempt_id": "T0-i33-R1/retrieval+rerun/a1",
+       "request_id": "T0-i33-R1",
+       "arm": "retrieval+rerun",
+       "force_attempt": 1,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 10.983364059300891,
+        "pred_max": 13.192165777571333,
+        "actual_hold_min": null,
+        "actual_hold_max": null,
+        "predicted_inside_band": true
+       }
+      },
+      {
+       "physical_run_id": "T0-i33-c1_100-rerun-pre1",
+       "trajectory_file": "traj/T0-i33-c1_100-rerun-pre1.npz",
+       "candidate": [
+        1.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 361,
+       "wall_s": 17.25,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 11.204674701554138,
+        "hold_mean": 12.423189012978018,
+        "hold_max": 12.610473001475757,
+        "lr_imbalance": 0.007500765773683516,
+        "rel_z_spread_m": 0.00012983222322771049,
+        "peak_simultaneous_n": 29.497486452896013
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": []
+       },
+       "substeps": {
+        "executed_total": 10325,
+        "formal_rows": 9025,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 361
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R1/retrieval+rerun/a1/x2",
+       "attempt_id": "T0-i33-R1/retrieval+rerun/a1",
+       "request_id": "T0-i33-R1",
+       "arm": "retrieval+rerun",
+       "force_attempt": 1,
+       "force_band_passed": true,
+       "joint_passed": true,
+       "prediction_vs_actual": {
+        "pred_min": 10.983364059300891,
+        "pred_max": 13.192165777571333,
+        "actual_hold_min": 11.204674701554138,
+        "actual_hold_max": 12.610473001475757,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": true,
+     "force_band_passed": true,
+     "task_ok": true,
+     "substeps_method": 18000,
+     "wall_method_s": 28.94
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 1,
+    "executions": 2,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": true,
+   "joint_passed_at_force_attempt": 1,
+   "first_candidate_joint_passed": true,
+   "first_candidate_force_passed": true,
+   "n_physical_executions": 2,
+   "n_actually_executed": 2,
+   "n_cache_hits": 0,
+   "substeps_method": 18000,
+   "substeps_spent": 18000,
+   "wall_method_s": 28.94
+  },
+  {
+   "request_id": "T0-i33-R2",
+   "arm": "retrieval+rerun",
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     16.0,
+     24.0
+    ],
+    "id": "R2",
+    "text": "hold the object with a moderate grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "inside": true,
+     "margin": 1.644593711795686,
+     "centre_gap": 0.9641189516749193,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "inside": false,
+     "margin": -4.4660601707246315,
+     "centre_gap": 6.756010081535045,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "inside": false,
+     "margin": -5.647548104041416,
+     "centre_gap": 7.1562434486318764,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "inside": false,
+     "margin": -5.647548104041416,
+     "centre_gap": 7.1562434486318764,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "inside": false,
+     "margin": -5.016635940699109,
+     "centre_gap": 7.912235081563889,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "inside": false,
+     "margin": -8.485506063659706,
+     "centre_gap": 10.616074598140024,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "inside": false,
+     "margin": -12.50495195659478,
+     "centre_gap": 14.476139114745003,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "inside": false,
+     "margin": -16.524397849529862,
+     "centre_gap": 18.33620363134999,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0009,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R2/retrieval+rerun/a1",
+     "force_attempt": 1,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c10_100-rerun-pre0",
+       "trajectory_file": "traj/T0-i33-c10_100-rerun-pre0.npz",
+       "candidate": [
+        10.0,
+        100.0
+       ],
+       "status": "guard_refused_abort:tomato_sauce.pick_1.grasp",
+       "task_ok": false,
+       "n_steps": 256,
+       "wall_s": 11.99,
+       "measured": {
+        "hold_n": 0,
+        "hold_min": null,
+        "hold_mean": null,
+        "hold_max": null,
+        "lr_imbalance": null,
+        "rel_z_spread_m": null,
+        "peak_simultaneous_n": null
+       },
+       "validity": {
+        "status": "no_hold_window",
+        "measurement_valid": false,
+        "grasp_stable": null
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": false,
+       "v1_unexcused": [
+        {
+         "robot_body": "right_gripper",
+         "other": "tomato_sauce_1_main",
+         "max_n": 6.3,
+         "stages": [
+          "grasp@tomato_sauce"
+         ],
+         "reasons": [
+          "not_a_finger_link_contact",
+          "window_bound_missing",
+          "outside_hold_window_close_to_release",
+          "not_all_substeps_on_inner_face (0/1281)"
+         ]
+        }
+       ],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.99
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.13
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.17
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.94
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.94
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.99
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.99
+          }
+         ],
+         "control_step": 256,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "aborted_episode": true
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 7700,
+        "formal_rows": 6400,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 256
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/retrieval+rerun/a1/x1",
+       "attempt_id": "T0-i33-R2/retrieval+rerun/a1",
+       "request_id": "T0-i33-R2",
+       "arm": "retrieval+rerun",
+       "force_attempt": 1,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 17.644593711795686,
+        "pred_max": 20.427168384854472,
+        "actual_hold_min": null,
+        "actual_hold_max": null,
+        "predicted_inside_band": true
+       }
+      },
+      {
+       "physical_run_id": "T0-i33-c10_100-rerun-pre1",
+       "trajectory_file": "traj/T0-i33-c10_100-rerun-pre1.npz",
+       "candidate": [
+        10.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 17.58,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": []
+       },
+       "substeps": {
+        "executed_total": 10375,
+        "formal_rows": 9075,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/retrieval+rerun/a1/x2",
+       "attempt_id": "T0-i33-R2/retrieval+rerun/a1",
+       "request_id": "T0-i33-R2",
+       "arm": "retrieval+rerun",
+       "force_attempt": 1,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 17.644593711795686,
+        "pred_max": 20.427168384854472,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 18075,
+     "wall_method_s": 29.57
+    },
+    {
+     "attempt_id": "T0-i33-R2/retrieval+rerun/a2",
+     "force_attempt": 2,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c20_100-rerun-pre0",
+       "trajectory_file": "traj/T0-i33-c20_100-rerun-pre0.npz",
+       "candidate": [
+        20.0,
+        100.0
+       ],
+       "status": "guard_refused_abort:tomato_sauce.pick_1.grasp",
+       "task_ok": false,
+       "n_steps": 257,
+       "wall_s": 11.83,
+       "measured": {
+        "hold_n": 0,
+        "hold_min": null,
+        "hold_mean": null,
+        "hold_max": null,
+        "lr_imbalance": null,
+        "rel_z_spread_m": null,
+        "peak_simultaneous_n": null
+       },
+       "validity": {
+        "status": "no_hold_window",
+        "measurement_valid": false,
+        "grasp_stable": null
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": false,
+       "v1_unexcused": [
+        {
+         "robot_body": "right_gripper",
+         "other": "tomato_sauce_1_main",
+         "max_n": 6.3,
+         "stages": [
+          "grasp@tomato_sauce"
+         ],
+         "reasons": [
+          "not_a_finger_link_contact",
+          "window_bound_missing",
+          "outside_hold_window_close_to_release",
+          "not_all_substeps_on_inner_face (0/1481)"
+         ]
+        }
+       ],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.86
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.15
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.85
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.84
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.96
+          }
+         ],
+         "control_step": 257,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "aborted_episode": true
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 7725,
+        "formal_rows": 6425,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 257
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/retrieval+rerun/a2/x1",
+       "attempt_id": "T0-i33-R2/retrieval+rerun/a2",
+       "request_id": "T0-i33-R2",
+       "arm": "retrieval+rerun",
+       "force_attempt": 2,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 25.045959992345455,
+        "pred_max": 28.46606017072463,
+        "actual_hold_min": null,
+        "actual_hold_max": null,
+        "predicted_inside_band": false
+       }
+      },
+      {
+       "physical_run_id": "T0-i33-c20_100-rerun-pre1",
+       "trajectory_file": "traj/T0-i33-c20_100-rerun-pre1.npz",
+       "candidate": [
+        20.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 17.22,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": []
+       },
+       "substeps": {
+        "executed_total": 10375,
+        "formal_rows": 9075,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/retrieval+rerun/a2/x2",
+       "attempt_id": "T0-i33-R2/retrieval+rerun/a2",
+       "request_id": "T0-i33-R2",
+       "arm": "retrieval+rerun",
+       "force_attempt": 2,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 25.045959992345455,
+        "pred_max": 28.46606017072463,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": false
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 18100,
+     "wall_method_s": 29.05
+    },
+    {
+     "attempt_id": "T0-i33-R2/retrieval+rerun/a3",
+     "force_attempt": 3,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c1_22-rerun-pre0",
+       "trajectory_file": "traj/T0-i33-c1_22-rerun-pre0.npz",
+       "candidate": [
+        1.0,
+        22.0
+       ],
+       "status": "guard_refused_abort:tomato_sauce.pick_1.grasp",
+       "task_ok": false,
+       "n_steps": 255,
+       "wall_s": 11.94,
+       "measured": {
+        "hold_n": 0,
+        "hold_min": null,
+        "hold_mean": null,
+        "hold_max": null,
+        "lr_imbalance": null,
+        "rel_z_spread_m": null,
+        "peak_simultaneous_n": null
+       },
+       "validity": {
+        "status": "no_hold_window",
+        "measurement_valid": false,
+        "grasp_stable": null
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": false,
+       "v1_unexcused": [
+        {
+         "robot_body": "right_gripper",
+         "other": "tomato_sauce_1_main",
+         "max_n": 6.3,
+         "stages": [
+          "grasp@tomato_sauce"
+         ],
+         "reasons": [
+          "not_a_finger_link_contact",
+          "window_bound_missing",
+          "outside_hold_window_close_to_release",
+          "not_all_substeps_on_inner_face (0/1081)"
+         ]
+        }
+       ],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.06
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.24
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.19
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.1
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.05
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 1.05
+          }
+         ],
+         "control_step": 255,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "aborted_episode": true
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 7675,
+        "formal_rows": 6375,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 255
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/retrieval+rerun/a3/x1",
+       "attempt_id": "T0-i33-R2/retrieval+rerun/a3",
+       "request_id": "T0-i33-R2",
+       "arm": "retrieval+rerun",
+       "force_attempt": 3,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 10.352451895958584,
+        "pred_max": 15.335061206777663,
+        "actual_hold_min": null,
+        "actual_hold_max": null,
+        "predicted_inside_band": false
+       }
+      },
+      {
+       "physical_run_id": "T0-i33-c1_22-rerun-pre1",
+       "trajectory_file": "traj/T0-i33-c1_22-rerun-pre1.npz",
+       "candidate": [
+        1.0,
+        22.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 361,
+       "wall_s": 17.46,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 11.204674701554138,
+        "hold_mean": 12.423189012978018,
+        "hold_max": 12.610473001475757,
+        "lr_imbalance": 0.007500765773683516,
+        "rel_z_spread_m": 0.00012983222322771049,
+        "peak_simultaneous_n": 29.497486452896013
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": []
+       },
+       "substeps": {
+        "executed_total": 10325,
+        "formal_rows": 9025,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 361
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R2/retrieval+rerun/a3/x2",
+       "attempt_id": "T0-i33-R2/retrieval+rerun/a3",
+       "request_id": "T0-i33-R2",
+       "arm": "retrieval+rerun",
+       "force_attempt": 3,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 10.352451895958584,
+        "pred_max": 15.335061206777663,
+        "actual_hold_min": 11.204674701554138,
+        "actual_hold_max": 12.610473001475757,
+        "predicted_inside_band": false
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": false,
+     "force_band_passed": false,
+     "task_ok": true,
+     "substeps_method": 18000,
+     "wall_method_s": 29.4
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 3,
+    "executions": 6,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": false,
+   "joint_passed_at_force_attempt": null,
+   "first_candidate_joint_passed": false,
+   "first_candidate_force_passed": false,
+   "n_physical_executions": 6,
+   "n_actually_executed": 6,
+   "n_cache_hits": 0,
+   "substeps_method": 54175,
+   "substeps_spent": 54175,
+   "wall_method_s": 88.02
+  },
+  {
+   "request_id": "T0-i33-R3",
+   "arm": "retrieval+rerun",
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     24.0,
+     34.0
+    ],
+    "id": "R3",
+    "text": "hold the object with a firm grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "inside": true,
+     "margin": 1.514493936340294,
+     "centre_gap": 1.616074598140024,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "inside": true,
+     "margin": 1.0459599923454554,
+     "centre_gap": 2.2439899184649548,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "inside": false,
+     "margin": -2.5049519565947804,
+     "centre_gap": 5.476139114745003,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "inside": false,
+     "margin": -6.524397849529862,
+     "centre_gap": 9.336203631349989,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "inside": false,
+     "margin": -6.355406288204314,
+     "centre_gap": 9.96411895167492,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "inside": false,
+     "margin": -13.647548104041416,
+     "centre_gap": 16.156243448631876,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "inside": false,
+     "margin": -13.647548104041416,
+     "centre_gap": 16.156243448631876,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "inside": false,
+     "margin": -13.016635940699109,
+     "centre_gap": 16.91223508156389,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0008,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R3/retrieval+rerun/a1",
+     "force_attempt": 1,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c25_100-rerun-pre0",
+       "trajectory_file": "traj/T0-i33-c25_100-rerun-pre0.npz",
+       "candidate": [
+        25.0,
+        100.0
+       ],
+       "status": "guard_refused_abort:tomato_sauce.pick_1.grasp",
+       "task_ok": false,
+       "n_steps": 257,
+       "wall_s": 12.15,
+       "measured": {
+        "hold_n": 0,
+        "hold_min": null,
+        "hold_mean": null,
+        "hold_max": null,
+        "lr_imbalance": null,
+        "rel_z_spread_m": null,
+        "peak_simultaneous_n": null
+       },
+       "validity": {
+        "status": "no_hold_window",
+        "measurement_valid": false,
+        "grasp_stable": null
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": false,
+       "v1_unexcused": [
+        {
+         "robot_body": "right_gripper",
+         "other": "tomato_sauce_1_main",
+         "max_n": 6.3,
+         "stages": [
+          "grasp@tomato_sauce"
+         ],
+         "reasons": [
+          "not_a_finger_link_contact",
+          "window_bound_missing",
+          "outside_hold_window_close_to_release",
+          "not_all_substeps_on_inner_face (0/1481)"
+         ]
+        }
+       ],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.86
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.15
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.85
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.84
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.95
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.96
+          }
+         ],
+         "control_step": 257,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "aborted_episode": true
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 7725,
+        "formal_rows": 6425,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 257
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R3/retrieval+rerun/a1/x1",
+       "attempt_id": "T0-i33-R3/retrieval+rerun/a1",
+       "request_id": "T0-i33-R3",
+       "arm": "retrieval+rerun",
+       "force_attempt": 1,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 28.746643132620342,
+        "pred_max": 32.485506063659706,
+        "actual_hold_min": null,
+        "actual_hold_max": null,
+        "predicted_inside_band": true
+       }
+      },
+      {
+       "physical_run_id": "T0-i33-c25_100-rerun-pre1",
+       "trajectory_file": "traj/T0-i33-c25_100-rerun-pre1.npz",
+       "candidate": [
+        25.0,
+        100.0
+       ],
+       "status": "completed",
+       "task_ok": true,
+       "n_steps": 363,
+       "wall_s": 17.22,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 31.03667306805125,
+        "hold_mean": 32.2302904471709,
+        "hold_max": 32.29198679391088,
+        "lr_imbalance": 0.004316618316752822,
+        "rel_z_spread_m": 0.00013168708187871747,
+        "peak_simultaneous_n": 51.459971789923756
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": []
+       },
+       "substeps": {
+        "executed_total": 10375,
+        "formal_rows": 9075,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 363
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R3/retrieval+rerun/a1/x2",
+       "attempt_id": "T0-i33-R3/retrieval+rerun/a1",
+       "request_id": "T0-i33-R3",
+       "arm": "retrieval+rerun",
+       "force_attempt": 1,
+       "force_band_passed": true,
+       "joint_passed": true,
+       "prediction_vs_actual": {
+        "pred_min": 28.746643132620342,
+        "pred_max": 32.485506063659706,
+        "actual_hold_min": 31.03667306805125,
+        "actual_hold_max": 32.29198679391088,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "completed",
+     "joint_passed": true,
+     "force_band_passed": true,
+     "task_ok": true,
+     "substeps_method": 18100,
+     "wall_method_s": 29.37
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 1,
+    "executions": 2,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": true,
+   "joint_passed_at_force_attempt": 1,
+   "first_candidate_joint_passed": true,
+   "first_candidate_force_passed": true,
+   "n_physical_executions": 2,
+   "n_actually_executed": 2,
+   "n_cache_hits": 0,
+   "substeps_method": 18100,
+   "substeps_spent": 18100,
+   "wall_method_s": 29.37
+  },
+  {
+   "request_id": "T0-i33-R4",
+   "arm": "retrieval+rerun",
+   "selection": "retrieval",
+   "recovery": "rerun",
+   "task": 0,
+   "init": 33,
+   "request": {
+    "band_n": [
+     34.0,
+     46.0
+    ],
+    "id": "R4",
+    "text": "hold the object with a very firm grip"
+   },
+   "object": "tomato_sauce_1",
+   "ranking": [
+    {
+     "rank": 0,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "fixed_rank": 7,
+     "inside": true,
+     "margin": 2.148009413170108,
+     "centre_gap": 1.6637963686500115,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 1,
+     "candidate": [
+      30.0,
+      100.0
+     ],
+     "fixed_rank": 6,
+     "inside": false,
+     "margin": -1.552673727104775,
+     "centre_gap": 5.523860885254997,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 32.447326272895225,
+      "pred_max": 36.50495195659478,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 2,
+     "candidate": [
+      25.0,
+      100.0
+     ],
+     "fixed_rank": 5,
+     "inside": false,
+     "margin": -5.253356867379658,
+     "centre_gap": 9.383925401859976,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 28.746643132620342,
+      "pred_max": 32.485506063659706,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 3,
+     "candidate": [
+      20.0,
+      100.0
+     ],
+     "fixed_rank": 4,
+     "inside": false,
+     "margin": -8.954040007654545,
+     "centre_gap": 13.243989918464955,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 25.045959992345455,
+      "pred_max": 28.46606017072463,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 4,
+     "candidate": [
+      10.0,
+      100.0
+     ],
+     "fixed_rank": 3,
+     "inside": false,
+     "margin": -16.355406288204314,
+     "centre_gap": 20.96411895167492,
+     "library_prediction": {
+      "support": "interpolated",
+      "pred_min": 17.644593711795686,
+      "pred_max": 20.427168384854472,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 5,
+     "candidate": [
+      1.0,
+      22.0
+     ],
+     "fixed_rank": 0,
+     "inside": false,
+     "margin": -23.647548104041416,
+     "centre_gap": 27.156243448631876,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 6,
+     "candidate": [
+      10.0,
+      22.0
+     ],
+     "fixed_rank": 2,
+     "inside": false,
+     "margin": -23.647548104041416,
+     "centre_gap": 27.156243448631876,
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 10.352451895958584,
+      "pred_max": 15.335061206777663,
+      "basis": "same_object+same_hi",
+      "n_records_used": 15,
+      "lo_grid": [
+       1.0
+      ],
+      "hi_matched": true
+     }
+    },
+    {
+     "rank": 7,
+     "candidate": [
+      1.0,
+      100.0
+     ],
+     "fixed_rank": 1,
+     "inside": false,
+     "margin": -23.01663594069911,
+     "centre_gap": 27.91223508156389,
+     "library_prediction": {
+      "support": "direct_measured",
+      "pred_min": 10.983364059300891,
+      "pred_max": 13.192165777571333,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     }
+    }
+   ],
+   "selection_seconds": 0.0009,
+   "attempts": [
+    {
+     "attempt_id": "T0-i33-R4/retrieval+rerun/a1",
+     "force_attempt": 1,
+     "candidate": [
+      40.0,
+      100.0
+     ],
+     "library_prediction": {
+      "support": "clamped_extrapolated",
+      "pred_min": 36.14800941317011,
+      "pred_max": 40.52439784952986,
+      "basis": "same_object+same_hi",
+      "n_records_used": 22,
+      "lo_grid": [
+       1.0,
+       35.0
+      ],
+      "hi_matched": true
+     },
+     "executions": [
+      {
+       "physical_run_id": "T0-i33-c40_100-rerun-pre0",
+       "trajectory_file": "traj/T0-i33-c40_100-rerun-pre0.npz",
+       "candidate": [
+        40.0,
+        100.0
+       ],
+       "status": "guard_refused_abort:tomato_sauce.pick_1.grasp",
+       "task_ok": false,
+       "n_steps": 260,
+       "wall_s": 12.03,
+       "measured": {
+        "hold_n": 0,
+        "hold_min": null,
+        "hold_mean": null,
+        "hold_max": null,
+        "lr_imbalance": null,
+        "rel_z_spread_m": null,
+        "peak_simultaneous_n": null
+       },
+       "validity": {
+        "status": "no_hold_window",
+        "measurement_valid": false,
+        "grasp_stable": null
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": false,
+       "v1_unexcused": [
+        {
+         "robot_body": "right_gripper",
+         "other": "tomato_sauce_1_main",
+         "max_n": 6.3,
+         "stages": [
+          "grasp@tomato_sauce"
+         ],
+         "reasons": [
+          "not_a_finger_link_contact",
+          "window_bound_missing",
+          "outside_hold_window_close_to_release",
+          "not_all_substeps_on_inner_face (0/2047)"
+         ]
+        }
+       ],
+       "v1_support_unexplained": [],
+       "guard_events": [
+        {
+         "instance_id": "tomato_sauce.pick_1.grasp",
+         "check": "post_close",
+         "violations": [
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.74
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.79
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.73
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.73
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.79
+          },
+          {
+           "robot_geom": "gripper0_hand_collision",
+           "robot_body": "gripper0_right_gripper",
+           "other": "tomato_sauce_1_main",
+           "force_n": 0.79
+          }
+         ],
+         "control_step": 260,
+         "approach_instance": "tomato_sauce.pick_1.approach",
+         "refused_candidate": [
+          0.0,
+          0.0,
+          0.01,
+          0.0
+         ],
+         "aborted_episode": true
+        }
+       ],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": [
+         "tomato_sauce.pick_1.approach"
+        ]
+       },
+       "substeps": {
+        "executed_total": 7800,
+        "formal_rows": 6500,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 260
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R4/retrieval+rerun/a1/x1",
+       "attempt_id": "T0-i33-R4/retrieval+rerun/a1",
+       "request_id": "T0-i33-R4",
+       "arm": "retrieval+rerun",
+       "force_attempt": 1,
+       "force_band_passed": false,
+       "joint_passed": false,
+       "prediction_vs_actual": {
+        "pred_min": 36.14800941317011,
+        "pred_max": 40.52439784952986,
+        "actual_hold_min": null,
+        "actual_hold_max": null,
+        "predicted_inside_band": true
+       }
+      },
+      {
+       "physical_run_id": "T0-i33-c40_100-rerun-pre1",
+       "trajectory_file": "traj/T0-i33-c40_100-rerun-pre1.npz",
+       "candidate": [
+        40.0,
+        100.0
+       ],
+       "status": "grasp_band_not_reached:tomato_sauce.pick_1.grasp",
+       "task_ok": true,
+       "n_steps": 384,
+       "wall_s": 18.45,
+       "measured": {
+        "hold_n": 62,
+        "hold_min": 39.29700735097617,
+        "hold_mean": 39.983229340241984,
+        "hold_max": 40.140638307659835,
+        "lr_imbalance": 0.005704689667358203,
+        "rel_z_spread_m": 0.00021091553629637438,
+        "peak_simultaneous_n": 52.49143540228374
+       },
+       "validity": {
+        "status": "ok",
+        "measurement_valid": true,
+        "grasp_stable": true
+       },
+       "contact_v0_clean": false,
+       "contact_v1_clean": true,
+       "v1_unexcused": [],
+       "v1_support_unexplained": [],
+       "guard_events": [],
+       "guard_chosen": {
+        "alphabet_soup.pick_1.approach": [
+         0.0,
+         0.0,
+         0.01,
+         0.0
+        ],
+        "tomato_sauce.pick_1.approach": [
+         0.0,
+         0.0,
+         0.02,
+         0.0
+        ]
+       },
+       "initial_state_digest": "8b5e2fdec929e28f5446a3773c1d8a0474d34332a6d128e6f4a6e50ab2c21797",
+       "parameter_effective_stage": {
+        "force_candidate": "tomato_sauce.pick_1.grasp",
+        "geometry_rejection": []
+       },
+       "substeps": {
+        "executed_total": 10900,
+        "formal_rows": 9600,
+        "discarded_total_listed": 1300,
+        "discarded_by_guard_restore": 0,
+        "discarded_planner_lookahead": 1300,
+        "executed_after_last_restore": null,
+        "prefix_rows_not_resimulated": 0,
+        "identity_executed_eq_formal_plus_discarded": true
+       },
+       "control_steps": {
+        "n_steps": 384
+       },
+       "discarded_contact_rows": 0,
+       "reused_cached_episode": false,
+       "execution_id": "T0-i33-R4/retrieval+rerun/a1/x2",
+       "attempt_id": "T0-i33-R4/retrieval+rerun/a1",
+       "request_id": "T0-i33-R4",
+       "arm": "retrieval+rerun",
+       "force_attempt": 1,
+       "force_band_passed": true,
+       "joint_passed": true,
+       "prediction_vs_actual": {
+        "pred_min": 36.14800941317011,
+        "pred_max": 40.52439784952986,
+        "actual_hold_min": 39.29700735097617,
+        "actual_hold_max": 40.140638307659835,
+        "predicted_inside_band": true
+       }
+      }
+     ],
+     "refusals_in_attempt": 1,
+     "end_reason": "grasp_band_not_reached:tomato_sauce.pick_1.grasp",
+     "joint_passed": true,
+     "force_band_passed": true,
+     "task_ok": true,
+     "substeps_method": 18700,
+     "wall_method_s": 30.48
+    }
+   ],
+   "budget_audit": {
+    "force_candidates": 1,
+    "executions": 2,
+    "max_refusals_in_one_attempt": 1,
+    "within_bounds": true
+   },
+   "joint_passed": true,
+   "joint_passed_at_force_attempt": 1,
+   "first_candidate_joint_passed": true,
+   "first_candidate_force_passed": true,
+   "n_physical_executions": 2,
+   "n_actually_executed": 2,
+   "n_cache_hits": 0,
+   "substeps_method": 18700,
+   "substeps_spent": 18700,
+   "wall_method_s": 30.48
+  }
+ ]
+}

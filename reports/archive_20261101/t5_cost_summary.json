@@ -1,5 +1,5 @@
 {
- "schema": "mannercap.t5_cost_summary.v2",
+ "schema": "mannercap.t5_cost_summary.v3",
  "rows": [
   {
    "group": "step14_precheck_a_config_only",
@@ -117,8 +117,21 @@
    "episodes_with_wall": 16,
    "sim_wall_s": 97.5,
    "control_steps": 3796
+  },
+  "language entry (executions; duration missing)": {
+   "episodes": 4,
+   "episodes_with_wall": 0,
+   "sim_wall_s": null,
+   "control_steps": null
   }
  },
+ "total": {
+  "episodes": 53,
+  "episodes_with_wall_recorded": 49,
+  "episodes_wall_missing": 4,
+  "sim_wall_s_of_recorded_episodes": 402.4,
+  "note": "every execution counts toward the run total; the 4 step17 executions have no recorded duration, so the wall sum covers only the episodes with a recorded duration and is a lower bound"
+ },
  "human_hours": "未记录",
- "correction": "the previous report's total row mixed categories: 37 episodes / 261.9 s = onboarding (21) + step16 (16); pre-check episodes and step17 are listed separately here"
+ "correction": "v3: step17's 4 executions are counted in the total run count (12 pre-check + 21 onboarding + 16 step16 + 4 step17 = 53), durations marked missing, not excluded. The earlier 37 episodes / 261.9 s = onboarding (21) + step16 (16) only"
 }

@@ -68,10 +68,19 @@ def t5_cost():
     rows.append({"group": "step17_language_execution", "category": "language entry (no new simulation timing recorded)",
                  "episodes": ex["n_runs"], "episodes_with_wall_recorded": 0, "sim_wall_s": None, "control_steps": None,
                  "note": "4 execution records, each bitwise-compared to step16 trajectories"})
-    out = {"schema": "mannercap.t5_cost_summary.v2", "rows": rows, "by_category": cat,
+    cat["language entry (executions; duration missing)"] = {"episodes": ex["n_runs"], "episodes_with_wall": 0,
+                                                              "sim_wall_s": None, "control_steps": None}
+    tot_ep = sum(v["episodes"] for v in cat.values())
+    tot_wall_n = sum(v["episodes_with_wall"] for v in cat.values())
+    tot_wall = round(sum(v["sim_wall_s"] or 0.0 for v in cat.values()), 1)
+    out = {"schema": "mannercap.t5_cost_summary.v3", "rows": rows, "by_category": cat,
+           "total": {"episodes": tot_ep, "episodes_with_wall_recorded": tot_wall_n, "episodes_wall_missing": tot_ep - tot_wall_n,
+                     "sim_wall_s_of_recorded_episodes": tot_wall,
+                     "note": "every execution counts toward the run total; the 4 step17 executions have no recorded duration, "
+                             "so the wall sum covers only the episodes with a recorded duration and is a lower bound"},
            "human_hours": "未记录",
-           "correction": "the previous report's total row mixed categories: 37 episodes / 261.9 s = onboarding (21) + step16 (16); "
-                         "pre-check episodes and step17 are listed separately here"}
+           "correction": "v3: step17's 4 executions are counted in the total run count (12 pre-check + 21 onboarding + 16 step16 + 4 step17 = 53), "
+                         "durations marked missing, not excluded. The earlier 37 episodes / 261.9 s = onboarding (21) + step16 (16) only"}
     (OUT / "t5_cost_summary.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
     return out
 
