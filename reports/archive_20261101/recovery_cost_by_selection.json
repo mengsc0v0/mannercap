@@ -1,0 +1,85 @@
+{
+ "schema": "mannercap.recovery_cost_by_selection.v1",
+ "book": "method (cache hits charged at recorded cost)",
+ "note": "27.2% belongs to selection=rule, 27.3% to selection=retrieval (NOT to T0/T7); per-task rows are listed for completeness",
+ "rows": {
+  "rule|all": {
+   "rerun": {
+    "n": 32,
+    "method_substeps": 1287175,
+    "joint_passed": 16
+   },
+   "recover": {
+    "n": 32,
+    "method_substeps": 936725,
+    "joint_passed": 16
+   },
+   "saving_fraction": 0.2723
+  },
+  "rule|T0": {
+   "rerun": {
+    "n": 16,
+    "method_substeps": 613475,
+    "joint_passed": 9
+   },
+   "recover": {
+    "n": 16,
+    "method_substeps": 448025,
+    "joint_passed": 9
+   },
+   "saving_fraction": 0.2697
+  },
+  "rule|T7": {
+   "rerun": {
+    "n": 16,
+    "method_substeps": 673700,
+    "joint_passed": 7
+   },
+   "recover": {
+    "n": 16,
+    "method_substeps": 488700,
+    "joint_passed": 7
+   },
+   "saving_fraction": 0.2746
+  },
+  "retrieval|all": {
+   "rerun": {
+    "n": 32,
+    "method_substeps": 1062975,
+    "joint_passed": 19
+   },
+   "recover": {
+    "n": 32,
+    "method_substeps": 773125,
+    "joint_passed": 19
+   },
+   "saving_fraction": 0.2727
+  },
+  "retrieval|T0": {
+   "rerun": {
+    "n": 16,
+    "method_substeps": 555200,
+    "joint_passed": 9
+   },
+   "recover": {
+    "n": 16,
+    "method_substeps": 404900,
+    "joint_passed": 9
+   },
+   "saving_fraction": 0.2707
+  },
+  "retrieval|T7": {
+   "rerun": {
+    "n": 16,
+    "method_substeps": 507775,
+    "joint_passed": 10
+   },
+   "recover": {
+    "n": 16,
+    "method_substeps": 368225,
+    "joint_passed": 10
+   },
+   "saving_fraction": 0.2748
+  }
+ }
+}

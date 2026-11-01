@@ -1,0 +1,124 @@
+{
+ "schema": "mannercap.t5_cost_summary.v2",
+ "rows": [
+  {
+   "group": "step14_precheck_a_config_only",
+   "category": "pre-check (failed), counted separately",
+   "episodes": 4,
+   "episodes_with_wall_recorded": 4,
+   "sim_wall_s": 5.7,
+   "control_steps": 0
+  },
+  {
+   "group": "step14_precheck_b_adapter_obs",
+   "category": "pre-check (failed), counted separately",
+   "episodes": 4,
+   "episodes_with_wall_recorded": 4,
+   "sim_wall_s": 13.0,
+   "control_steps": 0
+  },
+  {
+   "group": "step14_precheck_c_wide_grid_t4",
+   "category": "pre-check (failed), counted separately",
+   "episodes": 4,
+   "episodes_with_wall_recorded": 4,
+   "sim_wall_s": 121.8,
+   "control_steps": 0
+  },
+  {
+   "group": "step14_onboard_demo0_ref",
+   "category": "first-time onboarding",
+   "episodes": 4,
+   "episodes_with_wall_recorded": 4,
+   "sim_wall_s": 43.6,
+   "control_steps": 1781
+  },
+  {
+   "group": "step14_onboard_demo0_ref_yawfix",
+   "category": "first-time onboarding",
+   "episodes": 4,
+   "episodes_with_wall_recorded": 4,
+   "sim_wall_s": 42.2,
+   "control_steps": 1777
+  },
+  {
+   "group": "step15_p1_align",
+   "category": "first-time onboarding",
+   "episodes": 1,
+   "episodes_with_wall_recorded": 1,
+   "sim_wall_s": 6.4,
+   "control_steps": 225
+  },
+  {
+   "group": "step15_p2_align_all",
+   "category": "first-time onboarding",
+   "episodes": 4,
+   "episodes_with_wall_recorded": 4,
+   "sim_wall_s": 24.1,
+   "control_steps": 891
+  },
+  {
+   "group": "step15_p3_v11",
+   "category": "first-time onboarding",
+   "episodes": 4,
+   "episodes_with_wall_recorded": 4,
+   "sim_wall_s": 24.1,
+   "control_steps": 891
+  },
+  {
+   "group": "step15_p4_heldout",
+   "category": "first-time onboarding",
+   "episodes": 4,
+   "episodes_with_wall_recorded": 4,
+   "sim_wall_s": 24.0,
+   "control_steps": 885
+  },
+  {
+   "group": "step16_dev",
+   "category": "added manner condition (speed)",
+   "episodes": 8,
+   "episodes_with_wall_recorded": 8,
+   "sim_wall_s": 49.1,
+   "control_steps": 1886
+  },
+  {
+   "group": "step16_new",
+   "category": "added manner condition (speed)",
+   "episodes": 8,
+   "episodes_with_wall_recorded": 8,
+   "sim_wall_s": 48.4,
+   "control_steps": 1910
+  },
+  {
+   "group": "step17_language_execution",
+   "category": "language entry (no new simulation timing recorded)",
+   "episodes": 4,
+   "episodes_with_wall_recorded": 0,
+   "sim_wall_s": null,
+   "control_steps": null,
+   "note": "4 execution records, each bitwise-compared to step16 trajectories"
+  }
+ ],
+ "by_category": {
+  "pre-check (failed), counted separately": {
+   "episodes": 12,
+   "episodes_with_wall": 12,
+   "sim_wall_s": 140.5,
+   "control_steps": 0
+  },
+  "first-time onboarding": {
+   "episodes": 21,
+   "episodes_with_wall": 21,
+   "sim_wall_s": 164.4,
+   "control_steps": 6450
+  },
+  "added manner condition (speed)": {
+   "episodes": 16,
+   "episodes_with_wall": 16,
+   "sim_wall_s": 97.5,
+   "control_steps": 3796
+  }
+ },
+ "human_hours": "未记录",
+ "correction": "the previous report's total row mixed categories: 37 episodes / 261.9 s = onboarding (21) + step16 (16); pre-check episodes and step17 are listed separately here"
+}

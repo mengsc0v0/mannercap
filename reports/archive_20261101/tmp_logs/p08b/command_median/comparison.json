@@ -1,0 +1,56 @@
+{
+ "arms": {
+  "command_median": {
+   "failure_reasons": {
+    "speed:approach:fast:fail:speed_below_lower": 3,
+    "speed:retreat:fast:fail:speed_below_lower": 3,
+    "stage_timeout:retreat": 2
+   },
+   "final_accept": 117,
+   "first_attempt_accept": 117,
+   "mean_attempts": 1.05,
+   "n_requests": 120,
+   "outcomes": {
+    "accepted": 117,
+    "duplicate": 1,
+    "execution_failure": 2,
+    "validation_failure": 6
+   },
+   "physics_substeps": 1446950,
+   "unresolved": [
+    [
+     "stack",
+     3004,
+     "fast"
+    ],
+    [
+     "stack",
+     3010,
+     "slow"
+    ],
+    [
+     "stack",
+     3010,
+     "fast"
+    ]
+   ]
+  }
+ },
+ "budget": 3,
+ "eval_seeds": [
+  3001,
+  3002,
+  3003,
+  3004,
+  3005,
+  3006,
+  3007,
+  3008,
+  3009,
+  3010,
+  3011,
+  3012
+ ],
+ "n_memory_observations": 78,
+ "warm_run": "/tmp/prod_v3"
+}
