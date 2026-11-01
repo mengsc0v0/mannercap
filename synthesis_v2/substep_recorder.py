@@ -71,6 +71,7 @@ class SubstepRecorder:
             return out
 
         s.save_state, s.restore_state = save, restore
+        s._substep_rec = self        # read-only handle for the executor's retry log (never used to steer execution)
         return self
 
     def formal_arrays(self) -> tuple[np.ndarray, list[tuple]]:

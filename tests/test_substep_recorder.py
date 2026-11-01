@@ -130,3 +130,27 @@ def test_resumed_recorder_is_seeded_from_the_snapshot_prefix():
     ctrl, rows = s2.recorder.formal_arrays()
     assert [r[0] for r in rows[::SUBSTEPS]] == [1.0, 1.0, 4.0] and list(np.unique(ctrl)) == [0, 1, 2]
     assert s2.recorder.executed_substeps == SUBSTEPS      # only the resumed part was simulated here
+
+
+# ---- retry-log helpers (2026-11-01): logging only, must be read-only and deterministic
+def test_install_hooks_exposes_a_read_only_handle_without_changing_rows():
+    s = _mk()
+    assert s._substep_rec is s.recorder
+    _run(s, 1.0, 2)
+    st = s.save_state()
+    n_before = s.recorder.executed_substeps
+    _run(s, 2.0, 3)
+    before, after = len(s.recorder.ctrl), None
+    s.restore_state(st)
+    after = len(s.recorder.ctrl)
+    assert before - after == 3 * SUBSTEPS and after == 2 * SUBSTEPS                 # discarded rows by this restore
+    assert s.recorder.executed_substeps - n_before == 3 * SUBSTEPS                   # simulated once, counted once
+
+
+def test_state_digest_identifies_the_saved_state_and_ignores_unsupported_backends():
+    from synthesis_v2.program_executor import state_digest
+    a = {"phys": np.arange(5, dtype=np.float64), "env": {"timestep": 3, "cur_time": 0.6}, "grip": np.array([1.0])}
+    b = {"phys": np.arange(5, dtype=np.float64), "env": {"timestep": 3, "cur_time": 0.6}, "grip": np.array([1.0])}
+    c = {**b, "phys": np.arange(5, dtype=np.float64) + 1e-12}
+    assert state_digest(a) == state_digest(b) and state_digest(a) != state_digest(c)
+    assert state_digest({"c": 1}) is None and state_digest(None) is None

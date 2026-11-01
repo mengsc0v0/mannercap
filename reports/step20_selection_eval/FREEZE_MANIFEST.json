@@ -1,0 +1,129 @@
+{
+ "schema": "mannercap.freeze.v2",
+ "scope": "T0/T7 x init30-33 x R1-R4, arms rule+recover, retrieval+recover, retrieval+rerun (96 requests)",
+ "code_commit": "7c6121e312964d02b19fbca5c2f7d504fced5d49 (parent of the freeze commit that adds this file; code files below are hashed in the working tree)",
+ "branch": "work/experience-library-6phase-20260928",
+ "tests": "585 passed, 14 subtests passed in 75.90s (0:01:15) (full suite, after the logging patch and budget b2 tests)",
+ "behavior_probe": "reports/step20_behavior_probe/compare_pre_vs_post.json: 16 executions bitwise identical before/after the logging patch and identical to stored step-12 results",
+ "budget_version": "b2",
+ "executor_guard": {
+  "contact_threshold_n": 0.1,
+  "enabled": true,
+  "max_retries": 3,
+  "min_clearance_m": 0.0
+ },
+ "contact_policy_version": "contact_policy_v1.1",
+ "e1_config": {
+  "path": "configs/experience_retrieval_e1.json",
+  "content_hash": "6dfb9a519e7d93b2c7d78d694edbd9650f1d2df6280fd218168c9a4512ae08ef",
+  "sha256_file": "b5a30deede47d16134c811ecf4d67350c9fbc685b0b621d227fee68026f54fc1"
+ },
+ "experience_library": {
+  "path": "reports/step10_experience/library.json",
+  "content_hash": "177c053d241f7dbcbee06e1380fccd468f1460c44f7441f8ade38be0503971c4",
+  "sha256_file": "f49007915b1eadd1e9ae7c18b3f10e93e905653f79d62184c8007fadacd892ce"
+ },
+ "eval_config": {
+  "path": "configs/selection_eval_e2.json",
+  "content_hash": "7e9357dbc7638e29017935da56e41bf93d659da7158d07c7c5a8edb04487c771",
+  "sha256_file": "f83d3f75657a8f441ab2eefe0c0f036f0e98ccaf50d226c6494e0976f1d49626"
+ },
+ "inits": {
+  "0": [
+   30,
+   31,
+   32,
+   33
+  ],
+  "7": [
+   30,
+   31,
+   32,
+   33
+  ]
+ },
+ "requests": [
+  {
+   "band_n": [
+    8.0,
+    16.0
+   ],
+   "id": "R1",
+   "text": "hold the object with a very light grip"
+  },
+  {
+   "band_n": [
+    16.0,
+    24.0
+   ],
+   "id": "R2",
+   "text": "hold the object with a moderate grip"
+  },
+  {
+   "band_n": [
+    24.0,
+    34.0
+   ],
+   "id": "R3",
+   "text": "hold the object with a firm grip"
+  },
+  {
+   "band_n": [
+    34.0,
+    46.0
+   ],
+   "id": "R4",
+   "text": "hold the object with a very firm grip"
+  }
+ ],
+ "phases": [
+  {
+   "arms": [
+    [
+     "rule",
+     "recover"
+    ],
+    [
+     "retrieval",
+     "recover"
+    ]
+   ],
+   "name": "A_select_quality"
+  },
+  {
+   "arms": [
+    [
+     "retrieval",
+     "rerun"
+    ]
+   ],
+   "name": "B_recovery_effect"
+  }
+ ],
+ "init_ledger": "reports/archive_20261101/init_usage_ledger.json (T0/T7 inits 30-49 unused before this run)",
+ "code_sha256": {
+  "synthesis_v2/program_executor.py": "f05565cc139158fe26e20e91efac5417e04230a6768165a97e6d75aade6b20b0",
+  "synthesis_v2/contact_policy_v1.py": "593aa454cf1660457e1a4cb4a90c7b323f53616571c8f84668e8c0ac3562c956",
+  "synthesis_v2/execution_guard.py": "7c5124bbe7c38ed40fe1abfc955f0b6daad4e3baaf759bda02d5be5dd8b52162",
+  "synthesis_v2/contact_audit.py": "b32def76c9b266194eda644c0449dcdb1b899bfb20c373896c659feb5bac2cd2",
+  "synthesis_v2/approach_planner.py": "789d29b054b980e9d2d41c67162dfcaf2276a348ff0c81b39b43bff7710233f3",
+  "synthesis_v2/substep_recorder.py": "7db9d261a3eac3b37116749aedfa6abfd36a0af0b35a6c07363a8399216ffff4",
+  "scripts/mt/s11_guarded_case.py": "d6a83f89f243c2b994c0a0dbcfa81d7ff6fbdd7d448399c3e2c5707def6b38a2",
+  "scripts/mt/s12_recovery_ablation.py": "a4ba74b40346b2022ea1cac4acc6ce2f04a8d5203e5f278bf97ee9a9abab0c8a",
+  "scripts/mt/s10_retrieval_trial.py": "176966c7d68d45d29cb6d5b90b25bb5ba887a864c68a03df2ee501f879d70f73",
+  "scripts/mt/s20_selection_eval.py": "b398415c22b8cd75ffe3b6447a1d861a00be75adcc4aa4b366680f9e7fbb27d1",
+  "scripts/mt/s20_behavior_probe.py": "cae0d2e7854040a607dcdc049190a4a1481d2fb366f33131f5a0babeaa723591",
+  "scripts/mt/s20_make_freeze.py": "ae31d63959afe7baed19cfecf100603af07dc98cf2dbf63f7d128ea9ca7ceef2",
+  "tests/test_selection_eval_budget.py": "28be6b15a00abb5afb926239b96b8fd9aba0fb99aa34082d50f02d9031b1cd87",
+  "synthesis_v2/libero_backend.py": "61153f0aa578a0191b35d68770e404c831f6f8b56c6d68390a1f9c8d64ff36e3",
+  "synthesis_v2/native_osc_env.py": "7951b3b56f479100d4e6f76f62ac453092a71065cb3206ab86a262fe4ffd8d07",
+  "synthesis_v2/native_producer.py": "8803cc72136396c239c538ffb2b3888c4aa0696fe78e8eb520ba4d3784060107",
+  "configs/experience_retrieval_e1.json": "b5a30deede47d16134c811ecf4d67350c9fbc685b0b621d227fee68026f54fc1",
+  "reports/step10_experience/library.json": "f49007915b1eadd1e9ae7c18b3f10e93e905653f79d62184c8007fadacd892ce"
+ },
+ "frozen_during_run": "library, thresholds, guard, contact policy, candidate pool, requests; no online write-back",
+ "cost_books": {
+  "method": "executed_substeps of every execution, cache hits at recorded cost (used for every per-arm comparison)",
+  "spent": "order-dependent, report only as total compute"
+ }
+}

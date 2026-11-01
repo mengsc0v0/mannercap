@@ -1,7 +1,21 @@
 {
  "analysis": {
+  "budget_analysis": {
+   "budgets": "25/50/75/100% of the total METHOD-book substeps of retrieval+rerun on the same request set; absolute substeps are always shown next to the percentages",
+   "request_order": "(task, init, request id), fixed before the run",
+   "rules": [
+    "a request counts as qualified at budget B only if its joint pass is reached with cumulative cost <= B",
+    "failed requests and requests that end without a pass consume their full cost",
+    "an attempt that is still running when the budget ends is not counted as a success"
+   ],
+   "type": "post-run relative-budget analysis (NOT a re-run with a stop rule)"
+  },
+  "full_trajectory_comparison": "when recover and rerun (retrieval) produce the same candidate sequence for a request, compare the final execution arrays (actions, state, stage, per-object L/R forces, substep control index) and report every difference; nothing is tuned on the result",
+  "interpolation": "every executed candidate is tagged direct_measured / interpolated / clamped_extrapolated from the library; interpolated candidates that fail are NOT called physically unreachable; prediction vs actual hold interval is tabulated by support type",
   "interval": "cluster bootstrap over the 8 (task x init) clusters, 10000 resamples, seed 20261101",
+  "median_ranking_sensitivity": "offline only, from the same logs; candidates without an execution are reported as 'not executed'",
   "never": "no threshold, library, guard or policy change after seeing results; no write-back to the library",
+  "pair_vs_cluster": "pair-level (32 requests/arm) and cluster-level (8 task x init clusters) results are reported side by side; cluster bootstrap over the 8 clusters only",
   "paired_by": "(task, init, request)",
   "reported_separately": [
    "pair-level",
@@ -32,7 +46,23 @@
   ]
  },
  "base_commit_at_freeze": "43e3c9b",
- "content_hash": "719fcda95fef2547776fbddc8266e111d53dd164919d587481cfe35a6033d2e0",
+ "budget": {
+  "cache": "an episode reused from the in-process cache still counts as one execution of its attempt and is charged at its recorded cost in the METHOD book; the SPENT book is order-dependent and is never used per arm",
+  "definition": [
+   "force candidate = one entry of the arm's ranking; at most 3 per request; the first execution of a request is inside the first candidate",
+   "guard retry = one geometry refusal by the execution guard that is followed by another try of the SAME force candidate with the refused grasp geometry excluded",
+   "3 counts retries and does NOT include the first try; the 4th refusal of one force candidate ends that candidate as guard_retry_budget_exhausted (no 5th try)",
+   "the count is cumulative inside one force candidate: recover arm = restores in one episode; rerun arm = whole-episode re-executions with the refusals carried forward (pre_rejected); both arms stop at the same 4th refusal",
+   "the count restarts for every force candidate (new episode, empty refusal list)",
+   "request-level bound 3 x (1 + 3) = 12 physical executions is DERIVED from the two rules above, not a separate allowance; it is audited per request (budget_audit.within_bounds)",
+   "one single function (run_request in s20_selection_eval.py) implements the loop for every arm; only the executor's on_refusal mode differs"
+  ],
+  "force_candidates_per_request": 3,
+  "guard_retries_per_force_candidate": 3,
+  "step12_relation": "step12 (dev inits 26-29) used b1: recover = max 3 restores per episode (same as b2), rerun = refusals per force candidate uncapped with only the 12-execution request cap. The maximum refusals in any single force candidate in step12 was 2, so b1 and b2 give identical decisions on that data; step12 results are therefore not re-run, and rule+rerun from step12 is NOT stitched into this evaluation.",
+  "version": "b2"
+ },
+ "content_hash": "7e9357dbc7638e29017935da56e41bf93d659da7158d07c7c5a8edb04487c771",
  "known_limits_to_state_with_results": [
   "library supports directly 2 of 8 pool candidates; others are interpolated between lo=1 and lo=35 anchors",
   "same-task same-object reuse only; no cross-task transfer claim",
@@ -40,14 +70,37 @@
   "rule baseline is a face-value rule; the library is information-equivalent to a calibrated lookup, so a 'better than calibration' claim is not tested"
  ],
  "no_preset_expectation": "no direction of improvement is assumed; null and negative results are reported with the same tables",
+ "phases": [
+  {
+   "arms": [
+    [
+     "rule",
+     "recover"
+    ],
+    [
+     "retrieval",
+     "recover"
+    ]
+   ],
+   "name": "A_select_quality"
+  },
+  {
+   "arms": [
+    [
+     "retrieval",
+     "rerun"
+    ]
+   ],
+   "name": "B_recovery_effect"
+  }
+ ],
  "prerequisites_before_running": [
-  "implement and unit-test the logging fields above in synthesis_v2/program_executor.py (currently the refusal record has only check, control_step, refused_candidate, approach_instance, aborted_episode)",
-  "full test suite must pass; re-hash executor/guard/contact-policy/planner/backend files into the freeze manifest and commit BEFORE any run",
-  "add a post-run full-trajectory comparison of the final execution of recover vs rerun when the candidate sequence is equal"
+  "DONE: logging fields implemented in synthesis_v2/program_executor.py and verified not to change execution (reports/step20_behavior_probe)",
+  "DONE: full test suite passed before the freeze commit (see FREEZE_MANIFEST.tests)"
  ],
  "primary_outcomes": [
   "first-candidate task + manner(force band) + contact joint pass, per selection",
-  "final joint pass within the fixed candidate budget (3 force candidates, guard max_retries 3 over the whole request)",
+  "final joint pass within the fixed candidate budget b2 (3 force candidates; 3 guard retries per force candidate)",
   "complete generation cost per request, failed requests included (METHOD book substeps; spent book reported separately and never used as per-arm cost)",
   "same selection: rerun vs recover agreement of candidate sequence, per-candidate verdicts, hold_min/hold_max (retrieval arm only, phase B)",
   "qualified requests within a fixed physical budget, computed offline from the logs: budgets = {0.25, 0.5, 0.75, 1.0} x total METHOD substeps of retrieval_rerun; requests ordered by (task, init, request id)"
@@ -57,17 +110,29 @@
   "does stage recovery keep candidates/verdicts identical to whole-episode rerun and raise qualified output per fixed physical budget?"
  ],
  "required_record_fields_per_refusal_and_execution": {
-  "executed_substeps_split": {
-   "discarded_by_guard": "int",
-   "executed_after_restore": "int",
-   "prefix_reused_not_executed": "int"
+  "per_candidate": {
+   "library_prediction": "support (direct_measured|interpolated|clamped_extrapolated), pred_min, pred_max, basis, lo_grid",
+   "prediction_vs_actual": "predicted interval vs measured hold_min/hold_max"
   },
-  "parameter_effective_stage": "first stage instance in which the modified parameter (grasp candidate / force candidate) takes effect",
-  "real_executed_substeps": "int per execution, excluding cache hits (cache hits listed separately with recorded cost)",
-  "restore_state_identity": "sha256 of the serialised restored session state plus the snapshot's control step",
-  "restored_to_stage": "instance id of the approach snapshot that was restored (rerun arm: 'episode_start')"
+  "per_execution": {
+   "initial_state_digest": "sha256",
+   "parameter_effective_stage": "force candidate -> first grasp instance of the requested role; geometry rejection -> approach instance",
+   "request_id/attempt_id/execution_id/physical_run_id": "ids",
+   "substeps": "executed_total, formal_rows, discarded_total_listed, discarded_by_guard_restore, discarded_planner_lookahead, executed_after_last_restore, prefix_rows_not_resimulated, identity_executed_eq_formal_plus_discarded",
+   "trajectory_file": "npz"
+  },
+  "per_refusal (execution.guard_events[])": {
+   "approach_instance": "stage instance whose re-plan makes the exclusion effective",
+   "check": "post_close/...",
+   "control_step": "refusal control step",
+   "discarded_substeps_by_this_restore/prefix_rows_kept/executed_substeps_before_restore": "substeps",
+   "refused_candidate": "geometry candidate",
+   "restored_to_stage/restored_control_step": "recover arm",
+   "state_digest_snapshot/state_digest_after_restore/state_identity_match": "sha256 identity of the restored state",
+   "steps_discarded/resume_prefix_steps": "control steps"
+  }
  },
- "schema": "mannercap.selection_eval.v1",
+ "schema": "mannercap.selection_eval.v2",
  "scope": {
   "clusters": "8 (task x init); request-level pairs are NOT independent within an init",
   "init_basis": "reports/archive_20261101/init_usage_ledger.json: T0/T7 inits 30-49 never used in any file under reports/; 22-25 were used for repair, 26-29 for the previous evaluation (and tuning on 26-27)",
@@ -216,5 +281,14 @@
    "name": "task_and_force_band_checks_passed"
   }
  },
- "status": "PLAN FROZEN FOR REVIEW; not run; run only after fairness confirmation and the logging patch below"
+ "status": "FROZEN (budget definition v2); run only through scripts/mt/s20_selection_eval.py, which verifies reports/step20_selection_eval/FREEZE_MANIFEST.json",
+ "version_note": "v2 supersedes the unrun v1 plan (commit 43e3c9b): budget wording replaced by the explicit definition below, recovery/candidate-source logging implemented, interpolation marked, wording of the retrieval-vs-calibration statement fixed.",
+ "wording": {
+  "boundaries": [
+   "library supports directly only 2 of 8 pool candidates (lo=1 and lo=35 anchors); others are interpolated or clamped",
+   "same-task same-object reuse only; one stage window; 8 clusters",
+   "the rule baseline is the face-value rule, not a tuned heuristic"
+  ],
+  "retrieval_vs_calibration": "same type of information, not algorithmically equivalent: full orders differ for 2 of 8 offline test cases, first choice differs for 1 of 8 (reports/step18_lookup_equivalence)"
+ }
 }

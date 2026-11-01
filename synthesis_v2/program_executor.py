@@ -318,6 +318,27 @@ def _candidate_key_of(x) -> tuple:
     return tuple(round(float(v), 6) for v in x)
 
 
+def state_digest(st) -> Optional[str]:
+    """Identity of a saved simulator state (physics vector + clock + gripper command), for the retry record only.
+    ``None`` for a backend whose state is not a dict with a ``phys`` vector."""
+    if not (isinstance(st, dict) and "phys" in st):
+        return None
+    h = hashlib.sha256()
+    h.update(np.ascontiguousarray(np.asarray(st["phys"], dtype=np.float64)).tobytes())
+    env = st.get("env", {}) or {}
+    h.update(repr((env.get("timestep"), env.get("cur_time"))).encode())
+    h.update(np.ascontiguousarray(np.asarray(st.get("grip", 0.0), dtype=np.float64)).tobytes())
+    return h.hexdigest()
+
+
+def _live_state_digest(s) -> Optional[str]:
+    """Digest of the CURRENT simulator state, read through the class method so the recorder's hook is bypassed."""
+    try:
+        return state_digest(type(s).save_state(s))
+    except Exception:  # logging must never change or break the run
+        return None
+
+
 def _restore_snapshot(rn, s, snap, meta: dict) -> None:
     """Rewind the session and the recorder to ``snap`` (same mechanism as ``resume``, in-episode).
 
@@ -615,13 +636,27 @@ def produce_program_episode(
                     break
                 n_retries[0] += 1
                 rejected.setdefault(owner, []).append(key)
-                meta["execution_guard"]["retries"].append({**ev, "approach_instance": owner,
-                                                           "refused_candidate": key,
-                                                           "restored_to_stage": snap[1].stage,
-                                                           "steps_discarded": int(len(rn.rec.cols["actions"]) - snap[1].prefix_steps),
-                                                           "resume_prefix_steps": int(snap[1].prefix_steps),
-                                                           "retry_index": n_retries[0]})
+                sub_rec = getattr(s, "_substep_rec", None)          # logging only: read-only counters
+                formal_before = len(sub_rec.ctrl) if sub_rec is not None else None
+                executed_before = sub_rec.executed_substeps if sub_rec is not None else None
+                retry_rec = {**ev, "approach_instance": owner,
+                             "refused_candidate": key,
+                             "restored_to_stage": snap[1].stage,
+                             "steps_discarded": int(len(rn.rec.cols["actions"]) - snap[1].prefix_steps),
+                             "resume_prefix_steps": int(snap[1].prefix_steps),
+                             "retry_index": n_retries[0],
+                             "restored_control_step": int(snap[1].prefix_steps),
+                             "state_digest_snapshot": state_digest(snap[1].session)}
+                meta["execution_guard"]["retries"].append(retry_rec)
                 _restore_snapshot(rn, s, snap[1], meta)
+                live = _live_state_digest(s)
+                retry_rec["state_digest_after_restore"] = live
+                retry_rec["state_identity_match"] = (None if live is None or retry_rec["state_digest_snapshot"] is None
+                                                     else bool(live == retry_rec["state_digest_snapshot"]))
+                if sub_rec is not None:
+                    retry_rec["executed_substeps_before_restore"] = int(executed_before)
+                    retry_rec["discarded_substeps_by_this_restore"] = int(formal_before - len(sub_rec.ctrl))
+                    retry_rec["prefix_rows_kept"] = int(len(sub_rec.ctrl))
                 rn.rec.hold_instance, rn.rec.hold_band = snap[2]
                 i = snap[0]
                 continue
