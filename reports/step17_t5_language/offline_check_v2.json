@@ -1,0 +1,523 @@
+{
+ "what": "RE-JUDGEMENT of the saved step-17 model answers with the scope-v2 gate (cache hits); not a new model test. Only the S1b gate-feedback retry is a live call; its feedback names the instances that disagree.",
+ "scope_version": "language_scope.zh.v2",
+ "scope_rules_hash": "a09ba00bb23357a1",
+ "offline_flag": false,
+ "llm_records": [
+  {
+   "status": "cached",
+   "request_hash": "a7a5bc252dd780224a07b089c4be1409b5a0b4643f827edba0a61b9194296b4e",
+   "usage": {}
+  },
+  {
+   "status": "cached",
+   "request_hash": "2fcf76f2668baedbe0bb7956c8bf0ef8cad67b78a63e824ca0a8cf37afbecf55",
+   "usage": {}
+  },
+  {
+   "status": "cached",
+   "request_hash": "eff853792bd62ee0f94f15c75a0c19602028f8d2a75a32a1cbd261a2f2e0c239",
+   "usage": {}
+  },
+  {
+   "status": "ok",
+   "request_hash": "30983f76fc55e04bab1ebf450db56e9bf100c8d8c35327f295dcd02dddf44787",
+   "usage": {
+    "completion_tokens": 241,
+    "prompt_tokens": 1973,
+    "total_tokens": 2214,
+    "completion_tokens_details": {
+     "accepted_prediction_tokens": 0,
+     "audio_tokens": 0,
+     "reasoning_tokens": 111,
+     "rejected_prediction_tokens": 0
+    },
+    "prompt_tokens_details": {
+     "audio_tokens": 0,
+     "cached_tokens": 0,
+     "cache_write_tokens": 1970
+    }
+   }
+  },
+  {
+   "status": "cached",
+   "request_hash": "0cf337e6267ad72ccf2dba7b3750612badc5249cd02f81249a51c5163ccd2404",
+   "usage": {}
+  },
+  {
+   "status": "cached",
+   "request_hash": "d85e442d4c1c6b2c90ffa9897f49988fcf6ca511ded5ae6a419b5ba5eef4c8cf",
+   "usage": {}
+  },
+  {
+   "status": "cached",
+   "request_hash": "bc2ce14bf60110913a6f031d27fae2c8004565d34de09741102f9cf0d99132d5",
+   "usage": {}
+  }
+ ],
+ "rows": [
+  {
+   "id": "S0",
+   "text": "把书放入后部隔间，松开并退出。",
+   "expect_status": "accept",
+   "first_attempt_status": "accept",
+   "final_status": "accept",
+   "status_ok": true,
+   "needed_feedback_retry": false,
+   "needs_clarification": false,
+   "attempts": [
+    {
+     "attempt": 1,
+     "prompt_version": "mannercap.intake.v3_1",
+     "status": "accept",
+     "llm": {
+      "status": "cached",
+      "request_hash": "a7a5bc252dd780224a07b089c4be1409b5a0b4643f827edba0a61b9194296b4e",
+      "usage": {}
+     },
+     "bindings": []
+    }
+   ],
+   "guards": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   },
+   "versions": {
+    "plan": "language_plan.v2",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "feedback": "gate_feedback.v1",
+    "scope": "language_scope.zh.v2",
+    "scope_rules_hash": "a09ba00bb23357a1"
+   },
+   "plan_hash": "c1aa27bab76b2d177351e89c1dae4c65c6c2c9e695921eca762da5e9bb43a2cc",
+   "case_nature": null,
+   "ref_plan_hash": "c1aa27bab76b2d177351e89c1dae4c65c6c2c9e695921eca762da5e9bb43a2cc",
+   "plan_equals_structured": true
+  },
+  {
+   "id": "S1",
+   "text": "把书搬过去，缓慢放入后部隔间。",
+   "expect_status": "accept",
+   "first_attempt_status": "accept",
+   "final_status": "accept",
+   "status_ok": true,
+   "needed_feedback_retry": false,
+   "needs_clarification": false,
+   "attempts": [
+    {
+     "attempt": 1,
+     "prompt_version": "mannercap.intake.v3_1",
+     "status": "accept",
+     "llm": {
+      "status": "cached",
+      "request_hash": "2fcf76f2668baedbe0bb7956c8bf0ef8cad67b78a63e824ca0a8cf37afbecf55",
+      "usage": {}
+     },
+     "bindings": [
+      {
+       "instance_ids": [
+        "book.pick_1.place"
+       ],
+       "level": "slow",
+       "clause": "缓慢放入后部隔间"
+      }
+     ]
+    }
+   ],
+   "guards": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "book.pick_1.place": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "缓慢",
+      "level": "slow",
+      "part": "缓慢放入后部隔间",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "place"
+     }
+    ]
+   },
+   "versions": {
+    "plan": "language_plan.v2",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "feedback": "gate_feedback.v1",
+    "scope": "language_scope.zh.v2",
+    "scope_rules_hash": "a09ba00bb23357a1"
+   },
+   "plan_hash": "1f564afd92919e1555b6e4ab6b6200ec8b445602a4df08f81a9318a54fe5ed19",
+   "case_nature": null,
+   "ref_plan_hash": "1f564afd92919e1555b6e4ab6b6200ec8b445602a4df08f81a9318a54fe5ed19",
+   "plan_equals_structured": true
+  },
+  {
+   "id": "S1b",
+   "text": "把书缓慢放入后部隔间，松开并退出。",
+   "expect_status": "accept",
+   "first_attempt_status": "incomplete",
+   "final_status": "accept",
+   "status_ok": true,
+   "needed_feedback_retry": true,
+   "needs_clarification": false,
+   "attempts": [
+    {
+     "attempt": 1,
+     "prompt_version": "mannercap.intake.v3_1",
+     "status": "incomplete",
+     "llm": {
+      "status": "cached",
+      "request_hash": "eff853792bd62ee0f94f15c75a0c19602028f8d2a75a32a1cbd261a2f2e0c239",
+      "usage": {}
+     },
+     "bindings": [
+      {
+       "instance_ids": [
+        "book.pick_1.approach",
+        "book.pick_1.descend",
+        "book.pick_1.lift",
+        "book.pick_1.transport",
+        "book.pick_1.place"
+       ],
+       "level": "slow",
+       "clause": "把书缓慢放入后部隔间"
+      }
+     ]
+    },
+    {
+     "attempt": 2,
+     "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+     "feedback": {
+      "problem": "your speed bindings disagree with the speed scope of the instruction",
+      "instances_bound_but_not_supported_by_the_instruction": [
+       "book.pick_1.approach",
+       "book.pick_1.descend",
+       "book.pick_1.lift",
+       "book.pick_1.transport"
+      ],
+      "instances_supported_but_not_bound": [],
+      "instances_bound_with_wrong_level": []
+     },
+     "status": "accept",
+     "llm": {
+      "status": "ok",
+      "request_hash": "30983f76fc55e04bab1ebf450db56e9bf100c8d8c35327f295dcd02dddf44787",
+      "usage": {
+       "completion_tokens": 241,
+       "prompt_tokens": 1973,
+       "total_tokens": 2214,
+       "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 111,
+        "rejected_prediction_tokens": 0
+       },
+       "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 1970
+       }
+      }
+     },
+     "bindings": [
+      {
+       "instance_ids": [
+        "book.pick_1.place"
+       ],
+       "level": "slow",
+       "clause": "把书缓慢放入后部隔间"
+      }
+     ]
+    }
+   ],
+   "guards": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "book.pick_1.place": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "缓慢",
+      "level": "slow",
+      "part": "把书缓慢放入后部隔间",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "place"
+     }
+    ]
+   },
+   "versions": {
+    "plan": "language_plan.v2",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "feedback": "gate_feedback.v1",
+    "scope": "language_scope.zh.v2",
+    "scope_rules_hash": "a09ba00bb23357a1"
+   },
+   "plan_hash": "1f564afd92919e1555b6e4ab6b6200ec8b445602a4df08f81a9318a54fe5ed19",
+   "case_nature": null,
+   "ref_plan_hash": "1f564afd92919e1555b6e4ab6b6200ec8b445602a4df08f81a9318a54fe5ed19",
+   "plan_equals_structured": true
+  },
+  {
+   "id": "S2",
+   "text": "缓慢搬运书，到隔间后正常放下。",
+   "expect_status": "accept",
+   "first_attempt_status": "accept",
+   "final_status": "accept",
+   "status_ok": true,
+   "needed_feedback_retry": false,
+   "needs_clarification": false,
+   "attempts": [
+    {
+     "attempt": 1,
+     "prompt_version": "mannercap.intake.v3_1",
+     "status": "accept",
+     "llm": {
+      "status": "cached",
+      "request_hash": "0cf337e6267ad72ccf2dba7b3750612badc5249cd02f81249a51c5163ccd2404",
+      "usage": {}
+     },
+     "bindings": [
+      {
+       "instance_ids": [
+        "book.pick_1.transport"
+       ],
+       "level": "slow",
+       "clause": "缓慢搬运书"
+      },
+      {
+       "instance_ids": [
+        "book.pick_1.place"
+       ],
+       "level": "normal",
+       "clause": "正常放下"
+      }
+     ]
+    }
+   ],
+   "guards": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "book.pick_1.transport": "slow",
+     "book.pick_1.place": "normal"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "缓慢",
+      "level": "slow",
+      "part": "缓慢搬运书",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     },
+     {
+      "word": "正常",
+      "level": "normal",
+      "part": "到隔间后正常放下",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "place"
+     }
+    ]
+   },
+   "versions": {
+    "plan": "language_plan.v2",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "feedback": "gate_feedback.v1",
+    "scope": "language_scope.zh.v2",
+    "scope_rules_hash": "a09ba00bb23357a1"
+   },
+   "plan_hash": "816045e6901692200a817e48a15b0c7f28b8683f181f50ddf728bc01c2ddf26d",
+   "case_nature": null,
+   "ref_plan_hash": "816045e6901692200a817e48a15b0c7f28b8683f181f50ddf728bc01c2ddf26d",
+   "plan_equals_structured": true
+  },
+  {
+   "id": "S3",
+   "text": "整个过程都慢一些。",
+   "expect_status": "accept",
+   "first_attempt_status": "accept",
+   "final_status": "accept",
+   "status_ok": true,
+   "needed_feedback_retry": false,
+   "needs_clarification": false,
+   "attempts": [
+    {
+     "attempt": 1,
+     "prompt_version": "mannercap.intake.v3_1",
+     "status": "accept",
+     "llm": {
+      "status": "cached",
+      "request_hash": "d85e442d4c1c6b2c90ffa9897f49988fcf6ca511ded5ae6a419b5ba5eef4c8cf",
+      "usage": {}
+     },
+     "bindings": [
+      {
+       "instance_ids": [
+        "book.pick_1.approach",
+        "book.pick_1.descend",
+        "book.pick_1.lift",
+        "book.pick_1.transport",
+        "book.pick_1.place",
+        "book.pick_1.retreat"
+       ],
+       "level": "slow",
+       "clause": "整个过程都慢一些"
+      }
+     ]
+    }
+   ],
+   "guards": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "book.pick_1.approach": "slow",
+     "book.pick_1.descend": "slow",
+     "book.pick_1.lift": "slow",
+     "book.pick_1.transport": "slow",
+     "book.pick_1.place": "slow",
+     "book.pick_1.retreat": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "整个过程都慢一些",
+      "exception": false,
+      "kind": "global",
+      "rule": "R3",
+      "stage": null
+     }
+    ]
+   },
+   "versions": {
+    "plan": "language_plan.v2",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "feedback": "gate_feedback.v1",
+    "scope": "language_scope.zh.v2",
+    "scope_rules_hash": "a09ba00bb23357a1"
+   },
+   "plan_hash": "48207c9ede813deece280e96b867a70d44f08ced96024ec6551eea229def85f0",
+   "case_nature": null,
+   "ref_plan_hash": "48207c9ede813deece280e96b867a70d44f08ced96024ec6551eea229def85f0",
+   "plan_equals_structured": true
+  },
+  {
+   "id": "A1",
+   "text": "缓慢地把书搬到隔间里放好。",
+   "expect_status": "ambiguous",
+   "first_attempt_status": "ambiguous",
+   "final_status": "ambiguous",
+   "status_ok": true,
+   "needed_feedback_retry": false,
+   "needs_clarification": true,
+   "attempts": [
+    {
+     "attempt": 1,
+     "prompt_version": "mannercap.intake.v3_1",
+     "status": "ambiguous",
+     "llm": {
+      "status": "cached",
+      "request_hash": "bc2ce14bf60110913a6f031d27fae2c8004565d34de09741102f9cf0d99132d5",
+      "usage": {}
+     },
+     "bindings": [
+      {
+       "instance_ids": [
+        "book.pick_1.approach",
+        "book.pick_1.descend",
+        "book.pick_1.lift",
+        "book.pick_1.transport",
+        "book.pick_1.place",
+        "book.pick_1.retreat"
+       ],
+       "level": "slow",
+       "clause": "缓慢地"
+      }
+     ]
+    }
+   ],
+   "guards": [
+    {
+     "guard": "speed_scope_undetermined",
+     "detail": [
+      {
+       "word": "缓慢",
+       "part": "缓慢地把书搬到隔间里放好",
+       "reason": "stage_word_not_linked_to_speed_word"
+      }
+     ]
+    }
+   ],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "needs_clarification",
+    "reasons": [
+     {
+      "word": "缓慢",
+      "part": "缓慢地把书搬到隔间里放好",
+      "reason": "stage_word_not_linked_to_speed_word"
+     }
+    ],
+    "effective": {},
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "缓慢",
+      "level": "slow",
+      "part": "缓慢地把书搬到隔间里放好",
+      "exception": false,
+      "kind": "undetermined",
+      "rule": "R4",
+      "stage": null,
+      "reason": "stage_word_not_linked_to_speed_word",
+      "stage_words": [
+       "放"
+      ]
+     }
+    ]
+   },
+   "versions": {
+    "plan": "language_plan.v2",
+    "intake_prompt": "mannercap.intake.v3_1",
+    "feedback": "gate_feedback.v1",
+    "scope": "language_scope.zh.v2",
+    "scope_rules_hash": "a09ba00bb23357a1"
+   },
+   "plan_hash": null,
+   "case_nature": "protocol clarification case, NOT a linguistic-ambiguity gold: the sentence can naturally mean 'do the whole carry-and-place slowly'; the protocol does not expand an unqualified compound-action scope by default, so it asks. It cannot show that the model was wrong or the gate right",
+   "plan_is_none_as_expected": true
+  }
+ ]
+}

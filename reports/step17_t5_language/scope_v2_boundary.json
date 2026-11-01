@@ -1,0 +1,365 @@
+{
+ "what": "code-rule check of the spec-v2 boundary sentences; no model call, no simulation",
+ "scope_version": "language_scope.zh.v2",
+ "scope_rules_hash": "a09ba00bb23357a1",
+ "all_ok": true,
+ "rows": [
+  {
+   "id": "B1",
+   "kind": "local R1",
+   "text": "把书缓慢放入后部隔间，松开并退出。",
+   "expect_status": "ok",
+   "status": "ok",
+   "ok": true,
+   "rules": [
+    [
+     "缓慢",
+     "R1",
+     "place",
+     null
+    ]
+   ],
+   "effective": {
+    "place": "slow"
+   },
+   "exceptions": [],
+   "reasons": [],
+   "confirmed_by": "assistant-proposed"
+  },
+  {
+   "id": "B2",
+   "kind": "local R2, empty connective",
+   "text": "放入慢一点。",
+   "expect_status": "ok",
+   "status": "ok",
+   "ok": true,
+   "rules": [
+    [
+     "慢",
+     "R2",
+     "place",
+     null
+    ]
+   ],
+   "effective": {
+    "place": "slow"
+   },
+   "exceptions": [],
+   "reasons": [],
+   "confirmed_by": "user decision 2026-11-01 (empty connective is supported)"
+  },
+  {
+   "id": "B3",
+   "kind": "local R2 with 的时候",
+   "text": "放入的时候慢一点。",
+   "expect_status": "ok",
+   "status": "ok",
+   "ok": true,
+   "rules": [
+    [
+     "慢",
+     "R2",
+     "place",
+     null
+    ]
+   ],
+   "effective": {
+    "place": "slow"
+   },
+   "exceptions": [],
+   "reasons": [],
+   "confirmed_by": "assistant-proposed"
+  },
+  {
+   "id": "B4",
+   "kind": "explicit global",
+   "text": "整个过程都慢一些。",
+   "expect_status": "ok",
+   "status": "ok",
+   "ok": true,
+   "rules": [
+    [
+     "慢",
+     "R3",
+     null,
+     null
+    ]
+   ],
+   "effective": {
+    "approach": "slow",
+    "descend": "slow",
+    "lift": "slow",
+    "transport": "slow",
+    "place": "slow",
+    "retreat": "slow"
+   },
+   "exceptions": [],
+   "reasons": [],
+   "confirmed_by": "user directive (step 17)"
+  },
+  {
+   "id": "B5",
+   "kind": "scope unclear: no stage word, no global cue",
+   "text": "慢一点。",
+   "expect_status": "needs_clarification",
+   "status": "needs_clarification",
+   "ok": true,
+   "rules": [
+    [
+     "慢",
+     "R4",
+     null,
+     "no_stage_word_and_no_global_cue"
+    ]
+   ],
+   "effective": {},
+   "exceptions": [],
+   "reasons": [
+    {
+     "word": "慢",
+     "part": "慢一点",
+     "reason": "no_stage_word_and_no_global_cue"
+    }
+   ],
+   "confirmed_by": "user decision 2026-11-01: a bare '慢一点' is not global"
+  },
+  {
+   "id": "B6",
+   "kind": "scope unclear: word outside vocabulary (搬)",
+   "text": "缓慢地把书搬到隔间里。",
+   "expect_status": "needs_clarification",
+   "status": "needs_clarification",
+   "ok": true,
+   "rules": [
+    [
+     "缓慢",
+     "R4",
+     null,
+     "no_stage_word_and_no_global_cue"
+    ]
+   ],
+   "effective": {},
+   "exceptions": [],
+   "reasons": [
+    {
+     "word": "缓慢",
+     "part": "缓慢地把书搬到隔间里",
+     "reason": "no_stage_word_and_no_global_cue"
+    }
+   ],
+   "confirmed_by": "user decision 2026-11-01: a coverage gap must not become a global request"
+  },
+  {
+   "id": "B7",
+   "kind": "scope unclear: stage word not linked (A1)",
+   "text": "缓慢地把书搬到隔间里放好。",
+   "expect_status": "needs_clarification",
+   "status": "needs_clarification",
+   "ok": true,
+   "rules": [
+    [
+     "缓慢",
+     "R4",
+     null,
+     "stage_word_not_linked_to_speed_word"
+    ]
+   ],
+   "effective": {},
+   "exceptions": [],
+   "reasons": [
+    {
+     "word": "缓慢",
+     "part": "缓慢地把书搬到隔间里放好",
+     "reason": "stage_word_not_linked_to_speed_word"
+    }
+   ],
+   "confirmed_by": "user decision 2026-11-01 (protocol clarification case)"
+  },
+  {
+   "id": "B8",
+   "kind": "several stages possible (R2 multi-stage rule)",
+   "text": "搬运慢一点放入后部隔间。",
+   "expect_status": "needs_clarification",
+   "status": "needs_clarification",
+   "ok": true,
+   "rules": [
+    [
+     "慢",
+     "R4",
+     null,
+     "several_stages_possible"
+    ]
+   ],
+   "effective": {},
+   "exceptions": [],
+   "reasons": [
+    {
+     "word": "慢",
+     "part": "搬运慢一点放入后部隔间",
+     "reason": "several_stages_possible",
+     "stages": [
+      "place",
+      "transport"
+     ]
+    }
+   ],
+   "confirmed_by": "user decision 2026-11-01 (R2: several stages and scope undeterminable -> clarify)"
+  },
+  {
+   "id": "B9",
+   "kind": "global + explicit local exception",
+   "text": "全程慢一些，但放下时用正常速度。",
+   "expect_status": "ok",
+   "status": "ok",
+   "ok": true,
+   "rules": [
+    [
+     "慢",
+     "R3",
+     null,
+     null
+    ],
+    [
+     "正常",
+     "R2",
+     "place",
+     null
+    ]
+   ],
+   "effective": {
+    "approach": "slow",
+    "descend": "slow",
+    "lift": "slow",
+    "transport": "slow",
+    "place": "normal",
+    "retreat": "slow"
+   },
+   "exceptions": [
+    "place"
+   ],
+   "reasons": [],
+   "confirmed_by": "user decision 2026-11-01"
+  },
+  {
+   "id": "B10",
+   "kind": "conflict, same stage",
+   "text": "放下时慢一点，放下时快一点。",
+   "expect_status": "conflict",
+   "status": "conflict",
+   "ok": true,
+   "rules": [
+    [
+     "慢",
+     "R2",
+     "place",
+     null
+    ],
+    [
+     "快",
+     "R2",
+     "place",
+     null
+    ]
+   ],
+   "effective": {},
+   "exceptions": [],
+   "reasons": [
+    {
+     "scope": "place",
+     "levels": [
+      "fast",
+      "slow"
+     ]
+    }
+   ],
+   "confirmed_by": "user decision 2026-11-01: no silent last-wins"
+  },
+  {
+   "id": "B11",
+   "kind": "conflict, global vs local without exception cue",
+   "text": "全程慢一些，放下时快一点。",
+   "expect_status": "conflict",
+   "status": "conflict",
+   "ok": true,
+   "rules": [
+    [
+     "慢",
+     "R3",
+     null,
+     null
+    ],
+    [
+     "快",
+     "R2",
+     "place",
+     null
+    ]
+   ],
+   "effective": {},
+   "exceptions": [],
+   "reasons": [
+    {
+     "scope": "place",
+     "levels": [
+      "fast",
+      "slow"
+     ],
+     "reason": "local_differs_from_global_without_exception_cue"
+    }
+   ],
+   "confirmed_by": "assistant-proposed (follows the conflict rule)"
+  },
+  {
+   "id": "B12",
+   "kind": "negation",
+   "text": "不要慢慢放下。",
+   "expect_status": "needs_clarification",
+   "status": "needs_clarification",
+   "ok": true,
+   "rules": [
+    [
+     "慢慢",
+     "R4",
+     null,
+     "negation"
+    ]
+   ],
+   "effective": {},
+   "exceptions": [],
+   "reasons": [
+    {
+     "word": "慢慢",
+     "part": "不要慢慢放下",
+     "reason": "negation"
+    }
+   ],
+   "confirmed_by": "user decision 2026-11-01: no slow plan from a negated phrase"
+  },
+  {
+   "id": "B13",
+   "kind": "negation 2",
+   "text": "别放得太慢。",
+   "expect_status": "needs_clarification",
+   "status": "needs_clarification",
+   "ok": true,
+   "rules": [
+    [
+     "慢",
+     "R4",
+     null,
+     "negation"
+    ]
+   ],
+   "effective": {},
+   "exceptions": [],
+   "reasons": [
+    {
+     "word": "慢",
+     "part": "别放得太慢",
+     "reason": "negation"
+    }
+   ],
+   "confirmed_by": "assistant-proposed"
+  }
+ ]
+}

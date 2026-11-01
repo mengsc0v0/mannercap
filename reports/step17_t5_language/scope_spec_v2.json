@@ -1,0 +1,220 @@
+{
+ "schema": "mannercap.t5_language_scope_spec.v2",
+ "supersedes": "reports/step17_t5_language/scope_spec.json (language_scope.zh.v1; kept unchanged together with offline_check.json and execution_records.json)",
+ "task": "T5 libero_t5_plates_1 (book -> desk_caddy back compartment)",
+ "vocabulary": {
+  "note": "No word list is kept here; the executable tables are the source. This spec cites their version/hash; test_language_scope checks the hash.",
+  "scope_module": "synthesis_v2/language_scope.py",
+  "scope_version": "language_scope.zh.v2",
+  "scope_rules_hash": "a09ba00bb23357a1",
+  "stage_words_source": "synthesis_v2/manner_request.py _STAGE_WORDS (Chinese entries)",
+  "semantics_version": "manner_semantics.v2",
+  "semantics_hash": "f648a7db7eaa48bf94e808933015a8bbbe970fb45103ce919d9b77af24121f6a"
+ },
+ "rules": {
+  "R1": "speed word directly followed by a stage word (optional 地/一点/一些/点 between) -> that stage only; used in the context of the whole request, it never overrides negation, a conflict, or an explicit global request",
+  "R2": "stage word, optionally one of 入/到/进/下/上, optionally 得 or 时/的时候 (optionally followed by 要/用/采用/使用/保持/改用/改为/改成), then the speed word -> that stage only; the connective may be empty ('放入慢一点' is local to place); if R1 and R2 name different stages for one speed word the scope is undetermined",
+  "R3": "global ONLY with an explicit global cue in the same clause part (整个过程/全程/整体/...); the former branch 'no stage word -> global' is deleted. No dialogue context exists in this system, so context-given globals are not supported",
+  "R4": "scope cannot be reliably determined by the rules (no stage word and no global cue / stage word not linked / several stages possible / negation / stage without a speed dimension) -> clarification, no plan. It states a limit of this system, not that the sentence is ambiguous in Chinese; a word the vocabulary does not cover is a parsing coverage gap and never evidence for a global request"
+ },
+ "request_level": {
+  "global_then_local_exception": "a global level can be overridden for a stage only by an explicit local clause carrying an exception cue (但/但是/不过/除了/唯独/唯有/其中); the model expresses it as disjoint bindings (global minus that stage, plus the stage alone) because the existing structural rule allows one binding per instance; an overlapping answer is rejected as invalid",
+  "conflict": "two different levels for the same scope, or a local-vs-global difference without an exception cue, is a conflict; clause order never decides; uses the existing 'conflict' status; when the model also returns two bindings on one instance, the existing structural rule (one instance, one binding) is not allowed to hide the conflict; the plan builder keeps its conflicting_levels refusal",
+  "negation": "a negated speed word is never turned into a level; the request is sent back for clarification (negation is not supported)",
+  "normal_level": "normal is a speed level like any other; the plan keeps the neutral value (the stage object is untouched). The neutral value is an execution default, not a user-specified speed"
+ },
+ "global_scope_definition": "all stage instances of the registered program that support speed (T5: approach, descend, lift, transport, place, retreat); grasp has no speed dimension",
+ "level_values": "shared LEVEL_RANGES defaults: slow v_max 0.06 m/s with w_max = min(3.0, v/0.12) = 0.5; normal untouched (0.12 m/s, 1.0 rad/s)",
+ "sentences": [
+  {
+   "id": "S0",
+   "text": "把书放入后部隔间，松开并退出。",
+   "expect_status": "accept",
+   "expect_levels": {},
+   "expect_structured_plan": "N",
+   "confirmed_by": "user decision 2026-11-01: confirmed. No explicit manner -> empty bindings -> plan N; the normal speed is the execution default, not a user-specified speed"
+  },
+  {
+   "id": "S1",
+   "text": "把书搬过去，缓慢放入后部隔间。",
+   "expect_status": "accept",
+   "expect_levels": {
+    "place": "slow"
+   },
+   "expect_structured_plan": "S_place",
+   "confirmed_by": "user directive (step 17)"
+  },
+  {
+   "id": "S1b",
+   "text": "把书缓慢放入后部隔间，松开并退出。",
+   "expect_status": "accept",
+   "expect_levels": {
+    "place": "slow"
+   },
+   "expect_structured_plan": "S_place",
+   "confirmed_by": "user directive (step-16 request); first pass with the real model was blocked by the gate (widened scope); one gate-feedback retry is allowed and recorded separately"
+  },
+  {
+   "id": "S2",
+   "text": "缓慢搬运书，到隔间后正常放下。",
+   "expect_status": "accept",
+   "expect_levels": {
+    "transport": "slow",
+    "place": "normal"
+   },
+   "expect_structured_plan": "S_transport",
+   "confirmed_by": "user directive (step 17)"
+  },
+  {
+   "id": "S3",
+   "text": "整个过程都慢一些。",
+   "expect_status": "accept",
+   "expect_levels": {
+    "approach": "slow",
+    "descend": "slow",
+    "lift": "slow",
+    "transport": "slow",
+    "place": "slow",
+    "retreat": "slow"
+   },
+   "expect_structured_plan": "S_global",
+   "confirmed_by": "user directive (step 17)"
+  },
+  {
+   "id": "A1",
+   "text": "缓慢地把书搬到隔间里放好。",
+   "expect_status": "ambiguous",
+   "expect_levels": null,
+   "expect_structured_plan": null,
+   "case_nature": "protocol clarification case, NOT a linguistic-ambiguity gold: the sentence can naturally mean 'do the whole carry-and-place slowly'; the protocol does not expand an unqualified compound-action scope by default, so it asks. It cannot show that the model was wrong or the gate right",
+   "confirmed_by": "user decision 2026-11-01: kept as 'clarification required by protocol' (earlier 'language ambiguity' wording withdrawn)"
+  }
+ ],
+ "boundary_sentences": [
+  {
+   "id": "B1",
+   "kind": "local R1",
+   "text": "把书缓慢放入后部隔间，松开并退出。",
+   "expect_status": "ok",
+   "expect_levels": {
+    "place": "slow"
+   },
+   "confirmed_by": "assistant-proposed"
+  },
+  {
+   "id": "B2",
+   "kind": "local R2, empty connective",
+   "text": "放入慢一点。",
+   "expect_status": "ok",
+   "expect_levels": {
+    "place": "slow"
+   },
+   "confirmed_by": "user decision 2026-11-01 (empty connective is supported)"
+  },
+  {
+   "id": "B3",
+   "kind": "local R2 with 的时候",
+   "text": "放入的时候慢一点。",
+   "expect_status": "ok",
+   "expect_levels": {
+    "place": "slow"
+   },
+   "confirmed_by": "assistant-proposed"
+  },
+  {
+   "id": "B4",
+   "kind": "explicit global",
+   "text": "整个过程都慢一些。",
+   "expect_status": "ok",
+   "expect_levels": {
+    "approach": "slow",
+    "descend": "slow",
+    "lift": "slow",
+    "transport": "slow",
+    "place": "slow",
+    "retreat": "slow"
+   },
+   "confirmed_by": "user directive (step 17)"
+  },
+  {
+   "id": "B5",
+   "kind": "scope unclear: no stage word, no global cue",
+   "text": "慢一点。",
+   "expect_status": "needs_clarification",
+   "expect_reason": "no_stage_word_and_no_global_cue",
+   "confirmed_by": "user decision 2026-11-01: a bare '慢一点' is not global"
+  },
+  {
+   "id": "B6",
+   "kind": "scope unclear: word outside vocabulary (搬)",
+   "text": "缓慢地把书搬到隔间里。",
+   "expect_status": "needs_clarification",
+   "expect_reason": "no_stage_word_and_no_global_cue",
+   "confirmed_by": "user decision 2026-11-01: a coverage gap must not become a global request"
+  },
+  {
+   "id": "B7",
+   "kind": "scope unclear: stage word not linked (A1)",
+   "text": "缓慢地把书搬到隔间里放好。",
+   "expect_status": "needs_clarification",
+   "expect_reason": "stage_word_not_linked_to_speed_word",
+   "confirmed_by": "user decision 2026-11-01 (protocol clarification case)"
+  },
+  {
+   "id": "B8",
+   "kind": "several stages possible (R2 multi-stage rule)",
+   "text": "搬运慢一点放入后部隔间。",
+   "expect_status": "needs_clarification",
+   "expect_reason": "several_stages_possible",
+   "confirmed_by": "user decision 2026-11-01 (R2: several stages and scope undeterminable -> clarify)"
+  },
+  {
+   "id": "B9",
+   "kind": "global + explicit local exception",
+   "text": "全程慢一些，但放下时用正常速度。",
+   "expect_status": "ok",
+   "expect_levels": {
+    "approach": "slow",
+    "descend": "slow",
+    "lift": "slow",
+    "transport": "slow",
+    "retreat": "slow",
+    "place": "normal"
+   },
+   "expect_exceptions": [
+    "place"
+   ],
+   "confirmed_by": "user decision 2026-11-01"
+  },
+  {
+   "id": "B10",
+   "kind": "conflict, same stage",
+   "text": "放下时慢一点，放下时快一点。",
+   "expect_status": "conflict",
+   "confirmed_by": "user decision 2026-11-01: no silent last-wins"
+  },
+  {
+   "id": "B11",
+   "kind": "conflict, global vs local without exception cue",
+   "text": "全程慢一些，放下时快一点。",
+   "expect_status": "conflict",
+   "confirmed_by": "assistant-proposed (follows the conflict rule)"
+  },
+  {
+   "id": "B12",
+   "kind": "negation",
+   "text": "不要慢慢放下。",
+   "expect_status": "needs_clarification",
+   "expect_reason": "negation",
+   "confirmed_by": "user decision 2026-11-01: no slow plan from a negated phrase"
+  },
+  {
+   "id": "B13",
+   "kind": "negation 2",
+   "text": "别放得太慢。",
+   "expect_status": "needs_clarification",
+   "expect_reason": "negation",
+   "confirmed_by": "assistant-proposed"
+  }
+ ]
+}

@@ -20,7 +20,7 @@ from typing import Any, Mapping, Optional
 from synthesis_v2.language_compiler import (DIMENSION_LEVELS, LEVEL_WORDS, MannerBinding, Semantics, _CLAUSE_SPLIT, check_semantics,
                                             lexicon_semantics)
 from synthesis_v2.task_program import PRIMITIVES, TaskProgram
-from synthesis_v2.language_scope import expected_speed_instances, has_cjk
+from synthesis_v2.language_scope import compare_speed_bindings, has_cjk, resolve_speed_scope
 
 INTAKE_PROMPT_VERSION = "mannercap.intake.v3_1"
 ACTIONS = ("put", "pick", "close", "turn_on", "open")
@@ -290,7 +290,9 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
     """Decision for one request.  ``guards`` lists rules that overrode / flagged the model's answer."""
     sem, guards, codes = intake.semantics, [], []
     errs = check_semantics(sem, program)
-    if errs:
+    # two bindings on one instance are structurally invalid; when the SENTENCE itself conflicts, report the conflict instead
+    if errs and not (has_cjk(intake.instruction) and all(e.startswith("conflicting_binding") for e in errs)
+                     and resolve_speed_scope(intake.instruction, program)["status"] == "conflict"):
         return {"status": "invalid", "codes": ["structural"], "detail": errs, "guards": guards, "unstated_program_steps": []}
     conflicts, unstated = check_task(intake, program)
     # numeric guard: a numeric manner value must come back as unsupported:numeric_level, never as a binding / nothing
@@ -309,24 +311,39 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
         elif bs["basis"] == "antecedent" and (not bs["antecedent"] or bs["antecedent"].lower() not in text.lower()):
             guards.append({"guard": "antecedent_not_in_instruction", "clause": b.clause, "antecedent": bs["antecedent"]}); ambiguous_extra.append(b.clause)
     scope_undetermined: list[str] = []
+    speed_conflict: list[dict] = []
+    speed_scope = None
+    cjk = has_cjk(text)
     gaps = coverage_gaps(intake, program)
+    if cjk:
+        # Chinese request: the speed scope is derived by code from the ORIGINAL sentence (language_scope); the model's
+        # bindings must reproduce it.  A word the vocabulary does not cover never becomes a global request.
+        speed_scope = resolve_speed_scope(text, program)
+        spd = [b for b in sem.bindings if b.dimension == "speed"]
+        if speed_scope["status"] == "conflict":
+            speed_conflict = speed_scope["reasons"]
+            guards.append({"guard": "speed_level_conflict", "detail": speed_conflict})
+        elif speed_scope["status"] == "needs_clarification":
+            scope_undetermined = [r.get("part", "") for r in speed_scope["reasons"]]
+            guards.append({"guard": "speed_scope_undetermined", "detail": speed_scope["reasons"]})
+        elif speed_scope["status"] == "none":
+            if spd:
+                scope_undetermined = [b.clause for b in spd]
+                guards.append({"guard": "speed_scope_undetermined", "detail": "no speed word recognised by the scope rules"})
+        else:
+            diff = compare_speed_bindings(speed_scope["effective"], [(b.instance_ids, b.level) for b in spd])
+            if diff:
+                gaps.append({"gap": "language_scope_mismatch", **diff})
     for b, bs in zip(sem.bindings, intake.bases):
-        if b.dimension == "speed" and has_cjk(b.clause):
-            # Chinese speed clause (any basis): the scope comes from language_scope (code), never from the model's claim
-            exp = expected_speed_instances(b.clause, b.level, program, b.object_role, text=text)
-            if exp is None:
-                scope_undetermined.append(b.clause)
-                guards.append({"guard": "speed_scope_undetermined", "clause": b.clause})
-            elif set(b.instance_ids) != exp:
-                got = set(b.instance_ids)
-                gaps.append({"gap": "language_scope_mismatch", "clause": b.clause, "missing": sorted(exp - got), "extra": sorted(got - exp)})
-        elif bs["basis"] == "request_scope" and b.dimension == "speed" and not _mentioned_roles(b.clause, program):
+        if not cjk and bs["basis"] == "request_scope" and b.dimension == "speed" and not _mentioned_roles(b.clause, program):
             exp, got = request_scope_expected(b.clause, program), set(b.instance_ids)
             if got != exp:
                 gaps.append({"gap": "request_scope_not_covered", "clause": b.clause, "missing": sorted(exp - got), "extra": sorted(got - exp)})
     guards.extend({"guard": "incomplete_answer", **g} for g in gaps)
     if conflicts:
         status, codes = "conflict", sorted({c["code"] for c in conflicts})
+    elif speed_conflict:
+        status, codes = "conflict", ["speed_level_conflict"]
     elif nums and (not numeric_unsup or any(NUMERIC_RE.search(b.clause or "") for b in sem.bindings)):
         status, codes = "unsupported", ["numeric_level"]
     elif sem.unsupported:
@@ -337,4 +354,7 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
         status, codes = "incomplete", sorted({g["gap"] for g in gaps})
     else:
         status = "accept"
-    return {"status": status, "codes": codes, "detail": conflicts, "guards": guards, "unstated_program_steps": [list(u) for u in unstated]}
+    out = {"status": status, "codes": codes, "detail": conflicts, "guards": guards, "unstated_program_steps": [list(u) for u in unstated]}
+    if speed_scope is not None:
+        out["speed_scope"] = speed_scope
+    return out
