@@ -30,6 +30,9 @@ class TaskSpec:
     # Step 14 (B): per-task constants for a target given as a scene region (``@site:<name>``).  Keys: target_offset_site (x, y, z in
     # the site frame), target_yaw_deg / target_yaw_symmetry_deg (object yaw in the site frame), lift_dz, transport_dz, place_dz.
     target_params: dict = field(default_factory=dict)
+    # Step 22 (T8): per-object overrides of the above, aligned with ``objects`` (same keys; lift_dz allowed), for tasks whose objects
+    # share one target region but need different place poses (two pots on one stove).  () = none.
+    object_target_params: tuple = ()
 
 
 SPECS = {
@@ -62,6 +65,23 @@ SPECS = {
                 # object yaw frame + hand yaw relative to the executor's yaw-aligned quaternion.  Used as is (no tuning).
                 grasp_reference=({"rel_obj": [-0.0319, -0.013, 0.101], "hand_yaw_rel_deg": 10.3},
                                  {"rel_obj": [-0.0572, -0.0163, 0.0762], "hand_yaw_rel_deg": 1.8})),
+    # Step 22: T8 onboarding (libero_10 task 8, KITCHEN_SCENE8 "put both moka pots on the stove").  Official goal: On(moka_pot_1,
+    # flat_stove_1_cook_region) and On(moka_pot_2, ...) (the stove is already on at init).  CONFIG FIXED BEFORE ANY EXECUTION from ONE
+    # ordinary official demonstration used as is (no averaging, no per-init choice): pre-set rule = lowest-index demo that is
+    # replay-successful in two independent replays -> demo_0 (reports/step22_t8_onboard/demo_selection.json; 8 demos / 16 replays were run,
+    # only demo_0 was needed by the rule).  Object order = the demo's close order (moka_pot_2 first).  Per pot, from demo_0:
+    #  * grasp_reference: hand minus pot origin in the pot yaw frame at the close that lifted this pot + hand yaw vs the yaw-aligned quat;
+    #  * target_offset_site: the pot origin at rest in the cook-region site frame (x, y, z), place_dz 0, no target yaw (the official
+    #    predicate is region membership);
+    #  * lift_dz / transport_dz: the demo's peak pot-origin height above its start / above its target, rounded UP to 1 cm.
+    8: TaskSpec(8, (("pot_first", "moka_pot_2"), ("pot_second", "moka_pot_1")), ("stove_region", "@site:flat_stove_1_cook_region"),
+                targets=(("stove_region", "@site:flat_stove_1_cook_region"), ("stove_region", "@site:flat_stove_1_cook_region")),
+                container_dz=False,
+                target_params={"place_dz": 0.0},
+                object_target_params=({"target_offset_site": (-0.0656, -0.0289, 0.0916), "lift_dz": 0.12, "transport_dz": 0.09},
+                                      {"target_offset_site": (0.0291, 0.0189, 0.0925), "lift_dz": 0.16, "transport_dz": 0.13}),
+                grasp_reference=({"rel_obj": [-0.0027, 0.0236, 0.0424], "hand_yaw_rel_deg": -89.2},
+                                 {"rel_obj": [0.0118, 0.051, 0.0421], "hand_yaw_rel_deg": -87.0})),
 }
 
 
@@ -91,6 +111,10 @@ def make_program(t: int) -> TaskProgram:
         lift = {"lift_dz": tp.pop("lift_dz")} if "lift_dz" in tp else {}
         inst = tuple(replace(i, params={**i.params, **tp}) if i.primitive in ("transport", "place")
                      else replace(i, params={**i.params, **lift}) if i.primitive == "lift" and lift else i for i in inst)
+    for k, (r, _) in enumerate(sp.objects if sp.object_target_params else ()):
+        tp = dict(sp.object_target_params[k]); lift = {"lift_dz": tp.pop("lift_dz")} if "lift_dz" in tp else {}
+        inst = tuple(replace(i, params={**i.params, **tp}) if i.object_role == r and i.primitive in ("transport", "place")
+                     else replace(i, params={**i.params, **lift}) if i.object_role == r and i.primitive == "lift" and lift else i for i in inst)
     if sp.grasp_grid:
         gg = {"yaws_deg": list(sp.grasp_grid[0]), "laterals_m": list(sp.grasp_grid[1]), "dzs_m": list(sp.grasp_grid[2])}
         inst = tuple(replace(i, params={**i.params, "grasp_grid": gg}) if i.primitive == "approach" else i for i in inst)

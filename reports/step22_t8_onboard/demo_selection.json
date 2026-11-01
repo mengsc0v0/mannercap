@@ -1,0 +1,138 @@
+{
+ "rule": "lowest index replay-successful in BOTH independent replays (T5 rule); per pot the LAST close event whose lifted pot it is; no averaging",
+ "n_demos_replayed": 8,
+ "n_replays": 16,
+ "per_demo": [
+  {
+   "demo": "demo_0",
+   "replay_A": true,
+   "replay_B": true,
+   "informational_each_pot_rise_ge_5cm_in_80_steps": false,
+   "n_close_events": 2,
+   "A_B_close_steps_equal": true
+  },
+  {
+   "demo": "demo_1",
+   "replay_A": false,
+   "replay_B": true,
+   "informational_each_pot_rise_ge_5cm_in_80_steps": false,
+   "n_close_events": 2,
+   "A_B_close_steps_equal": true
+  },
+  {
+   "demo": "demo_2",
+   "replay_A": true,
+   "replay_B": true,
+   "informational_each_pot_rise_ge_5cm_in_80_steps": false,
+   "n_close_events": 2,
+   "A_B_close_steps_equal": true
+  },
+  {
+   "demo": "demo_3",
+   "replay_A": false,
+   "replay_B": true,
+   "informational_each_pot_rise_ge_5cm_in_80_steps": false,
+   "n_close_events": 2,
+   "A_B_close_steps_equal": true
+  },
+  {
+   "demo": "demo_4",
+   "replay_A": true,
+   "replay_B": true,
+   "informational_each_pot_rise_ge_5cm_in_80_steps": true,
+   "n_close_events": 2,
+   "A_B_close_steps_equal": true
+  },
+  {
+   "demo": "demo_5",
+   "replay_A": false,
+   "replay_B": false,
+   "informational_each_pot_rise_ge_5cm_in_80_steps": false,
+   "n_close_events": 2,
+   "A_B_close_steps_equal": true
+  },
+  {
+   "demo": "demo_6",
+   "replay_A": true,
+   "replay_B": true,
+   "informational_each_pot_rise_ge_5cm_in_80_steps": false,
+   "n_close_events": 3,
+   "A_B_close_steps_equal": true
+  },
+  {
+   "demo": "demo_7",
+   "replay_A": false,
+   "replay_B": true,
+   "informational_each_pot_rise_ge_5cm_in_80_steps": false,
+   "n_close_events": 2,
+   "A_B_close_steps_equal": true
+  }
+ ],
+ "chosen": "demo_0",
+ "grasp_reference": {
+  "moka_pot_1": {
+   "rel_obj": [
+    0.0118,
+    0.051,
+    0.0421
+   ],
+   "hand_yaw_rel_deg": -87.0,
+   "close_step": 349
+  },
+  "moka_pot_2": {
+   "rel_obj": [
+    -0.0027,
+    0.0236,
+    0.0424
+   ],
+   "hand_yaw_rel_deg": -89.2,
+   "close_step": 111
+  }
+ },
+ "target_final_site_frame": {
+  "moka_pot_1": {
+   "final_in_site_frame": [
+    0.0291,
+    0.0189,
+    0.0925
+   ]
+  },
+  "moka_pot_2": {
+   "final_in_site_frame": [
+    -0.0656,
+    -0.0289,
+    0.0916
+   ]
+  }
+ },
+ "site": {
+  "pos": [
+   -0.04537364056816531,
+   -0.1964516083926206,
+   0.905
+  ],
+  "yaw_deg": 0.0
+ },
+ "init_pots": {
+  "moka_pot_1": {
+   "pos": [
+    -0.040857561356264706,
+    0.26302719851148093,
+    0.9661017023863033
+   ],
+   "yaw_deg": -179.99999997592354
+  },
+  "moka_pot_2": {
+   "pos": [
+    0.04886982148825019,
+    0.02915367544907101,
+    0.9661017023863033
+   ],
+   "yaw_deg": -179.99999997592354
+  }
+ },
+ "close_order": [
+  "moka_pot_2",
+  "moka_pot_1"
+ ]
+}
