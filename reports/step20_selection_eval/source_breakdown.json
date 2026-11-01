@@ -1,0 +1,383 @@
+{
+ "schema": "mannercap.source_breakdown.v1",
+ "arms_counted": [
+  "rule+recover",
+  "retrieval+recover"
+ ],
+ "denominator_note": "unit = one force attempt of one request in one arm; the same physical run (task, init, candidate) can be counted several times (R1..R4 share cached executions, and the two arms can pick the same candidate); 'unique_physical_runs' dedupes by (task, init, candidate) within the row group",
+ "interval_note": "pred interval = library envelope (min hold_min / max hold_max at neighbouring grid lo values); not calibrated, not a confidence interval",
+ "by_arm_and_support": {
+  "rule+recover": {
+   "direct_measured": {
+    "attempts": 0,
+    "unique_physical_runs": 0,
+    "attempts_with_valid_measurement": 0,
+    "force_band_passed": 0,
+    "joint_passed": 0,
+    "first_candidate_attempts": 0,
+    "first_candidate_force_passed": 0,
+    "first_candidate_joint_passed": 0,
+    "final_qualifying_attempt_of_a_request": 0,
+    "pred_inside_request_band": 0,
+    "pred_inside_and_force_passed": 0,
+    "pred_outside_but_force_passed": 0,
+    "whole_hold_range_covered": "0/0",
+    "hold_mean_inside_pred_interval": "0/0",
+    "signed_err_hold_min_n_mean": null,
+    "signed_err_hold_max_n_mean": null,
+    "abs_err_hold_min_n_mean_median": [
+     null,
+     null
+    ],
+    "abs_err_hold_max_n_mean_median": [
+     null,
+     null
+    ]
+   },
+   "interpolated": {
+    "attempts": 47,
+    "unique_physical_runs": 32,
+    "attempts_with_valid_measurement": 47,
+    "force_band_passed": 10,
+    "joint_passed": 7,
+    "first_candidate_attempts": 16,
+    "first_candidate_force_passed": 1,
+    "first_candidate_joint_passed": 0,
+    "final_qualifying_attempt_of_a_request": 7,
+    "pred_inside_request_band": 9,
+    "pred_inside_and_force_passed": 5,
+    "pred_outside_but_force_passed": 5,
+    "whole_hold_range_covered": "6/47",
+    "hold_mean_inside_pred_interval": "13/47",
+    "signed_err_hold_min_n_mean": 4.494,
+    "signed_err_hold_max_n_mean": 2.406,
+    "abs_err_hold_min_n_mean_median": [
+     4.746,
+     4.724
+    ],
+    "abs_err_hold_max_n_mean_median": [
+     3.618,
+     2.577
+    ]
+   },
+   "clamped_extrapolated": {
+    "attempts": 16,
+    "unique_physical_runs": 16,
+    "attempts_with_valid_measurement": 16,
+    "force_band_passed": 16,
+    "joint_passed": 13,
+    "first_candidate_attempts": 16,
+    "first_candidate_force_passed": 16,
+    "first_candidate_joint_passed": 13,
+    "final_qualifying_attempt_of_a_request": 13,
+    "pred_inside_request_band": 16,
+    "pred_inside_and_force_passed": 16,
+    "pred_outside_but_force_passed": 0,
+    "whole_hold_range_covered": "16/16",
+    "hold_mean_inside_pred_interval": "16/16",
+    "signed_err_hold_min_n_mean": 1.884,
+    "signed_err_hold_max_n_mean": -0.866,
+    "abs_err_hold_min_n_mean_median": [
+     1.884,
+     2.213
+    ],
+    "abs_err_hold_max_n_mean_median": [
+     0.866,
+     0.341
+    ]
+   }
+  },
+  "retrieval+recover": {
+   "direct_measured": {
+    "attempts": 18,
+    "unique_physical_runs": 16,
+    "attempts_with_valid_measurement": 18,
+    "force_band_passed": 13,
+    "joint_passed": 10,
+    "first_candidate_attempts": 12,
+    "first_candidate_force_passed": 12,
+    "first_candidate_joint_passed": 10,
+    "final_qualifying_attempt_of_a_request": 10,
+    "pred_inside_request_band": 13,
+    "pred_inside_and_force_passed": 13,
+    "pred_outside_but_force_passed": 0,
+    "whole_hold_range_covered": "18/18",
+    "hold_mean_inside_pred_interval": "18/18",
+    "signed_err_hold_min_n_mean": 0.759,
+    "signed_err_hold_max_n_mean": -0.893,
+    "abs_err_hold_min_n_mean_median": [
+     0.759,
+     0.83
+    ],
+    "abs_err_hold_max_n_mean_median": [
+     0.893,
+     0.213
+    ]
+   },
+   "interpolated": {
+    "attempts": 21,
+    "unique_physical_runs": 17,
+    "attempts_with_valid_measurement": 21,
+    "force_band_passed": 10,
+    "joint_passed": 7,
+    "first_candidate_attempts": 12,
+    "first_candidate_force_passed": 8,
+    "first_candidate_joint_passed": 7,
+    "final_qualifying_attempt_of_a_request": 7,
+    "pred_inside_request_band": 13,
+    "pred_inside_and_force_passed": 9,
+    "pred_outside_but_force_passed": 1,
+    "whole_hold_range_covered": "2/21",
+    "hold_mean_inside_pred_interval": "5/21",
+    "signed_err_hold_min_n_mean": 6.049,
+    "signed_err_hold_max_n_mean": 4.086,
+    "abs_err_hold_min_n_mean_median": [
+     6.312,
+     6.024
+    ],
+    "abs_err_hold_max_n_mean_median": [
+     4.857,
+     4.181
+    ]
+   },
+   "clamped_extrapolated": {
+    "attempts": 9,
+    "unique_physical_runs": 9,
+    "attempts_with_valid_measurement": 9,
+    "force_band_passed": 9,
+    "joint_passed": 7,
+    "first_candidate_attempts": 8,
+    "first_candidate_force_passed": 8,
+    "first_candidate_joint_passed": 7,
+    "final_qualifying_attempt_of_a_request": 7,
+    "pred_inside_request_band": 9,
+    "pred_inside_and_force_passed": 9,
+    "pred_outside_but_force_passed": 0,
+    "whole_hold_range_covered": "9/9",
+    "hold_mean_inside_pred_interval": "9/9",
+    "signed_err_hold_min_n_mean": 2.591,
+    "signed_err_hold_max_n_mean": -0.618,
+    "abs_err_hold_min_n_mean_median": [
+     2.591,
+     2.654
+    ],
+    "abs_err_hold_max_n_mean_median": [
+     0.618,
+     0.384
+    ]
+   }
+  }
+ },
+ "pooled_over_arms_by_support": {
+  "direct_measured": {
+   "attempts": 18,
+   "unique_physical_runs": 16,
+   "attempts_with_valid_measurement": 18,
+   "force_band_passed": 13,
+   "joint_passed": 10,
+   "first_candidate_attempts": 12,
+   "first_candidate_force_passed": 12,
+   "first_candidate_joint_passed": 10,
+   "final_qualifying_attempt_of_a_request": 10,
+   "pred_inside_request_band": 13,
+   "pred_inside_and_force_passed": 13,
+   "pred_outside_but_force_passed": 0,
+   "whole_hold_range_covered": "18/18",
+   "hold_mean_inside_pred_interval": "18/18",
+   "signed_err_hold_min_n_mean": 0.759,
+   "signed_err_hold_max_n_mean": -0.893,
+   "abs_err_hold_min_n_mean_median": [
+    0.759,
+    0.83
+   ],
+   "abs_err_hold_max_n_mean_median": [
+    0.893,
+    0.213
+   ]
+  },
+  "interpolated": {
+   "attempts": 68,
+   "unique_physical_runs": 32,
+   "attempts_with_valid_measurement": 68,
+   "force_band_passed": 20,
+   "joint_passed": 14,
+   "first_candidate_attempts": 28,
+   "first_candidate_force_passed": 9,
+   "first_candidate_joint_passed": 7,
+   "final_qualifying_attempt_of_a_request": 14,
+   "pred_inside_request_band": 22,
+   "pred_inside_and_force_passed": 14,
+   "pred_outside_but_force_passed": 6,
+   "whole_hold_range_covered": "8/68",
+   "hold_mean_inside_pred_interval": "18/68",
+   "signed_err_hold_min_n_mean": 4.974,
+   "signed_err_hold_max_n_mean": 2.925,
+   "abs_err_hold_min_n_mean_median": [
+    5.229,
+    4.999
+   ],
+   "abs_err_hold_max_n_mean_median": [
+    4.0,
+    3.828
+   ]
+  },
+  "clamped_extrapolated": {
+   "attempts": 25,
+   "unique_physical_runs": 16,
+   "attempts_with_valid_measurement": 25,
+   "force_band_passed": 25,
+   "joint_passed": 20,
+   "first_candidate_attempts": 24,
+   "first_candidate_force_passed": 24,
+   "first_candidate_joint_passed": 20,
+   "final_qualifying_attempt_of_a_request": 20,
+   "pred_inside_request_band": 25,
+   "pred_inside_and_force_passed": 25,
+   "pred_outside_but_force_passed": 0,
+   "whole_hold_range_covered": "25/25",
+   "hold_mean_inside_pred_interval": "25/25",
+   "signed_err_hold_min_n_mean": 2.138,
+   "signed_err_hold_max_n_mean": -0.777,
+   "abs_err_hold_min_n_mean_median": [
+    2.138,
+    2.402
+   ],
+   "abs_err_hold_max_n_mean_median": [
+    0.777,
+    0.384
+   ]
+  }
+ },
+ "unique_runs_pooled_by_support": {
+  "direct_measured": {
+   "attempts": 16,
+   "unique_physical_runs": 16,
+   "attempts_with_valid_measurement": 16,
+   "force_band_passed": 13,
+   "joint_passed": 10,
+   "first_candidate_attempts": 12,
+   "first_candidate_force_passed": 12,
+   "first_candidate_joint_passed": 10,
+   "final_qualifying_attempt_of_a_request": 10,
+   "pred_inside_request_band": 13,
+   "pred_inside_and_force_passed": 13,
+   "pred_outside_but_force_passed": 0,
+   "whole_hold_range_covered": "16/16",
+   "hold_mean_inside_pred_interval": "16/16",
+   "signed_err_hold_min_n_mean": 0.735,
+   "signed_err_hold_max_n_mean": -0.854,
+   "abs_err_hold_min_n_mean_median": [
+    0.735,
+    0.696
+   ],
+   "abs_err_hold_max_n_mean_median": [
+    0.854,
+    0.213
+   ]
+  },
+  "interpolated": {
+   "attempts": 32,
+   "unique_physical_runs": 32,
+   "attempts_with_valid_measurement": 32,
+   "force_band_passed": 1,
+   "joint_passed": 0,
+   "first_candidate_attempts": 14,
+   "first_candidate_force_passed": 1,
+   "first_candidate_joint_passed": 0,
+   "final_qualifying_attempt_of_a_request": 0,
+   "pred_inside_request_band": 2,
+   "pred_inside_and_force_passed": 0,
+   "pred_outside_but_force_passed": 1,
+   "whole_hold_range_covered": "4/32",
+   "hold_mean_inside_pred_interval": "8/32",
+   "signed_err_hold_min_n_mean": 4.883,
+   "signed_err_hold_max_n_mean": 2.818,
+   "abs_err_hold_min_n_mean_median": [
+    5.068,
+    4.893
+   ],
+   "abs_err_hold_max_n_mean_median": [
+    3.71,
+    2.931
+   ]
+  },
+  "clamped_extrapolated": {
+   "attempts": 16,
+   "unique_physical_runs": 16,
+   "attempts_with_valid_measurement": 16,
+   "force_band_passed": 16,
+   "joint_passed": 13,
+   "first_candidate_attempts": 16,
+   "first_candidate_force_passed": 16,
+   "first_candidate_joint_passed": 13,
+   "final_qualifying_attempt_of_a_request": 13,
+   "pred_inside_request_band": 16,
+   "pred_inside_and_force_passed": 16,
+   "pred_outside_but_force_passed": 0,
+   "whole_hold_range_covered": "16/16",
+   "hold_mean_inside_pred_interval": "16/16",
+   "signed_err_hold_min_n_mean": 1.884,
+   "signed_err_hold_max_n_mean": -0.866,
+   "abs_err_hold_min_n_mean_median": [
+    1.884,
+    2.213
+   ],
+   "abs_err_hold_max_n_mean_median": [
+    0.866,
+    0.341
+   ]
+  }
+ },
+ "interpolated_coverage_by_cluster": {
+  "T0-i30": "0/17",
+  "T0-i31": "0/10",
+  "T0-i32": "3/8",
+  "T0-i33": "3/8",
+  "T7-i30": "1/6",
+  "T7-i31": "1/7",
+  "T7-i32": "0/6",
+  "T7-i33": "0/6"
+ },
+ "attempts_to_first_force_pass": {
+  "rule+recover": {
+   "requests_with_force_pass": 24,
+   "mean_attempts_to_first_force_pass": 1.292,
+   "distribution": {
+    "1": 17,
+    "2": 7
+   },
+   "requests_never_force_passed": 8
+  },
+  "retrieval+recover": {
+   "requests_with_force_pass": 28,
+   "mean_attempts_to_first_force_pass": 1.0,
+   "distribution": {
+    "1": 28
+   },
+   "requests_never_force_passed": 4
+  }
+ },
+ "first_candidate_source_mix": {
+  "rule+recover": {
+   "clamped_extrapolated": 16,
+   "interpolated": 16
+  },
+  "retrieval+recover": {
+   "direct_measured": 12,
+   "interpolated": 12,
+   "clamped_extrapolated": 8
+  }
+ },
+ "first_candidate_outcome_by_arm": {
+  "rule+recover": {
+   "force_passed": 17,
+   "joint_passed": 13,
+   "n": 32
+  },
+  "retrieval+recover": {
+   "force_passed": 28,
+   "joint_passed": 24,
+   "n": 32
+  }
+ }
+}
