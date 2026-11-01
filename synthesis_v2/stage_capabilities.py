@@ -13,10 +13,11 @@ This module imports nothing from the program/executor modules (duck-typed) so bo
 from __future__ import annotations
 
 import math
+import re
 from dataclasses import dataclass
 from typing import Any, Mapping, Optional
 
-CAPABILITY_VERSION = "stage_capabilities.v1"
+CAPABILITY_VERSION = "stage_capabilities.v2"
 
 EXECUTOR_PRIMITIVES = ("approach", "descend", "grasp", "lift", "transport", "place", "insert", "retreat")
 
@@ -25,13 +26,14 @@ EXECUTOR_PRIMITIVES = ("approach", "descend", "grasp", "lift", "transport", "pla
 class ParamSpec:
     key: str
     effective_on: tuple          # primitives whose executor branch (or subtask geometry) reads the key
-    kind: str                    # "float" | "vec3" | "enum" | "dict"
+    kind: str                    # "float" | "vec3" | "enum" | "dict" | "ref_id"
     lo: Optional[float] = None
     hi: Optional[float] = None
     enum: tuple = ()
     needs_plan_flag: Optional[str] = None
     doc: str = ""
     inert_ok_on: tuple = ()      # primitives where the task configs historically co-apply the key; accepted, reported inert
+    proposer_settable: bool = True   # False: valid in a program (legacy configs) but a patch may not set it (ungrounded values)
 
 
 # Geometry keys are merged by the executor from every instance of the subtask that has a target role (transport, place, insert).
@@ -49,13 +51,19 @@ PARAM_SPECS: dict[str, ParamSpec] = {s.key: s for s in (
     ParamSpec("target_align", _GEOM, "enum", enum=("collision_center",), doc="align the object's collision centre to the site"),
     ParamSpec("target_yaw_deg", _GEOM, "float", -360.0, 360.0, doc="object yaw relative to the site (deg)"),
     ParamSpec("target_yaw_symmetry_deg", _GEOM, "float", 1.0, 360.0, doc="rotation after which the object looks the same (deg)"),
-    ParamSpec("grasp_reference", ("approach",), "dict", needs_plan_flag="approach_check",
-              doc="rel_obj (3, object yaw frame, m), hand_yaw_rel_deg, optional hand_quat_obj_xyzw (4, unit)"),
+    ParamSpec("grasp_reference", ("approach",), "dict", needs_plan_flag="approach_check", proposer_settable=False,
+              doc="legacy inline reference: rel_obj (3, object yaw frame, m), hand_yaw_rel_deg, optional hand_quat_obj_xyzw "
+                  "(4, unit); a patch selects a registered reference with grasp_reference_id instead of writing numbers"),
+    ParamSpec("grasp_reference_id", ("approach",), "ref_id", needs_plan_flag="approach_check",
+              doc="id of a registered grasp reference (configs/grasp_references.v1.json); resolved against the program's "
+                  "scene and the instance's object; unknown / incompatible ids are refused; excludes grasp_reference"),
     ParamSpec("grasp_candidate", ("approach",), "dict", needs_plan_flag="approach_check",
               doc="one placement: yaw_deg, lateral_m, dz_m, longitudinal_m"),
     ParamSpec("grasp_grid", ("approach",), "dict", needs_plan_flag="approach_check",
               doc="candidate grid: yaws_deg, laterals_m, dzs_m (lists)"),
 )}
+
+_REF_ID_RE = re.compile(r"^[A-Za-z0-9_.\-]{1,96}$")
 
 _DICT_FIELDS = {
     "grasp_reference": {"rel_obj": ("vec3", -0.3, 0.3), "hand_yaw_rel_deg": ("float", -360.0, 360.0),
@@ -102,6 +110,8 @@ def check_value(spec: ParamSpec, value: Any) -> Optional[str]:
         return _check_field(spec.kind, spec.lo, spec.hi, value)
     if spec.kind == "enum":
         return None if value in spec.enum else f"not_in:{list(spec.enum)}"
+    if spec.kind == "ref_id":
+        return None if isinstance(value, str) and _REF_ID_RE.match(value) else "not_a_reference_id"
     if spec.kind == "dict":
         if not isinstance(value, Mapping):
             return "not_a_mapping"
@@ -162,6 +172,7 @@ def describe() -> dict:
     return {"version": CAPABILITY_VERSION, "primitives": list(EXECUTOR_PRIMITIVES),
             "params": {k: {"effective_on": list(s.effective_on), "kind": s.kind, "lo": s.lo, "hi": s.hi,
                            "enum": list(s.enum), "needs_plan_flag": s.needs_plan_flag, "doc": s.doc,
+                           "proposer_settable": s.proposer_settable,
                            **({"fields": {f: list(v[:1]) + [v[1], v[2]] for f, v in _DICT_FIELDS[k].items()},
                                "required": list(_DICT_REQUIRED[k])} if s.kind == "dict" else {})}
                        for k, s in PARAM_SPECS.items()}}

@@ -1,0 +1,367 @@
+{
+ "version": "grasp_references.v1",
+ "note": "append-only: an id is never reused for different numbers; content_sha256 pins each entry",
+ "frame_definitions": {
+  "rel_obj": "hand (end-effector body) position minus object origin, in the object's yaw-only frame Rz(object_yaw) (world z up), metres",
+  "hand_yaw_rel_deg": "yaw about world z of the demonstration hand relative to the executor's yaw-aligned grasp quaternion q0 = Rz(wrap_pi/4(object_yaw)) * q_down (q_down = the reset-pose end-effector quaternion)",
+  "hand_quat_obj_xyzw": "full hand orientation in the object's yaw-only frame: Rz(object_yaw)^-1 * R_hand, xyzw, w >= 0 (absent: the executor uses a vertical hand, yaw only)"
+ },
+ "entries": [
+  {
+   "reference_id": "libero_10.t8.demo_0.close_111.moka_pot_2",
+   "scene": "libero:libero_10:8",
+   "object_name": "moka_pot_2",
+   "object_class": "moka_pot",
+   "compatible_objects": [
+    "moka_pot_1",
+    "moka_pot_2"
+   ],
+   "compatibility_basis": "bddl KITCHEN_SCENE8_put_both_moka_pots_on_the_stove: 'moka_pot_1 moka_pot_2 - moka_pot' (same object class); geometry-equal asset assumed; compatibility is declared, NOT evidence that a grasp from this reference succeeds",
+   "kind": "single_demo_close",
+   "value": {
+    "rel_obj": [
+     -0.0027,
+     0.0236,
+     0.0424
+    ],
+    "hand_yaw_rel_deg": -89.2,
+    "hand_quat_obj_xyzw": [
+     0.706618,
+     0.676219,
+     -0.188638,
+     0.088517
+    ]
+   },
+   "source": {
+    "dataset_file": {
+     "name": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove_demo.hdf5",
+     "sha256": "e329bb21a8ded3457854faf6a23513c90cb4b34f0e40f3f4e9e70451fc9ba504",
+     "hash_taken": "library build (2026-11-01)",
+     "hash_recorded_at_freeze": {
+      "path": "reports/step22_t8_onboard/round1/identity.json",
+      "equal": true
+     }
+    },
+    "demo": "demo_0",
+    "close_step": 111,
+    "capture": "control step (replay of the recorded actions) of the gripper close that lifted this object",
+    "selection_rule": "lowest-index demo replay-successful in two independent replays (T5 rule), used as is",
+    "derivation_records": [
+     {
+      "path": "reports/step22_t8_onboard/demo_replay_A/demo_0.json",
+      "sha256": "43574fd104d1c20606bae30c90736c2c51e595116a506509a38e9c73afda141e"
+     },
+     {
+      "path": "reports/step22_t8_onboard/demo_selection.json",
+      "sha256": "e8ccd536247925e0ff759ea263d380eef8d9bee51f7a7da732a0dec668ed5005"
+     },
+     {
+      "path": "reports/step23_shared_fixes/t8_full_pose_check.json",
+      "sha256": "7a0001936192bd8358a20174c69cf56c475229d39c77d92bd0b20e9fb2cbd103"
+     }
+    ],
+    "extraction_scripts": [
+     {
+      "path": "scripts/mt/s22_t8_demo_extract.py",
+      "sha256": "ce5622b638a167ed54aa7f5c09ede8834702536e4026ba60d764cb5d0fa615a6"
+     },
+     {
+      "path": "scripts/mt/s23_full_pose_ref.py",
+      "sha256": "7fba0bb4e074e051bcd581210bc61b271cecd6df027e39d38f80b620c317fcbf"
+     }
+    ]
+   },
+   "demo_contact_at_close": {
+    "status": "recorded",
+    "record": {
+     "path": "reports/step23_shared_fixes/demo_close_clearance.json",
+     "sha256": "15d807b85ad1079197aedff3a3d8330f6156edbf20a46a1ac846d973eecb5d25"
+    },
+    "contacts_at_close_start": [
+     {
+      "geoms": [
+       "moka_pot_2_g11",
+       "gripper0_hand_collision"
+      ],
+      "dist_m": -0.00021042710609172344
+     },
+     {
+      "geoms": [
+       "moka_pot_2_g12",
+       "gripper0_hand_collision"
+      ],
+      "dist_m": -0.0007166465380401301
+     },
+     {
+      "geoms": [
+       "moka_pot_2_g5",
+       "gripper0_finger1_collision"
+      ],
+      "dist_m": -6.335175090225239e-05
+     }
+    ],
+    "note": "dist_m <= 0: the demonstration hand already touches the object at the close"
+   },
+   "frame": {
+    "rel_obj": "hand (end-effector body) position minus object origin, in the object's yaw-only frame Rz(object_yaw) (world z up), metres",
+    "hand_yaw_rel_deg": "yaw about world z of the demonstration hand relative to the executor's yaw-aligned grasp quaternion q0 = Rz(wrap_pi/4(object_yaw)) * q_down (q_down = the reset-pose end-effector quaternion)",
+    "hand_quat_obj_xyzw": "full hand orientation in the object's yaw-only frame: Rz(object_yaw)^-1 * R_hand, xyzw, w >= 0 (absent: the executor uses a vertical hand, yaw only)"
+   },
+   "content_sha256": "3386e1138a33ec2e5fe5e44ec1cc40b5b98e25358f5975c29a5071eb553eaa94"
+  },
+  {
+   "reference_id": "libero_10.t8.demo_0.close_349.moka_pot_1",
+   "scene": "libero:libero_10:8",
+   "object_name": "moka_pot_1",
+   "object_class": "moka_pot",
+   "compatible_objects": [
+    "moka_pot_1",
+    "moka_pot_2"
+   ],
+   "compatibility_basis": "bddl KITCHEN_SCENE8_put_both_moka_pots_on_the_stove: 'moka_pot_1 moka_pot_2 - moka_pot' (same object class); geometry-equal asset assumed; compatibility is declared, NOT evidence that a grasp from this reference succeeds",
+   "kind": "single_demo_close",
+   "value": {
+    "rel_obj": [
+     0.0118,
+     0.051,
+     0.0421
+    ],
+    "hand_yaw_rel_deg": -87.0,
+    "hand_quat_obj_xyzw": [
+     0.684631,
+     0.6805,
+     -0.212008,
+     0.152488
+    ]
+   },
+   "source": {
+    "dataset_file": {
+     "name": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove_demo.hdf5",
+     "sha256": "e329bb21a8ded3457854faf6a23513c90cb4b34f0e40f3f4e9e70451fc9ba504",
+     "hash_taken": "library build (2026-11-01)",
+     "hash_recorded_at_freeze": {
+      "path": "reports/step22_t8_onboard/round1/identity.json",
+      "equal": true
+     }
+    },
+    "demo": "demo_0",
+    "close_step": 349,
+    "capture": "control step (replay of the recorded actions) of the gripper close that lifted this object",
+    "selection_rule": "lowest-index demo replay-successful in two independent replays (T5 rule), used as is",
+    "derivation_records": [
+     {
+      "path": "reports/step22_t8_onboard/demo_replay_A/demo_0.json",
+      "sha256": "43574fd104d1c20606bae30c90736c2c51e595116a506509a38e9c73afda141e"
+     },
+     {
+      "path": "reports/step22_t8_onboard/demo_selection.json",
+      "sha256": "e8ccd536247925e0ff759ea263d380eef8d9bee51f7a7da732a0dec668ed5005"
+     },
+     {
+      "path": "reports/step23_shared_fixes/t8_full_pose_check.json",
+      "sha256": "7a0001936192bd8358a20174c69cf56c475229d39c77d92bd0b20e9fb2cbd103"
+     }
+    ],
+    "extraction_scripts": [
+     {
+      "path": "scripts/mt/s22_t8_demo_extract.py",
+      "sha256": "ce5622b638a167ed54aa7f5c09ede8834702536e4026ba60d764cb5d0fa615a6"
+     },
+     {
+      "path": "scripts/mt/s23_full_pose_ref.py",
+      "sha256": "7fba0bb4e074e051bcd581210bc61b271cecd6df027e39d38f80b620c317fcbf"
+     }
+    ]
+   },
+   "demo_contact_at_close": {
+    "status": "recorded",
+    "record": {
+     "path": "reports/step23_shared_fixes/demo_close_clearance.json",
+     "sha256": "15d807b85ad1079197aedff3a3d8330f6156edbf20a46a1ac846d973eecb5d25"
+    },
+    "contacts_at_close_start": [
+     {
+      "geoms": [
+       "moka_pot_1_g12",
+       "gripper0_hand_collision"
+      ],
+      "dist_m": -0.0010472332092960706
+     },
+     {
+      "geoms": [
+       "moka_pot_1_g13",
+       "gripper0_hand_collision"
+      ],
+      "dist_m": -0.0005434734612547817
+     }
+    ],
+    "note": "dist_m <= 0: the demonstration hand already touches the object at the close"
+   },
+   "frame": {
+    "rel_obj": "hand (end-effector body) position minus object origin, in the object's yaw-only frame Rz(object_yaw) (world z up), metres",
+    "hand_yaw_rel_deg": "yaw about world z of the demonstration hand relative to the executor's yaw-aligned grasp quaternion q0 = Rz(wrap_pi/4(object_yaw)) * q_down (q_down = the reset-pose end-effector quaternion)",
+    "hand_quat_obj_xyzw": "full hand orientation in the object's yaw-only frame: Rz(object_yaw)^-1 * R_hand, xyzw, w >= 0 (absent: the executor uses a vertical hand, yaw only)"
+   },
+   "content_sha256": "a7042cfae3fd90b3de20f33f06d2d21e1ed21377200f9412483eb1eee17e3d53"
+  },
+  {
+   "reference_id": "libero_10.t5.demo_0.close_57.black_book_1",
+   "scene": "libero:libero_10:5",
+   "object_name": "black_book_1",
+   "object_class": "black_book",
+   "compatible_objects": [
+    "black_book_1"
+   ],
+   "compatibility_basis": "only the object it was extracted from",
+   "kind": "single_demo_close",
+   "value": {
+    "rel_obj": [
+     0.0084,
+     -0.0123,
+     0.1209
+    ],
+    "hand_yaw_rel_deg": -4.1
+   },
+   "source": {
+    "dataset_file": {
+     "name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy_demo.hdf5",
+     "sha256": "2e0127d0cf73afceacc2c0854e505d5743b6d3d5aaf5572c842f84c6a1c8173b",
+     "hash_taken": "library build (2026-11-01)",
+     "hash_recorded_at_freeze": null
+    },
+    "demo": "demo_0",
+    "close_step": 57,
+    "capture": "control step of the LAST gripper close of the demo",
+    "selection_rule": "lowest-index demo replay-successful in two independent replays, used as is",
+    "derivation_records": [
+     {
+      "path": "reports/step14_t5_onboard/demo_replay/demo_0.json",
+      "sha256": "7a77cb04dd0a66d7822035291552eb4aa240b8a4e0ef575cf7130c0a1d18df14"
+     }
+    ],
+    "extraction_scripts": [
+     {
+      "path": "scripts/mt/s14_t5_demo_extract.py",
+      "sha256": "d3f9aaa51e9eab6233037535e914b2412f1661a5fdebe30b14d598d36a220536"
+     }
+    ]
+   },
+   "demo_contact_at_close": {
+    "status": "not_recorded"
+   },
+   "frame": {
+    "rel_obj": "hand (end-effector body) position minus object origin, in the object's yaw-only frame Rz(object_yaw) (world z up), metres",
+    "hand_yaw_rel_deg": "yaw about world z of the demonstration hand relative to the executor's yaw-aligned grasp quaternion q0 = Rz(wrap_pi/4(object_yaw)) * q_down (q_down = the reset-pose end-effector quaternion)"
+   },
+   "content_sha256": "750ee51415d55048e5662a8cdcea509b58b31ae2abd7b93f6ac92711d048e8c2"
+  },
+  {
+   "reference_id": "libero_10.t4.median_n40.porcelain_mug_1",
+   "scene": "libero:libero_10:4",
+   "object_name": "porcelain_mug_1",
+   "object_class": "porcelain_mug",
+   "compatible_objects": [
+    "porcelain_mug_1"
+   ],
+   "compatibility_basis": "only the object it was extracted from",
+   "kind": "median_over_demos",
+   "value": {
+    "rel_obj": [
+     -0.0319,
+     -0.013,
+     0.101
+    ],
+    "hand_yaw_rel_deg": 10.3
+   },
+   "source": {
+    "dataset_file": {
+     "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_demo.hdf5",
+     "sha256": "a2a75bc6c301a914d0998ccac9dcf1d70d0f501897fbb6baf86aa61315b57b31",
+     "hash_taken": "library build (2026-11-01)",
+     "hash_recorded_at_freeze": null
+    },
+    "demo": null,
+    "close_step": null,
+    "n_demos": 40,
+    "n_demos_in_dataset": 50,
+    "n_replay_success": 40,
+    "capture": "per replay-successful demo, the LAST close event that lifted this object; component-wise median",
+    "per_demo_rows": "per_mug.<object>.rows in the derivation record (demo, close_step, rel_obj, hand_yaw_rel_deg)",
+    "derivation_records": [
+     {
+      "path": "reports/step9_t4_onboard/ref_grasp.json",
+      "sha256": "cd60c977186d020805477367cc6669fc4a7b4e1af9485404bcaa80e1a7ab9368"
+     }
+    ],
+    "extraction_scripts": [
+     {
+      "path": "scripts/mt/s9_ref_grasp.py",
+      "sha256": "3658afa54a4e5429b59e4f63d2a134a931e4f62fdedd0f5d5cea038c4eab5029"
+     }
+    ]
+   },
+   "demo_contact_at_close": {
+    "status": "not_recorded"
+   },
+   "frame": {
+    "rel_obj": "hand (end-effector body) position minus object origin, in the object's yaw-only frame Rz(object_yaw) (world z up), metres",
+    "hand_yaw_rel_deg": "yaw about world z of the demonstration hand relative to the executor's yaw-aligned grasp quaternion q0 = Rz(wrap_pi/4(object_yaw)) * q_down (q_down = the reset-pose end-effector quaternion)"
+   },
+   "content_sha256": "9e49ca4e69b4d9a6f2befe2d5845cdad27aded281cddb63d26d54f268988ab49"
+  },
+  {
+   "reference_id": "libero_10.t4.median_n39.white_yellow_mug_1",
+   "scene": "libero:libero_10:4",
+   "object_name": "white_yellow_mug_1",
+   "object_class": "white_yellow_mug",
+   "compatible_objects": [
+    "white_yellow_mug_1"
+   ],
+   "compatibility_basis": "only the object it was extracted from",
+   "kind": "median_over_demos",
+   "value": {
+    "rel_obj": [
+     -0.0572,
+     -0.0163,
+     0.0762
+    ],
+    "hand_yaw_rel_deg": 1.8
+   },
+   "source": {
+    "dataset_file": {
+     "name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate_demo.hdf5",
+     "sha256": "a2a75bc6c301a914d0998ccac9dcf1d70d0f501897fbb6baf86aa61315b57b31",
+     "hash_taken": "library build (2026-11-01)",
+     "hash_recorded_at_freeze": null
+    },
+    "demo": null,
+    "close_step": null,
+    "n_demos": 39,
+    "n_demos_in_dataset": 50,
+    "n_replay_success": 40,
+    "capture": "per replay-successful demo, the LAST close event that lifted this object; component-wise median",
+    "per_demo_rows": "per_mug.<object>.rows in the derivation record (demo, close_step, rel_obj, hand_yaw_rel_deg)",
+    "derivation_records": [
+     {
+      "path": "reports/step9_t4_onboard/ref_grasp.json",
+      "sha256": "cd60c977186d020805477367cc6669fc4a7b4e1af9485404bcaa80e1a7ab9368"
+     }
+    ],
+    "extraction_scripts": [
+     {
+      "path": "scripts/mt/s9_ref_grasp.py",
+      "sha256": "3658afa54a4e5429b59e4f63d2a134a931e4f62fdedd0f5d5cea038c4eab5029"
+     }
+    ]
+   },
+   "demo_contact_at_close": {
+    "status": "not_recorded"
+   },
+   "frame": {
+    "rel_obj": "hand (end-effector body) position minus object origin, in the object's yaw-only frame Rz(object_yaw) (world z up), metres",
+    "hand_yaw_rel_deg": "yaw about world z of the demonstration hand relative to the executor's yaw-aligned grasp quaternion q0 = Rz(wrap_pi/4(object_yaw)) * q_down (q_down = the reset-pose end-effector quaternion)"
+   },
+   "content_sha256": "5d87afafc02152f43ea425c81e725796d59d889c08c4106def1f4e0fbdd18dba"
+  }
+ ]
+}

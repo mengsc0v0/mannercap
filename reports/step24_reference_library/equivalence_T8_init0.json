@@ -1,0 +1,198 @@
+{
+ "patch": {
+  "hypothesis": "equivalence: select the registered reference the inline value was registered under",
+  "ops": [
+   {
+    "op": "unset_param",
+    "instance_id": "pot_first.pick_1.approach",
+    "key": "grasp_reference"
+   },
+   {
+    "op": "set_param",
+    "instance_id": "pot_first.pick_1.approach",
+    "key": "grasp_reference_id",
+    "value": "libero_10.t8.demo_0.close_111.moka_pot_2"
+   }
+  ]
+ },
+ "patch_result": {
+  "version": "program_patch.v1",
+  "ok": true,
+  "refusal": null,
+  "errors": [],
+  "diff": [
+   {
+    "instance_id": "pot_first.pick_1.approach",
+    "key": "grasp_reference",
+    "old": {
+     "rel_obj": [
+      -0.0027,
+      0.0236,
+      0.0424
+     ],
+     "hand_yaw_rel_deg": -89.2,
+     "hand_quat_obj_xyzw": [
+      0.706618,
+      0.676219,
+      -0.188638,
+      0.088517
+     ]
+    },
+    "new": null
+   },
+   {
+    "instance_id": "pot_first.pick_1.approach",
+    "key": "grasp_reference_id",
+    "old": null,
+    "new": "libero_10.t8.demo_0.close_111.moka_pot_2"
+   }
+  ],
+  "parent_hash": "62456e3622875b19d3ff698575016b908d3785b856a3c4ff9bc7767813f1e179",
+  "child_hash": "17920a034d6cbf36255d69b0f6b7db616a24b1a2344bfac9c04a255ef657d88a",
+  "skeleton_hash": "ef60b9762c02bc06726b6a6c94780e755508337fbb7a87fce6b200c4fe510bc1",
+  "hypothesis": "equivalence: select the registered reference the inline value was registered under"
+ },
+ "legacy_inline": {
+  "status": "approach_infeasible:pot_first.pick_1.approach",
+  "n_steps": 0,
+  "approach_plan": {
+   "pot_first.pick_1": {
+    "feasible": false,
+    "default_feasible": false,
+    "margin_m": 0.0,
+    "n_samples": 20,
+    "chosen": null,
+    "candidates": [
+     {
+      "yaw_deg": -91.50619176200178,
+      "lateral_m": 0.02536669039829136,
+      "dz_m": 0.051839662041065424,
+      "offset": [
+       0.0027,
+       -0.0236,
+       0.0424
+      ],
+      "min_clearance_m": -0.00025,
+      "blocking": "moka_pot_2",
+      "phase": "descent",
+      "at_grasp_clearance_m": -0.00217,
+      "feasible": false,
+      "longitudinal_m": 0.003144556834717137
+     }
+    ],
+    "lookahead_control_steps": 24,
+    "grid_source": "grasp_reference",
+    "grid_size": 1,
+    "reference": {
+     "reference_id": "libero_10.t8.demo_0.close_111.moka_pot_2",
+     "origin": "inline_grasp_reference",
+     "registered": true,
+     "content_sha256": "3386e1138a33ec2e5fe5e44ec1cc40b5b98e25358f5975c29a5071eb553eaa94",
+     "library_sha256": "739319a4c5c7d874a89c97a9324690e1bdf652b597ec758e1034c58aa09c3cd3"
+    }
+   }
+  }
+ },
+ "by_reference_id": {
+  "status": "approach_infeasible:pot_first.pick_1.approach",
+  "n_steps": 0,
+  "approach_plan": {
+   "pot_first.pick_1": {
+    "feasible": false,
+    "default_feasible": false,
+    "margin_m": 0.0,
+    "n_samples": 20,
+    "chosen": null,
+    "candidates": [
+     {
+      "yaw_deg": -91.50619176200178,
+      "lateral_m": 0.02536669039829136,
+      "dz_m": 0.051839662041065424,
+      "offset": [
+       0.0027,
+       -0.0236,
+       0.0424
+      ],
+      "min_clearance_m": -0.00025,
+      "blocking": "moka_pot_2",
+      "phase": "descent",
+      "at_grasp_clearance_m": -0.00217,
+      "feasible": false,
+      "longitudinal_m": 0.003144556834717137
+     }
+    ],
+    "lookahead_control_steps": 24,
+    "grid_source": "grasp_reference",
+    "grid_size": 1,
+    "reference": {
+     "reference_id": "libero_10.t8.demo_0.close_111.moka_pot_2",
+     "origin": "grasp_reference_id",
+     "content_sha256": "3386e1138a33ec2e5fe5e44ec1cc40b5b98e25358f5975c29a5071eb553eaa94",
+     "library_sha256": "739319a4c5c7d874a89c97a9324690e1bdf652b597ec758e1034c58aa09c3cd3"
+    }
+   }
+  }
+ },
+ "equal": {
+  "legacy_vs_id_candidates": true,
+  "legacy_vs_step23_record_candidates": true,
+  "status_equal": true,
+  "n_steps_equal": true
+ },
+ "provenance_recorded": {
+  "legacy": {
+   "reference_id": "libero_10.t8.demo_0.close_111.moka_pot_2",
+   "origin": "inline_grasp_reference",
+   "registered": true,
+   "content_sha256": "3386e1138a33ec2e5fe5e44ec1cc40b5b98e25358f5975c29a5071eb553eaa94",
+   "library_sha256": "739319a4c5c7d874a89c97a9324690e1bdf652b597ec758e1034c58aa09c3cd3"
+  },
+  "by_id": {
+   "reference_id": "libero_10.t8.demo_0.close_111.moka_pot_2",
+   "origin": "grasp_reference_id",
+   "content_sha256": "3386e1138a33ec2e5fe5e44ec1cc40b5b98e25358f5975c29a5071eb553eaa94",
+   "library_sha256": "739319a4c5c7d874a89c97a9324690e1bdf652b597ec758e1034c58aa09c3cd3"
+  }
+ },
+ "refusals": {
+  "unknown_id": {
+   "version": "program_patch.v1",
+   "ok": false,
+   "refusal": "reference_rejected",
+   "errors": [
+    "reference_not_found:pot_first.pick_1.approach:libero_10.t8.demo_9.close_1.moka_pot_2"
+   ],
+   "diff": [],
+   "parent_hash": "62456e3622875b19d3ff698575016b908d3785b856a3c4ff9bc7767813f1e179",
+   "child_hash": "",
+   "skeleton_hash": "ef60b9762c02bc06726b6a6c94780e755508337fbb7a87fce6b200c4fe510bc1",
+   "hypothesis": "x"
+  },
+  "other_task_object": {
+   "version": "program_patch.v1",
+   "ok": false,
+   "refusal": "reference_rejected",
+   "errors": [
+    "reference_incompatible:pot_first.pick_1.approach:libero_10.t5.demo_0.close_57.black_book_1:scene:libero:libero_10:8!=libero:libero_10:5"
+   ],
+   "diff": [],
+   "parent_hash": "62456e3622875b19d3ff698575016b908d3785b856a3c4ff9bc7767813f1e179",
+   "child_hash": "",
+   "skeleton_hash": "ef60b9762c02bc06726b6a6c94780e755508337fbb7a87fce6b200c4fe510bc1",
+   "hypothesis": "x"
+  },
+  "other_task_mug": {
+   "version": "program_patch.v1",
+   "ok": false,
+   "refusal": "reference_rejected",
+   "errors": [
+    "reference_incompatible:pot_first.pick_1.approach:libero_10.t4.median_n40.porcelain_mug_1:scene:libero:libero_10:8!=libero:libero_10:4"
+   ],
+   "diff": [],
+   "parent_hash": "62456e3622875b19d3ff698575016b908d3785b856a3c4ff9bc7767813f1e179",
+   "child_hash": "",
+   "skeleton_hash": "ef60b9762c02bc06726b6a6c94780e755508337fbb7a87fce6b200c4fe510bc1",
+   "hypothesis": "x"
+  }
+ }
+}

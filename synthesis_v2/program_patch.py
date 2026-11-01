@@ -56,7 +56,7 @@ def skeleton_hash(program) -> str:
 @dataclass(frozen=True)
 class PatchResult:
     ok: bool
-    refusal: Optional[str]                  # None | "anchor_changed" | "invalid_patch" | "capability_unsupported" | "invalid_program"
+    refusal: Optional[str]                  # None | "anchor_changed" | "invalid_patch" | "capability_unsupported" | "reference_rejected" | "invalid_program"
     errors: tuple = ()
     program: Any = None                     # the patched program when ok
     diff: tuple = ()                        # ({"instance_id", "key", "old", "new"}, ...)
@@ -122,6 +122,9 @@ def apply_patch(program, patch: Any, *, frozen_anchor: Mapping[str, str], curren
         seen.add((iid, key))
         cur = new_params.setdefault(iid, dict(by_id[iid].params))
         old = cur.get(key)
+        if name == "set_param" and not PARAM_SPECS[key].proposer_settable:
+            unsupported.append(f"capability_unsupported:{iid}:{key}:not_proposer_settable")
+            continue
         if name == "set_param":
             if "value" not in op:
                 bad.append(f"set_param_without_value:{iid}:{key}")
@@ -146,8 +149,9 @@ def apply_patch(program, patch: Any, *, frozen_anchor: Mapping[str, str], curren
                                               for i in program.instances))
     perr = list(child.validate()) + primitive_issues(child) + [e for e in param_issues(child, plan)[0]]
     perr = list(dict.fromkeys(perr))
-    if perr:
-        return _refuse("invalid_program", perr, program, hyp)
+    if perr:   # a reference that does not exist / does not fit this scene or object is its own refusal
+        return _refuse("reference_rejected" if all(e.startswith("reference_") for e in perr) else "invalid_program",
+                       perr, program, hyp)
     sk = skeleton_hash(child)
     assert sk == skeleton_hash(program), "a params-only patch changed the program skeleton"
     return PatchResult(True, None, (), child, tuple(diff), program.program_hash(), child.program_hash(), sk, hyp)

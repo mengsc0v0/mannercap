@@ -169,6 +169,8 @@ class TaskProgram:
             errs.append("duplicate_labels_require_instance_column")
         from .stage_capabilities import param_issues  # Step 24: undeclared / out-of-domain params are errors, not silently ignored
         errs.extend(param_issues(self)[0])
+        from .grasp_references import reference_issues  # Step 24: a grasp_reference_id must exist and fit this scene / object
+        errs.extend(reference_issues(self))
         return errs
 
     @property

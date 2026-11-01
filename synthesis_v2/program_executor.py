@@ -25,6 +25,7 @@ from .native_producer import (
     _yaw_aligned_quat,
 )
 from .task_program import TaskProgram, legacy_program
+from .grasp_references import instance_reference
 from .stage_capabilities import param_issues, primitive_issues
 
 _REQUIRED_SERVO = ("approach", "descend", "lift", "transport")   # Step 23: stages whose timeout stops the branch (opt-in)
@@ -464,10 +465,15 @@ def produce_program_episode(
                 from .approach_planner import plan_approach, scene_from_libero
                 nm0 = program.objects[it.object_role]
                 m_, d_, site_, env_, obst_, tgt_, look_ = scene_from_libero(s, nm0, return_steps=True)
-                ref_c = None
-                if "grasp_reference" in it.params and "grasp_candidate" not in it.params:
-                    ref_c = reference_to_candidate(it.params["grasp_reference"], s.obs[f"{nm0}_quat"],
-                                                   r["grasp_quat_xyzw"], env_.obs_to_site)
+                ref_c, ref_prov = None, None
+                if "grasp_candidate" not in it.params:
+                    ref_v, ref_prov, ref_err = instance_reference(program, it)
+                    if ref_err:   # never a fallback to another grasp: an unresolvable reference ends the branch
+                        status_box[0] = f"reference_unresolved:{it.instance_id}:{ref_err}"
+                        stop[0] = True
+                        return
+                    if ref_v is not None:
+                        ref_c = reference_to_candidate(ref_v, s.obs[f"{nm0}_quat"], r["grasp_quat_xyzw"], env_.obs_to_site)
                 grid, grid_source = grasp_grid_from_params(it.params, ref_c)
                 # plan_approach stops at the first feasible candidate; a guard retry needs the alternatives too
                 all_c = bool(rejected.get(it.instance_id))
@@ -477,7 +483,8 @@ def produce_program_episode(
                                    grasp_quat_xyzw=np.asarray(r["grasp_quat_xyzw"], float),
                                    hover_dz=APPROACH_DZ, target=tgt_, grid=grid, evaluate_all=all_c)
                 meta.setdefault("approach_plan", {})[it.subtask] = {**pl.to_dict(), "lookahead_control_steps": int(look_),
-                                                                    "grid_source": grid_source, "grid_size": 0 if grid is None else len(grid)}   # generation cost, not part of the episode
+                                                                    "grid_source": grid_source, "grid_size": 0 if grid is None else len(grid),
+                                                                    **({"reference": ref_prov} if ref_c is not None else {})}   # generation cost, not part of the episode
                 chosen = pl.chosen
                 rej = rejected.get(it.instance_id, [])
                 if rej:   # guard retry: keep the planner's preference order, skip what the guard already refused
