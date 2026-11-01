@@ -1,12 +1,45 @@
-{"onboarding_task": "libero_10 task 8 (put both moka pots on the stove), ordinary execution",
+{
+ "onboarding_task": "libero_10 task 8 (put both moka pots on the stove), ordinary execution",
  "config_frozen_commit": "aecc897 (before any T8 execution)",
- "demo_reference": {"demos_checked": 8, "replays": 16, "demo_used": "demo_0", "wall_s_per_replay_approx": 8,
-                    "note": "pre-set T5 rule; extra unapproved condition in first draft removed before freeze"},
- "execution_runs": {"ordinary_round1": 4, "wall_s_each_approx": 27, "control_steps_each_approx": 667,
-                    "diagnostic_replays_of_frozen_config": 1, "offline_geometry_reads": 2, "adapter_fix_runs": 0},
- "new_files": ["scripts/mt/s22_t8_demo_extract.py", "scripts/mt/s22_t8_select_demo.py", "scripts/mt/s22_t8_ordinary.py",
-               "scripts/mt/s22_t8_diag.py", "scripts/mt/s22_t8_demo_geom.py"],
- "shared_code_changes": {"synthesis_v2": 0, "scripts/mt/s7_task_config.py": "+24 lines (object_target_params field, make_program loop, TaskSpec 8)",
-                         "old_tasks_program_identical": [0, 1, 4, 5, 7], "tests": "585 passed"},
- "task_constants_added": {"grasp_reference_per_pot": 2, "target_offset_site_per_pot": 2, "lift_dz_per_pot": 2, "transport_dz_per_pot": 2},
- "outcome": "0/4 dev inits; stopped at gap: tilted-hand grasp (new primitive); adapter fix not used"}
+ "demo_reference": {
+  "demos_checked": 8,
+  "replays": 16,
+  "demo_used": "demo_0",
+  "wall_s_per_replay_approx": 8,
+  "note": "pre-set T5 rule; extra unapproved condition in first draft removed before freeze"
+ },
+ "execution_runs": {
+  "ordinary_round1": 4,
+  "wall_s_each_approx": 27,
+  "control_steps_each_approx": 667,
+  "diagnostic_replays_of_frozen_config": 1,
+  "offline_geometry_reads": 2,
+  "adapter_fix_runs": 0
+ },
+ "new_files": [
+  "scripts/mt/s22_t8_demo_extract.py",
+  "scripts/mt/s22_t8_select_demo.py",
+  "scripts/mt/s22_t8_ordinary.py",
+  "scripts/mt/s22_t8_diag.py",
+  "scripts/mt/s22_t8_demo_geom.py"
+ ],
+ "shared_code_changes": {
+  "synthesis_v2": 0,
+  "scripts/mt/s7_task_config.py": "+24 lines (object_target_params field, make_program loop, TaskSpec 8)",
+  "old_tasks_program_identical": [
+   0,
+   1,
+   4,
+   5,
+   7
+  ],
+  "tests": "585 passed"
+ },
+ "task_constants_added": {
+  "grasp_reference_per_pot": 2,
+  "target_offset_site_per_pot": 2,
+  "lift_dz_per_pot": 2,
+  "transport_dz_per_pot": 2
+ },
+ "outcome": "0/4 dev inits (round 1); wording corrected in Step 23: demo uses a tilted grasp, adapter passed only position+yaw, descent contact in all four inits; see reports/step23_shared_fixes/REPORT.md"
+}

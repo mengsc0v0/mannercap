@@ -1,0 +1,36 @@
+{
+ "init": 0,
+ "status": "approach_infeasible:pot_first.pick_1.approach",
+ "n_steps": 0,
+ "note": "first-grasp check, full-pose reference (demo_0), approach check on, no guard; blocked before any motion",
+ "approach_plan": {
+  "pot_first.pick_1": {
+   "feasible": false,
+   "default_feasible": false,
+   "margin_m": 0.0,
+   "n_samples": 20,
+   "chosen": null,
+   "candidates": [
+    {
+     "yaw_deg": -91.50619176200178,
+     "lateral_m": 0.02536669039829136,
+     "dz_m": 0.051839662041065424,
+     "offset": [
+      0.0027,
+      -0.0236,
+      0.0424
+     ],
+     "min_clearance_m": -0.00025,
+     "blocking": "moka_pot_2",
+     "phase": "descent",
+     "at_grasp_clearance_m": -0.00217,
+     "feasible": false,
+     "longitudinal_m": 0.003144556834717137
+    }
+   ],
+   "lookahead_control_steps": 24,
+   "grid_source": "grasp_reference",
+   "grid_size": 1
+  }
+ }
+}

@@ -32,12 +32,13 @@ by a 6 N one-finger contact); the stability test fails (right finger force 0). N
    handle g12, fingers on opposite body walls g5/g8). The executor's grasp orientation is the yaw-aligned vertical quaternion only; the
    reference converts the demo hand POSITION but cannot carry the tilt. A vertical hand at the demo position lands on the wall.
 
-## Decision: no adapter fix applied
-The deviation needs a tilted-hand grasp, which the executor does not have (no roll/pitch in the grasp quaternion, no tilt in the planner
-grid or envelope check). That is a new grasp primitive, so by the work order the gap is recorded and the work stops. Not done: no
-vertical-grasp re-search (would be a wider candidate grid), no per-init change. The one allowed fix and re-check were NOT used.
-Unproven: that no vertical grasp exists for this pot (not searched, by rule); the tilt is the demonstrated difference, not a proven
-necessary condition.
+## Decision (round 1) and conclusion as reworded in Step 23
+Round 1 stopped at "gap" and described the cause as a missing tilted-hand primitive.  That wording is withdrawn.
+Current wording: the official demonstration grasps with a tilted hand; the adapter only passed reference position and yaw, so the
+tilt component was lost.  With that simplified reference, all four dev inits were blocked by contact during the descent.
+Not claimed: that no vertical grasp exists; that keeping the demo tilt will succeed; that a new primitive is needed.  A demo success does
+not replace the contact audit (the demo hand body rests on the pot handle, which the contact policy may still reject).
+Not done in round 1: no vertical-grasp re-search, no per-init change.  Follow-up: `reports/step23_shared_fixes/REPORT.md`.
 
 ## Cost
 `onboarding_cost.json`. Shared code: `synthesis_v2` unchanged. `scripts/mt/s7_task_config.py` +24 lines (new optional field
