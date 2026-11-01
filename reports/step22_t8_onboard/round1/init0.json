@@ -1,0 +1,390 @@
+{
+ "schema": "mannercap.t8_ordinary.v1",
+ "init": 0,
+ "SUCCESS": false,
+ "status": "stage_timeout:pot_first.pick_1.descend",
+ "task_ok": false,
+ "timeout": true,
+ "n_steps": 671,
+ "wall_s": 28.8,
+ "checks": {
+  "lift_min_rise_m": 0.05,
+  "xy_tol_m": 0.03,
+  "z_tol_m": 0.03
+ },
+ "site_world": [
+  0.15,
+  0.0,
+  0.0
+ ],
+ "site_half_size": [
+  0.075,
+  0.075,
+  0.0025
+ ],
+ "v0_clean": false,
+ "v0_forbidden_by_class": {
+  "finger_link_on_target": 2,
+  "other": 1
+ },
+ "clean_v1": false,
+ "clean_v1_ignoring_support": false,
+ "n_excused": 0,
+ "n_contacts": 3,
+ "unexcused": [
+  {
+   "robot_body": "leftfinger",
+   "other": "moka_pot_2_main",
+   "max_n": 57.0,
+   "control_step_range": [
+    60,
+    292
+   ],
+   "stages": [
+    "descend@pot_first"
+   ],
+   "v1_reasons": [
+    "not_a_finger_link_contact",
+    "outside_hold_window_close_to_release",
+    "not_all_substeps_on_inner_face (7681/13500)"
+   ]
+  },
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "moka_pot_2_main",
+   "max_n": 32.2,
+   "control_step_range": [
+    293,
+    296
+   ],
+   "stages": [
+    "grasp@pot_first",
+    "lift@pot_first"
+   ],
+   "v1_reasons": [
+    "not_all_substeps_on_inner_face (149/228)"
+   ]
+  },
+  {
+   "robot_body": "rightfinger[finger_link_on_target]",
+   "other": "moka_pot_1_main",
+   "max_n": 1.3,
+   "control_step_range": [
+    513,
+    524
+   ],
+   "stages": [
+    "grasp@pot_second",
+    "lift@pot_second"
+   ],
+   "v1_reasons": [
+    "not_all_substeps_on_inner_face (2/52)"
+   ]
+  }
+ ],
+ "support_unexplained": [],
+ "windows": [
+  {
+   "instance_id": "pot_first.pick_1.grasp",
+   "object": "moka_pot_2_main",
+   "env_object": "moka_pot_2",
+   "close_step": 293,
+   "release_step": 385,
+   "release_command_step": 375
+  },
+  {
+   "instance_id": "pot_second.pick_1.grasp",
+   "object": "moka_pot_1_main",
+   "env_object": "moka_pot_1",
+   "close_step": 506,
+   "release_step": 646,
+   "release_command_step": 636
+  }
+ ],
+ "pots": {
+  "pot_first": {
+   "object": "moka_pot_2",
+   "planned_target_site_frame": [
+    -0.0656,
+    -0.0289,
+    0.0916
+   ],
+   "start_world": [
+    0.0414,
+    0.0426,
+    0.9661
+   ],
+   "final_site_frame": [
+    -0.1073,
+    0.0428,
+    0.9661
+   ],
+   "final_xy_err_m": 0.0829,
+   "final_dz_m": 0.8745,
+   "final_in_region_xy": false,
+   "transport_end_xy_err_m": 0.0829,
+   "max_rise_lift_transport_m": 0.0004,
+   "grasp_policy": {
+    "closing_steps": 0,
+    "reached_band": true,
+    "reverse_pulses": 0,
+    "in_band_at": 0,
+    "reclose_pulses": 0,
+    "final": {
+     "left_n": 5.981783930442564,
+     "right_n": 0.0,
+     "total_n": 5.981783930442564
+    },
+    "trace": [
+     {
+      "cmd": 0.0,
+      "total_n": 41.257510717030854,
+      "note": "",
+      "left_n": 41.257510717030854,
+      "right_n": 0.0
+     },
+     {
+      "cmd": 0.0,
+      "total_n": 32.55368127878229,
+      "note": "",
+      "left_n": 32.55368127878229,
+      "right_n": 0.0
+     },
+     {
+      "cmd": 0.0,
+      "total_n": 13.699349542448587,
+      "note": "",
+      "left_n": 13.699349542448587,
+      "right_n": 0.0
+     }
+    ]
+   },
+   "grasp_measure": {
+    "status": "ok",
+    "measurement_valid": true,
+    "grasp_stable": false,
+    "hold_n": 63,
+    "hold_min": 0.0,
+    "hold_max": 0.0,
+    "lr_imbalance": 0.0,
+    "rel_z_spread_m": 0.08467910989271377,
+    "stability_components": {
+     "bilateral_strict": false,
+     "lr_ok": true,
+     "z_ok": false
+    }
+   },
+   "grasp": false,
+   "lift": false,
+   "transport": false,
+   "place": false
+  },
+  "pot_second": {
+   "object": "moka_pot_1",
+   "planned_target_site_frame": [
+    0.0291,
+    0.0189,
+    0.0925
+   ],
+   "start_world": [
+    -0.0543,
+    0.2577,
+    0.9661
+   ],
+   "final_site_frame": [
+    -0.2126,
+    0.2034,
+    0.9661
+   ],
+   "final_xy_err_m": 0.304,
+   "final_dz_m": 0.8736,
+   "final_in_region_xy": false,
+   "transport_end_xy_err_m": 0.304,
+   "max_rise_lift_transport_m": 0.0088,
+   "grasp_policy": {
+    "closing_steps": 6,
+    "reached_band": true,
+    "reverse_pulses": 0,
+    "in_band_at": 6,
+    "reclose_pulses": 0,
+    "final": {
+     "left_n": 0.0,
+     "right_n": 0.10829328267467561,
+     "total_n": 0.10829328267467561
+    },
+    "trace": [
+     {
+      "cmd": 1.0,
+      "total_n": 0.0,
+      "note": "",
+      "left_n": 0.0,
+      "right_n": 0.0
+     },
+     {
+      "cmd": 1.0,
+      "total_n": 0.0,
+      "note": "",
+      "left_n": 0.0,
+      "right_n": 0.0
+     },
+     {
+      "cmd": 1.0,
+      "total_n": 0.0,
+      "note": "",
+      "left_n": 0.0,
+      "right_n": 0.0
+     },
+     {
+      "cmd": 1.0,
+      "total_n": 0.0,
+      "note": "",
+      "left_n": 0.0,
+      "right_n": 0.0
+     },
+     {
+      "cmd": 1.0,
+      "total_n": 0.0,
+      "note": "",
+      "left_n": 0.0,
+      "right_n": 0.0
+     },
+     {
+      "cmd": 1.0,
+      "total_n": 0.0,
+      "note": "",
+      "left_n": 0.0,
+      "right_n": 0.0
+     },
+     {
+      "cmd": 0.0,
+      "total_n": 1.3753341329217446,
+      "note": "",
+      "left_n": 0.0,
+      "right_n": 1.3753341329217446
+     },
+     {
+      "cmd": 0.0,
+      "total_n": 0.5618583871845648,
+      "note": "",
+      "left_n": 0.0,
+      "right_n": 0.5618583871845648
+     },
+     {
+      "cmd": 0.0,
+      "total_n": 0.4377623076530762,
+      "note": "",
+      "left_n": 0.0,
+      "right_n": 0.4377623076530762
+     }
+    ]
+   },
+   "grasp_measure": {
+    "status": "ok",
+    "measurement_valid": true,
+    "grasp_stable": false,
+    "hold_n": 97,
+    "hold_min": 0.0,
+    "hold_max": 0.7539556339689635,
+    "lr_imbalance": 0.006589166510978453,
+    "rel_z_spread_m": 0.16261800048194852,
+    "stability_components": {
+     "bilateral_strict": false,
+     "lr_ok": true,
+     "z_ok": false
+    }
+   },
+   "grasp": false,
+   "lift": false,
+   "transport": false,
+   "place": false
+  }
+ },
+ "approach_plan": {
+  "pot_first.pick_1": {
+   "feasible": true,
+   "default_feasible": true,
+   "margin_m": 0.0,
+   "n_samples": 20,
+   "chosen": {
+    "yaw_deg": -89.2,
+    "lateral_m": 0.023674271987729024,
+    "dz_m": 0.043745128593391275,
+    "offset": [
+     0.0027,
+     -0.0236,
+     0.0424
+    ],
+    "min_clearance_m": 0.00294,
+    "blocking": "moka_pot_2",
+    "phase": "descent",
+    "at_grasp_clearance_m": 0.00196,
+    "feasible": true,
+    "longitudinal_m": 0.002363940943380235
+   },
+   "candidates": [
+    {
+     "yaw_deg": -89.2,
+     "lateral_m": 0.023674271987729024,
+     "dz_m": 0.043745128593391275,
+     "offset": [
+      0.0027,
+      -0.0236,
+      0.0424
+     ],
+     "min_clearance_m": 0.00294,
+     "blocking": "moka_pot_2",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00196,
+     "feasible": true,
+     "longitudinal_m": 0.002363940943380235
+    }
+   ],
+   "lookahead_control_steps": 24,
+   "grid_source": "grasp_reference",
+   "grid_size": 1
+  },
+  "pot_second.pick_1": {
+   "feasible": true,
+   "default_feasible": true,
+   "margin_m": 0.0,
+   "n_samples": 20,
+   "chosen": {
+    "yaw_deg": -87.0,
+    "lateral_m": 0.05037236140766744,
+    "dz_m": 0.044954865708820874,
+    "offset": [
+     -0.0118,
+     -0.051,
+     0.0421
+    ],
+    "min_clearance_m": 0.0058,
+    "blocking": "moka_pot_1",
+    "phase": "descent",
+    "at_grasp_clearance_m": 0.0049,
+    "feasible": true,
+    "longitudinal_m": -0.014526371344239557
+   },
+   "candidates": [
+    {
+     "yaw_deg": -87.0,
+     "lateral_m": 0.05037236140766744,
+     "dz_m": 0.044954865708820874,
+     "offset": [
+      -0.0118,
+      -0.051,
+      0.0421
+     ],
+     "min_clearance_m": 0.0058,
+     "blocking": "moka_pot_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.0049,
+     "feasible": true,
+     "longitudinal_m": -0.014526371344239557
+    }
+   ],
+   "lookahead_control_steps": 18,
+   "grid_source": "grasp_reference",
+   "grid_size": 1
+  }
+ }
+}

@@ -1,0 +1,115 @@
+{
+ "init": 0,
+ "descend_steps": 250,
+ "hand_pos_at_descend_start": [
+  0.0430000014603138,
+  0.01940000057220459,
+  1.1276999711990356
+ ],
+ "hand_pos_at_descend_end": [
+  0.05790000036358833,
+  0.017899999395012856,
+  1.0405000448226929
+ ],
+ "planned_grasp_hand_pos": [
+  0.0441,
+  0.019,
+  1.0085
+ ],
+ "hand_minus_planned_at_end_m": [
+  0.0138,
+  -0.0011,
+  0.032
+ ],
+ "hand_z_trace_every_25": [
+  [
+   43,
+   1.1277
+  ],
+  [
+   68,
+   1.0403
+  ],
+  [
+   93,
+   1.0404
+  ],
+  [
+   118,
+   1.0404
+  ],
+  [
+   143,
+   1.0405
+  ],
+  [
+   168,
+   1.0405
+  ],
+  [
+   193,
+   1.0405
+  ],
+  [
+   218,
+   1.0405
+  ],
+  [
+   243,
+   1.0405
+  ],
+  [
+   268,
+   1.0405
+  ]
+ ],
+ "pot_displacement_during_descend_m": [
+  0.0011,
+  -0.0003,
+  -0.0
+ ],
+ "approach_chosen": {
+  "yaw_deg": -89.2,
+  "lateral_m": 0.023674271987729024,
+  "dz_m": 0.043745128593391275,
+  "offset": [
+   0.0027,
+   -0.0236,
+   0.0424
+  ],
+  "min_clearance_m": 0.00294,
+  "blocking": "moka_pot_2",
+  "phase": "descent",
+  "at_grasp_clearance_m": 0.00196,
+  "feasible": true,
+  "longitudinal_m": 0.002363940943380235
+ },
+ "contacts_with_pot_2": {
+  "leftfinger||moka_pot_2_main": {
+   "peak_n": 57.010132341879086,
+   "peak_step": 60,
+   "peak_geom": "gripper0_finger1_collision",
+   "peak_other_geom": "moka_pot_2_g5",
+   "n_substeps": 13500,
+   "n_substeps_inner_region": 7681,
+   "peak_contact_point_body_local_m": [
+    0.001725,
+    4.8e-05,
+    0.052722
+   ]
+  },
+  "leftfinger[finger_link_on_target]||moka_pot_2_main": {
+   "peak_n": 32.24468885711102,
+   "peak_step": 293,
+   "peak_geom": "gripper0_finger1_collision",
+   "peak_other_geom": "moka_pot_2_g5",
+   "n_substeps": 228,
+   "n_substeps_inner_region": 149,
+   "peak_contact_point_body_local_m": [
+    0.00594,
+    0.002688,
+    0.052859
+   ]
+  }
+ }
+}
