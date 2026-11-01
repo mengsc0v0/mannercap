@@ -12,6 +12,7 @@
   "NOT available": "articulated-object primitives (switch/knob/drawer/door), in-hand mug drift handling (T4 open)"
  },
  "local_demo_files_for_tasks": [
+  "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove",
   "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate",
   "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy"
  ],
@@ -35,11 +36,10 @@
    ],
    "gaps": [
     "moka-pot grasp pose / handle geometry unknown",
-    "same-type objects: binding of 'moka_pot_1' vs '_2' in language",
-    "no local demo file"
+    "same-type objects: binding of 'moka_pot_1' vs '_2' in language"
    ],
-   "new_work_expected": "config entry + (optional) demo-derived grasp_reference; no new primitive",
-   "demo_local": false
+   "new_work_expected": "config entry + (optional) demo-derived grasp_reference; whether the current pick_place primitives execute moka-pot grasp/place reliably is untested",
+   "demo_local": true
   },
   "T6": {
    "language": "put the white mug on the plate and the chocolate pudding to the right of the plate",
@@ -126,9 +126,9 @@
  "selection": {
   "chosen": "T8",
   "second": "T6",
-  "ranking_rule": "fewest missing primitives first, then most reuse of interfaces added during T4/T5, decided BEFORE any run",
+  "ranking_rule": "fewest missing primitives (by structural expressibility) first, then most reuse of interfaces added during T4/T5, decided BEFORE any run",
   "why": [
-   "T8 needs no new primitive (T2/T3/T9 each need an articulation primitive)",
+   "T8 task structure is expressible with the existing primitives (pick_place x2; T2/T3/T9 each need an articulation primitive); whether the current primitives grasp and place the moka pot reliably remains to be verified",
    "both stages use exactly the interfaces added by T4/T5 (per-object targets, '@site' region target, optional demo grasp reference), so it tests whether those shared additions are reusable without editing shared code",
    "T6 is second: it shares the interfaces too, but its mug stage inherits T4's unresolved in-hand drift, which would confound the reuse question"
   ],
@@ -140,7 +140,7 @@
    "stop_rule": "one config-only attempt on 4 inits; at most ONE pre-registered adapter-level fix; NO widening of the grasp-candidate grid; if ordinary task success is still not reached, record the gap and stop",
    "dev_inits": "use inits that are not used for any held-out claim for T8 (none used so far for T8; suggest 0-3 for onboarding, keep 40-49 untouched)"
   },
-  "open_question_for_user": "T8 has no local official demo (only T4 and T5 demos are in LIBERO-PRO datasets/libero_10). A demo-derived grasp_reference would require obtaining that demo file; the config-only attempt does not need it."
+  "open_question_for_user": "T8 official demo is now local (see t8_demo_provenance.json); T8 onboarding simulation NOT started; awaiting authorization."
  },
  "matrix_note": "reports/step6_libero10_spec_20261025 predates T4/T5 onboarding; its 'missing'/'adapt' labels are kept for T2/T3/T9 and refreshed here for T6/T8"
 }
