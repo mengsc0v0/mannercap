@@ -209,5 +209,4 @@ class LiberoSession(NativeSession):
         self.sim_step_index = st["sim_step_index"]
         self.control_step_index = st["control_step_index"]
         self._acc = self._new_acc()
-        if st.get("force_target"):
-            self.set_force_target(st["force_target"])
+        self._restore_force_target(st)

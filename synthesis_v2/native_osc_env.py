@@ -297,6 +297,28 @@ class NativeSession:
         self._binding = resolve_grasp_binding(self._mj()[0], mujoco, ids, env_name)
         self.force_target_name = env_name
 
+    def _restore_force_target(self, st: dict[str, Any]) -> None:
+        """Restore the measurement binding as part of the rollout state.
+
+        A snapshot that recorded a target restores that target (also when the session currently holds another one).
+        A snapshot that recorded NO target (``force_target`` is None/empty, taken before the first grasp instance was
+        bound) must also clear a binding set later, otherwise a restored session keeps the stale label and measures
+        the previous object; it goes back to the hook-time default binding with ``force_target_name = None``.
+        Snapshots without the key (older files) leave the binding untouched.
+        """
+        if "force_target" not in st:
+            return
+        if st["force_target"]:
+            self.set_force_target(st["force_target"])
+        elif self._hooked and self.task != "wipe":
+            import mujoco
+            from synthesis_v2.grasp_force_contract import resolve_grasp_binding
+            name, ids = self._target_geoms()
+            self._binding = resolve_grasp_binding(self._mj()[0], mujoco, ids, name)
+            self.force_target_name = None
+        else:
+            self.force_target_name = None
+
     def _hook(self) -> None:
         import mujoco
         from synthesis_v2.grasp_force_contract import read_grasp_contact_sample, resolve_grasp_binding
@@ -482,10 +504,7 @@ class NativeSession:
         self.sim_step_index = st["sim_step_index"]
         self.control_step_index = st["control_step_index"]
         self._acc = self._new_acc()
-        # the measurement binding is part of the rollout state: a restore into a fresh session must
-        # measure the object that was being held at snapshot time, not the construction-time default
-        if st.get("force_target"):
-            self.set_force_target(st["force_target"])
+        self._restore_force_target(st)
 
     def success(self) -> bool:
         try:

@@ -26,6 +26,7 @@ from .native_producer import (
 )
 from .task_program import TaskProgram, legacy_program
 
+_REQUIRED_SERVO = ("approach", "descend", "lift", "transport")   # Step 23: stages whose timeout stops the branch (opt-in)
 LIFT_DZ = 0.15
 APPROACH_DZ = 0.12
 STACK_PLACE_DZ = 0.041      # legacy calibrated box-on-box release height (eef above target centre)
@@ -46,6 +47,9 @@ class ProgramPlan:
     # an object that is not held.  Off by default so every earlier result stays reproducible bit for bit.
     stop_on_grasp_failure: bool = False
     stop_on_place_failure: bool = False   # a place that did not reach its pose must not release (see the place branch)
+    # Step 23 (both off by default: every earlier plan, plan hash and result is unchanged)
+    stop_on_stage_timeout: bool = False   # a timed-out approach/descend/lift/transport ends the branch instead of continuing
+    require_bilateral_grasp: bool = False  # a grasp counts only if BOTH fingers read >= the band's lower bound; otherwise stop
 
     def stage(self, label: str) -> StagePlan:
         for sp in self.stages:
@@ -70,6 +74,8 @@ class ProgramPlan:
             **({"approach_check": True} if self.approach_check else {}),
             **({"stop_on_place_failure": True} if self.stop_on_place_failure else {}),
             **({"stop_on_grasp_failure": True} if self.stop_on_grasp_failure else {}),
+            **({"stop_on_stage_timeout": True} if self.stop_on_stage_timeout else {}),
+            **({"require_bilateral_grasp": True} if self.require_bilateral_grasp else {}),
         }
 
     def plan_hash(self) -> str:
@@ -537,6 +543,14 @@ def produce_program_episode(
                 info = {"closing_steps": pol.closing_steps, "reached_band": pol.reached,
                         "reverse_pulses": pol.reversed_pulses, "in_band_at": pol.in_band_at, "reclose_pulses": pol.reclose_pulses,
                         "final": pol.final, "trace": pol.trace}
+                bilateral_ok = True
+                if plan.require_bilateral_grasp:
+                    # one finger above the band's lower bound is not a grasp: the object must be loaded from both sides
+                    fin_ = pol.final or {}
+                    lo_ = float(plan.grip_for(lab).target_lo_n)
+                    l_, r_ = float(fin_.get("left_n", float("nan"))), float(fin_.get("right_n", float("nan")))
+                    bilateral_ok = bool(min(l_, r_) >= lo_)     # NaN -> False
+                    info["bilateral"] = {"min_finger_n_required": lo_, "left_n": l_, "right_n": r_, "ok": bilateral_ok}
                 if legacy:
                     meta["grasp_policy"] = info
                 else:
@@ -549,6 +563,13 @@ def produce_program_episode(
                     meta.setdefault("grasp_failure", {})[it.instance_id] = {
                         "control_step": int(s.control_step_index), "object": tgt_name, "reached_band": False,
                         "reverse_pulses": pol.reversed_pulses, "closing_steps": pol.closing_steps, "final": pol.final}
+                    stop[0] = True
+                if not bilateral_ok:
+                    if status_box[0] == "completed":
+                        status_box[0] = f"grasp_not_bilateral:{it.instance_id}"
+                    meta.setdefault("grasp_failure", {})[it.instance_id] = {
+                        "control_step": int(s.control_step_index), "object": tgt_name, "reached_band": bool(pol.reached),
+                        "bilateral": info["bilateral"], "final": pol.final}
                     stop[0] = True
             elif prim == "lift":
                 # per-instance lift height (e.g. above a fixture wall the carry path crosses); default unchanged
@@ -612,7 +633,16 @@ def produce_program_episode(
             if guard_on and it.primitive == "approach" and it.instance_id not in approach_snap:
                 approach_snap[it.instance_id] = (i, _take(rn, it.label, status_box[0], meta),
                                                  (rn.rec.hold_instance, rn.rec.hold_band))
+            n_to = len(rn.timeouts)
             run(it)
+            if retry[0] is None and plan.stop_on_stage_timeout and it.primitive in _REQUIRED_SERVO and it.label in rn.timeouts[n_to:]:
+                # a required motion stage ran out of steps: everything after it assumes it succeeded (a held object, a
+                # reached pose), so the branch ends here and the stage is recorded as the failure
+                _eef = np.asarray(s.obs["robot0_eef_pos"], dtype=np.float64)
+                meta.setdefault("stage_failure", {})[it.instance_id] = {
+                    "stage": it.label, "primitive": it.primitive, "control_step": int(s.control_step_index),
+                    "max_steps": int(plan.stage(it.label).max_steps), "eef_pos": _eef.tolist()}
+                stop[0] = True
             if retry[0] is not None:
                 ev = retry[0]
                 retry[0] = None
