@@ -1,0 +1,136 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 8,
+ "init": 45,
+ "instruction_id": "slowcarry_X",
+ "instruction": "Put both moka pots on the stove, carrying the right moka pot slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "obj1.pick_1.transport": "slow"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "clause": "carrying the right moka pot slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.12,
+     "obj0.pick_1.descend": 0.12,
+     "obj0.pick_1.lift": 0.12,
+     "obj0.pick_1.transport": 0.12,
+     "obj0.pick_1.place": 0.12,
+     "obj0.pick_1.retreat": 0.12,
+     "obj1.pick_1.approach": 0.12,
+     "obj1.pick_1.descend": 0.12,
+     "obj1.pick_1.lift": 0.12,
+     "obj1.pick_1.transport": 0.06,
+     "obj1.pick_1.place": 0.12,
+     "obj1.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "obj0": [
+      1.0,
+      100.0
+     ],
+     "obj1": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06211495399475098
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.12138809263706207,
+     "obj0.pick_1.descend": 0.11746849864721298,
+     "obj0.pick_1.lift": 0.11928746104240417,
+     "obj0.pick_1.transport": 0.12412599474191666,
+     "obj0.pick_1.place": 0.11731839179992676,
+     "obj0.pick_1.retreat": 0.12102275341749191,
+     "obj1.pick_1.approach": 0.12557676434516907,
+     "obj1.pick_1.descend": 0.1263279765844345,
+     "obj1.pick_1.lift": 0.1205301433801651,
+     "obj1.pick_1.transport": 0.06211495399475098,
+     "obj1.pick_1.place": 0.12826219201087952,
+     "obj1.pick_1.retreat": 0.12243185192346573
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 7.099097283909143,
+      "hold_max": 7.475858683689227,
+      "hold_mean": 7.256915842819002,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_2",
+      "carry_v": 0.12094635516405106
+     },
+     "obj1": {
+      "hold_min": 6.347593328143618,
+      "hold_max": 7.20613676261111,
+      "hold_mean": 6.760455900968121,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_1",
+      "carry_v": 0.06218896806240082
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 553,
+    "wall_s": 44.7,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t8_i45_slowcarry_X_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 6274
+}

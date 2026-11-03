@@ -1,0 +1,165 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 0,
+ "init": 49,
+ "instruction_id": "Xgentle_Yfirm",
+ "instruction": "Put both the alphabet soup and the tomato sauce in the basket; hold the tomato sauce gently and the alphabet soup firmly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {},
+  "grip": {
+   "tomato_sauce": "gentle",
+   "alphabet_soup": "firm"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "gentle",
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "clause": "hold the tomato sauce gently"
+   },
+   {
+    "dimension": "grip",
+    "level": "firm",
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "clause": "hold the alphabet soup firmly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "tomato_sauce.pick_1.approach": 0.12,
+     "tomato_sauce.pick_1.descend": 0.12,
+     "tomato_sauce.pick_1.lift": 0.12,
+     "tomato_sauce.pick_1.transport": 0.12,
+     "tomato_sauce.pick_1.place": 0.12,
+     "tomato_sauce.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      25.0,
+      100.0
+     ],
+     "tomato_sauce": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "tomato_sauce",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 12.482929622517737,
+       "hold_mean": 12.492350228098635,
+       "hold_max": 12.497595439256305
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "alphabet_soup",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 31.7166115188544,
+       "hold_mean": 32.981749791530284,
+       "hold_max": 33.86265264204439
+      }
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12631335854530334,
+     "alphabet_soup.pick_1.descend": 0.12790393829345703,
+     "alphabet_soup.pick_1.lift": 0.12297247350215912,
+     "alphabet_soup.pick_1.transport": 0.12529806792736053,
+     "alphabet_soup.pick_1.place": 0.03192899376153946,
+     "alphabet_soup.pick_1.retreat": 0.12299838662147522,
+     "tomato_sauce.pick_1.approach": 0.12628795206546783,
+     "tomato_sauce.pick_1.descend": 0.12912392616271973,
+     "tomato_sauce.pick_1.lift": 0.12311102449893951,
+     "tomato_sauce.pick_1.transport": 0.12267857789993286,
+     "tomato_sauce.pick_1.place": 0.05584578216075897,
+     "tomato_sauce.pick_1.retreat": 0.1229766234755516
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 31.7166115188544,
+      "hold_max": 33.86265264204439,
+      "hold_mean": 32.981749791530284,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.12446649372577667
+     },
+     "tomato_sauce": {
+      "hold_min": 12.482929622517737,
+      "hold_max": 12.497595439256305,
+      "hold_mean": 12.492350228098635,
+      "stable": true,
+      "valid": true,
+      "target": "tomato_sauce_1",
+      "carry_v": 0.12283145636320114
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 369,
+    "wall_s": 40.8,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t0_i49_Xgentle_Yfirm_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 6274
+}

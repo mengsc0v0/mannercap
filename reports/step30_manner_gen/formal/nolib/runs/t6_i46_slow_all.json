@@ -1,0 +1,290 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 6,
+ "init": 46,
+ "instruction_id": "slow_all",
+ "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, and move slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "obj0.pick_1.approach": "slow",
+   "obj0.pick_1.descend": "slow",
+   "obj0.pick_1.lift": "slow",
+   "obj0.pick_1.transport": "slow",
+   "obj0.pick_1.place": "slow",
+   "obj0.pick_1.retreat": "slow",
+   "obj1.pick_1.approach": "slow",
+   "obj1.pick_1.descend": "slow",
+   "obj1.pick_1.lift": "slow",
+   "obj1.pick_1.transport": "slow",
+   "obj1.pick_1.place": "slow",
+   "obj1.pick_1.retreat": "slow"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj0.pick_1.descend",
+     "obj0.pick_1.lift",
+     "obj0.pick_1.transport",
+     "obj0.pick_1.place",
+     "obj0.pick_1.retreat",
+     "obj1.pick_1.approach",
+     "obj1.pick_1.descend",
+     "obj1.pick_1.lift",
+     "obj1.pick_1.transport",
+     "obj1.pick_1.place",
+     "obj1.pick_1.retreat"
+    ],
+    "clause": "move slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.06,
+     "obj0.pick_1.descend": 0.06,
+     "obj0.pick_1.lift": 0.06,
+     "obj0.pick_1.transport": 0.06,
+     "obj0.pick_1.place": 0.06,
+     "obj0.pick_1.retreat": 0.06,
+     "obj1.pick_1.approach": 0.06,
+     "obj1.pick_1.descend": 0.06,
+     "obj1.pick_1.lift": 0.06,
+     "obj1.pick_1.transport": 0.06,
+     "obj1.pick_1.place": 0.06,
+     "obj1.pick_1.retreat": 0.06
+    },
+    "grip": {
+     "obj0": [
+      1.0,
+      100.0
+     ],
+     "obj1": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06285977363586426
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06372934579849243
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06226585805416107
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06012319400906563
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.0626385286450386
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06312806904315948
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061659593135118484
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06323934346437454
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06140702962875366
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06059823930263519
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.062583327293396
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06095043197274208
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.06285977363586426,
+     "obj0.pick_1.descend": 0.06372934579849243,
+     "obj0.pick_1.lift": 0.06226585805416107,
+     "obj0.pick_1.transport": 0.06012319400906563,
+     "obj0.pick_1.place": 0.0626385286450386,
+     "obj0.pick_1.retreat": 0.06312806904315948,
+     "obj1.pick_1.approach": 0.061659593135118484,
+     "obj1.pick_1.descend": 0.06323934346437454,
+     "obj1.pick_1.lift": 0.06140702962875366,
+     "obj1.pick_1.transport": 0.06059823930263519,
+     "obj1.pick_1.place": 0.062583327293396,
+     "obj1.pick_1.retreat": 0.06095043197274208
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 26.6878918743278,
+      "hold_max": 26.696659624673636,
+      "hold_mean": 26.692659064571036,
+      "stable": true,
+      "valid": true,
+      "target": "chocolate_pudding_1",
+      "carry_v": 0.06049922853708267
+     },
+     "obj1": {
+      "hold_min": 4.496495812104749,
+      "hold_max": 11.342105052105195,
+      "hold_mean": 7.253985659293259,
+      "stable": true,
+      "valid": true,
+      "target": "porcelain_mug_1",
+      "carry_v": 0.06073255091905594
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 745,
+    "wall_s": 47.4,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t6_i46_slow_all_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 0
+}

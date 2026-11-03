@@ -1,0 +1,112 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 1,
+ "init": 48,
+ "instruction_id": "neutral",
+ "instruction": "Put both the cream cheese box and the butter in the basket",
+ "intake_status": "accept",
+ "request": {
+  "speed": {},
+  "grip": {},
+  "clauses": []
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "cream_cheese.pick_1.approach": 0.12,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.12,
+     "cream_cheese.pick_1.transport": 0.12,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12,
+     "butter.pick_1.approach": 0.12,
+     "butter.pick_1.descend": 0.12,
+     "butter.pick_1.lift": 0.12,
+     "butter.pick_1.transport": 0.12,
+     "butter.pick_1.place": 0.12,
+     "butter.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "cream_cheese": [
+      1.0,
+      100.0
+     ],
+     "butter": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "cream_cheese.pick_1.approach": 0.12442830204963684,
+     "cream_cheese.pick_1.descend": 0.12312132120132446,
+     "cream_cheese.pick_1.lift": 0.12460168451070786,
+     "cream_cheese.pick_1.transport": 0.12553974986076355,
+     "cream_cheese.pick_1.place": 0.010202611796557903,
+     "cream_cheese.pick_1.retreat": 0.12279294431209564,
+     "butter.pick_1.approach": 0.12632103264331818,
+     "butter.pick_1.descend": 0.12839539349079132,
+     "butter.pick_1.lift": 0.12436666339635849,
+     "butter.pick_1.transport": 0.12492568790912628,
+     "butter.pick_1.place": 0.011808102950453758,
+     "butter.pick_1.retreat": 0.12295233458280563
+    },
+    "objects": {
+     "cream_cheese": {
+      "hold_min": 22.767458803764214,
+      "hold_max": 23.09474839905731,
+      "hold_mean": 22.864127316268405,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.12549664080142975
+     },
+     "butter": {
+      "hold_min": 29.44485772033042,
+      "hold_max": 29.85427307919958,
+      "hold_mean": 29.4881707156319,
+      "stable": true,
+      "valid": true,
+      "target": "butter_1",
+      "carry_v": 0.12468761950731277
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 388,
+    "wall_s": 52.6,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t1_i48_neutral_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 6274
+}

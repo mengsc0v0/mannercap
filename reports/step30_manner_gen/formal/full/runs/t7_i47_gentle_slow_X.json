@@ -1,0 +1,162 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 7,
+ "init": 47,
+ "instruction_id": "gentle_slow_X",
+ "instruction": "Put both the alphabet soup and the cream cheese box in the basket; hold the cream cheese box gently and carry it slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "cream_cheese.pick_1.transport": "slow"
+  },
+  "grip": {
+   "cream_cheese": "gentle"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "gentle",
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "clause": "hold the cream cheese box gently"
+   },
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "clause": "carry it slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "cream_cheese.pick_1.approach": 0.12,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.06,
+     "cream_cheese.pick_1.transport": 0.06,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "cream_cheese",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 13.115712330892075,
+       "hold_mean": 13.145013590971322,
+       "hold_max": 13.157379299162836
+      }
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.060085639357566833
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12299064546823502,
+     "alphabet_soup.pick_1.descend": 0.1258847713470459,
+     "alphabet_soup.pick_1.lift": 0.1231369748711586,
+     "alphabet_soup.pick_1.transport": 0.12572073936462402,
+     "alphabet_soup.pick_1.place": 0.012842360883951187,
+     "alphabet_soup.pick_1.retreat": 0.12298443913459778,
+     "cream_cheese.pick_1.approach": 0.12636518478393555,
+     "cream_cheese.pick_1.descend": 0.12908971309661865,
+     "cream_cheese.pick_1.lift": 0.06194888800382614,
+     "cream_cheese.pick_1.transport": 0.060085639357566833,
+     "cream_cheese.pick_1.place": 0.013749640434980392,
+     "cream_cheese.pick_1.retreat": 0.12303147464990616
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 13.24236053466607,
+      "hold_max": 13.251708913488986,
+      "hold_mean": 13.247718752031842,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.12551936507225037
+     },
+     "cream_cheese": {
+      "hold_min": 13.115712330892075,
+      "hold_max": 13.157379299162836,
+      "hold_mean": 13.145013590971322,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.060480907559394836
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 422,
+    "wall_s": 43.5,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i47_gentle_slow_X_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 6274
+}

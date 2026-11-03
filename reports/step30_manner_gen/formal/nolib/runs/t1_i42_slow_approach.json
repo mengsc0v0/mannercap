@@ -1,0 +1,168 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 1,
+ "init": 42,
+ "instruction_id": "slow_approach",
+ "instruction": "Put both the cream cheese box and the butter in the basket, approaching each object slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "cream_cheese.pick_1.approach": "slow",
+   "butter.pick_1.approach": "slow"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "cream_cheese.pick_1.approach",
+     "butter.pick_1.approach"
+    ],
+    "clause": "approaching each object slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "cream_cheese.pick_1.approach": 0.06,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.12,
+     "cream_cheese.pick_1.transport": 0.12,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12,
+     "butter.pick_1.approach": 0.06,
+     "butter.pick_1.descend": 0.12,
+     "butter.pick_1.lift": 0.12,
+     "butter.pick_1.transport": 0.12,
+     "butter.pick_1.place": 0.12,
+     "butter.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "cream_cheese": [
+      1.0,
+      100.0
+     ],
+     "butter": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06130160018801689
+     },
+     {
+      "dimension": "speed",
+      "target": "butter.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.0618802085518837
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "cream_cheese.pick_1.approach": 0.06130160018801689,
+     "cream_cheese.pick_1.descend": 0.12586131691932678,
+     "cream_cheese.pick_1.lift": 0.12457756698131561,
+     "cream_cheese.pick_1.transport": 0.1255975365638733,
+     "cream_cheese.pick_1.place": 0.011292790994048119,
+     "cream_cheese.pick_1.retreat": 0.12289752066135406,
+     "butter.pick_1.approach": 0.0618802085518837,
+     "butter.pick_1.descend": 0.12876448035240173,
+     "butter.pick_1.lift": 0.12453435361385345,
+     "butter.pick_1.transport": 0.12453274428844452,
+     "butter.pick_1.place": 0.01111997663974762,
+     "butter.pick_1.retreat": 0.1229434609413147
+    },
+    "objects": {
+     "cream_cheese": {
+      "hold_min": 22.78953537185675,
+      "hold_max": 22.955038526867277,
+      "hold_mean": 22.87103805853132,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.12556153535842896
+     },
+     "butter": {
+      "hold_min": 29.44195898636934,
+      "hold_max": 29.538374627066702,
+      "hold_mean": 29.493719010727528,
+      "stable": true,
+      "valid": true,
+      "target": "butter_1",
+      "carry_v": 0.12450603395700455
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 473,
+    "wall_s": 52.0,
+    "unexcused": [],
+    "support_unexplained": [
+     {
+      "robot_body": "leftfinger",
+      "other": "living_room_table_col",
+      "max_n": 152.5,
+      "stages": [
+       "grasp@butter"
+      ]
+     },
+     {
+      "robot_body": "rightfinger",
+      "other": "living_room_table_col",
+      "max_n": 337.9,
+      "stages": [
+       "grasp@butter"
+      ]
+     }
+    ],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t1_i42_slow_approach_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "stop",
+     "why": "contact_unclean_not_a_manner_failure"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 1,
+  "stop": "contact_unclean_not_a_manner_failure"
+ },
+ "library_rows_at_start": 0
+}

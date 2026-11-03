@@ -1,0 +1,149 @@
+{
+ "version": "s30_manner_gen.v1",
+ "module": "manner_libero.v1",
+ "task": 7,
+ "init": 40,
+ "instruction_id": "slow_approach",
+ "instruction": "Put both the alphabet soup and the cream cheese box in the basket, approaching each object slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "alphabet_soup.pick_1.approach": "slow",
+   "cream_cheese.pick_1.approach": "slow"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "cream_cheese.pick_1.approach"
+    ],
+    "clause": "approaching each object slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.06,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "cream_cheese.pick_1.approach": 0.06,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.12,
+     "cream_cheese.pick_1.transport": 0.12,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06206095963716507
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.060972195118665695
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.06206095963716507,
+     "alphabet_soup.pick_1.descend": 0.12719589471817017,
+     "alphabet_soup.pick_1.lift": 0.12298569828271866,
+     "alphabet_soup.pick_1.transport": 0.1257232427597046,
+     "alphabet_soup.pick_1.place": 0.012064971961081028,
+     "alphabet_soup.pick_1.retreat": 0.12295688688755035,
+     "cream_cheese.pick_1.approach": 0.060972195118665695,
+     "cream_cheese.pick_1.descend": 0.12954753637313843,
+     "cream_cheese.pick_1.lift": 0.12257810682058334,
+     "cream_cheese.pick_1.transport": 0.12222795933485031,
+     "cream_cheese.pick_1.place": 0.05354924127459526,
+     "cream_cheese.pick_1.retreat": 0.12307941913604736
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 13.169025007963263,
+      "hold_max": 13.392534653759169,
+      "hold_mean": 13.23906367104254,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.12501657009124756
+     },
+     "cream_cheese": {
+      "hold_min": 22.608304770272888,
+      "hold_max": 22.979577834863356,
+      "hold_mean": 22.867502349233234,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.12231187522411346
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 455,
+    "wall_s": 23.8,
+    "unexcused": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i40_slow_approach_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 5100
+}

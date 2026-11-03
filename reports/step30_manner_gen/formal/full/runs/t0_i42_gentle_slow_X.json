@@ -1,0 +1,162 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 0,
+ "init": 42,
+ "instruction_id": "gentle_slow_X",
+ "instruction": "Put both the alphabet soup and the tomato sauce in the basket; hold the tomato sauce gently and carry it slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "tomato_sauce.pick_1.transport": "slow"
+  },
+  "grip": {
+   "tomato_sauce": "gentle"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "gentle",
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "clause": "hold the tomato sauce gently"
+   },
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "tomato_sauce.pick_1.transport"
+    ],
+    "clause": "carry it slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "tomato_sauce.pick_1.approach": 0.12,
+     "tomato_sauce.pick_1.descend": 0.12,
+     "tomato_sauce.pick_1.lift": 0.06,
+     "tomato_sauce.pick_1.transport": 0.06,
+     "tomato_sauce.pick_1.place": 0.12,
+     "tomato_sauce.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "tomato_sauce": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "tomato_sauce",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 11.118446077899812,
+       "hold_mean": 12.446984445592363,
+       "hold_max": 12.532581415549178
+      }
+     },
+     {
+      "dimension": "speed",
+      "target": "tomato_sauce.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06044729799032211
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12634670734405518,
+     "alphabet_soup.pick_1.descend": 0.12809863686561584,
+     "alphabet_soup.pick_1.lift": 0.12299611419439316,
+     "alphabet_soup.pick_1.transport": 0.12517182528972626,
+     "alphabet_soup.pick_1.place": 0.031215563416481018,
+     "alphabet_soup.pick_1.retreat": 0.12294946610927582,
+     "tomato_sauce.pick_1.approach": 0.12625278532505035,
+     "tomato_sauce.pick_1.descend": 0.12954601645469666,
+     "tomato_sauce.pick_1.lift": 0.061432257294654846,
+     "tomato_sauce.pick_1.transport": 0.06044729799032211,
+     "tomato_sauce.pick_1.place": 0.013339431025087833,
+     "tomato_sauce.pick_1.retreat": 0.12289629876613617
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 9.964512328903693,
+      "hold_max": 18.475908767678614,
+      "hold_mean": 13.560994532885823,
+      "stable": false,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.1242760717868805
+     },
+     "tomato_sauce": {
+      "hold_min": 11.118446077899812,
+      "hold_max": 12.532581415549178,
+      "hold_mean": 12.446984445592363,
+      "stable": true,
+      "valid": true,
+      "target": "tomato_sauce_1",
+      "carry_v": 0.061085015535354614
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 437,
+    "wall_s": 51.8,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t0_i42_gentle_slow_X_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 6274
+}

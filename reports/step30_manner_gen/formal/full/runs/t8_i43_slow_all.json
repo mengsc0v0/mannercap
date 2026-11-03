@@ -1,0 +1,290 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 8,
+ "init": 43,
+ "instruction_id": "slow_all",
+ "instruction": "Put both moka pots on the stove, and move slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "obj0.pick_1.approach": "slow",
+   "obj0.pick_1.descend": "slow",
+   "obj0.pick_1.lift": "slow",
+   "obj0.pick_1.transport": "slow",
+   "obj0.pick_1.place": "slow",
+   "obj0.pick_1.retreat": "slow",
+   "obj1.pick_1.approach": "slow",
+   "obj1.pick_1.descend": "slow",
+   "obj1.pick_1.lift": "slow",
+   "obj1.pick_1.transport": "slow",
+   "obj1.pick_1.place": "slow",
+   "obj1.pick_1.retreat": "slow"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj0.pick_1.descend",
+     "obj0.pick_1.lift",
+     "obj0.pick_1.transport",
+     "obj0.pick_1.place",
+     "obj0.pick_1.retreat",
+     "obj1.pick_1.approach",
+     "obj1.pick_1.descend",
+     "obj1.pick_1.lift",
+     "obj1.pick_1.transport",
+     "obj1.pick_1.place",
+     "obj1.pick_1.retreat"
+    ],
+    "clause": "move slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.06,
+     "obj0.pick_1.descend": 0.06,
+     "obj0.pick_1.lift": 0.06,
+     "obj0.pick_1.transport": 0.06,
+     "obj0.pick_1.place": 0.06,
+     "obj0.pick_1.retreat": 0.06,
+     "obj1.pick_1.approach": 0.06,
+     "obj1.pick_1.descend": 0.06,
+     "obj1.pick_1.lift": 0.06,
+     "obj1.pick_1.transport": 0.06,
+     "obj1.pick_1.place": 0.06,
+     "obj1.pick_1.retreat": 0.06
+    },
+    "grip": {
+     "obj0": [
+      1.0,
+      100.0
+     ],
+     "obj1": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.0603373683989048
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06185644119977951
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.058167122304439545
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.0617191344499588
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06492529064416885
+     },
+     {
+      "dimension": "speed",
+      "target": "obj0.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.060411468148231506
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06138507276773453
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.062272898852825165
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.05887630581855774
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06211703270673752
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06436173617839813
+     },
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061035461723804474
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.0603373683989048,
+     "obj0.pick_1.descend": 0.06185644119977951,
+     "obj0.pick_1.lift": 0.058167122304439545,
+     "obj0.pick_1.transport": 0.0617191344499588,
+     "obj0.pick_1.place": 0.06492529064416885,
+     "obj0.pick_1.retreat": 0.060411468148231506,
+     "obj1.pick_1.approach": 0.06138507276773453,
+     "obj1.pick_1.descend": 0.062272898852825165,
+     "obj1.pick_1.lift": 0.05887630581855774,
+     "obj1.pick_1.transport": 0.06211703270673752,
+     "obj1.pick_1.place": 0.06436173617839813,
+     "obj1.pick_1.retreat": 0.061035461723804474
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 14.671647796521087,
+      "hold_max": 16.27725764935373,
+      "hold_mean": 15.454188174724196,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_2",
+      "carry_v": 0.0602882020175457
+     },
+     "obj1": {
+      "hold_min": 14.254899077265776,
+      "hold_max": 16.425408694918545,
+      "hold_mean": 15.308928845252055,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_1",
+      "carry_v": 0.061558932065963745
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 911,
+    "wall_s": 67.5,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t8_i43_slow_all_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 6274
+}

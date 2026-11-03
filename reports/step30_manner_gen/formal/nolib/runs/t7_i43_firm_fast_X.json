@@ -1,0 +1,162 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 7,
+ "init": 43,
+ "instruction_id": "firm_fast_X",
+ "instruction": "Put both the alphabet soup and the cream cheese box in the basket; grip the cream cheese box firmly and carry it quickly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "cream_cheese.pick_1.transport": "fast"
+  },
+  "grip": {
+   "cream_cheese": "firm"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "firm",
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "clause": "grip the cream cheese box firmly"
+   },
+   {
+    "dimension": "speed",
+    "level": "fast",
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "clause": "carry it quickly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "cream_cheese.pick_1.approach": 0.12,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.24,
+     "cream_cheese.pick_1.transport": 0.24,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "cream_cheese": [
+      20.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "cream_cheese",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 32.5462825004083,
+       "hold_mean": 32.651696774328016,
+       "hold_max": 32.7204334709845
+      }
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.transport",
+      "level": "fast",
+      "band": [
+       0.17,
+       1.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.24222922325134277
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12405288219451904,
+     "alphabet_soup.pick_1.descend": 0.1259945034980774,
+     "alphabet_soup.pick_1.lift": 0.1231154203414917,
+     "alphabet_soup.pick_1.transport": 0.12569202482700348,
+     "alphabet_soup.pick_1.place": 0.012037977576255798,
+     "alphabet_soup.pick_1.retreat": 0.12292926013469696,
+     "cream_cheese.pick_1.approach": 0.12636201083660126,
+     "cream_cheese.pick_1.descend": 0.1292628049850464,
+     "cream_cheese.pick_1.lift": 0.23445197939872742,
+     "cream_cheese.pick_1.transport": 0.24222922325134277,
+     "cream_cheese.pick_1.place": 0.06387490779161453,
+     "cream_cheese.pick_1.retreat": 0.1230711042881012
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 13.245057316849284,
+      "hold_max": 13.256878556120466,
+      "hold_mean": 13.254250484028999,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.1253533959388733
+     },
+     "cream_cheese": {
+      "hold_min": 32.5462825004083,
+      "hold_max": 32.7204334709845,
+      "hold_mean": 32.651696774328016,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.2405550330877304
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 341,
+    "wall_s": 40.8,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i43_firm_fast_X_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 0
+}

@@ -1,0 +1,251 @@
+{
+ "protocol": "step30_manner_formal.v1",
+ "conditions": {
+  "full": {
+   "first_joint_pass": {
+    "k": 245,
+    "n": 440,
+    "rate": 0.557,
+    "wilson95": [
+     0.51,
+     0.603
+    ]
+   },
+   "final_joint_pass": {
+    "k": 255,
+    "n": 440,
+    "rate": 0.58,
+    "wilson95": [
+     0.533,
+     0.625
+    ]
+   },
+   "executions": 566,
+   "executions_per_success": 2.22,
+   "per_task": {
+    "T0": {
+     "n": 88,
+     "first": 32,
+     "final": 34,
+     "execs": 102
+    },
+    "T1": {
+     "n": 88,
+     "first": 29,
+     "final": 29,
+     "execs": 114
+    },
+    "T6": {
+     "n": 88,
+     "first": 67,
+     "final": 67,
+     "execs": 130
+    },
+    "T7": {
+     "n": 88,
+     "first": 53,
+     "final": 53,
+     "execs": 92
+    },
+    "T8": {
+     "n": 88,
+     "first": 64,
+     "final": 72,
+     "execs": 128
+    }
+   },
+   "clauses": {
+    "grip:firm": {
+     "n": 160,
+     "first": 135,
+     "final": 134
+    },
+    "grip:gentle": {
+     "n": 160,
+     "first": 108,
+     "final": 123
+    },
+    "speed:fast": {
+     "n": 80,
+     "first": 78,
+     "final": 78
+    },
+    "speed:slow": {
+     "n": 640,
+     "first": 610,
+     "final": 610
+    }
+   },
+   "fail_stops": {
+    "contact_unclean_not_a_manner_failure": 94,
+    "budget": 28,
+    "force_candidates_exhausted": 28,
+    "task_failed_not_a_manner_failure": 25,
+    "speed_ladder_exhausted": 10
+   },
+   "paired_first_execution": {
+    "hold gentle_X < firm_X (X)": {
+     "k": 39,
+     "n": 39,
+     "rate": 1.0,
+     "wilson95": [
+      0.91,
+      1.0
+     ]
+    },
+    "carry v slowcarry_X < neutral < fastcarry_X (X)": {
+     "k": 39,
+     "n": 39,
+     "rate": 1.0,
+     "wilson95": [
+      0.91,
+      1.0
+     ]
+    },
+    "binding: hold(gentle obj) < hold(firm obj)": {
+     "k": 74,
+     "n": 74,
+     "rate": 1.0,
+     "wilson95": [
+      0.951,
+      1.0
+     ]
+    }
+   }
+  },
+  "nolib": {
+   "first_joint_pass": {
+    "k": 158,
+    "n": 440,
+    "rate": 0.359,
+    "wilson95": [
+     0.316,
+     0.405
+    ]
+   },
+   "final_joint_pass": {
+    "k": 245,
+    "n": 440,
+    "rate": 0.557,
+    "wilson95": [
+     0.51,
+     0.603
+    ]
+   },
+   "executions": 751,
+   "executions_per_success": 3.065,
+   "per_task": {
+    "T0": {
+     "n": 88,
+     "first": 21,
+     "final": 32,
+     "execs": 130
+    },
+    "T1": {
+     "n": 88,
+     "first": 20,
+     "final": 29,
+     "execs": 152
+    },
+    "T6": {
+     "n": 88,
+     "first": 46,
+     "final": 59,
+     "execs": 159
+    },
+    "T7": {
+     "n": 88,
+     "first": 31,
+     "final": 53,
+     "execs": 144
+    },
+    "T8": {
+     "n": 88,
+     "first": 40,
+     "final": 72,
+     "execs": 166
+    }
+   },
+   "clauses": {
+    "grip:firm": {
+     "n": 160,
+     "first": 89,
+     "final": 123
+    },
+    "grip:gentle": {
+     "n": 160,
+     "first": 3,
+     "final": 114
+    },
+    "speed:fast": {
+     "n": 80,
+     "first": 78,
+     "final": 78
+    },
+    "speed:slow": {
+     "n": 640,
+     "first": 610,
+     "final": 610
+    }
+   },
+   "fail_stops": {
+    "contact_unclean_not_a_manner_failure": 90,
+    "budget": 37,
+    "force_candidates_exhausted": 34,
+    "task_failed_not_a_manner_failure": 24,
+    "speed_ladder_exhausted": 10
+   },
+   "paired_first_execution": {
+    "hold gentle_X < firm_X (X)": {
+     "k": 31,
+     "n": 39,
+     "rate": 0.795,
+     "wilson95": [
+      0.645,
+      0.892
+     ]
+    },
+    "carry v slowcarry_X < neutral < fastcarry_X (X)": {
+     "k": 39,
+     "n": 39,
+     "rate": 1.0,
+     "wilson95": [
+      0.91,
+      1.0
+     ]
+    },
+    "binding: hold(gentle obj) < hold(firm obj)": {
+     "k": 64,
+     "n": 74,
+     "rate": 0.865,
+     "wilson95": [
+      0.769,
+      0.925
+     ]
+    }
+   }
+  },
+  "no_repair (=full first execution)": {
+   "joint_pass": {
+    "k": 245,
+    "n": 440,
+    "rate": 0.557,
+    "wilson95": [
+     0.51,
+     0.603
+    ]
+   }
+  }
+ },
+ "full_vs_nolib_final": {
+  "n_pairs": 440,
+  "full_only": 11,
+  "nolib_only": 1,
+  "mcnemar_exact_p": 0.00634765625
+ },
+ "full_repair_vs_first": {
+  "recovered": 10,
+  "lost": 0,
+  "mcnemar_exact_p": 0.001953125
+ }
+}

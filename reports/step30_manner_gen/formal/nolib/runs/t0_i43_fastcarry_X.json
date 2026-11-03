@@ -1,0 +1,143 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 0,
+ "init": 43,
+ "instruction_id": "fastcarry_X",
+ "instruction": "Put both the alphabet soup and the tomato sauce in the basket, carrying the tomato sauce quickly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "tomato_sauce.pick_1.transport": "fast"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "fast",
+    "instance_ids": [
+     "tomato_sauce.pick_1.transport"
+    ],
+    "clause": "carrying the tomato sauce quickly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "tomato_sauce.pick_1.approach": 0.12,
+     "tomato_sauce.pick_1.descend": 0.12,
+     "tomato_sauce.pick_1.lift": 0.12,
+     "tomato_sauce.pick_1.transport": 0.24,
+     "tomato_sauce.pick_1.place": 0.12,
+     "tomato_sauce.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "tomato_sauce": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "tomato_sauce.pick_1.transport",
+      "level": "fast",
+      "band": [
+       0.17,
+       1.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.2410891354084015
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12643185257911682,
+     "alphabet_soup.pick_1.descend": 0.12791258096694946,
+     "alphabet_soup.pick_1.lift": 0.12316428124904633,
+     "alphabet_soup.pick_1.transport": 0.12497319281101227,
+     "alphabet_soup.pick_1.place": 0.03133988380432129,
+     "alphabet_soup.pick_1.retreat": 0.1229616105556488,
+     "tomato_sauce.pick_1.approach": 0.12622670829296112,
+     "tomato_sauce.pick_1.descend": 0.12931013107299805,
+     "tomato_sauce.pick_1.lift": 0.12314546853303909,
+     "tomato_sauce.pick_1.transport": 0.2410891354084015,
+     "tomato_sauce.pick_1.place": 0.061463844031095505,
+     "tomato_sauce.pick_1.retreat": 0.12294937670230865
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 11.161143044195327,
+      "hold_max": 17.746908468258486,
+      "hold_mean": 13.447712457750622,
+      "stable": false,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.12434687465429306
+     },
+     "tomato_sauce": {
+      "hold_min": 12.46884388494356,
+      "hold_max": 16.3347659624736,
+      "hold_mean": 12.803248831146735,
+      "stable": true,
+      "valid": true,
+      "target": "tomato_sauce_1",
+      "carry_v": 0.12474501132965088
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 353,
+    "wall_s": 41.5,
+    "unexcused": [
+     {
+      "robot_body": "right_gripper",
+      "other": "alphabet_soup_1_main",
+      "max_n": 5.4
+     }
+    ],
+    "support_unexplained": [],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t0_i43_fastcarry_X_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "stop",
+     "why": "contact_unclean_not_a_manner_failure"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 1,
+  "stop": "contact_unclean_not_a_manner_failure"
+ },
+ "library_rows_at_start": 0
+}

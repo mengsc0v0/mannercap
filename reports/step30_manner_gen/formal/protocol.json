@@ -1,0 +1,134 @@
+{
+ "protocol": "step30_manner_formal.v1",
+ "written_utc": "2026-11-03T12:12:44.236788Z",
+ "written_before_any_formal_execution": true,
+ "git_head": "548b0b257df8bed7a63e0e51dc1b69f6a6f6a7d5",
+ "code_sha256": {
+  "scripts/mt/s30_manner_gen.py": "4f265ab2540cfdef69ca756285a0e9f90d08ec4f7c5ef212ed3c19631fa40431",
+  "synthesis_v2/manner_libero.py": "f001d6d5a43d3f9858a6274295258adbf95c533e44c24e50853f1c3aabdbc7b8",
+  "scripts/mt/s28_t6_replay.py": "3169cb84a13a88be263261fb9874de7f759a1ef29d1b7f549b36d7a327c21691",
+  "scripts/mt/s25_policies.py": "f2d215e81d2d87ff0068aa5bd1392472a72cb5a33deab05eceaa90df73a3d070",
+  "synthesis_v2/contact_policy_v1.py": "593aa454cf1660457e1a4cb4a90c7b323f53616571c8f84668e8c0ac3562c956"
+ },
+ "runner_version": "s30_manner_gen.v5",
+ "intake_sha256": "58849cb85d7232ffd9153c89160043ddd5214347fbbab766aa841ae9c38fb61b",
+ "frozen_library": {
+  "grid": [
+   "step25_response_grid",
+   "step28_t6_manner/grid",
+   "step28_t6_manner/grid_fresh"
+  ],
+  "write_back_file": "frozen_pilot_library_rows.jsonl",
+  "sha256": "d48af5cbc1ce3eb5362046ced9b3f03bbc337fe706a831c4a627dcf5809e0c32",
+  "write_back_scenes": {
+   "T0": [
+    40,
+    41
+   ],
+   "T7": [
+    40,
+    41
+   ],
+   "T1": [
+    40,
+    41
+   ],
+   "T6": [
+    0,
+    1
+   ],
+   "T8": [
+    4,
+    5
+   ]
+  },
+  "rule": "rows of the evaluated (task, init) are hidden; in-episode write-back of the case's own attempts is used"
+ },
+ "tasks": [
+  0,
+  1,
+  7,
+  6,
+  8
+ ],
+ "inits": [
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49
+ ],
+ "init_note": "T0/T1/T7 grids used 0-39, pilots 40-41; T8 manner never run on 42-49 (step29 used them only for contact eval); T6 grids cover 0-49 so same-scene rows are hidden",
+ "templates": [
+  "neutral",
+  "gentle_X",
+  "firm_X",
+  "slowcarry_X",
+  "fastcarry_X",
+  "gentle_slow_X",
+  "firm_fast_X",
+  "Xgentle_Yfirm",
+  "Xfirm_Ygentle",
+  "slow_approach",
+  "slow_all"
+ ],
+ "n_cases_per_condition": 440,
+ "bands": {
+  "grip_N": {
+   "gentle": [
+    8,
+    16
+   ],
+   "normal": [
+    16,
+    24
+   ],
+   "firm": [
+    24,
+    34
+   ]
+  },
+  "speed_mps": {
+   "slow": "<0.09",
+   "normal": "0.09-0.17",
+   "fast": ">0.17"
+  }
+ },
+ "speed_ladder": {
+  "slow": [
+   0.06,
+   0.05,
+   0.04
+  ],
+  "normal": [
+   0.12,
+   0.1,
+   0.15
+  ],
+  "fast": [
+   0.24,
+   0.32,
+   0.4
+  ]
+ },
+ "budget_executions_per_case": 3,
+ "conditions": {
+  "full": "frozen library + band-bounded repair (S30_WB_READ=frozen)",
+  "nolib": "ablation: no library rows (rule prior choice, cause-direction repair; S30_NOLIB=1)",
+  "no_repair": "derived: first execution of 'full' (no extra run)"
+ },
+ "primary_metric": "joint pass = every manner clause in band AND task success AND contact_policy_v1.1 clean_v1, after <= 3 executions",
+ "secondary_metrics": [
+  "first-execution joint pass",
+  "executions per case and per success",
+  "per-dimension/level clause compliance (first, final)",
+  "paired ordering on same (task, init): hold(gentle_X) < hold(firm_X) on X; carry speed slowcarry_X < neutral < fastcarry_X",
+  "binding correctness: Xgentle_Yfirm vs Xfirm_Ygentle hold order swaps between objects",
+  "stop reasons (manner vs non-manner), counted not hidden"
+ ],
+ "statistics": "paired McNemar (full vs nolib, final joint pass) over the 440 matched cases; Wilson 95% CI per rate",
+ "exclusions": "none; exceptions count as failures"
+}

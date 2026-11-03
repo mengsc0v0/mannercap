@@ -1,0 +1,168 @@
+{
+ "version": "s30_manner_gen.v2",
+ "module": "manner_libero.v1",
+ "task": 1,
+ "init": 41,
+ "instruction_id": "slow_approach",
+ "instruction": "Put both the cream cheese box and the butter in the basket, approaching each object slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "cream_cheese.pick_1.approach": "slow",
+   "butter.pick_1.approach": "slow"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "cream_cheese.pick_1.approach",
+     "butter.pick_1.approach"
+    ],
+    "clause": "approaching each object slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "cream_cheese.pick_1.approach": 0.06,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.12,
+     "cream_cheese.pick_1.transport": 0.12,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12,
+     "butter.pick_1.approach": 0.06,
+     "butter.pick_1.descend": 0.12,
+     "butter.pick_1.lift": 0.12,
+     "butter.pick_1.transport": 0.12,
+     "butter.pick_1.place": 0.12,
+     "butter.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "cream_cheese": [
+      1.0,
+      100.0
+     ],
+     "butter": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06179305911064148
+     },
+     {
+      "dimension": "speed",
+      "target": "butter.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06183965504169464
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "cream_cheese.pick_1.approach": 0.06179305911064148,
+     "cream_cheese.pick_1.descend": 0.12616613507270813,
+     "cream_cheese.pick_1.lift": 0.12455165386199951,
+     "cream_cheese.pick_1.transport": 0.12568128108978271,
+     "cream_cheese.pick_1.place": 0.011793253012001514,
+     "cream_cheese.pick_1.retreat": 0.12302163243293762,
+     "butter.pick_1.approach": 0.06183965504169464,
+     "butter.pick_1.descend": 0.12872852385044098,
+     "butter.pick_1.lift": 0.12438802421092987,
+     "butter.pick_1.transport": 0.1250627487897873,
+     "butter.pick_1.place": 0.01238877885043621,
+     "butter.pick_1.retreat": 0.12311326712369919
+    },
+    "objects": {
+     "cream_cheese": {
+      "hold_min": 22.74639915610613,
+      "hold_max": 23.118548386837936,
+      "hold_mean": 22.873092646757286,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.12567511200904846
+     },
+     "butter": {
+      "hold_min": 29.552295804432557,
+      "hold_max": 29.57482217509903,
+      "hold_mean": 29.571927618960434,
+      "stable": true,
+      "valid": true,
+      "target": "butter_1",
+      "carry_v": 0.12484803795814514
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 498,
+    "wall_s": 36.0,
+    "unexcused": [],
+    "support_unexplained": [
+     {
+      "robot_body": "leftfinger",
+      "other": "living_room_table_col",
+      "max_n": 27.6,
+      "stages": [
+       "grasp@butter"
+      ]
+     },
+     {
+      "robot_body": "rightfinger",
+      "other": "living_room_table_col",
+      "max_n": 96.6,
+      "stages": [
+       "grasp@butter"
+      ]
+     }
+    ],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t1_i41_slow_approach_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "stop",
+     "why": "contact_unclean_not_a_manner_failure"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 1,
+  "stop": "contact_unclean_not_a_manner_failure"
+ },
+ "library_rows_at_start": 5100
+}

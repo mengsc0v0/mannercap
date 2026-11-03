@@ -1,0 +1,428 @@
+{
+ "version": "s30_manner_gen.v1",
+ "module": "manner_libero.v1",
+ "task": 6,
+ "init": 0,
+ "instruction_id": "Xgentle_Yfirm",
+ "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug gently and the chocolate pudding firmly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {},
+  "grip": {
+   "obj1": "gentle",
+   "obj0": "firm"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "gentle",
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "clause": "hold the white mug gently"
+   },
+   {
+    "dimension": "grip",
+    "level": "firm",
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "clause": "the chocolate pudding firmly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.12,
+     "obj0.pick_1.descend": 0.12,
+     "obj0.pick_1.lift": 0.12,
+     "obj0.pick_1.transport": 0.12,
+     "obj0.pick_1.place": 0.12,
+     "obj0.pick_1.retreat": 0.12,
+     "obj1.pick_1.approach": 0.12,
+     "obj1.pick_1.descend": 0.12,
+     "obj1.pick_1.lift": 0.12,
+     "obj1.pick_1.transport": 0.12,
+     "obj1.pick_1.place": 0.12,
+     "obj1.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "obj0": [
+      25.0,
+      100.0
+     ],
+     "obj1": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "obj1",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 12.395528241968396,
+       "hold_mean": 13.936574910467058,
+       "hold_max": 15.593287071856416
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "obj0",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 36.46341256222536,
+       "hold_mean": 36.52931369677599,
+       "hold_max": 36.71628105142695
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.12693238258361816,
+     "obj0.pick_1.descend": 0.1282709538936615,
+     "obj0.pick_1.lift": 0.1236276924610138,
+     "obj0.pick_1.transport": 0.12061850726604462,
+     "obj0.pick_1.place": 0.11323757469654083,
+     "obj0.pick_1.retreat": 0.12474611401557922,
+     "obj1.pick_1.approach": 0.1260862946510315,
+     "obj1.pick_1.descend": 0.12764059007167816,
+     "obj1.pick_1.lift": 0.12228060513734818,
+     "obj1.pick_1.transport": 0.12272804230451584,
+     "obj1.pick_1.place": 0.11116088181734085,
+     "obj1.pick_1.retreat": 0.12207351624965668
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 36.46341256222536,
+      "hold_max": 36.71628105142695,
+      "hold_mean": 36.52931369677599,
+      "stable": true,
+      "valid": true,
+      "target": "chocolate_pudding_1",
+      "carry_v": 0.12168940901756287
+     },
+     "obj1": {
+      "hold_min": 12.395528241968396,
+      "hold_max": 15.593287071856416,
+      "hold_mean": 13.936574910467058,
+      "stable": true,
+      "valid": true,
+      "target": "porcelain_mug_1",
+      "carry_v": 0.12248256057500839
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 401,
+    "wall_s": 15.8,
+    "unexcused": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t6_i0_Xgentle_Yfirm_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "obj0",
+     "from": [
+      25.0,
+      100.0
+     ],
+     "to": [
+      20.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  },
+  {
+   "k": 1,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.12,
+     "obj0.pick_1.descend": 0.12,
+     "obj0.pick_1.lift": 0.12,
+     "obj0.pick_1.transport": 0.12,
+     "obj0.pick_1.place": 0.12,
+     "obj0.pick_1.retreat": 0.12,
+     "obj1.pick_1.approach": 0.12,
+     "obj1.pick_1.descend": 0.12,
+     "obj1.pick_1.lift": 0.12,
+     "obj1.pick_1.transport": 0.12,
+     "obj1.pick_1.place": 0.12,
+     "obj1.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "obj0": [
+      20.0,
+      100.0
+     ],
+     "obj1": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "obj1",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 12.395528241968396,
+       "hold_mean": 13.936574910467058,
+       "hold_max": 15.593287071856416
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "obj0",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 36.46341256222536,
+       "hold_mean": 36.52931369677599,
+       "hold_max": 36.71628105142695
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.12693238258361816,
+     "obj0.pick_1.descend": 0.1282709538936615,
+     "obj0.pick_1.lift": 0.1236276924610138,
+     "obj0.pick_1.transport": 0.12061850726604462,
+     "obj0.pick_1.place": 0.11323757469654083,
+     "obj0.pick_1.retreat": 0.12474611401557922,
+     "obj1.pick_1.approach": 0.1260862946510315,
+     "obj1.pick_1.descend": 0.12764059007167816,
+     "obj1.pick_1.lift": 0.12228060513734818,
+     "obj1.pick_1.transport": 0.12272804230451584,
+     "obj1.pick_1.place": 0.11116088181734085,
+     "obj1.pick_1.retreat": 0.12207351624965668
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 36.46341256222536,
+      "hold_max": 36.71628105142695,
+      "hold_mean": 36.52931369677599,
+      "stable": true,
+      "valid": true,
+      "target": "chocolate_pudding_1",
+      "carry_v": 0.12168940901756287
+     },
+     "obj1": {
+      "hold_min": 12.395528241968396,
+      "hold_max": 15.593287071856416,
+      "hold_mean": 13.936574910467058,
+      "stable": true,
+      "valid": true,
+      "target": "porcelain_mug_1",
+      "carry_v": 0.12248256057500839
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 401,
+    "wall_s": 14.2,
+    "unexcused": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t6_i0_Xgentle_Yfirm_a1.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "obj0",
+     "from": [
+      20.0,
+      100.0
+     ],
+     "to": [
+      15.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  },
+  {
+   "k": 2,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.12,
+     "obj0.pick_1.descend": 0.12,
+     "obj0.pick_1.lift": 0.12,
+     "obj0.pick_1.transport": 0.12,
+     "obj0.pick_1.place": 0.12,
+     "obj0.pick_1.retreat": 0.12,
+     "obj1.pick_1.approach": 0.12,
+     "obj1.pick_1.descend": 0.12,
+     "obj1.pick_1.lift": 0.12,
+     "obj1.pick_1.transport": 0.12,
+     "obj1.pick_1.place": 0.12,
+     "obj1.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "obj0": [
+      15.0,
+      100.0
+     ],
+     "obj1": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "obj1",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 12.395395586829284,
+       "hold_mean": 13.936675325581247,
+       "hold_max": 15.593387268551577
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "obj0",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 26.643766349856648,
+       "hold_mean": 26.685296075691557,
+       "hold_max": 26.896697231814706
+      }
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.12693238258361816,
+     "obj0.pick_1.descend": 0.1282709538936615,
+     "obj0.pick_1.lift": 0.1236252412199974,
+     "obj0.pick_1.transport": 0.12061847746372223,
+     "obj0.pick_1.place": 0.11322308331727982,
+     "obj0.pick_1.retreat": 0.12474612891674042,
+     "obj1.pick_1.approach": 0.12608808279037476,
+     "obj1.pick_1.descend": 0.12764067947864532,
+     "obj1.pick_1.lift": 0.12227939069271088,
+     "obj1.pick_1.transport": 0.12272795289754868,
+     "obj1.pick_1.place": 0.11115971952676773,
+     "obj1.pick_1.retreat": 0.12207470834255219
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 26.643766349856648,
+      "hold_max": 26.896697231814706,
+      "hold_mean": 26.685296075691557,
+      "stable": true,
+      "valid": true,
+      "target": "chocolate_pudding_1",
+      "carry_v": 0.12175174802541733
+     },
+     "obj1": {
+      "hold_min": 12.395395586829284,
+      "hold_max": 15.593387268551577,
+      "hold_mean": 13.936675325581247,
+      "stable": true,
+      "valid": true,
+      "target": "porcelain_mug_1",
+      "carry_v": 0.12248250842094421
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 400,
+    "wall_s": 13.8,
+    "unexcused": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t6_i0_Xgentle_Yfirm_a2.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 3
+ },
+ "library_rows_at_start": 5070
+}

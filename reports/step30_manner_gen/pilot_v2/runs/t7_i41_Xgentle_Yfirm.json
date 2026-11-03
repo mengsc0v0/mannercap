@@ -1,0 +1,441 @@
+{
+ "version": "s30_manner_gen.v2",
+ "module": "manner_libero.v1",
+ "task": 7,
+ "init": 41,
+ "instruction_id": "Xgentle_Yfirm",
+ "instruction": "Put both the alphabet soup and the cream cheese box in the basket; hold the cream cheese box gently and the alphabet soup firmly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {},
+  "grip": {
+   "cream_cheese": "gentle",
+   "alphabet_soup": "firm"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "gentle",
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "clause": "hold the cream cheese box gently"
+   },
+   {
+    "dimension": "grip",
+    "level": "firm",
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "clause": "the alphabet soup firmly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.24,
+     "alphabet_soup.pick_1.transport": 0.24,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "cream_cheese.pick_1.approach": 0.12,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.24,
+     "cream_cheese.pick_1.transport": 0.24,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      25.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "cream_cheese",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 13.095129513240185,
+       "hold_mean": 13.143681691567087,
+       "hold_max": 13.301570022543643
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "alphabet_soup",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 31.498957330559914,
+       "hold_mean": 33.07696314690243,
+       "hold_max": 35.79731990715628
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12478376924991608,
+     "alphabet_soup.pick_1.descend": 0.1266491860151291,
+     "alphabet_soup.pick_1.lift": 0.24461713433265686,
+     "alphabet_soup.pick_1.transport": 0.2509991526603699,
+     "alphabet_soup.pick_1.place": 0.05322446674108505,
+     "alphabet_soup.pick_1.retreat": 0.12302654981613159,
+     "cream_cheese.pick_1.approach": 0.12629663944244385,
+     "cream_cheese.pick_1.descend": 0.12932206690311432,
+     "cream_cheese.pick_1.lift": 0.23590998351573944,
+     "cream_cheese.pick_1.transport": 0.24208799004554749,
+     "cream_cheese.pick_1.place": 0.06701802462339401,
+     "cream_cheese.pick_1.retreat": 0.12305193394422531
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 31.498957330559914,
+      "hold_max": 35.79731990715628,
+      "hold_mean": 33.07696314690243,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.2490846812725067
+     },
+     "cream_cheese": {
+      "hold_min": 13.095129513240185,
+      "hold_max": 13.301570022543643,
+      "hold_mean": 13.143681691567087,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.24051174521446228
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 306,
+    "wall_s": 16.6,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i41_Xgentle_Yfirm_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "alphabet_soup",
+     "from": [
+      25.0,
+      100.0
+     ],
+     "to": [
+      20.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  },
+  {
+   "k": 1,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.24,
+     "alphabet_soup.pick_1.transport": 0.24,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "cream_cheese.pick_1.approach": 0.12,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.24,
+     "cream_cheese.pick_1.transport": 0.24,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      20.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "cream_cheese",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 13.095129513240185,
+       "hold_mean": 13.143681691567087,
+       "hold_max": 13.301570022543643
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "alphabet_soup",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 31.498957330559914,
+       "hold_mean": 33.07696314690243,
+       "hold_max": 35.79731990715628
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12478376924991608,
+     "alphabet_soup.pick_1.descend": 0.1266491860151291,
+     "alphabet_soup.pick_1.lift": 0.24461713433265686,
+     "alphabet_soup.pick_1.transport": 0.2509991526603699,
+     "alphabet_soup.pick_1.place": 0.05322446674108505,
+     "alphabet_soup.pick_1.retreat": 0.12302654981613159,
+     "cream_cheese.pick_1.approach": 0.12629663944244385,
+     "cream_cheese.pick_1.descend": 0.12932206690311432,
+     "cream_cheese.pick_1.lift": 0.23590998351573944,
+     "cream_cheese.pick_1.transport": 0.24208799004554749,
+     "cream_cheese.pick_1.place": 0.06701802462339401,
+     "cream_cheese.pick_1.retreat": 0.12305193394422531
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 31.498957330559914,
+      "hold_max": 35.79731990715628,
+      "hold_mean": 33.07696314690243,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.2490846812725067
+     },
+     "cream_cheese": {
+      "hold_min": 13.095129513240185,
+      "hold_max": 13.301570022543643,
+      "hold_mean": 13.143681691567087,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.24051174521446228
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 306,
+    "wall_s": 14.7,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i41_Xgentle_Yfirm_a1.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "alphabet_soup",
+     "from": [
+      20.0,
+      100.0
+     ],
+     "to": [
+      15.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  },
+  {
+   "k": 2,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.24,
+     "alphabet_soup.pick_1.transport": 0.24,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "cream_cheese.pick_1.approach": 0.12,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.24,
+     "cream_cheese.pick_1.transport": 0.24,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      15.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "cream_cheese",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 13.095129513240185,
+       "hold_mean": 13.143681691567087,
+       "hold_max": 13.301570022543643
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "alphabet_soup",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 31.498957330559914,
+       "hold_mean": 33.07696314690243,
+       "hold_max": 35.79731990715628
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12478376924991608,
+     "alphabet_soup.pick_1.descend": 0.1266491860151291,
+     "alphabet_soup.pick_1.lift": 0.24461713433265686,
+     "alphabet_soup.pick_1.transport": 0.2509991526603699,
+     "alphabet_soup.pick_1.place": 0.05322446674108505,
+     "alphabet_soup.pick_1.retreat": 0.12302654981613159,
+     "cream_cheese.pick_1.approach": 0.12629663944244385,
+     "cream_cheese.pick_1.descend": 0.12932206690311432,
+     "cream_cheese.pick_1.lift": 0.23590998351573944,
+     "cream_cheese.pick_1.transport": 0.24208799004554749,
+     "cream_cheese.pick_1.place": 0.06701802462339401,
+     "cream_cheese.pick_1.retreat": 0.12305193394422531
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 31.498957330559914,
+      "hold_max": 35.79731990715628,
+      "hold_mean": 33.07696314690243,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.2490846812725067
+     },
+     "cream_cheese": {
+      "hold_min": 13.095129513240185,
+      "hold_max": 13.301570022543643,
+      "hold_mean": 13.143681691567087,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.24051174521446228
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 306,
+    "wall_s": 12.7,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i41_Xgentle_Yfirm_a2.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "alphabet_soup",
+     "from": [
+      15.0,
+      100.0
+     ],
+     "to": [
+      10.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 3,
+  "stop": "budget"
+ },
+ "library_rows_at_start": 5100
+}

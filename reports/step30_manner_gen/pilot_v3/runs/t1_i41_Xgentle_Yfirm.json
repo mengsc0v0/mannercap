@@ -1,0 +1,183 @@
+{
+ "version": "s30_manner_gen.v3",
+ "module": "manner_libero.v1",
+ "task": 1,
+ "init": 41,
+ "instruction_id": "Xgentle_Yfirm",
+ "instruction": "Put both the cream cheese box and the butter in the basket; hold the cream cheese box gently and the butter firmly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {},
+  "grip": {
+   "cream_cheese": "gentle",
+   "butter": "firm"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "gentle",
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "clause": "hold the cream cheese box gently"
+   },
+   {
+    "dimension": "grip",
+    "level": "firm",
+    "instance_ids": [
+     "butter.pick_1.grasp"
+    ],
+    "clause": "the butter firmly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "cream_cheese.pick_1.approach": 0.12,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.12,
+     "cream_cheese.pick_1.transport": 0.12,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12,
+     "butter.pick_1.approach": 0.12,
+     "butter.pick_1.descend": 0.12,
+     "butter.pick_1.lift": 0.12,
+     "butter.pick_1.transport": 0.12,
+     "butter.pick_1.place": 0.12,
+     "butter.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "cream_cheese": [
+      10.0,
+      22.0
+     ],
+     "butter": [
+      25.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "cream_cheese",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 13.12074353892023,
+       "hold_mean": 13.145239821628467,
+       "hold_max": 13.297486464924024
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "butter",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 29.562784194267472,
+       "hold_mean": 29.573526930009653,
+       "hold_max": 29.574849764168306
+      }
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "cream_cheese.pick_1.approach": 0.12438596040010452,
+     "cream_cheese.pick_1.descend": 0.12323272228240967,
+     "cream_cheese.pick_1.lift": 0.12457020580768585,
+     "cream_cheese.pick_1.transport": 0.1256808638572693,
+     "cream_cheese.pick_1.place": 0.011782032437622547,
+     "cream_cheese.pick_1.retreat": 0.12302163988351822,
+     "butter.pick_1.approach": 0.1264296919107437,
+     "butter.pick_1.descend": 0.12893903255462646,
+     "butter.pick_1.lift": 0.12439156323671341,
+     "butter.pick_1.transport": 0.12506355345249176,
+     "butter.pick_1.place": 0.012388032861053944,
+     "butter.pick_1.retreat": 0.12311267107725143
+    },
+    "objects": {
+     "cream_cheese": {
+      "hold_min": 13.12074353892023,
+      "hold_max": 13.297486464924024,
+      "hold_mean": 13.145239821628467,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.1256781816482544
+     },
+     "butter": {
+      "hold_min": 29.562784194267472,
+      "hold_max": 29.574849764168306,
+      "hold_mean": 29.573526930009653,
+      "stable": true,
+      "valid": true,
+      "target": "butter_1",
+      "carry_v": 0.12485817819833755
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 409,
+    "wall_s": 27.3,
+    "unexcused": [],
+    "support_unexplained": [
+     {
+      "robot_body": "leftfinger",
+      "other": "living_room_table_col",
+      "max_n": 223.5,
+      "stages": [
+       "grasp@butter"
+      ]
+     },
+     {
+      "robot_body": "rightfinger",
+      "other": "living_room_table_col",
+      "max_n": 246.6,
+      "stages": [
+       "grasp@butter"
+      ]
+     }
+    ],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t1_i41_Xgentle_Yfirm_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "stop",
+     "why": "contact_unclean_not_a_manner_failure"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 1,
+  "stop": "contact_unclean_not_a_manner_failure"
+ },
+ "library_rows_at_start": 5100
+}

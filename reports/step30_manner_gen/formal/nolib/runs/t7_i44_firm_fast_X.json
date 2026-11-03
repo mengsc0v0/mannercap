@@ -1,0 +1,169 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 7,
+ "init": 44,
+ "instruction_id": "firm_fast_X",
+ "instruction": "Put both the alphabet soup and the cream cheese box in the basket; grip the cream cheese box firmly and carry it quickly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "cream_cheese.pick_1.transport": "fast"
+  },
+  "grip": {
+   "cream_cheese": "firm"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "firm",
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "clause": "grip the cream cheese box firmly"
+   },
+   {
+    "dimension": "speed",
+    "level": "fast",
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "clause": "carry it quickly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "cream_cheese.pick_1.approach": 0.12,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.24,
+     "cream_cheese.pick_1.transport": 0.24,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "cream_cheese": [
+      20.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "cream_cheese",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 32.616039093783144,
+       "hold_mean": 32.663358722501044,
+       "hold_max": 32.71448683053447
+      }
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.transport",
+      "level": "fast",
+      "band": [
+       0.17,
+       1.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.2420388162136078
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12305577099323273,
+     "alphabet_soup.pick_1.descend": 0.1262330263853073,
+     "alphabet_soup.pick_1.lift": 0.12266948819160461,
+     "alphabet_soup.pick_1.transport": 0.1257554143667221,
+     "alphabet_soup.pick_1.place": 0.011305321007966995,
+     "alphabet_soup.pick_1.retreat": 0.12290457636117935,
+     "cream_cheese.pick_1.approach": 0.12647825479507446,
+     "cream_cheese.pick_1.descend": 0.1290510594844818,
+     "cream_cheese.pick_1.lift": 0.23439067602157593,
+     "cream_cheese.pick_1.transport": 0.2420388162136078,
+     "cream_cheese.pick_1.place": 0.06428241729736328,
+     "cream_cheese.pick_1.retreat": 0.12309587001800537
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 13.112808928916728,
+      "hold_max": 13.268483667818419,
+      "hold_mean": 13.222061951534116,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.1252768337726593
+     },
+     "cream_cheese": {
+      "hold_min": 32.616039093783144,
+      "hold_max": 32.71448683053447,
+      "hold_mean": 32.663358722501044,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.23995114862918854
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 340,
+    "wall_s": 32.7,
+    "unexcused": [
+     {
+      "robot_body": "leftfinger",
+      "other": "tomato_sauce_1_main",
+      "max_n": 9.4
+     }
+    ],
+    "support_unexplained": [],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i44_firm_fast_X_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "stop",
+     "why": "contact_unclean_not_a_manner_failure"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 1,
+  "stop": "contact_unclean_not_a_manner_failure"
+ },
+ "library_rows_at_start": 0
+}

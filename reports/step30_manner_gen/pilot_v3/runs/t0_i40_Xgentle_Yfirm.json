@@ -1,0 +1,459 @@
+{
+ "version": "s30_manner_gen.v3",
+ "module": "manner_libero.v1",
+ "task": 0,
+ "init": 40,
+ "instruction_id": "Xgentle_Yfirm",
+ "instruction": "Put both the alphabet soup and the tomato sauce in the basket; hold the tomato sauce gently and the alphabet soup firmly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {},
+  "grip": {
+   "tomato_sauce": "gentle",
+   "alphabet_soup": "firm"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "gentle",
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "clause": "hold the tomato sauce gently"
+   },
+   {
+    "dimension": "grip",
+    "level": "firm",
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "clause": "hold the alphabet soup firmly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "tomato_sauce.pick_1.approach": 0.12,
+     "tomato_sauce.pick_1.descend": 0.12,
+     "tomato_sauce.pick_1.lift": 0.12,
+     "tomato_sauce.pick_1.transport": 0.12,
+     "tomato_sauce.pick_1.place": 0.12,
+     "tomato_sauce.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      25.0,
+      100.0
+     ],
+     "tomato_sauce": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "tomato_sauce",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 11.07591432978558,
+       "hold_mean": 12.430299351272224,
+       "hold_max": 12.720512761214456
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "alphabet_soup",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 31.591606589392246,
+       "hold_mean": 33.01682228571204,
+       "hold_max": 34.50334843666623
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12639454007148743,
+     "alphabet_soup.pick_1.descend": 0.12814202904701233,
+     "alphabet_soup.pick_1.lift": 0.1227903813123703,
+     "alphabet_soup.pick_1.transport": 0.12521296739578247,
+     "alphabet_soup.pick_1.place": 0.03292567655444145,
+     "alphabet_soup.pick_1.retreat": 0.12296491861343384,
+     "tomato_sauce.pick_1.approach": 0.12635977566242218,
+     "tomato_sauce.pick_1.descend": 0.129433274269104,
+     "tomato_sauce.pick_1.lift": 0.12304417043924332,
+     "tomato_sauce.pick_1.transport": 0.12232466042041779,
+     "tomato_sauce.pick_1.place": 0.030729081481695175,
+     "tomato_sauce.pick_1.retreat": 0.12295946478843689
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 31.591606589392246,
+      "hold_max": 34.50334843666623,
+      "hold_mean": 33.01682228571204,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.12428160756826401
+     },
+     "tomato_sauce": {
+      "hold_min": 11.07591432978558,
+      "hold_max": 12.720512761214456,
+      "hold_mean": 12.430299351272224,
+      "stable": true,
+      "valid": true,
+      "target": "tomato_sauce_1",
+      "carry_v": 0.12247442454099655
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 372,
+    "wall_s": 29.2,
+    "unexcused": [
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "tomato_sauce_1_main",
+      "max_n": 6.1
+     }
+    ],
+    "support_unexplained": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t0_i40_Xgentle_Yfirm_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "alphabet_soup",
+     "from": [
+      25.0,
+      100.0
+     ],
+     "to": [
+      20.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  },
+  {
+   "k": 1,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "tomato_sauce.pick_1.approach": 0.12,
+     "tomato_sauce.pick_1.descend": 0.12,
+     "tomato_sauce.pick_1.lift": 0.12,
+     "tomato_sauce.pick_1.transport": 0.12,
+     "tomato_sauce.pick_1.place": 0.12,
+     "tomato_sauce.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      20.0,
+      100.0
+     ],
+     "tomato_sauce": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "tomato_sauce",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 11.07591432978558,
+       "hold_mean": 12.430299351272224,
+       "hold_max": 12.720512761214456
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "alphabet_soup",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 31.591606589392246,
+       "hold_mean": 33.01682228571204,
+       "hold_max": 34.50334843666623
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12639454007148743,
+     "alphabet_soup.pick_1.descend": 0.12814202904701233,
+     "alphabet_soup.pick_1.lift": 0.1227903813123703,
+     "alphabet_soup.pick_1.transport": 0.12521296739578247,
+     "alphabet_soup.pick_1.place": 0.03292567655444145,
+     "alphabet_soup.pick_1.retreat": 0.12296491861343384,
+     "tomato_sauce.pick_1.approach": 0.12635977566242218,
+     "tomato_sauce.pick_1.descend": 0.129433274269104,
+     "tomato_sauce.pick_1.lift": 0.12304417043924332,
+     "tomato_sauce.pick_1.transport": 0.12232466042041779,
+     "tomato_sauce.pick_1.place": 0.030729081481695175,
+     "tomato_sauce.pick_1.retreat": 0.12295946478843689
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 31.591606589392246,
+      "hold_max": 34.50334843666623,
+      "hold_mean": 33.01682228571204,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.12428160756826401
+     },
+     "tomato_sauce": {
+      "hold_min": 11.07591432978558,
+      "hold_max": 12.720512761214456,
+      "hold_mean": 12.430299351272224,
+      "stable": true,
+      "valid": true,
+      "target": "tomato_sauce_1",
+      "carry_v": 0.12247442454099655
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 372,
+    "wall_s": 22.3,
+    "unexcused": [
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "tomato_sauce_1_main",
+      "max_n": 6.1
+     }
+    ],
+    "support_unexplained": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t0_i40_Xgentle_Yfirm_a1.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "alphabet_soup",
+     "from": [
+      20.0,
+      100.0
+     ],
+     "to": [
+      15.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  },
+  {
+   "k": 2,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "tomato_sauce.pick_1.approach": 0.12,
+     "tomato_sauce.pick_1.descend": 0.12,
+     "tomato_sauce.pick_1.lift": 0.12,
+     "tomato_sauce.pick_1.transport": 0.12,
+     "tomato_sauce.pick_1.place": 0.12,
+     "tomato_sauce.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      15.0,
+      100.0
+     ],
+     "tomato_sauce": [
+      1.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "tomato_sauce",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 11.07591432978558,
+       "hold_mean": 12.430299351272224,
+       "hold_max": 12.720512761214456
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "alphabet_soup",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 31.591606589392246,
+       "hold_mean": 33.01682228571204,
+       "hold_max": 34.50334843666623
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12639454007148743,
+     "alphabet_soup.pick_1.descend": 0.12814202904701233,
+     "alphabet_soup.pick_1.lift": 0.1227903813123703,
+     "alphabet_soup.pick_1.transport": 0.12521296739578247,
+     "alphabet_soup.pick_1.place": 0.03292567655444145,
+     "alphabet_soup.pick_1.retreat": 0.12296491861343384,
+     "tomato_sauce.pick_1.approach": 0.12635977566242218,
+     "tomato_sauce.pick_1.descend": 0.129433274269104,
+     "tomato_sauce.pick_1.lift": 0.12304417043924332,
+     "tomato_sauce.pick_1.transport": 0.12232466042041779,
+     "tomato_sauce.pick_1.place": 0.030729081481695175,
+     "tomato_sauce.pick_1.retreat": 0.12295946478843689
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 31.591606589392246,
+      "hold_max": 34.50334843666623,
+      "hold_mean": 33.01682228571204,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.12428160756826401
+     },
+     "tomato_sauce": {
+      "hold_min": 11.07591432978558,
+      "hold_max": 12.720512761214456,
+      "hold_mean": 12.430299351272224,
+      "stable": true,
+      "valid": true,
+      "target": "tomato_sauce_1",
+      "carry_v": 0.12247442454099655
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 372,
+    "wall_s": 22.0,
+    "unexcused": [
+     {
+      "robot_body": "rightfinger[finger_link_on_target]",
+      "other": "tomato_sauce_1_main",
+      "max_n": 6.1
+     }
+    ],
+    "support_unexplained": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t0_i40_Xgentle_Yfirm_a2.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "alphabet_soup",
+     "from": [
+      15.0,
+      100.0
+     ],
+     "to": [
+      10.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 3,
+  "stop": "budget"
+ },
+ "library_rows_at_start": 5100
+}

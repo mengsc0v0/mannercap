@@ -1,0 +1,60 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "hold the white mug firmly",
+        "dimension": "grip",
+        "instance_ids": [
+          "obj1.pick_1.grasp"
+        ],
+        "level": "firm",
+        "object_role": "obj1"
+      },
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "the chocolate pudding gently",
+        "dimension": "grip",
+        "instance_ids": [
+          "obj0.pick_1.grasp"
+        ],
+        "level": "gentle",
+        "object_role": "obj0"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "Put the white mug on the plate",
+          "object_phrase": "the white mug",
+          "object_role": "obj1",
+          "target_phrase": "the plate",
+          "target_role": "tgt1"
+        },
+        {
+          "action": "put",
+          "clause": "put the chocolate pudding to the right of the plate",
+          "object_phrase": "the chocolate pudding",
+          "object_role": "obj0",
+          "target_phrase": "the right of the plate",
+          "target_role": "tgt0"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

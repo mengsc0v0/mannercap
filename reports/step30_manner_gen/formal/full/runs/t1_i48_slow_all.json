@@ -1,0 +1,308 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 1,
+ "init": 48,
+ "instruction_id": "slow_all",
+ "instruction": "Put both the cream cheese box and the butter in the basket, and move slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "cream_cheese.pick_1.approach": "slow",
+   "cream_cheese.pick_1.descend": "slow",
+   "cream_cheese.pick_1.lift": "slow",
+   "cream_cheese.pick_1.transport": "slow",
+   "cream_cheese.pick_1.place": "slow",
+   "cream_cheese.pick_1.retreat": "slow",
+   "butter.pick_1.approach": "slow",
+   "butter.pick_1.descend": "slow",
+   "butter.pick_1.lift": "slow",
+   "butter.pick_1.transport": "slow",
+   "butter.pick_1.place": "slow",
+   "butter.pick_1.retreat": "slow"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "cream_cheese.pick_1.approach",
+     "cream_cheese.pick_1.descend",
+     "cream_cheese.pick_1.lift",
+     "cream_cheese.pick_1.transport",
+     "cream_cheese.pick_1.place",
+     "cream_cheese.pick_1.retreat",
+     "butter.pick_1.approach",
+     "butter.pick_1.descend",
+     "butter.pick_1.lift",
+     "butter.pick_1.transport",
+     "butter.pick_1.place",
+     "butter.pick_1.retreat"
+    ],
+    "clause": "move slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "cream_cheese.pick_1.approach": 0.06,
+     "cream_cheese.pick_1.descend": 0.06,
+     "cream_cheese.pick_1.lift": 0.06,
+     "cream_cheese.pick_1.transport": 0.06,
+     "cream_cheese.pick_1.place": 0.06,
+     "cream_cheese.pick_1.retreat": 0.06,
+     "butter.pick_1.approach": 0.06,
+     "butter.pick_1.descend": 0.06,
+     "butter.pick_1.lift": 0.06,
+     "butter.pick_1.transport": 0.06,
+     "butter.pick_1.place": 0.06,
+     "butter.pick_1.retreat": 0.06
+    },
+    "grip": {
+     "cream_cheese": [
+      1.0,
+      100.0
+     ],
+     "butter": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061863385140895844
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.062335461378097534
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06286316365003586
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06171919405460358
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.04296041280031204
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06130536273121834
+     },
+     {
+      "dimension": "speed",
+      "target": "butter.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06164294481277466
+     },
+     {
+      "dimension": "speed",
+      "target": "butter.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06399983167648315
+     },
+     {
+      "dimension": "speed",
+      "target": "butter.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06289971619844437
+     },
+     {
+      "dimension": "speed",
+      "target": "butter.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06199885904788971
+     },
+     {
+      "dimension": "speed",
+      "target": "butter.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.042510055005550385
+     },
+     {
+      "dimension": "speed",
+      "target": "butter.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061413057148456573
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "cream_cheese.pick_1.approach": 0.061863385140895844,
+     "cream_cheese.pick_1.descend": 0.062335461378097534,
+     "cream_cheese.pick_1.lift": 0.06286316365003586,
+     "cream_cheese.pick_1.transport": 0.06171919405460358,
+     "cream_cheese.pick_1.place": 0.04296041280031204,
+     "cream_cheese.pick_1.retreat": 0.06130536273121834,
+     "butter.pick_1.approach": 0.06164294481277466,
+     "butter.pick_1.descend": 0.06399983167648315,
+     "butter.pick_1.lift": 0.06289971619844437,
+     "butter.pick_1.transport": 0.06199885904788971,
+     "butter.pick_1.place": 0.042510055005550385,
+     "butter.pick_1.retreat": 0.061413057148456573
+    },
+    "objects": {
+     "cream_cheese": {
+      "hold_min": 22.75470649219256,
+      "hold_max": 23.06735720238757,
+      "hold_mean": 22.871086797981,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.061781834810972214
+     },
+     "butter": {
+      "hold_min": 29.437203757442642,
+      "hold_max": 29.544575949888085,
+      "hold_mean": 29.49354963634892,
+      "stable": true,
+      "valid": true,
+      "target": "butter_1",
+      "carry_v": 0.06214095652103424
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 725,
+    "wall_s": 71.7,
+    "unexcused": [],
+    "support_unexplained": [
+     {
+      "robot_body": "leftfinger",
+      "other": "living_room_table_col",
+      "max_n": 42.7,
+      "stages": [
+       "grasp@butter"
+      ]
+     },
+     {
+      "robot_body": "rightfinger",
+      "other": "living_room_table_col",
+      "max_n": 53.2,
+      "stages": [
+       "grasp@butter"
+      ]
+     }
+    ],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t1_i48_slow_all_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "stop",
+     "why": "contact_unclean_not_a_manner_failure"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 1,
+  "stop": "contact_unclean_not_a_manner_failure"
+ },
+ "library_rows_at_start": 6274
+}

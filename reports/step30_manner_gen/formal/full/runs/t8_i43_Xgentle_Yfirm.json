@@ -1,0 +1,441 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 8,
+ "init": 43,
+ "instruction_id": "Xgentle_Yfirm",
+ "instruction": "Put both moka pots on the stove; hold the right moka pot gently and the left moka pot firmly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {},
+  "grip": {
+   "obj1": "gentle",
+   "obj0": "firm"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "gentle",
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "clause": "hold the right moka pot gently"
+   },
+   {
+    "dimension": "grip",
+    "level": "firm",
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "clause": "hold the left moka pot firmly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.12,
+     "obj0.pick_1.descend": 0.12,
+     "obj0.pick_1.lift": 0.12,
+     "obj0.pick_1.transport": 0.12,
+     "obj0.pick_1.place": 0.12,
+     "obj0.pick_1.retreat": 0.12,
+     "obj1.pick_1.approach": 0.12,
+     "obj1.pick_1.descend": 0.12,
+     "obj1.pick_1.lift": 0.24,
+     "obj1.pick_1.transport": 0.24,
+     "obj1.pick_1.place": 0.12,
+     "obj1.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "obj0": [
+      10.0,
+      100.0
+     ],
+     "obj1": [
+      10.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "obj1",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 15.388444773158367,
+       "hold_mean": 15.662146621520803,
+       "hold_max": 15.939381148038622
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "obj0",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_below_band",
+      "measured": {
+       "hold_min": 23.69997263949842,
+       "hold_mean": 24.318162992982735,
+       "hold_max": 25.243199866237944
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.1217016875743866,
+     "obj0.pick_1.descend": 0.11593611538410187,
+     "obj0.pick_1.lift": 0.11897040903568268,
+     "obj0.pick_1.transport": 0.1250825822353363,
+     "obj0.pick_1.place": 0.12010486423969269,
+     "obj0.pick_1.retreat": 0.12108518183231354,
+     "obj1.pick_1.approach": 0.1255808174610138,
+     "obj1.pick_1.descend": 0.12651973962783813,
+     "obj1.pick_1.lift": 0.2389964461326599,
+     "obj1.pick_1.transport": 0.2509852647781372,
+     "obj1.pick_1.place": 0.1258305013179779,
+     "obj1.pick_1.retreat": 0.12243561446666718
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 23.69997263949842,
+      "hold_max": 25.243199866237944,
+      "hold_mean": 24.318162992982735,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_2",
+      "carry_v": 0.12259247899055481
+     },
+     "obj1": {
+      "hold_min": 15.388444773158367,
+      "hold_max": 15.939381148038622,
+      "hold_mean": 15.662146621520803,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_1",
+      "carry_v": 0.24782931804656982
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 434,
+    "wall_s": 37.3,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t8_i43_Xgentle_Yfirm_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "obj0",
+     "from": [
+      10.0,
+      100.0
+     ],
+     "to": [
+      30.0,
+      100.0
+     ],
+     "cause": "force_below_band"
+    }
+   ]
+  },
+  {
+   "k": 1,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.12,
+     "obj0.pick_1.descend": 0.12,
+     "obj0.pick_1.lift": 0.12,
+     "obj0.pick_1.transport": 0.12,
+     "obj0.pick_1.place": 0.12,
+     "obj0.pick_1.retreat": 0.12,
+     "obj1.pick_1.approach": 0.12,
+     "obj1.pick_1.descend": 0.12,
+     "obj1.pick_1.lift": 0.24,
+     "obj1.pick_1.transport": 0.24,
+     "obj1.pick_1.place": 0.12,
+     "obj1.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "obj0": [
+      30.0,
+      100.0
+     ],
+     "obj1": [
+      10.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "obj1",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 15.389439021104778,
+       "hold_mean": 15.663146378842828,
+       "hold_max": 15.94039459671712
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "obj0",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 35.92921474046493,
+       "hold_mean": 35.96962482411923,
+       "hold_max": 35.99087366208538
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.1217016875743866,
+     "obj0.pick_1.descend": 0.11593611538410187,
+     "obj0.pick_1.lift": 0.1189764142036438,
+     "obj0.pick_1.transport": 0.12514004111289978,
+     "obj0.pick_1.place": 0.12051694840192795,
+     "obj0.pick_1.retreat": 0.121106818318367,
+     "obj1.pick_1.approach": 0.125582754611969,
+     "obj1.pick_1.descend": 0.12651023268699646,
+     "obj1.pick_1.lift": 0.23899367451667786,
+     "obj1.pick_1.transport": 0.25098487734794617,
+     "obj1.pick_1.place": 0.12582841515541077,
+     "obj1.pick_1.retreat": 0.12243561446666718
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 35.92921474046493,
+      "hold_max": 35.99087366208538,
+      "hold_mean": 35.96962482411923,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_2",
+      "carry_v": 0.12272513657808304
+     },
+     "obj1": {
+      "hold_min": 15.389439021104778,
+      "hold_max": 15.94039459671712,
+      "hold_mean": 15.663146378842828,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_1",
+      "carry_v": 0.24782884120941162
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 436,
+    "wall_s": 34.9,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t8_i43_Xgentle_Yfirm_a1.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "obj0",
+     "from": [
+      30.0,
+      100.0
+     ],
+     "to": [
+      25.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  },
+  {
+   "k": 2,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.12,
+     "obj0.pick_1.descend": 0.12,
+     "obj0.pick_1.lift": 0.12,
+     "obj0.pick_1.transport": 0.12,
+     "obj0.pick_1.place": 0.12,
+     "obj0.pick_1.retreat": 0.12,
+     "obj1.pick_1.approach": 0.12,
+     "obj1.pick_1.descend": 0.12,
+     "obj1.pick_1.lift": 0.24,
+     "obj1.pick_1.transport": 0.24,
+     "obj1.pick_1.place": 0.12,
+     "obj1.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "obj0": [
+      25.0,
+      100.0
+     ],
+     "obj1": [
+      10.0,
+      22.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "obj1",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 15.39540708146195,
+       "hold_mean": 15.669230445884818,
+       "hold_max": 15.94659456752872
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "obj0",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": false,
+      "cause": "force_above_band",
+      "measured": {
+       "hold_min": 32.269797435097054,
+       "hold_mean": 33.07711333006957,
+       "hold_max": 34.217906022644186
+      }
+     }
+    ],
+    "manner_ok": false,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.1217016875743866,
+     "obj0.pick_1.descend": 0.11593611538410187,
+     "obj0.pick_1.lift": 0.11897233873605728,
+     "obj0.pick_1.transport": 0.1251167356967926,
+     "obj0.pick_1.place": 0.12017151713371277,
+     "obj0.pick_1.retreat": 0.12108193337917328,
+     "obj1.pick_1.approach": 0.1255817711353302,
+     "obj1.pick_1.descend": 0.12653562426567078,
+     "obj1.pick_1.lift": 0.23899677395820618,
+     "obj1.pick_1.transport": 0.25098520517349243,
+     "obj1.pick_1.place": 0.12579798698425293,
+     "obj1.pick_1.retreat": 0.12243443727493286
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 32.269797435097054,
+      "hold_max": 34.217906022644186,
+      "hold_mean": 33.07711333006957,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_2",
+      "carry_v": 0.12260188162326813
+     },
+     "obj1": {
+      "hold_min": 15.39540708146195,
+      "hold_max": 15.94659456752872,
+      "hold_mean": 15.669230445884818,
+      "stable": true,
+      "valid": true,
+      "target": "moka_pot_1",
+      "carry_v": 0.24781368672847748
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 435,
+    "wall_s": 24.8,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t8_i43_Xgentle_Yfirm_a2.npz"
+   },
+   "repair": [
+    {
+     "action": "grip",
+     "target": "obj0",
+     "from": [
+      25.0,
+      100.0
+     ],
+     "to": [
+      20.0,
+      100.0
+     ],
+     "cause": "force_above_band"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 3,
+  "stop": "budget"
+ },
+ "library_rows_at_start": 6274
+}

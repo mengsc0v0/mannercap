@@ -1,0 +1,136 @@
+{
+ "version": "s30_manner_gen.v5",
+ "module": "manner_libero.v1",
+ "task": 6,
+ "init": 49,
+ "instruction_id": "fastcarry_X",
+ "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, carrying the white mug quickly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "obj1.pick_1.transport": "fast"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "fast",
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "clause": "carrying the white mug quickly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "obj0.pick_1.approach": 0.12,
+     "obj0.pick_1.descend": 0.12,
+     "obj0.pick_1.lift": 0.12,
+     "obj0.pick_1.transport": 0.12,
+     "obj0.pick_1.place": 0.12,
+     "obj0.pick_1.retreat": 0.12,
+     "obj1.pick_1.approach": 0.12,
+     "obj1.pick_1.descend": 0.12,
+     "obj1.pick_1.lift": 0.12,
+     "obj1.pick_1.transport": 0.24,
+     "obj1.pick_1.place": 0.12,
+     "obj1.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "obj0": [
+      1.0,
+      100.0
+     ],
+     "obj1": [
+      1.0,
+      100.0
+     ]
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "obj1.pick_1.transport",
+      "level": "fast",
+      "band": [
+       0.17,
+       1.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.2406054437160492
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "obj0.pick_1.approach": 0.12678773701190948,
+     "obj0.pick_1.descend": 0.12855394184589386,
+     "obj0.pick_1.lift": 0.12362488359212875,
+     "obj0.pick_1.transport": 0.12108264863491058,
+     "obj0.pick_1.place": 0.11352042853832245,
+     "obj0.pick_1.retreat": 0.12475056946277618,
+     "obj1.pick_1.approach": 0.12605921924114227,
+     "obj1.pick_1.descend": 0.12786822021007538,
+     "obj1.pick_1.lift": 0.12209594994783401,
+     "obj1.pick_1.transport": 0.2406054437160492,
+     "obj1.pick_1.place": 0.13118043541908264,
+     "obj1.pick_1.retreat": 0.12143772840499878
+    },
+    "objects": {
+     "obj0": {
+      "hold_min": 26.614596404605656,
+      "hold_max": 26.86692833905827,
+      "hold_mean": 26.680757284506928,
+      "stable": true,
+      "valid": true,
+      "target": "chocolate_pudding_1",
+      "carry_v": 0.12186739593744278
+     },
+     "obj1": {
+      "hold_min": 12.07340763720338,
+      "hold_max": 14.563670550712633,
+      "hold_mean": 13.333475859652186,
+      "stable": true,
+      "valid": true,
+      "target": "porcelain_mug_1",
+      "carry_v": 0.12401807308197021
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 388,
+    "wall_s": 28.0,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t6_i49_fastcarry_X_a0.npz"
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "library_rows_at_start": 0
+}
