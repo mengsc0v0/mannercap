@@ -37,6 +37,7 @@ class LiberoSession(NativeSession):
         os.environ.setdefault("MUJOCO_GL", "egl")
         from libero import benchmark
         from libero.envs import OffScreenRenderEnv
+        from libero.envs.env_wrapper import ControlEnv
         from libero.utils import get_libero_path
 
         self.bench = benchmark.get_benchmark_dict()[suite]()
@@ -49,8 +50,13 @@ class LiberoSession(NativeSession):
         self.default_target = default_target
         self._init_state = self.bench.get_task_init_states(int(task_id))[int(init_index)]
         bddl = os.path.join(get_libero_path("bddl_files"), self.libero_task.problem_folder, self.libero_task.bddl_file)
-        self.wrapper = OffScreenRenderEnv(bddl_file_name=bddl, camera_heights=image_size, camera_widths=image_size,
-                                          controller="OSC_POSE", control_freq=20)
+        if self.render:
+            self.wrapper = OffScreenRenderEnv(bddl_file_name=bddl, camera_heights=image_size, camera_widths=image_size,
+                                              controller="OSC_POSE", control_freq=20)
+        else:  # no camera observables / no EGL context: physics unchanged, many processes can share a host
+            self.wrapper = ControlEnv(bddl_file_name=bddl, camera_heights=image_size, camera_widths=image_size,
+                                      controller="OSC_POSE", control_freq=20, use_camera_obs=False,
+                                      has_renderer=False, has_offscreen_renderer=False)
         self.env = self.wrapper.env
         self.env.horizon, self.env.ignore_done = 10**6, True  # LIBERO default horizon (1000) would end long programs
         self._binding = None

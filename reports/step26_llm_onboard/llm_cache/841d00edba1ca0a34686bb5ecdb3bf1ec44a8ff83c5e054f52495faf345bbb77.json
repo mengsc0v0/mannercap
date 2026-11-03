@@ -1,0 +1,36 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 8000,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "s26_onboard.v2",
+  "response": {
+    "hypothesis": "The configured placement should put the moka pot centrally on the burner and settle its origin near z=0.9965 m, satisfying the on-region predicate. The episode as a whole remains unsatisfiable because the executor cannot turn on the stove.",
+    "objects": [
+      {
+        "derivation": "Centering gives world xy=(-0.0407,0.1977), inside the accepted x=[-0.1157,0.0343], y=[0.1227,0.2727] box. The expected supported origin height is burner surface 0.9304 plus the pot origin-above-bottom 0.0661 = 0.9965 m, inside accepted z=(0.9025,1.0075); relative to site z=0.905 this is 0.0915 m. A 0.002 m release clearance gives 0.9985 m before the short drop, and the minimum 0.002 m tolerance protects the narrow 0.075-0.07375=0.00125 m footprint margin along the pot's 0.1475 m axis. Yaw -180 degrees preserves the initial footprint orientation; 360 degrees avoids assuming handle symmetry. Lift 0.18 raises the origin from 0.9661 to 1.1461 m, approximately matching transport height 0.905+0.0915+0.15=1.1465 m. The object-specific demonstration grasp is selected.",
+        "object": "moka_pot_1",
+        "params": {
+          "grasp_reference_id": "libero_10.t8.demo_0.close_349.moka_pot_1",
+          "lift_dz": 0.18,
+          "place_dz": 0.002,
+          "place_tol_m": 0.002,
+          "target_offset_site": [
+            0.0,
+            0.0,
+            0.0915
+          ],
+          "target_yaw_deg": -180.0,
+          "target_yaw_symmetry_deg": 360.0,
+          "transport_dz": 0.15
+        },
+        "target": "@site:flat_stove_1_cook_region"
+      }
+    ],
+    "supported": false,
+    "unsupported_reason": "The official goal includes turnon(flat_stove_1), but the fixed executor has no turn-on capability; therefore it cannot satisfy the complete goal even though the moka-pot placement is geometrically executable."
+  }
+}

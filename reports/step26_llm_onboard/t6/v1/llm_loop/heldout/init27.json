@@ -1,0 +1,186 @@
+{
+ "task": 6,
+ "init": 27,
+ "success": true,
+ "status": "completed",
+ "n_steps": 401,
+ "wall_s": 12.6,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "porcelain_mug_1",
+    "plate_1"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "chocolate_pudding_1",
+    "living_room_table_plate_right_region"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "chocolate_pudding_1",
+   "target": "@site:living_room_table_plate_right_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.028428472463244776,
+    0.11173092961408831,
+    0.44983992152
+   ],
+   "planned_object_target_origin": [
+    0.15,
+    0.14,
+    0.41
+   ],
+   "final_origin": [
+    0.1489,
+    0.1395,
+    0.4498
+   ],
+   "site_frame_final_origin": [
+    -0.0011,
+    0.0395,
+    0.0398
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "default_grid",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.0,
+     "offset": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "min_clearance_m": 0.01613,
+     "blocking": "chocolate_pudding_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.0,
+      "dz_m": 0.0,
+      "min_clearance_m": 0.01613,
+      "at_grasp_clearance_m": 0.01,
+      "blocking": "chocolate_pudding_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.1231749134910711,
+    -0.12995463478323102,
+    0.4343699804295245
+   ],
+   "planned_object_target_origin": [
+    0.17333571041799375,
+    -0.021153732545876817,
+    0.43927290817462056
+   ],
+   "final_origin": [
+    0.1733,
+    -0.0111,
+    0.4425
+   ],
+   "target_origin_final": [
+    0.1733,
+    -0.0212,
+    0.4393
+   ],
+   "xy_dist_to_target_origin": 0.0101,
+   "dz_to_target_origin": 0.0032,
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_candidate",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -79.7,
+     "lateral_m": -0.0337,
+     "dz_m": 0.101,
+     "offset": [
+      -0.013,
+      0.03183,
+      0.10304
+     ],
+     "min_clearance_m": 0.01,
+     "blocking": "porcelain_mug_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.005,
+     "feasible": true,
+     "longitudinal_m": -0.0071
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -79.7,
+      "lateral_m": -0.0337,
+      "dz_m": 0.101,
+      "longitudinal_m": -0.0071,
+      "min_clearance_m": 0.01,
+      "at_grasp_clearance_m": 0.005,
+      "blocking": "porcelain_mug_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "max_n": 13.8
+  },
+  {
+   "robot_body": "rightfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "max_n": 6.3
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"completed\", \"classes_present\": [], \"first_failure\": {}}",
+ "refused_params": []
+}

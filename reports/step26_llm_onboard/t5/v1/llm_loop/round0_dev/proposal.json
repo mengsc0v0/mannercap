@@ -1,0 +1,26 @@
+{
+ "supported": true,
+ "unsupported_reason": null,
+ "objects": [
+  {
+   "object": "black_book_1",
+   "target": "@site:desk_caddy_1_back_contain_region",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.15,
+    "place_dz": 0.0,
+    "place_tol_m": 0.004,
+    "target_offset_site": [
+     5e-05,
+     0.0,
+     -0.00505
+    ],
+    "target_yaw_deg": 0.0,
+    "target_yaw_symmetry_deg": 180.0,
+    "grasp_reference_id": "libero_10.t5.demo_0.close_57.black_book_1"
+   },
+   "derivation": "The accepted origin-box midpoint is (-0.42435,-0.14170,0.96755); subtracting the site pose (-0.42440,-0.14170,0.97260) gives the site-frame offset (0.00005,0,-0.00505), with place_dz=0. The current 0.1026 by 0.0934 m XY AABB at yaw -130.5 deg implies an approximately 0.028 by 0.111 m upright footprint; yaw 0 aligns its thin axis with the compartment's 0.0556 m X width and long axis with its 0.1244 m Y width. The tightest physical footprint margin is about (0.1244-0.111)/2=0.0067 m, so tolerance is 0.004 m. A 0.15 m lift puts the collision bottom near 1.0352 m, about 0.047 m above the mug top at 0.9883 m. At the target, 0.15 m transport clearance puts the bottom near 1.1198 m, about 0.064 m above the caddy top at 1.0553 m. The compatible demonstrated book grasp is selected."
+  }
+ ],
+ "hypothesis": "Place the book upright at the center of the precomputed accepted origin region, rotated so its approximately 28 mm thickness crosses the narrow compartment dimension. The demonstrated grasp should stabilize the tall book, while the tighter placement tolerance preserves the roughly 6.7 mm limiting insertion margin."
+}

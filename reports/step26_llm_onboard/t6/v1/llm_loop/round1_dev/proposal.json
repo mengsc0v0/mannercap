@@ -1,0 +1,36 @@
+{
+ "supported": true,
+ "unsupported_reason": null,
+ "objects": [
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.15,
+    "place_dz": 0.019,
+    "place_tol_m": 0.004
+   },
+   "derivation": "The prior runs failed at program validation, before any motion, because the task-4 grasp reference was incompatible with the task-6 scene; it is removed so the built-in collision-checked grasp planner is used. The plate top is z=0.4557. Since the mug origin is 0.0024 m below its bottom, its resting origin is 0.4557-0.0024=0.4533, which is 0.0140 m above the plate origin z=0.4393. Thus place_dz=0.019 gives a 0.005 m settling drop. The 0.004 m tolerance is well below the required 0.03 m XY radius. lift_dz=0.15 raises the mug bottom from z=0.4368 to 0.5868, above the tallest initial obstacle at z=0.5694; transport_dz=0.15 gives a carried bottom near z=0.5869 over the plate."
+  },
+  {
+   "object": "chocolate_pudding_1",
+   "target": "@site:living_room_table_plate_right_region",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.18,
+    "place_dz": 0.0449,
+    "place_tol_m": 0.004,
+    "target_offset_site": [
+     0.0,
+     0.02,
+     0.0
+    ],
+    "target_yaw_deg": 180.0,
+    "target_yaw_symmetry_deg": 180.0
+   },
+   "derivation": "The yaw-zero site at (0.15,0.10,0.41) plus offset (0,0.02,0) targets world XY=(0.15,0.12), inside the accepted box x=(0.10,0.20), y=(0.05,0.15), while separating the pudding from the plate. The table surface is z=0.4368 and the pudding origin is 0.0131 m above its bottom, so its resting origin is z=0.4499, or 0.0399 m above the site; place_dz=0.0449 supplies a 0.005 m drop and finishes inside the accepted z interval (0.412,0.517). lift_dz=0.15 raises its bottom to about z=0.5867. transport_dz=0.18 gives a carried bottom of 0.41+0.18-0.0131=0.5769, above the placed mug top near z=0.5617. Yaw 180 degrees preserves its initial orientation, and its rectangular footprint has 180-degree symmetry."
+  }
+ ],
+ "hypothesis": "The 0/4 result was exclusively a validation failure caused by the scene-incompatible registered mug grasp, so no geometric stage or predicate was tested. I removed only grasp_reference_id and retained the prior order, heights, offsets, tolerances, and yaw; the executor will now use its built-in collision-checked grasp planner."
+}

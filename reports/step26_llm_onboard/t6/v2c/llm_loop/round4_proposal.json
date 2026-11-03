@@ -1,0 +1,92 @@
+{
+ "proposal": {
+  "supported": true,
+  "unsupported_reason": null,
+  "objects": [
+   {
+    "object": "chocolate_pudding_1",
+    "target": "@site:living_room_table_plate_right_region",
+    "params": {
+     "lift_dz": 0.12,
+     "transport_dz": 0.12,
+     "place_dz": 0.042,
+     "place_tol_m": 0.003,
+     "target_offset_site": [
+      0.0,
+      0.045,
+      0.0
+     ],
+     "target_align": "collision_center",
+     "target_yaw_deg": 0.0,
+     "target_yaw_symmetry_deg": 180.0
+    },
+    "derivation": "The pudding predicate succeeded in every run, so its yaw and heights are retained. Contact cleanliness nevertheless remained false after this action, and the plate is the nearby non-target object, so the site-y offset is increased only 0.005 m, from 0.040 to 0.045. The yaw-0 footprint is 0.0802 by 0.0463 m. Its plate-facing edge is now y=0.1+0.045-0.0463/2=0.12185, giving 0.04655 m nominal clearance from the plate edge y=0.0753. Tightening tolerance to 0.003 leaves at least 0.04355 m clearance and keeps the origin at most y=0.148, strictly below the accepted maximum 0.15. The resting collision-center height is 0.4368+0.0274/2=0.4505, or 0.0405 m above site z=0.41; place_dz 0.042 retains the previously successful approximately 0.0015 m drop. Transport at z=0.41+0.12=0.53 keeps the pudding bottom near 0.53-0.0131=0.5169, above the plate top z=0.4557."
+   },
+   {
+    "object": "porcelain_mug_1",
+    "target": "plate_1",
+    "params": {
+     "lift_dz": 0.15,
+     "transport_dz": 0.15,
+     "place_dz": 0.0155,
+     "place_tol_m": 0.006,
+     "grasp_grid": {
+      "yaws_deg": [
+       10.3,
+       100.3,
+       -79.7,
+       -169.7
+      ],
+      "laterals_m": [
+       -0.05,
+       -0.04,
+       -0.0319,
+       -0.02,
+       0.0,
+       0.02,
+       0.04,
+       0.05
+      ],
+      "dzs_m": [
+       0.11,
+       0.12,
+       0.13
+      ]
+     }
+    },
+    "derivation": "The mug still failed only at approach planning: raising the single demonstrated candidate from dz 0.101 to 0.110 improved path clearance to about 0.0208 m but left at-grasp clearance about -0.0033 m, showing that height alone did not remove the self-intersection. The replacement grid therefore varies lateral geometry as well as height. Its yaws are the demonstrated 10.3 degrees plus quarter-turn alternatives; lateral samples span the demonstrated -0.0319 m and offsets within the mug AABB half-widths 0.0963/2=0.04815 and 0.1246/2=0.0623 m. The mug top is 0.5428-0.4344=0.1084 m above its origin, so dz values 0.110, 0.120, and 0.130 put the hand reference 0.0016, 0.0116, and 0.0216 m above the rim while allowing the collision checker to select a feasible side. Placement remains centered on the plate, giving zero nominal xy error and a 0.006 m tolerance below the required 0.03 m radius. The plate top is z=0.4557 and the mug bottom is 0.0024 m above its origin, so the supported origin is 0.4557-0.0024=0.4533, which is 0.0140 m above the plate origin; place_dz 0.0155 gives a 0.0015 m drop. Lift and transport origins are 0.4344+0.15=0.5844 and 0.4393+0.15=0.5893."
+   }
+  ],
+  "hypothesis": "The mug failure was not a placement or goal-predicate failure: its single grasp candidate was rejected before motion because it still intersected the mug by about 3.3 mm at the grasp pose. I replaced that candidate with a geometry-bounded grid that preserves the demonstrated orientation while exploring quarter-turn yaws, lateral offsets across the mug footprint, and near-rim heights. The pudding goal already succeeded, so its validated heights and pudding-first order remain; because contact_v1_clean was still false, I moved it another 5 mm away from the plate and tightened its tolerance from 5 mm to 3 mm while preserving the accepted-region boundary."
+ },
+ "llm_call": {
+  "prompt_version": "s26_onboard.v2",
+  "request_hash": "36cf76bf31b7a6f175ff6d713b5d3bfe4179af395a087e4cfbeaa9c181feb79e",
+  "status": "ok",
+  "latency_s": 42.896,
+  "usage": {
+   "completion_tokens": 3087,
+   "prompt_tokens": 14464,
+   "total_tokens": 17551,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 1908,
+    "rejected_prediction_tokens": 0
+   },
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0,
+    "cache_write_tokens": 14461
+   }
+  },
+  "error": "",
+  "identity": {
+   "interface": "llm_interface.v1",
+   "model": "gpt-5.6-sol-disc",
+   "base_url": "https://aihubmix.com/v1",
+   "temperature": 0.0,
+   "max_output_tokens": 8000
+  }
+ }
+}

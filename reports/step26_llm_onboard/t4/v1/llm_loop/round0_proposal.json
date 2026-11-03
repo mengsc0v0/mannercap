@@ -1,0 +1,63 @@
+{
+ "proposal": {
+  "supported": true,
+  "unsupported_reason": null,
+  "objects": [
+   {
+    "object": "porcelain_mug_1",
+    "target": "plate_1",
+    "params": {
+     "lift_dz": 0.15,
+     "transport_dz": 0.15,
+     "place_dz": 0.019,
+     "place_tol_m": 0.003,
+     "grasp_reference_id": "libero_10.t4.median_n40.porcelain_mug_1"
+    },
+    "derivation": "Plate top is 0.4557 m, or 0.0164 m above its 0.4393 m origin. The mug origin is 0.0024 m below its bottom, so its resting origin offset is 0.0164-0.0024=0.0140 m; adding 0.005 m release clearance gives place_dz=0.0190 m. A 0.003 m placement tolerance leaves 0.027 m of the accepted 0.03 m XY radius. At lift, the mug bottom reaches 0.4344+0.15+0.0024=0.5868 m, clearing the tallest non-target top at 0.5694 m by 0.0174 m. Transport at 0.4393+0.15=0.5893 m puts its bottom at 0.5917 m. The compatible registered demonstration grasp is selected."
+   },
+   {
+    "object": "white_yellow_mug_1",
+    "target": "plate_2",
+    "params": {
+     "lift_dz": 0.15,
+     "transport_dz": 0.15,
+     "place_dz": 0.0215,
+     "place_tol_m": 0.003,
+     "grasp_reference_id": "libero_10.t4.median_n39.white_yellow_mug_1"
+    },
+    "derivation": "Plate top is 0.4557 m, or 0.0164 m above its 0.4393 m origin. The mug origin is 0.0001 m above its bottom, so its resting origin offset is 0.0164+0.0001=0.0165 m; adding 0.005 m release clearance gives place_dz=0.0215 m. A 0.003 m placement tolerance leaves 0.027 m of the accepted 0.03 m XY radius. At lift, the mug bottom reaches 0.4369+0.15-0.0001=0.5868 m, clearing the tallest non-target top at 0.5694 m by 0.0174 m. At transport, its bottom is 0.4393+0.15-0.0001=0.5892 m, a 0.0198 m clearance. The compatible registered demonstration grasp is selected."
+   }
+  ],
+  "hypothesis": "Both mugs should be released nearly centered over their respective plate origins, then drop 5 mm into stable plate contact while remaining well inside the strict 0.03 m origin-distance threshold. The porcelain mug is moved first to clear the central-left workspace before transporting the second mug toward the right plate."
+ },
+ "llm_call": {
+  "prompt_version": "s26_onboard.v2",
+  "request_hash": "0ee2140cd3517440b528cbd00bdeb97abf620cedafd0bf783ec91b2960fa2cb2",
+  "status": "ok",
+  "latency_s": 23.12,
+  "usage": {
+   "completion_tokens": 2099,
+   "prompt_tokens": 2667,
+   "total_tokens": 4766,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 1375,
+    "rejected_prediction_tokens": 0
+   },
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0,
+    "cache_write_tokens": 2664
+   }
+  },
+  "error": "",
+  "identity": {
+   "interface": "llm_interface.v1",
+   "model": "gpt-5.6-sol-disc",
+   "base_url": "https://aihubmix.com/v1",
+   "temperature": 0.0,
+   "max_output_tokens": 8000
+  }
+ }
+}

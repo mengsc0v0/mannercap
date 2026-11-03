@@ -1,0 +1,43 @@
+{
+ "supported": true,
+ "unsupported_reason": null,
+ "objects": [
+  {
+   "object": "chocolate_pudding_1",
+   "target": "@site:living_room_table_plate_right_region",
+   "params": {
+    "lift_dz": 0.12,
+    "transport_dz": 0.12,
+    "place_dz": 0.042,
+    "place_tol_m": 0.003,
+    "target_offset_site": [
+     0.0,
+     0.045,
+     0.0
+    ],
+    "target_align": "collision_center",
+    "target_yaw_deg": 0.0,
+    "target_yaw_symmetry_deg": 180.0
+   },
+   "derivation": "Unchanged because all four runs completed every stage and satisfied the pudding predicate. At yaw 0, its footprint is 0.0802 by 0.0463 m. The collision center is sent to world y=0.1+0.045=0.145; its plate-facing edge is 0.145-0.0463/2=0.12185, giving 0.04655 m clearance from the plate AABB edge y=0.0753. With 0.003 m tolerance, the origin remains below the site's strict y limit 0.15 and the nominal plate clearance remains at least 0.04355 m. The supported collision-center z is 0.4368+0.0274/2=0.4505, which is 0.0405 m above site z=0.41; place_dz 0.042 gives a 0.0015 m drop and produced final z=0.4498 inside the accepted interval (0.412,0.517). Transport z=0.41+0.12=0.53 leaves the bottom near 0.5169, above the plate top 0.4557."
+  },
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.15,
+    "place_dz": 0.0155,
+    "place_tol_m": 0.006,
+    "grasp_candidate": {
+     "yaw_deg": 10.3,
+     "lateral_m": 0.0,
+     "dz_m": 0.116,
+     "longitudinal_m": 0.0
+    }
+   },
+   "derivation": "The prior grid made approach feasible, but it always selected the centered yaw-10.3 candidate at dz=0.120; after grasp, the mug remained at its start origin through lift, transport, and place, so the grasp was too high to retain the mug. It also produced right-finger outer-face contact in three runs. The centered dz=0.110 candidate had about -0.00212 m at-grasp clearance, while dz=0.120 had about +0.00255 m. Linear interpolation puts the feasibility boundary near 0.110+0.00212/(0.00212+0.00255)*0.010=0.1145 m. Choosing 0.116 leaves approximately 0.0007 m predicted clearance while lowering the hand 0.004 m relative to the failed grasp, increasing inner-pad overlap. The mug top is 0.5428-0.4344=0.1084 m above its origin, so the hand reference is 0.116-0.1084=0.0076 m above the rim. For placement, plate top z=0.4557 minus the mug's bottom-above-origin value 0.0024 gives supported mug-origin z=0.4533, or 0.0140 m above plate origin z=0.4393; place_dz 0.0155 therefore gives a 0.0015 m drop. Centering yields zero nominal xy error, and 0.006 m tolerance is below the required 0.03 m radius. Lift and transport origins are 0.4344+0.15=0.5844 and 0.4393+0.15=0.5893."
+  }
+ ],
+ "hypothesis": "The pudding configuration is retained because its predicate succeeded in every run. The mug no longer has an approach-planning problem: the previous dz=0.120 grasp was feasible, but it was too high, so the gripper completed all stages without moving the mug and often contacted it with the finger outside the inner pad face. I changed only the mug grasp from the broad grid to the observed feasible yaw and centered offset at dz=0.116, the lowest height supported by interpolation with a small positive clearance margin. This should engage the mug more deeply with the inner pads while preserving approach feasibility; placement geometry and execution order are unchanged."
+}

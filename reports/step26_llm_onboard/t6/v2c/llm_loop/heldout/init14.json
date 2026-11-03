@@ -1,0 +1,189 @@
+{
+ "task": 6,
+ "init": 14,
+ "success": false,
+ "status": "completed",
+ "n_steps": 367,
+ "wall_s": 11.7,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "porcelain_mug_1",
+    "plate_1"
+   ],
+   "true": false
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "chocolate_pudding_1",
+    "living_room_table_plate_right_region"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "chocolate_pudding_1",
+   "target": "@site:living_room_table_plate_right_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.03975583458600995,
+    0.10537159293095227,
+    0.44983992152
+   ],
+   "planned_object_target_origin": [
+    0.14949896140899782,
+    0.1450013458175861,
+    0.41
+   ],
+   "final_origin": [
+    0.1487,
+    0.1446,
+    0.4498
+   ],
+   "site_frame_final_origin": [
+    -0.0013,
+    0.0446,
+    0.0398
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "default_grid",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.0,
+     "offset": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "min_clearance_m": 0.01654,
+     "blocking": "chocolate_pudding_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01587,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.0,
+      "dz_m": 0.0,
+      "min_clearance_m": 0.01654,
+      "at_grasp_clearance_m": 0.01587,
+      "blocking": "chocolate_pudding_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.0826852193995686,
+    -0.15675180194197572,
+    0.43436998042952457
+   ],
+   "planned_object_target_origin": [
+    0.06631919360574601,
+    0.01998441193710852,
+    0.4392729081746206
+   ],
+   "final_origin": [
+    -0.0828,
+    -0.1568,
+    0.4344
+   ],
+   "target_origin_final": [
+    0.0663,
+    0.02,
+    0.4393
+   ],
+   "xy_dist_to_target_origin": 0.2313,
+   "dz_to_target_origin": -0.0049,
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_grid",
+    "n_candidates": 2,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 10.3,
+     "lateral_m": -0.01,
+     "dz_m": 0.12,
+     "offset": [
+      -0.00982,
+      -0.0018,
+      0.12062
+     ],
+     "min_clearance_m": 0.02928,
+     "blocking": "porcelain_mug_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00263,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 10.3,
+      "lateral_m": -0.01,
+      "dz_m": 0.12,
+      "min_clearance_m": 0.02928,
+      "at_grasp_clearance_m": 0.00263,
+      "blocking": "porcelain_mug_1",
+      "phase": "descent",
+      "feasible": true
+     },
+     {
+      "yaw_deg": 10.3,
+      "lateral_m": -0.01,
+      "dz_m": 0.115,
+      "min_clearance_m": 0.02428,
+      "at_grasp_clearance_m": -0.00209,
+      "blocking": "porcelain_mug_1",
+      "phase": "descent",
+      "feasible": false
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "rightfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "max_n": 8.2
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"completed\", \"classes_present\": [\"outcome_not_met\"], \"first_failure\": {\"class\": \"outcome_not_met\", \"requirement_id\": \"task.official_success\", \"instance_id\": {\"unknown\": \"whole task\"}, \"stage_label\": {\"unknown\": \"whole task\"}, \"primitive\": {\"unknown\": \"whole task\"}, \"object_role\": {\"unknown\": \"whole task\"}, \"stage_index\": null, \"control_step\": {\"unknown\": \"whole task\"}, \"pose_difference\": {\"unknown\": \"not recorded\"}, \"evidence_source\": \"simulator task flag\"}}",
+ "refused_params": []
+}

@@ -1,0 +1,179 @@
+{
+ "task": 6,
+ "init": 0,
+ "success": false,
+ "status": "completed",
+ "n_steps": 379,
+ "wall_s": 11.9,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "porcelain_mug_1",
+    "plate_1"
+   ],
+   "true": false
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "chocolate_pudding_1",
+    "living_room_table_plate_right_region"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "chocolate_pudding_1",
+   "target": "@site:living_room_table_plate_right_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.03966860475158733,
+    0.11704305614696939,
+    0.44983992152
+   ],
+   "planned_object_target_origin": [
+    0.1494991309735726,
+    0.14500092352422478,
+    0.41
+   ],
+   "final_origin": [
+    0.1487,
+    0.1449,
+    0.4498
+   ],
+   "site_frame_final_origin": [
+    -0.0013,
+    0.0449,
+    0.0398
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "default_grid",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.0,
+     "offset": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "min_clearance_m": 0.0166,
+     "blocking": "chocolate_pudding_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.0,
+      "dz_m": 0.0,
+      "min_clearance_m": 0.0166,
+      "at_grasp_clearance_m": 0.01,
+      "blocking": "chocolate_pudding_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.09411480477187828,
+    -0.13620773061605293,
+    0.43436998042952446
+   ],
+   "planned_object_target_origin": [
+    0.1490316187813231,
+    0.005704864821362784,
+    0.43927290817462056
+   ],
+   "final_origin": [
+    -0.0925,
+    -0.1356,
+    0.4344
+   ],
+   "target_origin_final": [
+    0.149,
+    0.0057,
+    0.4393
+   ],
+   "xy_dist_to_target_origin": 0.2798,
+   "dz_to_target_origin": -0.0049,
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_candidate",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 10.3,
+     "lateral_m": 0.0,
+     "dz_m": 0.117,
+     "offset": [
+      0.0,
+      0.0,
+      0.117
+     ],
+     "min_clearance_m": 0.02575,
+     "blocking": "porcelain_mug_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 3e-05,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 10.3,
+      "lateral_m": 0.0,
+      "dz_m": 0.117,
+      "min_clearance_m": 0.02575,
+      "at_grasp_clearance_m": 3e-05,
+      "blocking": "porcelain_mug_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "max_n": 0.3
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"completed\", \"classes_present\": [\"outcome_not_met\"], \"first_failure\": {\"class\": \"outcome_not_met\", \"requirement_id\": \"task.official_success\", \"instance_id\": {\"unknown\": \"whole task\"}, \"stage_label\": {\"unknown\": \"whole task\"}, \"primitive\": {\"unknown\": \"whole task\"}, \"object_role\": {\"unknown\": \"whole task\"}, \"stage_index\": null, \"control_step\": {\"unknown\": \"whole task\"}, \"pose_difference\": {\"unknown\": \"not recorded\"}, \"evidence_source\": \"simulator task flag\"}}",
+ "refused_params": []
+}

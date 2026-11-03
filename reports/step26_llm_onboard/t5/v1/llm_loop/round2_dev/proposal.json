@@ -1,0 +1,26 @@
+{
+ "supported": true,
+ "unsupported_reason": null,
+ "objects": [
+  {
+   "object": "black_book_1",
+   "target": "@site:desk_caddy_1_back_contain_region",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.15,
+    "place_dz": 0.04,
+    "place_tol_m": 0.002,
+    "target_offset_site": [
+     -0.00995,
+     0.0,
+     -0.00505
+    ],
+    "target_yaw_deg": 0.0,
+    "target_yaw_symmetry_deg": 180.0,
+    "grasp_reference_id": "libero_10.t5.demo_0.close_57.black_book_1"
+   },
+   "derivation": "The accepted origin-box midpoint is (-0.42435,-0.14170,0.96755), giving a centered site offset of (0.00005,0,-0.00505). Round 1 failed only at place: the failed final x was -0.3906, 0.0060 m beyond the accepted upper bound -0.3966, while grasp reached its band, transport completed, and no guard refusal occurred. Relative to the planned x near -0.42432, observed final x errors ranged from about -0.0103 to +0.0337 m. Shifting the site-frame x command by -0.0100 m changes the offset to -0.00995; replaying those errors predicts x from about -0.4447 to -0.4007, entirely inside [-0.4521,-0.3966]. The book's inferred upright footprint is approximately 0.028 by 0.111 m, so yaw 0 places the 0.028 m thickness across the site's 0.0556 m X width and the 0.111 m length along its 0.1244 m Y width; 180 degrees is the rectangular yaw symmetry. The 0.010 m X bias leaves approximately (0.0556-0.028)/2-0.010=0.0043 m physical side margin, so the registry-minimum 0.002 m placement tolerance is retained. With place_dz 0.04, the commanded release-origin height is 0.97260-0.00505+0.04=1.00755 m, inside the accepted z interval [0.9021,1.0330]; successful round-1 outcomes settled near 1.0143-1.0149 m. Lift_dz 0.15 raises the initial origin to 1.0330 m and the bottom to about 1.0352 m, 0.0469 m above the mug top. Transport_dz 0.15 gives an origin near 1.11755 m and bottom near 1.11975 m, 0.06445 m above the caddy top. The compatible demonstrated grasp is retained because it was feasible and reached the grasp band in every trial."
+  }
+ ],
+ "hypothesis": "The remaining failure was a place-stage lateral ejection, not a grasp, transport, order, height, or capability failure. I changed only target_offset_site.x from 0.00005 to -0.00995, biasing the commanded origin 10 mm away from the observed +X escape side. The observed trial-to-trial x-error envelope would then remain within the accepted origin box. The demonstrated grasp, yaw, heights, and minimum placement tolerance are unchanged because they produced successful grasps and three valid final placements."
+}

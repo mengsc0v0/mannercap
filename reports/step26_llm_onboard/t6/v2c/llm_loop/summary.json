@@ -1,0 +1,109 @@
+{
+ "task": 6,
+ "arm": "llm_loop",
+ "tag": "v2c",
+ "criterion": "clean",
+ "dev_inits": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "heldout_inits": [
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The pudding should settle on the table within the right-hand region while remaining separated from the plate, after which the demonstrated mug grasp should place the mug centrally with only a 1.5 mm drop onto the plate. The main changes from defaults are geometry-derived low release heights, a +25 mm site-y offset away from the plate, and execution of the pudding before the mug.",
+   "unsupported": false
+  },
+  {
+   "round": 1,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "All previous runs failed during program validation, before any stage or predicate was executed: the mug reference belongs to scene libero_10:4 and was rejected for libero_10:6. I removed only that incompatible grasp_reference_id and retained the prior geometry, heights, offsets, tolerances, and pudding-first order. The executor's native collision-checked grasp planner should now select the mug grasp, allowing execution to test the unchanged placement hypothesis.",
+   "unsupported": false
+  },
+  {
+   "round": 2,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The pudding-first order and successful placement heights are retained. I moved the pudding 15 mm farther from the plate because the prior completed pudding action caused unexcused left-finger contact with the plate. The mug failure was specifically approach planning: all default dz=0.04 candidates collided with the mug itself. I replaced that grid with one geometry-supported candidate using the available demonstration's numeric pose, without using its scene-incompatible reference ID. The higher near-rim grasp should make the mug approach feasible and keep the fingers well above the plate during release.",
+   "unsupported": false
+  },
+  {
+   "round": 3,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The pudding geometry, height, offset, and pudding-first order are unchanged because its goal succeeded in every run and the 40 mm offset removed the earlier listed plate contacts. The mug failed before motion solely because its grasp candidate penetrated its own geometry by about 3.6 mm at the grasp pose. I changed only the mug candidate dz from 0.101 to 0.110 m, placing the hand reference 1.6 mm above the measured mug top and providing roughly 5.4 mm predicted clearance while preserving the demonstrated lateral, longitudinal, and yaw values. This should make the mug approach feasible without altering the already validated placements.",
+   "unsupported": false
+  },
+  {
+   "round": 4,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The mug failure was not a placement or goal-predicate failure: its single grasp candidate was rejected before motion because it still intersected the mug by about 3.3 mm at the grasp pose. I replaced that candidate with a geometry-bounded grid that preserves the demonstrated orientation while exploring quarter-turn yaws, lateral offsets across the mug footprint, and near-rim heights. The pudding goal already succeeded, so its validated heights and pudding-first order remain; because contact_v1_clean was still false, I moved it another 5 mm away from the plate and tightened its tolerance from 5 mm to 3 mm while preserving the accepted-region boundary.",
+   "unsupported": false
+  },
+  {
+   "round": 5,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The pudding configuration is retained because its predicate succeeded in every run. The mug no longer has an approach-planning problem: the previous dz=0.120 grasp was feasible, but it was too high, so the gripper completed all stages without moving the mug and often contacted it with the finger outside the inner pad face. I changed only the mug grasp from the broad grid to the observed feasible yaw and centered offset at dz=0.116, the lowest height supported by interpolation with a small positive clearance margin. This should engage the mug more deeply with the inner pads while preserving approach feasibility; placement geometry and execution order are unchanged.",
+   "unsupported": false
+  },
+  {
+   "round": 6,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The pudding configuration and pudding-first order are retained because its placement predicate succeeded consistently. The latest failure was exclusively the mug approach: dz=0.116 was approximately 0.27 mm inside the feasibility boundary. The earlier dz=0.120 grasp was feasible but too shallow to retain the mug and caused outer-finger contact. I therefore changed only the mug grasp dz to 0.117, just above the measured feasibility boundary and 3 mm deeper than the non-retaining grasp. This should preserve approach feasibility while placing the mug wall farther onto the inner finger pads so it is carried to the already geometry-valid plate placement.",
+   "unsupported": false
+  },
+  {
+   "round": 7,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The pudding-first order and its repeatedly successful geometry are unchanged. The latest mug configuration crossed the approach-feasibility boundary, but the centered near-rim grasp neither retained the mug nor met the clean-contact rule because the left finger touched it outside the inner pad face. I replaced only that mug candidate with a small negative-lateral grid, retaining its demonstrated yaw and testing the deepest feasible height before falling back to 0.120 or 0.125 m. This should shift the mug from the left finger's exterior onto the inner pads while preserving enough approach clearance to carry it to the already valid centered plate placement.",
+   "unsupported": false
+  }
+ ],
+ "selected_round": 7,
+ "llm_spend": {
+  "calls": 8,
+  "cached": 0,
+  "failed": 0,
+  "latency_s": 272.145,
+  "prompt_tokens": 99813,
+  "completion_tokens": 19162,
+  "total_tokens": 118975,
+  "budget": 9
+ },
+ "heldout_success": 0,
+ "heldout_n": 20,
+ "heldout_success_and_clean": 0,
+ "heldout_status": {
+  "completed": 20
+ }
+}

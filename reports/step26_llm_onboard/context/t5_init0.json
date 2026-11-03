@@ -1,0 +1,394 @@
+{
+ "task": "libero_10:5",
+ "init": 0,
+ "instruction": "pick up the book and place it in the back compartment of the caddy",
+ "goal": [
+  {
+   "predicate": "in",
+   "args": [
+    "black_book_1",
+    "desk_caddy_1_back_contain_region"
+   ],
+   "accepted_region_for_obj_origin": {
+    "origin_box_world": [
+     [
+      -0.4521,
+      -0.2039,
+      0.9021
+     ],
+     [
+      -0.3966,
+      -0.0795,
+      1.033
+     ]
+    ]
+   }
+  }
+ ],
+ "predicate_semantics": {
+  "on(obj, object)": "obj origin z >= target origin z AND obj in contact with target AND xy distance between the two ORIGINS < 0.03 m",
+  "on(obj, region_site)": "d = site_R @ (obj_origin - site_pos): half_z - 0.005 < d_z < half_z + 0.10 AND |d_xy| < half_xy; if the site has a parent body, obj must also touch that parent",
+  "in(obj, region_site)": "obj origin strictly inside the site box: site_pos +- |site_R @ half_size| (lower z bound lowered by 0.01 m)"
+ },
+ "unsupported_predicates_by_executor": [
+  "open",
+  "close",
+  "turnon",
+  "turnoff"
+ ],
+ "objects": {
+  "black_book_1": {
+   "class": "black_book",
+   "origin_world": [
+    -0.2101,
+    0.1637,
+    0.883
+   ],
+   "yaw_deg": -130.5,
+   "collision_aabb_world": {
+    "min": [
+     -0.2704,
+     0.1252,
+     0.8851
+    ],
+    "max": [
+     -0.1678,
+     0.2187,
+     1.0195
+    ]
+   },
+   "collision_size_m": [
+    0.1026,
+    0.0934,
+    0.1344
+   ],
+   "origin_above_bottom_m": -0.0022
+  },
+  "white_yellow_mug_1": {
+   "class": "white_yellow_mug",
+   "origin_world": [
+    -0.1152,
+    0.0036,
+    0.8852
+   ],
+   "yaw_deg": -90.0,
+   "collision_aabb_world": {
+    "min": [
+     -0.1681,
+     -0.0649,
+     0.8851
+    ],
+    "max": [
+     -0.0621,
+     0.0749,
+     0.9883
+    ]
+   },
+   "collision_size_m": [
+    0.1061,
+    0.1397,
+    0.1032
+   ],
+   "origin_above_bottom_m": 0.0001
+  }
+ },
+ "regions": {
+  "desk_caddy_1_back_contain_region": {
+   "kind": "region_site",
+   "surface_below_site_center": {
+    "z": 0.9008,
+    "geom": "desk_caddy_1_g1"
+   },
+   "pos_world": [
+    -0.4244,
+    -0.1417,
+    0.9726
+   ],
+   "yaw_deg": -0.0,
+   "half_size_m": [
+    0.0278,
+    0.0622,
+    0.0605
+   ],
+   "bodies_under_site_xy": [
+    {
+     "body": "desk_caddy_1",
+     "aabb_top_z": 1.0553,
+     "aabb_min": [
+      -0.4662,
+      -0.3592,
+      0.8884
+     ],
+     "aabb_max": [
+      -0.3152,
+      0.0745,
+      1.0553
+     ]
+    }
+   ]
+  }
+ },
+ "fixtures": [
+  "desk_caddy_1"
+ ],
+ "eef_start_world": [
+  -0.2974,
+  0.0129,
+  1.1741
+ ],
+ "capabilities": {
+  "version": "stage_capabilities.v2",
+  "primitives": [
+   "approach",
+   "descend",
+   "grasp",
+   "lift",
+   "transport",
+   "place",
+   "insert",
+   "retreat"
+  ],
+  "params": {
+   "lift_dz": {
+    "effective_on": [
+     "lift"
+    ],
+    "kind": "float",
+    "lo": 0.0,
+    "hi": 0.35,
+    "enum": [],
+    "needs_plan_flag": null,
+    "doc": "eef height above the grasp pose during lift (m)",
+    "proposer_settable": true
+   },
+   "transport_dz": {
+    "effective_on": [
+     "transport"
+    ],
+    "kind": "float",
+    "lo": 0.0,
+    "hi": 0.35,
+    "enum": [],
+    "needs_plan_flag": null,
+    "doc": "eef height above the target while carrying (m)",
+    "proposer_settable": true
+   },
+   "place_dz": {
+    "effective_on": [
+     "place"
+    ],
+    "kind": "float",
+    "lo": -0.05,
+    "hi": 0.25,
+    "enum": [],
+    "needs_plan_flag": null,
+    "doc": "eef height above the target at release (m)",
+    "proposer_settable": true
+   },
+   "place_tol_m": {
+    "effective_on": [
+     "place"
+    ],
+    "kind": "float",
+    "lo": 0.002,
+    "hi": 0.03,
+    "enum": [],
+    "needs_plan_flag": null,
+    "doc": "position tolerance of the place servo (m)",
+    "proposer_settable": true
+   },
+   "target_offset_site": {
+    "effective_on": [
+     "transport",
+     "place",
+     "insert"
+    ],
+    "kind": "vec3",
+    "lo": -0.3,
+    "hi": 0.3,
+    "enum": [],
+    "needs_plan_flag": null,
+    "doc": "object target offset in the site frame (m)",
+    "proposer_settable": true
+   },
+   "target_align": {
+    "effective_on": [
+     "transport",
+     "place",
+     "insert"
+    ],
+    "kind": "enum",
+    "lo": null,
+    "hi": null,
+    "enum": [
+     "collision_center"
+    ],
+    "needs_plan_flag": null,
+    "doc": "align the object's collision centre to the site",
+    "proposer_settable": true
+   },
+   "target_yaw_deg": {
+    "effective_on": [
+     "transport",
+     "place",
+     "insert"
+    ],
+    "kind": "float",
+    "lo": -360.0,
+    "hi": 360.0,
+    "enum": [],
+    "needs_plan_flag": null,
+    "doc": "object yaw relative to the site (deg)",
+    "proposer_settable": true
+   },
+   "target_yaw_symmetry_deg": {
+    "effective_on": [
+     "transport",
+     "place",
+     "insert"
+    ],
+    "kind": "float",
+    "lo": 1.0,
+    "hi": 360.0,
+    "enum": [],
+    "needs_plan_flag": null,
+    "doc": "rotation after which the object looks the same (deg)",
+    "proposer_settable": true
+   },
+   "grasp_reference": {
+    "effective_on": [
+     "approach"
+    ],
+    "kind": "dict",
+    "lo": null,
+    "hi": null,
+    "enum": [],
+    "needs_plan_flag": "approach_check",
+    "doc": "legacy inline reference: rel_obj (3, object yaw frame, m), hand_yaw_rel_deg, optional hand_quat_obj_xyzw (4, unit); a patch selects a registered reference with grasp_reference_id instead of writing numbers",
+    "proposer_settable": false,
+    "fields": {
+     "rel_obj": [
+      "vec3",
+      -0.3,
+      0.3
+     ],
+     "hand_yaw_rel_deg": [
+      "float",
+      -360.0,
+      360.0
+     ],
+     "hand_quat_obj_xyzw": [
+      "quat",
+      null,
+      null
+     ]
+    },
+    "required": [
+     "rel_obj",
+     "hand_yaw_rel_deg"
+    ]
+   },
+   "grasp_reference_id": {
+    "effective_on": [
+     "approach"
+    ],
+    "kind": "ref_id",
+    "lo": null,
+    "hi": null,
+    "enum": [],
+    "needs_plan_flag": "approach_check",
+    "doc": "id of a registered grasp reference (configs/grasp_references.v1.json); resolved against the program's scene and the instance's object; unknown / incompatible ids are refused; excludes grasp_reference",
+    "proposer_settable": true
+   },
+   "grasp_candidate": {
+    "effective_on": [
+     "approach"
+    ],
+    "kind": "dict",
+    "lo": null,
+    "hi": null,
+    "enum": [],
+    "needs_plan_flag": "approach_check",
+    "doc": "one placement: yaw_deg, lateral_m, dz_m, longitudinal_m",
+    "proposer_settable": true,
+    "fields": {
+     "yaw_deg": [
+      "float",
+      -360.0,
+      360.0
+     ],
+     "lateral_m": [
+      "float",
+      -0.1,
+      0.1
+     ],
+     "dz_m": [
+      "float",
+      -0.1,
+      0.15
+     ],
+     "longitudinal_m": [
+      "float",
+      -0.1,
+      0.1
+     ]
+    },
+    "required": [
+     "yaw_deg"
+    ]
+   },
+   "grasp_grid": {
+    "effective_on": [
+     "approach"
+    ],
+    "kind": "dict",
+    "lo": null,
+    "hi": null,
+    "enum": [],
+    "needs_plan_flag": "approach_check",
+    "doc": "candidate grid: yaws_deg, laterals_m, dzs_m (lists)",
+    "proposer_settable": true,
+    "fields": {
+     "yaws_deg": [
+      "list",
+      -360.0,
+      360.0
+     ],
+     "laterals_m": [
+      "list",
+      -0.1,
+      0.1
+     ],
+     "dzs_m": [
+      "list",
+      -0.1,
+      0.15
+     ]
+    },
+    "required": [
+     "yaws_deg",
+     "laterals_m",
+     "dzs_m"
+    ]
+   }
+  }
+ },
+ "grasp_references_available": [
+  {
+   "reference_id": "libero_10.t5.demo_0.close_57.black_book_1",
+   "object_class": "black_book",
+   "compatible_objects": [
+    "black_book_1"
+   ],
+   "kind": "single_demo_close",
+   "value": {
+    "rel_obj": [
+     0.0084,
+     -0.0123,
+     0.1209
+    ],
+    "hand_yaw_rel_deg": -4.1
+   }
+  }
+ ]
+}

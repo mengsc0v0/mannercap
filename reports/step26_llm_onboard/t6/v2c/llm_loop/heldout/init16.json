@@ -1,0 +1,189 @@
+{
+ "task": 6,
+ "init": 16,
+ "success": false,
+ "status": "completed",
+ "n_steps": 392,
+ "wall_s": 12.0,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "porcelain_mug_1",
+    "plate_1"
+   ],
+   "true": false
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "chocolate_pudding_1",
+    "living_room_table_plate_right_region"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "chocolate_pudding_1",
+   "target": "@site:living_room_table_plate_right_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.05197466904023498,
+    0.11010337525803257,
+    0.44983992152
+   ],
+   "planned_object_target_origin": [
+    0.14950026370319275,
+    0.14500017407692822,
+    0.41
+   ],
+   "final_origin": [
+    0.1484,
+    0.1445,
+    0.4498
+   ],
+   "site_frame_final_origin": [
+    -0.0016,
+    0.0445,
+    0.0398
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "default_grid",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.0,
+     "offset": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "min_clearance_m": 0.01637,
+     "blocking": "chocolate_pudding_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01569,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.0,
+      "dz_m": 0.0,
+      "min_clearance_m": 0.01637,
+      "at_grasp_clearance_m": 0.01569,
+      "blocking": "chocolate_pudding_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.12486085347448282,
+    -0.17068978183550323,
+    0.4343699804295245
+   ],
+   "planned_object_target_origin": [
+    0.1503571419407929,
+    -0.0030307513924466615,
+    0.43927290817462056
+   ],
+   "final_origin": [
+    -0.125,
+    -0.1707,
+    0.4344
+   ],
+   "target_origin_final": [
+    0.1504,
+    -0.003,
+    0.4393
+   ],
+   "xy_dist_to_target_origin": 0.3224,
+   "dz_to_target_origin": -0.0049,
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_grid",
+    "n_candidates": 2,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 10.3,
+     "lateral_m": -0.01,
+     "dz_m": 0.12,
+     "offset": [
+      -0.00981,
+      -0.00182,
+      0.12061
+     ],
+     "min_clearance_m": 0.02933,
+     "blocking": "porcelain_mug_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00269,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 10.3,
+      "lateral_m": -0.01,
+      "dz_m": 0.12,
+      "min_clearance_m": 0.02933,
+      "at_grasp_clearance_m": 0.00269,
+      "blocking": "porcelain_mug_1",
+      "phase": "descent",
+      "feasible": true
+     },
+     {
+      "yaw_deg": 10.3,
+      "lateral_m": -0.01,
+      "dz_m": 0.115,
+      "min_clearance_m": 0.02433,
+      "at_grasp_clearance_m": -0.00209,
+      "blocking": "porcelain_mug_1",
+      "phase": "descent",
+      "feasible": false
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "max_n": 6.5
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"completed\", \"classes_present\": [\"outcome_not_met\"], \"first_failure\": {\"class\": \"outcome_not_met\", \"requirement_id\": \"task.official_success\", \"instance_id\": {\"unknown\": \"whole task\"}, \"stage_label\": {\"unknown\": \"whole task\"}, \"primitive\": {\"unknown\": \"whole task\"}, \"object_role\": {\"unknown\": \"whole task\"}, \"stage_index\": null, \"control_step\": {\"unknown\": \"whole task\"}, \"pose_difference\": {\"unknown\": \"not recorded\"}, \"evidence_source\": \"simulator task flag\"}}",
+ "refused_params": []
+}

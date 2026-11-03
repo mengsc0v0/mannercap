@@ -1,0 +1,37 @@
+{
+ "supported": true,
+ "unsupported_reason": null,
+ "objects": [
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.15,
+    "place_dz": 0.019,
+    "place_tol_m": 0.004,
+    "grasp_reference_id": "libero_10.t4.median_n40.porcelain_mug_1"
+   },
+   "derivation": "The plate top is z=0.4557 and its origin is z=0.4393. The mug bottom is 0.0024 m above its origin, so its resting origin offset is (0.4557-0.0024)-0.4393=0.0140 m; place_dz=0.019 adds a 0.005 m settling drop. A 0.004 m servo tolerance remains well inside the required 0.03 m origin-radius. Lifting by 0.15 raises the mug bottom from 0.4368 to 0.5868, 0.0174 m above the tallest existing obstacle top at 0.5694; transport at target origin z 0.4393+0.15 similarly keeps its bottom at 0.5917. The available compatible mug demonstration grasp is selected."
+  },
+  {
+   "object": "chocolate_pudding_1",
+   "target": "@site:living_room_table_plate_right_region",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.18,
+    "place_dz": 0.0449,
+    "place_tol_m": 0.004,
+    "target_offset_site": [
+     0.0,
+     0.02,
+     0.0
+    ],
+    "target_yaw_deg": 180.0,
+    "target_yaw_symmetry_deg": 180.0
+   },
+   "derivation": "The yaw-zero site plus offset [0,0.02,0] targets world xy=(0.15,0.12), strictly inside the accepted [0.10,0.20] by [0.05,0.15] box and farther from the plate and placed mug. The table surface is z=0.4368 and the pudding origin is 0.0131 m above its bottom, giving resting origin z=0.4499, or 0.0399 m above site z=0.4100; place_dz=0.0449 adds a 0.005 m settling drop. Lift 0.15 puts the bottom at about 0.5867. Transport_dz=0.18 puts the bottom at 0.4100+0.18-0.0131=0.5769, about 0.0152 m above the placed mug top near 0.5617. Yaw 180 preserves the pudding's initial orientation; its rectangular footprint has 180-degree symmetry."
+  }
+ ],
+ "hypothesis": "Place the mug first at the plate-origin center, then place the pudding at the right-region point (0.15,0.12), using small controlled settling drops. The pudding's positive site-y offset increases separation from the plate and mug while retaining ample accepted-region margin."
+}

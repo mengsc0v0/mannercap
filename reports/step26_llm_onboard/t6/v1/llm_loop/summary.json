@@ -1,0 +1,94 @@
+{
+ "task": 6,
+ "arm": "llm_loop",
+ "tag": "v1",
+ "dev_inits": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "heldout_inits": [
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29
+ ],
+ "rounds": [
+  {
+   "round": 0,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "Place the mug first at the plate-origin center, then place the pudding at the right-region point (0.15,0.12), using small controlled settling drops. The pudding's positive site-y offset increases separation from the plate and mug while retaining ample accepted-region margin.",
+   "unsupported": false
+  },
+  {
+   "round": 1,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The 0/4 result was exclusively a validation failure caused by the scene-incompatible registered mug grasp, so no geometric stage or predicate was tested. I removed only grasp_reference_id and retained the prior order, heights, offsets, tolerances, and yaw; the executor will now use its built-in collision-checked grasp planner.",
+   "unsupported": false
+  },
+  {
+   "round": 2,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The failure was exclusively the mug approach grasp geometry: the default dz=0.04 m candidates intersected the mug itself, and no later stage or predicate was tested. I retained the execution order and all placement parameters, but added a geometry-derived mug grasp grid near its 0.1084 m-high upper rim, with broader lateral and yaw coverage. The incompatible registered grasp remains omitted.",
+   "unsupported": false
+  },
+  {
+   "round": 3,
+   "dev_ok": 1,
+   "dev_n": 4,
+   "hypothesis": "The failed predicate was only mug-on-plate: execution completed, but the mug never moved from its start, showing that the prior high-rim grasp reached the commanded band without securing the mug. I replaced only the mug grasp grid with one explicit candidate reconstructed from the available demonstration grasp geometry while retaining the proven placement heights, order, and the pudding configuration that succeeded in every run.",
+   "unsupported": false
+  },
+  {
+   "round": 4,
+   "dev_ok": 1,
+   "dev_n": 4,
+   "hypothesis": "The mug grasp and mug-on-plate predicate are now reliable and are unchanged. The remaining failures were pudding place timeouts and outward displacement caused by placing at y=0.12 too close to the already placed mug: three final origins crossed the region's y=0.15 boundary. I changed only the pudding site offset from [0,0.02,0] to [0,0.04,0], moving its intended origin to y=0.14 for 0.02 m more obstacle clearance while preserving a 0.01 m accepted-region margin.",
+   "unsupported": false
+  },
+  {
+   "round": 5,
+   "dev_ok": 4,
+   "dev_n": 4,
+   "hypothesis": "The evidence supports an order failure rather than new grasp or height errors: the mug predicate was initially true, but placing the pudding second produced place timeouts, pushed the pudding beyond y=0.15 in two runs, and in init 3 displaced the already placed mug to 0.0479 m from the plate origin. I changed only the execution order, placing the pudding first at the previously tested y=0.14 target and the mug second. This removes the mug as an obstacle during pudding placement and prevents the later pudding operation from knocking the mug off the plate; all grasp, height, tolerance, offset, and yaw values are otherwise unchanged.",
+   "unsupported": false
+  }
+ ],
+ "selected_round": 5,
+ "llm_spend": {
+  "calls": 2,
+  "cached": 0,
+  "failed": 0,
+  "latency_s": 55.627,
+  "prompt_tokens": 33532,
+  "completion_tokens": 4468,
+  "total_tokens": 38000,
+  "budget": 8
+ },
+ "heldout_success": 19,
+ "heldout_n": 20,
+ "heldout_success_and_clean": 0,
+ "heldout_status": {
+  "completed": 20
+ }
+}

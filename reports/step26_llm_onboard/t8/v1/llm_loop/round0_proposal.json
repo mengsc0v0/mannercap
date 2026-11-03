@@ -1,0 +1,38 @@
+{
+ "proposal": {
+  "supported": false,
+  "unsupported_reason": "The official goal includes turnon(flat_stove_1), but the fixed executor has no turn-on capability; therefore it cannot satisfy the full conjunction of goal predicates.",
+  "objects": [],
+  "hypothesis": "No geometric placement configuration can complete the official goal unless the stove is already on or another executor turns it on."
+ },
+ "llm_call": {
+  "prompt_version": "s26_onboard.v2",
+  "request_hash": "408d47c0fa76aecc0f07a59bc588e70e3d32eb13e5b95fab5d751762f288c6f0",
+  "status": "ok",
+  "latency_s": 18.576,
+  "usage": {
+   "completion_tokens": 1419,
+   "prompt_tokens": 2570,
+   "total_tokens": 3989,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 1325,
+    "rejected_prediction_tokens": 0
+   },
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0,
+    "cache_write_tokens": 2567
+   }
+  },
+  "error": "",
+  "identity": {
+   "interface": "llm_interface.v1",
+   "model": "gpt-5.6-sol-disc",
+   "base_url": "https://aihubmix.com/v1",
+   "temperature": 0.0,
+   "max_output_tokens": 8000
+  }
+ }
+}

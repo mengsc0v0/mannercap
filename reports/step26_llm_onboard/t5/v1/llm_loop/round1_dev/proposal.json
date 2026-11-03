@@ -1,0 +1,26 @@
+{
+ "supported": true,
+ "unsupported_reason": null,
+ "objects": [
+  {
+   "object": "black_book_1",
+   "target": "@site:desk_caddy_1_back_contain_region",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.15,
+    "place_dz": 0.04,
+    "place_tol_m": 0.002,
+    "target_offset_site": [
+     5e-05,
+     0.0,
+     -0.00505
+    ],
+    "target_yaw_deg": 0.0,
+    "target_yaw_symmetry_deg": 180.0,
+    "grasp_reference_id": "libero_10.t5.demo_0.close_57.black_book_1"
+   },
+   "derivation": "The accepted origin box midpoint is (-0.42435,-0.14170,0.96755), so relative to the site at (-0.42440,-0.14170,0.97260) the centered offset is (0.00005,0,-0.00505). The previous runs all grasped and transported successfully with no guard refusal, but every run timed out during place; the one failed predicate ended with the book ejected 0.172 m in +X. The three successful outcomes instead finished consistently near z=1.017 m. Raising place_dz from 0 to 0.04 targets a nominal release origin of 0.97260-0.00505+0.04=1.00755 m; the prior executor's approximately +0.0101 m runtime target shift predicts about 1.0176 m, matching those stable successful outcomes and remaining 0.0154 m below the accepted upper bound 1.033 m. Tightening tolerance to the registry minimum 0.002 m reduces lateral insertion error. From the initial AABB at yaw -130.5 degrees, solving 0.1026=0.649a+0.760b and 0.0934=0.760a+0.649b gives an upright footprint near 0.028 by 0.111 m; yaw 0 aligns 0.028 m with the site's 0.0556 m X width and 0.111 m with its 0.1244 m Y width, leaving about 0.0067 m limiting margin per side. The 0.15 m transport height places the origin near 1.1176 m, about 0.062 m above the caddy's 1.0553 m top. The demonstrated grasp is retained because it was feasible and reached the grasp band in all four trials."
+  }
+ ],
+ "hypothesis": "The failure was not grasp, transport, ordering, or predicate capability: it was a stochastic place-stage insertion/ejection, with all four trials timing out at place and init 2 ending outside the region. I retained the proven grasp, centered offset, yaw, lift, and transport settings; I raised place_dz from 0 to 0.04 so release occurs near the approximately 1.017 m height shared by all three successful outcomes, and tightened place_tol_m from 0.004 to 0.002 to reduce error within the narrow footprint margin."
+}

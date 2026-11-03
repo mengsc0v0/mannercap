@@ -1,0 +1,58 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 8000,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "s26_onboard.v2",
+  "response": {
+    "hypothesis": "The failed predicate was the white_yellow_mug_1-on-plate_2 goal because execution never passed that mug's grasp stage in three inits. The first mug and both placement heights are retained because every executed first placement succeeded and the complete run satisfied both predicates. The only substantive change is replacing the white/yellow mug's single low demonstration grasp with a collision-checked grid of higher, centered and oppositely shifted grasps, giving the guard alternatives after a post-close hand collision.",
+    "objects": [
+      {
+        "derivation": "This grasp and placement succeeded on all four development inits, so they are retained. The plate top is 0.4557 m, 0.0164 m above its 0.4393 m origin. The mug origin is 0.0024 m below its bottom, giving a resting origin offset of 0.0164-0.0024=0.0140 m; adding 0.005 m release clearance gives place_dz=0.0190 m. The 0.003 m servo tolerance is one tenth of the strict 0.03 m accepted XY radius. With lift_dz=0.15, the bottom reaches 0.4344+0.15+0.0024=0.5868 m, 0.0174 m above the tallest non-target top at 0.5694 m. At transport_dz=0.15, the bottom is 0.4393+0.15+0.0024=0.5917 m.",
+        "object": "porcelain_mug_1",
+        "params": {
+          "grasp_reference_id": "libero_10.t4.median_n40.porcelain_mug_1",
+          "lift_dz": 0.15,
+          "place_dz": 0.019,
+          "place_tol_m": 0.003,
+          "transport_dz": 0.15
+        },
+        "target": "plate_1"
+      },
+      {
+        "derivation": "The failed runs all stopped at this mug's post-close grasp guard: the single demonstration candidate at dz about 0.075 m contacted the white_yellow_mug body with the hand, while placement succeeded whenever grasping completed. Its collision top is 0.5400 m versus origin 0.4369 m, so the top is 0.1031 m above the origin; dz values 0.0831 and 0.0931 place the hand reference 0.0200 and 0.0100 m below that top, higher than the rejected approximately 0.075 m grasp. The 0 and +/-0.01/0.02 m lateral alternatives remain within the shorter collision half-width 0.1061/2=0.05305 m, leaving at least 0.03305 m to that bound. Yaws 0 and +/-90 degrees cover the two principal horizontal AABB axes. For placement, the plate top is 0.4557-0.4393=0.0164 m above its origin; the mug origin is 0.0001 m above its bottom, so resting offset is 0.0164+0.0001=0.0165 m, and adding 0.005 m gives place_dz=0.0215 m. The 0.003 m tolerance is below the 0.03 m accepted radius. Lift places the bottom at 0.4369+0.15-0.0001=0.5868 m, 0.0174 m above the tallest obstacle top; transport places it at 0.4393+0.15-0.0001=0.5892 m.",
+        "object": "white_yellow_mug_1",
+        "params": {
+          "grasp_grid": {
+            "dzs_m": [
+              0.0831,
+              0.0931
+            ],
+            "laterals_m": [
+              -0.02,
+              -0.01,
+              0.0,
+              0.01,
+              0.02
+            ],
+            "yaws_deg": [
+              0.0,
+              90.0,
+              -90.0
+            ]
+          },
+          "lift_dz": 0.15,
+          "place_dz": 0.0215,
+          "place_tol_m": 0.003,
+          "transport_dz": 0.15
+        },
+        "target": "plate_2"
+      }
+    ],
+    "supported": true,
+    "unsupported_reason": null
+  }
+}

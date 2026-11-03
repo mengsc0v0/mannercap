@@ -1,0 +1,36 @@
+{
+ "supported": true,
+ "unsupported_reason": null,
+ "objects": [
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.15,
+    "place_dz": 0.019,
+    "place_tol_m": 0.003,
+    "grasp_reference_id": "libero_10.t4.median_n40.porcelain_mug_1"
+   },
+   "derivation": "Unchanged because this pick-and-place completed and satisfied its predicate in every reported init. The plate top is 0.4557-0.4393=0.0164 m above its origin. The mug origin is 0.0024 m below its bottom, so its supported origin offset is 0.0164-0.0024=0.0140 m; adding 0.0050 m release clearance gives place_dz=0.0190 m. The 0.003 m tolerance is one tenth of the accepted 0.03 m XY radius. With lift_dz=0.15, the bottom reaches 0.4344+0.15+0.0024=0.5868 m, 0.0174 m above the tallest non-target top at 0.5694 m. During transport its bottom is 0.4393+0.15+0.0024=0.5917 m. The registered grasp was feasible and reliable."
+  },
+  {
+   "object": "white_yellow_mug_1",
+   "target": "plate_2",
+   "params": {
+    "lift_dz": 0.15,
+    "transport_dz": 0.15,
+    "place_dz": 0.0175,
+    "place_tol_m": 0.003,
+    "grasp_candidate": {
+     "yaw_deg": 1.8,
+     "lateral_m": -0.0145,
+     "dz_m": 0.0931,
+     "longitudinal_m": 0.0577
+    }
+   },
+   "derivation": "The failed predicate was this mug on plate_2. Three runs exhausted the sole grasp candidate because its dz=0.075 m pose caused pre-close or post-close mug-body contact; the one completed run settled 0.0347 m from the plate origin, outside the strict 0.03 m radius. The demonstrated geometry supplies yaw 1.8 degrees, lateral about -0.0145 m, and longitudinal about 0.0577 m, so those values are restored rather than using the failed 0.0677 m outward shift. The mug top is 0.5400-0.4369=0.1031 m above its origin; dz=0.0931 m places the hand reference 0.0100 m below that top and 0.0181 m above the colliding dz=0.075 m pose. The plate top offset is 0.4557-0.4393=0.0164 m, and the mug origin is 0.0001 m above its bottom, so contact height is 0.0164+0.0001=0.0165 m; adding only 0.0010 m clearance gives place_dz=0.0175 m, reducing the previous 0.005 m free drop that accompanied the XY miss. The 0.003 m tolerance leaves 0.027 m inside the accepted radius. Lift puts the bottom at 0.4369+0.15-0.0001=0.5868 m, 0.0174 m above the tallest obstacle, while transport puts it at 0.4393+0.15-0.0001=0.5892 m."
+  }
+ ],
+ "hypothesis": "The order and the entire porcelain-mug configuration are retained because that predicate succeeded in every run and moving it first clears workspace near the second mug. For the white/yellow mug, the evidence identifies the grasp as the primary failure: the 0.075 m hand height repeatedly contacted the mug, while the no-longitudinal higher grid was approach-infeasible. I therefore combine the demonstrated handle-side longitudinal geometry with the geometry-derived higher dz=0.0931 m, undo the unsupported extra 10 mm outward shift, and lower the release clearance from 5 mm to 1 mm to reduce post-release lateral motion. This should clear the mug body during grasp and leave the mug centered within the strict 0.03 m plate-origin radius."
+}

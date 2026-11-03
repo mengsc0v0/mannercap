@@ -1,0 +1,92 @@
+{
+ "proposal": {
+  "supported": true,
+  "unsupported_reason": null,
+  "objects": [
+   {
+    "object": "porcelain_mug_1",
+    "target": "plate_1",
+    "params": {
+     "lift_dz": 0.15,
+     "transport_dz": 0.15,
+     "place_dz": 0.019,
+     "place_tol_m": 0.004,
+     "grasp_grid": {
+      "yaws_deg": [
+       -135.0,
+       -90.0,
+       -45.0,
+       0.0,
+       45.0,
+       90.0,
+       135.0,
+       180.0
+      ],
+      "laterals_m": [
+       -0.04,
+       -0.03,
+       0.0,
+       0.03,
+       0.04
+      ],
+      "dzs_m": [
+       0.09,
+       0.1,
+       0.11
+      ]
+     }
+    },
+    "derivation": "All four prior runs were rejected at the mug approach before motion: the default grid used dz=0.04 m and every candidate collided with the mug itself during descent. The mug top is 0.5428-0.4344=0.1084 m above its origin, so dz values 0.09, 0.10, and 0.11 sample grasps around its upper rim rather than through its body. Its horizontal half-extents are about 0.0963/2=0.0482 m and 0.1246/2=0.0623 m, so lateral samples through +/-0.04 m cover the rim while remaining within the object footprint; 45-degree yaw increments expose both body axes and diagonal approaches. The plate top is z=0.4557, while the mug origin is 0.0024 m below its bottom, giving a resting origin offset from the plate origin of (0.4557-0.0024)-0.4393=0.0140 m; place_dz=0.019 adds a 0.005 m settling drop. Tolerance 0.004 m is safely below the required 0.03 m origin radius. A 0.15 m lift raises the initial mug bottom from 0.4368 to 0.5868, above the tallest initial object top at 0.5694; the same transport offset gives a carried bottom near 0.5869 over the plate."
+   },
+   {
+    "object": "chocolate_pudding_1",
+    "target": "@site:living_room_table_plate_right_region",
+    "params": {
+     "lift_dz": 0.15,
+     "transport_dz": 0.18,
+     "place_dz": 0.0449,
+     "place_tol_m": 0.004,
+     "target_offset_site": [
+      0.0,
+      0.02,
+      0.0
+     ],
+     "target_yaw_deg": 180.0,
+     "target_yaw_symmetry_deg": 180.0
+    },
+    "derivation": "This stage was never entered, so its prior geometry is retained. The yaw-zero site at (0.15,0.10,0.41) plus offset (0,0.02,0) targets world XY=(0.15,0.12), strictly inside the accepted x=(0.10,0.20), y=(0.05,0.15) box. The table surface is z=0.4368 and the pudding origin is 0.0131 m above its bottom, so its resting origin is z=0.4499, or 0.0399 m above the site; place_dz=0.0449 provides a 0.005 m drop and settles within the accepted z interval (0.412,0.517). Lift 0.15 raises its bottom to about 0.5867. Transport 0.18 puts its bottom at 0.4100+0.1800-0.0131=0.5769, above the placed mug top near 0.4533+0.1061=0.5594. Yaw 180 preserves the initial pudding orientation, with 180-degree symmetry for its rectangular footprint."
+   }
+  ],
+  "hypothesis": "The failure was exclusively the mug approach grasp geometry: the default dz=0.04 m candidates intersected the mug itself, and no later stage or predicate was tested. I retained the execution order and all placement parameters, but added a geometry-derived mug grasp grid near its 0.1084 m-high upper rim, with broader lateral and yaw coverage. The incompatible registered grasp remains omitted."
+ },
+ "llm_call": {
+  "prompt_version": "s26_onboard.v2",
+  "request_hash": "5008e891512b86fcab20297f89b5fe1efd6d2deeacf91ad5458f53e13161dd21",
+  "status": "ok",
+  "latency_s": 22.303,
+  "usage": {
+   "completion_tokens": 1926,
+   "prompt_tokens": 8793,
+   "total_tokens": 10719,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 1024,
+    "rejected_prediction_tokens": 0
+   },
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0,
+    "cache_write_tokens": 8790
+   }
+  },
+  "error": "",
+  "identity": {
+   "interface": "llm_interface.v1",
+   "model": "gpt-5.6-sol-disc",
+   "base_url": "https://aihubmix.com/v1",
+   "temperature": 0.0,
+   "max_output_tokens": 8000
+  }
+ }
+}

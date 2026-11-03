@@ -1,0 +1,177 @@
+{
+ "task": 4,
+ "init": 27,
+ "success": false,
+ "status": "guard_candidates_exhausted:obj1.pick_1.approach",
+ "n_steps": 167,
+ "wall_s": 10.8,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "porcelain_mug_1",
+    "plate_1"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "white_yellow_mug_1",
+    "plate_2"
+   ],
+   "true": false
+  }
+ ],
+ "objects": [
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.09851234496472566,
+    -0.1357121028659141,
+    0.43436998042952446
+   ],
+   "planned_object_target_origin": [
+    0.013585723181889843,
+    -0.317552895180843,
+    0.43927290817462056
+   ],
+   "final_origin": [
+    0.0085,
+    -0.3053,
+    0.4429
+   ],
+   "target_origin_final": [
+    0.0136,
+    -0.3175,
+    0.4393
+   ],
+   "xy_dist_to_target_origin": 0.0132,
+   "dz_to_target_origin": 0.0036,
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_reference",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 10.3,
+     "lateral_m": -0.007097728113367453,
+     "dz_m": 0.10061273370377134,
+     "offset": [
+      -0.013,
+      0.0319,
+      0.101
+     ],
+     "min_clearance_m": 0.02622,
+     "blocking": "porcelain_mug_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01849,
+     "feasible": true,
+     "longitudinal_m": 0.033710268922287005
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 10.3,
+      "lateral_m": -0.007097728113367453,
+      "dz_m": 0.10061273370377134,
+      "longitudinal_m": 0.033710268922287005,
+      "min_clearance_m": 0.02622,
+      "at_grasp_clearance_m": 0.01849,
+      "blocking": "porcelain_mug_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "white_yellow_mug_1",
+   "target": "plate_2",
+   "stages_entered": [],
+   "grasp_reached_band": null,
+   "obj_start_origin": [
+    -0.05839746025025179,
+    0.11053505860036485,
+    0.4368570543734013
+   ],
+   "planned_object_target_origin": [
+    -0.01211869039559378,
+    0.29286155415558485,
+    0.43927290817462056
+   ],
+   "final_origin": [
+    -0.0584,
+    0.1105,
+    0.4369
+   ],
+   "target_origin_final": [
+    -0.0121,
+    0.2929,
+    0.4393
+   ],
+   "xy_dist_to_target_origin": 0.1881,
+   "dz_to_target_origin": -0.0024,
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_reference",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 1.8,
+     "lateral_m": -0.014570717509458528,
+     "dz_m": 0.07500501680134948,
+     "offset": [
+      -0.0163,
+      0.0572,
+      0.0762
+     ],
+     "min_clearance_m": 0.01462,
+     "blocking": "white_yellow_mug_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00309,
+     "feasible": true,
+     "longitudinal_m": 0.05767713737786073
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 1.8,
+      "lateral_m": -0.014570717509458528,
+      "dz_m": 0.07500501680134948,
+      "longitudinal_m": 0.05767713737786073,
+      "min_clearance_m": 0.01462,
+      "at_grasp_clearance_m": 0.00309,
+      "blocking": "white_yellow_mug_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "rightfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "max_n": 1.6
+  }
+ ],
+ "guard_retries": 1,
+ "guard_refusals": "[{\"instance_id\": \"obj1.pick_1.grasp\", \"check\": \"post_close\", \"violations\": [{\"robot_geom\": \"gripper0_hand_collision\", \"robot_body\": \"gripper0_right_gripper\", \"other\": \"white_yellow_mug_1_main\", \"force_n\": 0.87}], \"control_step\": 276, \"approach_instance\": \"obj1.pick_1.approach\", \"refused_candidate\": [1.8, -0.014571, 0.075005, 0.057677], \"restored_to_stage\": \"obj1.pick_1.approach\", \"steps_discarded\": 109, \"resume_prefix_steps\": 167, \"retry_index\": 1, \"restored_control_step\": 167, \"state_digest_snapshot\": \"062b1a5e46924d182cdb639bf7a37e52c2a84f17f9caa27012298885f6e16a05\", \"state_digest_after_restore\": \"062b1a5e46924d182cdb639bf7a37e52c2a84f17f9caa27012298885f6e16a05\", \"state_identity_match\": true, \"next_candidate\": null}]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"guard_candidates_exhausted:obj1.pick_1.approach\", \"classes_present\": [\"execution_failed\", \"outcome_not_met\"], \"first_failure\": {\"class\": \"execution_failed\", \"requirement_id\": \"exec.guard.candidates_exhausted\", \"instance_id\": \"obj1.pick_1.approach\", \"stage_label\": \"obj1.pick_1.approach\", \"primitive\": \"approach\", \"object_role\": \"obj1\", \"stage_index\": 7, \"control_step\": {\"unknown\": \"not recorded in the status\"}, \"pose_difference\": {\"unknown\": \"not applicable: the guard decision is about contact, not pose\"}, \"evidence_source\": \"executor status + meta.execution_guard\"}}",
+ "refused_params": []
+}

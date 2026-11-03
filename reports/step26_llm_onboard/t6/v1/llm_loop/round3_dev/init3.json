@@ -1,0 +1,196 @@
+{
+ "task": 6,
+ "init": 3,
+ "success": true,
+ "status": "stage_timeout:obj1.pick_1.place",
+ "n_steps": 612,
+ "wall_s": 17.2,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "porcelain_mug_1",
+    "plate_1"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "chocolate_pudding_1",
+    "living_room_table_plate_right_region"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "porcelain_mug_1",
+   "target": "plate_1",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.10083297621728572,
+    -0.138902419610639,
+    0.43436998042952446
+   ],
+   "planned_object_target_origin": [
+    0.15876294225052867,
+    -0.0025491974420046625,
+    0.43927291440000193
+   ],
+   "final_origin": [
+    0.1562,
+    0.0044,
+    0.4427
+   ],
+   "target_origin_final": [
+    0.1593,
+    -0.0038,
+    0.4393
+   ],
+   "xy_dist_to_target_origin": 0.0088,
+   "dz_to_target_origin": 0.0035,
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_candidate",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -79.7,
+     "lateral_m": -0.0337,
+     "dz_m": 0.101,
+     "offset": [
+      -0.01303,
+      0.03182,
+      0.10293
+     ],
+     "min_clearance_m": 0.01682,
+     "blocking": "porcelain_mug_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00879,
+     "feasible": true,
+     "longitudinal_m": -0.0071
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -79.7,
+      "lateral_m": -0.0337,
+      "dz_m": 0.101,
+      "longitudinal_m": -0.0071,
+      "min_clearance_m": 0.01682,
+      "at_grasp_clearance_m": 0.00879,
+      "blocking": "porcelain_mug_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "chocolate_pudding_1",
+   "target": "@site:living_room_table_plate_right_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.05242032294736189,
+    0.09933694226693504,
+    0.44983992152
+   ],
+   "planned_object_target_origin": [
+    0.15,
+    0.12000000000000001,
+    0.41
+   ],
+   "final_origin": [
+    0.1789,
+    0.1488,
+    0.4498
+   ],
+   "site_frame_final_origin": [
+    0.0289,
+    0.0488,
+    0.0398
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "default_grid",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.0,
+     "dz_m": 0.0,
+     "offset": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "min_clearance_m": 0.01672,
+     "blocking": "chocolate_pudding_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.0,
+      "dz_m": 0.0,
+      "min_clearance_m": 0.01672,
+      "at_grasp_clearance_m": 0.01,
+      "blocking": "chocolate_pudding_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "leftfinger",
+   "other": "porcelain_mug_1_main",
+   "max_n": 3.9
+  },
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "max_n": 8.9
+  },
+  {
+   "robot_body": "right_gripper",
+   "other": "porcelain_mug_1_main",
+   "max_n": 24.0
+  },
+  {
+   "robot_body": "rightfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "max_n": 5.4
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"stage_timeout:obj1.pick_1.place\", \"classes_present\": [\"execution_failed\"], \"first_failure\": {\"class\": \"execution_failed\", \"requirement_id\": \"exec.stage_reached.place\", \"instance_id\": \"obj1.pick_1.place\", \"stage_label\": \"obj1.pick_1.place\", \"primitive\": \"place\", \"object_role\": \"obj1\", \"stage_index\": 12, \"control_step\": {\"unknown\": \"status names the stage only; meta.stage_failure absent\"}, \"pose_difference\": {\"unknown\": \"neither goal nor reached pose recorded for this stage\"}, \"evidence_source\": \"executor status\"}}",
+ "refused_params": []
+}

@@ -1,0 +1,98 @@
+{
+ "task": 5,
+ "init": 12,
+ "success": false,
+ "status": "completed",
+ "n_steps": 223,
+ "wall_s": 5.7,
+ "goals": [
+  {
+   "predicate": "in",
+   "args": [
+    "black_book_1",
+    "desk_caddy_1_back_contain_region"
+   ],
+   "true": false
+  }
+ ],
+ "objects": [
+  {
+   "object": "black_book_1",
+   "target": "@site:desk_caddy_1_back_contain_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.22370160716643478,
+    0.17236951628609645,
+    0.8829599215199998
+   ],
+   "planned_object_target_origin": [
+    -0.4246799867227899,
+    -0.15207962213605714,
+    1.02588
+   ],
+   "final_origin": [
+    -0.4266,
+    -0.1519,
+    0.8986
+   ],
+   "site_frame_final_origin": [
+    -0.0022,
+    0.0102,
+    0.0739
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_reference",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -4.1,
+     "lateral_m": -0.011692736254566495,
+     "dz_m": 0.12022726091323174,
+     "offset": [
+      -0.01475,
+      -0.00205,
+      0.1209
+     ],
+     "min_clearance_m": 0.01576,
+     "blocking": "black_book_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01479,
+     "feasible": true,
+     "longitudinal_m": -0.009251080842799549
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -4.1,
+      "lateral_m": -0.011692736254566495,
+      "dz_m": 0.12022726091323174,
+      "longitudinal_m": -0.009251080842799549,
+      "min_clearance_m": 0.01576,
+      "at_grasp_clearance_m": 0.01479,
+      "blocking": "black_book_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": true,
+ "unexcused_contacts": [],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"completed\", \"classes_present\": [\"outcome_not_met\"], \"first_failure\": {\"class\": \"outcome_not_met\", \"requirement_id\": \"task.official_success\", \"instance_id\": {\"unknown\": \"whole task\"}, \"stage_label\": {\"unknown\": \"whole task\"}, \"primitive\": {\"unknown\": \"whole task\"}, \"object_role\": {\"unknown\": \"whole task\"}, \"stage_index\": null, \"control_step\": {\"unknown\": \"whole task\"}, \"pose_difference\": {\"unknown\": \"not recorded\"}, \"evidence_source\": \"simulator task flag\"}}",
+ "refused_params": []
+}

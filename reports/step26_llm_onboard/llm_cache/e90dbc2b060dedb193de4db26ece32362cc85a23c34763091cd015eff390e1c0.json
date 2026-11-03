@@ -1,0 +1,16 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 8000,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "s26_onboard.v1",
+  "response": {
+    "hypothesis": "No execution configuration is proposed because the complete official goal cannot succeed. Moving the mug onto the plate would be supported, but the pudding's required contact height and the target region's accepted origin-height interval are disjoint.",
+    "objects": [],
+    "supported": false,
+    "unsupported_reason": "The official on(chocolate_pudding_1, living_room_table_plate_right_region) predicate is geometrically unsatisfiable. The region permits the pudding origin only at z = 0.410 \u00b1 0.007 m, i.e. [0.403, 0.417] m. Touching the tabletop requires origin z = support height 0.4368 m + pudding origin-above-bottom 0.0131 m = 0.4499 m, which is 0.0329 m above the region's maximum accepted z. No allowed executor parameter can make the object both touch the support and satisfy the region's z test."
+  }
+}

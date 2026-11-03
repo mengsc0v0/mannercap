@@ -1,0 +1,104 @@
+{
+ "task": 5,
+ "init": 14,
+ "success": true,
+ "status": "stage_timeout:obj0.pick_1.place",
+ "n_steps": 435,
+ "wall_s": 9.4,
+ "goals": [
+  {
+   "predicate": "in",
+   "args": [
+    "black_book_1",
+    "desk_caddy_1_back_contain_region"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "black_book_1",
+   "target": "@site:desk_caddy_1_back_contain_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.2115921998289309,
+    0.17117150080083327,
+    0.8829599215199998
+   ],
+   "planned_object_target_origin": [
+    -0.43431674478997945,
+    -0.14169116962348446,
+    0.97763
+   ],
+   "final_origin": [
+    -0.4344,
+    -0.1237,
+    1.0148
+   ],
+   "site_frame_final_origin": [
+    -0.01,
+    -0.018,
+    -0.0422
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_reference",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -4.1,
+     "lateral_m": -0.011689823058772504,
+     "dz_m": 0.12025060524822319,
+     "offset": [
+      -0.01488,
+      0.00068,
+      0.1209
+     ],
+     "min_clearance_m": 0.01538,
+     "blocking": "black_book_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.01462,
+     "feasible": true,
+     "longitudinal_m": -0.009253094098636743
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -4.1,
+      "lateral_m": -0.011689823058772504,
+      "dz_m": 0.12025060524822319,
+      "longitudinal_m": -0.009253094098636743,
+      "min_clearance_m": 0.01538,
+      "at_grasp_clearance_m": 0.01462,
+      "blocking": "black_book_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "right_gripper",
+   "other": "black_book_1_main",
+   "max_n": 46.4
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"stage_timeout:obj0.pick_1.place\", \"classes_present\": [\"execution_failed\"], \"first_failure\": {\"class\": \"execution_failed\", \"requirement_id\": \"exec.stage_reached.place\", \"instance_id\": \"obj0.pick_1.place\", \"stage_label\": \"obj0.pick_1.place\", \"primitive\": \"place\", \"object_role\": \"obj0\", \"stage_index\": 5, \"control_step\": {\"unknown\": \"status names the stage only; meta.stage_failure absent\"}, \"pose_difference\": {\"unknown\": \"neither goal nor reached pose recorded for this stage\"}, \"evidence_source\": \"executor status\"}}",
+ "refused_params": []
+}

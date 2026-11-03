@@ -1,0 +1,70 @@
+{
+ "proposal": {
+  "supported": true,
+  "unsupported_reason": null,
+  "objects": [
+   {
+    "object": "chocolate_pudding_1",
+    "target": "@site:living_room_table_plate_right_region",
+    "params": {
+     "lift_dz": 0.12,
+     "transport_dz": 0.12,
+     "place_dz": 0.042,
+     "place_tol_m": 0.005,
+     "target_offset_site": [
+      0.0,
+      0.025,
+      0.0
+     ],
+     "target_align": "collision_center",
+     "target_yaw_deg": 0.0,
+     "target_yaw_symmetry_deg": 180.0
+    },
+    "derivation": "Placed first so the later mug path approaches the plate from y<0 rather than carrying the pudding past a mug already on the plate. Site yaw is 0 deg. Aligning the collision center and using yaw 0 keeps the 0.0802 m side along x and the 0.0463 m side along y. A +0.025 m site-y offset gives center y=0.125 m; its near edge is 0.125-0.0463/2=0.10185 m, leaving 0.02655 m from the plate AABB edge at y=0.0753, while the origin remains well inside the accepted y interval [0.05,0.15]. The resting collision-center height is table surface 0.4368 plus half-height 0.0274/2=0.4505 m, or 0.0405 m above the site z=0.41; place_dz=0.042 releases 0.0015 m above that and settles the origin near 0.4498 m, inside the accepted open z interval (0.412,0.517). Tolerance 0.005 m preserves the site-box margins and at least about 0.0215 m plate clearance. Lift/transport 0.12 m puts the transported origin near 0.53 m, with its bottom near 0.5169 m, over 0.061 m above the plate top at 0.4557 m."
+   },
+   {
+    "object": "porcelain_mug_1",
+    "target": "plate_1",
+    "params": {
+     "lift_dz": 0.15,
+     "transport_dz": 0.15,
+     "place_dz": 0.0155,
+     "place_tol_m": 0.006,
+     "grasp_reference_id": "libero_10.t4.median_n40.porcelain_mug_1"
+    },
+    "derivation": "The object target is the plate origin [0.149,0.0057,0.4393], so centering there gives nominal xy error 0 and a 0.006 m servo tolerance, safely below the required 0.03 m origin-distance limit. The plate top is z=0.4557. Mug origin_above_bottom=-0.0024 means its collision bottom is 0.0024 m above its origin, so the settled origin is 0.4557-0.0024=0.4533, which is 0.0140 m above the plate origin. place_dz=0.0155 releases 0.0015 m above that resting pose before the free drop. Lift 0.15 raises the start origin to 0.5844 m; transport 0.15 puts it at 0.5893 m over the plate, providing ample clearance above the pudding top near 0.4642 m. The registered compatible median demonstration grasp is selected to reduce the risk of palm or outer-finger contact on the mug."
+   }
+  ],
+  "hypothesis": "The pudding should settle on the table within the right-hand region while remaining separated from the plate, after which the demonstrated mug grasp should place the mug centrally with only a 1.5 mm drop onto the plate. The main changes from defaults are geometry-derived low release heights, a +25 mm site-y offset away from the plate, and execution of the pudding before the mug."
+ },
+ "llm_call": {
+  "prompt_version": "s26_onboard.v2",
+  "request_hash": "4b66d2e7d8468590b856462296c1be9c246373e74330fb6696e6c56c2b47ac19",
+  "status": "ok",
+  "latency_s": 34.512,
+  "usage": {
+   "completion_tokens": 2828,
+   "prompt_tokens": 2739,
+   "total_tokens": 5567,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 1995,
+    "rejected_prediction_tokens": 0
+   },
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0,
+    "cache_write_tokens": 2736
+   }
+  },
+  "error": "",
+  "identity": {
+   "interface": "llm_interface.v1",
+   "model": "gpt-5.6-sol-disc",
+   "base_url": "https://aihubmix.com/v1",
+   "temperature": 0.0,
+   "max_output_tokens": 8000
+  }
+ }
+}

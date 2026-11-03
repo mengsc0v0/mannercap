@@ -1,0 +1,38 @@
+{
+ "proposal": {
+  "supported": false,
+  "unsupported_reason": "The official goal requires close(white_cabinet_1_bottom_region), but the fixed executor has no capability to close an articulated fixture. Because success requires all official predicates, placing the bowl alone cannot complete the task.",
+  "objects": [],
+  "hypothesis": "Unsupported due solely to the required close predicate; no geometric placement configuration can satisfy the full official goal with this executor."
+ },
+ "llm_call": {
+  "prompt_version": "s26_onboard.v2",
+  "request_hash": "c783f5d954001f096ca7f36931a50c4b4682df84eda10fc1cb93451925a8b296",
+  "status": "ok",
+  "latency_s": 5.179,
+  "usage": {
+   "completion_tokens": 176,
+   "prompt_tokens": 2199,
+   "total_tokens": 2375,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 82,
+    "rejected_prediction_tokens": 0
+   },
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0,
+    "cache_write_tokens": 2196
+   }
+  },
+  "error": "",
+  "identity": {
+   "interface": "llm_interface.v1",
+   "model": "gpt-5.6-sol-disc",
+   "base_url": "https://aihubmix.com/v1",
+   "temperature": 0.0,
+   "max_output_tokens": 8000
+  }
+ }
+}
