@@ -1,0 +1,1042 @@
+{
+ "grid_cells": 600,
+ "src_cells": 3600,
+ "inits": [
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49
+ ],
+ "n_requests": 240,
+ "budget": 3,
+ "arms": {
+  "fixed+next": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 29,
+   "passed": 33,
+   "attempts": 662,
+   "failed_attempts": 629,
+   "cost_substeps": 7333275,
+   "honest_stop_on_unsatisfiable": 0,
+   "false_stop_on_satisfiable": 0,
+   "attempts_on_unsatisfiable": 543,
+   "qualified": 33,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 382,
+   "repair_after_force_below_band_ok": 4,
+   "repair_after_force_above_band_n": 8,
+   "repair_after_force_above_band_ok": 0,
+   "repair_after_slip_or_drop_n": 32,
+   "repair_after_slip_or_drop_ok": 0,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.4552380952380952,
+     "pass_rate": 0.4885714285714286,
+     "failed_per_req": 1.600952380952381
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.48412698412698413,
+     "pass_rate": 0.598015873015873,
+     "failed_per_req": 1.4337301587301587
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.5038095238095238,
+     "pass_rate": 0.6107142857142857,
+     "failed_per_req": 1.3816666666666666
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.49936507936507935,
+     "pass_rate": 0.5204761904761904,
+     "failed_per_req": 1.4807936507936508
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.46996031746031747,
+     "pass_rate": 0.5713492063492064,
+     "failed_per_req": 1.4887301587301587
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.5486904761904762,
+     "pass_rate": 0.5921428571428572,
+     "failed_per_req": 1.3104761904761906
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 0.37333333333333335,
+     "pass_rate": 0.44095238095238093,
+     "failed_per_req": 1.8123809523809524
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.5760714285714286,
+     "pass_rate": 0.6669047619047619,
+     "failed_per_req": 1.180952380952381
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.5493650793650794,
+     "pass_rate": 0.6254761904761905,
+     "failed_per_req": 1.2757936507936507
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 0.4681349206349206,
+     "pass_rate": 0.49313492063492065,
+     "failed_per_req": 1.5705952380952382
+    }
+   ]
+  },
+  "rule+next": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 14,
+   "passed": 59,
+   "attempts": 647,
+   "failed_attempts": 588,
+   "cost_substeps": 7278125,
+   "honest_stop_on_unsatisfiable": 0,
+   "false_stop_on_satisfiable": 0,
+   "attempts_on_unsatisfiable": 543,
+   "qualified": 57,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 243,
+   "repair_after_force_below_band_ok": 22,
+   "repair_after_force_above_band_n": 143,
+   "repair_after_force_above_band_ok": 20,
+   "repair_after_slip_or_drop_n": 21,
+   "repair_after_slip_or_drop_ok": 3,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.3171428571428571,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.6828571428571428
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.23333333333333334,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.7666666666666666
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.19714285714285715,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.8028571428571428
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.21555555555555556,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.7844444444444444
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.24734126984126983,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.7526587301587302
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.2017857142857143,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.7982142857142858
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 0.26476190476190475,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.7352380952380952
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.29035714285714287,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.7096428571428571
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.1761111111111111,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.8238888888888889
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 0.2652380952380952,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.7347619047619047
+    }
+   ]
+  },
+  "rule+cause": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 14,
+   "passed": 56,
+   "attempts": 590,
+   "failed_attempts": 534,
+   "cost_substeps": 6641500,
+   "honest_stop_on_unsatisfiable": 62,
+   "false_stop_on_satisfiable": 0,
+   "attempts_on_unsatisfiable": 483,
+   "qualified": 54,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 203,
+   "repair_after_force_below_band_ok": 22,
+   "repair_after_force_above_band_n": 120,
+   "repair_after_force_above_band_ok": 20,
+   "repair_after_slip_or_drop_n": 27,
+   "repair_after_slip_or_drop_ok": 0,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.3171428571428571,
+     "pass_rate": 0.9288888888888889,
+     "failed_per_req": 0.8250793650793651
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.23333333333333334,
+     "pass_rate": 0.9555555555555556,
+     "failed_per_req": 0.8555555555555555
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.19714285714285715,
+     "pass_rate": 0.9314285714285715,
+     "failed_per_req": 0.94
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.21555555555555556,
+     "pass_rate": 0.9888888888888889,
+     "failed_per_req": 0.8066666666666666
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.24734126984126983,
+     "pass_rate": 0.9388888888888889,
+     "failed_per_req": 0.8748809523809524
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.2017857142857143,
+     "pass_rate": 0.9875,
+     "failed_per_req": 0.8232142857142857
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 0.26476190476190475,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.7352380952380952
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.29035714285714287,
+     "pass_rate": 0.9180952380952381,
+     "failed_per_req": 0.873452380952381
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.1761111111111111,
+     "pass_rate": 0.9308333333333333,
+     "failed_per_req": 0.9622222222222222
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 0.2652380952380952,
+     "pass_rate": 0.9341666666666667,
+     "failed_per_req": 0.8664285714285714
+    }
+   ]
+  },
+  "library_empty+cause": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 53.2,
+   "passed": 58.5,
+   "attempts": 546.9,
+   "failed_attempts": 488.4,
+   "cost_substeps": 6184855,
+   "honest_stop_on_unsatisfiable": 73.1,
+   "false_stop_on_satisfiable": 0,
+   "attempts_on_unsatisfiable": 481.3,
+   "qualified": 56.5,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 159.8,
+   "repair_after_force_below_band_ok": 3.6,
+   "repair_after_force_above_band_n": 127,
+   "repair_after_force_above_band_ok": 1.7,
+   "repair_after_slip_or_drop_n": 20.1,
+   "repair_after_slip_or_drop_ok": 0,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.5721428571428572,
+     "pass_rate": 0.96,
+     "failed_per_req": 0.5078571428571429
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.7384920634920635,
+     "pass_rate": 0.9666666666666667,
+     "failed_per_req": 0.3615079365079365
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.9014285714285715,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.09857142857142857
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.9788888888888889,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.021111111111111112
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.9621031746031746,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.037896825396825394
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.9875,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0125
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.9375,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0625
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.9777777777777777,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.04444444444444444
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    }
+   ]
+  },
+  "library_xtask+cause": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 53.1,
+   "passed": 58.6,
+   "attempts": 545.6,
+   "failed_attempts": 487,
+   "cost_substeps": 6169287.5,
+   "honest_stop_on_unsatisfiable": 71.5,
+   "false_stop_on_satisfiable": 0,
+   "attempts_on_unsatisfiable": 479.5,
+   "qualified": 56.6,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 157.3,
+   "repair_after_force_below_band_ok": 3.4,
+   "repair_after_force_above_band_n": 128.9,
+   "repair_after_force_above_band_ok": 2.1,
+   "repair_after_slip_or_drop_n": 19.4,
+   "repair_after_slip_or_drop_ok": 0,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.5736507936507936,
+     "pass_rate": 0.9488888888888889,
+     "failed_per_req": 0.5763492063492064
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.7214285714285714,
+     "pass_rate": 0.9833333333333334,
+     "failed_per_req": 0.32857142857142857
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.9214285714285714,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.07857142857142857
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.9423809523809523,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.05761904761904762
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.9621031746031746,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.037896825396825394
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.9875,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0125
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 0.98,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.04
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.975,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.025
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.9777777777777777,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.04444444444444444
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 0.9888888888888889,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.02222222222222222
+    }
+   ]
+  },
+  "library_xtask_nowb+cause": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 37,
+   "passed": 59,
+   "attempts": 507,
+   "failed_attempts": 448,
+   "cost_substeps": 5694900,
+   "honest_stop_on_unsatisfiable": 78,
+   "false_stop_on_satisfiable": 0,
+   "attempts_on_unsatisfiable": 421,
+   "qualified": 57,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 163,
+   "repair_after_force_below_band_ok": 20,
+   "repair_after_force_above_band_n": 87,
+   "repair_after_force_above_band_ok": 2,
+   "repair_after_slip_or_drop_n": 17,
+   "repair_after_slip_or_drop_ok": 0,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.5871428571428572,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.5382539682539682
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.6198412698412699,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.4861111111111111
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.6507142857142857,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.4869047619047619
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.5796825396825397,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.5077777777777778
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.6681349206349206,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.36103174603174604
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.6713095238095238,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.38702380952380955
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 0.49297619047619046,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.5579761904761904
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.7178571428571429,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.3738095238095238
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.6379761904761905,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.4570238095238095
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 0.5879761904761904,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.4976984126984127
+    }
+   ]
+  },
+  "library_xtask_xinit+cause": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 52.7,
+   "passed": 58.6,
+   "attempts": 545.9,
+   "failed_attempts": 487.3,
+   "cost_substeps": 6173207.5,
+   "honest_stop_on_unsatisfiable": 70.5,
+   "false_stop_on_satisfiable": 0,
+   "attempts_on_unsatisfiable": 479.4,
+   "qualified": 56.6,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 157,
+   "repair_after_force_below_band_ok": 3.6,
+   "repair_after_force_above_band_n": 129,
+   "repair_after_force_above_band_ok": 2.3,
+   "repair_after_slip_or_drop_n": 19.9,
+   "repair_after_slip_or_drop_ok": 0,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.5458730158730158,
+     "pass_rate": 0.9488888888888889,
+     "failed_per_req": 0.6041269841269841
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.7214285714285714,
+     "pass_rate": 0.9833333333333334,
+     "failed_per_req": 0.32857142857142857
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.9014285714285715,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.09857142857142857
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.9423809523809523,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.05761904761904762
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.9621031746031746,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.037896825396825394
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.9875,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0125
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 0.98,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.04
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.975,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.025
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.9777777777777777,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.04444444444444444
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 0.9763888888888889,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.034722222222222224
+    }
+   ]
+  },
+  "rule+resp": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 14,
+   "passed": 24.7,
+   "attempts": 273.8,
+   "failed_attempts": 249.1,
+   "cost_substeps": 3051945,
+   "honest_stop_on_unsatisfiable": 179.4,
+   "false_stop_on_satisfiable": 34.2,
+   "attempts_on_unsatisfiable": 203.5,
+   "qualified": 24.3,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 8.2,
+   "repair_after_force_below_band_ok": 2.4,
+   "repair_after_force_above_band_n": 22.4,
+   "repair_after_force_above_band_ok": 6.9,
+   "repair_after_slip_or_drop_n": 3.2,
+   "repair_after_slip_or_drop_ok": 1.4,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.3171428571428571,
+     "pass_rate": 0.6712698412698412,
+     "failed_per_req": 0.7506349206349207
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.23333333333333334,
+     "pass_rate": 0.5480158730158731,
+     "failed_per_req": 0.7833333333333333
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.19714285714285715,
+     "pass_rate": 0.3304761904761905,
+     "failed_per_req": 0.8028571428571428
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.21555555555555556,
+     "pass_rate": 0.4255555555555555,
+     "failed_per_req": 0.7844444444444444
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.24734126984126983,
+     "pass_rate": 0.42067460317460315,
+     "failed_per_req": 0.7526587301587302
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.2017857142857143,
+     "pass_rate": 0.3142857142857143,
+     "failed_per_req": 0.7982142857142858
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 0.26476190476190475,
+     "pass_rate": 0.3952380952380952,
+     "failed_per_req": 0.7352380952380952
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.29035714285714287,
+     "pass_rate": 0.4594047619047619,
+     "failed_per_req": 0.7096428571428571
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.1761111111111111,
+     "pass_rate": 0.3372222222222222,
+     "failed_per_req": 0.8238888888888889
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 0.2652380952380952,
+     "pass_rate": 0.3957936507936508,
+     "failed_per_req": 0.7347619047619047
+    }
+   ]
+  },
+  "library_empty+resp": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 46.7,
+   "passed": 49.8,
+   "attempts": 268.8,
+   "failed_attempts": 219,
+   "cost_substeps": 3014025,
+   "honest_stop_on_unsatisfiable": 179.7,
+   "false_stop_on_satisfiable": 9.1,
+   "attempts_on_unsatisfiable": 206.4,
+   "qualified": 49.1,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 11.1,
+   "repair_after_force_below_band_ok": 1,
+   "repair_after_force_above_band_n": 16,
+   "repair_after_force_above_band_ok": 1.8,
+   "repair_after_slip_or_drop_n": 1.7,
+   "repair_after_slip_or_drop_ok": 0.3,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.5310317460317461,
+     "pass_rate": 0.7840476190476191,
+     "failed_per_req": 0.48896825396825394
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.6904761904761905,
+     "pass_rate": 0.7849206349206349,
+     "failed_per_req": 0.3261904761904762
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.7716666666666666,
+     "pass_rate": 0.7966666666666666,
+     "failed_per_req": 0.22833333333333333
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.7603174603174603,
+     "pass_rate": 0.7912698412698412,
+     "failed_per_req": 0.23968253968253966
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.7946428571428571,
+     "pass_rate": 0.7946428571428571,
+     "failed_per_req": 0.20535714285714285
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.8921428571428571,
+     "pass_rate": 0.9246428571428571,
+     "failed_per_req": 0.10785714285714286
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 0.7966666666666666,
+     "pass_rate": 0.8166666666666667,
+     "failed_per_req": 0.20333333333333334
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.8154761904761905,
+     "pass_rate": 0.8321428571428572,
+     "failed_per_req": 0.18452380952380953
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.8566666666666667,
+     "pass_rate": 0.8766666666666667,
+     "failed_per_req": 0.14333333333333334
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 0.9273809523809524,
+     "pass_rate": 0.9273809523809524,
+     "failed_per_req": 0.07261904761904761
+    }
+   ]
+  },
+  "library_xtask+resp": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 46.3,
+   "passed": 47.8,
+   "attempts": 263.2,
+   "failed_attempts": 215.4,
+   "cost_substeps": 2952307.5,
+   "honest_stop_on_unsatisfiable": 180.5,
+   "false_stop_on_satisfiable": 10.7,
+   "attempts_on_unsatisfiable": 201.7,
+   "qualified": 46.7,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 9.4,
+   "repair_after_force_below_band_ok": 0.3,
+   "repair_after_force_above_band_n": 12.9,
+   "repair_after_force_above_band_ok": 1.2,
+   "repair_after_slip_or_drop_n": 0.9,
+   "repair_after_slip_or_drop_ok": 0,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 0.6138095238095238,
+     "pass_rate": 0.6993650793650794,
+     "failed_per_req": 0.536984126984127
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.5956349206349206,
+     "pass_rate": 0.6658730158730158,
+     "failed_per_req": 0.40436507936507937
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 0.7088095238095238,
+     "pass_rate": 0.7338095238095238,
+     "failed_per_req": 0.29119047619047617
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 0.6992063492063492,
+     "pass_rate": 0.7134920634920635,
+     "failed_per_req": 0.3007936507936508
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 0.7801984126984127,
+     "pass_rate": 0.7968650793650793,
+     "failed_per_req": 0.2198015873015873
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 0.8129761904761905,
+     "pass_rate": 0.8254761904761905,
+     "failed_per_req": 0.1870238095238095
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 0.8978571428571429,
+     "pass_rate": 0.8978571428571429,
+     "failed_per_req": 0.10214285714285715
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 0.9,
+     "pass_rate": 0.9,
+     "failed_per_req": 0.1
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 0.8558333333333333,
+     "pass_rate": 0.8758333333333334,
+     "failed_per_req": 0.14416666666666667
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 0.9051587301587302,
+     "pass_rate": 0.9051587301587302,
+     "failed_per_req": 0.09484126984126984
+    }
+   ]
+  },
+  "oracle": {
+   "n": 240,
+   "n_satisfiable": 59,
+   "first_pass": 59,
+   "passed": 59,
+   "attempts": 602,
+   "failed_attempts": 543,
+   "cost_substeps": 6628875,
+   "honest_stop_on_unsatisfiable": 0,
+   "false_stop_on_satisfiable": 0,
+   "attempts_on_unsatisfiable": 543,
+   "qualified": 57,
+   "n_satisfiable_qualified": 57,
+   "repair_after_force_below_band_n": 317,
+   "repair_after_force_below_band_ok": 0,
+   "repair_after_force_above_band_n": 12,
+   "repair_after_force_above_band_ok": 0,
+   "repair_after_slip_or_drop_n": 30,
+   "repair_after_slip_or_drop_ok": 0,
+   "curve": [
+    {
+     "start": 0,
+     "n_sat": 6.3,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 24,
+     "n_sat": 5.7,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 48,
+     "n_sat": 5.3,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 72,
+     "n_sat": 6.4,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 96,
+     "n_sat": 6.2,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 120,
+     "n_sat": 5.9,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 144,
+     "n_sat": 5.4,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 168,
+     "n_sat": 5.7,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 192,
+     "n_sat": 6.5,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    },
+    {
+     "start": 216,
+     "n_sat": 5.6,
+     "first_pass_rate": 1.0,
+     "pass_rate": 1.0,
+     "failed_per_req": 0.0
+    }
+   ]
+  }
+ }
+}

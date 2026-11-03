@@ -1,0 +1,13 @@
+{"written_before_t6_replay": true, "date": "2026-11-03",
+ "motivation": "s27 audit on T0/T1/T7 (dev): rule+cause misattributes 313 force_below_band failures -- the cause rule raises the closure stop, but the measured hold does not rise with it (gripper plateaus).",
+ "repair_v2_resp": {
+   "applies_to_causes": ["force_below_band", "force_above_band", "slip_or_drop"],
+   "other_causes": "unchanged v1 cause_repair",
+   "candidates": "untried (force, s0) with closure stop lo <= band hi (v1 manner bound); for slip_or_drop also (f0, slower speed inside the speed band) as in v1",
+   "prediction": "library rows via the same backoff as Library._sel (obj+cfg -> obj+force -> any_obj+cfg); predicted interval = mean hold_min / mean hold_max of stable rows; a candidate with rows but no stable row is predicted to slip",
+   "order": "1) known and predicted inside the force band (and stable), nearest band centre first; 2) unknown candidates in the v1 cause direction (v1 order); known-but-predicted-outside candidates are dropped",
+   "stop": "no candidate left -> manner_infeasible_declared (honest stop)",
+   "no_free_parameters": true},
+ "arms_added": ["rule+resp", "library+resp (T0/T1/T7 dev)", "library_empty+resp, library_xtask+resp (T6 held-out)"],
+ "dev_vs_heldout": "T0/T1/T7 step25 grid = development (the misattribution was observed there); T6 step28 grid = held-out, evaluated once, not tuned",
+ "metrics": "first pass, pass within budget 3, failed attempts, honest stops on unsatisfiable, false stops on satisfiable, cost; per cause: repair success after a force_below_band failure"}
