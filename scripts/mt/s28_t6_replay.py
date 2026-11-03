@@ -38,6 +38,16 @@ DEV_ARMS = [("rule+cause", "rule", "cause", None), ("rule+resp", "rule", "resp",
             ("oracle", "oracle", "next", None)]
 
 
+V3_ARMS = [("rule+cause", "rule", "cause", None), ("rule+resp", "rule", "resp", None), ("rule+member", "rule", "member", None),
+           ("library_empty+cause", "library", "cause", "empty"), ("library_empty+resp", "library", "resp", "empty"),
+           ("library_empty+member", "library", "member", "empty"), ("library_xtask+cause", "library", "cause", "xtask"),
+           ("library_xtask+member", "library", "member", "xtask"), ("oracle", "oracle", "next", None)]
+V3_DEV_ARMS = [("rule+cause", "rule", "cause", None), ("rule+resp", "rule", "resp", None),
+               ("rule+member", "rule", "member", None), ("library+cause", "library", "cause", "empty"),
+               ("library+resp", "library", "resp", "empty"), ("library+member", "library", "member", "empty"),
+               ("oracle", "oracle", "next", None)]
+
+
 FORCE_CAUSES = ("force_below_band", "force_above_band", "slip_or_drop")
 
 
@@ -79,9 +89,41 @@ def resp_repair(prev, cause, req, tried, rank, lib, task, obj):
     return next((c for c in v1 if c in unknown_ok), None)
 
 
-def load_t6():
+def member_repair(prev, cause, req, tried, rank, lib, task, obj):
+    """Repair v3 (protocol_repair_v3.json): per-row band membership instead of averaged intervals; v1-direction
+    candidates are never dropped on data.  No free parameters."""
+    if cause not in FORCE_CAUSES:
+        return P.cause_repair(prev, cause, req, tried, rank)
+    fband, sband = P.FORCE_BANDS[req["force"]], P.SPEED_BANDS[req["speed"]]
+    f0, s0 = prev
+    cands = [(f, s0) for f in P.FORCES if f != f0]
+    if cause == "slip_or_drop":
+        cands += [(f0, s) for s in sorted(P.SPEEDS) if s < s0 and sband[0] <= s <= sband[1]]
+    cands = [c for c in cands if c not in tried and c[0][0] <= fband[1]]
+    v1, t2 = [], list(tried)
+    while True:
+        nx = P.cause_repair(prev, cause, req, t2, rank)
+        if nx is None:
+            break
+        v1.append(nx)
+        t2.append(nx)
+    sup = []
+    for c in cands:
+        rows, _ = lib._sel(task, obj, c[0], c[1])
+        k = sum(1 for r in rows if r["task_ok"] and r["stable"] and r["hold_min"] is not None
+                and fband[0] <= r["hold_min"] and r["hold_max"] <= fband[1]
+                and r["v"] is not None and sband[0] <= r["v"] <= sband[1])
+        if k >= 1:
+            p = lib.p_pass(task, obj, c[0], c[1], fband, sband, P.rule_prior(c[0], c[1], fband, sband))[0]
+            sup.append((-p, v1.index(c) if c in v1 else len(v1), P.FORCES.index(c[0]), c))
+    if sup:
+        return sorted(sup)[0][3]
+    return v1[0] if v1 else None
+
+
+def load_t6(d=None):
     g = {}
-    for f in sorted(GRID6.glob("t6_init*.json")):
+    for f in sorted((d or GRID6).glob("t6_init*.json")):
         d = json.loads(f.read_text())
         for k, e in d["episodes"].items():
             g[(T, d["init"], k)] = e
@@ -133,9 +175,10 @@ def run_arm(arm, stream, grid, budget, src):
             if ok:
                 passed, pass_cfg = True, cur
                 break
-            if repair in ("cause", "resp"):
+            if repair in ("cause", "resp", "member"):
                 nxt = (P.cause_repair(cur, cause, req, tried, rank) if repair == "cause"
-                       else resp_repair(cur, cause, req, tried, rank, view, t, P.OBJECT[t]))
+                       else resp_repair(cur, cause, req, tried, rank, view, t, P.OBJECT[t]) if repair == "resp"
+                       else member_repair(cur, cause, req, tried, rank, view, t, P.OBJECT[t]))
                 if nxt is None:
                     stop = "manner_infeasible_declared"
                 cur = nxt
@@ -168,15 +211,23 @@ def main() -> int:
     ap.add_argument("--budget", type=int, default=3)
     ap.add_argument("--window", type=int, default=24)
     ap.add_argument("--dev", action="store_true", help="T0/T1/T7 step25 grid (development set), DEV_ARMS")
+    ap.add_argument("--v3", action="store_true", help="repair v3 arms (protocol_repair_v3.json)")
+    ap.add_argument("--grid", default=None, help="T6 grid dir (default grid/)")
+    ap.add_argument("--with-t6", action="store_true", help="dev: also include the T6 grid/ (inits 30-49)")
+    ap.add_argument("--out", default=None)
     a = ap.parse_args()
     if a.dev:
-        grid, src, arms, tasks = P.load_grid((0, 7, 1)), {}, DEV_ARMS, [0, 7, 1]
+        grid, src, arms, tasks = P.load_grid((0, 7, 1)), {}, (V3_DEV_ARMS if a.v3 else DEV_ARMS), [0, 7, 1]
+        if a.with_t6:
+            grid.update(load_t6())
+            tasks = [0, 7, 1, T]
         inits = {t: [i for i in sorted({i for (tt, i, _) in grid if tt == t})
                      if all((t, i, P.key(f, s)) in grid and "error" not in grid[(t, i, P.key(f, s))]
                             for f in P.FORCES for s in P.SPEEDS)] for t in tasks}
         reqs = S.requests(tasks, inits)
     else:
-        grid, src, arms = load_t6(), P.load_grid((0, 7, 1)), ARMS
+        grid, src = load_t6(Path(a.grid) if a.grid else None), P.load_grid((0, 7, 1))
+        arms = V3_ARMS if a.v3 else ARMS
         inits = sorted({i for (_, i, _) in grid})
         reqs = S.requests([T], {T: inits})
     res = {"grid_cells": len(grid), "src_cells": len(src), "inits": inits, "n_requests": len(reqs), "budget": a.budget,
@@ -198,7 +249,7 @@ def main() -> int:
         print("   repair after cause (ok/n):", " ".join(f"{c} {agg[f'repair_after_{c}_ok']:.0f}/{agg[f'repair_after_{c}_n']:.0f}"
                                                          for c in FORCE_CAUSES))
         print("   first-pass curve:", " ".join(f"{x['first_pass_rate']:.2f}" for x in agg["curve"]))
-    (OUT / ("replay_dev_v1.json" if a.dev else "replay_v1.json")).write_text(json.dumps(res, indent=1))
+    (OUT / (a.out or ("replay_dev_v1.json" if a.dev else "replay_v1.json"))).write_text(json.dumps(res, indent=1))
     return 0
 
 

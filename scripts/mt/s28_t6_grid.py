@@ -6,6 +6,7 @@ object is porcelain_mug_1 (role obj1).  Output schema matches s25 so s25_policie
 Usage: s28_t6_grid.py INIT [INIT ...]  -> reports/step28_t6_manner/grid/t6_init{I}.json
 """
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -21,7 +22,7 @@ from s7_task_config import ROOT  # noqa: E402
 
 T = 6
 PROPOSAL = ROOT / "reports" / "step27_t6_repair" / "frozen_proposal.json"
-OUT = ROOT / "reports" / "step28_t6_manner" / "grid"
+OUT = Path(os.environ.get("S28_GRID_OUT", str(ROOT / "reports" / "step28_t6_manner" / "grid")))
 REQ = "obj1"
 OTHER = (1.0, 100.0)
 VERSION = "s28_t6_grid.v1"

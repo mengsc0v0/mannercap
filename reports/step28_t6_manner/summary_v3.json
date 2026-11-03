@@ -1,0 +1,21 @@
+{"step": "28b", "date": "2026-11-03",
+ "fresh_grid": {"inits": "0-29 (never used for manner)", "episodes": 900, "infra_errors": 0, "task_ok": "900/900", "contact_v1_clean": "802/900 (90 = inits 7/12/24 in every cfg)",
+   "hold_spread_median_N": 5.64, "satisfiable": {"R1": 54, "R2": 19, "R3": 35, "R4": 0, "total": "108/360", "qualified": 93}},
+ "dev_v3 (T0/T1/T7 + T6 inits 30-49, 1363 satisfiable)": {
+   "rule+cause": {"pass": 1349.0, "failed": 1979, "false_stop": 11.0, "below_band_repair": "64/566"},
+   "rule+resp": {"pass": 1315.2, "failed": 1137, "false_stop": 47.6},
+   "rule+member": {"pass": 1351.9, "failed": 1460, "false_stop": 10.6, "below_band_repair": "374/553", "cost_M": 37.35, "cost_M_v1": 44.61},
+   "library+cause": {"pass": 1342.9, "failed": 792, "false_stop": 5.2},
+   "library+member": {"pass": 1337.2, "failed": 811, "false_stop": 4.7}},
+ "heldout_fresh_v3 (T6 inits 0-29, 108 satisfiable, 10 seeds, budget 3)": {
+   "rule+cause": {"first": 45.0, "pass": 105.0, "failed": 735, "false_stop": 0},
+   "rule+resp": {"pass": 59.1, "false_stop": 48.9},
+   "rule+member": {"pass": 107.3, "failed": 732, "false_stop": 0},
+   "library_empty+cause": {"first": 98.3, "pass": 107.4, "failed": 677, "false_stop": 0, "curve_first3": "0.58 0.67 0.85"},
+   "library_empty+resp": {"pass": 88.0, "false_stop": 20.0},
+   "library_empty+member": {"first": 98.4, "pass": 107.4, "failed": 678, "false_stop": 0},
+   "library_xtask+cause": {"first": 99.9, "pass": 107.9, "failed": 674, "curve_first3": "0.65 0.80 0.90"},
+   "library_xtask+member": {"first": 99.9, "pass": 107.9, "failed": 676}},
+ "adoption_per_protocol": {"rule": "v3 ADOPTED (pass 107.3 >= 104.5, false stop 0 <= 1, failed 732 < 735; held-out margin small, dev failed -26%)",
+                           "library": "v3 NOT adopted (failed 678 vs 677, 676 vs 674: no gain; library already ranks by measured pass so repair rarely matters)"},
+ "xtask_explanation": "Library._sel is hierarchical backoff (obj+cfg -> obj+force -> any_obj+cfg), not pooling: preloaded other-object rows are used only until the mug has its own row for that force; after that they are ignored. Hence preload helps only in the first window (0.58->0.65 here, 0.57->0.57 on inits 30-49) and fully without write-back (14->37 on 30-49)."}

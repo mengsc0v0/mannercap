@@ -1,0 +1,15 @@
+{"written_before_fresh_grid": true, "date": "2026-11-03",
+ "motivation": "repair v2 (mean hold_min/hold_max interval) fixed the dev misattribution (rule+cause 42/363 -> 354/363 below-band repairs) but failed on held-out T6 inits 30-49: averaged min/max intervals of a high-variance object (mug, per-episode spread 5.6 N) are judged outside every band, candidates are dropped, false stops 9-34. v3 replaces interval prediction by per-row band membership and never drops a v1-direction candidate on data.",
+ "repair_v3_member": {
+   "applies_to_causes": ["force_below_band", "force_above_band", "slip_or_drop"],
+   "other_causes": "unchanged v1 cause_repair",
+   "candidates_C": "same as v2: untried (f, s0), f != f0, closure stop lo <= band hi; for slip_or_drop also (f0, slower speed inside the speed band)",
+   "V1": "the v1 cause-direction sequence (iterated cause_repair)",
+   "evidence": "rows via Library._sel backoff (obj+cfg -> obj+force -> any_obj+cfg); k = rows meeting the full s25 pass criterion (task_ok, stable, whole hold window inside the force band, speed inside the speed band)",
+   "order": "1) S = candidates in C with k >= 1, by Library.p_pass posterior (existing Beta prior on rule_prior, strength 2) descending, ties by V1 order then FORCES index; 2) remaining V1 candidates in V1 order. Candidates in neither set are never tried",
+   "stop": "no candidate left -> manner_infeasible_declared",
+   "no_free_parameters": true},
+ "data": {"dev": "T0/T1/T7 step25 grid and T6 inits 30-49 (v2 failure seen there)", "held_out": "fresh T6 grid on inits 0-29 (never used for manner), frozen program, same 10 forces x 3 speeds, evaluated once"},
+ "arms_held_out": ["rule+cause", "rule+resp", "rule+member", "library_empty+cause", "library_empty+resp", "library_empty+member", "library_xtask+cause", "library_xtask+member", "oracle"],
+ "adoption_rule": "v3 adopted for a policy iff on held-out: pass >= v1 pass - 0.5 AND false stops <= v1 false stops + 1 AND failed attempts < v1 failed attempts; otherwise reported as not adopted",
+ "seeds_budget": "10 seeds, budget 3, same request stream generator as v1/v2"}
