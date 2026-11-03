@@ -33,6 +33,26 @@ def _yaw(R):
     return float(np.degrees(np.arctan2(R[1, 0], R[0, 0])))
 
 
+def _wall_ring(m, d, gids, Rb):
+    """Step 27: top ring of thin vertical wall panels (for grasp_wall_pinch), angles in the object's yaw frame."""
+    from synthesis_v2.approach_planner import thin_wall_panels
+    panels = thin_wall_panels(m, d, gids)
+    if not panels:
+        return None
+    ztop = max(p["top_z"] for p in panels)
+    ring = [p for p in panels if p["top_z"] > ztop - 0.005]
+    cen = np.mean([p["centre"] for p in ring], axis=0)
+    oyaw = np.arctan2(Rb[1, 0], Rb[0, 0])
+    a = lambda v: round(float((np.degrees(np.arctan2(v[1], v[0]) - oyaw) + 180) % 360 - 180), 1)
+    rad = float(np.mean([np.linalg.norm(p["centre"][:2] - cen[:2]) for p in ring]))
+    other = [g for g in gids if g not in {p["gid"] for p in panels}
+             and np.linalg.norm(d.geom_xpos[g][:2] - cen[:2]) > rad + 0.005]
+    return {"ring_centre_world": cen.round(4).tolist(), "ring_radius_m": round(rad, 4), "top_z_world": round(ztop, 4),
+            "panel_half_thickness_m": round(float(min(np.min(m.geom_size[p["gid"]]) for p in ring)), 4),
+            "panels": [{"angle_deg_obj_frame": a(p["centre"][:2] - cen[:2]), "width_m": round(p["width_m"], 4)} for p in ring],
+            "parts_outside_ring_angles_deg_obj_frame": sorted({a(d.geom_xpos[g][:2] - cen[:2]) for g in other})}
+
+
 def task_context(t: int, init: int = 0, suite: str = "libero_10") -> dict:
     import mujoco
     from synthesis_v2.libero_backend import LiberoSession
@@ -54,11 +74,14 @@ def task_context(t: int, init: int = 0, suite: str = "libero_10") -> dict:
                    "collision_aabb_world": {"min": lo.round(4).tolist(), "max": hi.round(4).tolist()},
                    "collision_size_m": (hi - lo).round(4).tolist(),
                    "origin_above_bottom_m": round(float(d.xpos[bid][2] - lo[2]), 4)}
+        wall = _wall_ring(m, d, s.geom_ids_of(n), d.xmat[bid].reshape(3, 3))
+        if wall:
+            objs[n]["thin_wall_ring"] = wall
     goals, regions = [], {}
     sites = set(s.env.object_sites_dict) if hasattr(s.env, "object_sites_dict") else set()
     for g in pp["goal_state"]:
         pred, args = g[0].lower(), list(g[1:])
-        goals.append({"predicate": pred, "args": args})
+        goals.append({"predicate": pred, "args": args, "holds_at_init": bool(s.env._eval_predicate(g))})
         if pred == "on" and len(args) == 2 and args[1] in s.env.objects_dict:
             tb = mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_BODY, args[1] + "_main")
             goals[-1]["accepted_region_for_obj_origin"] = {"xy_within_m_of_target_origin": 0.03, "target_origin_world_now": d.xpos[tb].round(4).tolist(),
@@ -100,6 +123,8 @@ def task_context(t: int, init: int = 0, suite: str = "libero_10") -> dict:
             else " ".join(pp["language_instruction"]),
             "goal": goals, "predicate_semantics": PRED_SEMANTICS,
             "unsupported_predicates_by_executor": list(ARTICULATED),
+            "unsupported_note": "the executor cannot ACHIEVE these predicates; a goal whose holds_at_init is true needs no "
+                                "action, it only has to stay true until the end",
             "objects": objs, "regions": regions, "fixtures": list(getattr(s.env, "fixtures_dict", {})),
             "eef_start_world": eef, "capabilities": SC.describe(), "grasp_references_available": avail}
 

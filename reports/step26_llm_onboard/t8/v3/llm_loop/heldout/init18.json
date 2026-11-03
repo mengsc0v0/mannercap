@@ -1,0 +1,198 @@
+{
+ "task": 8,
+ "init": 18,
+ "success": false,
+ "status": "grasp_band_not_reached:obj0.pick_1.grasp",
+ "n_steps": 1836,
+ "wall_s": 59.0,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_1",
+    "flat_stove_1_cook_region"
+   ],
+   "true": false
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_2",
+    "flat_stove_1_cook_region"
+   ],
+   "true": false
+  },
+  {
+   "predicate": "turnon",
+   "args": [
+    "flat_stove_1"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "moka_pot_2",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": false,
+   "obj_start_origin": [
+    0.073258923461277,
+    0.06821815034043745,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    0.005834500761653275,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    0.0733,
+    0.0682,
+    0.9661
+   ],
+   "site_frame_final_origin": [
+    0.1174,
+    0.2676,
+    0.0611
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_grid",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.03,
+     "dz_m": 0.04,
+     "offset": [
+      0.02995,
+      3e-05,
+      0.03832
+     ],
+     "min_clearance_m": 0.0033,
+     "blocking": "moka_pot_2",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00197,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.03,
+      "dz_m": 0.04,
+      "min_clearance_m": 0.0033,
+      "at_grasp_clearance_m": 0.00197,
+      "blocking": "moka_pot_2",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "moka_pot_1",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": false,
+   "obj_start_origin": [
+    -0.06904469368563661,
+    0.2252971966374176,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    -0.10416549923834673,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    -0.069,
+    0.2253,
+    0.9661
+   ],
+   "site_frame_final_origin": [
+    -0.0249,
+    0.4247,
+    0.0611
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_grid",
+    "n_candidates": 3,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.03,
+     "dz_m": 0.05,
+     "offset": [
+      0.02979,
+      4e-05,
+      0.04647
+     ],
+     "min_clearance_m": 0.00362,
+     "blocking": "moka_pot_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00291,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": -0.03,
+      "dz_m": 0.04,
+      "min_clearance_m": 0.00366,
+      "at_grasp_clearance_m": -0.00051,
+      "blocking": "moka_pot_1",
+      "phase": "descent",
+      "feasible": false
+     },
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.03,
+      "dz_m": 0.05,
+      "min_clearance_m": 0.00362,
+      "at_grasp_clearance_m": 0.00291,
+      "blocking": "moka_pot_1",
+      "phase": "descent",
+      "feasible": true
+     },
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.03,
+      "dz_m": 0.04,
+      "min_clearance_m": 0.00291,
+      "at_grasp_clearance_m": -0.00044,
+      "blocking": "moka_pot_1",
+      "phase": "descent",
+      "feasible": false
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": true,
+ "unexcused_contacts": [],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"grasp_band_not_reached:obj0.pick_1.grasp\", \"classes_present\": [\"execution_failed\", \"outcome_not_met\"], \"first_failure\": {\"class\": \"execution_failed\", \"requirement_id\": \"exec.grasp.force_band\", \"instance_id\": \"obj0.pick_1.grasp\", \"stage_label\": \"obj0.pick_1.grasp\", \"primitive\": \"grasp\", \"object_role\": \"obj0\", \"stage_index\": 2, \"control_step\": {\"unknown\": \"meta.grasp_failure absent\"}, \"pose_difference\": {\"unknown\": \"a grasp has no goal pose; the hand pose at the grasp is not compared\"}, \"evidence_source\": \"executor status + meta.grasp_policy_by_instance\"}}",
+ "refused_params": []
+}

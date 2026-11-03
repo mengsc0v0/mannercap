@@ -466,7 +466,17 @@ def produce_program_episode(
                 nm0 = program.objects[it.object_role]
                 m_, d_, site_, env_, obst_, tgt_, look_ = scene_from_libero(s, nm0, return_steps=True)
                 ref_c, ref_prov = None, None
-                if "grasp_candidate" not in it.params:
+                if "grasp_wall_pinch" in it.params and "grasp_candidate" not in it.params:
+                    from .approach_planner import wall_pinch_candidate
+                    wp = it.params["grasp_wall_pinch"]
+                    ref_c, ref_prov = wall_pinch_candidate(m_, d_, site_, env_, tgt_.gids, r["obj_pos0"], s.obs[f"{nm0}_quat"],
+                                                           r["grasp_quat_xyzw"], float(wp["panel_angle_deg"]), float(wp["depth_m"]))
+                    if ref_c is None:   # never a fallback to another grasp
+                        status_box[0] = f"wall_pinch_unresolved:{it.instance_id}:{ref_prov}"
+                        stop[0] = True
+                        return
+                    ref_prov = {"grasp_wall_pinch": dict(wp), **ref_prov}
+                elif "grasp_candidate" not in it.params:
                     ref_v, ref_prov, ref_err = instance_reference(program, it)
                     if ref_err:   # never a fallback to another grasp: an unresolvable reference ends the branch
                         status_box[0] = f"reference_unresolved:{it.instance_id}:{ref_err}"
@@ -475,6 +485,8 @@ def produce_program_episode(
                     if ref_v is not None:
                         ref_c = reference_to_candidate(ref_v, s.obs[f"{nm0}_quat"], r["grasp_quat_xyzw"], env_.obs_to_site)
                 grid, grid_source = grasp_grid_from_params(it.params, ref_c)
+                if "grasp_wall_pinch" in it.params and grid_source == "grasp_reference":
+                    grid_source = "grasp_wall_pinch"
                 # plan_approach stops at the first feasible candidate; a guard retry needs the alternatives too
                 all_c = bool(rejected.get(it.instance_id))
                 pl = plan_approach(m_, d_, site_, env_, obst_, start_pos=np.asarray(s.obs["robot0_eef_pos"], float),

@@ -7,7 +7,8 @@
    "predicate": "turnon",
    "args": [
     "flat_stove_1"
-   ]
+   ],
+   "holds_at_init": false
   },
   {
    "predicate": "on",
@@ -15,6 +16,7 @@
     "moka_pot_1",
     "flat_stove_1_cook_region"
    ],
+   "holds_at_init": false,
    "accepted_region_for_obj_origin": {
     "origin_z_world_open_interval": [
      0.9025,
@@ -45,6 +47,7 @@
   "turnon",
   "turnoff"
  ],
+ "unsupported_note": "the executor cannot ACHIEVE these predicates; a goal whose holds_at_init is true needs no action, it only has to stay true until the end",
  "objects": {
   "chefmate_8_frypan_1": {
    "class": "chefmate_8_frypan",

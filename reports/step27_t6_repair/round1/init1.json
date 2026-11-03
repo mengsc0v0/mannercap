@@ -1,0 +1,572 @@
+{
+ "task": 6,
+ "init": 1,
+ "proposal": "reports/step27_t6_repair/round1/proposal.json",
+ "policy_version": "contact_policy_v1.1",
+ "status": "completed",
+ "official_success_final": true,
+ "clean_v1": false,
+ "windows": [
+  {
+   "instance_id": "obj0.pick_1.grasp",
+   "object": "chocolate_pudding_1_main",
+   "env_object": "chocolate_pudding_1",
+   "close_step": 43,
+   "release_step": 143,
+   "release_command_step": 133
+  },
+  {
+   "instance_id": "obj1.pick_1.grasp",
+   "object": "porcelain_mug_1_main",
+   "env_object": "porcelain_mug_1",
+   "close_step": 255,
+   "release_step": 373,
+   "release_command_step": 363
+  }
+ ],
+ "stage_ranges": {
+  "obj0.pick_1.approach": [
+   0,
+   23
+  ],
+  "obj0.pick_1.descend": [
+   24,
+   42
+  ],
+  "obj0.pick_1.grasp": [
+   43,
+   51
+  ],
+  "obj0.pick_1.lift": [
+   52,
+   76
+  ],
+  "obj0.pick_1.transport": [
+   77,
+   108
+  ],
+  "obj0.pick_1.place": [
+   109,
+   142
+  ],
+  "obj0.pick_1.retreat": [
+   143,
+   166
+  ],
+  "obj1.pick_1.approach": [
+   167,
+   235
+  ],
+  "obj1.pick_1.descend": [
+   236,
+   254
+  ],
+  "obj1.pick_1.grasp": [
+   255,
+   261
+  ],
+  "obj1.pick_1.lift": [
+   262,
+   287
+  ],
+  "obj1.pick_1.transport": [
+   288,
+   338
+  ],
+  "obj1.pick_1.place": [
+   339,
+   372
+  ],
+  "obj1.pick_1.retreat": [
+   373,
+   397
+  ]
+ },
+ "contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "class": "finger_link_on_target",
+   "max_n": 3.4,
+   "v1_excused": true,
+   "v1_reasons": [],
+   "matched_instance": "obj1.pick_1.grasp",
+   "control_steps": [
+    258,
+    363
+   ],
+   "n_steps": 106,
+   "stage_first": "obj1.pick_1.grasp",
+   "stage_last": "obj1.pick_1.place",
+   "detail": {
+    "n_substeps": 2629,
+    "n_substeps_inner_region": 2629,
+    "peak_n": 3.439369423833591,
+    "min_inner_cos": 0.7556033573448013,
+    "min_inward_offset_m": 0.011374712427048041,
+    "region_fail_steps": [],
+    "peak_step": 258,
+    "peak_geom": "gripper0_finger1_collision",
+    "peak_other_geom": "porcelain_mug_1_g8",
+    "peak_contact_point_geom_local_m": [
+     0.009252,
+     -0.008438,
+     0.017196
+    ],
+    "peak_contact_point_body_local_m": [
+     0.009042,
+     0.000502,
+     0.039243
+    ],
+    "geom_half_extent_m": [
+     0.01068,
+     0.01356,
+     0.03159
+    ],
+    "inward_axis_geom_local": [
+     0.0188,
+     -0.9847,
+     0.1731
+    ],
+    "peak_normal_world": [
+     -0.7674,
+     0.6409,
+     -0.0192
+    ],
+    "peak_normal_inward_cos": 0.7675,
+    "peak_inward_offset_m": 0.01146,
+    "peak_eef_pos": [
+     -0.09369,
+     -0.2047,
+     0.53808
+    ],
+    "side_role": [
+     "L",
+     "finger_link"
+    ]
+   },
+   "region_fail_samples_first5": []
+  },
+  {
+   "robot_body": "rightfinger[finger_link_on_target]",
+   "other": "porcelain_mug_1_main",
+   "class": "finger_link_on_target",
+   "max_n": 5.0,
+   "v1_excused": true,
+   "v1_reasons": [],
+   "matched_instance": "obj1.pick_1.grasp",
+   "control_steps": [
+    259,
+    364
+   ],
+   "n_steps": 106,
+   "stage_first": "obj1.pick_1.grasp",
+   "stage_last": "obj1.pick_1.place",
+   "detail": {
+    "n_substeps": 2618,
+    "n_substeps_inner_region": 2618,
+    "peak_n": 5.048576883329907,
+    "min_inner_cos": 0.7521374403439227,
+    "min_inward_offset_m": 0.011818288953581309,
+    "region_fail_steps": [],
+    "peak_step": 259,
+    "peak_geom": "gripper0_finger2_collision",
+    "peak_other_geom": "porcelain_mug_1_g17",
+    "peak_contact_point_geom_local_m": [
+     -0.008461,
+     -0.009231,
+     0.017503
+    ],
+    "peak_contact_point_body_local_m": [
+     0.008684,
+     4e-06,
+     0.039436
+    ],
+    "geom_half_extent_m": [
+     0.01068,
+     0.01356,
+     0.03159
+    ],
+    "inward_axis_geom_local": [
+     0.0188,
+     -0.9847,
+     0.1731
+    ],
+    "peak_normal_world": [
+     0.7617,
+     0.6469,
+     -0.0364
+    ],
+    "peak_normal_inward_cos": 0.7616,
+    "peak_inward_offset_m": 0.01196,
+    "peak_eef_pos": [
+     -0.09331,
+     -0.20517,
+     0.53846
+    ],
+    "side_role": [
+     "R",
+     "finger_link"
+    ]
+   },
+   "region_fail_samples_first5": []
+  }
+ ],
+ "support_unexplained": [
+  {
+   "robot_body": "leftfinger",
+   "other": "living_room_table_col",
+   "max_n": 24.0,
+   "control_steps": 4,
+   "class": "other",
+   "control_step_range": [
+    134,
+    137
+   ],
+   "stages": [
+    "place@obj0"
+   ],
+   "peak_step": 134,
+   "peak_geom": "gripper0_finger1_collision",
+   "peak_other_geom": "?",
+   "peak_eef_pos": [
+    0.14635,
+    0.13973,
+    0.44629
+   ],
+   "peak_contact_point_geom_local_m": [
+    0.005773,
+    0.007583,
+    0.029152
+   ],
+   "geom_half_extent_m": [
+    0.01068,
+    0.01356,
+    0.03159
+   ],
+   "in_final_trajectory": true,
+   "explained": false
+  },
+  {
+   "robot_body": "rightfinger",
+   "other": "living_room_table_col",
+   "max_n": 18.6,
+   "control_steps": 10,
+   "class": "other",
+   "control_step_range": [
+    47,
+    142
+   ],
+   "stages": [
+    "grasp@obj0",
+    "place@obj0"
+   ],
+   "peak_step": 47,
+   "peak_geom": "gripper0_finger2_collision",
+   "peak_other_geom": "?",
+   "peak_eef_pos": [
+    -0.0352,
+    0.09863,
+    0.44631
+   ],
+   "peak_contact_point_geom_local_m": [
+    -0.005343,
+    0.007405,
+    0.029217
+   ],
+   "geom_half_extent_m": [
+    0.01068,
+    0.01356,
+    0.03159
+   ],
+   "in_final_trajectory": true,
+   "explained": false
+  }
+ ],
+ "arrays_keys": [
+  "actions",
+  "cf_L_chocolate_pudding_1",
+  "cf_L_plate_1",
+  "cf_L_porcelain_mug_1",
+  "cf_R_chocolate_pudding_1",
+  "cf_R_plate_1",
+  "cf_R_porcelain_mug_1",
+  "dt",
+  "force_target",
+  "frame_index",
+  "hold_hi_n",
+  "hold_instance",
+  "hold_lo_n",
+  "joint_speed_max",
+  "joint_speed_mean",
+  "left_max_n",
+  "left_mean_n",
+  "next_state",
+  "other_max_n",
+  "pa_chocolate_pudding_1",
+  "pa_plate_1",
+  "pa_porcelain_mug_1",
+  "pos_chocolate_pudding_1",
+  "pos_plate_1",
+  "pos_porcelain_mug_1",
+  "right_max_n",
+  "right_mean_n",
+  "sim_step_index",
+  "stage",
+  "stage_instance_index",
+  "state",
+  "success",
+  "terminated",
+  "timestamp",
+  "truncated",
+  "valid_fraction"
+ ],
+ "grasp_policy": {
+  "obj0.pick_1.grasp": {
+   "closing_steps": 6,
+   "reached_band": true,
+   "reverse_pulses": 0,
+   "in_band_at": 6,
+   "reclose_pulses": 0,
+   "final": {
+    "left_n": 13.548704870360625,
+    "right_n": 13.54392522277099,
+    "total_n": 27.092630093131618
+   },
+   "trace": [
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 0.0,
+     "total_n": 18.583478464951323,
+     "note": "",
+     "left_n": 9.680254141573915,
+     "right_n": 8.903224323377408
+    },
+    {
+     "cmd": 0.0,
+     "total_n": 25.634589401774484,
+     "note": "",
+     "left_n": 12.864768382265455,
+     "right_n": 12.769821019509031
+    },
+    {
+     "cmd": 0.0,
+     "total_n": 27.181357372941253,
+     "note": "",
+     "left_n": 13.591025502727431,
+     "right_n": 13.590331870213822
+    }
+   ]
+  },
+  "obj1.pick_1.grasp": {
+   "closing_steps": 4,
+   "reached_band": true,
+   "reverse_pulses": 0,
+   "in_band_at": 4,
+   "reclose_pulses": 0,
+   "final": {
+    "left_n": 5.535821378895893,
+    "right_n": 5.589116372597899,
+    "total_n": 11.124937751493793
+   },
+   "trace": [
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 1.0,
+     "total_n": 0.0,
+     "note": "",
+     "left_n": 0.0,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 0.0,
+     "total_n": 2.5232138648785334,
+     "note": "",
+     "left_n": 2.5232138648785334,
+     "right_n": 0.0
+    },
+    {
+     "cmd": 0.0,
+     "total_n": 9.729781418302059,
+     "note": "",
+     "left_n": 6.189740008132019,
+     "right_n": 3.5400414101700397
+    },
+    {
+     "cmd": 0.0,
+     "total_n": 11.503465329363483,
+     "note": "",
+     "left_n": 5.724849889995985,
+     "right_n": 5.778615439367497
+    }
+   ]
+  }
+ },
+ "force_target_by_instance": {
+  "obj0.pick_1.grasp": "chocolate_pudding_1",
+  "obj1.pick_1.grasp": "porcelain_mug_1"
+ },
+ "guard": {
+  "config": {
+   "enabled": true,
+   "min_clearance_m": 0.0,
+   "contact_threshold_n": 0.1,
+   "max_retries": 3,
+   "on_refusal": "restore",
+   "pre_rejected": {}
+  },
+  "max_retries": 3,
+  "checks": [
+   {
+    "check": "pre_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "min_clearance_m": 0.0,
+    "clearance_m": {
+     "porcelain_mug_1": null,
+     "red_coffee_mug_1": 0.05,
+     "plate_1": 0.05,
+     "chocolate_pudding_1": 0.01778,
+     "__support__": 0.005
+    },
+    "violations": {},
+    "palm_geoms": [
+     "gripper0_hand_collision"
+    ],
+    "support_probe_geoms": [
+     "gripper0_hand_collision",
+     "gripper0_finger1_collision",
+     "gripper0_finger1_pad_collision",
+     "gripper0_finger2_collision",
+     "gripper0_finger2_pad_collision"
+    ],
+    "target": "chocolate_pudding_1",
+    "note": "distances from the live state; a value equal to a ladder rung is a lower bound, which is enough for a >0 decision but is not a measured distance.",
+    "instance_id": "obj0.pick_1.grasp",
+    "control_step": 43
+   },
+   {
+    "check": "post_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "threshold_n": 0.1,
+    "forbidden_contacts_now": [],
+    "instance_id": "obj0.pick_1.grasp",
+    "control_step": 52
+   },
+   {
+    "check": "pre_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "min_clearance_m": 0.0,
+    "clearance_m": {
+     "porcelain_mug_1": 0.02,
+     "red_coffee_mug_1": 0.05,
+     "plate_1": null,
+     "chocolate_pudding_1": null,
+     "__support__": 0.05
+    },
+    "violations": {},
+    "palm_geoms": [
+     "gripper0_hand_collision"
+    ],
+    "support_probe_geoms": [
+     "gripper0_hand_collision",
+     "gripper0_finger1_collision",
+     "gripper0_finger1_pad_collision",
+     "gripper0_finger2_collision",
+     "gripper0_finger2_pad_collision"
+    ],
+    "target": "porcelain_mug_1",
+    "note": "distances from the live state; a value equal to a ladder rung is a lower bound, which is enough for a >0 decision but is not a measured distance.",
+    "instance_id": "obj1.pick_1.grasp",
+    "control_step": 255
+   },
+   {
+    "check": "post_close",
+    "guard_version": "execution_guard_v0",
+    "ok": true,
+    "threshold_n": 0.1,
+    "forbidden_contacts_now": [],
+    "instance_id": "obj1.pick_1.grasp",
+    "control_step": 262
+   }
+  ],
+  "retries": [],
+  "chosen_candidate": {
+   "obj0.pick_1.approach": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "obj1.pick_1.approach": [
+    89.9,
+    -0.0569,
+    0.103079,
+    0.001452
+   ]
+  }
+ }
+}

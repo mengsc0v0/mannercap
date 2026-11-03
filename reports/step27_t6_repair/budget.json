@@ -1,0 +1,8 @@
+{"written_before_round1": true,
+ "diagnosis_probes": {"cap": 6, "used": 4, "list": ["t6_r5_init0", "t4_r3_init0", "t5_r2_init0", "t6_wallpinch_g4_init0 (fixed candidate, pre-capability)"]},
+ "repair": {"max_rounds": 3, "dev_inits": [0, 1, 2, 3], "executions_per_init_per_round": 1, "max_episodes": 12,
+            "episode_control_steps_est": 400, "max_control_steps": 4800},
+ "single_capability": "grasp_wall_pinch {panel_angle_deg, depth_m} (synthesis_v2/approach_planner.wall_pinch_candidate)",
+ "acceptance": "official success (env._check_success after retreat) AND contact_policy v1.1 clean; manner not required for T6 (fixed 1_100 grip)",
+ "on_budget_exhausted": "keep results, state the limiting capability, no extra rounds",
+ "after_dev_pass": "freeze params, validate on unused T6 inits >= 30 (ledger: T6 inits 0-29 seen)"}

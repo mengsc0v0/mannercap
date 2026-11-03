@@ -59,6 +59,10 @@ PARAM_SPECS: dict[str, ParamSpec] = {s.key: s for s in (
                   "scene and the instance's object; unknown / incompatible ids are refused; excludes grasp_reference"),
     ParamSpec("grasp_candidate", ("approach",), "dict", needs_plan_flag="approach_check",
               doc="one placement: yaw_deg, lateral_m, dz_m, longitudinal_m"),
+    ParamSpec("grasp_wall_pinch", ("approach",), "dict", needs_plan_flag="approach_check",
+              doc="single-wall pinch of a thin-walled object (Step 27): the panel nearest panel_angle_deg (object yaw "
+                  "frame, around the wall-ring centre) is clamped with the closing axis along its normal, finger tips "
+                  "depth_m below its top; resolved to one placement at plan time; excludes grasp_candidate"),
     ParamSpec("grasp_grid", ("approach",), "dict", needs_plan_flag="approach_check",
               doc="candidate grid: yaws_deg, laterals_m, dzs_m (lists)"),
 )}
@@ -70,9 +74,11 @@ _DICT_FIELDS = {
                         "hand_quat_obj_xyzw": ("quat", None, None)},
     "grasp_candidate": {"yaw_deg": ("float", -360.0, 360.0), "lateral_m": ("float", -0.1, 0.1),
                         "dz_m": ("float", -0.1, 0.15), "longitudinal_m": ("float", -0.1, 0.1)},
+    "grasp_wall_pinch": {"panel_angle_deg": ("float", -360.0, 360.0), "depth_m": ("float", 0.003, 0.04)},
     "grasp_grid": {"yaws_deg": ("list", -360.0, 360.0), "laterals_m": ("list", -0.1, 0.1), "dzs_m": ("list", -0.1, 0.15)},
 }
 _DICT_REQUIRED = {"grasp_reference": ("rel_obj", "hand_yaw_rel_deg"), "grasp_candidate": ("yaw_deg",),
+                  "grasp_wall_pinch": ("panel_angle_deg", "depth_m"),
                   "grasp_grid": ("yaws_deg", "laterals_m", "dzs_m")}
 
 

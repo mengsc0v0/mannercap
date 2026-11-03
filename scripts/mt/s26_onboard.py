@@ -20,12 +20,15 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "reports" / "step26_llm_onboard"
 PY = "/workdata/cap-x/.venv-libero/bin/python"
 OBJ_KEYS = ("lift_dz", "transport_dz", "place_dz", "place_tol_m", "target_offset_site", "target_align", "target_yaw_deg",
-            "target_yaw_symmetry_deg", "grasp_reference_id", "grasp_candidate", "grasp_grid")
-PROMPT_VERSION = "s26_onboard.v2"
+            "target_yaw_symmetry_deg", "grasp_reference_id", "grasp_candidate", "grasp_grid", "grasp_wall_pinch")
+PROMPT_VERSION = "s26_onboard.v4"  # v3: goals carry holds_at_init; v4: grasp_wall_pinch + thin_wall_ring context
 EXECUTOR_SEMANTICS = """Executor (fixed, not configurable here): per object, stages approach -> descend -> grasp -> lift -> transport -> place -> retreat.
 The hand keeps the grasp offset, so every height below is the height of the CARRIED OBJECT'S ORIGIN:
  * approach/descend/grasp: the executor picks a top-down grasp itself (planner over a candidate grid, collision-checked); you may
    restrict/extend it with grasp_grid / grasp_candidate, or select a registered demonstration grasp with grasp_reference_id.
+   For a thin-walled object (context "thin_wall_ring") grasp_wall_pinch {panel_angle_deg, depth_m} clamps ONE wall
+   panel (nearest that angle, object yaw frame) with one finger inside and one outside, closing along the panel normal,
+   finger tips depth_m below the rim; the angle is kept relative to the object's yaw on every init.
  * lift: object origin raised to (its start position) + lift_dz (default 0.15).
  * transport: object origin moved to target + (0,0,transport_dz) (default 0.15), carried at that height.
  * place: object origin servoed to target + (0,0,place_dz) within place_tol_m (default 0.008), then the gripper opens and the
@@ -202,7 +205,8 @@ def template_proposal(ctx):
         if len(a) != 2:
             continue
         objs.append({"object": a[0], "target": ("@site:" + a[1]) if a[1] in ctx["regions"] else a[1], "params": {}})
-    unsup = [g["predicate"] for g in ctx["goal"] if g["predicate"] in ctx["unsupported_predicates_by_executor"] or len(g["args"]) != 2]
+    unsup = [g["predicate"] for g in ctx["goal"] if not g.get("holds_at_init")
+             and (g["predicate"] in ctx["unsupported_predicates_by_executor"] or len(g["args"]) != 2)]
     return {"supported": not unsup, "unsupported_reason": f"predicates {unsup}" if unsup else None, "objects": objs,
             "hypothesis": "template"}
 

@@ -1,0 +1,51 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 8000,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "s26_onboard.v3",
+  "response": {
+    "hypothesis": "All four development failures occurred before motion at moka_pot_2's approach: each registered-reference run supplied only one candidate, and that candidate was rejected during descent for collision with moka_pot_2 itself, with approximately 0.0021-0.0022 m penetration at grasp. The placement geometry, order, and heights were never exercised, so they are unchanged. I removed both single-candidate grasp_reference_id overrides, allowing the executor's normal collision-checked grasp planner to select feasible top-down grasps. Moka pot 2 remains first on the right and moka pot 1 second on the left. The stove turn-on predicate already holds and requires no unsupported action.",
+    "objects": [
+      {
+        "derivation": "The site pose and offset give target xy=(-0.0442+0.05,-0.1994)=(0.0058,-0.1994), inside the accepted box with 0.025 m nearest-boundary margin. Preserving the initial -180 degree yaw makes the pot's x width 0.0814 m. Its supported origin height is burner surface 0.9304 plus origin-above-bottom 0.0661 = 0.9965 m. A 0.005 m release gap gives place_dz=0.9965+0.005-0.905=0.0965 and commanded origin z=1.0015, inside the accepted open interval (0.9025,1.0075). The 0.004 m tolerance is below the 0.025 m nearest xy margin. Lift 0.2 raises the source bottom to 0.9661+0.2-0.0661=1.1000 m. Transport 0.27 gives carried bottom z=0.905+0.27-0.0661=1.1089 m. No grasp reference is imposed, allowing the executor's collision-checked candidate grid to replace the rejected single demonstration grasp.",
+        "object": "moka_pot_2",
+        "params": {
+          "lift_dz": 0.2,
+          "place_dz": 0.0965,
+          "place_tol_m": 0.004,
+          "target_offset_site": [
+            0.05,
+            0.0,
+            0.0
+          ],
+          "target_yaw_deg": -180.0,
+          "transport_dz": 0.27
+        },
+        "target": "@site:flat_stove_1_cook_region"
+      },
+      {
+        "derivation": "The site pose and offset give target xy=(-0.0442-0.06,-0.1994)=(-0.1042,-0.1994), inside the accepted box with 0.015 m nearest-boundary margin. The two target origins are separated by 0.11 m along x; subtracting two pot x half-widths, 2*(0.0814/2), leaves 0.0286 m nominal clearance, or 0.0206 m under opposing 0.004 m placement errors. The supported origin is again 0.9304+0.0661=0.9965 m, so a 0.005 m release gap yields place_dz=0.0965 and release z=1.0015 within the accepted z interval. A settled pot top is 0.9304+0.1518=1.0822 m; transport places the carried bottom at 1.1089 m, leaving 0.0267 m vertical clearance over the first pot. Lift 0.2 raises the source bottom to 1.1000 m. The -180 degree target yaw preserves the initial orientation. No grasp reference is imposed so the executor can search its collision-checked grasp grid.",
+        "object": "moka_pot_1",
+        "params": {
+          "lift_dz": 0.2,
+          "place_dz": 0.0965,
+          "place_tol_m": 0.004,
+          "target_offset_site": [
+            -0.06,
+            0.0,
+            0.0
+          ],
+          "target_yaw_deg": -180.0,
+          "transport_dz": 0.27
+        },
+        "target": "@site:flat_stove_1_cook_region"
+      }
+    ],
+    "supported": true,
+    "unsupported_reason": null
+  }
+}

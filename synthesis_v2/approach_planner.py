@@ -162,6 +162,61 @@ def extended_grid(yaws_deg=DEFAULT_YAWS_DEG, laterals_m=(0.0, 0.01, -0.01, 0.02,
     return sorted(g, key=lambda t: (abs(t[1]) + abs(t[3]) + 0.5 * abs(t[2]), order[t[0]], t[1] < 0, t[3] < 0))
 
 
+def thin_wall_panels(m, d, gids, max_half_thickness_m: float = 0.004, max_normal_z: float = 0.2) -> list:
+    """Thin vertical wall panels among ``gids``: box geoms whose smallest half-size <= max_half_thickness_m and whose
+    thin axis is near-horizontal.  Returns dicts with geom id, centre, unit horizontal normal, top z, width."""
+    import mujoco
+    out = []
+    for g in gids:
+        if m.geom_type[g] != mujoco.mjtGeom.mjGEOM_BOX:
+            continue
+        sz = np.asarray(m.geom_size[g], float); Rg = np.asarray(d.geom_xmat[g], float).reshape(3, 3)
+        k = int(np.argmin(sz)); n = Rg[:, k]
+        if sz[k] > max_half_thickness_m or abs(n[2]) > max_normal_z:
+            continue
+        nh = np.array([n[0], n[1], 0.0]); nh /= np.linalg.norm(nh)
+        out.append({"gid": int(g), "centre": np.asarray(d.geom_xpos[g], float).copy(), "normal": nh,
+                    "top_z": float(d.geom_xpos[g][2] + np.abs(Rg[2]) @ sz), "width_m": float(2 * sorted(sz)[1])})
+    return out
+
+
+def wall_pinch_candidate(m, d, site_id: int, env: "HandEnvelope", target_gids, obj_pos, obj_quat_xyzw,
+                         grasp_quat_xyzw, panel_angle_deg: float, depth_m: float):
+    """Step 27 capability: one planner placement (yaw_deg, lateral_m, dz_m, longitudinal_m) that clamps a single thin
+    wall panel.  Panel = the top-ring panel whose direction from the ring centre, in the object's yaw frame, is nearest
+    ``panel_angle_deg``; eef site on the panel centre line, finger-row (closing) axis along the panel normal, finger
+    tips ``depth_m`` below the panel top (hand assumed top-down).  Returns (candidate, info) or (None, reason)."""
+    from scipy.spatial.transform import Rotation as R
+    import mujoco
+    panels = thin_wall_panels(m, d, target_gids)
+    if not panels:
+        return None, "no_thin_wall_panels"
+    ztop = max(p["top_z"] for p in panels)
+    ring = [p for p in panels if p["top_z"] > ztop - 0.005]
+    cen = np.mean([p["centre"] for p in ring], axis=0)
+    oyaw = R.from_quat(np.asarray(obj_quat_xyzw, float)).as_euler("xyz")[2]
+
+    def ang(p):
+        v = p["centre"][:2] - cen[:2]
+        return (np.degrees(np.arctan2(v[1], v[0]) - oyaw) + 180.0) % 360.0 - 180.0
+    p = min(ring, key=lambda p: abs((ang(p) - panel_angle_deg + 180.0) % 360.0 - 180.0))
+    fing = [g for g in env.gids if "finger" in (mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_GEOM, g) or "")]
+    if not fing:
+        return None, "no_finger_geoms"
+    tip_z = min(float(d.geom_xpos[g][2] - np.abs(np.asarray(d.geom_xmat[g]).reshape(3, 3)[2]) @ m.geom_size[g]) for g in fing)
+    site_above_tip = float(d.site_xpos[site_id][2]) - tip_z
+    yaws = np.arange(-90.0, 90.0, 0.1)    # the two fingers are symmetric: +-180 deg is the same clamp
+    rows = [quat_to_mat(yaw_quat(np.asarray(grasp_quat_xyzw, float), np.deg2rad(y))) @ env.obs_to_site for y in yaws]
+    k = int(np.argmax([abs(Rq[:, 1] @ p["normal"]) for Rq in rows]))
+    Rq = rows[k]
+    tgt = np.array([p["centre"][0], p["centre"][1], p["top_z"] - depth_m + site_above_tip])
+    lon, lat, dz = np.linalg.solve(np.stack([Rq[:, 0], Rq[:, 1], [0.0, 0.0, 1.0]], axis=1), tgt - np.asarray(obj_pos, float))
+    info = {"panel_geom": mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_GEOM, p["gid"]), "panel_angle_obj_deg": round(float(ang(p)), 1),
+            "closing_normal_cos": round(float(abs(Rq[:, 1] @ p["normal"])), 4), "site_above_tip_m": round(site_above_tip, 4),
+            "panel_width_m": round(p["width_m"], 4), "n_ring_panels": len(ring)}
+    return (float(yaws[k]), float(lat), float(dz), float(lon)), info
+
+
 def plan_approach(m, d, site_id: int, env: HandEnvelope, obstacles: Sequence[Obstacle], *,
                   start_pos, start_quat_xyzw, grasp_pos, grasp_quat_xyzw, hover_dz: float,
                   margin_m: float = 0.0, grid=None, target: Optional[Obstacle] = None, evaluate_all: bool = False,

@@ -9,6 +9,7 @@
     "white_yellow_mug_1",
     "microwave_1_heating_region"
    ],
+   "holds_at_init": false,
    "accepted_region_for_obj_origin": {
     "origin_box_world": [
      [
@@ -28,7 +29,8 @@
    "predicate": "close",
    "args": [
     "microwave_1"
-   ]
+   ],
+   "holds_at_init": false
   }
  ],
  "predicate_semantics": {
@@ -42,6 +44,7 @@
   "turnon",
   "turnoff"
  ],
+ "unsupported_note": "the executor cannot ACHIEVE these predicates; a goal whose holds_at_init is true needs no action, it only has to stay true until the end",
  "objects": {
   "porcelain_mug_1": {
    "class": "porcelain_mug",
