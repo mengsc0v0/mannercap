@@ -1,0 +1,131 @@
+[
+ {
+  "key": "t6:zh_neutral:fixed_base",
+  "task": 6,
+  "id": "zh_neutral",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:zh_gentle:fixed_base",
+  "task": 6,
+  "id": "zh_gentle",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，抓白色马克杯的时候轻一点",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:zh_firm:fixed_base",
+  "task": 6,
+  "id": "zh_firm",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，白色马克杯要握紧",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:zh_slowcarry:fixed_base",
+  "task": 6,
+  "id": "zh_slowcarry",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，慢慢地搬运白色马克杯",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:zh_fastcarry:fixed_base",
+  "task": 6,
+  "id": "zh_fastcarry",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，快速搬运白色马克杯",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:zh_binding:fixed_base",
+  "task": 6,
+  "id": "zh_binding",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，白色马克杯轻轻地拿，巧克力布丁要抓牢",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle",
+    "obj0": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:zh_slow_all:fixed_base",
+  "task": 6,
+  "id": "zh_slow_all",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，全程慢一些",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "*",
+     "*",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:zh_fragile_combo:fixed_base",
+  "task": 6,
+  "id": "zh_fragile_combo",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，白色马克杯容易碎，要轻拿并且慢慢搬运",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ }
+]

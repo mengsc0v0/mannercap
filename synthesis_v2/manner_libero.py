@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Callable, Mapping, Optional
 
-MANNER_LIBERO_VERSION = "manner_libero.v1"
+MANNER_LIBERO_VERSION = "manner_libero.v2"
 
 # measured-quantity bands (pre-registered in reports/step30_manner_gen/protocol.json)
 SPEED_BAND = {"slow": (0.0, 0.09), "normal": (0.09, 0.17), "fast": (0.17, 1.0)}
@@ -21,6 +21,11 @@ SPEED_LADDER = {"slow": (0.06, 0.05, 0.04), "normal": (0.12, 0.10, 0.15), "fast"
 DEFAULT_V = 0.12                 # unbound stage
 DEFAULT_GRIP = (1.0, 100.0)      # unbound object (executor default closure)
 CARRY = ("lift", "transport")
+# Carry-clearance repair (step 31): when an execution fails (task or contact) and the failure is attributed to one
+# object's carry (unexcused robot contact during its lift/transport, or another tracked object displaced while it is
+# carried), that object's lift/transport heights are raised by CLEAR_STEP, at most CLEAR_MAX in total.  Manner
+# commands (speed, grip) are left unchanged by this action.
+CLEAR_STEP, CLEAR_MAX = 0.03, 0.06
 
 
 class MannerRefused(ValueError):
@@ -72,7 +77,8 @@ def carry_level(program, request: MannerRequest, role: str) -> Optional[str]:
     return None
 
 
-def initial_commands(program, request: MannerRequest, choose_grip: Callable[[str, str, float], tuple]) -> dict:
+def initial_commands(program, request: MannerRequest, choose_grip: Callable[[str, str, float], tuple],
+                     clear: Optional[Mapping[str, float]] = None) -> dict:
     """speed: instance_id -> v_max; grip: role -> closure (lo, hi).
 
     choose_grip(role, grip_level, carry_v) -> (force, carry v | None).  A grip clause may move the object's carry
@@ -90,7 +96,7 @@ def initial_commands(program, request: MannerRequest, choose_grip: Callable[[str
                 set_carry(program, request, sp, role, v)
             else:
                 gr[role] = DEFAULT_GRIP
-    return {"speed": sp, "grip": gr}
+    return {"speed": sp, "grip": gr, "clear": {r: float(v) for r, v in (clear or {}).items() if v}}
 
 
 def allowed_carry(program, request: MannerRequest, role: str, grid: tuple) -> list:
@@ -153,7 +159,8 @@ def audit(request: MannerRequest, measured: Mapping[str, Any]) -> dict:
 
 
 def next_commands(program, request: MannerRequest, cmd: dict, aud: dict, tried: list,
-                  repair_force: Callable[[str, str, tuple, str, float, list], Optional[tuple]]) -> tuple[Optional[dict], list]:
+                  repair_force: Callable[[str, str, tuple, str, float, list], Optional[tuple]],
+                  carry_evidence: Optional[Mapping[str, list]] = None) -> tuple[Optional[dict], list]:
     """One repair step on every failed clause.  Returns (new_cmd | None, actions).
 
     repair_force(role, grip_level, prev_force, cause, carry_v, tried_forces) -> (new force, new carry v | None) or None.
@@ -161,11 +168,21 @@ def next_commands(program, request: MannerRequest, cmd: dict, aud: dict, tried: 
     failed = [r for r in aud["clauses"] if not r["pass"]]
     if aud["joint_pass"]:
         return None, [{"action": "none", "why": "joint_pass"}]
-    if not failed:
-        why = "task_failed" if not aud["task_ok"] else "contact_unclean"
-        return None, [{"action": "stop", "why": f"{why}_not_a_manner_failure"}]
-    new = {"speed": dict(cmd["speed"]), "grip": dict(cmd["grip"])}
+    new = {"speed": dict(cmd["speed"]), "grip": dict(cmd["grip"]), "clear": dict(cmd.get("clear") or {})}
     acts = []
+    ev = {r: e for r, e in (carry_evidence or {}).items() if e}
+    if not (aud["task_ok"] and aud["contact_clean"]):
+        for role in sorted(ev):
+            cur = float(new["clear"].get(role, 0.0))
+            if cur + CLEAR_STEP <= CLEAR_MAX + 1e-9:
+                new["clear"][role] = round(cur + CLEAR_STEP, 3)
+                acts.append({"action": "clearance", "target": role, "from": cur, "to": new["clear"][role],
+                             "cause": list(ev[role])[:3]})
+    if not failed and not acts:
+        why = "task_failed" if not aud["task_ok"] else "contact_unclean"
+        if ev:
+            return None, [{"action": "stop", "why": "carry_clearance_exhausted", "target": sorted(ev)}]
+        return None, [{"action": "stop", "why": f"{why}_not_a_manner_failure"}]
     for r in failed:
         if r["dimension"] == "speed":
             iid, lad, cur = r["target"], SPEED_LADDER[r["level"]], cmd["speed"][r["target"]]
@@ -202,4 +219,5 @@ def next_commands(program, request: MannerRequest, cmd: dict, aud: dict, tried: 
 
 def _same(a: dict, b: dict) -> bool:
     return a["speed"] == b["speed"] and {k: tuple(v) for k, v in a["grip"].items()} == \
-        {k: tuple(v) for k, v in b["grip"].items()}
+        {k: tuple(v) for k, v in b["grip"].items()} and \
+        {k: v for k, v in (a.get("clear") or {}).items() if v} == {k: v for k, v in (b.get("clear") or {}).items() if v}

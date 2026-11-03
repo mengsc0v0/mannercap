@@ -114,3 +114,38 @@ def test_joint_choice_respects_bound_carry_band():
     assert M.allowed_carry(p, r2, "a", (0.06, 0.12, 0.24)) == [0.04, 0.05, 0.06]
     c2 = M.initial_commands(p, r2, lambda *_: ((25.0, 100.0), 0.24))   # out of band: transport untouched
     assert c2["speed"]["a.pick_1.transport"] == 0.06 and c2["speed"]["a.pick_1.lift"] == 0.24
+
+
+def test_carry_clearance_repair_keeps_manner_and_is_bounded():
+    p = _prog()
+    r = M.request_from_semantics(p, _sem((["a.pick_1.grasp"], "grip", "gentle")))
+    cmd = M.initial_commands(p, r, lambda *_: ((5.0, 100.0), None))
+    assert cmd["clear"] == {}
+    a = M.audit(r, _meas(9, 15, 0.1, clean=False))
+    # no carry evidence -> unchanged honest stop
+    new, acts = M.next_commands(p, r, cmd, a, [cmd], lambda *x: None, {})
+    assert new is None and acts[0]["why"] == "contact_unclean_not_a_manner_failure"
+    # evidence on b's carry -> only b is raised, speed/grip untouched
+    new, acts = M.next_commands(p, r, cmd, a, [cmd], lambda *x: None, {"b": ["pushed:basket_1:0.05"]})
+    assert new["clear"] == {"b": M.CLEAR_STEP} and new["speed"] == cmd["speed"] and new["grip"] == cmd["grip"]
+    assert acts == [{"action": "clearance", "target": "b", "from": 0.0, "to": M.CLEAR_STEP,
+                     "cause": ["pushed:basket_1:0.05"]}]
+    new2, _ = M.next_commands(p, r, new, a, [cmd, new], lambda *x: None, {"b": ["x"]})
+    assert new2["clear"] == {"b": M.CLEAR_MAX}
+    new3, acts3 = M.next_commands(p, r, new2, a, [cmd, new, new2], lambda *x: None, {"b": ["x"]})
+    assert new3 is None and acts3[0]["why"] == "carry_clearance_exhausted"
+    # a passing execution is never "repaired"
+    ok = M.audit(r, _meas(9, 15, 0.1))
+    assert M.next_commands(p, r, cmd, ok, [cmd], lambda *x: None, {"b": ["x"]})[0] is None
+    # clearance + a failed manner clause in one step
+    bad = M.audit(r, _meas(9, 20, 0.1, ok=False))
+    new4, acts4 = M.next_commands(p, r, cmd, bad, [cmd], lambda *x: ((1.0, 14.0), None), {"a": ["x"]})
+    assert new4["clear"] == {"a": M.CLEAR_STEP} and new4["grip"]["a"] == (1.0, 14.0)
+    assert [x["action"] for x in acts4] == ["clearance", "grip"]
+
+
+def test_initial_commands_carry_clearance_prior():
+    p = _prog()
+    r = M.request_from_semantics(p, _sem((["a.pick_1.grasp"], "grip", "gentle")))
+    cmd = M.initial_commands(p, r, lambda *_: ((5.0, 100.0), None), {"a": 0.0, "b": 0.03})
+    assert cmd["clear"] == {"b": 0.03}

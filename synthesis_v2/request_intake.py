@@ -209,6 +209,8 @@ def check_task(intake: Intake, program: TaskProgram) -> tuple[list[dict], list[t
 _ORDER_CUE = re.compile(r"\b(then|before|after|afterwards|first|finally|next)\b", re.I)
 _TASK_VERB = re.compile(r"\b(put|place|close|open|turn on|move|insert)\b", re.I)
 _PLURAL = re.compile(r"\b(both|all|each|every|them)\b", re.I)
+# a negation earlier in the same clause, with no contrast word after it ("not ... hard", "without squeezing hard")
+_NEG_EN = re.compile(r"\b(?:not|never|without|no|don't|do not|avoid|avoiding)\b(?!.*\b(?:but|instead)\b)", re.I)
 _CUE_ONLY = {"轻": "gentle", "慢": "slow", "快": "fast", "用力": "firm", "紧": "firm"}   # coverage cues, never bindings
 
 
@@ -258,7 +260,7 @@ def coverage_gaps(intake: Intake, program: TaskProgram) -> list[dict]:
     for k, cl, b in entries:
         if k != "binding":
             continue
-        have = [cues[w] for w in re.findall(r"[a-z]+", cl) if w in cues]
+        have = [cues[m.group(0)] for m in re.finditer(r"[a-z]+", cl) if m.group(0) in cues and not _NEG_EN.search(cl[:m.start()])]
         if have and (b.dimension, b.level) not in have:
             gaps.append({"gap": "level_disagrees_with_clause", "clause": b.clause, "bound": [b.dimension, b.level]})
     if intake.source == "llm":
@@ -286,13 +288,25 @@ def request_scope_expected(clause: str, program: TaskProgram) -> set[str]:
     return {it.instance_id for it in program.instances if "speed" in it.dims and (not prims or it.primitive in prims)}
 
 
+def step_phrases(intake: Intake, program: TaskProgram) -> dict[str, list[str]]:
+    """Object phrases of the model's own task steps that occur verbatim in the sentence -> program roles (object layer of
+    the Chinese speed scope: a speed clause is resolved to the object the model used for the task itself)."""
+    out: dict[str, set] = {}
+    for st in intake.steps:
+        ph = (st.object_phrase or "").strip()
+        if ph and st.object_role in program.objects and ph in intake.instruction:
+            out.setdefault(ph, set()).add(st.object_role)
+    return {k: sorted(v) for k, v in out.items()}
+
+
 def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
     """Decision for one request.  ``guards`` lists rules that overrode / flagged the model's answer."""
     sem, guards, codes = intake.semantics, [], []
+    phrases = step_phrases(intake, program)
     errs = check_semantics(sem, program)
     # two bindings on one instance are structurally invalid; when the SENTENCE itself conflicts, report the conflict instead
     if errs and not (has_cjk(intake.instruction) and all(e.startswith("conflicting_binding") for e in errs)
-                     and resolve_speed_scope(intake.instruction, program)["status"] == "conflict"):
+                     and resolve_speed_scope(intake.instruction, program, phrases)["status"] == "conflict"):
         return {"status": "invalid", "codes": ["structural"], "detail": errs, "guards": guards, "unstated_program_steps": []}
     conflicts, unstated = check_task(intake, program)
     # numeric guard: a numeric manner value must come back as unsupported:numeric_level, never as a binding / nothing
@@ -318,7 +332,7 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
     if cjk:
         # Chinese request: the speed scope is derived by code from the ORIGINAL sentence (language_scope); the model's
         # bindings must reproduce it.  A word the vocabulary does not cover never becomes a global request.
-        speed_scope = resolve_speed_scope(text, program)
+        speed_scope = resolve_speed_scope(text, program, phrases)
         spd = [b for b in sem.bindings if b.dimension == "speed"]
         if speed_scope["status"] == "conflict":
             speed_conflict = speed_scope["reasons"]
@@ -331,7 +345,19 @@ def admit(intake: Intake, program: TaskProgram) -> dict[str, Any]:
                 scope_undetermined = [b.clause for b in spd]
                 guards.append({"guard": "speed_scope_undetermined", "detail": "no speed word recognised by the scope rules"})
         else:
-            diff = compare_speed_bindings(speed_scope["effective"], [(b.instance_ids, b.level) for b in spd])
+            eff = dict(speed_scope["effective"])
+            for oo in speed_scope.get("one_object", []):     # O3: one object, grounded by the model's binding
+                ids = set(oo["instances"])
+                roles = {program.instance(i).object_role for b in spd if b.level == oo["level"] for i in b.instance_ids if i in ids}
+                if len(roles) == 1:
+                    r = roles.pop()
+                    eff.update({i: oo["level"] for i in ids if program.instance(i).object_role == r})
+                else:
+                    gaps.append({"gap": "language_scope_mismatch", "missing": [], "extra": [], "wrong_level": [], "model_conflict": [],
+                                 "note": f"the instruction asks for '{oo['level']}' on the {oo['stage']} of exactly ONE object; "
+                                         f"bind the {oo['stage']} instance of that object only",
+                                 "objects_bound": sorted(roles)})
+            diff = compare_speed_bindings(eff, [(b.instance_ids, b.level) for b in spd])
             if diff:
                 gaps.append({"gap": "language_scope_mismatch", **diff})
     for b, bs in zip(sem.bindings, intake.bases):

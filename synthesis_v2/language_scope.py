@@ -26,6 +26,21 @@ Request level (resolve_speed_scope):
     cue is a conflict; clause order never decides ("放下时慢一点，放下时快一点" is a conflict);
   * "normal" (正常 / 常速) is a speed level like any other; the plan keeps the neutral value there.
 Only speed words are handled; grip / press words are not scoped here.
+
+Object layer (language_scope.zh_object.v1, step 31; active only when the caller passes ``phrases``): v2 fixes the STAGE of
+a speed word; the object layer decides WHICH OBJECTS' instances of that stage it covers.  ``phrases`` maps object phrases
+that occur verbatim in the sentence to program roles (taken from the model's own task steps, so the referent is the one the
+model used for the task itself).  For a stage-scoped speed word, the nearest clause part at or before it that names
+objects decides:
+  O1 one object named (and no plural cue)        -> that object's instances only   "慢慢地搬运番茄酱"  "番茄酱容易碎，要…慢慢搬运"
+  O2 several objects (>= 2 distinct phrases) or a plural cue (都/所有/…) -> every object (= v2)
+     (v2 of the layer: ONE phrase that the model used for several objects, e.g. a shared head noun "摩卡壶" in
+      "右边的摩卡壶", is not a plural: without a plural cue it is O3, one object grounded by the model)           "把字母汤和番茄酱都放进篮子里，慢慢搬运"
+  O3 no known phrase, but the stage word is directly followed by a noun phrase in its own part -> exactly ONE object, which
+     one is grounded by the model's binding (status ok + ``one_object``; admit() checks the binding covers one object)
+  none of these                                  -> every object (= v2)
+Two levels for the same (stage, object) are a conflict; a narrow (object) level that differs from a broad one needs an
+exception cue, exactly like local vs global.
 """
 from __future__ import annotations
 
@@ -48,6 +63,11 @@ _PART_SPLIT = re.compile(r"[，,；;。、]")
 _CJK = re.compile(r"[\u4e00-\u9fff]")
 # stage words that exist in the shared table and are written in Chinese
 _STAGE_ZH = sorted(((w, st) for st, ws in _STAGE_WORDS.items() for w in ws if _CJK.search(w)), key=lambda x: -len(x[0]))
+
+
+OBJECT_SCOPE_VERSION = "language_scope.zh_object.v2"
+PLURAL_ZH = ("都", "所有", "每个", "每一个", "两个", "全部", "它们", "各个", "一起", "分别")
+_O3_SKIP = re.compile(r"^[入到进下上]?(?:的?时候|时)?$")
 
 
 def has_cjk(text: str) -> bool:
@@ -77,11 +97,11 @@ def clause_speed_scope(text: str) -> list[dict[str, Any]]:
     """One entry per speed word found in ``text``: kind global | stage | undetermined (+ rule, stage, reason, exception flag)."""
     table = sorted(SPEED_WORDS_ZH, key=lambda x: -len(x[0]))
     res: list[dict[str, Any]] = []
-    for part in _PART_SPLIT.split(text or ""):
+    for pi, part in enumerate(_PART_SPLIT.split(text or "")):
         levels, stages = _hits(part, table), _hits(part, _STAGE_ZH)
         exc = any(c in part for c in EXCEPTION_CUES)
         for ls, le, lvl in levels:
-            e: dict[str, Any] = {"word": part[ls:le], "level": lvl, "part": part, "exception": exc}
+            e: dict[str, Any] = {"word": part[ls:le], "level": lvl, "part": part, "part_index": pi, "exception": exc}
             if _NEGATION.search(part[:ls]):
                 e.update(kind="undetermined", rule="R4", stage=None, reason="negation")
             elif any(c in part for c in GLOBAL_CUES):
@@ -99,6 +119,9 @@ def clause_speed_scope(text: str) -> list[dict[str, Any]]:
                 if len(cand) == 1:
                     (st, rule), = cand.items()
                     e.update(kind="stage", rule=rule, stage=st)
+                    if rule == "R1":
+                        end = max(b for a, b, s_ in stages if s_ == st and a >= le and part[le:a] in _GAP_AFTER_LEVEL)
+                        e["after_stage"] = part[end:]
                 elif cand:
                     e.update(kind="undetermined", rule="R4", stage=None, reason="several_stages_possible", stages=sorted(cand))
                 else:
@@ -108,12 +131,38 @@ def clause_speed_scope(text: str) -> list[dict[str, Any]]:
     return res
 
 
-def resolve_speed_scope(text: str, program) -> dict[str, Any]:
+def _object_target(hit: Mapping[str, Any], parts: Sequence[str], phrases: Mapping[str, Sequence[str]]):
+    """-> (None = every object | role | "?" = one object grounded by the model, rule)."""
+    table = sorted(((ph, tuple(sorted(set(r)))) for ph, r in phrases.items() if ph), key=lambda x: -len(x[0]))
+    for q in range(hit["part_index"], -1, -1):
+        part = parts[q]
+        found = _hits(part, table)
+        roles = {r for _, _, rs in found for r in rs}
+        if any(c in part for c in PLURAL_ZH) or len({rs for _, _, rs in found}) >= 2:
+            return None, "O2"
+        if len(roles) == 1:
+            return next(iter(roles)), "O1"
+        if roles:            # one phrase shared by several objects, no plural cue -> one object, grounded by the model
+            return "?", "O3"
+        if q == hit["part_index"] and hit.get("after_stage") and not _O3_SKIP.match(hit["after_stage"]) \
+                and not _hits(hit["after_stage"], sorted(SPEED_WORDS_ZH, key=lambda x: -len(x[0]))):
+            return "?", "O3"
+    return None, "none"
+
+
+def resolve_speed_scope(text: str, program, phrases: Optional[Mapping[str, Sequence[str]]] = None) -> dict[str, Any]:
     """Request-level result: status none | ok | needs_clarification | conflict, the per-instance ``effective`` levels (ok only)
     and the instances where an explicit local exception overrides a global level."""
     hits = clause_speed_scope(text)
     out: dict[str, Any] = {"scope_version": SCOPE_VERSION, "rules_hash": scope_rules_hash(), "status": "none", "reasons": [],
                            "effective": {}, "exceptions": [], "hits": hits}
+    if phrases is not None:
+        out["object_scope_version"] = OBJECT_SCOPE_VERSION
+        out["one_object"] = []
+        parts = _PART_SPLIT.split(text or "")
+        for h in hits:
+            if h["kind"] == "stage":
+                h["object"], h["object_rule"] = _object_target(h, parts, phrases)
     if not hits:
         return out
     bad = [h for h in hits if h["kind"] == "undetermined"]
@@ -123,28 +172,38 @@ def resolve_speed_scope(text: str, program) -> dict[str, Any]:
         return out
     speed = [it for it in program.instances if "speed" in it.dims]
     glev = sorted({h["level"] for h in hits if h["kind"] == "global"})
-    loc: dict[str, list[dict]] = {}
+    loc: dict[Any, list[dict]] = {}
     for h in hits:
         if h["kind"] == "stage":
-            loc.setdefault(h["stage"], []).append(h)
+            loc.setdefault((h["stage"], h.get("object")) if phrases is not None else h["stage"], []).append(h)
     conflicts: list[dict[str, Any]] = []
     if len(glev) > 1:
         conflicts.append({"scope": "global", "levels": glev})
     for st, hs in loc.items():
         lv = sorted({h["level"] for h in hs})
         if len(lv) > 1:
-            conflicts.append({"scope": st, "levels": lv})
+            conflicts.append({"scope": st if isinstance(st, str) else "@".join(x or "*" for x in st), "levels": lv})
     if conflicts:
         out.update(status="conflict", reasons=conflicts)
         return out
     eff: dict[str, str] = {it.instance_id: glev[0] for it in speed} if glev else {}
     exc: list[str] = []
-    for st, hs in loc.items():
+    # broad scopes first (every object), then object-narrowed ones: a narrow level overriding a broad one is an exception
+    for key, hs in sorted(loc.items(), key=lambda kv: (not isinstance(kv[0], str) and kv[0][1] is not None)):
+        st, obj = (key, None) if isinstance(key, str) else key
         lvl = hs[0]["level"]
         ids = [it.instance_id for it in speed if it.primitive == st]
         if not ids:
             out.update(status="needs_clarification", reasons=[{"stage": st, "reason": "dimension_not_on_stage"}])
             return out
+        if obj == "?":
+            out["one_object"].append({"stage": st, "level": lvl, "instances": ids, "exception": any(h["exception"] for h in hs)})
+            continue
+        if obj is not None:
+            ids = [it.instance_id for it in speed if it.primitive == st and it.object_role == obj]
+            if not ids:
+                out.update(status="needs_clarification", reasons=[{"stage": st, "object": obj, "reason": "dimension_not_on_stage"}])
+                return out
         for iid in ids:
             if iid in eff and eff[iid] != lvl:
                 if any(h["exception"] for h in hs):

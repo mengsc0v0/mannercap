@@ -1,0 +1,5139 @@
+{
+ "t0:en_gentle_para": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, taking care not to squeeze the tomato sauce hard",
+  "status": "incomplete",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "cba49c6e1ca66e87a6aab48e2f5e5209092040a408031e61555c496e0da67df3",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "incomplete",
+   "codes": [
+    "level_disagrees_with_clause"
+   ],
+   "detail": [],
+   "guards": [
+    {
+     "guard": "incomplete_answer",
+     "gap": "level_disagrees_with_clause",
+     "clause": "taking care not to squeeze the tomato sauce hard",
+     "bound": [
+      "grip",
+      "gentle"
+     ]
+    }
+   ],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "tomato_sauce",
+    "clause": "taking care not to squeeze the tomato sauce hard",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t0:en_firm_para": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, and keep a tight hold on the tomato sauce",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "94f402091ee55077e4910761e51621126c4ce8b4486e19136e0faa5b1eaf54c1",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "tomato_sauce",
+    "clause": "keep a tight hold on the tomato sauce",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "tomato_sauce": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "keep a tight hold on the tomato sauce"
+    }
+   ]
+  }
+ },
+ "t0:en_slow_para": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket; bring the tomato sauce over at a leisurely pace",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "1cb299630b984f63530139ac94ae042921dfcd36d9414a4f361edf2e4646beaa",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "tomato_sauce",
+    "clause": "bring the tomato sauce over at a leisurely pace",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "tomato_sauce.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "tomato_sauce.pick_1.transport"
+     ],
+     "clause": "bring the tomato sauce over at a leisurely pace"
+    }
+   ]
+  }
+ },
+ "t0:en_fast_para": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, and hurry while carrying the tomato sauce",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "7e90a14d08b8d587c02e08a5a4adfa4375663ca3880b33daabb70a22b647dd3a",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "tomato_sauce",
+    "clause": "hurry while carrying the tomato sauce",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "tomato_sauce.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "tomato_sauce.pick_1.transport"
+     ],
+     "clause": "hurry while carrying the tomato sauce"
+    }
+   ]
+  }
+ },
+ "t0:en_binding_reorder": {
+  "instruction": "Grip the alphabet soup firmly but handle the tomato sauce with a light touch; put both the alphabet soup and the tomato sauce in the basket",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "858ab08db600128bc7cd5c57406742a5324bf595ad52c24d211f2d83172d15df",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "alphabet_soup",
+    "clause": "Grip the alphabet soup firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "tomato_sauce",
+    "clause": "handle the tomato sauce with a light touch",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "alphabet_soup": "firm",
+    "tomato_sauce": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "clause": "Grip the alphabet soup firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "handle the tomato sauce with a light touch"
+    }
+   ]
+  }
+ },
+ "t0:en_fragile_combo": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket. The tomato sauce is fragile, so hold it softly and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "815a12b7c73073dcb2a439e31ee96f462152d71578f3b7f7313c84a429fd2e6f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "tomato_sauce",
+    "clause": "hold it softly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "tomato_sauce",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "tomato_sauce.pick_1.transport": "slow"
+   },
+   "grip": {
+    "tomato_sauce": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "hold it softly"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "tomato_sauce.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t0:zh_neutral": {
+  "instruction": "把字母汤和番茄酱都放进篮子里",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "d4e2c2c1d8bcab5b05b2e72922869582099f3e2a2ab60beb425a45faa56e268a",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t0:zh_gentle": {
+  "instruction": "把字母汤和番茄酱都放进篮子里，抓番茄酱的时候轻一点",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "313c496db5495a2d450402b39672ae78d7e70ed74629a2e438e35cd77b50d8f3",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "tomato_sauce",
+    "clause": "抓番茄酱的时候轻一点",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "tomato_sauce": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "抓番茄酱的时候轻一点"
+    }
+   ]
+  }
+ },
+ "t0:zh_firm": {
+  "instruction": "把字母汤和番茄酱都放进篮子里，番茄酱要握紧",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "eb1adf98a42e93f7211a5a879d1038026924500d912015a29bbb903f07957b30",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "tomato_sauce",
+    "clause": "番茄酱要握紧",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "tomato_sauce": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "番茄酱要握紧"
+    }
+   ]
+  }
+ },
+ "t0:zh_slowcarry": {
+  "instruction": "把字母汤和番茄酱都放进篮子里，慢慢地搬运番茄酱",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "3270877e5b24803c4c584e21f561111fb64f0d84b50f90899341b8da591acd24",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "accept",
+    "request_hash": "b0b4593c870fabbaee079fc14389f87043e6d4587f930af3c26185b29c5e517e",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "alphabet_soup.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "alphabet_soup.pick_1.transport": "slow",
+     "tomato_sauce.pick_1.transport": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢慢",
+      "level": "slow",
+      "part": "慢慢地搬运番茄酱",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.transport",
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢慢地搬运番茄酱",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.transport": "slow",
+    "tomato_sauce.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "alphabet_soup.pick_1.transport",
+      "tomato_sauce.pick_1.transport"
+     ],
+     "clause": "慢慢地搬运番茄酱"
+    }
+   ]
+  }
+ },
+ "t0:zh_fastcarry": {
+  "instruction": "把字母汤和番茄酱都放进篮子里，快速搬运番茄酱",
+  "status": "invalid",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "508c2d91a6c5ec76ce48d7590b6be380075d37acbe90b0929d0953618484da02",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "invalid",
+    "request_hash": "d2aed21ecf3156808d99df5ed2bb8906a9415fa4b1c96069ff7ffb8888c95a43",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "alphabet_soup.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "invalid",
+   "codes": [
+    "structural"
+   ],
+   "detail": [
+    "object_mismatch:0:alphabet_soup.pick_1.transport:tomato_sauce"
+   ],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.transport",
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "tomato_sauce",
+    "clause": "快速搬运番茄酱",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t0:zh_binding": {
+  "instruction": "把字母汤和番茄酱都放进篮子里，番茄酱轻轻地拿，字母汤要抓牢",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "035106a35bc894ae91a6dda61102dd6c92a4c488bc6ea182174c554cc91831ef",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "tomato_sauce",
+    "clause": "番茄酱轻轻地拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "alphabet_soup",
+    "clause": "字母汤要抓牢",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "tomato_sauce": "gentle",
+    "alphabet_soup": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "番茄酱轻轻地拿"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "clause": "字母汤要抓牢"
+    }
+   ]
+  }
+ },
+ "t0:zh_slow_all": {
+  "instruction": "把字母汤和番茄酱都放进篮子里，全程慢一些",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "02f27c1dad204e461592be063ab307144c51314a1b06057de44ae4ac06c659f8",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "alphabet_soup.pick_1.approach": "slow",
+     "alphabet_soup.pick_1.descend": "slow",
+     "alphabet_soup.pick_1.lift": "slow",
+     "alphabet_soup.pick_1.transport": "slow",
+     "alphabet_soup.pick_1.place": "slow",
+     "alphabet_soup.pick_1.retreat": "slow",
+     "tomato_sauce.pick_1.approach": "slow",
+     "tomato_sauce.pick_1.descend": "slow",
+     "tomato_sauce.pick_1.lift": "slow",
+     "tomato_sauce.pick_1.transport": "slow",
+     "tomato_sauce.pick_1.place": "slow",
+     "tomato_sauce.pick_1.retreat": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "全程慢一些",
+      "exception": false,
+      "kind": "global",
+      "rule": "R3",
+      "stage": null
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "alphabet_soup.pick_1.descend",
+     "alphabet_soup.pick_1.lift",
+     "alphabet_soup.pick_1.transport",
+     "alphabet_soup.pick_1.place",
+     "alphabet_soup.pick_1.retreat",
+     "tomato_sauce.pick_1.approach",
+     "tomato_sauce.pick_1.descend",
+     "tomato_sauce.pick_1.lift",
+     "tomato_sauce.pick_1.transport",
+     "tomato_sauce.pick_1.place",
+     "tomato_sauce.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "全程慢一些",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.approach": "slow",
+    "alphabet_soup.pick_1.descend": "slow",
+    "alphabet_soup.pick_1.lift": "slow",
+    "alphabet_soup.pick_1.transport": "slow",
+    "alphabet_soup.pick_1.place": "slow",
+    "alphabet_soup.pick_1.retreat": "slow",
+    "tomato_sauce.pick_1.approach": "slow",
+    "tomato_sauce.pick_1.descend": "slow",
+    "tomato_sauce.pick_1.lift": "slow",
+    "tomato_sauce.pick_1.transport": "slow",
+    "tomato_sauce.pick_1.place": "slow",
+    "tomato_sauce.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach",
+      "alphabet_soup.pick_1.descend",
+      "alphabet_soup.pick_1.lift",
+      "alphabet_soup.pick_1.transport",
+      "alphabet_soup.pick_1.place",
+      "alphabet_soup.pick_1.retreat",
+      "tomato_sauce.pick_1.approach",
+      "tomato_sauce.pick_1.descend",
+      "tomato_sauce.pick_1.lift",
+      "tomato_sauce.pick_1.transport",
+      "tomato_sauce.pick_1.place",
+      "tomato_sauce.pick_1.retreat"
+     ],
+     "clause": "全程慢一些"
+    }
+   ]
+  }
+ },
+ "t0:zh_fragile_combo": {
+  "instruction": "把字母汤和番茄酱都放进篮子里，番茄酱容易碎，要轻拿并且慢慢搬运",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "e4b53b32c4b7825098dfb0e6964cee52eafc57e20c90268c509d08d76988a794",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "accept",
+    "request_hash": "acfa43d21d0556147432a21d1df1ceed6e49e98a29c440802859233a56bcd19f",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "alphabet_soup.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "alphabet_soup.pick_1.transport": "slow",
+     "tomato_sauce.pick_1.transport": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢慢",
+      "level": "slow",
+      "part": "要轻拿并且慢慢搬运",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "tomato_sauce",
+    "clause": "要轻拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.transport",
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢慢搬运",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.transport": "slow",
+    "tomato_sauce.pick_1.transport": "slow"
+   },
+   "grip": {
+    "tomato_sauce": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "要轻拿"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "alphabet_soup.pick_1.transport",
+      "tomato_sauce.pick_1.transport"
+     ],
+     "clause": "慢慢搬运"
+    }
+   ]
+  }
+ },
+ "t0:zh_scope_undetermined": {
+  "instruction": "把字母汤和番茄酱都放进篮子里，慢一点",
+  "status": "ambiguous",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "ambiguous",
+    "request_hash": "8ea19ad30a4c61b3bff72875559a86f98390b91861cc3e80bac14cd4b70a9101",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "detail": [],
+   "guards": [
+    {
+     "guard": "speed_scope_undetermined",
+     "detail": [
+      {
+       "word": "慢",
+       "part": "慢一点",
+       "reason": "no_stage_word_and_no_global_cue"
+      }
+     ]
+    }
+   ],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "needs_clarification",
+    "reasons": [
+     {
+      "word": "慢",
+      "part": "慢一点",
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ],
+    "effective": {},
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "慢一点",
+      "exception": false,
+      "kind": "undetermined",
+      "rule": "R4",
+      "stage": null,
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "alphabet_soup.pick_1.descend",
+     "alphabet_soup.pick_1.lift",
+     "alphabet_soup.pick_1.transport",
+     "alphabet_soup.pick_1.place",
+     "alphabet_soup.pick_1.retreat",
+     "tomato_sauce.pick_1.approach",
+     "tomato_sauce.pick_1.descend",
+     "tomato_sauce.pick_1.lift",
+     "tomato_sauce.pick_1.transport",
+     "tomato_sauce.pick_1.place",
+     "tomato_sauce.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢一点",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t0:en_numeric": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, gripping the tomato sauce with exactly 12 newtons",
+  "status": "unsupported",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "unsupported",
+    "request_hash": "7c1eb844876eeea37729825b87480659999040e7312dc3548338104ffd6c97c3",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t0:zh_conflict": {
+  "instruction": "把字母汤和番茄酱都放进篮子里，番茄酱要轻拿，但番茄酱也要握紧",
+  "status": "ambiguous",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "ambiguous",
+    "request_hash": "008dd7ad2a5656c917347398afb3589e1af47cff0a406d38d6ca1e5e62332f5a",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t7:en_gentle_para": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, taking care not to squeeze the cream cheese box hard",
+  "status": "incomplete",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "2a40dbc35d3ba75695935a80bfad53aaf7845e398641c4b77237d158a4d36a3e",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "incomplete",
+   "codes": [
+    "level_disagrees_with_clause"
+   ],
+   "detail": [],
+   "guards": [
+    {
+     "guard": "incomplete_answer",
+     "gap": "level_disagrees_with_clause",
+     "clause": "taking care not to squeeze the cream cheese box hard",
+     "bound": [
+      "grip",
+      "gentle"
+     ]
+    }
+   ],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "taking care not to squeeze the cream cheese box hard",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t7:en_firm_para": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, and keep a tight hold on the cream cheese box",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "44a6b278817bb5b55c930ec6aa7a8edf70610ee9180a8e7fe9da74cf29517473",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "keep a tight hold on the cream cheese box",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "keep a tight hold on the cream cheese box"
+    }
+   ]
+  }
+ },
+ "t7:en_slow_para": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket; bring the cream cheese box over at a leisurely pace",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "875328dd1c23eac3bd88814ba8cbffa0deef6c52500b46fd65fbca6c7af75dce",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "cream_cheese",
+    "clause": "bring the cream cheese box over at a leisurely pace",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "bring the cream cheese box over at a leisurely pace"
+    }
+   ]
+  }
+ },
+ "t7:en_fast_para": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, and hurry while carrying the cream cheese box",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "67dd80e619b2d696afc9fd7f507cbabcbb705970b4e1a557059526b44d0b9757",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "cream_cheese",
+    "clause": "hurry while carrying the cream cheese box",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "hurry while carrying the cream cheese box"
+    }
+   ]
+  }
+ },
+ "t7:en_binding_reorder": {
+  "instruction": "Grip the alphabet soup firmly but handle the cream cheese box with a light touch; put both the alphabet soup and the cream cheese box in the basket",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "76e339dbfdb6000d74849ce17fc71694ffb1e7bf64b132325dfdf24fb636ec4c",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "alphabet_soup",
+    "clause": "Grip the alphabet soup firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "handle the cream cheese box with a light touch",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "alphabet_soup": "firm",
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "clause": "Grip the alphabet soup firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "handle the cream cheese box with a light touch"
+    }
+   ]
+  }
+ },
+ "t7:en_fragile_combo": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket. The cream cheese box is fragile, so hold it softly and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "da3cd2f3d1456227b8014bd0ba0907f3a2c91304a84649857b1384c7ff475ad9",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "hold it softly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "cream_cheese",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow"
+   },
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "hold it softly"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t7:zh_neutral": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "bd7f369e4858a0a8ec76aa051a11b83c298f5107b5ce09ceba574e140764e63f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t7:zh_gentle": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，抓奶油奶酪盒的时候轻一点",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "8ebd08325f9739f5023d958045cf623d3d164e5658fe59e88c2a116ea869e13f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "抓奶油奶酪盒的时候轻一点",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "抓奶油奶酪盒的时候轻一点"
+    }
+   ]
+  }
+ },
+ "t7:zh_firm": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，奶油奶酪盒要握紧",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "1da44519dab7e8d793682b8d30d3f81a1a1f95f9cfa610700081643b3f3a109b",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "奶油奶酪盒要握紧",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "奶油奶酪盒要握紧"
+    }
+   ]
+  }
+ },
+ "t7:zh_slowcarry": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，慢慢地搬运奶油奶酪盒",
+  "status": "invalid",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "780e2876b36939e8786c2fed4a4f90ba6fc1667db2ac26fe13f295fd3c41d7d0",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "invalid",
+    "request_hash": "14a57f28c7f69824d04cd89338684f05b4bd9dbd2246ecbe71735d05d43627f4",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "alphabet_soup.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "invalid",
+   "codes": [
+    "structural"
+   ],
+   "detail": [
+    "object_mismatch:0:alphabet_soup.pick_1.transport:cream_cheese"
+   ],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.transport",
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "cream_cheese",
+    "clause": "慢慢地搬运奶油奶酪盒",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t7:zh_fastcarry": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，快速搬运奶油奶酪盒",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "8c4cf1d5072571e0fb6489043fe075d16ed008e2d8afedb49b6cf35ef4bd5806",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "accept",
+    "request_hash": "f3fae4c574628b96abf75ce51eb555a14929b9f964c93397bc9362576a5cb82d",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "alphabet_soup.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "alphabet_soup.pick_1.transport": "fast",
+     "cream_cheese.pick_1.transport": "fast"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "快速",
+      "level": "fast",
+      "part": "快速搬运奶油奶酪盒",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.transport",
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": null,
+    "clause": "快速搬运奶油奶酪盒",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.transport": "fast",
+    "cream_cheese.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "alphabet_soup.pick_1.transport",
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "快速搬运奶油奶酪盒"
+    }
+   ]
+  }
+ },
+ "t7:zh_binding": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，奶油奶酪盒轻轻地拿，字母汤要抓牢",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "4079f092f976423d98b446186121fa71e8dc0a1ba61b102bfca3dede5b3bba9f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "奶油奶酪盒轻轻地拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "alphabet_soup",
+    "clause": "字母汤要抓牢",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "gentle",
+    "alphabet_soup": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "奶油奶酪盒轻轻地拿"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "clause": "字母汤要抓牢"
+    }
+   ]
+  }
+ },
+ "t7:zh_slow_all": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，全程慢一些",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "2ab8f3093133192031972f24c409ca731f033f9f2b3e87704b037135c5e7cc7e",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "alphabet_soup.pick_1.approach": "slow",
+     "alphabet_soup.pick_1.descend": "slow",
+     "alphabet_soup.pick_1.lift": "slow",
+     "alphabet_soup.pick_1.transport": "slow",
+     "alphabet_soup.pick_1.place": "slow",
+     "alphabet_soup.pick_1.retreat": "slow",
+     "cream_cheese.pick_1.approach": "slow",
+     "cream_cheese.pick_1.descend": "slow",
+     "cream_cheese.pick_1.lift": "slow",
+     "cream_cheese.pick_1.transport": "slow",
+     "cream_cheese.pick_1.place": "slow",
+     "cream_cheese.pick_1.retreat": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "全程慢一些",
+      "exception": false,
+      "kind": "global",
+      "rule": "R3",
+      "stage": null
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "alphabet_soup.pick_1.descend",
+     "alphabet_soup.pick_1.lift",
+     "alphabet_soup.pick_1.transport",
+     "alphabet_soup.pick_1.place",
+     "alphabet_soup.pick_1.retreat",
+     "cream_cheese.pick_1.approach",
+     "cream_cheese.pick_1.descend",
+     "cream_cheese.pick_1.lift",
+     "cream_cheese.pick_1.transport",
+     "cream_cheese.pick_1.place",
+     "cream_cheese.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "全程慢一些",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.approach": "slow",
+    "alphabet_soup.pick_1.descend": "slow",
+    "alphabet_soup.pick_1.lift": "slow",
+    "alphabet_soup.pick_1.transport": "slow",
+    "alphabet_soup.pick_1.place": "slow",
+    "alphabet_soup.pick_1.retreat": "slow",
+    "cream_cheese.pick_1.approach": "slow",
+    "cream_cheese.pick_1.descend": "slow",
+    "cream_cheese.pick_1.lift": "slow",
+    "cream_cheese.pick_1.transport": "slow",
+    "cream_cheese.pick_1.place": "slow",
+    "cream_cheese.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach",
+      "alphabet_soup.pick_1.descend",
+      "alphabet_soup.pick_1.lift",
+      "alphabet_soup.pick_1.transport",
+      "alphabet_soup.pick_1.place",
+      "alphabet_soup.pick_1.retreat",
+      "cream_cheese.pick_1.approach",
+      "cream_cheese.pick_1.descend",
+      "cream_cheese.pick_1.lift",
+      "cream_cheese.pick_1.transport",
+      "cream_cheese.pick_1.place",
+      "cream_cheese.pick_1.retreat"
+     ],
+     "clause": "全程慢一些"
+    }
+   ]
+  }
+ },
+ "t7:zh_fragile_combo": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，奶油奶酪盒容易碎，要轻拿并且慢慢搬运",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "1ee543f5ffe25474348fb435b1e9fc14977ce2ff1fc2cce16a17380620b4ed93",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "accept",
+    "request_hash": "35d5803de3f1f441427d46443dcae64a7c3ac0852c6db4bb62d045253285d597",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "alphabet_soup.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "alphabet_soup.pick_1.transport": "slow",
+     "cream_cheese.pick_1.transport": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢慢",
+      "level": "slow",
+      "part": "要轻拿并且慢慢搬运",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "奶油奶酪盒容易碎，要轻拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.transport",
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢慢搬运",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.transport": "slow",
+    "cream_cheese.pick_1.transport": "slow"
+   },
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "奶油奶酪盒容易碎，要轻拿"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "alphabet_soup.pick_1.transport",
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "慢慢搬运"
+    }
+   ]
+  }
+ },
+ "t7:zh_scope_undetermined": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，慢一点",
+  "status": "ambiguous",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "ambiguous",
+    "request_hash": "0b4631c3eae0f977f33f0da3acbe260ecc5fe972522da21883cc4aedcd1e7d10",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "detail": [],
+   "guards": [
+    {
+     "guard": "speed_scope_undetermined",
+     "detail": [
+      {
+       "word": "慢",
+       "part": "慢一点",
+       "reason": "no_stage_word_and_no_global_cue"
+      }
+     ]
+    }
+   ],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "needs_clarification",
+    "reasons": [
+     {
+      "word": "慢",
+      "part": "慢一点",
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ],
+    "effective": {},
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "慢一点",
+      "exception": false,
+      "kind": "undetermined",
+      "rule": "R4",
+      "stage": null,
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "alphabet_soup.pick_1.descend",
+     "alphabet_soup.pick_1.lift",
+     "alphabet_soup.pick_1.transport",
+     "alphabet_soup.pick_1.place",
+     "alphabet_soup.pick_1.retreat",
+     "cream_cheese.pick_1.approach",
+     "cream_cheese.pick_1.descend",
+     "cream_cheese.pick_1.lift",
+     "cream_cheese.pick_1.transport",
+     "cream_cheese.pick_1.place",
+     "cream_cheese.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢一点",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t7:en_numeric": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, gripping the cream cheese box with exactly 12 newtons",
+  "status": "unsupported",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "unsupported",
+    "request_hash": "e3b663bbc29586f26bac8a7330556cfef7f8cae2054e06bd74e326980563f774",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t7:zh_conflict": {
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，奶油奶酪盒要轻拿，但奶油奶酪盒也要握紧",
+  "status": "ambiguous",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "ambiguous",
+    "request_hash": "7ebeaa197d36ddc282246420271ada84c8e29a937e66ceeacdff3b9df9657f0f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t1:en_gentle_para": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, taking care not to squeeze the cream cheese box hard",
+  "status": "incomplete",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "545db361f8402fc4e46a5171ad36833f713ded0024e2c08e61a477b5d7b949e2",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "incomplete",
+   "codes": [
+    "level_disagrees_with_clause"
+   ],
+   "detail": [],
+   "guards": [
+    {
+     "guard": "incomplete_answer",
+     "gap": "level_disagrees_with_clause",
+     "clause": "taking care not to squeeze the cream cheese box hard",
+     "bound": [
+      "grip",
+      "gentle"
+     ]
+    }
+   ],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "taking care not to squeeze the cream cheese box hard",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t1:en_firm_para": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, and keep a tight hold on the cream cheese box",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "5ae3c74cc49342fe8412234039d7934e802cbea77748b1a8cb03c8b1beff523e",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "keep a tight hold on the cream cheese box",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "keep a tight hold on the cream cheese box"
+    }
+   ]
+  }
+ },
+ "t1:en_slow_para": {
+  "instruction": "Put both the cream cheese box and the butter in the basket; bring the cream cheese box over at a leisurely pace",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "836ade200c6d105b243780ded7026ecfa1fbb1ffb026fa6eed16c58333d32e2f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "cream_cheese",
+    "clause": "bring the cream cheese box over at a leisurely pace",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "bring the cream cheese box over at a leisurely pace"
+    }
+   ]
+  }
+ },
+ "t1:en_fast_para": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, and hurry while carrying the cream cheese box",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "98293e8abfe348ee877197575feec1075ea22450887808b2505e0002fd8506db",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "cream_cheese",
+    "clause": "hurry while carrying the cream cheese box",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "hurry while carrying the cream cheese box"
+    }
+   ]
+  }
+ },
+ "t1:en_binding_reorder": {
+  "instruction": "Grip the butter firmly but handle the cream cheese box with a light touch; put both the cream cheese box and the butter in the basket",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "bc3ab09e5c1fe9d3c1848e87baf053273cf00be91b31aa079065e01e32e51fee",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "butter.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "butter",
+    "clause": "Grip the butter firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "handle the cream cheese box with a light touch",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "butter": "firm",
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "butter.pick_1.grasp"
+     ],
+     "clause": "Grip the butter firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "handle the cream cheese box with a light touch"
+    }
+   ]
+  }
+ },
+ "t1:en_fragile_combo": {
+  "instruction": "Put both the cream cheese box and the butter in the basket. The cream cheese box is fragile, so hold it softly and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "a4bfbbfca2446f97d74a3a36f5ee59f40cdb31a3729bbb5f9c0ac38aa3a03f8d",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "hold it softly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "cream_cheese",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow"
+   },
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "hold it softly"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t1:zh_neutral": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "f3aea7a41a0ddc47d3a33e9c6a4224aceff3d340716704beae4a31ffe3ba0155",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t1:zh_gentle": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，抓奶油奶酪盒的时候轻一点",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "9dea8e2c684e2fa1a7fbcda89fff84473bd83d7cecf65088ad9c38efffefca91",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "抓奶油奶酪盒的时候轻一点",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "抓奶油奶酪盒的时候轻一点"
+    }
+   ]
+  }
+ },
+ "t1:zh_firm": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，奶油奶酪盒要握紧",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "4a85b53e860a7e5b62c93eff82cdd5aea599be5c1295be6588c156675f2ecdfa",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "奶油奶酪盒要握紧",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "奶油奶酪盒要握紧"
+    }
+   ]
+  }
+ },
+ "t1:zh_slowcarry": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，慢慢地搬运奶油奶酪盒",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "c579c0dc284b9cc8be5f92e113e31da35017d8cae5eb1dac5cafcb7a60bb2f71",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "accept",
+    "request_hash": "b84078002719fc291ff3f70b07e5edb043b8c340cf95d485e2f5022518583814",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "butter.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "cream_cheese.pick_1.transport": "slow",
+     "butter.pick_1.transport": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢慢",
+      "level": "slow",
+      "part": "慢慢地搬运奶油奶酪盒",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport",
+     "butter.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢慢地搬运奶油奶酪盒",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow",
+    "butter.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport",
+      "butter.pick_1.transport"
+     ],
+     "clause": "慢慢地搬运奶油奶酪盒"
+    }
+   ]
+  }
+ },
+ "t1:zh_fastcarry": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，快速搬运奶油奶酪盒",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "3120d00eb150b6dcd716c608a427cdf219c89dbe130fa28ec64f6947c4ddf623",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "accept",
+    "request_hash": "6f581dfe54c1b59b0e9be3f59a9fa08b05ba63168b320fe5da04e5720d2fbd70",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "butter.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "cream_cheese.pick_1.transport": "fast",
+     "butter.pick_1.transport": "fast"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "快速",
+      "level": "fast",
+      "part": "快速搬运奶油奶酪盒",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport",
+     "butter.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": null,
+    "clause": "快速搬运奶油奶酪盒",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "fast",
+    "butter.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport",
+      "butter.pick_1.transport"
+     ],
+     "clause": "快速搬运奶油奶酪盒"
+    }
+   ]
+  }
+ },
+ "t1:zh_binding": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，奶油奶酪盒轻轻地拿，黄油要抓牢",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "43e7810182704666a63cb43229ba54edbac4f4f23bd3f606349267b7fa34a5e4",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "奶油奶酪盒轻轻地拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "butter.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "butter",
+    "clause": "黄油要抓牢",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "gentle",
+    "butter": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "奶油奶酪盒轻轻地拿"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "butter.pick_1.grasp"
+     ],
+     "clause": "黄油要抓牢"
+    }
+   ]
+  }
+ },
+ "t1:zh_slow_all": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，全程慢一些",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "4b14502e49aa68437f6f51e99bc8a1b0e047e8370fcb00ed45ecefe9a754ac15",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "cream_cheese.pick_1.approach": "slow",
+     "cream_cheese.pick_1.descend": "slow",
+     "cream_cheese.pick_1.lift": "slow",
+     "cream_cheese.pick_1.transport": "slow",
+     "cream_cheese.pick_1.place": "slow",
+     "cream_cheese.pick_1.retreat": "slow",
+     "butter.pick_1.approach": "slow",
+     "butter.pick_1.descend": "slow",
+     "butter.pick_1.lift": "slow",
+     "butter.pick_1.transport": "slow",
+     "butter.pick_1.place": "slow",
+     "butter.pick_1.retreat": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "全程慢一些",
+      "exception": false,
+      "kind": "global",
+      "rule": "R3",
+      "stage": null
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.approach",
+     "cream_cheese.pick_1.descend",
+     "cream_cheese.pick_1.lift",
+     "cream_cheese.pick_1.transport",
+     "cream_cheese.pick_1.place",
+     "cream_cheese.pick_1.retreat",
+     "butter.pick_1.approach",
+     "butter.pick_1.descend",
+     "butter.pick_1.lift",
+     "butter.pick_1.transport",
+     "butter.pick_1.place",
+     "butter.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "全程慢一些",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.approach": "slow",
+    "cream_cheese.pick_1.descend": "slow",
+    "cream_cheese.pick_1.lift": "slow",
+    "cream_cheese.pick_1.transport": "slow",
+    "cream_cheese.pick_1.place": "slow",
+    "cream_cheese.pick_1.retreat": "slow",
+    "butter.pick_1.approach": "slow",
+    "butter.pick_1.descend": "slow",
+    "butter.pick_1.lift": "slow",
+    "butter.pick_1.transport": "slow",
+    "butter.pick_1.place": "slow",
+    "butter.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.approach",
+      "cream_cheese.pick_1.descend",
+      "cream_cheese.pick_1.lift",
+      "cream_cheese.pick_1.transport",
+      "cream_cheese.pick_1.place",
+      "cream_cheese.pick_1.retreat",
+      "butter.pick_1.approach",
+      "butter.pick_1.descend",
+      "butter.pick_1.lift",
+      "butter.pick_1.transport",
+      "butter.pick_1.place",
+      "butter.pick_1.retreat"
+     ],
+     "clause": "全程慢一些"
+    }
+   ]
+  }
+ },
+ "t1:zh_fragile_combo": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，奶油奶酪盒容易碎，要轻拿并且慢慢搬运",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "5620632e469face36229fd4a61d5e039081ee608312cc4b62e9fbe2108888faf",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "accept",
+    "request_hash": "eb52a7e24d3e81d7975beece5e896ab8817a1edec9056def44bab9b753b40418",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "butter.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "cream_cheese.pick_1.transport": "slow",
+     "butter.pick_1.transport": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢慢",
+      "level": "slow",
+      "part": "要轻拿并且慢慢搬运",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "要轻拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport",
+     "butter.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢慢搬运",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow",
+    "butter.pick_1.transport": "slow"
+   },
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "要轻拿"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport",
+      "butter.pick_1.transport"
+     ],
+     "clause": "慢慢搬运"
+    }
+   ]
+  }
+ },
+ "t1:zh_scope_undetermined": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，慢一点",
+  "status": "ambiguous",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "ambiguous",
+    "request_hash": "bb64b6b29c42951172344ad3af13ba860896294f2720568561fe362b42d0614e",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "detail": [],
+   "guards": [
+    {
+     "guard": "speed_scope_undetermined",
+     "detail": [
+      {
+       "word": "慢",
+       "part": "慢一点",
+       "reason": "no_stage_word_and_no_global_cue"
+      }
+     ]
+    }
+   ],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "needs_clarification",
+    "reasons": [
+     {
+      "word": "慢",
+      "part": "慢一点",
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ],
+    "effective": {},
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "慢一点",
+      "exception": false,
+      "kind": "undetermined",
+      "rule": "R4",
+      "stage": null,
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.approach",
+     "cream_cheese.pick_1.descend",
+     "cream_cheese.pick_1.lift",
+     "cream_cheese.pick_1.transport",
+     "cream_cheese.pick_1.place",
+     "cream_cheese.pick_1.retreat",
+     "butter.pick_1.approach",
+     "butter.pick_1.descend",
+     "butter.pick_1.lift",
+     "butter.pick_1.transport",
+     "butter.pick_1.place",
+     "butter.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢一点",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t1:en_numeric": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, gripping the cream cheese box with exactly 12 newtons",
+  "status": "unsupported",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "unsupported",
+    "request_hash": "e494b8fb4d958ad9918bc1f5824c3d79327460eb46022d9e543d8754e0f79a0b",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t1:zh_conflict": {
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，奶油奶酪盒要轻拿，但奶油奶酪盒也要握紧",
+  "status": "ambiguous",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "ambiguous",
+    "request_hash": "4cbd733fb8781f4ac2a5831e3a0c2c42f78e265a16b7fbf379df73bb97934c20",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t6:en_gentle_para": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, taking care not to squeeze the white mug hard",
+  "status": "incomplete",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "618b877aac67d219e9e317711f8b39e7ad04c3a7231994b094a253926b23ce1f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "incomplete",
+   "codes": [
+    "level_disagrees_with_clause"
+   ],
+   "detail": [],
+   "guards": [
+    {
+     "guard": "incomplete_answer",
+     "gap": "level_disagrees_with_clause",
+     "clause": "taking care not to squeeze the white mug hard",
+     "bound": [
+      "grip",
+      "gentle"
+     ]
+    }
+   ],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "taking care not to squeeze the white mug hard",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t6:en_firm_para": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, and keep a tight hold on the white mug",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "84b3edf1045e084982fe1e4e9a2780b8d7728eed6bf662a3a0ce813b1ea0ab75",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "keep a tight hold on the white mug",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "keep a tight hold on the white mug"
+    }
+   ]
+  }
+ },
+ "t6:en_slow_para": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate; bring the white mug over at a leisurely pace",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "df5b447debbbb0d12dd436fb7329498d21631c9d20b8a48ed00f24e12b4ac038",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "bring the white mug over at a leisurely pace",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "bring the white mug over at a leisurely pace"
+    }
+   ]
+  }
+ },
+ "t6:en_fast_para": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, and hurry while carrying the white mug",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "eec656769011125b5668d9c0e357f3fc24ba99aefa95b9104168cdd28484b962",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "obj1",
+    "clause": "hurry while carrying the white mug",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "hurry while carrying the white mug"
+    }
+   ]
+  }
+ },
+ "t6:en_binding_reorder": {
+  "instruction": "Grip the chocolate pudding firmly but handle the white mug with a light touch; put the white mug on the plate and put the chocolate pudding to the right of the plate",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "d802fa811dd2ccbf514af15e36300a7991f9ddc7ff5e5a76395a0f7914c19704",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj0",
+    "clause": "Grip the chocolate pudding firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "handle the white mug with a light touch",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj0": "firm",
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj0.pick_1.grasp"
+     ],
+     "clause": "Grip the chocolate pudding firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "handle the white mug with a light touch"
+    }
+   ]
+  }
+ },
+ "t6:en_fragile_combo": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate. The white mug is fragile, so hold it softly and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "c1ba59c406005b8e843b48f4c512886eda7a33695ce449b21d3fec1fe242405d",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "hold it softly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "hold it softly"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t6:zh_neutral": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边",
+  "status": "conflict",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "2ff56aa2acf4ed7de99c4d1170ad62f45786306f2e716ff9016aa45c264484a2",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "detail": [
+    {
+     "code": "order_mismatch",
+     "pair": [
+      0,
+      1
+     ]
+    }
+   ],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t6:zh_gentle": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，抓白色马克杯的时候轻一点",
+  "status": "conflict",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "d7e14b8650390fffcc481697b1c376eefc39c7269ab7874ba3e6ca0f8b2805d7",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "detail": [
+    {
+     "code": "order_mismatch",
+     "pair": [
+      0,
+      1
+     ]
+    }
+   ],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "抓白色马克杯的时候轻一点",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t6:zh_firm": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，白色马克杯要握紧",
+  "status": "conflict",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "778c80734c6cb2cc27683375ee972181ddf6e08d5616fc6d7e7960fdf2df421e",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "detail": [
+    {
+     "code": "order_mismatch",
+     "pair": [
+      0,
+      1
+     ]
+    }
+   ],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "白色马克杯要握紧",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t6:zh_slowcarry": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，慢慢地搬运白色马克杯",
+  "status": "invalid",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "4adab609ee6ce8ab1fe0fbd9e1cc32e4299984827f2be0f1a1bbf76ca3925be9",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "invalid",
+    "request_hash": "4d408c395ca111f07c2c01d39e9e6da568dcb7200516396a33e87112fae3907b",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "obj0.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "invalid",
+   "codes": [
+    "structural"
+   ],
+   "detail": [
+    "object_mismatch:0:obj0.pick_1.transport:obj1"
+   ],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.transport",
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "慢慢地搬运白色马克杯",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t6:zh_fastcarry": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，快速搬运白色马克杯",
+  "status": "conflict",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "b66d3264153197e6c72af476bbddf69410afd93d410af80fcf59c4b8e964cce4",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "conflict",
+    "request_hash": "a8b5f1c624a0ff485039c615533d03201d53eae9558194eb2d758ee9e0c2c1f6",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "obj0.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "detail": [
+    {
+     "code": "order_mismatch",
+     "pair": [
+      0,
+      1
+     ]
+    }
+   ],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj0.pick_1.transport": "fast",
+     "obj1.pick_1.transport": "fast"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "快速",
+      "level": "fast",
+      "part": "快速搬运白色马克杯",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.transport",
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": null,
+    "clause": "快速搬运白色马克杯",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t6:zh_binding": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，白色马克杯轻轻地拿，巧克力布丁要抓牢",
+  "status": "conflict",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "b428deb68be374c9f3190b1353b0b81cf053f1abc16b8d37de52bcac8df1b2b8",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "detail": [
+    {
+     "code": "order_mismatch",
+     "pair": [
+      0,
+      1
+     ]
+    }
+   ],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "白色马克杯轻轻地拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj0",
+    "clause": "巧克力布丁要抓牢",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t6:zh_slow_all": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，全程慢一些",
+  "status": "conflict",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "c542268154a5b6e5fd495e120d9a8d9747605536b1ebe91d4e470bfe067d237b",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "detail": [
+    {
+     "code": "order_mismatch",
+     "pair": [
+      0,
+      1
+     ]
+    }
+   ],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj0.pick_1.approach": "slow",
+     "obj0.pick_1.descend": "slow",
+     "obj0.pick_1.lift": "slow",
+     "obj0.pick_1.transport": "slow",
+     "obj0.pick_1.place": "slow",
+     "obj0.pick_1.retreat": "slow",
+     "obj1.pick_1.approach": "slow",
+     "obj1.pick_1.descend": "slow",
+     "obj1.pick_1.lift": "slow",
+     "obj1.pick_1.transport": "slow",
+     "obj1.pick_1.place": "slow",
+     "obj1.pick_1.retreat": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "全程慢一些",
+      "exception": false,
+      "kind": "global",
+      "rule": "R3",
+      "stage": null
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj0.pick_1.descend",
+     "obj0.pick_1.lift",
+     "obj0.pick_1.transport",
+     "obj0.pick_1.place",
+     "obj0.pick_1.retreat",
+     "obj1.pick_1.approach",
+     "obj1.pick_1.descend",
+     "obj1.pick_1.lift",
+     "obj1.pick_1.transport",
+     "obj1.pick_1.place",
+     "obj1.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "全程慢一些",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t6:zh_fragile_combo": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，白色马克杯容易碎，要轻拿并且慢慢搬运",
+  "status": "conflict",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "60321c87b246bff5bf38739a20d353faff2065fa816fc073819081f9ef827a5f",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "conflict",
+    "request_hash": "c136437e2f1a22f66aaed9d686491a2942506456b443884d85b98d352f5f004c",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "obj0.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "detail": [
+    {
+     "code": "order_mismatch",
+     "pair": [
+      0,
+      1
+     ]
+    }
+   ],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj0.pick_1.transport": "slow",
+     "obj1.pick_1.transport": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢慢",
+      "level": "slow",
+      "part": "要轻拿并且慢慢搬运",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "白色马克杯容易碎，要轻拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj0.pick_1.transport",
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢慢搬运",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t6:zh_scope_undetermined": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，慢一点",
+  "status": "conflict",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "f648f8a4b39d166f79e234b774adbef8e5f7df77a9a5da106a74791aa3797a2e",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "detail": [
+    {
+     "code": "order_mismatch",
+     "pair": [
+      0,
+      1
+     ]
+    }
+   ],
+   "guards": [
+    {
+     "guard": "speed_scope_undetermined",
+     "detail": [
+      {
+       "word": "慢",
+       "part": "慢一点",
+       "reason": "no_stage_word_and_no_global_cue"
+      }
+     ]
+    }
+   ],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "needs_clarification",
+    "reasons": [
+     {
+      "word": "慢",
+      "part": "慢一点",
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ],
+    "effective": {},
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "慢一点",
+      "exception": false,
+      "kind": "undetermined",
+      "rule": "R4",
+      "stage": null,
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj0.pick_1.descend",
+     "obj0.pick_1.lift",
+     "obj0.pick_1.transport",
+     "obj0.pick_1.place",
+     "obj0.pick_1.retreat",
+     "obj1.pick_1.approach",
+     "obj1.pick_1.descend",
+     "obj1.pick_1.lift",
+     "obj1.pick_1.transport",
+     "obj1.pick_1.place",
+     "obj1.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢一点",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t6:en_numeric": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, gripping the white mug with exactly 12 newtons",
+  "status": "unsupported",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "unsupported",
+    "request_hash": "bd86604155bed1cfbb4ee4b2c7188d3902a0c09261078ef90f1ebd2b21de6498",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t6:zh_conflict": {
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，白色马克杯要轻拿，但白色马克杯也要握紧",
+  "status": "conflict",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "conflict",
+    "request_hash": "52cf10c91ec1418085736900b4ae9a36fffbe04c3b699cb6a70d79ac120f5f42",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "conflict",
+   "codes": [
+    "order_mismatch"
+   ],
+   "detail": [
+    {
+     "code": "order_mismatch",
+     "pair": [
+      0,
+      1
+     ]
+    }
+   ],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t8:en_gentle_para": {
+  "instruction": "Put both moka pots on the stove, taking care not to squeeze the right moka pot hard",
+  "status": "incomplete",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "ec54a748f48f2514dec9e64b913c647f4b41c57f1f91f63f3b2118c0c21b9a1c",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "incomplete",
+   "codes": [
+    "level_disagrees_with_clause"
+   ],
+   "detail": [],
+   "guards": [
+    {
+     "guard": "incomplete_answer",
+     "gap": "level_disagrees_with_clause",
+     "clause": "taking care not to squeeze the right moka pot hard",
+     "bound": [
+      "grip",
+      "gentle"
+     ]
+    }
+   ],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "taking care not to squeeze the right moka pot hard",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t8:en_firm_para": {
+  "instruction": "Put both moka pots on the stove, and keep a tight hold on the right moka pot",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "c25ee4263cd3ab5aadec6943b9f254fd51d1923d57012d0523ae703b632483af",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "keep a tight hold on the right moka pot",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "keep a tight hold on the right moka pot"
+    }
+   ]
+  }
+ },
+ "t8:en_slow_para": {
+  "instruction": "Put both moka pots on the stove; bring the right moka pot over at a leisurely pace",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "de73453b5a7a97541b8e73325ff6a3fda6868782cbfee557d01a86269b7bde68",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "bring the right moka pot over at a leisurely pace",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "bring the right moka pot over at a leisurely pace"
+    }
+   ]
+  }
+ },
+ "t8:en_fast_para": {
+  "instruction": "Put both moka pots on the stove, and hurry while carrying the right moka pot",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "49f62902c22f8a9b0ed5fcfda89613b7c858b9f60ced6d96c1c9cc4b42e08811",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "obj1",
+    "clause": "hurry while carrying the right moka pot",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "hurry while carrying the right moka pot"
+    }
+   ]
+  }
+ },
+ "t8:en_binding_reorder": {
+  "instruction": "Grip the left moka pot firmly but handle the right moka pot with a light touch; put both moka pots on the stove",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "69ca449ea39a0e3b1e7f55d710349cdb0719f2786bdfa924e9484ee99076c89a",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj0",
+    "clause": "Grip the left moka pot firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "handle the right moka pot with a light touch",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj0": "firm",
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj0.pick_1.grasp"
+     ],
+     "clause": "Grip the left moka pot firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "handle the right moka pot with a light touch"
+    }
+   ]
+  }
+ },
+ "t8:en_fragile_combo": {
+  "instruction": "Put both moka pots on the stove. The right moka pot is fragile, so hold it softly and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "8ddfa1a97faf2dcb2020199d60bcca6f7270493d6fd812fa7ff90b753b8eebc3",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "hold it softly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "hold it softly"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t8:zh_neutral": {
+  "instruction": "把两个摩卡壶都放到炉子上",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "df5903e21652f447a3b2b4d9bc4d85a10c1c8257e9f03580bde2d5037c874645",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t8:zh_gentle": {
+  "instruction": "把两个摩卡壶都放到炉子上，抓右边的摩卡壶的时候轻一点",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "d9332554ff4692af370f5dd1f02e3ac8b85253ed0fbadfe32df800403c5a92b2",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "抓右边的摩卡壶的时候轻一点",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "抓右边的摩卡壶的时候轻一点"
+    }
+   ]
+  }
+ },
+ "t8:zh_firm": {
+  "instruction": "把两个摩卡壶都放到炉子上，右边的摩卡壶要握紧",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "c124c2269730e7a9e33e1c554abb87bf51d9fe2ef24ebefb879a0ed66384d900",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "右边的摩卡壶要握紧",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "右边的摩卡壶要握紧"
+    }
+   ]
+  }
+ },
+ "t8:zh_slowcarry": {
+  "instruction": "把两个摩卡壶都放到炉子上，慢慢地搬运右边的摩卡壶",
+  "status": "invalid",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "eefb42aa2db1d7e435ee5c41174a3e507880a316bf1fbb6b6f745f792ac022c7",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "invalid",
+    "request_hash": "ead6f055fe61e404a3d3624daf1edaeb31425786a536813d638bca98d45a1f1b",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "obj0.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "invalid",
+   "codes": [
+    "structural"
+   ],
+   "detail": [
+    "object_mismatch:0:obj0.pick_1.transport:obj1"
+   ],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.transport",
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "慢慢地搬运右边的摩卡壶",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t8:zh_fastcarry": {
+  "instruction": "把两个摩卡壶都放到炉子上，快速搬运右边的摩卡壶",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "634defbf975d9046a044b9786077d01d927c1a6b82d082eb6b880a8e3f422d25",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "accept",
+    "request_hash": "c550e8df911fe101b8319ad2ce1aa1bf22d4d478eee5dc02f20e943e4423b2eb",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "obj0.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj0.pick_1.transport": "fast",
+     "obj1.pick_1.transport": "fast"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "快速",
+      "level": "fast",
+      "part": "快速搬运右边的摩卡壶",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.transport",
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": null,
+    "clause": "快速搬运右边的摩卡壶",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj0.pick_1.transport": "fast",
+    "obj1.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "obj0.pick_1.transport",
+      "obj1.pick_1.transport"
+     ],
+     "clause": "快速搬运右边的摩卡壶"
+    }
+   ]
+  }
+ },
+ "t8:zh_binding": {
+  "instruction": "把两个摩卡壶都放到炉子上，右边的摩卡壶轻轻地拿，左边的摩卡壶要抓牢",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "195658df58714af3d1a45dff18c8f680020695a762ecc6f16b7f1c1aaccc983b",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "右边的摩卡壶轻轻地拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj0",
+    "clause": "左边的摩卡壶要抓牢",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "gentle",
+    "obj0": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "右边的摩卡壶轻轻地拿"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj0.pick_1.grasp"
+     ],
+     "clause": "左边的摩卡壶要抓牢"
+    }
+   ]
+  }
+ },
+ "t8:zh_slow_all": {
+  "instruction": "把两个摩卡壶都放到炉子上，全程慢一些",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "ea053c6a5442c1197526b59aa3a5d065ff0aa6dd58a02c8e7c10f692f9cead93",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj0.pick_1.approach": "slow",
+     "obj0.pick_1.descend": "slow",
+     "obj0.pick_1.lift": "slow",
+     "obj0.pick_1.transport": "slow",
+     "obj0.pick_1.place": "slow",
+     "obj0.pick_1.retreat": "slow",
+     "obj1.pick_1.approach": "slow",
+     "obj1.pick_1.descend": "slow",
+     "obj1.pick_1.lift": "slow",
+     "obj1.pick_1.transport": "slow",
+     "obj1.pick_1.place": "slow",
+     "obj1.pick_1.retreat": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "全程慢一些",
+      "exception": false,
+      "kind": "global",
+      "rule": "R3",
+      "stage": null
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj0.pick_1.descend",
+     "obj0.pick_1.lift",
+     "obj0.pick_1.transport",
+     "obj0.pick_1.place",
+     "obj0.pick_1.retreat",
+     "obj1.pick_1.approach",
+     "obj1.pick_1.descend",
+     "obj1.pick_1.lift",
+     "obj1.pick_1.transport",
+     "obj1.pick_1.place",
+     "obj1.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "全程慢一些",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj0.pick_1.approach": "slow",
+    "obj0.pick_1.descend": "slow",
+    "obj0.pick_1.lift": "slow",
+    "obj0.pick_1.transport": "slow",
+    "obj0.pick_1.place": "slow",
+    "obj0.pick_1.retreat": "slow",
+    "obj1.pick_1.approach": "slow",
+    "obj1.pick_1.descend": "slow",
+    "obj1.pick_1.lift": "slow",
+    "obj1.pick_1.transport": "slow",
+    "obj1.pick_1.place": "slow",
+    "obj1.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj0.pick_1.approach",
+      "obj0.pick_1.descend",
+      "obj0.pick_1.lift",
+      "obj0.pick_1.transport",
+      "obj0.pick_1.place",
+      "obj0.pick_1.retreat",
+      "obj1.pick_1.approach",
+      "obj1.pick_1.descend",
+      "obj1.pick_1.lift",
+      "obj1.pick_1.transport",
+      "obj1.pick_1.place",
+      "obj1.pick_1.retreat"
+     ],
+     "clause": "全程慢一些"
+    }
+   ]
+  }
+ },
+ "t8:zh_fragile_combo": {
+  "instruction": "把两个摩卡壶都放到炉子上，右边的摩卡壶容易碎，要轻拿并且慢慢搬运",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "incomplete",
+    "request_hash": "319afd03f7ef22b93d92614bb87948b52e029d0af7fd2e1ae2bea13059e4641e",
+    "llm_status": "ok"
+   },
+   {
+    "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+    "status": "accept",
+    "request_hash": "cb78432f33fd65bd9db03ab815fd732d2e0eb47956f213cc5d7793e89d51c808",
+    "llm_status": "ok",
+    "feedback": {
+     "problem": "your speed bindings disagree with the speed scope of the instruction",
+     "instances_bound_but_not_supported_by_the_instruction": [],
+     "instances_supported_but_not_bound": [
+      "obj0.pick_1.transport"
+     ],
+     "instances_bound_with_wrong_level": []
+    }
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj0.pick_1.transport": "slow",
+     "obj1.pick_1.transport": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢慢",
+      "level": "slow",
+      "part": "要轻拿并且慢慢搬运",
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "要轻拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj0.pick_1.transport",
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢慢搬运",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj0.pick_1.transport": "slow",
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "要轻拿"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj0.pick_1.transport",
+      "obj1.pick_1.transport"
+     ],
+     "clause": "慢慢搬运"
+    }
+   ]
+  }
+ },
+ "t8:zh_scope_undetermined": {
+  "instruction": "把两个摩卡壶都放到炉子上，慢一点",
+  "status": "ambiguous",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "ambiguous",
+    "request_hash": "4b9c3aaab78257c15220457c90e52fcbd1e7d44cc17e91fae0813fba13538bf8",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "detail": [],
+   "guards": [
+    {
+     "guard": "speed_scope_undetermined",
+     "detail": [
+      {
+       "word": "慢",
+       "part": "慢一点",
+       "reason": "no_stage_word_and_no_global_cue"
+      }
+     ]
+    }
+   ],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "needs_clarification",
+    "reasons": [
+     {
+      "word": "慢",
+      "part": "慢一点",
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ],
+    "effective": {},
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "慢一点",
+      "exception": false,
+      "kind": "undetermined",
+      "rule": "R4",
+      "stage": null,
+      "reason": "no_stage_word_and_no_global_cue"
+     }
+    ]
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj0.pick_1.descend",
+     "obj0.pick_1.lift",
+     "obj0.pick_1.transport",
+     "obj0.pick_1.place",
+     "obj0.pick_1.retreat",
+     "obj1.pick_1.approach",
+     "obj1.pick_1.descend",
+     "obj1.pick_1.lift",
+     "obj1.pick_1.transport",
+     "obj1.pick_1.place",
+     "obj1.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "慢一点",
+    "source": "llm"
+   }
+  ],
+  "request": null
+ },
+ "t8:en_numeric": {
+  "instruction": "Put both moka pots on the stove, gripping the right moka pot with exactly 12 newtons",
+  "status": "unsupported",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "unsupported",
+    "request_hash": "6974e5b07c29491692232d745904ac9a6f8817b193892a5a514c957363276804",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "unsupported",
+   "codes": [
+    "numeric_level"
+   ],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": null
+ },
+ "t8:zh_conflict": {
+  "instruction": "把两个摩卡壶都放到炉子上，右边的摩卡壶要轻拿，但右边的摩卡壶也要握紧",
+  "status": "ambiguous",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "ambiguous",
+    "request_hash": "8399ce7ac4c13d36941db06f1481537088e1dfd1b2b9842b2567cb8432853b97",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "ambiguous",
+   "codes": [
+    "ambiguous_reference"
+   ],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": []
+   }
+  },
+  "bindings": [],
+  "request": null
+ }
+}

@@ -1,0 +1,50 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1+gate_feedback.v1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "request_scope",
+        "clause": "\u5feb\u901f\u642c\u8fd0\u5976\u6cb9\u5976\u916a\u76d2",
+        "dimension": "speed",
+        "instance_ids": [
+          "cream_cheese.pick_1.transport",
+          "butter.pick_1.transport"
+        ],
+        "level": "fast",
+        "object_role": null
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "\u628a\u5976\u6cb9\u5976\u916a\u76d2\u548c\u9ec4\u6cb9\u90fd\u653e\u8fdb\u7bee\u5b50\u91cc",
+          "object_phrase": "\u5976\u6cb9\u5976\u916a\u76d2",
+          "object_role": "cream_cheese",
+          "target_phrase": "\u7bee\u5b50",
+          "target_role": "basket"
+        },
+        {
+          "action": "put",
+          "clause": "\u628a\u5976\u6cb9\u5976\u916a\u76d2\u548c\u9ec4\u6cb9\u90fd\u653e\u8fdb\u7bee\u5b50\u91cc",
+          "object_phrase": "\u9ec4\u6cb9",
+          "object_role": "butter",
+          "target_phrase": "\u7bee\u5b50",
+          "target_role": "basket"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

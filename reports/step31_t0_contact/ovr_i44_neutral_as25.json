@@ -1,0 +1,94 @@
+{
+ "task": 0,
+ "init": 44,
+ "iid": "neutral",
+ "k": 0,
+ "cmd": {
+  "speed": {
+   "alphabet_soup.pick_1.approach": 0.12,
+   "alphabet_soup.pick_1.descend": 0.12,
+   "alphabet_soup.pick_1.lift": 0.12,
+   "alphabet_soup.pick_1.transport": 0.12,
+   "alphabet_soup.pick_1.place": 0.12,
+   "alphabet_soup.pick_1.retreat": 0.12,
+   "tomato_sauce.pick_1.approach": 0.12,
+   "tomato_sauce.pick_1.descend": 0.12,
+   "tomato_sauce.pick_1.lift": 0.12,
+   "tomato_sauce.pick_1.transport": 0.12,
+   "tomato_sauce.pick_1.place": 0.12,
+   "tomato_sauce.pick_1.retreat": 0.12
+  },
+  "grip": {
+   "alphabet_soup": [
+    25.0,
+    100.0
+   ],
+   "tomato_sauce": [
+    1.0,
+    100.0
+   ]
+  }
+ },
+ "task_ok": true,
+ "clean": true,
+ "objects": {
+  "alphabet_soup": {
+   "hold_min": 32.19212117567126,
+   "hold_max": 34.24973441306924,
+   "hold_mean": 33.02292389508289,
+   "stable": true,
+   "valid": true,
+   "target": "alphabet_soup_1",
+   "carry_v": 0.12428359687328339
+  },
+  "tomato_sauce": {
+   "hold_min": 12.072965322405537,
+   "hold_max": 12.782588547927334,
+   "hold_mean": 12.477861974362966,
+   "stable": true,
+   "valid": true,
+   "target": "tomato_sauce_1",
+   "carry_v": 0.12279413640499115
+  }
+ },
+ "contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "alphabet_soup_1_main",
+   "class": "finger_link_on_target",
+   "max_n": 2.1,
+   "v1_reasons": [],
+   "control_step_range": [
+    137,
+    158
+   ],
+   "stages_hit": [
+    "alphabet_soup.pick_1.place",
+    "alphabet_soup.pick_1.transport"
+   ],
+   "peak_geom": "gripper0_finger1_collision",
+   "peak_step": 139,
+   "n_substeps": 397,
+   "n_substeps_inner_region": 397
+  }
+ ],
+ "windows": [
+  {
+   "instance_id": "alphabet_soup.pick_1.grasp",
+   "object": "alphabet_soup_1_main",
+   "env_object": "alphabet_soup_1",
+   "close_step": 48,
+   "release_step": 168,
+   "release_command_step": 158
+  },
+  {
+   "instance_id": "tomato_sauce.pick_1.grasp",
+   "object": "tomato_sauce_1_main",
+   "env_object": "tomato_sauce_1",
+   "close_step": 255,
+   "release_step": 343,
+   "release_command_step": 333
+  }
+ ],
+ "n_steps": 368
+}

@@ -1,0 +1,116 @@
+{
+ "task": 0,
+ "init": 47,
+ "iid": "neutral",
+ "k": 0,
+ "cmd": {
+  "speed": {
+   "alphabet_soup.pick_1.approach": 0.12,
+   "alphabet_soup.pick_1.descend": 0.12,
+   "alphabet_soup.pick_1.lift": 0.12,
+   "alphabet_soup.pick_1.transport": 0.12,
+   "alphabet_soup.pick_1.place": 0.12,
+   "alphabet_soup.pick_1.retreat": 0.12,
+   "tomato_sauce.pick_1.approach": 0.12,
+   "tomato_sauce.pick_1.descend": 0.12,
+   "tomato_sauce.pick_1.lift": 0.12,
+   "tomato_sauce.pick_1.transport": 0.12,
+   "tomato_sauce.pick_1.place": 0.12,
+   "tomato_sauce.pick_1.retreat": 0.12
+  },
+  "grip": {
+   "alphabet_soup": [
+    1.0,
+    100.0
+   ],
+   "tomato_sauce": [
+    1.0,
+    100.0
+   ]
+  }
+ },
+ "task_ok": true,
+ "clean": false,
+ "objects": {
+  "alphabet_soup": {
+   "hold_min": 10.597488407068418,
+   "hold_max": 25.354758146081778,
+   "hold_mean": 13.760027020564502,
+   "stable": false,
+   "valid": true,
+   "target": "alphabet_soup_1",
+   "carry_v": 0.12441173940896988
+  },
+  "tomato_sauce": {
+   "hold_min": 12.486713333440573,
+   "hold_max": 12.499067458795576,
+   "hold_mean": 12.493861478487435,
+   "stable": true,
+   "valid": true,
+   "target": "tomato_sauce_1",
+   "carry_v": 0.12292398512363434
+  }
+ },
+ "contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "alphabet_soup_1_main",
+   "class": "finger_link_on_target",
+   "max_n": 10.9,
+   "v1_reasons": [],
+   "control_step_range": [
+    135,
+    155
+   ],
+   "stages_hit": [
+    "alphabet_soup.pick_1.place",
+    "alphabet_soup.pick_1.transport"
+   ],
+   "peak_geom": "gripper0_finger1_collision",
+   "peak_step": 136,
+   "n_substeps": 1440,
+   "n_substeps_inner_region": 1440
+  },
+  {
+   "robot_body": "right_gripper",
+   "other": "basket_1_main",
+   "class": "other",
+   "max_n": 6.6,
+   "v1_reasons": [
+    "not_a_finger_link_contact",
+    "object_is_not_a_bound_grasp_target",
+    "not_all_substeps_on_inner_face (0/29)"
+   ],
+   "control_step_range": [
+    249,
+    251
+   ],
+   "stages_hit": [
+    "tomato_sauce.pick_1.grasp"
+   ],
+   "peak_geom": "gripper0_hand_collision",
+   "peak_step": 249,
+   "n_substeps": 29,
+   "n_substeps_inner_region": 0
+  }
+ ],
+ "windows": [
+  {
+   "instance_id": "alphabet_soup.pick_1.grasp",
+   "object": "alphabet_soup_1_main",
+   "env_object": "alphabet_soup_1",
+   "close_step": 47,
+   "release_step": 164,
+   "release_command_step": 154
+  },
+  {
+   "instance_id": "tomato_sauce.pick_1.grasp",
+   "object": "tomato_sauce_1_main",
+   "env_object": "tomato_sauce_1",
+   "close_step": 248,
+   "release_step": 332,
+   "release_command_step": 322
+  }
+ ],
+ "n_steps": 357
+}

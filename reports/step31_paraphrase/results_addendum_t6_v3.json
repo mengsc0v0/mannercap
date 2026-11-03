@@ -1,0 +1,588 @@
+{
+ "t6:zh_neutral:fixed_base": {
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "d5a090d75d3b255f574a4c341e3bb0c433a172853d7c3b0fd01cdd540ebab654",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": [],
+    "object_scope_version": "language_scope.zh_object.v2",
+    "one_object": []
+   }
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t6:zh_gentle:fixed_base": {
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，抓白色马克杯的时候轻一点",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "774f6320909036244fbcd1e411f26a781b895b2117cf24a96b72472fdae5bca2",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": [],
+    "object_scope_version": "language_scope.zh_object.v2",
+    "one_object": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "抓白色马克杯的时候轻一点",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "抓白色马克杯的时候轻一点"
+    }
+   ]
+  }
+ },
+ "t6:zh_firm:fixed_base": {
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，白色马克杯要握紧",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "965638650df71d5ae76e476b60d297fabaf10884e7a0e84d2a6bdfe36f7da68d",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": [],
+    "object_scope_version": "language_scope.zh_object.v2",
+    "one_object": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "白色马克杯要握紧",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "白色马克杯要握紧"
+    }
+   ]
+  }
+ },
+ "t6:zh_slowcarry:fixed_base": {
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，慢慢地搬运白色马克杯",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "79fab58335c00ec749c92314fdedee1815c0f8be8e7b588dbb8e95d505a59337",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj1.pick_1.transport": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢慢",
+      "level": "slow",
+      "part": "慢慢地搬运白色马克杯",
+      "part_index": 2,
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport",
+      "after_stage": "白色马克杯",
+      "object": "obj1",
+      "object_rule": "O1"
+     }
+    ],
+    "object_scope_version": "language_scope.zh_object.v2",
+    "one_object": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "慢慢地搬运白色马克杯",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "慢慢地搬运白色马克杯"
+    }
+   ]
+  }
+ },
+ "t6:zh_fastcarry:fixed_base": {
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，快速搬运白色马克杯",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "59e68b82c67952789e601619aa8a2c51eeb63110de7e007d73ef21f4bfb8a066",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj1.pick_1.transport": "fast"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "快速",
+      "level": "fast",
+      "part": "快速搬运白色马克杯",
+      "part_index": 2,
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport",
+      "after_stage": "白色马克杯",
+      "object": "obj1",
+      "object_rule": "O1"
+     }
+    ],
+    "object_scope_version": "language_scope.zh_object.v2",
+    "one_object": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "obj1",
+    "clause": "快速搬运白色马克杯",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "快速搬运白色马克杯"
+    }
+   ]
+  }
+ },
+ "t6:zh_binding:fixed_base": {
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，白色马克杯轻轻地拿，巧克力布丁要抓牢",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "ebc2157e0f8a65ce47c72eeb03e2e0b4ad77f02ba86450a0ed8dc8f72cc5e5bb",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "none",
+    "reasons": [],
+    "effective": {},
+    "exceptions": [],
+    "hits": [],
+    "object_scope_version": "language_scope.zh_object.v2",
+    "one_object": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "白色马克杯轻轻地拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj0",
+    "clause": "巧克力布丁要抓牢",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "gentle",
+    "obj0": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "白色马克杯轻轻地拿"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj0.pick_1.grasp"
+     ],
+     "clause": "巧克力布丁要抓牢"
+    }
+   ]
+  }
+ },
+ "t6:zh_slow_all:fixed_base": {
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，全程慢一些",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "eec3dfa1304f11b84e20825eb387ff9023001e532adbf68c1da2a790c9ed0f5b",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj0.pick_1.approach": "slow",
+     "obj0.pick_1.descend": "slow",
+     "obj0.pick_1.lift": "slow",
+     "obj0.pick_1.transport": "slow",
+     "obj0.pick_1.place": "slow",
+     "obj0.pick_1.retreat": "slow",
+     "obj1.pick_1.approach": "slow",
+     "obj1.pick_1.descend": "slow",
+     "obj1.pick_1.lift": "slow",
+     "obj1.pick_1.transport": "slow",
+     "obj1.pick_1.place": "slow",
+     "obj1.pick_1.retreat": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢",
+      "level": "slow",
+      "part": "全程慢一些",
+      "part_index": 2,
+      "exception": false,
+      "kind": "global",
+      "rule": "R3",
+      "stage": null
+     }
+    ],
+    "object_scope_version": "language_scope.zh_object.v2",
+    "one_object": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj0.pick_1.descend",
+     "obj0.pick_1.lift",
+     "obj0.pick_1.transport",
+     "obj0.pick_1.place",
+     "obj0.pick_1.retreat",
+     "obj1.pick_1.approach",
+     "obj1.pick_1.descend",
+     "obj1.pick_1.lift",
+     "obj1.pick_1.transport",
+     "obj1.pick_1.place",
+     "obj1.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "全程慢一些",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj0.pick_1.approach": "slow",
+    "obj0.pick_1.descend": "slow",
+    "obj0.pick_1.lift": "slow",
+    "obj0.pick_1.transport": "slow",
+    "obj0.pick_1.place": "slow",
+    "obj0.pick_1.retreat": "slow",
+    "obj1.pick_1.approach": "slow",
+    "obj1.pick_1.descend": "slow",
+    "obj1.pick_1.lift": "slow",
+    "obj1.pick_1.transport": "slow",
+    "obj1.pick_1.place": "slow",
+    "obj1.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj0.pick_1.approach",
+      "obj0.pick_1.descend",
+      "obj0.pick_1.lift",
+      "obj0.pick_1.transport",
+      "obj0.pick_1.place",
+      "obj0.pick_1.retreat",
+      "obj1.pick_1.approach",
+      "obj1.pick_1.descend",
+      "obj1.pick_1.lift",
+      "obj1.pick_1.transport",
+      "obj1.pick_1.place",
+      "obj1.pick_1.retreat"
+     ],
+     "clause": "全程慢一些"
+    }
+   ]
+  }
+ },
+ "t6:zh_fragile_combo:fixed_base": {
+  "instruction": "把白色马克杯放到盘子上，把巧克力布丁放到盘子右边，白色马克杯容易碎，要轻拿并且慢慢搬运",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "8428a418fb9ec94a9d1c9419ba0714db3b23606d3f68e5c0a7b464e7b9d3b2b0",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": [],
+   "speed_scope": {
+    "scope_version": "language_scope.zh.v2",
+    "rules_hash": "a09ba00bb23357a1",
+    "status": "ok",
+    "reasons": [],
+    "effective": {
+     "obj1.pick_1.transport": "slow"
+    },
+    "exceptions": [],
+    "hits": [
+     {
+      "word": "慢慢",
+      "level": "slow",
+      "part": "要轻拿并且慢慢搬运",
+      "part_index": 3,
+      "exception": false,
+      "kind": "stage",
+      "rule": "R1",
+      "stage": "transport",
+      "after_stage": "",
+      "object": "obj1",
+      "object_rule": "O1"
+     }
+    ],
+    "object_scope_version": "language_scope.zh_object.v2",
+    "one_object": []
+   }
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "白色马克杯容易碎，要轻拿",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "慢慢搬运",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "白色马克杯容易碎，要轻拿"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "慢慢搬运"
+    }
+   ]
+  }
+ }
+}

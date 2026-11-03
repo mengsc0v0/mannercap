@@ -1,0 +1,856 @@
+{
+ "version": "s30_manner_gen.v6",
+ "module": "manner_libero.v2",
+ "task": 7,
+ "init": 45,
+ "instruction_id": "slow_all",
+ "instruction": "Put both the alphabet soup and the cream cheese box in the basket, and move slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "alphabet_soup.pick_1.approach": "slow",
+   "alphabet_soup.pick_1.descend": "slow",
+   "alphabet_soup.pick_1.lift": "slow",
+   "alphabet_soup.pick_1.transport": "slow",
+   "alphabet_soup.pick_1.place": "slow",
+   "alphabet_soup.pick_1.retreat": "slow",
+   "cream_cheese.pick_1.approach": "slow",
+   "cream_cheese.pick_1.descend": "slow",
+   "cream_cheese.pick_1.lift": "slow",
+   "cream_cheese.pick_1.transport": "slow",
+   "cream_cheese.pick_1.place": "slow",
+   "cream_cheese.pick_1.retreat": "slow"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "alphabet_soup.pick_1.descend",
+     "alphabet_soup.pick_1.lift",
+     "alphabet_soup.pick_1.transport",
+     "alphabet_soup.pick_1.place",
+     "alphabet_soup.pick_1.retreat",
+     "cream_cheese.pick_1.approach",
+     "cream_cheese.pick_1.descend",
+     "cream_cheese.pick_1.lift",
+     "cream_cheese.pick_1.transport",
+     "cream_cheese.pick_1.place",
+     "cream_cheese.pick_1.retreat"
+    ],
+    "clause": "move slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.06,
+     "alphabet_soup.pick_1.descend": 0.06,
+     "alphabet_soup.pick_1.lift": 0.06,
+     "alphabet_soup.pick_1.transport": 0.06,
+     "alphabet_soup.pick_1.place": 0.06,
+     "alphabet_soup.pick_1.retreat": 0.06,
+     "cream_cheese.pick_1.approach": 0.06,
+     "cream_cheese.pick_1.descend": 0.06,
+     "cream_cheese.pick_1.lift": 0.06,
+     "cream_cheese.pick_1.transport": 0.06,
+     "cream_cheese.pick_1.place": 0.06,
+     "cream_cheese.pick_1.retreat": 0.06
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      100.0
+     ]
+    },
+    "clear": {}
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06211915984749794
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06241371110081673
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061141543090343475
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06200215965509415
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.04806526377797127
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061402902007102966
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06093920022249222
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06403601169586182
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.0620720311999321
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06007472053170204
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.04702671617269516
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061396852135658264
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.06211915984749794,
+     "alphabet_soup.pick_1.descend": 0.06241371110081673,
+     "alphabet_soup.pick_1.lift": 0.061141543090343475,
+     "alphabet_soup.pick_1.transport": 0.06200215965509415,
+     "alphabet_soup.pick_1.place": 0.04806526377797127,
+     "alphabet_soup.pick_1.retreat": 0.061402902007102966,
+     "cream_cheese.pick_1.approach": 0.06093920022249222,
+     "cream_cheese.pick_1.descend": 0.06403601169586182,
+     "cream_cheese.pick_1.lift": 0.0620720311999321,
+     "cream_cheese.pick_1.transport": 0.06007472053170204,
+     "cream_cheese.pick_1.place": 0.04702671617269516,
+     "cream_cheese.pick_1.retreat": 0.061396852135658264
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 13.118664133837076,
+      "hold_max": 14.132452639959478,
+      "hold_mean": 13.26958354194586,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.06196913123130798
+     },
+     "cream_cheese": {
+      "hold_min": 22.805742596000556,
+      "hold_max": 22.92420209569825,
+      "hold_mean": 22.871481844495165,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.06034649908542633
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 701,
+    "wall_s": 19.8,
+    "unexcused": [],
+    "support_unexplained": [
+     {
+      "robot_body": "leftfinger",
+      "other": "living_room_table_col",
+      "max_n": 55.8,
+      "stages": [
+       "grasp@cream_cheese",
+       "lift@cream_cheese"
+      ]
+     },
+     {
+      "robot_body": "rightfinger",
+      "other": "living_room_table_col",
+      "max_n": 31.3,
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     }
+    ],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i45_slow_all_a0.npz",
+    "carry_evidence": {
+     "cream_cheese": [
+      "contact:leftfinger|living_room_table_col@496"
+     ]
+    }
+   },
+   "repair": [
+    {
+     "action": "clearance",
+     "target": "cream_cheese",
+     "from": 0.0,
+     "to": 0.03,
+     "cause": [
+      "contact:leftfinger|living_room_table_col@496"
+     ]
+    }
+   ]
+  },
+  {
+   "k": 1,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.06,
+     "alphabet_soup.pick_1.descend": 0.06,
+     "alphabet_soup.pick_1.lift": 0.06,
+     "alphabet_soup.pick_1.transport": 0.06,
+     "alphabet_soup.pick_1.place": 0.06,
+     "alphabet_soup.pick_1.retreat": 0.06,
+     "cream_cheese.pick_1.approach": 0.06,
+     "cream_cheese.pick_1.descend": 0.06,
+     "cream_cheese.pick_1.lift": 0.06,
+     "cream_cheese.pick_1.transport": 0.06,
+     "cream_cheese.pick_1.place": 0.06,
+     "cream_cheese.pick_1.retreat": 0.06
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      100.0
+     ]
+    },
+    "clear": {
+     "cream_cheese": 0.03
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06211915984749794
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06241371110081673
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061141543090343475
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06200215965509415
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.04806526377797127
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061402902007102966
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06093920022249222
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06403601169586182
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06190457195043564
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06012143939733505
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.056031353771686554
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06140369921922684
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.06211915984749794,
+     "alphabet_soup.pick_1.descend": 0.06241371110081673,
+     "alphabet_soup.pick_1.lift": 0.061141543090343475,
+     "alphabet_soup.pick_1.transport": 0.06200215965509415,
+     "alphabet_soup.pick_1.place": 0.04806526377797127,
+     "alphabet_soup.pick_1.retreat": 0.061402902007102966,
+     "cream_cheese.pick_1.approach": 0.06093920022249222,
+     "cream_cheese.pick_1.descend": 0.06403601169586182,
+     "cream_cheese.pick_1.lift": 0.06190457195043564,
+     "cream_cheese.pick_1.transport": 0.06012143939733505,
+     "cream_cheese.pick_1.place": 0.056031353771686554,
+     "cream_cheese.pick_1.retreat": 0.06140369921922684
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 13.118664133837076,
+      "hold_max": 14.132452639959478,
+      "hold_mean": 13.26958354194586,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.06196913123130798
+     },
+     "cream_cheese": {
+      "hold_min": 22.784241362081268,
+      "hold_max": 22.930578188970095,
+      "hold_mean": 22.87137622473449,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.06054152920842171
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 721,
+    "wall_s": 20.1,
+    "unexcused": [],
+    "support_unexplained": [
+     {
+      "robot_body": "leftfinger",
+      "other": "living_room_table_col",
+      "max_n": 55.8,
+      "stages": [
+       "grasp@cream_cheese",
+       "lift@cream_cheese"
+      ]
+     },
+     {
+      "robot_body": "rightfinger",
+      "other": "living_room_table_col",
+      "max_n": 31.3,
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     }
+    ],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i45_slow_all_a1.npz",
+    "carry_evidence": {
+     "cream_cheese": [
+      "contact:leftfinger|living_room_table_col@496"
+     ]
+    }
+   },
+   "repair": [
+    {
+     "action": "clearance",
+     "target": "cream_cheese",
+     "from": 0.03,
+     "to": 0.06,
+     "cause": [
+      "contact:leftfinger|living_room_table_col@496"
+     ]
+    }
+   ]
+  },
+  {
+   "k": 2,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.06,
+     "alphabet_soup.pick_1.descend": 0.06,
+     "alphabet_soup.pick_1.lift": 0.06,
+     "alphabet_soup.pick_1.transport": 0.06,
+     "alphabet_soup.pick_1.place": 0.06,
+     "alphabet_soup.pick_1.retreat": 0.06,
+     "cream_cheese.pick_1.approach": 0.06,
+     "cream_cheese.pick_1.descend": 0.06,
+     "cream_cheese.pick_1.lift": 0.06,
+     "cream_cheese.pick_1.transport": 0.06,
+     "cream_cheese.pick_1.place": 0.06,
+     "cream_cheese.pick_1.retreat": 0.06
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      100.0
+     ]
+    },
+    "clear": {
+     "cream_cheese": 0.06
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06211915984749794
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06241371110081673
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061141543090343475
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06200215965509415
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.04806526377797127
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061402902007102966
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06093920022249222
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06403601169586182
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061911214143037796
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06018202379345894
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06231343746185303
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061393484473228455
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.06211915984749794,
+     "alphabet_soup.pick_1.descend": 0.06241371110081673,
+     "alphabet_soup.pick_1.lift": 0.061141543090343475,
+     "alphabet_soup.pick_1.transport": 0.06200215965509415,
+     "alphabet_soup.pick_1.place": 0.04806526377797127,
+     "alphabet_soup.pick_1.retreat": 0.061402902007102966,
+     "cream_cheese.pick_1.approach": 0.06093920022249222,
+     "cream_cheese.pick_1.descend": 0.06403601169586182,
+     "cream_cheese.pick_1.lift": 0.061911214143037796,
+     "cream_cheese.pick_1.transport": 0.06018202379345894,
+     "cream_cheese.pick_1.place": 0.06231343746185303,
+     "cream_cheese.pick_1.retreat": 0.061393484473228455
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 13.118664133837076,
+      "hold_max": 14.132452639959478,
+      "hold_mean": 13.26958354194586,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.06196913123130798
+     },
+     "cream_cheese": {
+      "hold_min": 22.812677897508784,
+      "hold_max": 22.917697367158446,
+      "hold_mean": 22.871401952116468,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.061109110713005066
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 739,
+    "wall_s": 20.3,
+    "unexcused": [],
+    "support_unexplained": [
+     {
+      "robot_body": "leftfinger",
+      "other": "living_room_table_col",
+      "max_n": 55.8,
+      "stages": [
+       "grasp@cream_cheese",
+       "lift@cream_cheese"
+      ]
+     },
+     {
+      "robot_body": "rightfinger",
+      "other": "living_room_table_col",
+      "max_n": 31.3,
+      "stages": [
+       "grasp@cream_cheese"
+      ]
+     }
+    ],
+    "guard_retries": 0,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i45_slow_all_a2.npz",
+    "carry_evidence": {
+     "cream_cheese": [
+      "contact:leftfinger|living_room_table_col@496"
+     ]
+    }
+   },
+   "repair": [
+    {
+     "action": "stop",
+     "why": "carry_clearance_exhausted",
+     "target": [
+      "cream_cheese"
+     ]
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 3,
+  "stop": "carry_clearance_exhausted"
+ },
+ "clearance_prior": {
+  "alphabet_soup": 0.0,
+  "cream_cheese": 0.0
+ },
+ "library_rows_at_start": 6378
+}

@@ -1,0 +1,86 @@
+{
+ "protocol": "step31_carry_clearance.v1",
+ "written_utc": "2026-11-03T12:50:25.757654Z",
+ "written_before_any_pilot_or_formal_execution": true,
+ "git_head": "990af99ce22d7937357a1c1e9df24eb2b3cdc968",
+ "code_sha256_uncommitted_worktree": {
+  "scripts/mt/s30_manner_gen.py": "415667441239ee4b96fdb5d12a606d0ef2e48c0add17591d47a3fedb6766da25",
+  "synthesis_v2/manner_libero.py": "e8b5c6453fd329a76729211b089791da7db2bf5cb187aee38c4176bb4d6f1071",
+  "scripts/mt/s28_t6_replay.py": "3169cb84a13a88be263261fb9874de7f759a1ef29d1b7f549b36d7a327c21691",
+  "scripts/mt/s25_policies.py": "f2d215e81d2d87ff0068aa5bd1392472a72cb5a33deab05eceaa90df73a3d070",
+  "synthesis_v2/contact_policy_v1.py": "593aa454cf1660457e1a4cb4a90c7b323f53616571c8f84668e8c0ac3562c956",
+  "synthesis_v2/program_executor.py": "b38e4936db74333a70e65a7ce67075b943799415a124c4c35131b306b9e17ae0"
+ },
+ "runner_version": "s30_manner_gen.v6",
+ "module": "manner_libero.v2",
+ "diagnosis": "reports/step31_t0_contact/dz*_*.json (step-30 T0 unclean: palm vs held can at transport end; slow_all: held can pushes basket ~0.22 m); BASKET_TRANSPORT_DZ=0.175 was measured on T1's short objects and reused for T0/T7's tall cans",
+ "method": {
+  "carry_evidence": "per object: unexcused/unexplained robot contact in its lift/transport steps, or another tracked object displaced > 0.02 m during them",
+  "repair": "on task-failed or contact-unclean executions, raise lift_dz/transport_dz of objects with carry evidence by 0.03 m (max 0.06 m total); manner commands unchanged; shares the 3-execution budget",
+  "experience": "clearance_prior: per (task, object) clearance level with highest Beta(1,1) posterior of evidence-free carries in OTHER scenes' write-back rows; default 0"
+ },
+ "intake": {
+  "file": "reports/step30_manner_gen/formal/intake.json",
+  "sha256": "58849cb85d7232ffd9153c89160043ddd5214347fbbab766aa841ae9c38fb61b"
+ },
+ "pilot": {
+  "tasks": [
+   0,
+   7
+  ],
+  "inits": [
+   40,
+   41
+  ],
+  "iids": "all 11",
+  "out": "reports/step31_t0_contact/pilot",
+  "S30_WB_READ": "reports/step30_manner_gen/formal/frozen_pilot_library_rows.jsonl"
+ },
+ "formal": {
+  "tasks": [
+   0,
+   7
+  ],
+  "inits": [
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49
+  ],
+  "iids": "all 11",
+  "conditions": {
+   "full": "S30_WB_READ = step30 frozen pilot rows + step31 pilot rows; clearance prior + clearance repair",
+   "repair_only (T0)": "same library, S31_NOCLEARPRIOR=1"
+  },
+  "baseline": "reports/step30_manner_gen/formal/full (same scenes, same intake, same force library, v5 no clearance)",
+  "metrics": [
+   "first/final joint pass per task",
+   "executions",
+   "contact-unclean stops",
+   "paired McNemar vs step-30 full"
+  ]
+ },
+ "formal_library_frozen": {
+  "written_utc": "2026-11-03T12:54:37.497564Z",
+  "before_any_formal_execution": true,
+  "S30_WB_READ": [
+   "reports/step30_manner_gen/formal/frozen_pilot_library_rows.jsonl",
+   "reports/step31_t0_contact/formal/frozen_step31_pilot_rows.jsonl"
+  ],
+  "step31_pilot_rows_sha256": "9fa300a0a43b506db7910a53c49a48be5536fdc9d745f9cdf00f7475eb5f583e",
+  "n_rows": 104
+ },
+ "amendment_experience_loso": {
+  "written_utc": "2026-11-03T13:00:29.641345Z",
+  "written_after_full_and_repair_only_results": true,
+  "why": "in the frozen pilot library (scenes 40/41) the evidence rate at clearance 0 was low (3/25 soup carries), so the clearance prior stayed 0 in every formal case; this condition tests whether accumulated experience moves the prior and reduces FIRST-execution failures",
+  "condition": "T0 scenes 42..49, all 11 instructions; force library identical to 'full'; S31_CLEAR_READ = step31 formal full write-back rows, used ONLY by the clearance prior, rows of the evaluated (task, init) hidden (leave-one-scene-out)",
+  "T7": "not run: the leave-one-scene-out prior is 0 for both T7 objects in all 8 scenes (identical to 'full')",
+  "rows_sha256": "40574eabdc3350d73660174cb20ecab734eb1fc155a6e9846f7f20f3548b869c",
+  "code_sha256_s30": "ac00d007233e4fb231f9b50079f62989d4d60767e77a374c061096e3cc5bfef0"
+ }
+}

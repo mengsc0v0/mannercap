@@ -1,0 +1,49 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "explicit_object",
+        "clause": "\u756a\u8304\u9171\u8981\u63e1\u7d27",
+        "dimension": "grip",
+        "instance_ids": [
+          "tomato_sauce.pick_1.grasp"
+        ],
+        "level": "firm",
+        "object_role": "tomato_sauce"
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "\u628a\u5b57\u6bcd\u6c64\u548c\u756a\u8304\u9171\u90fd\u653e\u8fdb\u7bee\u5b50\u91cc",
+          "object_phrase": "\u5b57\u6bcd\u6c64",
+          "object_role": "alphabet_soup",
+          "target_phrase": "\u7bee\u5b50\u91cc",
+          "target_role": "basket"
+        },
+        {
+          "action": "put",
+          "clause": "\u628a\u5b57\u6bcd\u6c64\u548c\u756a\u8304\u9171\u90fd\u653e\u8fdb\u7bee\u5b50\u91cc",
+          "object_phrase": "\u756a\u8304\u9171",
+          "object_role": "tomato_sauce",
+          "target_phrase": "\u7bee\u5b50\u91cc",
+          "target_role": "basket"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

@@ -1,0 +1,74 @@
+{
+ "task": 0,
+ "init": 44,
+ "iid": "slow_all",
+ "k": "transport_dz",
+ "cmd": {
+  "speed": {
+   "alphabet_soup.pick_1.approach": 0.06,
+   "alphabet_soup.pick_1.descend": 0.06,
+   "alphabet_soup.pick_1.lift": 0.06,
+   "alphabet_soup.pick_1.transport": 0.06,
+   "alphabet_soup.pick_1.place": 0.06,
+   "alphabet_soup.pick_1.retreat": 0.06,
+   "tomato_sauce.pick_1.approach": 0.06,
+   "tomato_sauce.pick_1.descend": 0.06,
+   "tomato_sauce.pick_1.lift": 0.06,
+   "tomato_sauce.pick_1.transport": 0.06,
+   "tomato_sauce.pick_1.place": 0.06,
+   "tomato_sauce.pick_1.retreat": 0.06
+  },
+  "grip": {
+   "alphabet_soup": [
+    1.0,
+    100.0
+   ],
+   "tomato_sauce": [
+    1.0,
+    100.0
+   ]
+  }
+ },
+ "task_ok": true,
+ "clean": true,
+ "objects": {
+  "alphabet_soup": {
+   "hold_min": 13.229329107539073,
+   "hold_max": 13.245007530918228,
+   "hold_mean": 13.242301568407171,
+   "stable": true,
+   "valid": true,
+   "target": "alphabet_soup_1",
+   "carry_v": 0.06164591759443283
+  },
+  "tomato_sauce": {
+   "hold_min": 12.473612363660862,
+   "hold_max": 12.4876281579665,
+   "hold_mean": 12.485463837703811,
+   "stable": true,
+   "valid": true,
+   "target": "tomato_sauce_1",
+   "carry_v": 0.06112348288297653
+  }
+ },
+ "contacts": [],
+ "windows": [
+  {
+   "instance_id": "alphabet_soup.pick_1.grasp",
+   "object": "alphabet_soup_1_main",
+   "env_object": "alphabet_soup_1",
+   "close_step": 95,
+   "release_step": 326,
+   "release_command_step": 316
+  },
+  {
+   "instance_id": "tomato_sauce.pick_1.grasp",
+   "object": "tomato_sauce_1_main",
+   "env_object": "tomato_sauce_1",
+   "close_step": 501,
+   "release_step": 671,
+   "release_command_step": 661
+  }
+ ],
+ "n_steps": 720
+}

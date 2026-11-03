@@ -1,0 +1,296 @@
+{
+ "version": "s30_manner_gen.v6",
+ "module": "manner_libero.v2",
+ "task": 7,
+ "init": 47,
+ "instruction_id": "slow_all",
+ "instruction": "Put both the alphabet soup and the cream cheese box in the basket, and move slowly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {
+   "alphabet_soup.pick_1.approach": "slow",
+   "alphabet_soup.pick_1.descend": "slow",
+   "alphabet_soup.pick_1.lift": "slow",
+   "alphabet_soup.pick_1.transport": "slow",
+   "alphabet_soup.pick_1.place": "slow",
+   "alphabet_soup.pick_1.retreat": "slow",
+   "cream_cheese.pick_1.approach": "slow",
+   "cream_cheese.pick_1.descend": "slow",
+   "cream_cheese.pick_1.lift": "slow",
+   "cream_cheese.pick_1.transport": "slow",
+   "cream_cheese.pick_1.place": "slow",
+   "cream_cheese.pick_1.retreat": "slow"
+  },
+  "grip": {},
+  "clauses": [
+   {
+    "dimension": "speed",
+    "level": "slow",
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "alphabet_soup.pick_1.descend",
+     "alphabet_soup.pick_1.lift",
+     "alphabet_soup.pick_1.transport",
+     "alphabet_soup.pick_1.place",
+     "alphabet_soup.pick_1.retreat",
+     "cream_cheese.pick_1.approach",
+     "cream_cheese.pick_1.descend",
+     "cream_cheese.pick_1.lift",
+     "cream_cheese.pick_1.transport",
+     "cream_cheese.pick_1.place",
+     "cream_cheese.pick_1.retreat"
+    ],
+    "clause": "move slowly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.06,
+     "alphabet_soup.pick_1.descend": 0.06,
+     "alphabet_soup.pick_1.lift": 0.06,
+     "alphabet_soup.pick_1.transport": 0.06,
+     "alphabet_soup.pick_1.place": 0.06,
+     "alphabet_soup.pick_1.retreat": 0.06,
+     "cream_cheese.pick_1.approach": 0.06,
+     "cream_cheese.pick_1.descend": 0.06,
+     "cream_cheese.pick_1.lift": 0.06,
+     "cream_cheese.pick_1.transport": 0.06,
+     "cream_cheese.pick_1.place": 0.06,
+     "cream_cheese.pick_1.retreat": 0.06
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      100.0
+     ]
+    },
+    "clear": {}
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061842385679483414
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06242041289806366
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06130165979266167
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.061899714171886444
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.05029231682419777
+     },
+     {
+      "dimension": "speed",
+      "target": "alphabet_soup.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06144878640770912
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.approach",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.060958173125982285
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.descend",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06389035284519196
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.lift",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.0620921328663826
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.transport",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06009409576654434
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.place",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.04623439908027649
+     },
+     {
+      "dimension": "speed",
+      "target": "cream_cheese.pick_1.retreat",
+      "level": "slow",
+      "band": [
+       0.0,
+       0.09
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": 0.06144647300243378
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.061842385679483414,
+     "alphabet_soup.pick_1.descend": 0.06242041289806366,
+     "alphabet_soup.pick_1.lift": 0.06130165979266167,
+     "alphabet_soup.pick_1.transport": 0.061899714171886444,
+     "alphabet_soup.pick_1.place": 0.05029231682419777,
+     "alphabet_soup.pick_1.retreat": 0.06144878640770912,
+     "cream_cheese.pick_1.approach": 0.060958173125982285,
+     "cream_cheese.pick_1.descend": 0.06389035284519196,
+     "cream_cheese.pick_1.lift": 0.0620921328663826,
+     "cream_cheese.pick_1.transport": 0.06009409576654434,
+     "cream_cheese.pick_1.place": 0.04623439908027649,
+     "cream_cheese.pick_1.retreat": 0.06144647300243378
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 13.043768943412761,
+      "hold_max": 14.409240028529071,
+      "hold_mean": 13.277636367283693,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.061884328722953796
+     },
+     "cream_cheese": {
+      "hold_min": 22.73244103327321,
+      "hold_max": 23.15036842580293,
+      "hold_mean": 22.86833957553033,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.06047895923256874
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 662,
+    "wall_s": 23.7,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 1,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i47_slow_all_a0.npz",
+    "carry_evidence": {}
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "clearance_prior": {
+  "alphabet_soup": 0.0,
+  "cream_cheese": 0.0
+ },
+ "library_rows_at_start": 6378
+}

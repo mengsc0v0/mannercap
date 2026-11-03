@@ -1,0 +1,118 @@
+{
+ "version": "s30_manner_gen.v6",
+ "module": "manner_libero.v2",
+ "task": 7,
+ "init": 43,
+ "instruction_id": "neutral",
+ "instruction": "Put both the alphabet soup and the cream cheese box in the basket",
+ "intake_status": "accept",
+ "request": {
+  "speed": {},
+  "grip": {},
+  "clauses": []
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "cream_cheese.pick_1.approach": 0.12,
+     "cream_cheese.pick_1.descend": 0.12,
+     "cream_cheese.pick_1.lift": 0.12,
+     "cream_cheese.pick_1.transport": 0.12,
+     "cream_cheese.pick_1.place": 0.12,
+     "cream_cheese.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      1.0,
+      100.0
+     ],
+     "cream_cheese": [
+      1.0,
+      100.0
+     ]
+    },
+    "clear": {}
+   },
+   "audit": {
+    "clauses": [],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": true,
+    "joint_pass": true
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": true,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12405288219451904,
+     "alphabet_soup.pick_1.descend": 0.1259945034980774,
+     "alphabet_soup.pick_1.lift": 0.1231154203414917,
+     "alphabet_soup.pick_1.transport": 0.12569202482700348,
+     "alphabet_soup.pick_1.place": 0.012037977576255798,
+     "alphabet_soup.pick_1.retreat": 0.12292926013469696,
+     "cream_cheese.pick_1.approach": 0.12636201083660126,
+     "cream_cheese.pick_1.descend": 0.1292628049850464,
+     "cream_cheese.pick_1.lift": 0.12326456606388092,
+     "cream_cheese.pick_1.transport": 0.1222076416015625,
+     "cream_cheese.pick_1.place": 0.05552629381418228,
+     "cream_cheese.pick_1.retreat": 0.12304960191249847
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 13.245057316849284,
+      "hold_max": 13.256878556120466,
+      "hold_mean": 13.254250484028999,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.1253533959388733
+     },
+     "cream_cheese": {
+      "hold_min": 22.740669030998184,
+      "hold_max": 22.936365873428322,
+      "hold_mean": 22.860254118104827,
+      "stable": true,
+      "valid": true,
+      "target": "cream_cheese_1",
+      "carry_v": 0.12244881689548492
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 369,
+    "wall_s": 18.8,
+    "unexcused": [],
+    "support_unexplained": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t7_i43_neutral_a0.npz",
+    "carry_evidence": {}
+   },
+   "repair": [
+    {
+     "action": "none",
+     "why": "joint_pass"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": true,
+  "attempts": 1
+ },
+ "clearance_prior": {
+  "alphabet_soup": 0.0,
+  "cream_cheese": 0.0
+ },
+ "library_rows_at_start": 6378
+}

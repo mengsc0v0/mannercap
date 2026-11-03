@@ -18,7 +18,7 @@ import numpy as np  # noqa: E402
 from s7_task_config import ROOT  # noqa: E402
 
 OUT = Path(os.environ.get("S30_OUT", str(ROOT / "reports" / "step30_manner_gen")))
-VERSION = "s30_manner_gen.v5"
+VERSION = "s30_manner_gen.v6"   # v6 (step 31): carry-clearance repair + clearance experience
 SPEED_SWITCH_MARGIN = 0.10  # posterior gain needed to move an unrequested carry speed
 PROP = {6: (ROOT / "reports" / "step27_t6_repair" / "frozen_proposal.json", "proposal"),
         8: (ROOT / "reports" / "step29_t8_contact" / "selected_round3_proposal.json", None)}
@@ -177,6 +177,61 @@ def role_carry_speed(ep, role):
     return float(np.median(np.linalg.norm(np.diff(pos[idx], axis=0), axis=1) * 20.0))
 
 
+def clearance_prior(lib, t, obj):
+    """Experience for the carry height of one object in one task: among the clearance levels already executed in
+    OTHER scenes, the one with the highest posterior rate of carries without failure evidence (Beta(1,1);
+    ties -> the lower carry).  No experience -> 0 (the task's default heights)."""
+    by = {0.0: []}
+    for r in lib.rows:
+        if r.get("task") == t and r.get("object") == obj and "carry_ev" in r:
+            by.setdefault(round(float(r.get("clear", 0.0)), 3), []).append(not r["carry_ev"])
+    return max(sorted(by), key=lambda d: ((sum(by[d]) + 1) / (len(by[d]) + 2), -d))
+
+
+def apply_clearance(prog, clear):
+    from synthesis_v2.program_executor import LIFT_DZ
+    if not clear:
+        return prog
+    inst = []
+    for it in prog.instances:
+        if clear.get(it.object_role) and it.primitive in ("lift", "transport"):
+            k = it.primitive + "_dz"
+            it = dataclasses.replace(it, params={**it.params, k: float(it.params.get(k, LIFT_DZ)) + clear[it.object_role]})
+        inst.append(it)
+    return dataclasses.replace(prog, instances=tuple(inst))
+
+
+PUSH_M = 0.02   # another tracked object moving more than this while an object is carried = carry collision
+
+
+def carry_evidence(ep, roles, names, events, v1, st):
+    """role -> evidence that the execution failed during THIS object's carry (lift/transport stages):
+    an unexcused / unexplained robot contact in those steps, or another tracked object displaced > PUSH_M."""
+    from synthesis_v2.contact_policy_v1 import _steps_of
+    bad = [(c["robot_body"], c["other"]) for c in v1["unexcused_contacts"]] + \
+          [(c["robot_body"], c["other"]) for c in v1["support_contacts_unexplained"]]
+    pos = {k[4:]: np.asarray(v, dtype=np.float64) for k, v in ep.arrays.items() if k.startswith("pos_")}
+    ev = {}
+    for r, n in zip(roles, names):
+        idx = [k for k, x in enumerate(st) if x.startswith(r + ".") and x.split(".")[-1] in ("lift", "transport")]
+        if not idx:
+            continue
+        S, e = set(idx), []
+        for key in bad:
+            hit = S & _steps_of(events, key)
+            if hit:
+                e.append(f"contact:{key[0]}|{key[1]}@{min(hit)}")
+        for o, pp in pos.items():
+            if o == n or len(pp) != len(st):
+                continue
+            d = float(np.max(np.linalg.norm(pp[idx] - pp[idx[0]], axis=1)))
+            if d > PUSH_M:
+                e.append(f"pushed:{o}:{d:.3f}")
+        if e:
+            ev[r] = e
+    return ev
+
+
 def execute(t, init, prog, roles, names, make, cmd, npz_path):
     import s8_task_force as S8
     from s11_guarded_case import GUARD, windows_from
@@ -184,6 +239,7 @@ def execute(t, init, prog, roles, names, make, cmd, npz_path):
     from synthesis_v2.contact_policy_v1 import DetailRecorder, evaluate as eval_v1
     from synthesis_v2.native_producer import StagePlan
     from synthesis_v2.program_executor import ProgramPlan, produce_program_episode
+    prog = apply_clearance(prog, cmd.get("clear"))
     s = make(init)
     sub = S8.install_recorder(s, names)
     box, t0 = {}, time.time()
@@ -232,7 +288,8 @@ def execute(t, init, prog, roles, names, make, cmd, npz_path):
                                      "max_n": round(float(c.get("max_n", 0) or 0), 2), "stages": c.get("stages")}
                                     for c in v1["support_contacts_unexplained"]][:6],
             "guard_retries": len(g.get("retries", [])), "stage_failure": ep.meta.get("stage_failure"),
-            "grasp_failure": ep.meta.get("grasp_failure"), "npz": str(npz_path.relative_to(OUT))}
+            "grasp_failure": ep.meta.get("grasp_failure"), "npz": str(npz_path.relative_to(OUT)),
+            "carry_evidence": carry_evidence(ep, roles, names, crec.events, v1, st)}
     return measured, info
 
 
@@ -307,7 +364,15 @@ def run_case(t, init, iid, budget=3):
                 out_.append((f, s_))
         return out_
 
-    cmd = M.initial_commands(prog, req, choose_grip)
+    # S31_CLEAR_READ (':'-separated write-back files): extra experience used ONLY by the clearance prior (the force
+    # library is unchanged), rows of the evaluated (task, init) hidden like everywhere else
+    clib = SimpleNamespace(rows=list(lib.rows) + [
+        r for f in os.environ.get("S31_CLEAR_READ", "").split(":") if f
+        for r in map(json.loads, Path(f).read_text().splitlines()) if not (r["task"] == t and r["init"] == init)])
+    clear0 = {} if os.environ.get("S31_NOCLEARPRIOR") == "1" else \
+        {r: clearance_prior(clib, t, obj_of[r]) for r in roles}
+    out["clearance_prior"] = clear0
+    cmd = M.initial_commands(prog, req, choose_grip, clear0)
     for k in range(budget):
         tried.append(cmd)
         npz = OUT / "npz" / f"t{t}_i{init}_{iid}_a{k}.npz"
@@ -323,7 +388,8 @@ def run_case(t, init, iid, budget=3):
             row = {"task": t, "init": init, "object": o["target"], "force": list(cmd["grip"][r]),
                    "speed": M.carry_v(prog, cmd["speed"], r), "hold_min": o["hold_min"], "hold_max": o["hold_max"],
                    "hold": o["hold_mean"], "stable": o["stable"] and o["hold_mean"] is not None,
-                   "task_ok": meas["task_ok"], "v": o["carry_v"], "src": f"s30:{iid}:a{k}"}
+                   "task_ok": meas["task_ok"], "v": o["carry_v"], "src": f"s30:{iid}:a{k}",
+                   "clear": float(cmd.get("clear", {}).get(r, 0.0)), "carry_ev": bool(info["carry_evidence"].get(r))}
             wb.append(row)
         with open(WB, "a") as fh:
             for row in wb:
@@ -334,7 +400,7 @@ def run_case(t, init, iid, budget=3):
             lib.rows.append(row)
         for r, o in meas["objects"].items():
             seen.append((r, tuple(cmd["grip"][r]), M.carry_v(prog, cmd["speed"], r), o["hold_max"]))
-        nxt, acts = M.next_commands(prog, req, cmd, aud, tried, repair_force)
+        nxt, acts = M.next_commands(prog, req, cmd, aud, tried, repair_force, info["carry_evidence"])
         out["attempts"][-1]["repair"] = acts
         if aud["joint_pass"]:
             out["final"] = {"joint_pass": True, "attempts": k + 1}
@@ -350,7 +416,7 @@ def run_case(t, init, iid, budget=3):
 
 
 def _j(cmd):
-    return {"speed": cmd["speed"], "grip": {k: list(v) for k, v in cmd["grip"].items()}}
+    return {"speed": cmd["speed"], "grip": {k: list(v) for k, v in cmd["grip"].items()}, "clear": dict(cmd.get("clear") or {})}
 
 
 def cmd_run(t, init, iids):

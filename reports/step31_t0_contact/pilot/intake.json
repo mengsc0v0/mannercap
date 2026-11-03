@@ -1,0 +1,3047 @@
+{
+ "t0:neutral": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "857e8a54a0e1d69cb2fd12c2c188c62a07420a8142585d9b45f69e0bd756c922",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t0:gentle_X": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, holding the tomato sauce gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "6c88657bf6a4978f5657df0783aee6cf8ba75d512283bcecbe5fa1b9c1013f19",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "tomato_sauce",
+    "clause": "holding the tomato sauce gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "tomato_sauce": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "holding the tomato sauce gently"
+    }
+   ]
+  }
+ },
+ "t0:firm_X": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, holding the tomato sauce firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "7a154300fe1338a3a953faedd1721c31061d1210f2ffd598ff7fd69af39a5a2c",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "tomato_sauce",
+    "clause": "holding the tomato sauce firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "tomato_sauce": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "holding the tomato sauce firmly"
+    }
+   ]
+  }
+ },
+ "t0:slowcarry_X": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, carrying the tomato sauce slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "1492f9cd6a340dce9bcbae3005a2b143996e95d5d118b8ac0a7532052b4401f5",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "tomato_sauce",
+    "clause": "carrying the tomato sauce slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "tomato_sauce.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "tomato_sauce.pick_1.transport"
+     ],
+     "clause": "carrying the tomato sauce slowly"
+    }
+   ]
+  }
+ },
+ "t0:fastcarry_X": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, carrying the tomato sauce quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "a1f3a785b71dbd02e75b112e984af0b66faaf4f6d62cb78639a83212ef2ed649",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "tomato_sauce",
+    "clause": "carrying the tomato sauce quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "tomato_sauce.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "tomato_sauce.pick_1.transport"
+     ],
+     "clause": "carrying the tomato sauce quickly"
+    }
+   ]
+  }
+ },
+ "t0:gentle_slow_X": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket; hold the tomato sauce gently and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "a1443f7cc2d3e4c442af4390fe0fd56dc21db5474ccc035511494fc4c130e8f0",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "tomato_sauce",
+    "clause": "hold the tomato sauce gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "tomato_sauce",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "tomato_sauce.pick_1.transport": "slow"
+   },
+   "grip": {
+    "tomato_sauce": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "hold the tomato sauce gently"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "tomato_sauce.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t0:firm_fast_X": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket; grip the tomato sauce firmly and carry it quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "585c25f15959058453f0838e8eecb70dec2b25d29212730609e5d0ffd2d6610d",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "tomato_sauce",
+    "clause": "grip the tomato sauce firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "tomato_sauce",
+    "clause": "carry it quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "tomato_sauce.pick_1.transport": "fast"
+   },
+   "grip": {
+    "tomato_sauce": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "grip the tomato sauce firmly"
+    },
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "tomato_sauce.pick_1.transport"
+     ],
+     "clause": "carry it quickly"
+    }
+   ]
+  }
+ },
+ "t0:Xgentle_Yfirm": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket; hold the tomato sauce gently and the alphabet soup firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "86954697fe7d8413095b8f11e3a7311b9744426f544aafdfd88744be6fb73d2d",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "tomato_sauce",
+    "clause": "hold the tomato sauce gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "alphabet_soup",
+    "clause": "hold the alphabet soup firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "tomato_sauce": "gentle",
+    "alphabet_soup": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "hold the tomato sauce gently"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "clause": "hold the alphabet soup firmly"
+    }
+   ]
+  }
+ },
+ "t0:Xfirm_Ygentle": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket; hold the tomato sauce firmly and the alphabet soup gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "5ebbd7b8379725a01eea924094aa7fc78c472e9b4ee361350bc41dda17aedec9",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "tomato_sauce",
+    "clause": "hold the tomato sauce firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "alphabet_soup",
+    "clause": "the alphabet soup gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "tomato_sauce": "firm",
+    "alphabet_soup": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "tomato_sauce.pick_1.grasp"
+     ],
+     "clause": "hold the tomato sauce firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "clause": "the alphabet soup gently"
+    }
+   ]
+  }
+ },
+ "t0:slow_approach": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, approaching each object slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "9bba720873fa468d4cfa8bf5e2e23b8fe3ae2edfa7245c1ae1164e8cd8b28339",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "tomato_sauce.pick_1.approach"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "approaching each object slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.approach": "slow",
+    "tomato_sauce.pick_1.approach": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach",
+      "tomato_sauce.pick_1.approach"
+     ],
+     "clause": "approaching each object slowly"
+    }
+   ]
+  }
+ },
+ "t0:slow_all": {
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, and move slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "591cfcb32bbbd23ec03fc18f1135b6e4a94beea033f8432bdd4217c6715ebed8",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "alphabet_soup.pick_1.descend",
+     "alphabet_soup.pick_1.lift",
+     "alphabet_soup.pick_1.transport",
+     "alphabet_soup.pick_1.place",
+     "alphabet_soup.pick_1.retreat",
+     "tomato_sauce.pick_1.approach",
+     "tomato_sauce.pick_1.descend",
+     "tomato_sauce.pick_1.lift",
+     "tomato_sauce.pick_1.transport",
+     "tomato_sauce.pick_1.place",
+     "tomato_sauce.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "move slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.approach": "slow",
+    "alphabet_soup.pick_1.descend": "slow",
+    "alphabet_soup.pick_1.lift": "slow",
+    "alphabet_soup.pick_1.transport": "slow",
+    "alphabet_soup.pick_1.place": "slow",
+    "alphabet_soup.pick_1.retreat": "slow",
+    "tomato_sauce.pick_1.approach": "slow",
+    "tomato_sauce.pick_1.descend": "slow",
+    "tomato_sauce.pick_1.lift": "slow",
+    "tomato_sauce.pick_1.transport": "slow",
+    "tomato_sauce.pick_1.place": "slow",
+    "tomato_sauce.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach",
+      "alphabet_soup.pick_1.descend",
+      "alphabet_soup.pick_1.lift",
+      "alphabet_soup.pick_1.transport",
+      "alphabet_soup.pick_1.place",
+      "alphabet_soup.pick_1.retreat",
+      "tomato_sauce.pick_1.approach",
+      "tomato_sauce.pick_1.descend",
+      "tomato_sauce.pick_1.lift",
+      "tomato_sauce.pick_1.transport",
+      "tomato_sauce.pick_1.place",
+      "tomato_sauce.pick_1.retreat"
+     ],
+     "clause": "move slowly"
+    }
+   ]
+  }
+ },
+ "t7:neutral": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "43b0240b92bf5199a7d74acedd6339a0810b1f62a95a24730918045723081f2a",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t7:gentle_X": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, holding the cream cheese box gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "28973a7aab445bfafec41030816542eb48c01b61f7c053a90cd4be54828471c8",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "holding the cream cheese box gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "holding the cream cheese box gently"
+    }
+   ]
+  }
+ },
+ "t7:firm_X": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, holding the cream cheese box firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "255ffc7f3224f952bed45b1ff6084160a4933727d6e9f9a11be2c5972949dc28",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "holding the cream cheese box firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "holding the cream cheese box firmly"
+    }
+   ]
+  }
+ },
+ "t7:slowcarry_X": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, carrying the cream cheese box slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "dfb83dc815c8cd2d961a221320df87e8cb86f2652322eb28f717f0eb9ca3687e",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "cream_cheese",
+    "clause": "carrying the cream cheese box slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carrying the cream cheese box slowly"
+    }
+   ]
+  }
+ },
+ "t7:fastcarry_X": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, carrying the cream cheese box quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "becaaefdb710bf29cb2bc435b44c90c1697a403f13f9673d4b838a1f535dcd5c",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "cream_cheese",
+    "clause": "carrying the cream cheese box quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carrying the cream cheese box quickly"
+    }
+   ]
+  }
+ },
+ "t7:gentle_slow_X": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket; hold the cream cheese box gently and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "5e9288d629afbaa1588c6f1545d860c261e37af2fff86b0e493d001670149f68",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "hold the cream cheese box gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "cream_cheese",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow"
+   },
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "hold the cream cheese box gently"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t7:firm_fast_X": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket; grip the cream cheese box firmly and carry it quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "04e39620fffdd468e2ee060025de5f3fa11c8fde4ff2042a1d2a065ffb46cb87",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "grip the cream cheese box firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "cream_cheese",
+    "clause": "carry it quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "fast"
+   },
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "grip the cream cheese box firmly"
+    },
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carry it quickly"
+    }
+   ]
+  }
+ },
+ "t7:Xgentle_Yfirm": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket; hold the cream cheese box gently and the alphabet soup firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "e8130b8f808ac7208db69fcde281deb36fcffe5481c940df6bfb015b05ddc388",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "hold the cream cheese box gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "alphabet_soup",
+    "clause": "the alphabet soup firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "gentle",
+    "alphabet_soup": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "hold the cream cheese box gently"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "clause": "the alphabet soup firmly"
+    }
+   ]
+  }
+ },
+ "t7:Xfirm_Ygentle": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket; hold the cream cheese box firmly and the alphabet soup gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "d40db041e46a70ca065c0fef514a94c2abb073bbdde5683e43a8bded0d0d6e33",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "hold the cream cheese box firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "alphabet_soup",
+    "clause": "the alphabet soup gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "firm",
+    "alphabet_soup": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "hold the cream cheese box firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "alphabet_soup.pick_1.grasp"
+     ],
+     "clause": "the alphabet soup gently"
+    }
+   ]
+  }
+ },
+ "t7:slow_approach": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, approaching each object slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "cd724f999fab7bb405c0c1304024f4311d344c97562caab87b827a3e11350d94",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "cream_cheese.pick_1.approach"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "approaching each object slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.approach": "slow",
+    "cream_cheese.pick_1.approach": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach",
+      "cream_cheese.pick_1.approach"
+     ],
+     "clause": "approaching each object slowly"
+    }
+   ]
+  }
+ },
+ "t7:slow_all": {
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, and move slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "5543596d958cf2bc813db3fa721b0bf69cd19226d42e5f44a6eff3bd10fd405c",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "alphabet_soup.pick_1.approach",
+     "alphabet_soup.pick_1.descend",
+     "alphabet_soup.pick_1.lift",
+     "alphabet_soup.pick_1.transport",
+     "alphabet_soup.pick_1.place",
+     "alphabet_soup.pick_1.retreat",
+     "cream_cheese.pick_1.approach",
+     "cream_cheese.pick_1.descend",
+     "cream_cheese.pick_1.lift",
+     "cream_cheese.pick_1.transport",
+     "cream_cheese.pick_1.place",
+     "cream_cheese.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "move slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "alphabet_soup.pick_1.approach": "slow",
+    "alphabet_soup.pick_1.descend": "slow",
+    "alphabet_soup.pick_1.lift": "slow",
+    "alphabet_soup.pick_1.transport": "slow",
+    "alphabet_soup.pick_1.place": "slow",
+    "alphabet_soup.pick_1.retreat": "slow",
+    "cream_cheese.pick_1.approach": "slow",
+    "cream_cheese.pick_1.descend": "slow",
+    "cream_cheese.pick_1.lift": "slow",
+    "cream_cheese.pick_1.transport": "slow",
+    "cream_cheese.pick_1.place": "slow",
+    "cream_cheese.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "alphabet_soup.pick_1.approach",
+      "alphabet_soup.pick_1.descend",
+      "alphabet_soup.pick_1.lift",
+      "alphabet_soup.pick_1.transport",
+      "alphabet_soup.pick_1.place",
+      "alphabet_soup.pick_1.retreat",
+      "cream_cheese.pick_1.approach",
+      "cream_cheese.pick_1.descend",
+      "cream_cheese.pick_1.lift",
+      "cream_cheese.pick_1.transport",
+      "cream_cheese.pick_1.place",
+      "cream_cheese.pick_1.retreat"
+     ],
+     "clause": "move slowly"
+    }
+   ]
+  }
+ },
+ "t1:neutral": {
+  "instruction": "Put both the cream cheese box and the butter in the basket",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "712eaf0d45cb31b1a16571ade70ba54a36c61a0235edb2020add0b83fecf483f",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t1:gentle_X": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, holding the cream cheese box gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "327a5ae3658068f152055cc1eb5eb8765295a89beb9166fdbd318dfbfc1b0a79",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "holding the cream cheese box gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "holding the cream cheese box gently"
+    }
+   ]
+  }
+ },
+ "t1:firm_X": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, holding the cream cheese box firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "be0f75582837873d7366be483dfe2124cf6ca03f349b233afc94f9fb02e7f06c",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "holding the cream cheese box firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "holding the cream cheese box firmly"
+    }
+   ]
+  }
+ },
+ "t1:slowcarry_X": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, carrying the cream cheese box slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "82fbef6950fa807ed1e36b7a413412572cba16f05444dc0ad8a2a9ee0d208d37",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "cream_cheese",
+    "clause": "carrying the cream cheese box slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carrying the cream cheese box slowly"
+    }
+   ]
+  }
+ },
+ "t1:fastcarry_X": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, carrying the cream cheese box quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "d7a4750f19bc4bfd5bead38b1c5e86c9f7e4aa4a6f27b8b442430d022a976f46",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "cream_cheese",
+    "clause": "carrying the cream cheese box quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carrying the cream cheese box quickly"
+    }
+   ]
+  }
+ },
+ "t1:gentle_slow_X": {
+  "instruction": "Put both the cream cheese box and the butter in the basket; hold the cream cheese box gently and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "14613ce37501c67c0234efc23d802d1f4b15ee6b1811b66de688f9752c69ab54",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "hold the cream cheese box gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "cream_cheese",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "slow"
+   },
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "hold the cream cheese box gently"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t1:firm_fast_X": {
+  "instruction": "Put both the cream cheese box and the butter in the basket; grip the cream cheese box firmly and carry it quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "06bbe7d99935b0913b959efbd5489e94a879581c6e9b9b49cbc448e03c6048ec",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "grip the cream cheese box firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "cream_cheese",
+    "clause": "carry it quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.transport": "fast"
+   },
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "grip the cream cheese box firmly"
+    },
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "cream_cheese.pick_1.transport"
+     ],
+     "clause": "carry it quickly"
+    }
+   ]
+  }
+ },
+ "t1:Xgentle_Yfirm": {
+  "instruction": "Put both the cream cheese box and the butter in the basket; hold the cream cheese box gently and the butter firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "ae998e07e30debde3493e3d45cdb7d110e85d78c0176cb2f34c93ff7f480658c",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "cream_cheese",
+    "clause": "hold the cream cheese box gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "butter.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "butter",
+    "clause": "the butter firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "gentle",
+    "butter": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "hold the cream cheese box gently"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "butter.pick_1.grasp"
+     ],
+     "clause": "the butter firmly"
+    }
+   ]
+  }
+ },
+ "t1:Xfirm_Ygentle": {
+  "instruction": "Put both the cream cheese box and the butter in the basket; hold the cream cheese box firmly and the butter gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "b730534226f61b85b999ce5ad493d6e56f985bf84157788c19dfcb8e53832a9c",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "cream_cheese",
+    "clause": "hold the cream cheese box firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "butter.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "butter",
+    "clause": "the butter gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "cream_cheese": "firm",
+    "butter": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "cream_cheese.pick_1.grasp"
+     ],
+     "clause": "hold the cream cheese box firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "butter.pick_1.grasp"
+     ],
+     "clause": "the butter gently"
+    }
+   ]
+  }
+ },
+ "t1:slow_approach": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, approaching each object slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "fc40635b6c0c873ee6ea4720cee5301c9aa981f11662b742f8c85d9f5723ddbb",
+    "llm_status": "cached"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.approach",
+     "butter.pick_1.approach"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "approaching each object slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.approach": "slow",
+    "butter.pick_1.approach": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.approach",
+      "butter.pick_1.approach"
+     ],
+     "clause": "approaching each object slowly"
+    }
+   ]
+  }
+ },
+ "t1:slow_all": {
+  "instruction": "Put both the cream cheese box and the butter in the basket, and move slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "a7913c9828fee6b8854da68d35eff6e9d4144ed78a23a72a2d403dcb78be044a",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "cream_cheese.pick_1.approach",
+     "cream_cheese.pick_1.descend",
+     "cream_cheese.pick_1.lift",
+     "cream_cheese.pick_1.transport",
+     "cream_cheese.pick_1.place",
+     "cream_cheese.pick_1.retreat",
+     "butter.pick_1.approach",
+     "butter.pick_1.descend",
+     "butter.pick_1.lift",
+     "butter.pick_1.transport",
+     "butter.pick_1.place",
+     "butter.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "move slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "cream_cheese.pick_1.approach": "slow",
+    "cream_cheese.pick_1.descend": "slow",
+    "cream_cheese.pick_1.lift": "slow",
+    "cream_cheese.pick_1.transport": "slow",
+    "cream_cheese.pick_1.place": "slow",
+    "cream_cheese.pick_1.retreat": "slow",
+    "butter.pick_1.approach": "slow",
+    "butter.pick_1.descend": "slow",
+    "butter.pick_1.lift": "slow",
+    "butter.pick_1.transport": "slow",
+    "butter.pick_1.place": "slow",
+    "butter.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "cream_cheese.pick_1.approach",
+      "cream_cheese.pick_1.descend",
+      "cream_cheese.pick_1.lift",
+      "cream_cheese.pick_1.transport",
+      "cream_cheese.pick_1.place",
+      "cream_cheese.pick_1.retreat",
+      "butter.pick_1.approach",
+      "butter.pick_1.descend",
+      "butter.pick_1.lift",
+      "butter.pick_1.transport",
+      "butter.pick_1.place",
+      "butter.pick_1.retreat"
+     ],
+     "clause": "move slowly"
+    }
+   ]
+  }
+ },
+ "t6:neutral": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "c01ad5ef1918134f5294bb8b4ced0ecd8158d81b11fad8603b824ebba5053651",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t6:gentle_X": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, holding the white mug gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "ec53e57b6445999e4da207987cc18aa32111e73d130d662a13e0b727fe52774f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "holding the white mug gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "holding the white mug gently"
+    }
+   ]
+  }
+ },
+ "t6:firm_X": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, holding the white mug firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "be7a9e8632f444d9bfadd0a432aaf9ce03b1893be7a1b9aacade9f953d83fb08",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "holding the white mug firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "holding the white mug firmly"
+    }
+   ]
+  }
+ },
+ "t6:slowcarry_X": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, carrying the white mug slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "e7f7fa885e5294c84773d0c0f5f16cdfde4baa135ff5b5fcb0950c654e5e4a35",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "carrying the white mug slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carrying the white mug slowly"
+    }
+   ]
+  }
+ },
+ "t6:fastcarry_X": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, carrying the white mug quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "db0e393e475e11103dbe4bedbe858398bf8c79b7509422ea31099cdd1482f930",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "obj1",
+    "clause": "carrying the white mug quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carrying the white mug quickly"
+    }
+   ]
+  }
+ },
+ "t6:gentle_slow_X": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug gently and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "ea105d690495ac00414db866352c09801c666a0c4226cc30306333b490d8056f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "hold the white mug gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "hold the white mug gently"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t6:firm_fast_X": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate; grip the white mug firmly and carry it quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "31ffa56f0515ce047daf06c4862922d008bb3514aaeab8fc0d71cead07bfdc9e",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "grip the white mug firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "obj1",
+    "clause": "carry it quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "fast"
+   },
+   "grip": {
+    "obj1": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "grip the white mug firmly"
+    },
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carry it quickly"
+    }
+   ]
+  }
+ },
+ "t6:Xgentle_Yfirm": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug gently and the chocolate pudding firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "1e5b6aa4e7f646e853241fed7e84d11f5439a51950320c7d9dbbeb8094c67f85",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "hold the white mug gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj0",
+    "clause": "the chocolate pudding firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "gentle",
+    "obj0": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "hold the white mug gently"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj0.pick_1.grasp"
+     ],
+     "clause": "the chocolate pudding firmly"
+    }
+   ]
+  }
+ },
+ "t6:Xfirm_Ygentle": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate; hold the white mug firmly and the chocolate pudding gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "1260a5f1d6ff39f533f58408bc9ececd3613d69c2163ebe7d6ea9950c130869b",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "hold the white mug firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj0",
+    "clause": "the chocolate pudding gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "firm",
+    "obj0": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "hold the white mug firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj0.pick_1.grasp"
+     ],
+     "clause": "the chocolate pudding gently"
+    }
+   ]
+  }
+ },
+ "t6:slow_approach": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, approaching each object slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "470060e4e4df2a425aaa4a017d6ff5221f50d9cb595e865833834d03d386f4bf",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj1.pick_1.approach"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "approaching each object slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj0.pick_1.approach": "slow",
+    "obj1.pick_1.approach": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj0.pick_1.approach",
+      "obj1.pick_1.approach"
+     ],
+     "clause": "approaching each object slowly"
+    }
+   ]
+  }
+ },
+ "t6:slow_all": {
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, and move slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "c1571a01e2a10f68fe9c0fd9c3d8c4b46b9a0110b99b4b2cb5f972526edfafc6",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj0.pick_1.descend",
+     "obj0.pick_1.lift",
+     "obj0.pick_1.transport",
+     "obj0.pick_1.place",
+     "obj0.pick_1.retreat",
+     "obj1.pick_1.approach",
+     "obj1.pick_1.descend",
+     "obj1.pick_1.lift",
+     "obj1.pick_1.transport",
+     "obj1.pick_1.place",
+     "obj1.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "move slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj0.pick_1.approach": "slow",
+    "obj0.pick_1.descend": "slow",
+    "obj0.pick_1.lift": "slow",
+    "obj0.pick_1.transport": "slow",
+    "obj0.pick_1.place": "slow",
+    "obj0.pick_1.retreat": "slow",
+    "obj1.pick_1.approach": "slow",
+    "obj1.pick_1.descend": "slow",
+    "obj1.pick_1.lift": "slow",
+    "obj1.pick_1.transport": "slow",
+    "obj1.pick_1.place": "slow",
+    "obj1.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj0.pick_1.approach",
+      "obj0.pick_1.descend",
+      "obj0.pick_1.lift",
+      "obj0.pick_1.transport",
+      "obj0.pick_1.place",
+      "obj0.pick_1.retreat",
+      "obj1.pick_1.approach",
+      "obj1.pick_1.descend",
+      "obj1.pick_1.lift",
+      "obj1.pick_1.transport",
+      "obj1.pick_1.place",
+      "obj1.pick_1.retreat"
+     ],
+     "clause": "move slowly"
+    }
+   ]
+  }
+ },
+ "t8:neutral": {
+  "instruction": "Put both moka pots on the stove",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "aee4132bf8b858d108c2c5510ad4728ef4a976007c27411e0f036d94029b5051",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [],
+  "request": {
+   "speed": {},
+   "grip": {},
+   "clauses": []
+  }
+ },
+ "t8:gentle_X": {
+  "instruction": "Put both moka pots on the stove, holding the right moka pot gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "8621dc4ea5eaf03e8568876e4f7c713a9e74d9cf6959ef777f77e12c473b0081",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "holding the right moka pot gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "holding the right moka pot gently"
+    }
+   ]
+  }
+ },
+ "t8:firm_X": {
+  "instruction": "Put both moka pots on the stove, holding the right moka pot firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "e503500c496a838c068e6453f68cdc19627df73436f066c57ea80c90c47e3ff4",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "holding the right moka pot firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "holding the right moka pot firmly"
+    }
+   ]
+  }
+ },
+ "t8:slowcarry_X": {
+  "instruction": "Put both moka pots on the stove, carrying the right moka pot slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "1224ddd155319fa831725347f96e389420b3373b5084b517856d39b21297c8df",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "carrying the right moka pot slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carrying the right moka pot slowly"
+    }
+   ]
+  }
+ },
+ "t8:fastcarry_X": {
+  "instruction": "Put both moka pots on the stove, carrying the right moka pot quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "6ec063aba7d571ccf9ea6c08a24d042bfe72b949e944cfca5773d4135293d32f",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "obj1",
+    "clause": "carrying the right moka pot quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "fast"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carrying the right moka pot quickly"
+    }
+   ]
+  }
+ },
+ "t8:gentle_slow_X": {
+  "instruction": "Put both moka pots on the stove; hold the right moka pot gently and carry it slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "30b095194c994f54571dd4484c2500cc8ed6c84de8ff1644cfc3285d753fdfe1",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "hold the right moka pot gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": "obj1",
+    "clause": "carry it slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "slow"
+   },
+   "grip": {
+    "obj1": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "hold the right moka pot gently"
+    },
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carry it slowly"
+    }
+   ]
+  }
+ },
+ "t8:firm_fast_X": {
+  "instruction": "Put both moka pots on the stove; grip the right moka pot firmly and carry it quickly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "59d14c3ffe4d77c50ce4ae709295ea77fe7d5acdb8d156140ef9d98743520d79",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "grip the right moka pot firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj1.pick_1.transport"
+    ],
+    "dimension": "speed",
+    "level": "fast",
+    "object_role": "obj1",
+    "clause": "carry it quickly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj1.pick_1.transport": "fast"
+   },
+   "grip": {
+    "obj1": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "grip the right moka pot firmly"
+    },
+    {
+     "dimension": "speed",
+     "level": "fast",
+     "instance_ids": [
+      "obj1.pick_1.transport"
+     ],
+     "clause": "carry it quickly"
+    }
+   ]
+  }
+ },
+ "t8:Xgentle_Yfirm": {
+  "instruction": "Put both moka pots on the stove; hold the right moka pot gently and the left moka pot firmly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "c1d4475ec1a065285d359f21483a08c14296caf9d1d5b74e16ac39ee66d5ce9b",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj1",
+    "clause": "hold the right moka pot gently",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj0",
+    "clause": "hold the left moka pot firmly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "gentle",
+    "obj0": "firm"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "hold the right moka pot gently"
+    },
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj0.pick_1.grasp"
+     ],
+     "clause": "hold the left moka pot firmly"
+    }
+   ]
+  }
+ },
+ "t8:Xfirm_Ygentle": {
+  "instruction": "Put both moka pots on the stove; hold the right moka pot firmly and the left moka pot gently",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "e777bf031cd006f21ca00f2f1391d4df544d4784c9724fa8b950be2c1d3f4ab0",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj1.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "firm",
+    "object_role": "obj1",
+    "clause": "hold the right moka pot firmly",
+    "source": "llm"
+   },
+   {
+    "instance_ids": [
+     "obj0.pick_1.grasp"
+    ],
+    "dimension": "grip",
+    "level": "gentle",
+    "object_role": "obj0",
+    "clause": "the left moka pot gently",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {},
+   "grip": {
+    "obj1": "firm",
+    "obj0": "gentle"
+   },
+   "clauses": [
+    {
+     "dimension": "grip",
+     "level": "firm",
+     "instance_ids": [
+      "obj1.pick_1.grasp"
+     ],
+     "clause": "hold the right moka pot firmly"
+    },
+    {
+     "dimension": "grip",
+     "level": "gentle",
+     "instance_ids": [
+      "obj0.pick_1.grasp"
+     ],
+     "clause": "the left moka pot gently"
+    }
+   ]
+  }
+ },
+ "t8:slow_approach": {
+  "instruction": "Put both moka pots on the stove, approaching each object slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "05cc0e4b1ea9e857d13fa6a6b2c133f9383826f5e7e9c699cb4b71acf2fb74ff",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj1.pick_1.approach"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "approaching each object slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj0.pick_1.approach": "slow",
+    "obj1.pick_1.approach": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj0.pick_1.approach",
+      "obj1.pick_1.approach"
+     ],
+     "clause": "approaching each object slowly"
+    }
+   ]
+  }
+ },
+ "t8:slow_all": {
+  "instruction": "Put both moka pots on the stove, and move slowly",
+  "status": "accept",
+  "attempts": [
+   {
+    "prompt_version": "mannercap.intake.v3_1",
+    "status": "accept",
+    "request_hash": "c371b652ac18bfa624df85e304675ba335f81897e5fde148ee62524722047acc",
+    "llm_status": "ok"
+   }
+  ],
+  "decision": {
+   "status": "accept",
+   "codes": [],
+   "detail": [],
+   "guards": [],
+   "unstated_program_steps": []
+  },
+  "bindings": [
+   {
+    "instance_ids": [
+     "obj0.pick_1.approach",
+     "obj0.pick_1.descend",
+     "obj0.pick_1.lift",
+     "obj0.pick_1.transport",
+     "obj0.pick_1.place",
+     "obj0.pick_1.retreat",
+     "obj1.pick_1.approach",
+     "obj1.pick_1.descend",
+     "obj1.pick_1.lift",
+     "obj1.pick_1.transport",
+     "obj1.pick_1.place",
+     "obj1.pick_1.retreat"
+    ],
+    "dimension": "speed",
+    "level": "slow",
+    "object_role": null,
+    "clause": "move slowly",
+    "source": "llm"
+   }
+  ],
+  "request": {
+   "speed": {
+    "obj0.pick_1.approach": "slow",
+    "obj0.pick_1.descend": "slow",
+    "obj0.pick_1.lift": "slow",
+    "obj0.pick_1.transport": "slow",
+    "obj0.pick_1.place": "slow",
+    "obj0.pick_1.retreat": "slow",
+    "obj1.pick_1.approach": "slow",
+    "obj1.pick_1.descend": "slow",
+    "obj1.pick_1.lift": "slow",
+    "obj1.pick_1.transport": "slow",
+    "obj1.pick_1.place": "slow",
+    "obj1.pick_1.retreat": "slow"
+   },
+   "grip": {},
+   "clauses": [
+    {
+     "dimension": "speed",
+     "level": "slow",
+     "instance_ids": [
+      "obj0.pick_1.approach",
+      "obj0.pick_1.descend",
+      "obj0.pick_1.lift",
+      "obj0.pick_1.transport",
+      "obj0.pick_1.place",
+      "obj0.pick_1.retreat",
+      "obj1.pick_1.approach",
+      "obj1.pick_1.descend",
+      "obj1.pick_1.lift",
+      "obj1.pick_1.transport",
+      "obj1.pick_1.place",
+      "obj1.pick_1.retreat"
+     ],
+     "clause": "move slowly"
+    }
+   ]
+  }
+ }
+}

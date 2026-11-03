@@ -1,0 +1,32 @@
+{
+ "protocol": "step31_paraphrase.v2",
+ "written_utc": "2026-11-03T12:58:35.725263Z",
+ "written_before_any_v2_model_call": true,
+ "git_head": "990af99ce22d7937357a1c1e9df24eb2b3cdc968",
+ "testset_sha256": "a0a93e63d8587dc13e45f38df7196aa9f858dc93b4ad75560263e8b6819eb2c5",
+ "addendum_sha256": "ec604b59a1f74c2877e9da3762156afec16e9493395b3f477ed211ca43118b55",
+ "v1_score": "score.json (pipeline at 990af99, unchanged)",
+ "changes_v2": {
+  "synthesis_v2/language_scope.py": "object layer language_scope.zh_object.v1 (O1/O2/O3); v2 stage rules and hash unchanged",
+  "synthesis_v2/request_intake.py": "step_phrases + object-aware scope gate; English negation-aware level agreement",
+  "synthesis_v2/language_plan.py": "gate feedback carries the one-object note"
+ },
+ "code_sha256": {
+  "synthesis_v2/language_scope.py": "79279ece2b90c174127b4cdbd5cf18c35d3a793df1e93a614199ccb51c14b574",
+  "synthesis_v2/request_intake.py": "9ce51b3607d4b56277367ffb2d1be789bf5fe045adcf2ce1acb81a9c718308d5",
+  "synthesis_v2/language_plan.py": "78dd17520bdfc7252c8258b20288f69bb3e9ad5fd3b499d9afa94dacea03ad43",
+  "scripts/mt/s31_paraphrase.py": "b0662e2f508259eb6dcd2a89a9d2248daf17775cb86564e9a93a250f20233078"
+ },
+ "rule": "fixes derived from v1 failure CLASSES (stage-only zh scope, negated English level word); no sentence-specific rule; the frozen 85-item test set is re-run unchanged; the T6 zh base error is handled by a separate 8-item addendum, the original items are still scored as written",
+ "amendment_v3": {
+  "written_utc": "2026-11-03T13:01:21.822074Z",
+  "written_after_v2_scores": true,
+  "post_hoc": true,
+  "change": "language_scope.zh_object.v2: one phrase shared by several objects (e.g. 摩卡壶 in 右边的摩卡壶) without a plural cue is one object (O3), not plural (O2)",
+  "motivated_by": "t8:zh_fragile_combo (v2 failure)",
+  "evaluation": "full re-run of all 85 + 8 addendum items (regression on every other item)",
+  "code_sha256": {
+   "synthesis_v2/language_scope.py": "92ec6b457294c5e4ab158a906b63c9b8b571334da25c3a3d51bf90ce25152b40"
+  }
+ }
+}

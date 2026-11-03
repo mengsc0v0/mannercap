@@ -1,0 +1,1307 @@
+[
+ {
+  "key": "t0:en_gentle_para",
+  "task": 0,
+  "id": "en_gentle_para",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, taking care not to squeeze the tomato sauce hard",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "tomato_sauce": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t0:en_firm_para",
+  "task": 0,
+  "id": "en_firm_para",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, and keep a tight hold on the tomato sauce",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "tomato_sauce": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t0:en_slow_para",
+  "task": 0,
+  "id": "en_slow_para",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket; bring the tomato sauce over at a leisurely pace",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "tomato_sauce",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t0:en_fast_para",
+  "task": 0,
+  "id": "en_fast_para",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, and hurry while carrying the tomato sauce",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "tomato_sauce",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t0:en_binding_reorder",
+  "task": 0,
+  "id": "en_binding_reorder",
+  "lang": "en",
+  "instruction": "Grip the alphabet soup firmly but handle the tomato sauce with a light touch; put both the alphabet soup and the tomato sauce in the basket",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "tomato_sauce": "gentle",
+    "alphabet_soup": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t0:en_fragile_combo",
+  "task": 0,
+  "id": "en_fragile_combo",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket. The tomato sauce is fragile, so hold it softly and carry it slowly",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "tomato_sauce": "gentle"
+   },
+   "speed": [
+    [
+     "tomato_sauce",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t0:zh_neutral",
+  "task": 0,
+  "id": "zh_neutral",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": []
+  }
+ },
+ {
+  "key": "t0:zh_gentle",
+  "task": 0,
+  "id": "zh_gentle",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里，抓番茄酱的时候轻一点",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "tomato_sauce": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t0:zh_firm",
+  "task": 0,
+  "id": "zh_firm",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里，番茄酱要握紧",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "tomato_sauce": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t0:zh_slowcarry",
+  "task": 0,
+  "id": "zh_slowcarry",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里，慢慢地搬运番茄酱",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "tomato_sauce",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t0:zh_fastcarry",
+  "task": 0,
+  "id": "zh_fastcarry",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里，快速搬运番茄酱",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "tomato_sauce",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t0:zh_binding",
+  "task": 0,
+  "id": "zh_binding",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里，番茄酱轻轻地拿，字母汤要抓牢",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "tomato_sauce": "gentle",
+    "alphabet_soup": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t0:zh_slow_all",
+  "task": 0,
+  "id": "zh_slow_all",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里，全程慢一些",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "*",
+     "*",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t0:zh_fragile_combo",
+  "task": 0,
+  "id": "zh_fragile_combo",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里，番茄酱容易碎，要轻拿并且慢慢搬运",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "tomato_sauce": "gentle"
+   },
+   "speed": [
+    [
+     "tomato_sauce",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t0:zh_scope_undetermined",
+  "task": 0,
+  "id": "zh_scope_undetermined",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里，慢一点",
+  "gold": {
+   "status": "not_accept",
+   "why": "speed scope undetermined (R4)"
+  }
+ },
+ {
+  "key": "t0:en_numeric",
+  "task": 0,
+  "id": "en_numeric",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the tomato sauce in the basket, gripping the tomato sauce with exactly 12 newtons",
+  "gold": {
+   "status": "not_accept",
+   "why": "numeric level"
+  }
+ },
+ {
+  "key": "t0:zh_conflict",
+  "task": 0,
+  "id": "zh_conflict",
+  "lang": "zh",
+  "instruction": "把字母汤和番茄酱都放进篮子里，番茄酱要轻拿，但番茄酱也要握紧",
+  "gold": {
+   "status": "not_accept",
+   "why": "conflicting grip levels"
+  }
+ },
+ {
+  "key": "t7:en_gentle_para",
+  "task": 7,
+  "id": "en_gentle_para",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, taking care not to squeeze the cream cheese box hard",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t7:en_firm_para",
+  "task": 7,
+  "id": "en_firm_para",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, and keep a tight hold on the cream cheese box",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t7:en_slow_para",
+  "task": 7,
+  "id": "en_slow_para",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket; bring the cream cheese box over at a leisurely pace",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t7:en_fast_para",
+  "task": 7,
+  "id": "en_fast_para",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, and hurry while carrying the cream cheese box",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t7:en_binding_reorder",
+  "task": 7,
+  "id": "en_binding_reorder",
+  "lang": "en",
+  "instruction": "Grip the alphabet soup firmly but handle the cream cheese box with a light touch; put both the alphabet soup and the cream cheese box in the basket",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle",
+    "alphabet_soup": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t7:en_fragile_combo",
+  "task": 7,
+  "id": "en_fragile_combo",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket. The cream cheese box is fragile, so hold it softly and carry it slowly",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t7:zh_neutral",
+  "task": 7,
+  "id": "zh_neutral",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": []
+  }
+ },
+ {
+  "key": "t7:zh_gentle",
+  "task": 7,
+  "id": "zh_gentle",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，抓奶油奶酪盒的时候轻一点",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t7:zh_firm",
+  "task": 7,
+  "id": "zh_firm",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，奶油奶酪盒要握紧",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t7:zh_slowcarry",
+  "task": 7,
+  "id": "zh_slowcarry",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，慢慢地搬运奶油奶酪盒",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t7:zh_fastcarry",
+  "task": 7,
+  "id": "zh_fastcarry",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，快速搬运奶油奶酪盒",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t7:zh_binding",
+  "task": 7,
+  "id": "zh_binding",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，奶油奶酪盒轻轻地拿，字母汤要抓牢",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle",
+    "alphabet_soup": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t7:zh_slow_all",
+  "task": 7,
+  "id": "zh_slow_all",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，全程慢一些",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "*",
+     "*",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t7:zh_fragile_combo",
+  "task": 7,
+  "id": "zh_fragile_combo",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，奶油奶酪盒容易碎，要轻拿并且慢慢搬运",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t7:zh_scope_undetermined",
+  "task": 7,
+  "id": "zh_scope_undetermined",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，慢一点",
+  "gold": {
+   "status": "not_accept",
+   "why": "speed scope undetermined (R4)"
+  }
+ },
+ {
+  "key": "t7:en_numeric",
+  "task": 7,
+  "id": "en_numeric",
+  "lang": "en",
+  "instruction": "Put both the alphabet soup and the cream cheese box in the basket, gripping the cream cheese box with exactly 12 newtons",
+  "gold": {
+   "status": "not_accept",
+   "why": "numeric level"
+  }
+ },
+ {
+  "key": "t7:zh_conflict",
+  "task": 7,
+  "id": "zh_conflict",
+  "lang": "zh",
+  "instruction": "把字母汤和奶油奶酪盒都放进篮子里，奶油奶酪盒要轻拿，但奶油奶酪盒也要握紧",
+  "gold": {
+   "status": "not_accept",
+   "why": "conflicting grip levels"
+  }
+ },
+ {
+  "key": "t1:en_gentle_para",
+  "task": 1,
+  "id": "en_gentle_para",
+  "lang": "en",
+  "instruction": "Put both the cream cheese box and the butter in the basket, taking care not to squeeze the cream cheese box hard",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t1:en_firm_para",
+  "task": 1,
+  "id": "en_firm_para",
+  "lang": "en",
+  "instruction": "Put both the cream cheese box and the butter in the basket, and keep a tight hold on the cream cheese box",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t1:en_slow_para",
+  "task": 1,
+  "id": "en_slow_para",
+  "lang": "en",
+  "instruction": "Put both the cream cheese box and the butter in the basket; bring the cream cheese box over at a leisurely pace",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t1:en_fast_para",
+  "task": 1,
+  "id": "en_fast_para",
+  "lang": "en",
+  "instruction": "Put both the cream cheese box and the butter in the basket, and hurry while carrying the cream cheese box",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t1:en_binding_reorder",
+  "task": 1,
+  "id": "en_binding_reorder",
+  "lang": "en",
+  "instruction": "Grip the butter firmly but handle the cream cheese box with a light touch; put both the cream cheese box and the butter in the basket",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle",
+    "butter": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t1:en_fragile_combo",
+  "task": 1,
+  "id": "en_fragile_combo",
+  "lang": "en",
+  "instruction": "Put both the cream cheese box and the butter in the basket. The cream cheese box is fragile, so hold it softly and carry it slowly",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t1:zh_neutral",
+  "task": 1,
+  "id": "zh_neutral",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": []
+  }
+ },
+ {
+  "key": "t1:zh_gentle",
+  "task": 1,
+  "id": "zh_gentle",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，抓奶油奶酪盒的时候轻一点",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t1:zh_firm",
+  "task": 1,
+  "id": "zh_firm",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，奶油奶酪盒要握紧",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t1:zh_slowcarry",
+  "task": 1,
+  "id": "zh_slowcarry",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，慢慢地搬运奶油奶酪盒",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t1:zh_fastcarry",
+  "task": 1,
+  "id": "zh_fastcarry",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，快速搬运奶油奶酪盒",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t1:zh_binding",
+  "task": 1,
+  "id": "zh_binding",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，奶油奶酪盒轻轻地拿，黄油要抓牢",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle",
+    "butter": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t1:zh_slow_all",
+  "task": 1,
+  "id": "zh_slow_all",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，全程慢一些",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "*",
+     "*",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t1:zh_fragile_combo",
+  "task": 1,
+  "id": "zh_fragile_combo",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，奶油奶酪盒容易碎，要轻拿并且慢慢搬运",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "cream_cheese": "gentle"
+   },
+   "speed": [
+    [
+     "cream_cheese",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t1:zh_scope_undetermined",
+  "task": 1,
+  "id": "zh_scope_undetermined",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，慢一点",
+  "gold": {
+   "status": "not_accept",
+   "why": "speed scope undetermined (R4)"
+  }
+ },
+ {
+  "key": "t1:en_numeric",
+  "task": 1,
+  "id": "en_numeric",
+  "lang": "en",
+  "instruction": "Put both the cream cheese box and the butter in the basket, gripping the cream cheese box with exactly 12 newtons",
+  "gold": {
+   "status": "not_accept",
+   "why": "numeric level"
+  }
+ },
+ {
+  "key": "t1:zh_conflict",
+  "task": 1,
+  "id": "zh_conflict",
+  "lang": "zh",
+  "instruction": "把奶油奶酪盒和黄油都放进篮子里，奶油奶酪盒要轻拿，但奶油奶酪盒也要握紧",
+  "gold": {
+   "status": "not_accept",
+   "why": "conflicting grip levels"
+  }
+ },
+ {
+  "key": "t6:en_gentle_para",
+  "task": 6,
+  "id": "en_gentle_para",
+  "lang": "en",
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, taking care not to squeeze the white mug hard",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:en_firm_para",
+  "task": 6,
+  "id": "en_firm_para",
+  "lang": "en",
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, and keep a tight hold on the white mug",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:en_slow_para",
+  "task": 6,
+  "id": "en_slow_para",
+  "lang": "en",
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate; bring the white mug over at a leisurely pace",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:en_fast_para",
+  "task": 6,
+  "id": "en_fast_para",
+  "lang": "en",
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, and hurry while carrying the white mug",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:en_binding_reorder",
+  "task": 6,
+  "id": "en_binding_reorder",
+  "lang": "en",
+  "instruction": "Grip the chocolate pudding firmly but handle the white mug with a light touch; put the white mug on the plate and put the chocolate pudding to the right of the plate",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle",
+    "obj0": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:en_fragile_combo",
+  "task": 6,
+  "id": "en_fragile_combo",
+  "lang": "en",
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate. The white mug is fragile, so hold it softly and carry it slowly",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:zh_neutral",
+  "task": 6,
+  "id": "zh_neutral",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:zh_gentle",
+  "task": 6,
+  "id": "zh_gentle",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，抓白色马克杯的时候轻一点",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:zh_firm",
+  "task": 6,
+  "id": "zh_firm",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，白色马克杯要握紧",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:zh_slowcarry",
+  "task": 6,
+  "id": "zh_slowcarry",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，慢慢地搬运白色马克杯",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:zh_fastcarry",
+  "task": 6,
+  "id": "zh_fastcarry",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，快速搬运白色马克杯",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:zh_binding",
+  "task": 6,
+  "id": "zh_binding",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，白色马克杯轻轻地拿，巧克力布丁要抓牢",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle",
+    "obj0": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t6:zh_slow_all",
+  "task": 6,
+  "id": "zh_slow_all",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，全程慢一些",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "*",
+     "*",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:zh_fragile_combo",
+  "task": 6,
+  "id": "zh_fragile_combo",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，白色马克杯容易碎，要轻拿并且慢慢搬运",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t6:zh_scope_undetermined",
+  "task": 6,
+  "id": "zh_scope_undetermined",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，慢一点",
+  "gold": {
+   "status": "not_accept",
+   "why": "speed scope undetermined (R4)"
+  }
+ },
+ {
+  "key": "t6:en_numeric",
+  "task": 6,
+  "id": "en_numeric",
+  "lang": "en",
+  "instruction": "Put the white mug on the plate and put the chocolate pudding to the right of the plate, gripping the white mug with exactly 12 newtons",
+  "gold": {
+   "status": "not_accept",
+   "why": "numeric level"
+  }
+ },
+ {
+  "key": "t6:zh_conflict",
+  "task": 6,
+  "id": "zh_conflict",
+  "lang": "zh",
+  "instruction": "把白色马克杯放到盘子上，再把巧克力布丁放到盘子右边，白色马克杯要轻拿，但白色马克杯也要握紧",
+  "gold": {
+   "status": "not_accept",
+   "why": "conflicting grip levels"
+  }
+ },
+ {
+  "key": "t8:en_gentle_para",
+  "task": 8,
+  "id": "en_gentle_para",
+  "lang": "en",
+  "instruction": "Put both moka pots on the stove, taking care not to squeeze the right moka pot hard",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t8:en_firm_para",
+  "task": 8,
+  "id": "en_firm_para",
+  "lang": "en",
+  "instruction": "Put both moka pots on the stove, and keep a tight hold on the right moka pot",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t8:en_slow_para",
+  "task": 8,
+  "id": "en_slow_para",
+  "lang": "en",
+  "instruction": "Put both moka pots on the stove; bring the right moka pot over at a leisurely pace",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t8:en_fast_para",
+  "task": 8,
+  "id": "en_fast_para",
+  "lang": "en",
+  "instruction": "Put both moka pots on the stove, and hurry while carrying the right moka pot",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t8:en_binding_reorder",
+  "task": 8,
+  "id": "en_binding_reorder",
+  "lang": "en",
+  "instruction": "Grip the left moka pot firmly but handle the right moka pot with a light touch; put both moka pots on the stove",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle",
+    "obj0": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t8:en_fragile_combo",
+  "task": 8,
+  "id": "en_fragile_combo",
+  "lang": "en",
+  "instruction": "Put both moka pots on the stove. The right moka pot is fragile, so hold it softly and carry it slowly",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t8:zh_neutral",
+  "task": 8,
+  "id": "zh_neutral",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": []
+  }
+ },
+ {
+  "key": "t8:zh_gentle",
+  "task": 8,
+  "id": "zh_gentle",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上，抓右边的摩卡壶的时候轻一点",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t8:zh_firm",
+  "task": 8,
+  "id": "zh_firm",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上，右边的摩卡壶要握紧",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t8:zh_slowcarry",
+  "task": 8,
+  "id": "zh_slowcarry",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上，慢慢地搬运右边的摩卡壶",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t8:zh_fastcarry",
+  "task": 8,
+  "id": "zh_fastcarry",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上，快速搬运右边的摩卡壶",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "fast"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t8:zh_binding",
+  "task": 8,
+  "id": "zh_binding",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上，右边的摩卡壶轻轻地拿，左边的摩卡壶要抓牢",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle",
+    "obj0": "firm"
+   },
+   "speed": []
+  }
+ },
+ {
+  "key": "t8:zh_slow_all",
+  "task": 8,
+  "id": "zh_slow_all",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上，全程慢一些",
+  "gold": {
+   "status": "accept",
+   "grip": {},
+   "speed": [
+    [
+     "*",
+     "*",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t8:zh_fragile_combo",
+  "task": 8,
+  "id": "zh_fragile_combo",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上，右边的摩卡壶容易碎，要轻拿并且慢慢搬运",
+  "gold": {
+   "status": "accept",
+   "grip": {
+    "obj1": "gentle"
+   },
+   "speed": [
+    [
+     "obj1",
+     "transport",
+     "slow"
+    ]
+   ]
+  }
+ },
+ {
+  "key": "t8:zh_scope_undetermined",
+  "task": 8,
+  "id": "zh_scope_undetermined",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上，慢一点",
+  "gold": {
+   "status": "not_accept",
+   "why": "speed scope undetermined (R4)"
+  }
+ },
+ {
+  "key": "t8:en_numeric",
+  "task": 8,
+  "id": "en_numeric",
+  "lang": "en",
+  "instruction": "Put both moka pots on the stove, gripping the right moka pot with exactly 12 newtons",
+  "gold": {
+   "status": "not_accept",
+   "why": "numeric level"
+  }
+ },
+ {
+  "key": "t8:zh_conflict",
+  "task": 8,
+  "id": "zh_conflict",
+  "lang": "zh",
+  "instruction": "把两个摩卡壶都放到炉子上，右边的摩卡壶要轻拿，但右边的摩卡壶也要握紧",
+  "gold": {
+   "status": "not_accept",
+   "why": "conflicting grip levels"
+  }
+ }
+]

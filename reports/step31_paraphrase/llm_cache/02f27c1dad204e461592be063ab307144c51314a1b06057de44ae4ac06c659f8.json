@@ -1,0 +1,60 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 2048,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "mannercap.intake.v3_1",
+  "response": {
+    "ambiguous": [],
+    "bindings": [
+      {
+        "antecedent": null,
+        "basis": "request_scope",
+        "clause": "\u5168\u7a0b\u6162\u4e00\u4e9b",
+        "dimension": "speed",
+        "instance_ids": [
+          "alphabet_soup.pick_1.approach",
+          "alphabet_soup.pick_1.descend",
+          "alphabet_soup.pick_1.lift",
+          "alphabet_soup.pick_1.transport",
+          "alphabet_soup.pick_1.place",
+          "alphabet_soup.pick_1.retreat",
+          "tomato_sauce.pick_1.approach",
+          "tomato_sauce.pick_1.descend",
+          "tomato_sauce.pick_1.lift",
+          "tomato_sauce.pick_1.transport",
+          "tomato_sauce.pick_1.place",
+          "tomato_sauce.pick_1.retreat"
+        ],
+        "level": "slow",
+        "object_role": null
+      }
+    ],
+    "task": {
+      "order": [],
+      "restated": true,
+      "steps": [
+        {
+          "action": "put",
+          "clause": "\u628a\u5b57\u6bcd\u6c64\u548c\u756a\u8304\u9171\u90fd\u653e\u8fdb\u7bee\u5b50\u91cc",
+          "object_phrase": "\u5b57\u6bcd\u6c64",
+          "object_role": "alphabet_soup",
+          "target_phrase": "\u7bee\u5b50",
+          "target_role": "basket"
+        },
+        {
+          "action": "put",
+          "clause": "\u628a\u5b57\u6bcd\u6c64\u548c\u756a\u8304\u9171\u90fd\u653e\u8fdb\u7bee\u5b50\u91cc",
+          "object_phrase": "\u756a\u8304\u9171",
+          "object_role": "tomato_sauce",
+          "target_phrase": "\u7bee\u5b50",
+          "target_role": "basket"
+        }
+      ]
+    },
+    "unsupported": []
+  }
+}

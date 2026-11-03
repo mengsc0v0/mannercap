@@ -1,0 +1,513 @@
+{
+ "protocol": "step31_carry_clearance.v1",
+ "conditions": {
+  "step30_full (baseline)": {
+   "T0": {
+    "n": 88,
+    "first": 32,
+    "final": 34,
+    "first_rate": 0.364,
+    "final_rate": 0.386,
+    "final_wilson95": [
+     0.291,
+     0.491
+    ],
+    "executions": 102,
+    "first_exec_unclean": 49,
+    "first_exec_task_failed": 9,
+    "clearance_actions": 0,
+    "clearance_prior": {},
+    "fail_stops": {
+     "task_failed_not_a_manner_failure": 10,
+     "contact_unclean_not_a_manner_failure": 40,
+     "budget": 3,
+     "force_candidates_exhausted": 1
+    }
+   },
+   "T7": {
+    "n": 88,
+    "first": 53,
+    "final": 53,
+    "first_rate": 0.602,
+    "final_rate": 0.602,
+    "final_wilson95": [
+     0.498,
+     0.698
+    ],
+    "executions": 92,
+    "first_exec_unclean": 34,
+    "first_exec_task_failed": 0,
+    "clearance_actions": 0,
+    "clearance_prior": {},
+    "fail_stops": {
+     "contact_unclean_not_a_manner_failure": 33,
+     "budget": 2
+    }
+   }
+  },
+  "step31_full": {
+   "T0": {
+    "n": 88,
+    "first": 32,
+    "final": 70,
+    "first_rate": 0.364,
+    "final_rate": 0.795,
+    "final_wilson95": [
+     0.7,
+     0.867
+    ],
+    "executions": 139,
+    "first_exec_unclean": 49,
+    "first_exec_task_failed": 9,
+    "clearance_actions": 48,
+    "clearance_prior": {
+     "alphabet_soup": {
+      "0.0": 88
+     },
+     "tomato_sauce": {
+      "0.0": 88
+     }
+    },
+    "fail_stops": {
+     "contact_unclean_not_a_manner_failure": 14,
+     "budget": 3,
+     "force_candidates_exhausted": 1
+    }
+   },
+   "T7": {
+    "n": 88,
+    "first": 53,
+    "final": 59,
+    "first_rate": 0.602,
+    "final_rate": 0.67,
+    "final_wilson95": [
+     0.567,
+     0.76
+    ],
+    "executions": 101,
+    "first_exec_unclean": 34,
+    "first_exec_task_failed": 0,
+    "clearance_actions": 9,
+    "clearance_prior": {
+     "alphabet_soup": {
+      "0.0": 88
+     },
+     "cream_cheese": {
+      "0.0": 88
+     }
+    },
+    "fail_stops": {
+     "contact_unclean_not_a_manner_failure": 26,
+     "budget": 2,
+     "carry_clearance_exhausted": 1
+    }
+   }
+  },
+  "step31_repair_only": {
+   "T0": {
+    "n": 88,
+    "first": 32,
+    "final": 70,
+    "first_rate": 0.364,
+    "final_rate": 0.795,
+    "final_wilson95": [
+     0.7,
+     0.867
+    ],
+    "executions": 139,
+    "first_exec_unclean": 49,
+    "first_exec_task_failed": 9,
+    "clearance_actions": 48,
+    "clearance_prior": {},
+    "fail_stops": {
+     "contact_unclean_not_a_manner_failure": 14,
+     "budget": 3,
+     "force_candidates_exhausted": 1
+    }
+   }
+  },
+  "step31_experience_loso": {
+   "T0": {
+    "n": 88,
+    "first": 71,
+    "final": 71,
+    "first_rate": 0.807,
+    "final_rate": 0.807,
+    "final_wilson95": [
+     0.712,
+     0.876
+    ],
+    "executions": 88,
+    "first_exec_unclean": 17,
+    "first_exec_task_failed": 0,
+    "clearance_actions": 0,
+    "clearance_prior": {
+     "alphabet_soup": {
+      "0.03": 88
+     },
+     "tomato_sauce": {
+      "0.0": 11,
+      "0.03": 77
+     }
+    },
+    "fail_stops": {
+     "contact_unclean_not_a_manner_failure": 17
+    }
+   }
+  }
+ },
+ "paired": {
+  "step31_full vs step30_full": {
+   "n_pairs": 176,
+   "final": {
+    "new_only": 42,
+    "baseline_only": 0,
+    "mcnemar_exact_p": 0.0
+   },
+   "first": {
+    "new_only": 0,
+    "baseline_only": 0,
+    "mcnemar_exact_p": 1.0
+   }
+  },
+  "step31_full vs step30_full (T0)": {
+   "n_pairs": 88,
+   "final": {
+    "new_only": 36,
+    "baseline_only": 0,
+    "mcnemar_exact_p": 0.0
+   },
+   "first": {
+    "new_only": 0,
+    "baseline_only": 0,
+    "mcnemar_exact_p": 1.0
+   }
+  },
+  "step31_repair_only vs step30_full (T0)": {
+   "n_pairs": 88,
+   "final": {
+    "new_only": 36,
+    "baseline_only": 0,
+    "mcnemar_exact_p": 0.0
+   },
+   "first": {
+    "new_only": 0,
+    "baseline_only": 0,
+    "mcnemar_exact_p": 1.0
+   }
+  },
+  "step31_full vs step31_repair_only (T0)": {
+   "n_pairs": 88,
+   "final": {
+    "new_only": 0,
+    "baseline_only": 0,
+    "mcnemar_exact_p": 1.0
+   },
+   "first": {
+    "new_only": 0,
+    "baseline_only": 0,
+    "mcnemar_exact_p": 1.0
+   }
+  },
+  "step31_experience_loso vs step31_full (T0)": {
+   "n_pairs": 88,
+   "final": {
+    "new_only": 9,
+    "baseline_only": 8,
+    "mcnemar_exact_p": 1.0
+   },
+   "first": {
+    "new_only": 41,
+    "baseline_only": 2,
+    "mcnemar_exact_p": 0.0
+   }
+  },
+  "step31_experience_loso vs step30_full (T0)": {
+   "n_pairs": 88,
+   "final": {
+    "new_only": 40,
+    "baseline_only": 3,
+    "mcnemar_exact_p": 0.0
+   },
+   "first": {
+    "new_only": 41,
+    "baseline_only": 2,
+    "mcnemar_exact_p": 0.0
+   }
+  }
+ },
+ "per_instruction_final": {
+  "step30_full": {
+   "T0:Xfirm_Ygentle": [
+    2,
+    8
+   ],
+   "T0:Xgentle_Yfirm": [
+    3,
+    8
+   ],
+   "T0:fastcarry_X": [
+    2,
+    8
+   ],
+   "T0:firm_X": [
+    3,
+    8
+   ],
+   "T0:firm_fast_X": [
+    4,
+    8
+   ],
+   "T0:gentle_X": [
+    4,
+    8
+   ],
+   "T0:gentle_slow_X": [
+    4,
+    8
+   ],
+   "T0:neutral": [
+    4,
+    8
+   ],
+   "T0:slow_all": [
+    0,
+    8
+   ],
+   "T0:slow_approach": [
+    4,
+    8
+   ],
+   "T0:slowcarry_X": [
+    4,
+    8
+   ],
+   "T7:Xfirm_Ygentle": [
+    6,
+    8
+   ],
+   "T7:Xgentle_Yfirm": [
+    5,
+    8
+   ],
+   "T7:fastcarry_X": [
+    6,
+    8
+   ],
+   "T7:firm_X": [
+    6,
+    8
+   ],
+   "T7:firm_fast_X": [
+    5,
+    8
+   ],
+   "T7:gentle_X": [
+    5,
+    8
+   ],
+   "T7:gentle_slow_X": [
+    6,
+    8
+   ],
+   "T7:neutral": [
+    6,
+    8
+   ],
+   "T7:slow_all": [
+    1,
+    8
+   ],
+   "T7:slow_approach": [
+    0,
+    8
+   ],
+   "T7:slowcarry_X": [
+    7,
+    8
+   ]
+  },
+  "step31_full": {
+   "T0:Xfirm_Ygentle": [
+    6,
+    8
+   ],
+   "T0:Xgentle_Yfirm": [
+    3,
+    8
+   ],
+   "T0:fastcarry_X": [
+    6,
+    8
+   ],
+   "T0:firm_X": [
+    6,
+    8
+   ],
+   "T0:firm_fast_X": [
+    7,
+    8
+   ],
+   "T0:gentle_X": [
+    7,
+    8
+   ],
+   "T0:gentle_slow_X": [
+    7,
+    8
+   ],
+   "T0:neutral": [
+    7,
+    8
+   ],
+   "T0:slow_all": [
+    8,
+    8
+   ],
+   "T0:slow_approach": [
+    6,
+    8
+   ],
+   "T0:slowcarry_X": [
+    7,
+    8
+   ],
+   "T7:Xfirm_Ygentle": [
+    7,
+    8
+   ],
+   "T7:Xgentle_Yfirm": [
+    5,
+    8
+   ],
+   "T7:fastcarry_X": [
+    7,
+    8
+   ],
+   "T7:firm_X": [
+    7,
+    8
+   ],
+   "T7:firm_fast_X": [
+    7,
+    8
+   ],
+   "T7:gentle_X": [
+    5,
+    8
+   ],
+   "T7:gentle_slow_X": [
+    6,
+    8
+   ],
+   "T7:neutral": [
+    7,
+    8
+   ],
+   "T7:slow_all": [
+    1,
+    8
+   ],
+   "T7:slow_approach": [
+    0,
+    8
+   ],
+   "T7:slowcarry_X": [
+    7,
+    8
+   ]
+  },
+  "step31_repair_only": {
+   "T0:Xfirm_Ygentle": [
+    6,
+    8
+   ],
+   "T0:Xgentle_Yfirm": [
+    3,
+    8
+   ],
+   "T0:fastcarry_X": [
+    6,
+    8
+   ],
+   "T0:firm_X": [
+    6,
+    8
+   ],
+   "T0:firm_fast_X": [
+    7,
+    8
+   ],
+   "T0:gentle_X": [
+    7,
+    8
+   ],
+   "T0:gentle_slow_X": [
+    7,
+    8
+   ],
+   "T0:neutral": [
+    7,
+    8
+   ],
+   "T0:slow_all": [
+    8,
+    8
+   ],
+   "T0:slow_approach": [
+    6,
+    8
+   ],
+   "T0:slowcarry_X": [
+    7,
+    8
+   ]
+  },
+  "step31_experience_loso": {
+   "T0:Xfirm_Ygentle": [
+    7,
+    8
+   ],
+   "T0:Xgentle_Yfirm": [
+    6,
+    8
+   ],
+   "T0:fastcarry_X": [
+    7,
+    8
+   ],
+   "T0:firm_X": [
+    7,
+    8
+   ],
+   "T0:firm_fast_X": [
+    7,
+    8
+   ],
+   "T0:gentle_X": [
+    5,
+    8
+   ],
+   "T0:gentle_slow_X": [
+    7,
+    8
+   ],
+   "T0:neutral": [
+    5,
+    8
+   ],
+   "T0:slow_all": [
+    7,
+    8
+   ],
+   "T0:slow_approach": [
+    6,
+    8
+   ],
+   "T0:slowcarry_X": [
+    7,
+    8
+   ]
+  }
+ }
+}

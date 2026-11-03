@@ -79,7 +79,8 @@ def _feedback_from(dec: dict) -> Optional[dict]:
             return {"problem": "your speed bindings disagree with the speed scope of the instruction",
                     "instances_bound_but_not_supported_by_the_instruction": g.get("extra", []),
                     "instances_supported_but_not_bound": g.get("missing", []),
-                    "instances_bound_with_wrong_level": g.get("wrong_level", [])}
+                    "instances_bound_with_wrong_level": g.get("wrong_level", []),
+                    **({"note": g["note"]} if g.get("note") else {})}
     return None
 
 

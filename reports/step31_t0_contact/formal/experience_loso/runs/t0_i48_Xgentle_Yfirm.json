@@ -1,0 +1,181 @@
+{
+ "version": "s30_manner_gen.v6",
+ "module": "manner_libero.v2",
+ "task": 0,
+ "init": 48,
+ "instruction_id": "Xgentle_Yfirm",
+ "instruction": "Put both the alphabet soup and the tomato sauce in the basket; hold the tomato sauce gently and the alphabet soup firmly",
+ "intake_status": "accept",
+ "request": {
+  "speed": {},
+  "grip": {
+   "tomato_sauce": "gentle",
+   "alphabet_soup": "firm"
+  },
+  "clauses": [
+   {
+    "dimension": "grip",
+    "level": "gentle",
+    "instance_ids": [
+     "tomato_sauce.pick_1.grasp"
+    ],
+    "clause": "hold the tomato sauce gently"
+   },
+   {
+    "dimension": "grip",
+    "level": "firm",
+    "instance_ids": [
+     "alphabet_soup.pick_1.grasp"
+    ],
+    "clause": "hold the alphabet soup firmly"
+   }
+  ]
+ },
+ "attempts": [
+  {
+   "k": 0,
+   "cmd": {
+    "speed": {
+     "alphabet_soup.pick_1.approach": 0.12,
+     "alphabet_soup.pick_1.descend": 0.12,
+     "alphabet_soup.pick_1.lift": 0.12,
+     "alphabet_soup.pick_1.transport": 0.12,
+     "alphabet_soup.pick_1.place": 0.12,
+     "alphabet_soup.pick_1.retreat": 0.12,
+     "tomato_sauce.pick_1.approach": 0.12,
+     "tomato_sauce.pick_1.descend": 0.12,
+     "tomato_sauce.pick_1.lift": 0.12,
+     "tomato_sauce.pick_1.transport": 0.12,
+     "tomato_sauce.pick_1.place": 0.12,
+     "tomato_sauce.pick_1.retreat": 0.12
+    },
+    "grip": {
+     "alphabet_soup": [
+      25.0,
+      100.0
+     ],
+     "tomato_sauce": [
+      1.0,
+      22.0
+     ]
+    },
+    "clear": {
+     "alphabet_soup": 0.03,
+     "tomato_sauce": 0.03
+    }
+   },
+   "audit": {
+    "clauses": [
+     {
+      "dimension": "grip",
+      "target": "tomato_sauce",
+      "level": "gentle",
+      "band": [
+       8.0,
+       16.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 12.485672325854427,
+       "hold_mean": 12.493980784630716,
+       "hold_max": 12.501900750284948
+      }
+     },
+     {
+      "dimension": "grip",
+      "target": "alphabet_soup",
+      "level": "firm",
+      "band": [
+       24.0,
+       34.0
+      ],
+      "pass": true,
+      "cause": null,
+      "measured": {
+       "hold_min": 32.9870807655481,
+       "hold_mean": 33.01312655262223,
+       "hold_max": 33.230411842650945
+      }
+     }
+    ],
+    "manner_ok": true,
+    "task_ok": true,
+    "contact_clean": false,
+    "joint_pass": false
+   },
+   "measured": {
+    "task_ok": true,
+    "contact_clean": false,
+    "stage_speed": {
+     "alphabet_soup.pick_1.approach": 0.12630584836006165,
+     "alphabet_soup.pick_1.descend": 0.1282353699207306,
+     "alphabet_soup.pick_1.lift": 0.12285642325878143,
+     "alphabet_soup.pick_1.transport": 0.1250125616788864,
+     "alphabet_soup.pick_1.place": 0.09984861314296722,
+     "alphabet_soup.pick_1.retreat": 0.12285265326499939,
+     "tomato_sauce.pick_1.approach": 0.1263190507888794,
+     "tomato_sauce.pick_1.descend": 0.12941473722457886,
+     "tomato_sauce.pick_1.lift": 0.1231086254119873,
+     "tomato_sauce.pick_1.transport": 0.1224706619977951,
+     "tomato_sauce.pick_1.place": 0.09734958410263062,
+     "tomato_sauce.pick_1.retreat": 0.12284627556800842
+    },
+    "objects": {
+     "alphabet_soup": {
+      "hold_min": 32.9870807655481,
+      "hold_max": 33.230411842650945,
+      "hold_mean": 33.01312655262223,
+      "stable": true,
+      "valid": true,
+      "target": "alphabet_soup_1",
+      "carry_v": 0.12401267886161804
+     },
+     "tomato_sauce": {
+      "hold_min": 12.485672325854427,
+      "hold_max": 12.501900750284948,
+      "hold_mean": 12.493980784630716,
+      "stable": true,
+      "valid": true,
+      "target": "tomato_sauce_1",
+      "carry_v": 0.12272009253501892
+     }
+    }
+   },
+   "info": {
+    "status": "completed",
+    "n_steps": 389,
+    "wall_s": 23.1,
+    "unexcused": [
+     {
+      "robot_body": "right_gripper",
+      "other": "tomato_sauce_1_main",
+      "max_n": 1.2
+     }
+    ],
+    "support_unexplained": [],
+    "guard_retries": 2,
+    "stage_failure": null,
+    "grasp_failure": null,
+    "npz": "npz/t0_i48_Xgentle_Yfirm_a0.npz",
+    "carry_evidence": {}
+   },
+   "repair": [
+    {
+     "action": "stop",
+     "why": "contact_unclean_not_a_manner_failure"
+    }
+   ]
+  }
+ ],
+ "final": {
+  "joint_pass": false,
+  "attempts": 1,
+  "stop": "contact_unclean_not_a_manner_failure"
+ },
+ "clearance_prior": {
+  "alphabet_soup": 0.03,
+  "tomato_sauce": 0.03
+ },
+ "library_rows_at_start": 6378
+}

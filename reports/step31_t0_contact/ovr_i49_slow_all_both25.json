@@ -1,0 +1,93 @@
+{
+ "task": 0,
+ "init": 49,
+ "iid": "slow_all",
+ "k": 0,
+ "cmd": {
+  "speed": {
+   "alphabet_soup.pick_1.approach": 0.06,
+   "alphabet_soup.pick_1.descend": 0.06,
+   "alphabet_soup.pick_1.lift": 0.06,
+   "alphabet_soup.pick_1.transport": 0.06,
+   "alphabet_soup.pick_1.place": 0.06,
+   "alphabet_soup.pick_1.retreat": 0.06,
+   "tomato_sauce.pick_1.approach": 0.06,
+   "tomato_sauce.pick_1.descend": 0.06,
+   "tomato_sauce.pick_1.lift": 0.06,
+   "tomato_sauce.pick_1.transport": 0.06,
+   "tomato_sauce.pick_1.place": 0.06,
+   "tomato_sauce.pick_1.retreat": 0.06
+  },
+  "grip": {
+   "alphabet_soup": [
+    25.0,
+    100.0
+   ],
+   "tomato_sauce": [
+    25.0,
+    100.0
+   ]
+  }
+ },
+ "task_ok": false,
+ "clean": true,
+ "objects": {
+  "alphabet_soup": {
+   "hold_min": 32.910194811255835,
+   "hold_max": 34.13333686589526,
+   "hold_mean": 33.0396269809581,
+   "stable": true,
+   "valid": true,
+   "target": "alphabet_soup_1",
+   "carry_v": 0.06176687777042389
+  },
+  "tomato_sauce": {
+   "hold_min": 32.09151512318595,
+   "hold_max": 33.183575346606084,
+   "hold_mean": 32.29278663768269,
+   "stable": true,
+   "valid": true,
+   "target": "tomato_sauce_1",
+   "carry_v": 0.06053387001156807
+  }
+ },
+ "contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "tomato_sauce_1_main",
+   "class": "finger_link_on_target",
+   "max_n": 0.5,
+   "v1_reasons": [],
+   "control_step_range": [
+    686,
+    686
+   ],
+   "stages_hit": [
+    "tomato_sauce.pick_1.place"
+   ],
+   "peak_geom": "gripper0_finger1_collision",
+   "peak_step": 686,
+   "n_substeps": 2,
+   "n_substeps_inner_region": 2
+  }
+ ],
+ "windows": [
+  {
+   "instance_id": "alphabet_soup.pick_1.grasp",
+   "object": "alphabet_soup_1_main",
+   "env_object": "alphabet_soup_1",
+   "close_step": 100,
+   "release_step": 326,
+   "release_command_step": 316
+  },
+  {
+   "instance_id": "tomato_sauce.pick_1.grasp",
+   "object": "tomato_sauce_1_main",
+   "env_object": "tomato_sauce_1",
+   "close_step": 497,
+   "release_step": 691,
+   "release_command_step": 681
+  }
+ ],
+ "n_steps": 740
+}
