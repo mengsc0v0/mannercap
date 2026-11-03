@@ -1,0 +1,199 @@
+{
+ "task": 8,
+ "init": 3,
+ "success": true,
+ "status": "completed",
+ "n_steps": 479,
+ "wall_s": 15.4,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_1",
+    "flat_stove_1_cook_region"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_2",
+    "flat_stove_1_cook_region"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "turnon",
+   "args": [
+    "flat_stove_1"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "moka_pot_2",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    0.03720162474892945,
+    0.07408189789313162,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    0.005834500761653275,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    0.006,
+    -0.1986,
+    0.9966
+   ],
+   "site_frame_final_origin": [
+    0.0502,
+    0.0008,
+    0.0916
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_candidate",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -89.2,
+     "lateral_m": 0.0236,
+     "dz_m": 0.06,
+     "offset": [
+      -0.00237,
+      -0.0236,
+      0.05868
+     ],
+     "min_clearance_m": 0.0102,
+     "blocking": "moka_pot_2",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00187,
+     "feasible": true,
+     "longitudinal_m": -0.0027
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -89.2,
+      "lateral_m": 0.0236,
+      "dz_m": 0.06,
+      "longitudinal_m": -0.0027,
+      "min_clearance_m": 0.0102,
+      "at_grasp_clearance_m": 0.00187,
+      "blocking": "moka_pot_2",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "moka_pot_1",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.0259770432534724,
+    0.23565705318462302,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    -0.10416549923834673,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    -0.1133,
+    -0.1363,
+    0.9697
+   ],
+   "site_frame_final_origin": [
+    -0.0692,
+    0.0631,
+    0.0647
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_candidate",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -87.0,
+     "lateral_m": 0.051,
+     "dz_m": 0.06,
+     "offset": [
+      0.01436,
+      -0.05024,
+      0.05677
+     ],
+     "min_clearance_m": 0.01402,
+     "blocking": "moka_pot_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00875,
+     "feasible": true,
+     "longitudinal_m": 0.0118
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -87.0,
+      "lateral_m": 0.051,
+      "dz_m": 0.06,
+      "longitudinal_m": 0.0118,
+      "min_clearance_m": 0.01402,
+      "at_grasp_clearance_m": 0.00875,
+      "blocking": "moka_pot_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "moka_pot_1_main",
+   "max_n": 10.3,
+   "control_steps": [
+    315,
+    449
+   ],
+   "stage_first": "obj1.pick_1.lift",
+   "stage_last": "obj1.pick_1.place",
+   "reasons": [
+    "not_all_substeps_on_inner_face (2967/2979)"
+   ],
+   "robot_geom": "gripper0_finger1_collision",
+   "object_geom": "moka_pot_1_g4"
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"completed\", \"classes_present\": [], \"first_failure\": {}}",
+ "refused_params": []
+}

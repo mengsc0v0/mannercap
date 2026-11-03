@@ -1,0 +1,199 @@
+{
+ "task": 8,
+ "init": 1,
+ "success": false,
+ "status": "completed",
+ "n_steps": 486,
+ "wall_s": 16.0,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_1",
+    "flat_stove_1_cook_region"
+   ],
+   "true": false
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_2",
+    "flat_stove_1_cook_region"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "turnon",
+   "args": [
+    "flat_stove_1"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "moka_pot_2",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    0.034012403663428066,
+    0.03438951475938438,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    0.005834500761653275,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    0.0063,
+    -0.1987,
+    0.9966
+   ],
+   "site_frame_final_origin": [
+    0.0505,
+    0.0007,
+    0.0916
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_candidate",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -89.2,
+     "lateral_m": 0.0236,
+     "dz_m": 0.06,
+     "offset": [
+      -0.00234,
+      -0.0236,
+      0.05865
+     ],
+     "min_clearance_m": 0.01016,
+     "blocking": "moka_pot_2",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00186,
+     "feasible": true,
+     "longitudinal_m": -0.0027
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -89.2,
+      "lateral_m": 0.0236,
+      "dz_m": 0.06,
+      "longitudinal_m": -0.0027,
+      "min_clearance_m": 0.01016,
+      "at_grasp_clearance_m": 0.00186,
+      "blocking": "moka_pot_2",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "moka_pot_1",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.03834287243354072,
+    0.2524731798639955,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    -0.10416549923834673,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    -0.0304,
+    0.2324,
+    0.9661
+   ],
+   "site_frame_final_origin": [
+    0.0138,
+    0.4318,
+    0.0611
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_candidate",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -87.0,
+     "lateral_m": 0.051,
+     "dz_m": 0.06,
+     "offset": [
+      0.01454,
+      -0.05019,
+      0.05681
+     ],
+     "min_clearance_m": 0.01412,
+     "blocking": "moka_pot_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00884,
+     "feasible": true,
+     "longitudinal_m": 0.0118
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -87.0,
+      "lateral_m": 0.051,
+      "dz_m": 0.06,
+      "longitudinal_m": 0.0118,
+      "min_clearance_m": 0.01412,
+      "at_grasp_clearance_m": 0.00884,
+      "blocking": "moka_pot_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "moka_pot_1_main",
+   "max_n": 11.4,
+   "control_steps": [
+    306,
+    310
+   ],
+   "stage_first": "obj1.pick_1.lift",
+   "stage_last": "obj1.pick_1.lift",
+   "reasons": [
+    "not_all_substeps_on_inner_face (2/10)"
+   ],
+   "robot_geom": "gripper0_finger1_collision",
+   "object_geom": "moka_pot_1_g4"
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"completed\", \"classes_present\": [\"outcome_not_met\"], \"first_failure\": {\"class\": \"outcome_not_met\", \"requirement_id\": \"task.official_success\", \"instance_id\": {\"unknown\": \"whole task\"}, \"stage_label\": {\"unknown\": \"whole task\"}, \"primitive\": {\"unknown\": \"whole task\"}, \"object_role\": {\"unknown\": \"whole task\"}, \"stage_index\": null, \"control_step\": {\"unknown\": \"whole task\"}, \"pose_difference\": {\"unknown\": \"not recorded\"}, \"evidence_source\": \"simulator task flag\"}}",
+ "refused_params": []
+}

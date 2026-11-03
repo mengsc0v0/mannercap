@@ -1,0 +1,292 @@
+{
+ "task": 8,
+ "init": 32,
+ "success": true,
+ "status": "completed",
+ "n_steps": 487,
+ "wall_s": 15.8,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_1",
+    "flat_stove_1_cook_region"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_2",
+    "flat_stove_1_cook_region"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "turnon",
+   "args": [
+    "flat_stove_1"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "moka_pot_2",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    0.07153063778667076,
+    0.06362388638840402,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    0.005834500761653275,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    -0.0155,
+    -0.192,
+    0.9966
+   ],
+   "site_frame_final_origin": [
+    0.0287,
+    0.0074,
+    0.0916
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_grid",
+    "n_candidates": 2,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": -0.03,
+     "dz_m": 0.04,
+     "offset": [
+      -0.02995,
+      -1e-05,
+      0.0417
+     ],
+     "min_clearance_m": 0.00346,
+     "blocking": "moka_pot_2",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.0011,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": -0.03,
+      "dz_m": 0.04,
+      "min_clearance_m": 0.00346,
+      "at_grasp_clearance_m": 0.0011,
+      "blocking": "moka_pot_2",
+      "phase": "descent",
+      "feasible": true
+     },
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.03,
+      "dz_m": 0.04,
+      "min_clearance_m": 0.002,
+      "at_grasp_clearance_m": 0.0,
+      "blocking": "moka_pot_2",
+      "phase": "descent",
+      "feasible": false
+     }
+    ]
+   }
+  },
+  {
+   "object": "moka_pot_1",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.058017976247196124,
+    0.24533283753299684,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    -0.10416549923834673,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    -0.1019,
+    -0.197,
+    0.9966
+   ],
+   "site_frame_final_origin": [
+    -0.0577,
+    0.0024,
+    0.0916
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_grid",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": 0.0,
+     "lateral_m": 0.03,
+     "dz_m": 0.04,
+     "offset": [
+      0.02993,
+      -5e-05,
+      0.03792
+     ],
+     "min_clearance_m": 0.00333,
+     "blocking": "moka_pot_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00145,
+     "feasible": true
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": 0.0,
+      "lateral_m": 0.03,
+      "dz_m": 0.04,
+      "min_clearance_m": 0.00333,
+      "at_grasp_clearance_m": 0.00145,
+      "blocking": "moka_pot_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "finger_joint2_tip",
+   "other": "moka_pot_2_main",
+   "max_n": 27.4,
+   "control_steps": [
+    64,
+    66
+   ],
+   "stage_first": "obj0.pick_1.descend",
+   "stage_last": "obj0.pick_1.descend",
+   "reasons": [
+    "not_a_finger_link_contact",
+    "outside_hold_window_close_to_release"
+   ],
+   "robot_geom": "gripper0_finger2_pad_collision",
+   "object_geom": "moka_pot_2_g9"
+  },
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "moka_pot_2_main",
+   "max_n": 0.4,
+   "control_steps": [
+    196,
+    196
+   ],
+   "stage_first": "obj0.pick_1.retreat",
+   "stage_last": "obj0.pick_1.retreat",
+   "reasons": [
+    "outside_hold_window_close_to_release",
+    "not_all_substeps_on_inner_face (0/1)"
+   ],
+   "robot_geom": "gripper0_finger1_collision",
+   "object_geom": "moka_pot_2_g11"
+  },
+  {
+   "robot_body": "right_gripper",
+   "other": "moka_pot_1_main",
+   "max_n": 0.8,
+   "control_steps": [
+    407,
+    457
+   ],
+   "stage_first": "obj1.pick_1.transport",
+   "stage_last": "obj1.pick_1.place",
+   "reasons": [
+    "not_a_finger_link_contact",
+    "not_all_substeps_on_inner_face (0/1261)"
+   ],
+   "robot_geom": "gripper0_hand_collision",
+   "object_geom": "moka_pot_1_g8"
+  },
+  {
+   "robot_body": "right_gripper",
+   "other": "moka_pot_2_main",
+   "max_n": 23.2,
+   "control_steps": [
+    181,
+    186
+   ],
+   "stage_first": "obj0.pick_1.place",
+   "stage_last": "obj0.pick_1.place",
+   "reasons": [
+    "not_a_finger_link_contact",
+    "not_all_substeps_on_inner_face (0/203)"
+   ],
+   "robot_geom": "gripper0_hand_collision",
+   "object_geom": "moka_pot_2_g7"
+  },
+  {
+   "robot_body": "rightfinger",
+   "other": "moka_pot_2_main",
+   "max_n": 30.9,
+   "control_steps": [
+    62,
+    63
+   ],
+   "stage_first": "obj0.pick_1.descend",
+   "stage_last": "obj0.pick_1.descend",
+   "reasons": [
+    "not_a_finger_link_contact",
+    "outside_hold_window_close_to_release",
+    "not_all_substeps_on_inner_face (3/5)"
+   ],
+   "robot_geom": "gripper0_finger2_collision",
+   "object_geom": "moka_pot_2_g9"
+  },
+  {
+   "robot_body": "rightfinger[finger_link_on_target]",
+   "other": "moka_pot_1_main",
+   "max_n": 1.0,
+   "control_steps": [
+    457,
+    467
+   ],
+   "stage_first": "obj1.pick_1.place",
+   "stage_last": "obj1.pick_1.retreat",
+   "reasons": [
+    "outside_hold_window_close_to_release",
+    "not_all_substeps_on_inner_face (0/137)"
+   ],
+   "robot_geom": "gripper0_finger2_collision",
+   "object_geom": "moka_pot_1_g9"
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"completed\", \"classes_present\": [], \"first_failure\": {}}",
+ "refused_params": []
+}

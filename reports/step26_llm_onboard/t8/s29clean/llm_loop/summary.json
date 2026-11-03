@@ -1,0 +1,54 @@
+{
+ "task": 8,
+ "arm": "llm_loop",
+ "tag": "s29clean",
+ "criterion": "clean",
+ "dev_inits": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "heldout_inits": [],
+ "rounds": [
+  {
+   "round": 0,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "Placement, height, yaw, order, and predicates were correct: three development inits completed with all goals true, and the stove was already on. The sole failure was moka_pot_2's grasp guard in init 2: its only feasible default candidate, yaw 0/lateral 0.03/dz 0.04, was rejected after close for right-gripper contact with the target, after which no candidate remained. I therefore changed only grasp search, replacing the unrestricted default grid with a focused grid that retains the successful 0.04 m candidates and adds 0.05 and 0.06 m grasp heights on both observed lateral sides. The added vertical clearance should prevent candidate exhaustion while preserving the validated placement geometry.",
+   "unsupported": false
+  },
+  {
+   "round": 1,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "All four development executions satisfied both on predicates and preserved the already-true stove turnon predicate; rejection was solely because contact_v1_clean was false. The repeated failures were tied to the yaw-0 grid grasp: finger or tip contact occurred during descent, and palm or outer finger-link contact persisted during grasp, place, or retreat. I therefore changed only the grasp specification, replacing each grid with its exact object-specific registered demonstration grasp. Placement offsets, heights, tolerance, yaw, and pot2-then-pot1 order remain unchanged because they consistently achieved the official predicates without inter-object contact.",
+   "unsupported": false
+  },
+  {
+   "round": 2,
+   "dev_ok": 0,
+   "dev_n": 4,
+   "hypothesis": "The placement geometry and execution order are retained because every grid-based development run achieved both on predicates and preserved the stove's already-true turnon predicate. Round 0 failed only the clean-contact requirement: the selected low yaw-0 grasps produced finger or tip contact during descent and palm or outer-finger contact during grasp, place, and retreat. Round 1 removed those contacts only by being rejected before motion: the exact moka_pot_2 reference had 0.00215-0.00220 m grasp penetration. I therefore replaced each exact reference with a single candidate using its demonstrated lateral, longitudinal, and yaw geometry while raising grasp dz to 0.060 m. This should make the demonstration-like grasps approach-feasible and keep the palm and non-pad finger surfaces clear. Offsets, heights, tolerance, target yaw, and moka_pot_2-then-moka_pot_1 order are unchanged.",
+   "unsupported": false
+  },
+  {
+   "round": 3,
+   "dev_ok": 4,
+   "dev_n": 4,
+   "hypothesis": "The stove turnon goal already holds and needs no action. Round 2 isolated the failure to moka_pot_1's grasp: every run reported finger_link_on_target from its left finger during lift through place, one run also reported right-gripper palm contact, and init 1 lost or failed to transport the pot so its on predicate remained false. Moka_pot_2's grasp completed all four inits without any reported unexcused contact. I therefore changed only moka_pot_1's grasp candidate to the already validated moka_pot_2 candidate, which is geometrically transferable because the two objects have identical class, collision dimensions, origin height, and yaw. The validated order, target offsets, target yaw, lift and transport clearances, release height, and tolerance are unchanged.",
+   "unsupported": false
+  }
+ ],
+ "selected_round": 3,
+ "llm_spend": {
+  "calls": 3,
+  "cached": 0,
+  "failed": 0,
+  "latency_s": 90.511,
+  "prompt_tokens": 43923,
+  "completion_tokens": 7686,
+  "total_tokens": 51609,
+  "budget": 5
+ }
+}

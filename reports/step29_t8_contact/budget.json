@@ -1,0 +1,12 @@
+{"written_before_round1": true, "date": "2026-11-03", "task": 8,
+ "start_program": "reports/step26_llm_onboard/t8/v3/llm_loop/heldout/proposal.json (frozen v3, criterion task): held-out inits 10-29 success 19/20, clean 0/20",
+ "diagnosis_probes": {"cap": 4, "used": 4, "list": "frozen v3 on dev inits 0-3 via s27_contact_diag (reports/step29_t8_contact/diag/)",
+   "finding": "every init success, none clean. Three contact kinds: (A) descend: finger pad/link hits the pot (g9) before close, 24-47 N, inits 1/3; (B) place->retreat: palm (hand_collision vs g16/g8) and finger side on the just-released pot, 0.4-3 N, all inits; (C) init2: palm on moka_pot_1 during the whole hold, 8.7 N"},
+ "feedback_change": "S26_CONTACT_STAGES=1: unexcused_contacts additionally carry control_steps, stage_first/last, v1 reasons, peak robot/object geom (same contact policy, same acceptance; information only)",
+ "repair": {"proposer": "LLM loop (s26_onboard loop, criterion clean), round0 = frozen v3 (no LLM call), rounds 1-3 = LLM patches", "max_llm_rounds": 3,
+            "dev_inits": [0, 1, 2, 3], "executions_per_init_per_round": 1, "max_episodes_dev": 16},
+ "levers": "program params only (registry v2: grasp_grid / grasp_candidate / grasp_reference_id, lift/transport/place heights, place_tol_m, target offsets/yaw, order). Contact policy, guard, thresholds and executor code NOT changed",
+ "acceptance": "official success AND contact_policy v1.1 clean",
+ "selection": "round with most dev successes-and-clean (ties -> later round); if none > frozen v3 dev (0/4): report not repaired, still validate the best for the record",
+ "held_out": "unused T8 inits 30-49 (ledger: 0-3 dev, 10-29 v3 held-out). Both the frozen v3 and the selected round are run once on 30-49 for a paired comparison",
+ "on_budget_exhausted": "keep results, state the limiting capability, no extra rounds"}

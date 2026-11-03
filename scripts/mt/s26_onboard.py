@@ -177,6 +177,18 @@ def exec_one(proposal, t, init):
         v1 = eval_v1(crec.report(st), crec.events, det.detail, windows_from(ep, t), st)
         clean = bool(v1["clean_v1"]); unexc = [{"robot_body": c["robot_body"], "other": c["other"], "max_n": round(float(c["max_n"]), 2)}
                                                for c in v1["unexcused_contacts"]][:6]
+        if os.environ.get("S26_CONTACT_STAGES") == "1":   # step 29: where/when each unexcused contact happened
+            from synthesis_v2.contact_policy_v1 import _steps_of
+            for u in unexc:
+                key = (u["robot_body"], u["other"])
+                sp = sorted(_steps_of(crec.events, key))
+                dd = det.detail.get(key, {})
+                u.update({"control_steps": [sp[0], sp[-1]] if sp else None,
+                          "stage_first": st[sp[0]] if sp and sp[0] < len(st) else None,
+                          "stage_last": st[sp[-1]] if sp and sp[-1] < len(st) else None,
+                          "reasons": next((c.get("v1_reasons") for c in v1["contacts"]
+                                           if (c["robot_body"], c["other"]) == key), None),
+                          "robot_geom": dd.get("peak_geom"), "object_geom": dd.get("peak_other_geom")})
     except Exception as e:
         clean, unexc = None, [repr(e)[:200]]
     try:

@@ -1,0 +1,111 @@
+{
+ "task": 8,
+ "init": 1,
+ "success": false,
+ "status": "approach_infeasible:obj0.pick_1.approach",
+ "n_steps": 0,
+ "wall_s": 1.6,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_1",
+    "flat_stove_1_cook_region"
+   ],
+   "true": false
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_2",
+    "flat_stove_1_cook_region"
+   ],
+   "true": false
+  },
+  {
+   "predicate": "turnon",
+   "args": [
+    "flat_stove_1"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "moka_pot_2",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [],
+   "grasp_reached_band": null,
+   "obj_start_origin": [
+    0.034012403663428066,
+    0.03438951475938438,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    0.005834500761653275,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    0.034,
+    0.0344,
+    0.9661
+   ],
+   "site_frame_final_origin": [
+    0.0782,
+    0.2338,
+    0.0611
+   ],
+   "approach_plan": {
+    "feasible": false,
+    "grid_source": "grasp_reference",
+    "n_candidates": 1,
+    "n_feasible": 0,
+    "chosen": null,
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -91.52076261639624,
+      "lateral_m": 0.025376767493728684,
+      "dz_m": 0.05185973282206525,
+      "longitudinal_m": 0.0031234942987134495,
+      "min_clearance_m": -0.00058,
+      "at_grasp_clearance_m": -0.0022,
+      "blocking": "moka_pot_2",
+      "phase": "descent",
+      "feasible": false
+     }
+    ]
+   }
+  },
+  {
+   "object": "moka_pot_1",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [],
+   "grasp_reached_band": null,
+   "obj_start_origin": [
+    null
+   ],
+   "planned_object_target_origin": null,
+   "final_origin": [
+    -0.0383,
+    0.2525,
+    0.9661
+   ],
+   "site_frame_final_origin": [
+    0.0058,
+    0.4519,
+    0.0611
+   ],
+   "approach_plan": null
+  }
+ ],
+ "contact_v1_clean": true,
+ "unexcused_contacts": [],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"approach_infeasible:obj0.pick_1.approach\", \"classes_present\": [\"planning_rejected\", \"outcome_not_met\"], \"first_failure\": {\"class\": \"planning_rejected\", \"requirement_id\": \"exec.approach.feasible\", \"instance_id\": \"obj0.pick_1.approach\", \"stage_label\": \"obj0.pick_1.approach\", \"primitive\": \"approach\", \"object_role\": \"obj0\", \"stage_index\": 0, \"control_step\": 0, \"control_step_note\": \"rejected before any motion; no step was executed for this stage\", \"pose_difference\": {\"unknown\": \"planning rejection: no motion was executed, there is no reached pose\"}, \"evidence_source\": \"executor status + meta.approach_plan\"}}",
+ "refused_params": []
+}

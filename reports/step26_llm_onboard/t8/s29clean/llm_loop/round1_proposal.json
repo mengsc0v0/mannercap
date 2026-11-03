@@ -1,0 +1,75 @@
+{
+ "proposal": {
+  "supported": true,
+  "unsupported_reason": null,
+  "objects": [
+   {
+    "object": "moka_pot_2",
+    "target": "@site:flat_stove_1_cook_region",
+    "params": {
+     "lift_dz": 0.2,
+     "transport_dz": 0.27,
+     "place_dz": 0.0965,
+     "place_tol_m": 0.004,
+     "target_offset_site": [
+      0.05,
+      0.0,
+      0.0
+     ],
+     "target_yaw_deg": -180.0,
+     "grasp_reference_id": "libero_10.t8.demo_0.close_111.moka_pot_2"
+    },
+    "derivation": "The site plus the 0.05 m x offset gives world xy=(0.0058,-0.1994), inside the accepted box with 0.025 m minimum x margin. The supported origin height is burner z 0.9304 plus origin-above-bottom 0.0661 = 0.9965 m; adding a 0.005 m release gap gives commanded z 1.0015, hence place_dz=1.0015-0.905=0.0965, within the accepted open z interval with 0.006 m upper margin. The 0.004 m tolerance is below that margin. Lift 0.20 places the source bottom at 0.9661+0.20-0.0661=1.1000 m. Transport 0.27 places the bottom at 0.905+0.27-0.0661=1.1089 m. The selected registered reference is the task demonstration grasp for moka_pot_2, with object-relative position (-0.0027,0.0236,0.0424) and yaw -89.2 degrees; unlike the failed yaw-0 top-down grid, it preserves the demonstrated hand orientation intended to keep palm and outer finger surfaces off the pot."
+   },
+   {
+    "object": "moka_pot_1",
+    "target": "@site:flat_stove_1_cook_region",
+    "params": {
+     "lift_dz": 0.2,
+     "transport_dz": 0.27,
+     "place_dz": 0.0965,
+     "place_tol_m": 0.004,
+     "target_offset_site": [
+      -0.06,
+      0.0,
+      0.0
+     ],
+     "target_yaw_deg": -180.0,
+     "grasp_reference_id": "libero_10.t8.demo_0.close_349.moka_pot_1"
+    },
+    "derivation": "The site plus the -0.06 m x offset gives world xy=(-0.1042,-0.1994), inside the accepted box with 0.015 m minimum x margin. The two requested origins are separated by 0.11 m; at yaw -180 degrees the pot x extent is 0.0814 m, leaving 0.0286 m nominal clearance, or 0.0206 m under opposing 0.004 m placement errors. The supported origin is 0.9304+0.0661=0.9965 m, and the same 0.005 m release gap gives place_dz=0.9965+0.005-0.905=0.0965. A settled pot top is 0.9304+0.1518=1.0822 m, while transport puts the carried bottom at 1.1089 m, leaving 0.0267 m above the first pot. The selected registered reference is the task demonstration grasp for moka_pot_1, with object-relative position (0.0118,0.0510,0.0421) and yaw -87.0 degrees, replacing the contact-producing yaw-0 grid while retaining the validated order and placement."
+   }
+  ],
+  "hypothesis": "All four development executions satisfied both on predicates and preserved the already-true stove turnon predicate; rejection was solely because contact_v1_clean was false. The repeated failures were tied to the yaw-0 grid grasp: finger or tip contact occurred during descent, and palm or outer finger-link contact persisted during grasp, place, or retreat. I therefore changed only the grasp specification, replacing each grid with its exact object-specific registered demonstration grasp. Placement offsets, heights, tolerance, yaw, and pot2-then-pot1 order remain unchanged because they consistently achieved the official predicates without inter-object contact."
+ },
+ "llm_call": {
+  "prompt_version": "s26_onboard.v4",
+  "request_hash": "d06a88319701517eafe52db18956e71f8a8555fefd0a559a8c60d66aa1baee8e",
+  "status": "ok",
+  "latency_s": 33.314,
+  "usage": {
+   "completion_tokens": 2760,
+   "prompt_tokens": 13017,
+   "total_tokens": 15777,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 1844,
+    "rejected_prediction_tokens": 0
+   },
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0,
+    "cache_write_tokens": 13014
+   }
+  },
+  "error": "",
+  "identity": {
+   "interface": "llm_interface.v1",
+   "model": "gpt-5.6-sol-disc",
+   "base_url": "https://aihubmix.com/v1",
+   "temperature": 0.0,
+   "max_output_tokens": 8000
+  }
+ }
+}

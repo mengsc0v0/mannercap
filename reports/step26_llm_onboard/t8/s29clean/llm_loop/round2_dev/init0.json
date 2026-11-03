@@ -1,0 +1,199 @@
+{
+ "task": 8,
+ "init": 0,
+ "success": true,
+ "status": "completed",
+ "n_steps": 479,
+ "wall_s": 15.6,
+ "goals": [
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_1",
+    "flat_stove_1_cook_region"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "on",
+   "args": [
+    "moka_pot_2",
+    "flat_stove_1_cook_region"
+   ],
+   "true": true
+  },
+  {
+   "predicate": "turnon",
+   "args": [
+    "flat_stove_1"
+   ],
+   "true": true
+  }
+ ],
+ "objects": [
+  {
+   "object": "moka_pot_2",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    0.04144780671286205,
+    0.04257869744347468,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    0.005834500761653275,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    0.0063,
+    -0.1986,
+    0.9966
+   ],
+   "site_frame_final_origin": [
+    0.0505,
+    0.0008,
+    0.0916
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_candidate",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -89.2,
+     "lateral_m": 0.0236,
+     "dz_m": 0.06,
+     "offset": [
+      -0.00236,
+      -0.0236,
+      0.05866
+     ],
+     "min_clearance_m": 0.01028,
+     "blocking": "moka_pot_2",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00221,
+     "feasible": true,
+     "longitudinal_m": -0.0027
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -89.2,
+      "lateral_m": 0.0236,
+      "dz_m": 0.06,
+      "longitudinal_m": -0.0027,
+      "min_clearance_m": 0.01028,
+      "at_grasp_clearance_m": 0.00221,
+      "blocking": "moka_pot_2",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  },
+  {
+   "object": "moka_pot_1",
+   "target": "@site:flat_stove_1_cook_region",
+   "stages_entered": [
+    "approach",
+    "descend",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+   ],
+   "grasp_reached_band": true,
+   "obj_start_origin": [
+    -0.05430079535875531,
+    0.25773019714177975,
+    0.9661079269401629
+   ],
+   "planned_object_target_origin": [
+    -0.10416549923834673,
+    -0.19942210160494192,
+    0.905
+   ],
+   "final_origin": [
+    -0.1149,
+    -0.1407,
+    0.9697
+   ],
+   "site_frame_final_origin": [
+    -0.0707,
+    0.0587,
+    0.0647
+   ],
+   "approach_plan": {
+    "feasible": true,
+    "grid_source": "grasp_candidate",
+    "n_candidates": 1,
+    "n_feasible": 1,
+    "chosen": {
+     "yaw_deg": -87.0,
+     "lateral_m": 0.051,
+     "dz_m": 0.06,
+     "offset": [
+      0.01453,
+      -0.05019,
+      0.05681
+     ],
+     "min_clearance_m": 0.01411,
+     "blocking": "moka_pot_1",
+     "phase": "descent",
+     "at_grasp_clearance_m": 0.00883,
+     "feasible": true,
+     "longitudinal_m": 0.0118
+    },
+    "least_blocked_candidates": [
+     {
+      "yaw_deg": -87.0,
+      "lateral_m": 0.051,
+      "dz_m": 0.06,
+      "longitudinal_m": 0.0118,
+      "min_clearance_m": 0.01411,
+      "at_grasp_clearance_m": 0.00883,
+      "blocking": "moka_pot_1",
+      "phase": "descent",
+      "feasible": true
+     }
+    ]
+   }
+  }
+ ],
+ "contact_v1_clean": false,
+ "unexcused_contacts": [
+  {
+   "robot_body": "leftfinger[finger_link_on_target]",
+   "other": "moka_pot_1_main",
+   "max_n": 15.2,
+   "control_steps": [
+    312,
+    447
+   ],
+   "stage_first": "obj1.pick_1.lift",
+   "stage_last": "obj1.pick_1.place",
+   "reasons": [
+    "not_all_substeps_on_inner_face (2924/2931)"
+   ],
+   "robot_geom": "gripper0_finger1_collision",
+   "object_geom": "moka_pot_1_g4"
+  }
+ ],
+ "guard_retries": 0,
+ "guard_refusals": "[]",
+ "stage_failure": null,
+ "grasp_failure": null,
+ "place_failure": null,
+ "failure_report": "{\"status_code\": \"completed\", \"classes_present\": [], \"first_failure\": {}}",
+ "refused_params": []
+}

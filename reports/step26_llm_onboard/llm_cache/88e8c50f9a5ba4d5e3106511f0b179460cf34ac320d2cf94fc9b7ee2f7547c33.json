@@ -1,0 +1,63 @@
+{
+  "identity": {
+    "base_url": "https://aihubmix.com/v1",
+    "interface": "llm_interface.v1",
+    "max_output_tokens": 8000,
+    "model": "gpt-5.6-sol-disc",
+    "temperature": 0.0
+  },
+  "prompt_version": "s26_onboard.v4",
+  "response": {
+    "hypothesis": "The stove turnon goal already holds and needs no action. Round 2 isolated the failure to moka_pot_1's grasp: every run reported finger_link_on_target from its left finger during lift through place, one run also reported right-gripper palm contact, and init 1 lost or failed to transport the pot so its on predicate remained false. Moka_pot_2's grasp completed all four inits without any reported unexcused contact. I therefore changed only moka_pot_1's grasp candidate to the already validated moka_pot_2 candidate, which is geometrically transferable because the two objects have identical class, collision dimensions, origin height, and yaw. The validated order, target offsets, target yaw, lift and transport clearances, release height, and tolerance are unchanged.",
+    "objects": [
+      {
+        "derivation": "With site yaw 0, the 0.05 m site-x offset gives world xy=(-0.0442+0.05,-0.1994)=(0.0058,-0.1994), inside the accepted box with 0.025 m nearest x margin. The supported pot-origin height is burner surface 0.9304 plus origin-above-bottom 0.0661 = 0.9965 m. Releasing 0.005 m above that gives commanded z=1.0015, so place_dz=1.0015-0.905=0.0965; its 0.006 m upper accepted-region margin exceeds the 0.004 m tolerance. Lift 0.20 raises the source bottom to 0.9661+0.20-0.0661=1.1000 m. Transport 0.27 gives carried-bottom z=0.905+0.27-0.0661=1.1089 m. The grasp values come from the compatible moka_pot_2 demonstration geometry, with dz raised to 0.060 m after the resolved 0.05184 m reference penetrated by up to 0.00220 m. It remains below the pot top at origin+0.0857 m. This exact candidate was approach-feasible in all four previous inits, with at-grasp clearance 0.00186-0.00221 m, and generated no reported unexcused contact.",
+        "object": "moka_pot_2",
+        "params": {
+          "grasp_candidate": {
+            "dz_m": 0.06,
+            "lateral_m": 0.0236,
+            "longitudinal_m": -0.0027,
+            "yaw_deg": -89.2
+          },
+          "lift_dz": 0.2,
+          "place_dz": 0.0965,
+          "place_tol_m": 0.004,
+          "target_offset_site": [
+            0.05,
+            0.0,
+            0.0
+          ],
+          "target_yaw_deg": -180.0,
+          "transport_dz": 0.27
+        },
+        "target": "@site:flat_stove_1_cook_region"
+      },
+      {
+        "derivation": "With site yaw 0, the -0.06 m site-x offset gives world xy=(-0.1042,-0.1994), inside the accepted box with 0.015 m nearest x margin. The two requested origins are 0.11 m apart. At target yaw -180 degrees each pot has 0.0814 m x extent, leaving 0.11-0.0814=0.0286 m nominal clearance, or 0.0206 m after opposing 0.004 m placement errors. The supported origin is 0.9304+0.0661=0.9965 m, and a 0.005 m release gap again gives place_dz=0.9965+0.005-0.905=0.0965. The first settled pot reaches z=0.9304+0.1518=1.0822, while this pot's transported bottom is 0.905+0.27-0.0661=1.1089, leaving 0.0267 m vertical clearance. Lift 0.20 gives source-bottom z=1.1000 m. Because both pots have the same class, dimensions, origin height, and -180 degree initial yaw, this object uses the moka_pot_2 candidate that was clean in all four prior executions: yaw -89.2, lateral 0.0236, longitudinal -0.0027, and dz 0.060 m. The replaced moka_pot_1-specific candidate caused outer-face left-finger contact in every init and palm contact in one init.",
+        "object": "moka_pot_1",
+        "params": {
+          "grasp_candidate": {
+            "dz_m": 0.06,
+            "lateral_m": 0.0236,
+            "longitudinal_m": -0.0027,
+            "yaw_deg": -89.2
+          },
+          "lift_dz": 0.2,
+          "place_dz": 0.0965,
+          "place_tol_m": 0.004,
+          "target_offset_site": [
+            -0.06,
+            0.0,
+            0.0
+          ],
+          "target_yaw_deg": -180.0,
+          "transport_dz": 0.27
+        },
+        "target": "@site:flat_stove_1_cook_region"
+      }
+    ],
+    "supported": true,
+    "unsupported_reason": null
+  }
+}
